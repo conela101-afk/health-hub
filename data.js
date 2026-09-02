@@ -20,6 +20,17 @@ const SPECIALTIES = [
   { id: "neurodiversity", label: "Neurodiversity (Autism, ADHD)" },
   { id: "parenting", label: "Parenting & New Motherhood" },
   { id: "crisis",  label: "Mental Health Crisis Support" },
+  { id: "cardiology", label: "Cardiology & Women's Heart Health" },
+  { id: "rheumatology", label: "Rheumatology & Autoimmune" },
+  { id: "neurology", label: "Neurology & Migraine" },
+  { id: "gastro",  label: "Gastroenterology & IBD" },
+  { id: "pain",    label: "Chronic Pain Management" },
+  { id: "longcovid", label: "Long Covid & ME/CFS" },
+  { id: "bonehealth", label: "Bone Health & Osteoporosis" },
+  { id: "genetics", label: "Genetics & Hereditary Cancer Risk" },
+  { id: "sexualhealth", label: "Sexual Health & STI Testing" },
+  { id: "pelvicphysio", label: "Pelvic Health Physiotherapy" },
+  { id: "vascular", label: "Vascular" },
 ];
 
 // All 32 traditional counties (26 Republic + 6 Northern Ireland), so every
@@ -301,16 +312,6 @@ const ENTRIES = [
     contact: { web: "cuidiu.ie" }
   },
   {
-    id: "text-50808",
-    name: "Text 50808",
-    specialty: ["mh"],
-    county: ["national"],
-    blurb: "Free, 24/7 text support for anyone in crisis or emotional distress. HSE-funded.",
-    details: ["Text HELLO to 50808 to start a conversation."],
-    referral: "Self-referral, no cost.",
-    contact: { phone: "Text HELLO to 50808" }
-  },
-  {
     id: "cuidiu-cork-bf",
     name: "Cuidiú Cork Breastfeeding Support",
     specialty: ["feeding"],
@@ -322,16 +323,6 @@ const ENTRIES = [
     ],
     referral: "Self-referral, no cost.",
     contact: { web: "cuidiucork.ie", email: "cork@cuidiu.ie" }
-  },
-  {
-    id: "lll-ireland",
-    name: "La Leche League Ireland",
-    specialty: ["feeding"],
-    county: ["national"],
-    blurb: "Local breastfeeding support groups and telephone support.",
-    details: ["Find your nearest group at lalecheleagueireland.com/groups"],
-    referral: "Self-referral.",
-    contact: { web: "lalecheleagueireland.com" }
   },
   {
     id: "svc-cork",
@@ -461,18 +452,64 @@ const ENTRIES = [
     contact: { address: "Lee Clinic, CUMH, Wilton, Cork" }
   },
   {
-    id: "national-endo-framework",
-    name: "National Endometriosis Framework — Care Pathway",
+    id: "tallaght-endo-centre",
+    name: "Tallaght University Hospital Endometriosis Centre",
     specialty: ["endo", "gynae"],
-    county: ["national"],
-    blurb: "Defines the GP → regional hub → supra-regional pathway for endometriosis care nationally.",
-    details: [
-      "Regional (moderate cases): Rotunda, Coombe, University Hospital Limerick.",
-      "Supra-regional (complex/Stage 4 cases): Tallaght University Hospital and CUMH (Lee Clinic, Cork).",
-      "Over 1,150 new patients seen in 2024; Coombe waiting time roughly 6–7 months at last check.",
-    ],
-    referral: "Start with your GP — ask them to reference the National Endometriosis Framework in the referral.",
+    county: ["dublin"],
+    blurb: "The other supra-regional centre for complex (Stage 4) endometriosis care, alongside CUMH.",
+    details: ["For complex/severe cases referred on from a regional centre — not a first stop for a new diagnosis."],
+    referral: "GP → regional centre → supra-regional referral if complex.",
     contact: { web: "hse.ie" }
+  },
+  {
+    id: "rotunda-endo",
+    name: "Rotunda Hospital — Endometriosis (regional)",
+    specialty: ["endo", "gynae"],
+    county: ["dublin"],
+    blurb: "Established regional specialist centre for moderate endometriosis care.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "01 873 0596", web: "rotunda.ie" }
+  },
+  {
+    id: "coombe-endo",
+    name: "Coombe Hospital — Endometriosis (regional)",
+    specialty: ["endo", "gynae"],
+    county: ["dublin"],
+    blurb: "Established regional specialist centre for moderate endometriosis care.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "01 408 5200", address: "Cork Street, Dublin D08 XW7X" }
+  },
+  {
+    id: "uhl-endo",
+    name: "University Hospital Limerick — Endometriosis (regional)",
+    specialty: ["endo", "gynae"],
+    county: ["limerick"],
+    blurb: "Established regional specialist centre for moderate endometriosis care.",
+    details: [],
+    referral: "GP referral.",
+    contact: { web: "hse.ie" }
+  },
+  {
+    id: "uhg-endo",
+    name: "University Hospital Galway — Endometriosis (in development)",
+    specialty: ["endo", "gynae"],
+    county: ["galway"],
+    blurb: "Regional endometriosis centre in development under the National Endometriosis Framework — may not be fully operational yet.",
+    details: [],
+    referral: "GP referral — ask whether the service is live yet.",
+    contact: { phone: "091 524 222" }
+  },
+  {
+    id: "nmh-endo",
+    name: "National Maternity Hospital — Endometriosis (in development)",
+    specialty: ["endo", "gynae"],
+    county: ["dublin"],
+    blurb: "Regional endometriosis centre in development under the National Endometriosis Framework — may not be fully operational yet.",
+    details: [],
+    referral: "GP referral — ask whether the service is live yet.",
+    contact: { phone: "01 637 3100" }
   },
   {
     id: "cumh-menopause-clinic",
@@ -484,21 +521,57 @@ const ENTRIES = [
       "For complex cases with comorbidities — most menopause care is still managed by your GP.",
       "HRT is VAT-free and free of charge under the HRT scheme (from June 2025).",
     ],
-    referral: "GP referral.",
-    contact: { address: "CUMH, Wilton, Cork" }
+    referral: "GP/consultant/ANP referral.",
+    contact: { address: "Unit 3, CUMH Kinsale Road, South Ring Business Park, Cork" }
   },
   {
-    id: "national-menopause-clinics",
-    name: "HSE Specialist Menopause Clinics (other regions)",
+    id: "nmh-menopause",
+    name: "National Maternity Hospital Complex Menopause Clinic",
     specialty: ["menopause"],
-    county: ["national"],
-    blurb: "The other five HSE complex-menopause clinics, alongside CUMH in Cork.",
-    details: [
-      "National Maternity Hospital (Holles St, Dublin) — first to open, Dec 2021.",
-      "Also at: Nenagh, Rotunda (Dublin), Coombe (Dublin), University Hospital Galway.",
-      "For complex cases with comorbidities; most women are managed by their GP.",
-    ],
-    referral: "GP referral.",
+    county: ["dublin"],
+    blurb: "The first of the six HSE complex-menopause clinics, opened Dec 2021.",
+    details: [],
+    referral: "GP/consultant/ANP referral.",
+    contact: { phone: "01 637 3100" }
+  },
+  {
+    id: "rotunda-menopause",
+    name: "Rotunda Hospital Complex Menopause Clinic",
+    specialty: ["menopause"],
+    county: ["dublin"],
+    blurb: "Clinical lead Dr Caoimhe Hartley.",
+    details: [],
+    referral: "GP/consultant/ANP referral.",
+    contact: { phone: "01 873 0596", web: "rotunda.ie" }
+  },
+  {
+    id: "coombe-menopause",
+    name: "Coombe Hospital Complex Menopause Clinic",
+    specialty: ["menopause"],
+    county: ["dublin"],
+    blurb: "One of six HSE specialist complex-menopause clinics nationally.",
+    details: [],
+    referral: "GP/consultant/ANP referral.",
+    contact: { phone: "01 408 5200" }
+  },
+  {
+    id: "uhg-menopause",
+    name: "University Hospital Galway Complex Menopause Clinic",
+    specialty: ["menopause"],
+    county: ["galway"],
+    blurb: "Runs one afternoon a week.",
+    details: [],
+    referral: "GP/consultant/ANP referral.",
+    contact: { phone: "091 524 222" }
+  },
+  {
+    id: "nenagh-menopause",
+    name: "Nenagh Hospital Complex Menopause Clinic",
+    specialty: ["menopause"],
+    county: ["tipperary"],
+    blurb: "One of six HSE specialist complex-menopause clinics nationally.",
+    details: [],
+    referral: "GP/consultant/ANP referral.",
     contact: { web: "hse.ie" }
   },
   {
@@ -506,27 +579,80 @@ const ENTRIES = [
     name: "Cork Regional Fertility Hub",
     specialty: ["fertility"],
     county: ["cork-city"],
-    blurb: "One of six Regional Fertility Hubs offering publicly funded assisted human reproduction (AHR) pathways.",
+    blurb: "One of six Regional Fertility Hubs offering publicly funded assisted human reproduction (AHR) pathways. Also home to the National Advanced AHR Centre, Ireland's first public AHR centre.",
     details: [
       "Publicly funded AHR available since September 2023: GP → hub → HSE-approved private clinic.",
-      "Cork is also home to the first National Advanced AHR Centre.",
+      "The Cork hub gained HPRA licensing for IUI in 2025; IUI referrals began December 2025.",
     ],
+    referral: "GP referral to the hub.",
+    contact: { address: "Lee Road Clinic, Cork" }
+  },
+  {
+    id: "rotunda-fertility",
+    name: "Rotunda Hospital Regional Fertility Hub",
+    specialty: ["fertility"],
+    county: ["dublin"],
+    blurb: "One of six HSE Regional Fertility Hubs. Around 125 couples/month are referred nationally for publicly-funded AHR.",
+    details: [],
+    referral: "GP referral to the hub.",
+    contact: { phone: "01 873 0596", web: "rotunda.ie" }
+  },
+  {
+    id: "nmh-fertility",
+    name: "National Maternity Hospital Regional Fertility Hub",
+    specialty: ["fertility"],
+    county: ["dublin"],
+    blurb: "One of six HSE Regional Fertility Hubs.",
+    details: [],
+    referral: "GP referral to the hub.",
+    contact: { phone: "01 637 3100" }
+  },
+  {
+    id: "coombe-fertility",
+    name: "Coombe Hospital Regional Fertility Hub",
+    specialty: ["fertility"],
+    county: ["dublin"],
+    blurb: "One of six HSE Regional Fertility Hubs.",
+    details: [],
+    referral: "GP referral to the hub.",
+    contact: { phone: "01 408 5200" }
+  },
+  {
+    id: "uhg-fertility",
+    name: "University Hospital Galway Regional Fertility Hub",
+    specialty: ["fertility"],
+    county: ["galway"],
+    blurb: "One of six HSE Regional Fertility Hubs.",
+    details: [],
+    referral: "GP referral to the hub.",
+    contact: { phone: "091 524 222" }
+  },
+  {
+    id: "nenagh-fertility",
+    name: "Nenagh Hospital Regional Fertility Hub",
+    specialty: ["fertility"],
+    county: ["tipperary"],
+    blurb: "One of six HSE Regional Fertility Hubs.",
+    details: [],
     referral: "GP referral to the hub.",
     contact: { web: "hse.ie" }
   },
   {
-    id: "national-fertility-hubs",
-    name: "HSE Regional Fertility Hubs (other regions)",
+    id: "hse-approved-ahr-clinics",
+    name: "HSE-Approved Private AHR/IVF Clinics",
     specialty: ["fertility"],
     county: ["national"],
-    blurb: "The other five Regional Fertility Hubs, alongside Cork.",
+    blurb: "Eight HSE-approved private clinic sites your Regional Fertility Hub can refer you on to, if needed — you choose which.",
     details: [
-      "Dublin ×3: National Maternity Hospital, Coombe, Rotunda.",
-      "Also at: Galway, Tipperary/Nenagh.",
-      "Approved private clinics include Beacon CARE, Sims, Waterstone, ReproMed, Thérapie, First IVF.",
+      "Beacon CARE Fertility (Dublin; satellites Limerick, Louth).",
+      "First IVF (Kildare; satellites Cork, Galway, Kerry).",
+      "ReproMed (Dublin; satellite Louth).",
+      "Sims IVF (Cork & Dublin; satellites Carlow, Limerick, Louth).",
+      "Thérapie Fertility (Dublin).",
+      "Waterstone Clinic (Cork; satellites Kildare, Waterford).",
     ],
-    referral: "GP referral to your nearest hub.",
-    contact: { web: "hse.ie" }
+    referral: "Referred on by your Regional Fertility Hub.",
+    contact: {}
   },
   {
     id: "national-eating-disorders",
@@ -707,6 +833,1411 @@ const ENTRIES = [
     details: [],
     referral: "Self-referral via website.",
     contact: { web: "nisig.ie" }
+  },
+
+  // ==========================================================================
+  // NATIONAL SERVICES DIRECTORY — built Sep 2026 from a sourced research pass
+  // covering all 19 ROI maternity units, NI maternity by Trust, DV/SATU
+  // national master lists, cancer support, contraception access, and more.
+  // "Strong coverage" categories per the source doc: maternity, Rape Crisis
+  // Centres, SATUs, Family Resource Centres (partial), fertility/endo/
+  // menopause/perinatal-MH hubs. Some contacts (esp. volunteer-run orgs,
+  // and anything marked FLAG in source) were not independently re-verified
+  // — treat as a strong first pass, not final. Last reviewed: Sep 2026.
+  // ==========================================================================
+
+  // ---- Maternity & Obstetrics: the other 18 ROI units (CUMH already exists) ----
+  {
+    id: "cavan-maternity",
+    name: "Cavan General Hospital Maternity",
+    specialty: ["obs"],
+    county: ["cavan"],
+    blurb: "Maternity unit alongside a midwifery-led unit.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "049 437 6613", address: "Lisdaran, Cavan" }
+  },
+  {
+    id: "letterkenny-maternity",
+    name: "Letterkenny University Hospital Maternity",
+    specialty: ["obs"],
+    county: ["donegal"],
+    blurb: "The maternity unit for Co. Donegal.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "074 912 5888", address: "Kilmacrennan Rd, Letterkenny F92 AE81" }
+  },
+  {
+    id: "coombe-maternity",
+    name: "Coombe Hospital Maternity",
+    specialty: ["obs"],
+    county: ["dublin"],
+    blurb: "One of three Dublin maternity hospitals.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "01 408 5200", email: "patientadvocacy@coombe.ie", address: "Cork Street, Dublin D08 XW7X" }
+  },
+  {
+    id: "nmh-maternity",
+    name: "National Maternity Hospital Maternity",
+    specialty: ["obs"],
+    county: ["dublin"],
+    blurb: "One of three Dublin maternity hospitals.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "01 637 3100", address: "Holles St, Dublin D02 YH21" }
+  },
+  {
+    id: "rotunda-maternity",
+    name: "Rotunda Hospital Maternity",
+    specialty: ["obs"],
+    county: ["dublin"],
+    blurb: "One of three Dublin maternity hospitals.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "01 873 0596", address: "Parnell Square East, Dublin D01 P5W9", web: "rotunda.ie" }
+  },
+  {
+    id: "uhg-maternity",
+    name: "University Hospital Galway Maternity",
+    specialty: ["obs"],
+    county: ["galway"],
+    blurb: "The maternity unit for Galway city and much of the west.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "091 524 222", address: "Newcastle Rd, Galway H91 YR71" }
+  },
+  {
+    id: "portiuncula-maternity",
+    name: "Portiuncula University Hospital Maternity",
+    specialty: ["obs"],
+    county: ["galway"],
+    blurb: "Maternity unit serving east Galway and surrounding areas.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "090 9648200", email: "info.portiuncula@hse.ie", address: "Ballinasloe, Co. Galway H53 T971" }
+  },
+  {
+    id: "uhk-maternity",
+    name: "University Hospital Kerry Maternity",
+    specialty: ["obs"],
+    county: ["kerry"],
+    blurb: "The maternity unit for Co. Kerry.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "066 718 4000", address: "Tralee, Co. Kerry V92 NX94" }
+  },
+  {
+    id: "kilkenny-maternity",
+    name: "St Luke's General Hospital Maternity",
+    specialty: ["obs"],
+    county: ["kilkenny"],
+    blurb: "The maternity unit for Co. Kilkenny.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "056 778 5000", address: "Freshford Rd, Kilkenny R95 FY71" }
+  },
+  {
+    id: "portlaoise-maternity",
+    name: "Midland Regional Hospital Portlaoise Maternity",
+    specialty: ["obs"],
+    county: ["laois"],
+    blurb: "The maternity unit for Co. Laois.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "057 869 6481" }
+  },
+  {
+    id: "limerick-maternity",
+    name: "University Maternity Hospital Limerick",
+    specialty: ["obs"],
+    county: ["limerick"],
+    blurb: "The maternity unit for the Mid-West.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "061 483 129", address: "Ennis Road, Limerick V94 C566" }
+  },
+  {
+    id: "drogheda-maternity",
+    name: "Our Lady of Lourdes Hospital Maternity (Drogheda)",
+    specialty: ["obs"],
+    county: ["louth"],
+    blurb: "The maternity unit for Co. Louth, alongside a midwifery-led unit.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "041 983 7601", address: "Drogheda, Co. Louth A92 VW28" }
+  },
+  {
+    id: "mayo-maternity",
+    name: "Mayo University Hospital Maternity",
+    specialty: ["obs"],
+    county: ["mayo"],
+    blurb: "The maternity unit for Co. Mayo.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "094 9021733", address: "Westport Rd, Castlebar" }
+  },
+  {
+    id: "sligo-maternity",
+    name: "Sligo University Hospital Maternity",
+    specialty: ["obs"],
+    county: ["sligo"],
+    blurb: "The maternity unit for the northwest.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "071 917 1111", address: "The Mall, Sligo F91 H684" }
+  },
+  {
+    id: "tipperary-maternity",
+    name: "Tipperary University Hospital Maternity (South Tipp General)",
+    specialty: ["obs"],
+    county: ["tipperary"],
+    blurb: "The maternity unit for Co. Tipperary, based in Clonmel.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "052 617 7000" }
+  },
+  {
+    id: "waterford-maternity",
+    name: "University Hospital Waterford Maternity",
+    specialty: ["obs"],
+    county: ["waterford"],
+    blurb: "The maternity unit for the southeast.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "051 848 000", address: "Dunmore Road, Waterford X91 ER8E" }
+  },
+  {
+    id: "mullingar-maternity",
+    name: "Midland Regional Hospital Mullingar Maternity",
+    specialty: ["obs"],
+    county: ["westmeath"],
+    blurb: "The maternity unit for Co. Westmeath.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "044 934 0221", address: "Co. Westmeath N91 NA43" }
+  },
+  {
+    id: "wexford-maternity",
+    name: "Wexford General Hospital Maternity",
+    specialty: ["obs"],
+    county: ["wexford"],
+    blurb: "The maternity unit for Co. Wexford.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "053 915 3000", address: "Newtown Rd, Wexford Y35 Y17D" }
+  },
+
+  // ---- NI Maternity, by Trust (5) ----
+  {
+    id: "belfast-maternity",
+    name: "Belfast Trust Maternity (Royal Jubilee & Mater)",
+    specialty: ["obs"],
+    county: ["antrim"],
+    blurb: "Royal Jubilee Maternity Hospital (>5,000 births/yr) and the Mater Hospital.",
+    details: ["Self-referral form available on belfasttrust.hscni.net."],
+    referral: "Self-referral on positive pregnancy test.",
+    contact: { email: "maternityreferral@belfasttrust.hscni.net", address: "274 Grosvenor Road, Belfast BT12 6BA" }
+  },
+  {
+    id: "northern-maternity",
+    name: "Northern Trust Maternity (Antrim Area Hospital)",
+    specialty: ["obs"],
+    county: ["antrim"],
+    blurb: "Antrim Area Hospital maternity unit. Causeway Maternity Hub in Coleraine no longer delivers births (closed July 2023).",
+    details: [],
+    referral: "Self-referral form on northerntrust.hscni.net.",
+    contact: { address: "Bretten Hall, Bush Road, Antrim BT41 2RL" }
+  },
+  {
+    id: "se-trust-maternity",
+    name: "South Eastern Trust Maternity (Ulster Hospital)",
+    specialty: ["obs"],
+    county: ["down"],
+    blurb: "Ulster Hospital delivery suite plus a 'Home from Home' alongside midwifery-led unit. Downe and Lagan Valley units no longer deliver births (antenatal care continues).",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "028 9056 1364", email: "Maternity.Reception@setrust.hscni.net" }
+  },
+  {
+    id: "southern-trust-maternity",
+    name: "Southern Trust Maternity (Craigavon & Daisy Hill)",
+    specialty: ["obs"],
+    county: ["armagh", "down"],
+    blurb: "Craigavon Area Hospital and Daisy Hill Hospital, Newry (~5,100 births/yr). Birth at Home team since 2022.",
+    details: [],
+    referral: "Self-referral form on southerntrust.hscni.net.",
+    contact: { email: "antenatal.midwives@southerntrust.hscni.net" }
+  },
+  {
+    id: "western-trust-maternity",
+    name: "Western Trust Maternity (Altnagelvin & SWAH)",
+    specialty: ["obs"],
+    county: ["londonderry", "fermanagh"],
+    blurb: "Altnagelvin Hospital (Derry/Londonderry) and South West Acute Hospital (Enniskillen).",
+    details: ["Altnagelvin Maternal & Fetal Assessment Unit: 028 7161 1412.", "SWAH/Omagh Fetal Maternal Assessment (24hr): 028 8283 3100."],
+    referral: "Self-referral.",
+    contact: { phone: "028 7134 5171" }
+  },
+
+  // ---- Perinatal & Maternal Mental Health: other 5 hub hospitals + NI ----
+  {
+    id: "nmh-perinatal-mh",
+    name: "National Maternity Hospital Specialist Perinatal MH Team",
+    specialty: ["mh"],
+    county: ["dublin"],
+    blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
+    details: [],
+    referral: "GP, midwife, obstetrician, or psychiatrist referral.",
+    contact: { phone: "01 637 3100" }
+  },
+  {
+    id: "rotunda-perinatal-mh",
+    name: "Rotunda Hospital Specialist Perinatal MH Team",
+    specialty: ["mh"],
+    county: ["dublin"],
+    blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
+    details: [],
+    referral: "GP, midwife, obstetrician, or psychiatrist referral.",
+    contact: { phone: "01 873 0596", web: "rotunda.ie" }
+  },
+  {
+    id: "coombe-perinatal-mh",
+    name: "Coombe Hospital Specialist Perinatal MH Team",
+    specialty: ["mh"],
+    county: ["dublin"],
+    blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
+    details: [],
+    referral: "GP, midwife, obstetrician, or psychiatrist referral.",
+    contact: { phone: "01 408 5200" }
+  },
+  {
+    id: "uhl-perinatal-mh",
+    name: "University Maternity Hospital Limerick Specialist Perinatal MH Team",
+    specialty: ["mh"],
+    county: ["limerick"],
+    blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
+    details: [],
+    referral: "GP, midwife, obstetrician, or psychiatrist referral.",
+    contact: { phone: "061 483 129" }
+  },
+  {
+    id: "uhg-perinatal-mh",
+    name: "University Hospital Galway Specialist Perinatal MH Team",
+    specialty: ["mh"],
+    county: ["galway"],
+    blurb: "One of six national Specialist Perinatal Mental Health hub teams. The other 13 ROI maternity units are 'spoke' sites with a mental-health midwife linked to a hub team.",
+    details: [],
+    referral: "GP, midwife, obstetrician, or psychiatrist referral.",
+    contact: { phone: "091 524 222" }
+  },
+  {
+    id: "belfast-perinatal-mh",
+    name: "Belfast Trust Community Perinatal Mental Health Service",
+    specialty: ["mh"],
+    county: ["antrim"],
+    blurb: "Specialist perinatal MH teams now exist in all five NI Trusts. Note: NI has no dedicated inpatient Mother & Baby Unit — a known, acknowledged gap.",
+    details: ["Clinics also at Crumlin Road Health Centre, Woodstock Lodge, and the Royal Jubilee Maternity Hospital."],
+    referral: "GP, midwife, or health visitor referral.",
+    contact: { phone: "028 9504 6223", address: "Knockbracken Healthcare Park, Belfast" }
+  },
+  {
+    id: "southern-perinatal-mh",
+    name: "Southern Trust Perinatal Mental Health Team",
+    specialty: ["mh"],
+    county: ["armagh", "down"],
+    blurb: "Accepts referrals from 12 weeks' pregnancy to baby's first birthday.",
+    details: [],
+    referral: "GP, midwife, or health visitor referral.",
+    contact: {}
+  },
+
+  // ---- Domestic & Sexual Violence: 17 ROI Rape Crisis Centres ----
+  {
+    id: "rcc-athlone",
+    name: "Athlone Midlands Rape Crisis Centre",
+    specialty: ["dsv"],
+    county: ["westmeath"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 306 600", web: "amrcc.ie" }
+  },
+  {
+    id: "rcc-carlow",
+    name: "Carlow & South Leinster Rape Crisis Centre",
+    specialty: ["dsv"],
+    county: ["carlow"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 727 737" }
+  },
+  {
+    id: "rcc-donegal",
+    name: "Donegal Sexual Abuse & Rape Crisis Centre",
+    specialty: ["dsv"],
+    county: ["donegal"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 448 844", address: "Letterkenny" }
+  },
+  {
+    id: "rcc-dublin",
+    name: "Dublin Rape Crisis Centre",
+    specialty: ["dsv"],
+    county: ["dublin"],
+    blurb: "National 24hr helpline.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 778 888", web: "drcc.ie" }
+  },
+  {
+    id: "rcc-northeast",
+    name: "Rape Crisis Northeast (Dundalk)",
+    specialty: ["dsv"],
+    county: ["louth"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 212 122", web: "rcne.ie" }
+  },
+  {
+    id: "rcc-galway",
+    name: "Galway Rape Crisis Centre",
+    specialty: ["dsv"],
+    county: ["galway"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 355 355", web: "galwayrcc.org" }
+  },
+  {
+    id: "rcc-kerry",
+    name: "Kerry Rape & Sexual Abuse Centre",
+    specialty: ["dsv"],
+    county: ["kerry"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 633 333", web: "krsac.com", address: "Tralee" }
+  },
+  {
+    id: "rcc-kilkenny",
+    name: "Kilkenny Rape Crisis Centre",
+    specialty: ["dsv"],
+    county: ["kilkenny"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 478 478", web: "kasa.ie" }
+  },
+  {
+    id: "rcc-midwest",
+    name: "Rape Crisis Midwest (Limerick)",
+    specialty: ["dsv"],
+    county: ["limerick"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 311 511", web: "rapecrisis.ie" }
+  },
+  {
+    id: "rcc-mayo",
+    name: "Mayo Rape Crisis Centre",
+    specialty: ["dsv"],
+    county: ["mayo"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 234 900", web: "mrcc.ie", address: "Castlebar" }
+  },
+  {
+    id: "rcc-sligo",
+    name: "Rape Crisis Centre Sligo, Leitrim & West Cavan",
+    specialty: ["dsv"],
+    county: ["sligo"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 750 780", web: "srcc.ie" }
+  },
+  {
+    id: "rcc-tipperary",
+    name: "Tipperary Rape Crisis Centre",
+    specialty: ["dsv"],
+    county: ["tipperary"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 340 340", web: "trcc.ie", address: "Clonmel" }
+  },
+  {
+    id: "rcc-tullamore",
+    name: "Tullamore Rape Crisis Centre",
+    specialty: ["dsv"],
+    county: ["offaly"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 323 232" }
+  },
+  {
+    id: "rcc-waterford",
+    name: "Waterford Rape & Sexual Abuse Centre",
+    specialty: ["dsv"],
+    county: ["waterford"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 296 296", web: "waterfordrsac.ie" }
+  },
+  {
+    id: "rcc-westcork",
+    name: "West Cork Beacon (Bantry)",
+    specialty: ["dsv"],
+    county: ["cork-west"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 832 001", web: "westcorkwomensproject.ie" }
+  },
+  {
+    id: "rcc-wexford",
+    name: "Wexford Rape Crisis",
+    specialty: ["dsv"],
+    county: ["wexford"],
+    blurb: "Free, confidential counselling after rape or sexual abuse.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "1800 33 00 33", web: "wexfordrapecrisis.com" }
+  },
+
+  // ---- Domestic & Sexual Violence: 6 ROI SATUs (Sexual Assault Treatment Units) ----
+  {
+    id: "satu-cork",
+    name: "Cork SATU (South Infirmary Victoria University Hospital)",
+    specialty: ["dsv"],
+    county: ["cork-city"],
+    blurb: "Sexual Assault Treatment Unit — forensic and medical care after a recent sexual assault.",
+    details: ["Weekdays 8am–4:30pm: 021 492 6297.", "Out-of-hours: 021 492 6100."],
+    referral: "Via An Garda Síochána or direct self-referral.",
+    contact: { phone: "021 492 6297" }
+  },
+  {
+    id: "satu-donegal",
+    name: "Donegal SATU (Letterkenny)",
+    specialty: ["dsv"],
+    county: ["donegal"],
+    blurb: "Sexual Assault Treatment Unit — 24hr direct line.",
+    details: [],
+    referral: "Via An Garda Síochána or direct self-referral.",
+    contact: { phone: "087 06 81 964", address: "Justice Walsh Road, Letterkenny" }
+  },
+  {
+    id: "satu-dublin",
+    name: "Dublin SATU (Rotunda Hospital campus)",
+    specialty: ["dsv"],
+    county: ["dublin"],
+    blurb: "Sexual Assault Treatment Unit.",
+    details: ["Weekdays 8am–5pm: 01 817 1736.", "Out-of-hours: 01 817 1700."],
+    referral: "Via An Garda Síochána or direct self-referral.",
+    contact: { phone: "01 817 1736" }
+  },
+  {
+    id: "satu-galway",
+    name: "Galway SATU",
+    specialty: ["dsv"],
+    county: ["galway"],
+    blurb: "Sexual Assault Treatment Unit, near Galway Racecourse.",
+    details: [],
+    referral: "Via An Garda Síochána or direct self-referral.",
+    contact: { phone: "091 765 751" }
+  },
+  {
+    id: "satu-mullingar",
+    name: "Mullingar SATU (Midland Regional Hospital)",
+    specialty: ["dsv"],
+    county: ["westmeath"],
+    blurb: "Sexual Assault Treatment Unit.",
+    details: ["Weekdays 8am–5pm: 044 9394239.", "Out-of-hours switchboard: 044 93 40221."],
+    referral: "Via An Garda Síochána or direct self-referral.",
+    contact: { phone: "044 9394239" }
+  },
+  {
+    id: "satu-waterford",
+    name: "Waterford SATU (University Hospital Waterford)",
+    specialty: ["dsv"],
+    county: ["waterford"],
+    blurb: "Sexual Assault Treatment Unit. Note: there is no SATU in Limerick — out-of-hours access there routes via Cork or Galway.",
+    details: ["Weekdays 8am–5pm: 051 842 157.", "Out-of-hours: 051 848 000."],
+    referral: "Via An Garda Síochána or direct self-referral.",
+    contact: { phone: "051 842 157" }
+  },
+
+  // ---- Domestic & Sexual Violence: Northern Ireland ----
+  {
+    id: "rowan-sarc-ni",
+    name: "The Rowan SARC (Northern Ireland)",
+    specialty: ["dsv"],
+    county: ["antrim"],
+    blurb: "NI's single regional Sexual Assault Referral Centre — the NI equivalent of a SATU, covering the whole of Northern Ireland.",
+    details: [],
+    referral: "Self-referral or via PSNI, 24/7.",
+    contact: { phone: "0800 389 4424", web: "therowan.hscni.net", address: "Antrim Area Hospital, 45 Bush Road, Antrim BT41 2RL" }
+  },
+  {
+    id: "nexus-ni",
+    name: "Nexus NI",
+    specialty: ["dsv"],
+    county: ["national"],
+    blurb: "Specialist counselling for sexual-abuse survivors, and the 24hr NI Domestic & Sexual Abuse Helpline.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "0808 802 1414" }
+  },
+  {
+    id: "womens-aid-ni",
+    name: "Women's Aid Federation NI",
+    specialty: ["dsv"],
+    county: ["national"],
+    blurb: "Domestic violence support and refuge network across Northern Ireland.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "028 9024 9041", email: "info@womensaidni.org", address: "129 University Street, Belfast BT7 1HP" }
+  },
+
+  // ---- Cancer support: regional centres (ROI) + NI ----
+  {
+    id: "arc-dublin",
+    name: "ARC Cancer Support Centres (Dublin)",
+    specialty: ["cancer"],
+    county: ["dublin"],
+    blurb: "Free counselling and complementary therapy across three Dublin locations.",
+    details: ["ARC House, 65 Eccles Street, D07 TD35.", "559 South Circular Road, Dublin 8.", "Lowell House, 23 Herbert Avenue, Dublin 4."],
+    referral: "Self-referral.",
+    contact: { phone: "01 215 0250", email: "info@arccancersupport.ie" }
+  },
+  {
+    id: "cork-arc-house",
+    name: "Cork ARC Cancer Support House",
+    specialty: ["cancer"],
+    county: ["cork-city"],
+    blurb: "Free cancer support services, including for gynaecological cancers.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "021 427 6688" }
+  },
+  {
+    id: "cork-cancer-care-centre",
+    name: "The Cork Cancer Care Centre",
+    specialty: ["cancer"],
+    county: ["cork-city"],
+    blurb: "Free cancer support services.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "021 4949090" }
+  },
+  {
+    id: "recovery-haven-kerry",
+    name: "Recovery Haven Kerry",
+    specialty: ["cancer"],
+    county: ["kerry"],
+    blurb: "Free cancer support services.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "066 719 2122" }
+  },
+  {
+    id: "solas-waterford",
+    name: "Solas Cancer Support Centre Waterford",
+    specialty: ["cancer"],
+    county: ["waterford"],
+    blurb: "Free cancer support services.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "051 304604" }
+  },
+  {
+    id: "purple-house-bray",
+    name: "Purple House Cancer Support Bray",
+    specialty: ["cancer"],
+    county: ["wicklow"],
+    blurb: "Free cancer support services.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "01 286 6966" }
+  },
+  {
+    id: "suir-haven-thurles",
+    name: "Suir Haven Cancer Support Thurles",
+    specialty: ["cancer"],
+    county: ["tipperary"],
+    blurb: "Free cancer support services.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "0504 21197" }
+  },
+  {
+    id: "hope-cancer-wexford",
+    name: "Hope Cancer Support Centre Wexford",
+    specialty: ["cancer"],
+    county: ["wexford"],
+    blurb: "Free cancer support services.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "053 923 8555" }
+  },
+  {
+    id: "action-cancer-ni",
+    name: "Action Cancer (Northern Ireland)",
+    specialty: ["cancer"],
+    county: ["antrim"],
+    blurb: "Breast screening (ages 40–49 & 70+) and therapeutic services from 15 regional locations across NI.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "028 9080 3344", email: "info@actioncancer.org", address: "20 Windsor Avenue, Belfast BT9 6EE" }
+  },
+  {
+    id: "cancer-focus-ni",
+    name: "Cancer Focus NI",
+    specialty: ["cancer"],
+    county: ["antrim"],
+    blurb: "Cancer Nurseline and support services across Northern Ireland.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "0800 783 3339", email: "nurseline@cancerfocusni.org", address: "40-44 Eglantine Avenue, Belfast BT9 6DX" }
+  },
+
+  // ---- Contraception & reproductive health: access points ----
+  {
+    id: "ifpa-dublin",
+    name: "Irish Family Planning Association (IFPA) Clinics",
+    specialty: ["contraception"],
+    county: ["dublin"],
+    blurb: "Free Contraception Scheme provider (ages 17–35); also pregnancy counselling.",
+    details: ["5-7 Cathal Brugha Street, Dublin 1, D01 F9K7 — 01 872 7088.", "The Square Shopping Centre, Tallaght, D24 HK33 — 01 459 7685.", "Pregnancy counselling also at Galway, Limerick, Waterford."],
+    referral: "Self-referral.",
+    contact: { phone: "01 872 7088" }
+  },
+  {
+    id: "well-woman-coolock",
+    name: "Dublin Well Woman Centre (Coolock)",
+    specialty: ["contraception"],
+    county: ["dublin"],
+    blurb: "Free Contraception Scheme access point.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "01 848 4511" }
+  },
+  {
+    id: "femplus-blanchardstown",
+    name: "Femplus (Blanchardstown)",
+    specialty: ["contraception"],
+    county: ["dublin"],
+    blurb: "Free Contraception Scheme access point.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "01 821 0999" }
+  },
+  {
+    id: "informing-choices-ni",
+    name: "Informing Choices NI",
+    specialty: ["contraception"],
+    county: ["antrim"],
+    blurb: "Central Access Point for reproductive healthcare information in Northern Ireland.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "028 9031 6100", email: "info@informingchoicesni.org", address: "Ascot House, 24-31 Shaftesbury Square, Belfast BT2 7DB" }
+  },
+  {
+    id: "common-youth-ni",
+    name: "Common Youth (NI, under-25s)",
+    specialty: ["contraception"],
+    county: ["antrim"],
+    blurb: "Sexual health service for under-25s in Northern Ireland (formerly Brook NI).",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "028 9032 8866", email: "hello@commonyouth.com" }
+  },
+
+  // ---- Breastfeeding: La Leche League (Cuidiú already exists) ----
+  {
+    id: "lll-ireland",
+    name: "La Leche League of Ireland",
+    specialty: ["feeding", "parenting"],
+    county: ["national"],
+    blurb: "100 volunteer Leaders across 35 breastfeeding support groups island-wide.",
+    details: ["NI groups via Belfast: 028 9581 8118 / lalecheleaguebelfast@gmail.com."],
+    referral: "Self-referral via website.",
+    contact: { web: "lalecheleagueireland.com/groups" }
+  },
+
+  // ---- Baby loss: additional national orgs ----
+  {
+    id: "anam-cara",
+    name: "Anam Cara",
+    specialty: ["loss"],
+    county: ["national"],
+    blurb: "Support for bereaved parents and siblings after the death of a child.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "01 404 5378", web: "anamcara.ie", address: "Tallaght, Dublin 24" }
+  },
+  {
+    id: "ectopic-ireland",
+    name: "Ectopic Ireland",
+    specialty: ["loss"],
+    county: ["national"],
+    blurb: "Support and information specifically after an ectopic pregnancy.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "089 436 5742", web: "ectopicireland.ie" }
+  },
+  {
+    id: "sands-ni",
+    name: "Sands NI",
+    specialty: ["loss"],
+    county: ["national"],
+    blurb: "Stillbirth and neonatal death support, with monthly local groups in Antrim, Belfast, Downpatrick, Enniskillen, Newry, North Down, and Portadown.",
+    details: ["UK Sands helpline: 0808 164 3332."],
+    referral: "Self-referral.",
+    contact: { phone: "07740 993450", email: "NorthernIreland@sands.org.uk" }
+  },
+
+  // ---- Patchy categories: no compact national list exists (per source doc).
+  // Honest pointer entries rather than fabricated county-by-county listings —
+  // these are explicitly flagged as needing local knowledge / crowdsourcing. ----
+  {
+    id: "find-phn",
+    name: "Find your local Public Health Nurse",
+    specialty: ["phn"],
+    county: ["national"],
+    blurb: "There's no single national PHN directory — access is via your local health centre.",
+    details: ["No compact public list exists for this — genuinely needs local knowledge. If you know your area's PHN contact, this is exactly the kind of thing worth reporting via the link in the footer."],
+    referral: "Contact HSE Live or find your local health centre.",
+    contact: { phone: "1800 700 700", web: "hse.ie" }
+  },
+  {
+    id: "find-urology",
+    name: "Find urology / urogynaecology care near you",
+    specialty: ["urology"],
+    county: ["national"],
+    blurb: "No compact national list exists — urology services relevant to women's health (recurrent UTIs, incontinence, urogynae) sit within major hospitals per region.",
+    details: ["Start with your nearest major hospital (e.g. CUH Cork, UHL Limerick, UHG Galway, or a Dublin academic hospital) or ask your GP directly."],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "find-gynae-onc",
+    name: "Find gynae-oncology rapid access / colposcopy care",
+    specialty: ["cancer", "gynae"],
+    county: ["national"],
+    blurb: "No compact national list exists — these clinics are distributed across designated cancer centres and CervicalCheck colposcopy units.",
+    details: ["Colposcopy after an abnormal CervicalCheck result is automatic. For a new suspected-cancer concern, ask your GP to refer you on the rapid-access pathway explicitly."],
+    referral: "GP referral, flagged as rapid access; colposcopy is automatic via CervicalCheck.",
+    contact: {}
+  },
+  {
+    id: "find-breastfeeding-group",
+    name: "Find your local HSE breastfeeding support group",
+    specialty: ["feeding"],
+    county: ["national"],
+    blurb: "HSE runs breastfeeding groups searchable by county, though there's no compact master list.",
+    details: [],
+    referral: "Self-referral via the HSE's searchable directory.",
+    contact: { web: "www2.hse.ie/services/breastfeeding-support" }
+  },
+  {
+    id: "find-frc",
+    name: "Find your local Family Resource Centre",
+    specialty: ["hub"],
+    county: ["national"],
+    blurb: "136 Family Resource Centres nationwide (Tusla-funded) — the definitive list is an interactive county map, too large to list individually here yet.",
+    details: ["Network grew from 126 to 136 centres in 2025–26; core funding raised to €180,000/yr per centre from January 2026."],
+    referral: "Self-referral — browse the map for your nearest centre.",
+    contact: { web: "familyresource.ie/family-resource-centres-ireland.php" }
+  },
+
+  // ==========================================================================
+  // GENERAL MEDICAL & SURGICAL SPECIALTIES — added Sep 2026 from a supplement
+  // research pass covering cardiology, rheumatology, neurology, GI, chronic
+  // pain, Long Covid/ME-CFS, bone health, genetics, sexual health, pelvic
+  // physio, and vascular. Note per the source doc: this pass was run via
+  // individual web searches (not the extended tool) so coverage is shallower
+  // than the earlier passes — several phone numbers are flagged as needing
+  // verification before being relied on. Categories NOT covered by any
+  // research doc so far: dermatology, respiratory medicine, ophthalmology —
+  // these remain unbuilt. Last reviewed: Sep 2026.
+  // ==========================================================================
+
+  // ---- Cardiology & Women's Heart Health ----
+  {
+    id: "croi",
+    name: "Croí — The Heart & Stroke Charity",
+    specialty: ["cardiology"],
+    county: ["galway"],
+    blurb: "Runs the 'Women at Heart' education campaign — only 3% of Irish women surveyed (2025) could name all heart-attack warning signs, despite 1 in 4 Irish women dying from cardiovascular disease.",
+    details: [
+      "Women's heart-attack symptoms (jaw, neck, back pain) can differ from men's and are often missed.",
+      "Runs the free Heartlink West supportline: 091 544310.",
+    ],
+    referral: "Self-referral for information and supports.",
+    contact: { phone: "091 332999", email: "healthteam@croi.ie", address: "Croí House, Moyola Lane, Newcastle, Galway H91 FF68" }
+  },
+  {
+    id: "irish-heart-foundation",
+    name: "Irish Heart Foundation",
+    specialty: ["cardiology"],
+    county: ["dublin"],
+    blurb: "Publishes 'Her Heart Matters' women's heart health resources, with HSE and Dept of Health support.",
+    details: [],
+    referral: "Self-referral for information and supports.",
+    contact: { phone: "01 668 5001", email: "info@irishheart.ie", address: "17-19 Rathmines Rd Lower, Dublin D06 C780" }
+  },
+  {
+    id: "find-chest-pain-clinic",
+    name: "Find your nearest Rapid Access Chest Pain Clinic",
+    specialty: ["cardiology"],
+    county: ["national"],
+    blurb: "Nurse-led rapid-access clinics run out of most public hospitals with a cardiology department — no single compact national list found yet.",
+    details: ["Confirmed example: University Hospital Limerick offers same-week GP-referral assessment. Ask your GP whether your nearest hospital runs one."],
+    referral: "GP referral.",
+    contact: {}
+  },
+
+  // ---- Rheumatology & Autoimmune ----
+  {
+    id: "arthritis-ireland",
+    name: "Arthritis Ireland",
+    specialty: ["rheumatology"],
+    county: ["national"],
+    blurb: "National helpline and Clinic Referral Programme linking newly-diagnosed patients into self-management support.",
+    details: ["A 2026 survey (1,400+ respondents, 85% women) found people with more severe symptoms nearly twice as likely to wait over a year for a first rheumatology appointment."],
+    referral: "Self-referral to the helpline; ask about the Clinic Referral Programme.",
+    contact: { phone: "0818 252 846", email: "helpline@arthritisireland.ie" }
+  },
+  {
+    id: "versus-arthritis-ni",
+    name: "Versus Arthritis NI",
+    specialty: ["rheumatology"],
+    county: ["national"],
+    blurb: "Information and support for arthritis and autoimmune joint conditions in Northern Ireland.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "028 9078 2940", email: "niservicesteam@versusarthritis.org" }
+  },
+  {
+    id: "belfast-rheumatology",
+    name: "Belfast Trust Rheumatology Service",
+    specialty: ["rheumatology"],
+    county: ["antrim"],
+    blurb: "Operates across three Belfast Trust hospital sites, including inflammatory arthritis and lupus flare-management resources.",
+    details: [],
+    referral: "GP referral.",
+    contact: { web: "belfasttrust.hscni.net" }
+  },
+  {
+    id: "find-rheumatology",
+    name: "Find rheumatology care near you",
+    specialty: ["rheumatology"],
+    county: ["national"],
+    blurb: "No compact national list of public rheumatology departments exists — services sit within major hospitals per region.",
+    details: ["Rheumatoid arthritis affects an estimated 45,000 people in Ireland, more commonly women, usually diagnosed between ages 30–50."],
+    referral: "GP referral.",
+    contact: {}
+  },
+
+  // ---- Neurology & Migraine ----
+  {
+    id: "migraine-ireland",
+    name: "Migraine Association of Ireland",
+    specialty: ["neurology"],
+    county: ["dublin"],
+    blurb: "National information line staffed by a Clinical Nurse Specialist. Migraine affects ~15% of the population and is three times more common in women.",
+    details: [],
+    referral: "Self-referral to the Advice Line.",
+    contact: { phone: "01 906 1012", email: "info@migraine.ie", address: "Unit 14, Block 5, Port Tunnel Business Park, Clonshaugh, Dublin 17" }
+  },
+  {
+    id: "beaumont-migraine-clinic",
+    name: "Beaumont Hospital Headache/Migraine Clinic",
+    specialty: ["neurology"],
+    county: ["dublin"],
+    blurb: "Specialist headache/migraine clinic referenced by the Migraine Association.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+
+  // ---- Gastroenterology & IBD ----
+  {
+    id: "crohns-colitis-ireland",
+    name: "Crohn's & Colitis Ireland",
+    specialty: ["gastro"],
+    county: ["dublin"],
+    blurb: "National charity for IBD (Crohn's/ulcerative colitis), which affects at least 40,000 people in Ireland, most often diagnosed between ages 15–35.",
+    details: [],
+    referral: "Self-referral to the helpline.",
+    contact: { phone: "01 531 2983", address: "Carmichael Centre, North Brunswick Street, Dublin 7", web: "crohnscolitis.ie" }
+  },
+  {
+    id: "find-gastro",
+    name: "Find gastroenterology care near you",
+    specialty: ["gastro"],
+    county: ["national"],
+    blurb: "No compact national list of public gastroenterology departments exists — services sit within major hospitals per region.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+
+  // ---- Chronic Pain Management ----
+  {
+    id: "uhl-pain-management",
+    name: "University Hospital Limerick Pain Management",
+    specialty: ["pain"],
+    county: ["limerick"],
+    blurb: "One of 16 publicly funded chronic pain services nationally — a 2024 investigation found these clinics disproportionately treat conditions affecting more women than men (fibromyalgia, migraine, chronic pelvic pain, osteoarthritis).",
+    details: [],
+    referral: "GP referral.",
+    contact: { address: "St Nessan's Road, Dooradoyle, Limerick V94 F858" }
+  },
+  {
+    id: "stjohns-limerick-pain",
+    name: "St John's Hospital Limerick Pain Management",
+    specialty: ["pain"],
+    county: ["limerick"],
+    blurb: "One of 16 publicly funded chronic pain services nationally.",
+    details: [],
+    referral: "GP referral.",
+    contact: { address: "St John's Square, Limerick City V94 H272" }
+  },
+  {
+    id: "croom-pain-management",
+    name: "Croom Orthopaedic Hospital Pain Management",
+    specialty: ["pain"],
+    county: ["limerick"],
+    blurb: "Holistic pain service: interventional medicine, physiotherapy, music therapy, psychology, and nursing.",
+    details: [],
+    referral: "GP referral.",
+    contact: { address: "Corrabul, Skagh, Croom, Limerick V35 F434" }
+  },
+  {
+    id: "beaumont-ipaincentre",
+    name: "Beaumont Hospital iPainCentre",
+    specialty: ["pain"],
+    county: ["dublin"],
+    blurb: "Sláintecare-funded integrated community-based pain management team.",
+    details: [],
+    referral: "GP referral.",
+    contact: { web: "mypainmatters.ie" }
+  },
+  {
+    id: "chronic-pain-ireland",
+    name: "Chronic Pain Ireland",
+    specialty: ["pain"],
+    county: ["national"],
+    blurb: "National patient advocacy charity. A 2021 national survey found 11,932 people on public chronic pain waiting lists, with severe understaffing (0.55 pain specialists per 100,000 people) and no national model of care.",
+    details: ["Signposts to the HSE Counselling in Primary Care Service (8 free sessions via GP referral) for chronic-pain-related mental health support."],
+    referral: "Self-referral.",
+    contact: {}
+  },
+  {
+    id: "find-pain-clinic",
+    name: "Find your nearest public chronic pain clinic",
+    specialty: ["pain"],
+    county: ["national"],
+    blurb: "16 public chronic pain services exist nationally, but a full compact list of all sites wasn't found — four confirmed sites are listed individually above (all Limerick/Dublin).",
+    details: ["As of a Nov 2024 investigation, 14,445 people were waiting nationally, half over six months."],
+    referral: "GP referral.",
+    contact: {}
+  },
+
+  // ---- Long Covid & ME/CFS ----
+  {
+    id: "longcovid-beaumont",
+    name: "Beaumont Hospital Long Covid Clinic",
+    specialty: ["longcovid"],
+    county: ["dublin"],
+    blurb: "One of six public Long Covid clinics nationally. Long Covid Advocacy Ireland notes women are more likely to get Long Covid.",
+    details: ["Typically runs one day per week; long waiting times reported."],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "longcovid-stjames",
+    name: "St James's Hospital Long Covid Clinic",
+    specialty: ["longcovid"],
+    county: ["dublin"],
+    blurb: "One of six public Long Covid clinics nationally.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "longcovid-stvincents",
+    name: "St Vincent's University Hospital Long Covid Clinic",
+    specialty: ["longcovid"],
+    county: ["dublin"],
+    blurb: "One of six public Long Covid clinics nationally.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "longcovid-cork",
+    name: "Cork Long Covid Clinic",
+    specialty: ["longcovid"],
+    county: ["cork-city"],
+    blurb: "One of six public Long Covid clinics nationally.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "longcovid-limerick",
+    name: "Limerick Long Covid Clinic",
+    specialty: ["longcovid"],
+    county: ["limerick"],
+    blurb: "One of six public Long Covid clinics nationally.",
+    details: ["Flagged as not operational as of March 2025 due to staffing — check current status before travelling."],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "longcovid-galway",
+    name: "Galway Long Covid Clinic",
+    specialty: ["longcovid"],
+    county: ["galway"],
+    blurb: "One of six public Long Covid clinics nationally.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "long-covid-advocacy-ireland",
+    name: "Long Covid Advocacy Ireland (LCAI)",
+    specialty: ["longcovid"],
+    county: ["national"],
+    blurb: "Ireland's only formal Long Covid patient advocacy group, run by patients (several team members unwell themselves).",
+    details: [],
+    referral: "Self-referral via mailing list.",
+    contact: { email: "irishlcalist@gmail.com", web: "longcovidadvocacyireland.com" }
+  },
+  {
+    id: "irish-mecfs-association",
+    name: "Irish ME/CFS Association",
+    specialty: ["longcovid"],
+    county: ["national"],
+    blurb: "Estimated 10,000–19,000 people in Ireland have ME/CFS (using international prevalence data, as no Irish-specific study exists). Historically, this illness has often been psychologised — a well-known international pattern.",
+    details: ["Runs public meetings, a newsletter, and an information helpline/telephone support network."],
+    referral: "Self-referral.",
+    contact: { web: "irishmecfs.org" }
+  },
+  {
+    id: "me-advocates-ireland",
+    name: "ME Advocates Ireland (MEAI)",
+    specialty: ["longcovid"],
+    county: ["national"],
+    blurb: "Volunteer-run advocacy group (founded 2017) pushing for better ME healthcare provision and HSE/Dept of Health engagement.",
+    details: [],
+    referral: "Self-referral.",
+    contact: {}
+  },
+  {
+    id: "me-support-ni",
+    name: "M.E. Support Northern Ireland",
+    specialty: ["longcovid"],
+    county: ["national"],
+    blurb: "Support for people with ME/CFS in Northern Ireland.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { email: "info@mesupportni.com" }
+  },
+
+  // ---- Bone Health & Osteoporosis ----
+  {
+    id: "irish-osteoporosis-society",
+    name: "Irish Osteoporosis Society",
+    specialty: ["bonehealth"],
+    county: ["dublin"],
+    blurb: "~50% of women over 50 will have an osteoporosis-related fracture (vs 20% of men); 7 in 10 hip fractures happen to women. There is no national osteoporosis screening programme — DEXA scans are GP-referral only.",
+    details: ["Maintains its own county-by-county list of DXA scan locations (public and private) on their website — worth checking directly for your area."],
+    referral: "GP referral for a DEXA scan; self-referral to the Society for information.",
+    contact: { phone: "01 637 5050", email: "info@irishosteoporosis.ie", address: "Unit 1B, Clonskeagh Square, Dublin 14" }
+  },
+
+  // ---- Genetics & Hereditary Cancer Risk ----
+  {
+    id: "ncmg-crumlin",
+    name: "National Centre for Medical Genetics (NCMG)",
+    specialty: ["genetics"],
+    county: ["dublin"],
+    blurb: "Ireland's national public genetics service, including hereditary cancer risk (BRCA and similar). Free.",
+    details: [
+      "Based at Children's Health Ireland at Crumlin, with satellite clinics at Cork University Hospital, University Hospital Limerick, and University Hospital Galway.",
+      "A referral letter from your GP or consultant is required before assessment.",
+    ],
+    referral: "GP or consultant referral.",
+    contact: { phone: "01 409 6739", address: "Children's Health Ireland at Crumlin, Dublin 12" }
+  },
+  {
+    id: "cancer-genetics-stjames",
+    name: "Cancer Genetics Service, St James's Hospital",
+    specialty: ["genetics", "cancer"],
+    county: ["dublin"],
+    blurb: "Alternative public referral point for hereditary cancer risk assessment (e.g. BRCA), via GP or your oncology team.",
+    details: [],
+    referral: "GP or oncology team referral.",
+    contact: {}
+  },
+  {
+    id: "lynch-syndrome-ireland",
+    name: "Lynch Syndrome Ireland",
+    specialty: ["genetics", "cancer"],
+    county: ["national"],
+    blurb: "Support for people affected by Lynch syndrome (hereditary colorectal/ovarian/endometrial cancer risk).",
+    details: ["Contact details not independently verified this pass — search for their current site before relying on this."],
+    referral: "Self-referral.",
+    contact: {}
+  },
+
+  // ---- Sexual Health & STI Testing (GUM clinics) ----
+  {
+    id: "gum-galway",
+    name: "STI Clinic — University Hospital Galway",
+    specialty: ["sexualhealth"],
+    county: ["galway"],
+    blurb: "Free, HSE-operated STI/GUM clinic — the largest in the west (~4,000 attendances/yr).",
+    details: [],
+    referral: "Self-referral.",
+    contact: {}
+  },
+  {
+    id: "gum-cork",
+    name: "STI Clinic — South Infirmary Victoria University Hospital, Cork",
+    specialty: ["sexualhealth"],
+    county: ["cork-city"],
+    blurb: "Free, HSE-operated STI/GUM clinic. PrEP available.",
+    details: ["Mon–Fri 9am–4pm."],
+    referral: "Self-referral.",
+    contact: { phone: "021 496 6844" }
+  },
+  {
+    id: "gum-limerick",
+    name: "STI Clinic — University Hospital Limerick / Ennis / Nenagh",
+    specialty: ["sexualhealth"],
+    county: ["limerick"],
+    blurb: "Free, HSE-operated STI/GUM clinic, covering Dooradoyle, Ennis General, and Nenagh General.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "061 482 382" }
+  },
+  {
+    id: "gum-mater-dublin",
+    name: "STI Clinic — Mater Hospital, Dublin",
+    specialty: ["sexualhealth"],
+    county: ["dublin"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "01 803 2063" }
+  },
+  {
+    id: "gum-guide-stjames",
+    name: "GUIDE Clinic — St James's Hospital, Dublin",
+    specialty: ["sexualhealth"],
+    county: ["dublin"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "01 416 2315" }
+  },
+  {
+    id: "gum-gmhs-dublin",
+    name: "Gay Men's Health Service — Meath Primary Care Centre, Dublin",
+    specialty: ["sexualhealth"],
+    county: ["dublin"],
+    blurb: "Free, HSE-operated sexual health service.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "01 921 2730" }
+  },
+  {
+    id: "gum-sligo",
+    name: "STI Clinic — Sligo General Hospital",
+    specialty: ["sexualhealth"],
+    county: ["sligo"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "071 917 0473" }
+  },
+  {
+    id: "gum-tipperary",
+    name: "STI Clinic — South Tipperary General, Clonmel",
+    specialty: ["sexualhealth"],
+    county: ["tipperary"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: ["Phone number matches the Waterford clinic in source data — worth confirming which is correct before relying on it."],
+    referral: "Self-referral.",
+    contact: { phone: "051 842 646" }
+  },
+  {
+    id: "gum-waterford",
+    name: "STI Clinic — University Hospital Waterford",
+    specialty: ["sexualhealth"],
+    county: ["waterford"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "051 842 646" }
+  },
+  {
+    id: "gum-letterkenny",
+    name: "STI Clinic — Letterkenny General, Donegal",
+    specialty: ["sexualhealth"],
+    county: ["donegal"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "074 912 3715" }
+  },
+  {
+    id: "gum-drogheda",
+    name: "STI Clinic — Louth County / Our Lady of Lourdes, Drogheda",
+    specialty: ["sexualhealth"],
+    county: ["louth"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "086 824 1847" }
+  },
+  {
+    id: "gum-mayo",
+    name: "STI Clinic — Mayo General, Castlebar",
+    specialty: ["sexualhealth"],
+    county: ["mayo"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "094 902 1733 ext 3501" }
+  },
+  {
+    id: "gum-mullingar",
+    name: "STI Clinic — Midland Regional Hospital, Mullingar",
+    specialty: ["sexualhealth"],
+    county: ["westmeath"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "086 416 9830" }
+  },
+  {
+    id: "gum-portlaoise",
+    name: "STI Clinic — Midland Regional Hospital, Portlaoise",
+    specialty: ["sexualhealth"],
+    county: ["laois"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "086 859 1273" }
+  },
+  {
+    id: "gum-monaghan",
+    name: "STI Clinic — Monaghan General Hospital",
+    specialty: ["sexualhealth"],
+    county: ["monaghan"],
+    blurb: "Free, HSE-operated STI/GUM clinic.",
+    details: ["Phone number not captured in the source research — contact the hospital switchboard directly."],
+    referral: "Self-referral.",
+    contact: {}
+  },
+  {
+    id: "sh24-roi",
+    name: "sh24.ie — Free At-Home STI Testing",
+    specialty: ["sexualhealth"],
+    county: ["national"],
+    blurb: "Free at-home STI test kits for anyone 17+ in Ireland — HIV, chlamydia, gonorrhoea, syphilis. Results by text/phone within ~72 hours.",
+    details: [],
+    referral: "Self-referral, order online.",
+    contact: { web: "sh24.ie" }
+  },
+  {
+    id: "sh24-ni",
+    name: "sh24.org.uk — Free At-Home STI Testing (NI)",
+    specialty: ["sexualhealth"],
+    county: ["national"],
+    blurb: "The Northern Ireland / UK equivalent of sh24.ie.",
+    details: [],
+    referral: "Self-referral, order online.",
+    contact: { web: "sh24.org.uk" }
+  },
+
+  // ---- Pelvic Health Physiotherapy ----
+  {
+    id: "find-pelvic-physio",
+    name: "Find a pelvic-health-trained physiotherapist",
+    specialty: ["pelvicphysio"],
+    county: ["national"],
+    blurb: "No dedicated national pelvic-health referral pathway exists — public access is via standard GP/PHN/hospital referral to a primary care physiotherapist, and only some have specialist pelvic-health/continence training.",
+    details: ["Ask specifically whether a pelvic-health-trained physio is available, not just general physiotherapy — this isn't guaranteed and may require asking to be redirected."],
+    referral: "GP, PHN, or hospital referral to your local primary care centre.",
+    contact: {}
+  },
+  {
+    id: "pelvic-health-ni",
+    name: "Pelvic Health NI / PelvicNI",
+    specialty: ["pelvicphysio"],
+    county: ["national"],
+    blurb: "Peer-led charity supporting pelvic health, working alongside NHS physiotherapists and midwives. Runs a free pelvic floor therapy support access programme.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { web: "pelvicni.org" }
+  },
+
+  // ---- Vascular ----
+  {
+    id: "uhl-vascular",
+    name: "University Hospital Limerick Vascular Service",
+    specialty: ["vascular"],
+    county: ["limerick"],
+    blurb: "Public vascular service, including varicose vein treatment.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "saolta-vascular",
+    name: "Saolta Vascular Services (Roscommon & Galway)",
+    specialty: ["vascular"],
+    county: ["roscommon", "galway"],
+    blurb: "Varicose vein procedures at Roscommon University Hospital; all arterial and complex vascular surgery at Galway University Hospitals.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "stvincents-vascular",
+    name: "St Vincent's University Hospital Vascular Surgery",
+    specialty: ["vascular"],
+    county: ["dublin"],
+    blurb: "Varicose vein management including surgery, laser/radiofrequency ablation, and Clarivein.",
+    details: [],
+    referral: "GP referral.",
+    contact: { web: "stvincents.ie" }
+  },
+  {
+    id: "find-vascular",
+    name: "Find vascular care near you",
+    specialty: ["vascular"],
+    county: ["national"],
+    blurb: "This category received very little research so far — genuinely the thinnest in the directory right now.",
+    details: ["Referral typically routes through GP → general/vascular surgery outpatients at your nearest regional hospital."],
+    referral: "GP referral.",
+    contact: {}
   },
 ];
 

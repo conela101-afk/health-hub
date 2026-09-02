@@ -50,6 +50,17 @@
     neurodiversity: '<path d="M6.5 9.5c-2.5 0-2.5 5 0 5 2 0 3-2.5 5.5-2.5s3.5 2.5 5.5 2.5c2.5 0 2.5-5 0-5-2 0-3 2.5-5.5 2.5s-3.5-2.5-5.5-2.5z"/>',
     parenting: '<circle cx="9" cy="6" r="2.2"/><path d="M9 9c-2.8 0-4.5 2.3-4.5 6.5h9C13.5 11.3 11.8 9 9 9z"/><circle cx="17.5" cy="10.5" r="1.6"/><path d="M17.5 12.7c-2 0-3.2 1.6-3.2 4.3h6.4c0-2.7-1.2-4.3-3.2-4.3z"/>',
     crisis:  '<circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.01"/>',
+    cardiology: '<path d="M12 20.5s-7-4.2-9-8.6C1.2 8.3 3 5 6.5 5c2 0 3.3 1.2 4 2.2M12 20.5s7-4.2 9-8.6c1.8-3.7 0-7-3.5-7-2 0-3.3 1.2-4 2.2"/><path d="M6 12h2.5l1.5-3 2 6 1.5-3H16"/>',
+    rheumatology: '<circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/><path d="M9.5 9.5l5 5"/>',
+    neurology: '<path d="M13 3 6 14h5l-1 7 8-11h-5l1-7z"/>',
+    gastro:  '<path d="M8 4c-2 0-3 2-3 4 0 3 2 4 2 7a4 4 0 0 0 8 0c0-2 2-3 2-6 0-3-2-5-4-5"/>',
+    pain:    '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/>',
+    longcovid: '<path d="M12 3v6M9 9c-3 0-4 2-4 6 0 3 1 6 3 6 1.5 0 2-2 2-4V9zM15 9c3 0 4 2 4 6 0 3-1 6-3 6-1.5 0-2-2-2-4V9z"/>',
+    bonehealth: '<rect x="4" y="10" width="16" height="4" rx="2"/><circle cx="5" cy="8" r="2"/><circle cx="5" cy="16" r="2"/><circle cx="19" cy="8" r="2"/><circle cx="19" cy="16" r="2"/>',
+    genetics: '<path d="M7 3c0 4 10 4 10 8s-10 4-10 8M17 3c0 4-10 4-10 8s10 4 10 8"/>',
+    sexualhealth: '<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
+    pelvicphysio: '<circle cx="12" cy="5" r="2"/><path d="M12 7v6M8 10l4 3 4-3M9 20l3-4 3 4"/>',
+    vascular: '<path d="M12 3v18M12 8c-3 0-4 2-4 4M12 16c3 0 4-2 4-4"/>',
   };
   const PIN_ICON = '<path d="M12 21s-6.5-6-6.5-11A6.5 6.5 0 0 1 12 3.5 6.5 6.5 0 0 1 18.5 10c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>';
 
