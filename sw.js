@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v2";
+const CACHE_NAME = "pocket-guide-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -31,7 +31,7 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   if (!event.request.url.startsWith(self.location.origin)) return;
   event.respondWith(
-    fetch(event.request)
+    fetch(event.request, { cache: "no-store" })
       .then((response) => {
         if (response.ok) {
           const clone = response.clone();
