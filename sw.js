@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v1";
+const CACHE_NAME = "pocket-guide-v2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -24,20 +24,21 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// Network-first: this is a reference tool where content freshness (service
+// listings, FOI contacts, complaints processes) matters more than offline
+// speed. Falls back to cache only when the network is unavailable.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+  if (!event.request.url.startsWith(self.location.origin)) return;
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request)
-        .then((response) => {
-          if (response.ok && event.request.url.startsWith(self.location.origin)) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          }
-          return response;
-        })
-        .catch(() => cached);
-    })
+    fetch(event.request)
+      .then((response) => {
+        if (response.ok) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
