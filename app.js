@@ -1,13 +1,6 @@
 (function(){
   const app = document.getElementById("app");
-  const searchToggle = document.getElementById("searchToggle");
-  const searchBar = document.getElementById("searchBar");
   const searchInput = document.getElementById("searchInput");
-
-  searchToggle.addEventListener("click", () => {
-    searchBar.classList.toggle("open");
-    if (searchBar.classList.contains("open")) searchInput.focus();
-  });
 
   let searchDebounce;
   searchInput.addEventListener("input", () => {
@@ -19,12 +12,42 @@
     }, 180);
   });
 
+  const ACCENTS = ["violet", "coral", "sage", "sand"];
+  function accentForId(id){
+    let hash = 0;
+    for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) >>> 0;
+    return ACCENTS[hash % ACCENTS.length];
+  }
+
+  const ICON_PATHS = {
+    obs:     '<path d="M12 21s-7-4.35-9.5-8.8C.6 8.5 2 5 5.5 5c2 0 3.3 1.1 4 2 .7-.9 2-2 4-2 3.5 0 4.9 3.5 3 7.2C19 16.65 12 21 12 21z"/>',
+    gynae:   '<circle cx="12" cy="8" r="3.2"/><path d="M12 11.2V19M8.5 15.5h7"/>',
+    urology: '<path d="M12 3c2.5 3 4.5 6.4 4.5 9.3a4.5 4.5 0 0 1-9 0C7.5 9.4 9.5 6 12 3z"/>',
+    phn:     '<path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/>',
+    mh:      '<path d="M12 20.5s-7-4.2-9-8.4C1.3 8.6 3 5.5 6 5.5c1.8 0 3 1 4 2.2M12 20.5s7-4.2 9-8.4c1.7-3.5 0-6.6-3-6.6-2.1 0-3.4 1.3-4.4 2.7"/><path d="M12 8.5v6M9.5 11.5h5"/>',
+    feeding: '<path d="M12 3c2.5 3 4.5 6.4 4.5 9.3a4.5 4.5 0 0 1-9 0C7.5 9.4 9.5 6 12 3z"/><circle cx="12" cy="13" r="1.4"/>',
+    dsv:     '<path d="M12 3.5 19 6v6c0 4.8-3 7.7-7 8.5-4-.8-7-3.7-7-8.5V6z"/>',
+    hub:     '<path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h5v-5.5h2V19h5v-9"/>',
+    endo:    '<path d="M3 12h4l1.5-5 3 10 1.5-5h3l1-3 1 3h3"/>',
+    menopause: '<circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M4.2 4.2l1.8 1.8M18 18l1.8 1.8M3 12h2.5M18.5 12H21M4.2 19.8 6 18M18 6l1.8-1.8"/>',
+    fertility: '<circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/>',
+    eating:  '<path d="M4 12h16a8 8 0 0 1-16 0z"/><path d="M8 12V7M16 12V7"/>',
+    loss:    '<path d="M12 20.5s-7-4.2-9-8.6C1.2 8.3 3 5 6.5 5c2 0 3.3 1.2 4 2.2M12 20.5s7-4.2 9-8.6c1.8-3.7 0-7-3.5-7-2 0-3.3 1.2-4 2.2"/><path d="M12 7.5v3M10.5 11h3"/>',
+    cancer:  '<path d="M9 4c1.5 2 1.5 5 3 5s1.5-3 3-5M12 9v4"/><path d="M12 13c-3 2.5-3 6-1 8M12 13c3 2.5 3 6 1 8"/>',
+    contraception: '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  };
+  const PIN_ICON = '<path d="M12 21s-6.5-6-6.5-11A6.5 6.5 0 0 1 12 3.5 6.5 6.5 0 0 1 18.5 10c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>';
+
+  function iconSvg(pathData, size){
+    return `<svg width="${size||18}" height="${size||18}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${pathData}</svg>`;
+  }
+
   function specialtyLabel(id){ return (SPECIALTIES.find(s => s.id === id) || {}).label || id; }
   function countyLabel(id){ return (COUNTIES.find(c => c.id === id) || {}).label || id; }
 
   function tagsHtml(entry){
-    const specTags = entry.specialty.map(s => `<span class="tag tag-berry">${specialtyLabel(s)}</span>`).join("");
-    const countyTags = entry.county.map(c => `<span class="tag tag-sage">${countyLabel(c)}</span>`).join("");
+    const specTags = entry.specialty.map(s => `<span class="tag tag-${accentForId(s)}">${specialtyLabel(s)}</span>`).join("");
+    const countyTags = entry.county.map(c => `<span class="tag tag-${accentForId(c)}">${countyLabel(c)}</span>`).join("");
     return `<div class="tag-row">${specTags}${countyTags}</div>`;
   }
 
@@ -36,22 +59,40 @@
     </a>`;
   }
 
+  function orgCardHtml(org){
+    const c = org.contact || {};
+    const tags = (org.tags || []).map(t => `<span class="tag tag-${accentForId(t)}">${t}</span>`).join("");
+    const href = c.web ? `https://${c.web.replace(/^https?:\/\//, "")}` : null;
+    const inner = `
+      <h2>${org.name}</h2>
+      ${org.remit ? `<p class="remit">${org.remit}</p>` : ""}
+      ${org.offer ? `<p class="offer">${org.offer}</p>` : ""}
+      <div class="org-footer">
+        <div class="tag-row">${tags}</div>
+        ${href ? `<span class="org-link">${c.web} ↗</span>` : (c.phone ? `<span class="org-link">${c.phone}</span>` : "")}
+      </div>
+    `;
+    return href
+      ? `<a class="org-card" href="${href}" target="_blank" rel="noopener">${inner}</a>`
+      : `<div class="org-card">${inner}</div>`;
+  }
+
   function renderHome(){
     app.innerHTML = `
       <div class="hero">
-        <p class="hero-eyebrow">Cork edition</p>
-        <h1>Navigating women's health, in one place.</h1>
-        <p>A free directory of maternity, gynaecology, mental health, and community supports across Cork — built so you can find the right door on the first try.</p>
+        <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
+        <h1>Navigating women's health, wherever you are.</h1>
+        <p>A free directory of maternity, gynaecology, mental health, and community supports — deepest right now in Cork, with national programmes (endometriosis, menopause, fertility, and more) layered in. Plus your rights: how to complain, get a second opinion, or request your records, anywhere in Ireland or Northern Ireland.</p>
       </div>
 
       <div class="index-grid">
-        <a class="index-tile" href="#/specialty">
-          <span class="ref">Browse A</span>
+        <a class="index-tile tile-a" href="#/specialty">
+          <span class="tile-icon">${iconSvg(ICON_PATHS.gynae, 20)}</span>
           <h2>By specialty</h2>
           <p>Obs &amp; gynae, urology, mental health, and more</p>
         </a>
-        <a class="index-tile" href="#/county">
-          <span class="ref">Browse B</span>
+        <a class="index-tile tile-b" href="#/county">
+          <span class="tile-icon">${iconSvg(PIN_ICON, 20)}</span>
           <h2>By area</h2>
           <p>Cork City, North Cork, West Cork</p>
         </a>
@@ -63,7 +104,7 @@
           <a class="pill" href="#/specialty/mh">Perinatal mental health</a>
           <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
           <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
-          <a class="pill" href="#/advocacy">How to advocate for yourself</a>
+          <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
         </div>
       </div>
     `;
@@ -72,9 +113,14 @@
   function renderSpecialtyIndex(){
     const rows = SPECIALTIES.map(s => {
       const n = ENTRIES.filter(e => e.specialty.includes(s.id)).length;
+      const accent = accentForId(s.id);
       return `<a class="row" href="#/specialty/${s.id}">
-        <h2>${s.label}</h2>
-        <span class="n">${n} &nbsp;<span class="arrow">›</span></span>
+        <span class="cat-icon tag-${accent}">${iconSvg(ICON_PATHS[s.id] || PIN_ICON, 18)}</span>
+        <span class="row-body">
+          <h2>${s.label}</h2>
+          <span class="n">${n} service${n === 1 ? "" : "s"}</span>
+        </span>
+        <span class="arrow">›</span>
       </a>`;
     }).join("");
     app.innerHTML = `
@@ -90,9 +136,14 @@
   function renderCountyIndex(){
     const rows = COUNTIES.map(c => {
       const n = ENTRIES.filter(e => e.county.includes(c.id)).length;
+      const accent = accentForId(c.id);
       return `<a class="row" href="#/county/${c.id}">
-        <h2>${c.label}</h2>
-        <span class="n">${n} &nbsp;<span class="arrow">›</span></span>
+        <span class="cat-icon tag-${accent}">${iconSvg(PIN_ICON, 18)}</span>
+        <span class="row-body">
+          <h2>${c.label}</h2>
+          <span class="n">${n} service${n === 1 ? "" : "s"}</span>
+        </span>
+        <span class="arrow">›</span>
       </a>`;
     }).join("");
     app.innerHTML = `
@@ -129,18 +180,26 @@
         .join(" ").toLowerCase();
       return hay.includes(q);
     });
-    const cards = results.length
-      ? results.map(entryCardHtml).join("")
-      : `<div class="empty-state">No matches for "${query}". Try a broader term, like a condition or an area name.</div>`;
+    const orgResults = SUPPORT_ORGS.filter(o => {
+      const hay = [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase();
+      return hay.includes(q);
+    });
+    const totalCount = results.length + orgResults.length;
+    const cards = results.length ? results.map(entryCardHtml).join("") : "";
+    const orgCards = orgResults.length
+      ? `<p class="section-title">Support &amp; advocacy organisations</p><div class="org-grid">${orgResults.map(orgCardHtml).join("")}</div>`
+      : "";
+    const body = totalCount
+      ? `${cards}${orgCards}`
+      : `<div class="empty-state">No matches for "${query}". Try a broader term, like a condition, area, or organisation name.</div>`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
         <h1>Search: "${query}"</h1>
-        <p class="count">${results.length} result${results.length === 1 ? "" : "s"}</p>
+        <p class="count">${totalCount} result${totalCount === 1 ? "" : "s"}</p>
       </div>
-      ${cards}
+      ${body}
     `;
-    searchBar.classList.add("open");
     searchInput.value = query;
   }
 
@@ -174,15 +233,94 @@
     `;
   }
 
+  function hospitalCardHtml(h){
+    const c = h.contact || {};
+    const contactBits = [];
+    if (c.phone) contactBits.push(`<a href="tel:${c.phone.replace(/\s/g, "")}">${c.phone}</a>`);
+    if (c.email) contactBits.push(`<a href="mailto:${c.email}">${c.email}</a>`);
+    if (c.web) contactBits.push(`<span>${c.web}</span>`);
+    if (c.address) contactBits.push(`<span>${c.address}</span>`);
+    if (c.form) contactBits.push(`<span>${c.form}</span>`);
+    const stepsHtml = (h.steps && h.steps.length) ? `<ul class="steps">${h.steps.map(s => `<li>${s}</li>`).join("")}</ul>` : "";
+    return `
+      <div class="hospital-card">
+        <div class="hospital-head">
+          <h2>${h.name}</h2>
+          <span class="type-badge type-${h.type}">${h.typeLabel}</span>
+        </div>
+        <p class="summary">${h.summary}</p>
+        ${stepsHtml}
+        ${h.note ? `<p class="hosp-note">${h.note}</p>` : ""}
+        ${contactBits.length ? `<div class="contact-line">${contactBits.join("")}</div>` : ""}
+      </div>
+    `;
+  }
+
+  function hospitalsByRegionHtml(){
+    const regions = [];
+    HOSPITAL_FOI.forEach(h => { if (!regions.includes(h.region)) regions.push(h.region); });
+    return regions.map(r => {
+      const cards = HOSPITAL_FOI.filter(h => h.region === r).map(hospitalCardHtml).join("");
+      return `<p class="region-heading">${r}</p>${cards}`;
+    }).join("");
+  }
+
   function renderAdvocacy(){
-    const tips = ADVOCACY_TIPS.map(t => `<li>${t}</li>`).join("");
+    const guideHtml = ADVOCACY_GUIDE.map(m => `
+      <div class="guide-module">
+        <h2>${m.title}</h2>
+        <ul>${m.tips.map(t => `<li>${t}</li>`).join("")}</ul>
+      </div>
+    `).join("");
+
+    const rightsHtml = RIGHTS_BODIES.map(r => {
+      const c = r.contact || {};
+      const contactBits = [];
+      if (c.phone) contactBits.push(`<a href="tel:${c.phone.replace(/\s/g, "")}">${c.phone}</a>`);
+      if (c.email) contactBits.push(`<a href="mailto:${c.email}">${c.email}</a>`);
+      if (c.web) contactBits.push(`<span>${c.web}</span>`);
+      return `
+        <div class="rights-card">
+          <span class="step-badge">${r.step}</span>
+          <div class="rights-body">
+            <h2>${r.name}</h2>
+            <p class="role">${r.role}</p>
+            <p class="detail">${r.detail}</p>
+            ${contactBits.length ? `<div class="contact-line">${contactBits.join("")}</div>` : ""}
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    const orgsHtml = SUPPORT_ORGS.map(orgCardHtml).join("");
+
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
-        <h1>How to advocate for yourself</h1>
-        <p class="count">Practical steps, not theory</p>
+        <h1>Know your rights</h1>
+        <p class="count">Self-advocacy, complaints &amp; support — Ireland &amp; Northern Ireland</p>
       </div>
-      <ol class="tip-list">${tips}</ol>
+
+      <div class="callout">
+        <strong>Why this page exists:</strong> being dismissed or not believed is a well-documented pattern in Irish healthcare, not something you're imagining — most recently confirmed by the Department of Health's own 2025 listening forum with 142 women, and a peer-reviewed 2024 Irish study on pain dismissal. This page exists to make the practical steps easier to find.
+        <span class="source-note">Sources: Dept of Health &amp; NWC, "Our Health, Our Voices" (Oct 2025) · Windrim, McGuire &amp; Durand, BMC Women's Health (2024)</span>
+      </div>
+
+      <p class="section-title">The guide</p>
+      <div class="guide-list">${guideHtml}</div>
+
+      <p class="section-title">Freedom of Information, hospital by hospital</p>
+      <div class="hospital-grid">${hospitalsByRegionHtml()}</div>
+
+      <p class="section-title">Who to contact, in order</p>
+      <div class="rights-ladder">${rightsHtml}</div>
+
+      <p class="section-title">Support &amp; advocacy organisations</p>
+      <div class="org-grid">${orgsHtml}</div>
+
+      <div class="callout" style="margin-top:24px;">
+        Contact details and processes change — this page was last reviewed September 2026. Confirm current details on the organisation's own site before relying on them. This is signposting, not legal or medical advice.
+      </div>
     `;
   }
 
@@ -190,6 +328,8 @@
     const hash = location.hash || "#/";
     const parts = hash.replace(/^#\//, "").split("/").filter(Boolean);
     window.scrollTo(0, 0);
+
+    if (parts[0] !== "search") searchInput.value = "";
 
     if (parts.length === 0) return renderHome();
     if (parts[0] === "specialty" && !parts[1]) return renderSpecialtyIndex();

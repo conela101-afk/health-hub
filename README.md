@@ -1,6 +1,9 @@
-# The Pocket Guide — Women's Health, Cork
+# The Pocket Guide — Women's Health, Ireland & NI
 
-A free, installable directory for navigating women's health services in Cork: maternity & obstetrics, gynaecology, urology, public health nursing, perinatal mental health, breastfeeding support, domestic/sexual violence support, and community hubs — browsable by specialty or by area, with search.
+A free, installable directory for navigating women's health services and your rights across Ireland and Northern Ireland. Two layers:
+
+- **Service directory** — maternity & obstetrics, gynaecology, urology, endometriosis, menopause, fertility, mental health, and more. Deepest for Cork right now, with national programmes (e.g. the National Endometriosis Framework, HSE menopause/fertility hubs) layered in as they're researched.
+- **Know your rights** — a self-advocacy guide, the complaints escalation ladder, Freedom of Information contacts by hospital (currently ~16 major hospitals/trusts across Cork, Dublin, Galway, Limerick, the Midlands, and Northern Ireland), and a directory of national advocacy/support organisations.
 
 It's a static site — no build step, no backend, no database. Everything lives in `data.js`.
 

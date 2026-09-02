@@ -10,13 +10,20 @@ const SPECIALTIES = [
   { id: "feeding", label: "Breastfeeding & Infant Feeding" },
   { id: "dsv",     label: "Domestic & Sexual Violence Support" },
   { id: "hub",     label: "Community Hubs & Family Resource Centres" },
+  { id: "endo",    label: "Endometriosis" },
+  { id: "menopause", label: "Menopause" },
+  { id: "fertility", label: "Fertility & IVF" },
+  { id: "eating",  label: "Eating Disorders" },
+  { id: "loss",    label: "Pregnancy & Baby Loss" },
+  { id: "cancer",  label: "Gynaecological & Breast Cancer" },
+  { id: "contraception", label: "Contraception & Reproductive Health" },
 ];
 
 const COUNTIES = [
   { id: "cork-city",  label: "Cork City" },
   { id: "cork-north", label: "North Cork" },
   { id: "cork-west",  label: "West Cork" },
-  { id: "national",   label: "National (covers Cork)" },
+  { id: "national",   label: "National" },
 ];
 
 // Each entry: id, name, specialty[], county[], blurb, details[], referral, contact{phone,email,web,address}
@@ -38,7 +45,7 @@ const ENTRIES = [
   {
     id: "cumh-epu",
     name: "Early Pregnancy Unit (EPU)",
-    specialty: ["obs", "gynae"],
+    specialty: ["obs", "gynae", "loss"],
     county: ["cork-city"],
     blurb: "Bleeding or pain in early pregnancy, suspected miscarriage.",
     details: [
@@ -52,7 +59,7 @@ const ENTRIES = [
   {
     id: "cumh-loss",
     name: "Pregnancy Loss / Bereavement Team",
-    specialty: ["obs"],
+    specialty: ["obs", "loss"],
     county: ["cork-city"],
     blurb: "Led by Prof. Keelin O'Donoghue with Clinical Midwife Specialists in Bereavement & Loss.",
     details: ["Contact via CUMH main reception; ask specifically for the Bereavement & Loss team."],
@@ -112,7 +119,7 @@ const ENTRIES = [
   {
     id: "cumh-gynae-onc",
     name: "Gynae-Oncology & Rapid Access Suspected Ovarian Cancer",
-    specialty: ["gynae"],
+    specialty: ["gynae", "cancer"],
     county: ["cork-city"],
     blurb: "Suspected or confirmed gynaecological cancers.",
     details: ["GP referral — if you suspect cancer, ask your GP to state this explicitly on the referral so it's triaged on the rapid access pathway."],
@@ -398,14 +405,569 @@ const ENTRIES = [
     referral: "Browse directly.",
     contact: { web: "thewellbeingnetwork.ie/westcork" }
   },
+
+  // National specialty pathways, added Sep 2026. Sourced from the National
+  // Endometriosis Framework (2025), HSE menopause/fertility service pages,
+  // and the National Screening Service. Verify details before relying on them.
+  {
+    id: "cumh-endo-centre",
+    name: "CUMH Endometriosis & Pelvic Pain Centre (Lee Clinic)",
+    specialty: ["endo", "gynae"],
+    county: ["cork-city"],
+    blurb: "One of two supra-regional centres in the country for complex (Stage 4) endometriosis care.",
+    details: [
+      "Opened April 2025 as part of the National Endometriosis Framework.",
+      "For complex/severe cases referred on from a regional centre — not a first stop for a new diagnosis.",
+    ],
+    referral: "GP → regional centre → supra-regional referral if complex.",
+    contact: { address: "Lee Clinic, CUMH, Wilton, Cork" }
+  },
+  {
+    id: "national-endo-framework",
+    name: "National Endometriosis Framework — Care Pathway",
+    specialty: ["endo", "gynae"],
+    county: ["national"],
+    blurb: "Defines the GP → regional hub → supra-regional pathway for endometriosis care nationally.",
+    details: [
+      "Regional (moderate cases): Rotunda, Coombe, University Hospital Limerick.",
+      "Supra-regional (complex/Stage 4 cases): Tallaght University Hospital and CUMH (Lee Clinic, Cork).",
+      "Over 1,150 new patients seen in 2024; Coombe waiting time roughly 6–7 months at last check.",
+    ],
+    referral: "Start with your GP — ask them to reference the National Endometriosis Framework in the referral.",
+    contact: { web: "hse.ie" }
+  },
+  {
+    id: "cumh-menopause-clinic",
+    name: "CUMH Complex Menopause Clinic",
+    specialty: ["menopause"],
+    county: ["cork-city"],
+    blurb: "One of six HSE specialist complex-menopause clinics nationally, one per maternity network.",
+    details: [
+      "For complex cases with comorbidities — most menopause care is still managed by your GP.",
+      "HRT is VAT-free and free of charge under the HRT scheme (from June 2025).",
+    ],
+    referral: "GP referral.",
+    contact: { address: "CUMH, Wilton, Cork" }
+  },
+  {
+    id: "national-menopause-clinics",
+    name: "HSE Specialist Menopause Clinics (other regions)",
+    specialty: ["menopause"],
+    county: ["national"],
+    blurb: "The other five HSE complex-menopause clinics, alongside CUMH in Cork.",
+    details: [
+      "National Maternity Hospital (Holles St, Dublin) — first to open, Dec 2021.",
+      "Also at: Nenagh, Rotunda (Dublin), Coombe (Dublin), University Hospital Galway.",
+      "For complex cases with comorbidities; most women are managed by their GP.",
+    ],
+    referral: "GP referral.",
+    contact: { web: "hse.ie" }
+  },
+  {
+    id: "cork-fertility-hub",
+    name: "Cork Regional Fertility Hub",
+    specialty: ["fertility"],
+    county: ["cork-city"],
+    blurb: "One of six Regional Fertility Hubs offering publicly funded assisted human reproduction (AHR) pathways.",
+    details: [
+      "Publicly funded AHR available since September 2023: GP → hub → HSE-approved private clinic.",
+      "Cork is also home to the first National Advanced AHR Centre.",
+    ],
+    referral: "GP referral to the hub.",
+    contact: { web: "hse.ie" }
+  },
+  {
+    id: "national-fertility-hubs",
+    name: "HSE Regional Fertility Hubs (other regions)",
+    specialty: ["fertility"],
+    county: ["national"],
+    blurb: "The other five Regional Fertility Hubs, alongside Cork.",
+    details: [
+      "Dublin ×3: National Maternity Hospital, Coombe, Rotunda.",
+      "Also at: Galway, Tipperary/Nenagh.",
+      "Approved private clinics include Beacon CARE, Sims, Waterstone, ReproMed, Thérapie, First IVF.",
+    ],
+    referral: "GP referral to your nearest hub.",
+    contact: { web: "hse.ie" }
+  },
+  {
+    id: "national-eating-disorders",
+    name: "HSE National Clinical Programme for Eating Disorders",
+    specialty: ["eating", "mh"],
+    county: ["national"],
+    blurb: "The clinical referral pathway for eating disorder care, partnered with Bodywhys for peer support.",
+    details: [
+      "Referral pathway: GP → CAMHS (under 18) or adult mental health services (18+).",
+      "See the Support & advocacy organisations list on the 'Know your rights' page for Bodywhys' helpline and peer support groups.",
+    ],
+    referral: "GP referral.",
+    contact: { web: "hse.ie" }
+  },
+  {
+    id: "national-contraception-scheme",
+    name: "HSE Free Contraception Scheme",
+    specialty: ["contraception"],
+    county: ["national"],
+    blurb: "Free contraception for women aged 17–35, or any age with a medical card.",
+    details: [
+      "Covers consultations, prescriptions, and a range of contraceptive methods.",
+      "Emergency contraception is also available without a prescription from participating pharmacies.",
+    ],
+    referral: "Register with a participating GP or family planning clinic.",
+    contact: { web: "hse.ie" }
+  },
+  {
+    id: "my-options",
+    name: "My Options",
+    specialty: ["contraception", "obs"],
+    county: ["national"],
+    blurb: "Free, confidential HSE phone line for advice on an unplanned pregnancy — options counselling and information.",
+    details: ["Not a booking line for a termination — an information and counselling service."],
+    referral: "Self-referral, phone directly.",
+    contact: { phone: "1800 828 010", web: "myoptions.ie" }
+  },
+  {
+    id: "breastcheck",
+    name: "BreastCheck — National Breast Screening Programme",
+    specialty: ["cancer"],
+    county: ["national"],
+    blurb: "Free breast screening (mammogram) for eligible women, run by the National Screening Service.",
+    details: ["Screening reminders are also visible in the HSE Health App."],
+    referral: "Automatic invitation by eligible age band, or self-register if not yet invited.",
+    contact: { web: "breastcheck.ie" }
+  },
 ];
 
-const ADVOCACY_TIPS = [
-  "Get everything in writing where you can. If a call promises a referral or review date, follow up by email or patient portal message confirming what was said.",
-  "Name the pathway explicitly. 'Rapid access', 'Specialist Perinatal Mental Health Team', 'suspected ovarian cancer' — the exact wording on a referral affects triage. Ask your GP to use it.",
-  "Keep a simple log: date, who you spoke to, what was said, what was promised. This is invaluable if you need to escalate.",
-  "Know the complaints route: HSE 'Your Service Your Say' is the formal channel for a hospital or community service complaint — useful when something has gone wrong, not just for venting.",
-  "You can ask for a copy of your own records or referral letters at any time — you're entitled to them.",
-  "If a referral seems to have gone missing, ring and ask directly whether it was received and where it sits in triage — don't assume 'no news' means it's progressing.",
-  "Bring someone with you, or ask to take notes, for appointments where you expect to feel overwhelmed or dismissed.",
+// Self-advocacy guide, structured as modules. Sourced from the Patient Advocacy
+// Service's step-by-step complaint guide, AIMS Ireland's complaint-support model,
+// and the Dept of Health's "Our Health, Our Voices" listening forum (Oct 2025).
+// Last reviewed: Sep 2026 — verify against source sites before relying on it.
+const ADVOCACY_GUIDE = [
+  {
+    id: "prepare",
+    title: "Before your appointment",
+    tips: [
+      "Write a short symptom timeline and one clear 'headline' concern — what you most need this appointment to address.",
+      "Bring written questions. It's easy to forget them once you're in the room.",
+      "Ask for 'teach-back': if something's explained, ask the clinician to confirm you've understood it correctly.",
+      "Ask that your concerns be noted in your record, in your own words if possible.",
+    ],
+  },
+  {
+    id: "dismissed",
+    title: "If you feel you're being dismissed",
+    tips: [
+      "Ask directly what the clinical reason is for ruling out a serious cause — you're entitled to that explanation.",
+      "Ask for that reasoning to be documented: \"I'd like this recorded in my notes.\"",
+      "Ask for safety-netting: what specifically should prompt you to come back or go to A&E?",
+      "This pattern is well documented in Ireland, not just anecdotal — see 'Why this page exists' below. You are not imagining it.",
+    ],
+  },
+  {
+    id: "second-opinion",
+    title: "Getting a second opinion",
+    tips: [
+      "You can ask your GP or consultant directly for a referral for a second opinion — this is a normal, reasonable request.",
+      "You can ask for re-referral to a different consultant if a relationship isn't working.",
+      "For some conditions there are named national specialist centres (e.g. supra-regional endometriosis care at CUMH and Tallaght) — ask whether your case qualifies for referral to one.",
+    ],
+  },
+  {
+    id: "records",
+    title: "Accessing your records",
+    tips: [
+      "For your own records, a GDPR 'Subject Access Request' (SAR) is usually the fastest route: first copy free, response within one calendar month (extendable by two months if complex), no reason required. Apply separately to each provider — GP, hospital, consultant, imaging.",
+      "Freedom of Information (FOI) is a separate, narrower route: it applies to records held by public bodies, and matters after death (GDPR rights don't survive death) or for non-personal institutional records (policies, incident reports).",
+      "Some medical-card holders' GP records are held by the HSE as custodian — those may route through FOI rather than a SAR. If unsure, ask the provider which applies.",
+      "HSE SAR form and guidance: hse.ie/eng/gdpr/requesting-information-from-the-hse",
+    ],
+  },
+  {
+    id: "complain",
+    title: "Making a formal complaint",
+    tips: [
+      "Raise it locally first if you can — with the staff member, ward manager, or practice directly. Many things resolve at this stage.",
+      "If not resolved, use HSE 'Your Service Your Say' (YSYS) — the formal complaints channel for HSE public services. Generally within 12 months of the event, or of becoming aware of it. Doesn't cover private hospitals or matters already in legal proceedings.",
+      "The Patient Advocacy Service (PAS) is free, independent, and confidential — they can walk you through writing and lodging a complaint about a public acute hospital, or after a patient-safety incident. Consider contacting them before you write anything formal.",
+      "AIMS Ireland specifically helps with maternity-care complaint letters if your complaint relates to pregnancy or birth care.",
+      "Keep a simple log throughout: date, who you spoke to, what was said, what was promised. Invaluable if you need to escalate.",
+    ],
+  },
+  {
+    id: "advocate",
+    title: "Bringing an advocate",
+    tips: [
+      "You can bring a support person to any appointment, or ask to take notes yourself.",
+      "The Patient Advocacy Service can support you directly through a complaint process, not just point you to the right form.",
+      "Peer support through a condition-specific charity (see the directory below) can help you understand what 'normal' process actually looks like for your situation.",
+    ],
+  },
+];
+
+// Escalation ladder: who to contact, in the order the system expects you to try them.
+// FOI, hospital by hospital. HSE statutory hospitals route FOI through the HSE's
+// central process; independent voluntary hospitals often run their own — and
+// quality varies. Verified against each hospital's own site. Last reviewed: Sep 2026.
+const HOSPITAL_FOI = [
+  {
+    id: "cuh",
+    name: "Cork University Hospital (CUH)",
+    region: "Cork",
+    type: "hse",
+    typeLabel: "HSE hospital — central process",
+    summary: "No dedicated hospital FOI officer. CUH's own site currently routes FOI enquiries to the HSE's central Freedom of Information process.",
+    steps: [
+      "State clearly that you're making the request under the Freedom of Information Act 2014.",
+      "Describe the exact records you want, with as much detail as possible (service, location, approximate dates).",
+      "No fee for your own personal information. Acknowledged within 10 working days, response generally within 20 working days.",
+    ],
+    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/", form: "HSE FOI Request Form (PDF, on hse.ie)" },
+  },
+  {
+    id: "cumh",
+    name: "Cork University Maternity Hospital (CUMH)",
+    region: "Cork",
+    type: "hse",
+    typeLabel: "HSE hospital — central process",
+    summary: "Same as CUH — no separate CUMH FOI officer found. Requests route through the same HSE central FOI process.",
+    steps: [
+      "Same process as CUH (above): write under the FOI Act 2014, describe the exact records, and submit via the HSE FOI process.",
+    ],
+    note: "For your own maternity or health records specifically, a GDPR Subject Access Request is usually faster than FOI — see 'Accessing your records' above.",
+    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+  },
+  {
+    id: "sivuh",
+    name: "South Infirmary Victoria University Hospital (SIVUH)",
+    region: "Cork",
+    type: "voluntary",
+    typeLabel: "Voluntary hospital — own process",
+    summary: "SIVUH is an independent voluntary hospital with its own dedicated FOI office, separate from the HSE's central process. It publishes its own application form.",
+    steps: [
+      "Use SIVUH's own 'Application Form for Access to Records', on their site.",
+      "Send it to the FOI Office directly (contact below) rather than to the HSE.",
+    ],
+    contact: { email: "foi.officer@sivuh.ie", address: "Freedom of Information Office, SIVUH, Old Blackrock Road, Cork, T12 X23H", web: "sivuh.ie/Departments/FreedomofInformation/FOIHomepage.html" },
+  },
+  {
+    id: "muh",
+    name: "Mercy University Hospital (MUH)",
+    region: "Cork",
+    type: "voluntary",
+    typeLabel: "Voluntary hospital — process unclear",
+    summary: "Also an independent voluntary hospital, but its online FOI page is marked 'under construction' (last updated 2014) — we're not going to pretend there's a clean published process when there isn't one.",
+    steps: [
+      "Phone the hospital directly and ask how they currently want FOI requests submitted.",
+      "You can still write a formal request under the FOI Act 2014 and send it to hospital administration if no other route is offered.",
+    ],
+    contact: { phone: "021 427 1971", address: "Grenville Place, Cork, T12 WE28" },
+  },
+  {
+    id: "nmh",
+    name: "National Maternity Hospital, Holles St (NMH)",
+    region: "Dublin",
+    type: "voluntary",
+    typeLabel: "Voluntary hospital — own process",
+    summary: "An independent voluntary hospital with a named FOI Officer — one of the clearest published processes of any maternity hospital in the country.",
+    steps: [
+      "Contact the FOI Officer directly (below) rather than the HSE.",
+    ],
+    contact: { email: "foi@nmh.ie", phone: "(01) 637 3100, ask for bleep 085", address: "FOI Officer, National Maternity Hospital, Holles St, Dublin 2, D02 YH21" },
+  },
+  {
+    id: "rotunda",
+    name: "Rotunda Hospital",
+    region: "Dublin",
+    type: "voluntary",
+    typeLabel: "Voluntary hospital — own process",
+    summary: "An independent voluntary hospital with its own FOI section, separate from the HSE's central process.",
+    steps: [
+      "Requests are handled by post via the Quality and Patient Safety Department (address below).",
+    ],
+    contact: { address: "Freedom of Information Section, Quality and Patient Safety Department, The Rotunda Hospital, Parnell Square, Dublin 1", web: "rotunda.ie/freedom-of-information/" },
+  },
+  {
+    id: "coombe",
+    name: "Coombe Women & Infants University Hospital",
+    region: "Dublin",
+    type: "hse",
+    typeLabel: "HSE hospital group — named contact",
+    summary: "Part of the Dublin Midlands Hospital Group. No Coombe-specific FOI officer found, but there is a named group-level FOI decision maker/reviewer.",
+    steps: [
+      "Contact the Dublin Midlands Hospital Group's FOI contact directly, or call the Coombe's main line and ask to be directed.",
+    ],
+    contact: { email: "James.conway@hse.ie", phone: "01 408 5200 (hospital main line)" },
+  },
+  {
+    id: "uhg",
+    name: "University Hospital Galway / Merlin Park (Saolta)",
+    region: "Galway",
+    type: "hse",
+    typeLabel: "HSE hospital — central process",
+    summary: "Part of the Saolta University Health Care Group. No dedicated hospital FOI officer found — requests route through the HSE's central FOI process.",
+    steps: [
+      "Same central HSE process as CUH (above): write under the FOI Act 2014, describe the records, and submit via the HSE FOI process.",
+    ],
+    contact: { phone: "(091) 524 222 (hospital main line)", web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+  },
+  {
+    id: "uhl",
+    name: "University Hospital Limerick / University Maternity Hospital Limerick",
+    region: "Limerick",
+    type: "hse",
+    typeLabel: "HSE hospital — central process",
+    summary: "Part of the UL Hospitals Group. Confirmed: FOI requests for records held by the group are directed to the HSE's central process, not the hospital directly.",
+    steps: [
+      "Same central HSE process as CUH (above).",
+    ],
+    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+  },
+  {
+    id: "portiuncula",
+    name: "Portiuncula University Hospital",
+    region: "Galway & Midlands",
+    type: "hse",
+    typeLabel: "HSE hospital — central process",
+    summary: "Part of the Saolta group. No dedicated FOI officer found; there is a named Data Protection Officer for GDPR/SAR requests specifically, which is the faster route for your own records.",
+    steps: [
+      "For FOI: same central HSE process as CUH (above).",
+    ],
+    note: "For your own records specifically, a GDPR Subject Access Request is usually faster — this hospital's DPO contact is ddpo.west@hse.ie.",
+    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+  },
+  {
+    id: "portlaoise",
+    name: "Midland Regional Hospital, Portlaoise",
+    region: "Midlands",
+    type: "hse",
+    typeLabel: "HSE hospital — central process",
+    summary: "Part of the Dublin Midlands Hospital Group. No dedicated FOI officer found; there is a named Data Protection Officer for GDPR/SAR requests specifically.",
+    steps: [
+      "For FOI: same central HSE process as CUH (above).",
+    ],
+    note: "For your own records specifically, a GDPR Subject Access Request is usually faster — this hospital's DPO contact is ddpo.dmlUH@hse.ie.",
+    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+  },
+  {
+    id: "belfast-trust",
+    name: "Belfast Health & Social Care Trust",
+    region: "Northern Ireland",
+    type: "ni",
+    typeLabel: "NI Trust — UK FOI Act 2000",
+    summary: "Northern Ireland operates under a different legal framework (UK Freedom of Information Act 2000), handled at Trust level, not per-hospital. Covers the Royal Jubilee Maternity Hospital and Belfast-area services.",
+    steps: [
+      "FOI requests go to the Trust's Public Liaison Team, in writing.",
+      "Aim to respond within 20 working days. Requests for your own personal data go via the Data Protection Act instead of FOI.",
+    ],
+    contact: { address: "Public Liaison, Belfast HSC Trust, 1st Floor, Nore Villa, Knockbracken Healthcare Park, Belfast BT8 8BH" },
+  },
+  {
+    id: "northern-trust",
+    name: "Northern Health & Social Care Trust",
+    region: "Northern Ireland",
+    type: "ni",
+    typeLabel: "NI Trust — UK FOI Act 2000",
+    summary: "Covers Antrim Area Hospital and the north Antrim/Derry area.",
+    steps: [
+      "Same UK FOI Act 2000 process as Belfast Trust (above): written request, ~20 working days.",
+    ],
+    contact: { email: "info.governance@northerntrust.hscni.net", address: "8e Coleraine Road, Ballymoney, Co Antrim, BT53 6BP", phone: "028 2766 1293" },
+  },
+  {
+    id: "southern-trust",
+    name: "Southern Health & Social Care Trust",
+    region: "Northern Ireland",
+    type: "ni",
+    typeLabel: "NI Trust — UK FOI Act 2000",
+    summary: "Covers Craigavon Area Hospital and the Armagh/Newry/Down area.",
+    steps: [
+      "Same UK FOI Act 2000 process as Belfast Trust (above).",
+    ],
+    contact: { phone: "028 3861 3600", web: "southerntrust.hscni.net" },
+  },
+  {
+    id: "south-eastern-trust",
+    name: "South Eastern Health & Social Care Trust",
+    region: "Northern Ireland",
+    type: "ni",
+    typeLabel: "NI Trust — UK FOI Act 2000",
+    summary: "Covers the Ulster Hospital and the Down/Ards/North Down area.",
+    steps: [
+      "Submit via the Trust's FOI web form.",
+    ],
+    contact: { web: "setrust.hscni.net/contact-us/freedom-of-information/", address: "Upper Newtownards Road, Dundonald, Belfast BT16 1RH" },
+  },
+  {
+    id: "western-trust",
+    name: "Western Health & Social Care Trust",
+    region: "Northern Ireland",
+    type: "ni",
+    typeLabel: "NI Trust — UK FOI Act 2000",
+    summary: "Covers Altnagelvin Hospital and the Derry/Tyrone/Fermanagh area.",
+    steps: [
+      "Submit via the Trust's FOI web form.",
+    ],
+    contact: { web: "westerntrust.hscni.net/contact-us/freedom-of-information-request/", address: "Glenshane Road, Derry BT47 6SB" },
+  },
+];
+
+// Last reviewed: Sep 2026 — phone/email/process details change; verify on the source site.
+const RIGHTS_BODIES = [
+  {
+    id: "ysys",
+    step: 1,
+    name: "HSE Your Service Your Say (YSYS)",
+    role: "First-line formal complaints about HSE public services.",
+    detail: "Raise informally with staff first if you can. A formal complaint gets acknowledged within 5 working days, with an investigation report generally within 30 working days. Generally within 12 months of the event.",
+    contact: { phone: "1800 424 555", email: "yoursay@hse.ie", web: "hse.ie/complaints-feedback" },
+  },
+  {
+    id: "pas",
+    step: 2,
+    name: "Patient Advocacy Service",
+    role: "Free, independent, confidential support making a complaint.",
+    detail: "Funded by the Department of Health. Supports complaints about HSE public acute hospitals and HSE-run nursing homes, and support after a patient-safety incident. Can help you escalate further if needed.",
+    contact: { web: "patientadvocacyservice.ie" },
+  },
+  {
+    id: "ombudsman",
+    step: 3,
+    name: "Office of the Ombudsman",
+    role: "Independent external review if you're not satisfied with how a public body handled things.",
+    detail: "Cannot examine matters of clinical judgement or diagnosis, private care, or employment issues. Usually you need to have gone to the HSE first.",
+    contact: { phone: "01 639 5600", web: "ombudsman.ie" },
+  },
+  {
+    id: "medical-council",
+    step: 4,
+    name: "Medical Council",
+    role: "Fitness-to-practise complaints about a registered doctor.",
+    detail: "Anyone can make a complaint. Goes through a Preliminary Proceedings Committee, then potentially a Fitness to Practise Committee.",
+    contact: { web: "medicalcouncil.ie" },
+  },
+  {
+    id: "nmbi",
+    step: 4,
+    name: "Nursing & Midwifery Board of Ireland (NMBI)",
+    role: "Fitness-to-practise complaints about a nurse or midwife.",
+    detail: "Equivalent process to the Medical Council, for nursing and midwifery staff.",
+    contact: { web: "nmbi.ie/Complaints" },
+  },
+  {
+    id: "hiqa",
+    step: 4,
+    name: "HIQA",
+    role: "Raise a safety or quality concern about a service.",
+    detail: "HIQA sets standards and inspects services but can't investigate an individual complaint directly — raising a concern can still prompt a look at the service.",
+    contact: { web: "hiqa.ie/get-touch/report-concern-or-give-feedback" },
+  },
+  {
+    id: "hpra",
+    step: 4,
+    name: "HPRA",
+    role: "Report a problem with a medicine or medical device.",
+    detail: "Relevant for adverse reactions to medication, or device complications (e.g. vaginal mesh, contraceptive devices).",
+    contact: { web: "hpra.ie" },
+  },
+];
+
+// Advocacy and condition-specific support organisations. These are searchable
+// alongside the main directory. Last reviewed: Sep 2026.
+const SUPPORT_ORGS = [
+  {
+    id: "pas-org",
+    name: "Patient Advocacy Service",
+    remit: "Free, independent, confidential support with HSE complaints.",
+    offer: "Step-by-step help making a complaint about a public acute hospital, or after a patient-safety incident.",
+    tags: ["complaints", "all conditions"],
+    contact: { web: "patientadvocacyservice.ie" },
+  },
+  {
+    id: "aims-ireland",
+    name: "AIMS Ireland",
+    remit: "Consumer-led maternity services advocacy, running since 2007.",
+    offer: "Explicitly helps write complaint letters and understand how to complain about maternity care.",
+    tags: ["maternity", "complaints"],
+    contact: { web: "aimsireland.ie", email: "support@aimsireland.com" },
+  },
+  {
+    id: "nwc",
+    name: "National Women's Council",
+    remit: "Ireland's leading national women's membership body.",
+    offer: "Policy and campaigns on health inequality — not individual case support.",
+    tags: ["policy"],
+    contact: { web: "nwci.ie" },
+  },
+  {
+    id: "221plus",
+    name: "221+ CervicalCheck Patient Support Group",
+    remit: "Supports women and families affected by CervicalCheck failures.",
+    offer: "Information, advice, and peer support.",
+    tags: ["cervical screening"],
+    contact: { web: "221plus.ie" },
+  },
+  {
+    id: "endo-assoc",
+    name: "Endometriosis Association of Ireland",
+    remit: "Information and peer support for endometriosis, since 1987.",
+    offer: "Volunteer-run info line and peer support.",
+    tags: ["endometriosis", "gynaecology"],
+    contact: { web: "endometriosis.ie", email: "info@endometriosis.ie" },
+  },
+  {
+    id: "bodywhys",
+    name: "Bodywhys",
+    remit: "The Eating Disorders Association of Ireland.",
+    offer: "Helpline, online support groups, and a family support programme (PiLaR).",
+    tags: ["eating disorders", "mental health"],
+    contact: { web: "bodywhys.ie", phone: "01 210 7906" },
+  },
+  {
+    id: "miscarriage-assoc",
+    name: "Miscarriage Association of Ireland",
+    remit: "Support after miscarriage.",
+    offer: "Helpline, Mon–Fri.",
+    tags: ["pregnancy loss"],
+    contact: { web: "miscarriage.ie" },
+  },
+  {
+    id: "feileacain",
+    name: "Féileacáin",
+    remit: "Support after stillbirth and neonatal death.",
+    offer: "Peer support and bereavement resources.",
+    tags: ["pregnancy loss", "bereavement"],
+    contact: { web: "feileacain.ie" },
+  },
+  {
+    id: "a-little-lifetime",
+    name: "A Little Lifetime Foundation",
+    remit: "Support for pregnancy and baby loss (formerly ISANDS).",
+    offer: "Peer support and information.",
+    tags: ["pregnancy loss", "bereavement"],
+    contact: { web: "alittlelifetime.ie" },
+  },
+  {
+    id: "irish-cancer-society",
+    name: "Irish Cancer Society",
+    remit: "National cancer charity.",
+    offer: "Support Line staffed by cancer nurses.",
+    tags: ["cancer"],
+    contact: { web: "cancer.ie", phone: "1800 200 700", email: "supportline@irishcancer.ie" },
+  },
+  {
+    id: "marie-keating",
+    name: "Marie Keating Foundation",
+    remit: "Cancer awareness and support, incl. mobile information units.",
+    offer: "Metastatic breast cancer support, BRCA peer support.",
+    tags: ["cancer"],
+    contact: { web: "mariekeating.ie", phone: "01 628 3726" },
+  },
+  {
+    id: "mesh-survivors",
+    name: "Mesh Survivors Ireland",
+    remit: "Peer support and advocacy for women affected by vaginal mesh complications.",
+    offer: "Peer support network.",
+    tags: ["mesh", "urology", "gynaecology"],
+    contact: {},
+  },
 ];

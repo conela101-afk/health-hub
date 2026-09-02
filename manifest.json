@@ -1,12 +1,12 @@
 {
-  "name": "The Pocket Guide — Women's Health, Cork",
+  "name": "The Pocket Guide — Women's Health, Ireland & NI",
   "short_name": "Pocket Guide",
-  "description": "A free directory for navigating women's health services in Cork.",
+  "description": "A free directory for navigating women's health services and your rights across Ireland and Northern Ireland.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#F7F4EE",
-  "theme_color": "#F7F4EE",
+  "background_color": "#FAF7F4",
+  "theme_color": "#FAF7F4",
   "orientation": "portrait",
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
