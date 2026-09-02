@@ -256,6 +256,18 @@ h1,h2,h3{ font-family:var(--font); }
 .referral-note strong{ color:var(--sand-deep); }
 
 /* ---------- Advocacy / know your rights page ---------- */
+.segmented{
+  display:flex; gap:6px; margin:0 0 20px; overflow-x:auto;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:2px;
+}
+.segmented::-webkit-scrollbar{ display:none; }
+.segment{
+  flex-shrink:0; font-size:13px; font-weight:600; color:var(--ink-soft);
+  background:var(--surface); padding:9px 15px; border-radius:var(--radius-pill);
+  box-shadow:var(--shadow-sm); white-space:nowrap;
+}
+.segment.active{ background:var(--violet); color:#fff; box-shadow:none; }
+
 .callout{
   background:var(--violet-tint); border-radius:var(--radius);
   padding:16px 18px; margin-bottom:24px; font-size:14px; color:var(--ink);

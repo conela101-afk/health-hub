@@ -80,6 +80,20 @@
     return value;
   }
 
+  // Finds bare domain mentions inside free text ("check cuidiu.ie for...")
+  // and turns them into real links, since most of the site's prose bullets
+  // mention a website by name rather than storing it as a separate field.
+  function linkifyText(text){
+    if (!text) return text;
+    const urlPattern = /\b((?:[a-z0-9-]+\.)+(?:ie|com|org|net|uk|info|ca)(?:\/[^\s)]*)?)/gi;
+    return text.replace(urlPattern, (match) => {
+      const trailing = (match.match(/[.,;:!?]+$/) || [""])[0];
+      const clean = trailing ? match.slice(0, -trailing.length) : match;
+      const href = /^https?:\/\//.test(clean) ? clean : `https://${clean}`;
+      return `<a href="${href}" target="_blank" rel="noopener">${clean}</a>${trailing}`;
+    });
+  }
+
   function specialtyLabel(id){ return (SPECIALTIES.find(s => s.id === id) || {}).label || id; }
   function countyLabel(id){ return (COUNTIES.find(c => c.id === id) || {}).label || id; }
 
@@ -146,7 +160,7 @@
       <div class="hero">
         <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
         <h1>Navigating women's health, <em>wherever you are</em>.</h1>
-        <p>A free directory of maternity, gynaecology, mental health, neurodiversity, parenting, and crisis support — plus your rights: how to complain, get a second opinion, or request your records. Everywhere in Ireland and Northern Ireland.</p>
+        <p>A free directory for all women's health needs — growing to cover every specialty, not just maternity. Plus your rights: how to complain, get a second opinion, or request your records. Everywhere in Ireland and Northern Ireland.</p>
       </div>
 
       <div class="index-grid">
@@ -274,13 +288,13 @@
     const c = e.contact || {};
     const contactLines = [];
     if (c.phone) contactLines.push(`<div class="line"><span class="k">Phone</span><span>${contactLinkHtml("phone", c.phone)}</span></div>`);
-    if (c.extra) contactLines.push(`<div class="line"><span class="k"></span><span>${c.extra}</span></div>`);
+    if (c.extra) contactLines.push(`<div class="line"><span class="k"></span><span>${linkifyText(c.extra)}</span></div>`);
     if (c.email) contactLines.push(`<div class="line"><span class="k">Email</span><span>${contactLinkHtml("email", c.email)}</span></div>`);
     if (c.web) contactLines.push(`<div class="line"><span class="k">Web</span><span>${contactLinkHtml("web", c.web)}</span></div>`);
     if (c.address) contactLines.push(`<div class="line"><span class="k">Address</span><span>${contactLinkHtml("address", c.address)}</span></div>`);
 
     const detailsHtml = (e.details && e.details.length)
-      ? `<p class="detail-section-title">Good to know</p><ul class="detail-list">${e.details.map(d => `<li>${d}</li>`).join("")}</ul>`
+      ? `<p class="detail-section-title">Good to know</p><ul class="detail-list">${e.details.map(d => `<li>${linkifyText(d)}</li>`).join("")}</ul>`
       : "";
 
     app.innerHTML = `
@@ -289,11 +303,11 @@
       </div>
       <div class="detail-card">
         <h1>${e.name}</h1>
-        <p class="blurb">${e.blurb}</p>
+        <p class="blurb">${linkifyText(e.blurb)}</p>
         ${tagsHtml(e)}
         ${contactLines.length ? `<div class="contact-block">${contactLines.join("")}</div>` : ""}
         ${detailsHtml}
-        ${e.referral ? `<div class="referral-note"><strong>How to get in:</strong> ${e.referral}</div>` : ""}
+        ${e.referral ? `<div class="referral-note"><strong>How to get in:</strong> ${linkifyText(e.referral)}</div>` : ""}
       </div>
     `;
   }
@@ -306,16 +320,16 @@
     if (c.web) contactBits.push(contactLinkHtml("web", c.web));
     if (c.address) contactBits.push(contactLinkHtml("address", c.address));
     if (c.form) contactBits.push(`<span>${c.form}</span>`);
-    const stepsHtml = (h.steps && h.steps.length) ? `<ul class="steps">${h.steps.map(s => `<li>${s}</li>`).join("")}</ul>` : "";
+    const stepsHtml = (h.steps && h.steps.length) ? `<ul class="steps">${h.steps.map(s => `<li>${linkifyText(s)}</li>`).join("")}</ul>` : "";
     return `
       <div class="hospital-card">
         <div class="hospital-head">
           <h2>${h.name}</h2>
           <span class="type-badge type-${h.type}">${h.typeLabel}</span>
         </div>
-        <p class="summary">${h.summary}</p>
+        <p class="summary">${linkifyText(h.summary)}</p>
         ${stepsHtml}
-        ${h.note ? `<p class="hosp-note">${h.note}</p>` : ""}
+        ${h.note ? `<p class="hosp-note">${linkifyText(h.note)}</p>` : ""}
         ${contactBits.length ? `<div class="contact-line">${contactBits.join("")}</div>` : ""}
       </div>
     `;
@@ -339,14 +353,49 @@
     `;
   }
 
-  function renderAdvocacy(){
+  const ADVOCACY_SECTIONS = [
+    { id: "guide", label: "The guide" },
+    { id: "hospitals", label: "FOI by hospital" },
+    { id: "contacts", label: "Who to contact" },
+    { id: "orgs", label: "Support orgs" },
+  ];
+
+  function advocacySegmentedHtml(active){
+    return `<div class="segmented">${ADVOCACY_SECTIONS.map(s =>
+      `<a class="segment${s.id === active ? " active" : ""}" href="#/advocacy/${s.id}">${s.label}</a>`
+    ).join("")}</div>`;
+  }
+
+  function renderAdvocacyGuide(){
     const guideHtml = ADVOCACY_GUIDE.map(m => `
       <div class="guide-module">
         <h2>${m.title}</h2>
-        <ul>${m.tips.map(t => `<li>${t}</li>`).join("")}</ul>
+        <ul>${m.tips.map(t => `<li>${linkifyText(t)}</li>`).join("")}</ul>
       </div>
     `).join("");
+    return `
+      <div class="callout">
+        <strong>Why this page exists:</strong> being dismissed or not believed is a well-documented pattern in Irish healthcare, not something you're imagining — most recently confirmed by the Department of Health's own 2025 listening forum with 142 women, and a peer-reviewed 2024 Irish study on pain dismissal. This page exists to make the practical steps easier to find.
+        <span class="source-note">Sources: Dept of Health &amp; NWC, "Our Health, Our Voices" (Oct 2025) · Windrim, McGuire &amp; Durand, BMC Women's Health (2024)</span>
+      </div>
+      <div class="guide-list">${guideHtml}</div>
+    `;
+  }
 
+  function renderAdvocacyHospitals(){
+    return `
+      <p class="section-title">Freedom of Information, hospital by hospital</p>
+      <div class="hospital-grid">${hospitalsByRegionHtml()}</div>
+
+      <p class="section-title">Every public hospital, by Hospital Group (Republic of Ireland)</p>
+      <div class="callout">
+        Every hospital below is listed so you always have somewhere to start, even for the ones we haven't individually verified yet. Unless marked "detailed above," the general rule is: routes through the same central HSE FOI process explained under CUH. Northern Ireland hospitals are covered by their HSC Trust above.
+      </div>
+      <div class="group-grid">${HOSPITAL_GROUPS.map(hospitalGroupCardHtml).join("")}</div>
+    `;
+  }
+
+  function renderAdvocacyContacts(){
     const rightsHtml = RIGHTS_BODIES.map(r => {
       const c = r.contact || {};
       const contactBits = [];
@@ -359,14 +408,22 @@
           <div class="rights-body">
             <h2>${r.name}</h2>
             <p class="role">${r.role}</p>
-            <p class="detail">${r.detail}</p>
+            <p class="detail">${linkifyText(r.detail)}</p>
             ${contactBits.length ? `<div class="contact-line">${contactBits.join("")}</div>` : ""}
           </div>
         </div>
       `;
     }).join("");
+    return `<div class="rights-ladder">${rightsHtml}</div>`;
+  }
 
-    const orgsHtml = SUPPORT_ORGS.map(orgCardHtml).join("");
+  function renderAdvocacyOrgs(){
+    return `<div class="org-grid">${SUPPORT_ORGS.map(orgCardHtml).join("")}</div>`;
+  }
+
+  function renderAdvocacy(section){
+    const sectionRenderers = { guide: renderAdvocacyGuide, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs };
+    const active = sectionRenderers[section] ? section : "guide";
 
     app.innerHTML = `
       <div class="page-head">
@@ -375,28 +432,9 @@
         <p class="count">Self-advocacy, complaints &amp; support — Ireland &amp; Northern Ireland</p>
       </div>
 
-      <div class="callout">
-        <strong>Why this page exists:</strong> being dismissed or not believed is a well-documented pattern in Irish healthcare, not something you're imagining — most recently confirmed by the Department of Health's own 2025 listening forum with 142 women, and a peer-reviewed 2024 Irish study on pain dismissal. This page exists to make the practical steps easier to find.
-        <span class="source-note">Sources: Dept of Health &amp; NWC, "Our Health, Our Voices" (Oct 2025) · Windrim, McGuire &amp; Durand, BMC Women's Health (2024)</span>
-      </div>
+      ${advocacySegmentedHtml(active)}
 
-      <p class="section-title">The guide</p>
-      <div class="guide-list">${guideHtml}</div>
-
-      <p class="section-title">Freedom of Information, hospital by hospital</p>
-      <div class="hospital-grid">${hospitalsByRegionHtml()}</div>
-
-      <p class="section-title">Every public hospital, by Hospital Group (Republic of Ireland)</p>
-      <div class="callout">
-        Every hospital below is listed so you always have somewhere to start, even for the ones we haven't individually verified yet. Unless marked "detailed above," the general rule is: routes through the same central HSE FOI process explained under CUH. Northern Ireland hospitals are covered by their HSC Trust in the section above.
-      </div>
-      <div class="group-grid">${HOSPITAL_GROUPS.map(hospitalGroupCardHtml).join("")}</div>
-
-      <p class="section-title">Who to contact, in order</p>
-      <div class="rights-ladder">${rightsHtml}</div>
-
-      <p class="section-title">Support &amp; advocacy organisations</p>
-      <div class="org-grid">${orgsHtml}</div>
+      ${sectionRenderers[active]()}
 
       <div class="callout" style="margin-top:24px;">
         Contact details and processes change — this page was last reviewed September 2026. Confirm current details on the organisation's own site before relying on them. This is signposting, not legal or medical advice.
@@ -419,7 +457,7 @@
     if (parts[0] === "county" && parts[1]) return renderList("county", parts[1]);
     if (parts[0] === "search" && parts[1]) return renderSearch(decodeURIComponent(parts.slice(1).join("/")));
     if (parts[0] === "entry" && parts[1]) return renderEntry(parts[1]);
-    if (parts[0] === "advocacy") return renderAdvocacy();
+    if (parts[0] === "advocacy") return renderAdvocacy(parts[1] || "guide");
     return renderHome();
   }
 
