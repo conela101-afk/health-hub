@@ -133,7 +133,7 @@
         <a class="index-tile tile-b" href="#/county">
           <span class="tile-icon">${iconSvg(PIN_ICON, 28)}</span>
           <h2>By area</h2>
-          <p>Local areas, plus national programmes across Ireland &amp; NI</p>
+          <p>All 32 counties, plus national programmes across Ireland &amp; NI</p>
         </a>
       </div>
 

@@ -22,10 +22,45 @@ const SPECIALTIES = [
   { id: "crisis",  label: "Mental Health Crisis Support" },
 ];
 
+// All 32 traditional counties (26 Republic + 6 Northern Ireland), so every
+// county has somewhere to browse even before it has entries. Cork keeps its
+// existing sub-area split (already used by real entries); other counties
+// start empty and are populated as service data is researched.
 const COUNTIES = [
   { id: "cork-city",  label: "Cork City" },
   { id: "cork-north", label: "North Cork" },
   { id: "cork-west",  label: "West Cork" },
+  { id: "carlow",     label: "Carlow" },
+  { id: "cavan",      label: "Cavan" },
+  { id: "clare",      label: "Clare" },
+  { id: "donegal",    label: "Donegal" },
+  { id: "dublin",     label: "Dublin" },
+  { id: "galway",     label: "Galway" },
+  { id: "kerry",      label: "Kerry" },
+  { id: "kildare",    label: "Kildare" },
+  { id: "kilkenny",   label: "Kilkenny" },
+  { id: "laois",      label: "Laois" },
+  { id: "leitrim",    label: "Leitrim" },
+  { id: "limerick",   label: "Limerick" },
+  { id: "longford",   label: "Longford" },
+  { id: "louth",      label: "Louth" },
+  { id: "mayo",       label: "Mayo" },
+  { id: "meath",      label: "Meath" },
+  { id: "monaghan",   label: "Monaghan" },
+  { id: "offaly",     label: "Offaly" },
+  { id: "roscommon",  label: "Roscommon" },
+  { id: "sligo",      label: "Sligo" },
+  { id: "tipperary",  label: "Tipperary" },
+  { id: "waterford",  label: "Waterford" },
+  { id: "westmeath",  label: "Westmeath" },
+  { id: "wexford",    label: "Wexford" },
+  { id: "wicklow",    label: "Wicklow" },
+  { id: "antrim",     label: "Antrim (NI)" },
+  { id: "armagh",     label: "Armagh (NI)" },
+  { id: "down",       label: "Down (NI)" },
+  { id: "fermanagh",  label: "Fermanagh (NI)" },
+  { id: "londonderry", label: "Derry / Londonderry (NI)" },
+  { id: "tyrone",     label: "Tyrone (NI)" },
   { id: "national",   label: "National" },
 ];
 
