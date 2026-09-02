@@ -239,7 +239,7 @@ h1,h2,h3{ font-family:var(--font); }
 }
 .contact-block .line{ display:flex; gap:8px; padding:5px 0; }
 .contact-block .k{ color:var(--ink-soft); min-width:64px; flex-shrink:0; font-weight:500; }
-.contact-block a.phone-link{ color:var(--violet-deep); font-weight:700; }
+.contact-block a{ color:var(--violet-deep); font-weight:700; word-break:break-word; }
 
 .detail-section-title{
   font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;

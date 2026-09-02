@@ -57,6 +57,29 @@
     return `<svg width="${size||18}" height="${size||18}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${pathData}</svg>`;
   }
 
+  // Turns a raw contact field into a tappable link: tel:/mailto:/https:/maps.
+  // Displays the original text, so "phone, ask for X" still reads naturally
+  // even though only the number itself is used for the tel: href.
+  function contactLinkHtml(type, value){
+    if (type === "phone"){
+      // Use only the first number for the tel: href (fields like "021 492
+      // 0955 / 021 492 0950" or "(01) 637 3100, ask for bleep 085" carry
+      // more than one number or trailing instructions in the display text).
+      const leadingPhone = (value.match(/^[\d()+\s-]+/) || [value])[0];
+      const telHref = leadingPhone.replace(/[^\d+]/g, "");
+      return `<a href="tel:${telHref}">${value}</a>`;
+    }
+    if (type === "email") return `<a href="mailto:${value}">${value}</a>`;
+    if (type === "web"){
+      const href = /^https?:\/\//.test(value) ? value : `https://${value.replace(/^\/+/, "")}`;
+      return `<a href="${href}" target="_blank" rel="noopener">${value}</a>`;
+    }
+    if (type === "address"){
+      return `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(value)}" target="_blank" rel="noopener">${value}</a>`;
+    }
+    return value;
+  }
+
   function specialtyLabel(id){ return (SPECIALTIES.find(s => s.id === id) || {}).label || id; }
   function countyLabel(id){ return (COUNTIES.find(c => c.id === id) || {}).label || id; }
 
@@ -77,18 +100,20 @@
   function orgCardHtml(org){
     const c = org.contact || {};
     const tags = (org.tags || []).map(t => `<span class="tag tag-${accentForId(t)}">${t}</span>`).join("");
-    const href = c.web ? `https://${c.web.replace(/^https?:\/\//, "")}` : null;
+    const webHref = c.web ? `https://${c.web.replace(/^https?:\/\//, "")}` : null;
+    const phoneHref = !webHref && c.phone ? `tel:${c.phone.split(",")[0].replace(/[^\d+]/g, "")}` : null;
+    const href = webHref || phoneHref;
     const inner = `
       <h2>${org.name}</h2>
       ${org.remit ? `<p class="remit">${org.remit}</p>` : ""}
       ${org.offer ? `<p class="offer">${org.offer}</p>` : ""}
       <div class="org-footer">
         <div class="tag-row">${tags}</div>
-        ${href ? `<span class="org-link">${c.web} ↗</span>` : (c.phone ? `<span class="org-link">${c.phone}</span>` : "")}
+        ${webHref ? `<span class="org-link">${c.web} ↗</span>` : (c.phone ? `<span class="org-link">${c.phone}</span>` : "")}
       </div>
     `;
     return href
-      ? `<a class="org-card" href="${href}" target="_blank" rel="noopener">${inner}</a>`
+      ? `<a class="org-card" href="${href}" ${webHref ? 'target="_blank" rel="noopener"' : ""}>${inner}</a>`
       : `<div class="org-card">${inner}</div>`;
   }
 
@@ -248,11 +273,11 @@
     if (!e){ app.innerHTML = `<div class="empty-state">Not found.</div>`; return; }
     const c = e.contact || {};
     const contactLines = [];
-    if (c.phone) contactLines.push(`<div class="line"><span class="k">Phone</span><span>${c.phone}</span></div>`);
+    if (c.phone) contactLines.push(`<div class="line"><span class="k">Phone</span><span>${contactLinkHtml("phone", c.phone)}</span></div>`);
     if (c.extra) contactLines.push(`<div class="line"><span class="k"></span><span>${c.extra}</span></div>`);
-    if (c.email) contactLines.push(`<div class="line"><span class="k">Email</span><span>${c.email}</span></div>`);
-    if (c.web) contactLines.push(`<div class="line"><span class="k">Web</span><span>${c.web}</span></div>`);
-    if (c.address) contactLines.push(`<div class="line"><span class="k">Address</span><span>${c.address}</span></div>`);
+    if (c.email) contactLines.push(`<div class="line"><span class="k">Email</span><span>${contactLinkHtml("email", c.email)}</span></div>`);
+    if (c.web) contactLines.push(`<div class="line"><span class="k">Web</span><span>${contactLinkHtml("web", c.web)}</span></div>`);
+    if (c.address) contactLines.push(`<div class="line"><span class="k">Address</span><span>${contactLinkHtml("address", c.address)}</span></div>`);
 
     const detailsHtml = (e.details && e.details.length)
       ? `<p class="detail-section-title">Good to know</p><ul class="detail-list">${e.details.map(d => `<li>${d}</li>`).join("")}</ul>`
@@ -276,10 +301,10 @@
   function hospitalCardHtml(h){
     const c = h.contact || {};
     const contactBits = [];
-    if (c.phone) contactBits.push(`<a href="tel:${c.phone.replace(/\s/g, "")}">${c.phone}</a>`);
-    if (c.email) contactBits.push(`<a href="mailto:${c.email}">${c.email}</a>`);
-    if (c.web) contactBits.push(`<span>${c.web}</span>`);
-    if (c.address) contactBits.push(`<span>${c.address}</span>`);
+    if (c.phone) contactBits.push(contactLinkHtml("phone", c.phone));
+    if (c.email) contactBits.push(contactLinkHtml("email", c.email));
+    if (c.web) contactBits.push(contactLinkHtml("web", c.web));
+    if (c.address) contactBits.push(contactLinkHtml("address", c.address));
     if (c.form) contactBits.push(`<span>${c.form}</span>`);
     const stepsHtml = (h.steps && h.steps.length) ? `<ul class="steps">${h.steps.map(s => `<li>${s}</li>`).join("")}</ul>` : "";
     return `
@@ -325,9 +350,9 @@
     const rightsHtml = RIGHTS_BODIES.map(r => {
       const c = r.contact || {};
       const contactBits = [];
-      if (c.phone) contactBits.push(`<a href="tel:${c.phone.replace(/\s/g, "")}">${c.phone}</a>`);
-      if (c.email) contactBits.push(`<a href="mailto:${c.email}">${c.email}</a>`);
-      if (c.web) contactBits.push(`<span>${c.web}</span>`);
+      if (c.phone) contactBits.push(contactLinkHtml("phone", c.phone));
+      if (c.email) contactBits.push(contactLinkHtml("email", c.email));
+      if (c.web) contactBits.push(contactLinkHtml("web", c.web));
       return `
         <div class="rights-card">
           <span class="step-badge">${r.step}</span>
