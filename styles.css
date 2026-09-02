@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap');
+
+:root{
+  --paper: #F7F4EE;
+  --paper-raised: #FFFFFF;
+  --ink: #211D19;
+  --ink-soft: #5B554C;
+  --line: #DCD4C3;
+  --berry: #7A2A45;
+  --berry-deep: #5E1F35;
+  --sage: #4E6858;
+  --mustard: #B5822C;
+  --radius: 3px;
+  --sans: 'Space Grotesk', system-ui, sans-serif;
+  --serif: 'Source Serif 4', Georgia, serif;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  -webkit-font-smoothing:antialiased;
+}
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; }
+
+::selection{ background:var(--mustard); color:#fff; }
+
+/* ---------- Topbar ---------- */
+.topbar{
+  position:sticky; top:0; z-index:20;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  max-width:720px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 18px;
+}
+.brand{ display:flex; align-items:center; gap:10px; }
+.brand-mark{
+  font-family:var(--sans); font-weight:700; font-size:20px;
+  width:30px; height:30px; display:flex; align-items:center; justify-content:center;
+  background:var(--berry); color:#fff; border-radius:var(--radius);
+}
+.brand-text{ font-family:var(--sans); font-weight:600; font-size:17px; letter-spacing:-0.01em; }
+.search-toggle{
+  border:1px solid var(--line); background:var(--paper-raised);
+  font-family:var(--sans); font-size:13px; font-weight:500;
+  padding:8px 14px; border-radius:var(--radius); cursor:pointer;
+  color:var(--ink);
+}
+.search-toggle:active{ background:var(--paper); }
+
+.search-bar{
+  max-width:720px; margin:0 auto;
+  padding:0 18px; max-height:0; overflow:hidden;
+  transition:max-height .22s ease, padding .22s ease;
+}
+.search-bar.open{ max-height:64px; padding:0 18px 14px; }
+#searchInput{
+  width:100%; font-family:var(--serif); font-size:16px;
+  padding:11px 14px; border:1px solid var(--line); border-radius:var(--radius);
+  background:var(--paper-raised); color:var(--ink);
+}
+#searchInput:focus{ outline:2px solid var(--berry); outline-offset:1px; }
+
+/* ---------- App shell ---------- */
+.app{ max-width:720px; margin:0 auto; padding:22px 18px 60px; min-height:70vh; }
+
+/* ---------- Home ---------- */
+.hero{ margin-bottom:28px; }
+.hero-eyebrow{ font-family:var(--sans); font-size:12px; color:var(--berry); font-weight:600; margin:0 0 6px; }
+.hero h1{
+  font-family:var(--serif); font-weight:600; font-size:32px; line-height:1.15;
+  margin:0 0 10px; letter-spacing:-0.01em;
+}
+.hero p{ font-size:16px; color:var(--ink-soft); line-height:1.5; margin:0; max-width:52ch; }
+
+.index-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:22px 0;
+}
+.index-tile{
+  display:block; border:1px solid var(--line); background:var(--paper-raised);
+  border-radius:var(--radius); padding:18px 16px; position:relative;
+  min-height:120px;
+}
+.index-tile:active{ background:var(--paper); }
+.index-tile .ref{
+  font-family:var(--sans); font-size:12px; color:var(--ink-soft);
+  border-bottom:1px solid var(--line); padding-bottom:8px; margin-bottom:10px; display:block;
+}
+.index-tile h2{ font-family:var(--sans); font-size:17px; font-weight:600; margin:0 0 4px; }
+.index-tile p{ font-size:13px; color:var(--ink-soft); margin:0; font-family:var(--sans); }
+
+.quick-links{ margin-top:30px; }
+.quick-links h3{ font-family:var(--sans); font-size:13px; color:var(--ink-soft); font-weight:600; margin:0 0 10px; }
+.quick-link-row{ display:flex; flex-wrap:wrap; gap:8px; }
+.pill{
+  font-family:var(--sans); font-size:13px; padding:7px 13px;
+  border:1px solid var(--line); border-radius:20px; background:var(--paper-raised);
+}
+.pill:active{ background:var(--berry); color:#fff; border-color:var(--berry); }
+
+/* ---------- Section list pages (specialty index / county index) ---------- */
+.page-head{ margin-bottom:18px; }
+.back-link{
+  font-family:var(--sans); font-size:13px; color:var(--berry); font-weight:500;
+  display:inline-flex; align-items:center; gap:5px; margin-bottom:14px;
+}
+.page-head h1{ font-family:var(--serif); font-size:26px; font-weight:600; margin:0 0 6px; }
+.page-head .count{ font-family:var(--sans); font-size:13px; color:var(--ink-soft); }
+
+.simple-list{ display:flex; flex-direction:column; border-top:1px solid var(--line); }
+.simple-list .row{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:15px 2px; border-bottom:1px solid var(--line);
+}
+.simple-list .row h2{ font-family:var(--sans); font-size:15px; font-weight:600; margin:0; }
+.simple-list .row .n{ font-family:var(--sans); font-size:12px; color:var(--ink-soft); }
+.simple-list .row .arrow{ color:var(--ink-soft); font-size:16px; }
+
+/* ---------- Entry cards (search / list results) ---------- */
+.entry-card{
+  display:block; border:1px solid var(--line); border-radius:var(--radius);
+  background:var(--paper-raised); padding:16px; margin-bottom:10px;
+}
+.entry-card h3{ font-family:var(--sans); font-size:16px; font-weight:600; margin:0 0 6px; }
+.entry-card .blurb{ font-size:14.5px; color:var(--ink-soft); line-height:1.45; margin:0 0 10px; }
+.tag-row{ display:flex; flex-wrap:wrap; gap:6px; }
+.tag{
+  font-family:var(--sans); font-size:11px; font-weight:500;
+  padding:3px 9px; border-radius:12px; background:var(--paper);
+  border:1px solid var(--line); color:var(--ink-soft);
+}
+.tag.tag-berry{ color:var(--berry-deep); border-color:var(--berry); background:#F6EAEE; }
+.tag.tag-sage{ color:var(--sage); border-color:var(--sage); background:#EAF0EC; }
+
+.empty-state{
+  padding:40px 10px; text-align:center; color:var(--ink-soft); font-family:var(--sans); font-size:14px;
+}
+
+/* ---------- Detail page ---------- */
+.detail-card{
+  border:1px solid var(--line); border-radius:var(--radius); background:var(--paper-raised);
+  padding:22px 20px; margin-bottom:20px;
+}
+.detail-card h1{ font-family:var(--serif); font-size:24px; font-weight:600; margin:0 0 8px; line-height:1.2; }
+.detail-card .blurb{ font-size:15.5px; color:var(--ink-soft); margin:0 0 16px; line-height:1.5; }
+
+.contact-block{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  padding:14px 16px; margin:14px 0; font-family:var(--sans); font-size:14px;
+}
+.contact-block .line{ display:flex; gap:8px; padding:4px 0; }
+.contact-block .k{ color:var(--ink-soft); min-width:64px; flex-shrink:0; }
+.contact-block a.phone-link{ color:var(--berry-deep); font-weight:600; }
+
+.detail-section-title{
+  font-family:var(--sans); font-size:12px; font-weight:600; text-transform:none;
+  color:var(--berry); margin:18px 0 8px;
+}
+.detail-list{ margin:0; padding-left:18px; }
+.detail-list li{ font-size:15px; line-height:1.55; margin-bottom:6px; }
+
+.referral-note{
+  border-left:3px solid var(--mustard); background:#FBF3E4;
+  padding:10px 14px; font-size:14px; color:#5C4110; margin-top:16px; border-radius:0 var(--radius) var(--radius) 0;
+}
+
+/* ---------- Advocacy page ---------- */
+.tip-list{ list-style:none; margin:0; padding:0; counter-reset:tip; }
+.tip-list li{
+  counter-increment:tip; position:relative; padding:14px 0 14px 40px;
+  border-bottom:1px solid var(--line); font-size:15.5px; line-height:1.55;
+}
+.tip-list li::before{
+  content:counter(tip); position:absolute; left:0; top:14px;
+  font-family:var(--sans); font-weight:700; font-size:13px; color:#fff;
+  background:var(--berry); width:24px; height:24px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* ---------- Footer ---------- */
+.footer{
+  max-width:720px; margin:0 auto; padding:20px 18px 40px;
+  font-family:var(--sans); font-size:11.5px; color:var(--ink-soft); line-height:1.5;
+  border-top:1px solid var(--line);
+}
+
+/* ---------- Disclaimer strip ---------- */
+.disclaimer{
+  background:#F6EAEE; border:1px solid var(--berry); border-radius:var(--radius);
+  padding:12px 14px; font-family:var(--sans); font-size:13px; color:var(--berry-deep);
+  margin-bottom:20px; line-height:1.5;
+}
+
+@media (min-width:600px){
+  .hero h1{ font-size:38px; }
+  .index-grid{ grid-template-columns:1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .search-bar{ transition:none; }
+}
