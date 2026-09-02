@@ -1,9 +1,9 @@
-# The Pocket Guide — Women's Health, Ireland & NI
+# Women's Health Hub — Ireland & NI
 
 A free, installable directory for navigating women's health services and your rights across Ireland and Northern Ireland. Two layers:
 
-- **Service directory** — maternity & obstetrics, gynaecology, urology, endometriosis, menopause, fertility, mental health, and more. Deepest for Cork right now, with national programmes (e.g. the National Endometriosis Framework, HSE menopause/fertility hubs) layered in as they're researched.
-- **Know your rights** — a self-advocacy guide, the complaints escalation ladder, Freedom of Information contacts by hospital (currently ~16 major hospitals/trusts across Cork, Dublin, Galway, Limerick, the Midlands, and Northern Ireland), and a directory of national advocacy/support organisations.
+- **Service directory** — maternity & obstetrics, gynaecology, urology, endometriosis, menopause, fertility, mental health crisis support, neurodiversity, parenting/motherhood, and more. National-level programmes and organisations are covered nationwide; region-specific clinic/service listings are being built out area by area (currently deepest for Cork — more regions are an ongoing, explicit priority, not an afterthought).
+- **Know your rights** — a self-advocacy guide, the complaints escalation ladder, Freedom of Information contacts covering all 6 HSE Hospital Groups (with detailed, individually-verified contacts for ~16 major hospitals) plus all 5 Northern Ireland HSC Trusts, and a directory of national advocacy/support organisations.
 
 It's a static site — no build step, no backend, no database. Everything lives in `data.js`.
 
@@ -66,7 +66,7 @@ styles.css      — all styling (design tokens at the top)
 app.js          — hash-based router + rendering (no framework, no build step)
 data.js         — all service listings, specialties, and counties — edit this to update content
 manifest.json   — PWA metadata (name, icons, colours)
-sw.js           — service worker, caches the app shell for offline use
+sw.js           — service worker, network-first with offline fallback
 icons/          — app icons for home-screen install
 ```
 
@@ -74,4 +74,4 @@ icons/          — app icons for home-screen install
 
 - Google Fonts are loaded from a CDN — the first visit needs an internet connection to look right; after that, the service worker caches the app shell (not the fonts) for offline use.
 - No analytics, accounts, or backend — by design, for privacy and simplicity.
-- Content currently only covers Cork. The data structure supports more counties without any code changes.
+- Region-specific service listings are still deepest for Cork; the data structure already supports any county/region and expanding coverage nationally is the active priority, not a "someday" item.

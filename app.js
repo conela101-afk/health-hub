@@ -1,6 +1,18 @@
 (function(){
   const app = document.getElementById("app");
   const searchInput = document.getElementById("searchInput");
+  const tabbar = document.getElementById("tabbar");
+
+  function updateTabbar(parts){
+    let active = null;
+    if (parts.length === 0) active = "home";
+    else if (parts[0] === "specialty") active = "specialty";
+    else if (parts[0] === "county") active = "county";
+    else if (parts[0] === "advocacy") active = "advocacy";
+    tabbar.querySelectorAll(".tab-item").forEach(el => {
+      el.classList.toggle("active", el.dataset.tab === active);
+    });
+  }
 
   let searchDebounce;
   searchInput.addEventListener("input", () => {
@@ -35,6 +47,9 @@
     loss:    '<path d="M12 20.5s-7-4.2-9-8.6C1.2 8.3 3 5 6.5 5c2 0 3.3 1.2 4 2.2M12 20.5s7-4.2 9-8.6c1.8-3.7 0-7-3.5-7-2 0-3.3 1.2-4 2.2"/><path d="M12 7.5v3M10.5 11h3"/>',
     cancer:  '<path d="M9 4c1.5 2 1.5 5 3 5s1.5-3 3-5M12 9v4"/><path d="M12 13c-3 2.5-3 6-1 8M12 13c3 2.5 3 6 1 8"/>',
     contraception: '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+    neurodiversity: '<path d="M6.5 9.5c-2.5 0-2.5 5 0 5 2 0 3-2.5 5.5-2.5s3.5 2.5 5.5 2.5c2.5 0 2.5-5 0-5-2 0-3 2.5-5.5 2.5s-3.5-2.5-5.5-2.5z"/>',
+    parenting: '<circle cx="9" cy="6" r="2.2"/><path d="M9 9c-2.8 0-4.5 2.3-4.5 6.5h9C13.5 11.3 11.8 9 9 9z"/><circle cx="17.5" cy="10.5" r="1.6"/><path d="M17.5 12.7c-2 0-3.2 1.6-3.2 4.3h6.4c0-2.7-1.2-4.3-3.2-4.3z"/>',
+    crisis:  '<circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.01"/>',
   };
   const PIN_ICON = '<path d="M12 21s-6.5-6-6.5-11A6.5 6.5 0 0 1 12 3.5 6.5 6.5 0 0 1 18.5 10c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>';
 
@@ -77,31 +92,56 @@
       : `<div class="org-card">${inner}</div>`;
   }
 
+  function crisisBannerHtml(){
+    const chips = CRISIS_RESOURCES.map(c => `
+      <span class="crisis-contact">
+        <span class="cc-name">${c.name}</span>
+        <span class="cc-value">${c.contact}</span>
+      </span>
+    `).join("");
+    return `
+      <div class="crisis-banner">
+        <div class="crisis-banner-head">
+          <span class="crisis-icon">${iconSvg(ICON_PATHS.crisis, 18)}</span>
+          <div>
+            <h2>In a mental health crisis right now?</h2>
+            <p>Free, confidential, 24/7 support. You don't need a referral or a diagnosis to use any of these.</p>
+          </div>
+        </div>
+        <div class="crisis-contacts">${chips}</div>
+        <a class="crisis-more" href="#/specialty/crisis">More crisis support &amp; details ›</a>
+      </div>
+    `;
+  }
+
   function renderHome(){
     app.innerHTML = `
+      ${crisisBannerHtml()}
+
       <div class="hero">
         <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
-        <h1>Navigating women's health, wherever you are.</h1>
-        <p>A free directory of maternity, gynaecology, mental health, and community supports — deepest right now in Cork, with national programmes (endometriosis, menopause, fertility, and more) layered in. Plus your rights: how to complain, get a second opinion, or request your records, anywhere in Ireland or Northern Ireland.</p>
+        <h1>Navigating women's health, <em>wherever you are</em>.</h1>
+        <p>A free directory of maternity, gynaecology, mental health, neurodiversity, parenting, and crisis support — plus your rights: how to complain, get a second opinion, or request your records. Everywhere in Ireland and Northern Ireland.</p>
       </div>
 
       <div class="index-grid">
         <a class="index-tile tile-a" href="#/specialty">
-          <span class="tile-icon">${iconSvg(ICON_PATHS.gynae, 20)}</span>
+          <span class="tile-icon">${iconSvg(ICON_PATHS.gynae, 28)}</span>
           <h2>By specialty</h2>
           <p>Obs &amp; gynae, urology, mental health, and more</p>
         </a>
         <a class="index-tile tile-b" href="#/county">
-          <span class="tile-icon">${iconSvg(PIN_ICON, 20)}</span>
+          <span class="tile-icon">${iconSvg(PIN_ICON, 28)}</span>
           <h2>By area</h2>
-          <p>Cork City, North Cork, West Cork</p>
+          <p>Local areas, plus national programmes across Ireland &amp; NI</p>
         </a>
       </div>
 
       <div class="quick-links">
         <h3>Often searched</h3>
         <div class="quick-link-row">
-          <a class="pill" href="#/specialty/mh">Perinatal mental health</a>
+          <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
+          <a class="pill" href="#/specialty/parenting">Parenting &amp; new motherhood</a>
           <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
           <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
           <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
@@ -265,6 +305,15 @@
     }).join("");
   }
 
+  function hospitalGroupCardHtml(g){
+    return `
+      <div class="group-card">
+        <h2>${g.name}</h2>
+        <ul>${g.hospitals.map(h => `<li>${h}</li>`).join("")}</ul>
+      </div>
+    `;
+  }
+
   function renderAdvocacy(){
     const guideHtml = ADVOCACY_GUIDE.map(m => `
       <div class="guide-module">
@@ -312,6 +361,12 @@
       <p class="section-title">Freedom of Information, hospital by hospital</p>
       <div class="hospital-grid">${hospitalsByRegionHtml()}</div>
 
+      <p class="section-title">Every public hospital, by Hospital Group (Republic of Ireland)</p>
+      <div class="callout">
+        Every hospital below is listed so you always have somewhere to start, even for the ones we haven't individually verified yet. Unless marked "detailed above," the general rule is: routes through the same central HSE FOI process explained under CUH. Northern Ireland hospitals are covered by their HSC Trust in the section above.
+      </div>
+      <div class="group-grid">${HOSPITAL_GROUPS.map(hospitalGroupCardHtml).join("")}</div>
+
       <p class="section-title">Who to contact, in order</p>
       <div class="rights-ladder">${rightsHtml}</div>
 
@@ -330,6 +385,7 @@
     window.scrollTo(0, 0);
 
     if (parts[0] !== "search") searchInput.value = "";
+    updateTabbar(parts);
 
     if (parts.length === 0) return renderHome();
     if (parts[0] === "specialty" && !parts[1]) return renderSpecialtyIndex();

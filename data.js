@@ -17,6 +17,9 @@ const SPECIALTIES = [
   { id: "loss",    label: "Pregnancy & Baby Loss" },
   { id: "cancer",  label: "Gynaecological & Breast Cancer" },
   { id: "contraception", label: "Contraception & Reproductive Health" },
+  { id: "neurodiversity", label: "Neurodiversity (Autism, ADHD)" },
+  { id: "parenting", label: "Parenting & New Motherhood" },
+  { id: "crisis",  label: "Mental Health Crisis Support" },
 ];
 
 const COUNTIES = [
@@ -536,6 +539,150 @@ const ENTRIES = [
     referral: "Automatic invitation by eligible age band, or self-register if not yet invited.",
     contact: { web: "breastcheck.ie" }
   },
+
+  // Crisis, neurodiversity, parenting, and infertility — added Sep 2026 in
+  // response to a direct request to cover mental health crisis signposting,
+  // neurodiversity, and parenting/motherhood nationally. Verify before relying.
+  {
+    id: "samaritans",
+    name: "Samaritans",
+    specialty: ["crisis", "mh"],
+    county: ["national"],
+    blurb: "Free, confidential, 24/7 emotional support — for any kind of distress, not just suicide risk.",
+    details: ["Same freephone number across Ireland and Northern Ireland.", "Also available by email if you'd rather write than talk."],
+    referral: "Self-referral, phone any time.",
+    contact: { phone: "116 123", email: "jo@samaritans.ie", web: "samaritans.org" }
+  },
+  {
+    id: "text-50808",
+    name: "Text 50808",
+    specialty: ["crisis", "mh"],
+    county: ["national"],
+    blurb: "Free, 24/7 HSE-funded crisis text line — text HELLO to start.",
+    details: ["A trained crisis volunteer texts back and forth with you in real time.", "Good option if a phone call isn't possible or feels like too much."],
+    referral: "Self-referral — text HELLO to 50808.",
+    contact: { phone: "Text HELLO to 50808", web: "text50808.ie" }
+  },
+  {
+    id: "pieta",
+    name: "Pieta",
+    specialty: ["crisis", "mh"],
+    county: ["national"],
+    blurb: "Free 24/7 helpline and therapy specifically for suicidal ideation, self-harm, and bereavement by suicide.",
+    details: ["Also runs a text service: text HELP to 51444."],
+    referral: "Self-referral, phone or text any time.",
+    contact: { phone: "1800 247 247", web: "pieta.ie" }
+  },
+  {
+    id: "lifeline-ni",
+    name: "Lifeline (Northern Ireland)",
+    specialty: ["crisis", "mh"],
+    county: ["national"],
+    blurb: "Northern Ireland's 24/7 regional crisis response helpline — trauma, suicide, self-harm, abuse.",
+    details: ["Free from NI landlines and mobiles.", "Can arrange a face-to-face follow-up appointment locally where appropriate."],
+    referral: "Self-referral, phone any time.",
+    contact: { phone: "0808 808 8000", web: "lifelinehelpline.info" }
+  },
+  {
+    id: "emergency-mh",
+    name: "In immediate danger",
+    specialty: ["crisis", "mh"],
+    county: ["national"],
+    blurb: "If you or someone else is in immediate physical danger, this overrides everything else on this page.",
+    details: ["Call 999 or 112 (both work across Ireland and Northern Ireland).", "Or go directly to your nearest Emergency Department / A&E."],
+    referral: "Emergency — no referral needed.",
+    contact: {}
+  },
+  {
+    id: "asiam",
+    name: "AsIAm",
+    specialty: ["neurodiversity"],
+    county: ["national"],
+    blurb: "Ireland's autism charity, autistic-led — information, a legal clinic, and support for newly-diagnosed families.",
+    details: ["Runs support programmes for parents of recently-diagnosed children and for autistic teenagers."],
+    referral: "Self-referral via website.",
+    contact: { web: "asiam.ie" }
+  },
+  {
+    id: "adhd-ireland",
+    name: "ADHD Ireland",
+    specialty: ["neurodiversity"],
+    county: ["national"],
+    blurb: "Information, helpline, and networking for people with ADHD, parents, and professionals.",
+    details: ["Also runs an ADHD School Friendly Programme for teachers and schools."],
+    referral: "Self-referral, phone or email helpline.",
+    contact: { web: "adhdireland.ie" }
+  },
+  {
+    id: "aspire-ireland",
+    name: "Aspire (Autism Spectrum Association of Ireland)",
+    specialty: ["neurodiversity"],
+    county: ["national"],
+    blurb: "Information and support across autism, ADHD, and AuDHD (overlapping autism + ADHD) more broadly.",
+    details: [],
+    referral: "Self-referral via website.",
+    contact: { web: "aspireireland.ie" }
+  },
+  {
+    id: "hse-assessment-of-need",
+    name: "HSE Assessment of Need (autism/disability)",
+    specialty: ["neurodiversity"],
+    county: ["national"],
+    blurb: "The statutory pathway for a child's autism/disability assessment under the Disability Act.",
+    details: ["Waiting times nationally are long — this is a known, acknowledged system limitation, not a reflection of your case's urgency.", "Adult diagnosis is a separate, less standardised pathway — see AsIAm's adult diagnosis guidance."],
+    referral: "Apply via your local Children's Disability Network Team (CDNT).",
+    contact: { web: "hse.ie" }
+  },
+  {
+    id: "cuidiu",
+    name: "Cuidiú",
+    specialty: ["parenting", "feeding"],
+    county: ["national"],
+    blurb: "Volunteer-led parent-to-parent support: antenatal classes, breastfeeding support, and postnatal depression peer support.",
+    details: ["Local branches nationwide — check the website for your area."],
+    referral: "Self-referral via website.",
+    contact: { web: "cuidiu.ie" }
+  },
+  {
+    id: "nurture-pnd",
+    name: "Nurture",
+    specialty: ["parenting", "mh"],
+    county: ["national"],
+    blurb: "Support and counselling specifically around pregnancy, birth, and postnatal depression.",
+    details: [],
+    referral: "Self-referral via website.",
+    contact: { web: "nurturecharity.org" }
+  },
+  {
+    id: "treoir",
+    name: "Treoir",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Free, confidential information for parents who are not married to or living with each other — legal, social welfare, and parenting questions.",
+    details: [],
+    referral: "Self-referral via website.",
+    contact: { web: "treoir.ie" }
+  },
+  {
+    id: "nisig",
+    name: "National Infertility Support and Information Group (NISIG)",
+    specialty: ["fertility"],
+    county: ["national"],
+    blurb: "Peer support and information for anyone experiencing infertility, alongside the clinical AHR pathway.",
+    details: [],
+    referral: "Self-referral via website.",
+    contact: { web: "nisig.ie" }
+  },
+];
+
+// A small, curated set for the always-visible crisis banner — kept separate
+// from the full ENTRIES list so it stays short and fast to scan under stress.
+const CRISIS_RESOURCES = [
+  { name: "Emergency", detail: "In immediate danger", contact: "999 / 112" },
+  { name: "Samaritans", detail: "24/7, any kind of distress", contact: "116 123" },
+  { name: "Text 50808", detail: "24/7 crisis text line", contact: "Text HELLO to 50808" },
+  { name: "Pieta", detail: "Suicide & self-harm specific", contact: "1800 247 247" },
+  { name: "Lifeline (NI)", detail: "Northern Ireland crisis line", contact: "0808 808 8000" },
 ];
 
 // Self-advocacy guide, structured as modules. Sourced from the Patient Advocacy
@@ -808,6 +955,100 @@ const HOSPITAL_FOI = [
       "Submit via the Trust's FOI web form.",
     ],
     contact: { web: "westerntrust.hscni.net/contact-us/freedom-of-information-request/", address: "Glenshane Road, Derry BT47 6SB" },
+  },
+];
+
+// Every public acute hospital in the Republic, by Hospital Group, so no
+// hospital is missing from this page even where we don't (yet) have an
+// individually-verified FOI contact for it. Hospitals with a dedicated,
+// individually-verified entry above are marked; for the rest, the general
+// rule holds: HSE statutory hospitals route FOI through the same central
+// HSE process as CUH (in "Freedom of Information, hospital by hospital"
+// above) unless the hospital is independently voluntary, in which case it's
+// worth checking whether it runs its own process (as SIVUH and NMH do).
+// Source: HSE Hospital Groups. Last reviewed: Sep 2026.
+const HOSPITAL_GROUPS = [
+  {
+    id: "ireland-east",
+    name: "Ireland East Hospital Group",
+    hospitals: [
+      "Mater Misericordiae University Hospital (Dublin)",
+      "St Vincent's University Hospital (Dublin)",
+      "National Maternity Hospital, Holles St (Dublin) — detailed above",
+      "Midland Regional Hospital, Mullingar",
+      "St Luke's General Hospital (Carlow-Kilkenny)",
+      "Wexford General Hospital",
+      "Our Lady's Hospital, Navan",
+      "St Columcille's Hospital, Loughlinstown",
+      "St Michael's Hospital, Dún Laoghaire",
+      "Cappagh National Orthopaedic Hospital (Dublin)",
+      "Royal Victoria Eye and Ear Hospital (Dublin)",
+      "National Rehabilitation Hospital, Dún Laoghaire",
+    ],
+  },
+  {
+    id: "dublin-midlands",
+    name: "Dublin Midlands Hospital Group",
+    hospitals: [
+      "St James's Hospital (Dublin)",
+      "Tallaght University Hospital (incl. National Children's Hospital)",
+      "Midland Regional Hospital, Tullamore",
+      "Naas General Hospital",
+      "Midland Regional Hospital, Portlaoise — detailed above",
+      "Coombe Women & Infants University Hospital (Dublin) — detailed above",
+    ],
+  },
+  {
+    id: "rcsi",
+    name: "RCSI Hospital Group",
+    hospitals: [
+      "Beaumont Hospital (Dublin)",
+      "Connolly Hospital (Dublin)",
+      "Our Lady of Lourdes Hospital, Drogheda",
+      "Louth County Hospital, Dundalk",
+      "Cavan General Hospital",
+      "Monaghan Hospital",
+      "Rotunda Hospital (Dublin) — detailed above",
+    ],
+  },
+  {
+    id: "saolta",
+    name: "Saolta University Health Care Group",
+    hospitals: [
+      "University Hospital Galway / Merlin Park — detailed above",
+      "Letterkenny University Hospital",
+      "Mayo University Hospital",
+      "Portiuncula University Hospital — detailed above",
+      "Roscommon University Hospital",
+      "Sligo University Hospital",
+    ],
+  },
+  {
+    id: "ul-hospitals",
+    name: "UL Hospitals Group",
+    hospitals: [
+      "University Hospital Limerick / University Maternity Hospital Limerick — detailed above",
+      "Nenagh Hospital",
+      "Ennis Hospital",
+      "Croom Orthopaedic Hospital",
+      "St John's Hospital, Limerick (voluntary)",
+    ],
+  },
+  {
+    id: "south-south-west",
+    name: "South/South West Hospital Group",
+    hospitals: [
+      "Cork University Hospital — detailed above",
+      "Cork University Maternity Hospital — detailed above",
+      "South Infirmary Victoria University Hospital — detailed above",
+      "Mercy University Hospital — detailed above",
+      "Bantry General Hospital",
+      "Mallow General Hospital",
+      "Kilcreene Orthopaedic Hospital",
+      "Tipperary University Hospital",
+      "University Hospital Kerry",
+      "University Hospital Waterford",
+    ],
   },
 ];
 

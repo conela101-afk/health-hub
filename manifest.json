@@ -1,6 +1,6 @@
 {
-  "name": "The Pocket Guide — Women's Health, Ireland & NI",
-  "short_name": "Pocket Guide",
+  "name": "Women's Health Hub — Ireland & NI",
+  "short_name": "WHH",
   "description": "A free directory for navigating women's health services and your rights across Ireland and Northern Ireland.",
   "start_url": "./index.html",
   "scope": "./",
