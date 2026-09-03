@@ -195,6 +195,7 @@
           <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
           <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
           <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
+          <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
         </div>
       </div>
     `;
@@ -270,17 +271,19 @@
         .join(" ").toLowerCase();
       return hay.includes(q);
     });
-    const orgResults = SUPPORT_ORGS.filter(o => {
-      const hay = [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase();
-      return hay.includes(q);
-    });
-    const totalCount = results.length + orgResults.length;
+    const matchesOrg = o => [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase().includes(q);
+    const orgResults = SUPPORT_ORGS.filter(matchesOrg);
+    const generalOrgResults = GENERAL_ADVOCACY_ORGS.filter(matchesOrg);
+    const totalCount = results.length + orgResults.length + generalOrgResults.length;
     const cards = results.length ? results.map(entryCardHtml).join("") : "";
     const orgCards = orgResults.length
       ? `<p class="section-title">Support &amp; advocacy organisations</p><div class="org-grid">${orgResults.map(orgCardHtml).join("")}</div>`
       : "";
+    const generalOrgCards = generalOrgResults.length
+      ? `<p class="section-title">General advocacy &amp; support</p><div class="org-grid">${generalOrgResults.map(orgCardHtml).join("")}</div>`
+      : "";
     const body = totalCount
-      ? `${cards}${orgCards}`
+      ? `${cards}${orgCards}${generalOrgCards}`
       : `<div class="empty-state">No matches for "${query}". Try a broader term, like a condition, area, or organisation name.</div>`;
     app.innerHTML = `
       <div class="page-head">
@@ -374,6 +377,7 @@
     { id: "hospitals", label: "FOI by hospital" },
     { id: "contacts", label: "Who to contact" },
     { id: "orgs", label: "Support orgs" },
+    { id: "general", label: "General support" },
   ];
 
   function advocacySegmentedHtml(active){
@@ -437,8 +441,17 @@
     return `<div class="org-grid">${SUPPORT_ORGS.map(orgCardHtml).join("")}</div>`;
   }
 
+  function renderAdvocacyGeneral(){
+    return `
+      <div class="callout">
+        Not everyone's needs are covered by the women's-health-specific orgs above. These national bodies help specific groups navigate or advocate within the health &amp; social care system — regardless of gender or age.
+      </div>
+      <div class="org-grid">${GENERAL_ADVOCACY_ORGS.map(orgCardHtml).join("")}</div>
+    `;
+  }
+
   function renderAdvocacy(section){
-    const sectionRenderers = { guide: renderAdvocacyGuide, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs };
+    const sectionRenderers = { guide: renderAdvocacyGuide, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs, general: renderAdvocacyGeneral };
     const active = sectionRenderers[section] ? section : "guide";
 
     app.innerHTML = `
