@@ -1,6 +1,6 @@
 # Health Hub — Ireland & NI
 
-A free, installable directory for navigating women's health services and your rights across Ireland and Northern Ireland. Two layers:
+A free, installable directory for navigating health services and your rights across Ireland and Northern Ireland. Two layers:
 
 - **Service directory** — maternity & obstetrics, gynaecology, urology, endometriosis, menopause, fertility, mental health crisis support, neurodiversity, parenting/motherhood, and more. National-level programmes and organisations are covered nationwide; region-specific clinic/service listings are being built out area by area (currently deepest for Cork — more regions are an ongoing, explicit priority, not an afterthought).
 - **Know your rights** — a self-advocacy guide, the complaints escalation ladder, Freedom of Information contacts covering all 6 HSE Hospital Groups (with detailed, individually-verified contacts for ~16 major hospitals) plus all 5 Northern Ireland HSC Trusts, and a directory of national advocacy/support organisations.
