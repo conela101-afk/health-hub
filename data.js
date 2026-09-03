@@ -1739,12 +1739,155 @@ const ENTRIES = [
     contact: { web: "belfasttrust.hscni.net" }
   },
   {
+    id: "cuh-rheumatology",
+    name: "Cork University Hospital Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["cork-city"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "021 492 2468" }
+  },
+  {
+    id: "sivuh-rheumatology",
+    name: "South Infirmary-Victoria Hospital Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["cork-city"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "021 492 6219" }
+  },
+  {
+    id: "merlin-park-rheumatology",
+    name: "Merlin Park Regional Hospital Rheumatology (Galway)",
+    specialty: ["rheumatology"],
+    county: ["galway"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "091 775511" }
+  },
+  {
+    id: "nw-rheumatology-leitrim",
+    name: "North-Western Rheumatology Unit (Manorhamilton)",
+    specialty: ["rheumatology"],
+    county: ["leitrim"],
+    blurb: "Regional rheumatology unit at Our Lady's Hospital, serving the North West.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "071 9820406" }
+  },
+  {
+    id: "uhl-rheumatology",
+    name: "University Hospital Limerick Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["limerick"],
+    blurb: "Public rheumatology department (Rheumatology Clinical Network hub site).",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "061 485215" }
+  },
+  {
+    id: "tullamore-rheumatology",
+    name: "Midlands Regional Hospital Tullamore Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["offaly"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "057 9358603" }
+  },
+  {
+    id: "waterford-rheumatology",
+    name: "University Hospital Waterford Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["waterford"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "051 842023" }
+  },
+  {
+    id: "stvincents-rheumatology",
+    name: "St Vincent's University Hospital Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["dublin"],
+    blurb: "Public rheumatology department (Rheumatology Clinical Network hub site).",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "01 221 3130" }
+  },
+  {
+    id: "mater-rheumatology",
+    name: "Mater Misericordiae University Hospital Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["dublin"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "01 803 4141" }
+  },
+  {
+    id: "stjames-rheumatology",
+    name: "St James's Hospital Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["dublin"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "01 416 2551" }
+  },
+  {
+    id: "beaumont-rheumatology",
+    name: "Beaumont Hospital Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["dublin"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "01 809 3314" }
+  },
+  {
+    id: "connolly-rheumatology",
+    name: "Connolly Hospital, Blanchardstown — Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["dublin"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "01 646 6242" }
+  },
+  {
+    id: "tallaght-rheumatology",
+    name: "Tallaght University Hospital Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["dublin"],
+    blurb: "Public rheumatology department.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "01 414 3350" }
+  },
+  {
+    id: "navan-rheumatology",
+    name: "Our Lady's Hospital, Navan — Regional Rheumatology",
+    specialty: ["rheumatology"],
+    county: ["meath"],
+    blurb: "Regional rheumatology service covering Cavan, Monaghan, Louth, and Meath.",
+    details: [],
+    referral: "GP or consultant referral.",
+    contact: {}
+  },
+  {
     id: "find-rheumatology",
-    name: "Find rheumatology care near you",
+    name: "About diagnostic delay in rheumatology",
     specialty: ["rheumatology"],
     county: ["national"],
-    blurb: "No compact national list of public rheumatology departments exists — services sit within major hospitals per region.",
-    details: ["Rheumatoid arthritis affects an estimated 45,000 people in Ireland, more commonly women, usually diagnosed between ages 30–50."],
+    blurb: "Rheumatoid arthritis affects an estimated 45,000 people in Ireland (2,000+ new diagnoses/year), more commonly women, usually diagnosed between ages 30–50.",
+    details: [
+      "No Ireland-specific diagnostic-delay figure was found. The international benchmark for axial spondyloarthritis is a 7.4-year average delay (IMAS study, 27 countries) — women wait notably longer than men (11.2 vs 5.2 years in one cohort).",
+      "Department locations/phone numbers above are current; individual consultant names change more often, so we haven't listed them.",
+    ],
     referral: "GP referral.",
     contact: {}
   },
@@ -1778,18 +1921,128 @@ const ENTRIES = [
     specialty: ["gastro"],
     county: ["dublin"],
     blurb: "National charity for IBD (Crohn's/ulcerative colitis), which affects at least 40,000 people in Ireland, most often diagnosed between ages 15–35.",
-    details: [],
+    details: ["Helpline hours: Mon/Wed/Fri 09:30–12:30."],
     referral: "Self-referral to the helpline.",
-    contact: { phone: "01 531 2983", address: "Carmichael Centre, North Brunswick Street, Dublin 7", web: "crohnscolitis.ie" }
+    contact: { phone: "01 531 2983", email: "info@crohnscolitis.ie", address: "Carmichael Centre, North Brunswick Street, Dublin 7", web: "crohnscolitis.ie" }
+  },
+  {
+    id: "stjames-gastro",
+    name: "St James's Hospital Gastroenterology (also covers Tallaght & Naas)",
+    specialty: ["gastro"],
+    county: ["dublin", "kildare"],
+    blurb: "A 3-site public gastroenterology/hepatology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "stvincents-gastro",
+    name: "St Vincent's University Hospital Gastroenterology",
+    specialty: ["gastro"],
+    county: ["dublin"],
+    blurb: "Public gastroenterology/hepatology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "beaumont-gastro",
+    name: "Beaumont Hospital Gastroenterology",
+    specialty: ["gastro"],
+    county: ["dublin"],
+    blurb: "Public gastroenterology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "mater-gastro",
+    name: "Mater Misericordiae University Hospital Gastroenterology",
+    specialty: ["gastro"],
+    county: ["dublin"],
+    blurb: "Public gastroenterology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "connolly-gastro",
+    name: "Connolly Hospital Gastroenterology",
+    specialty: ["gastro"],
+    county: ["dublin"],
+    blurb: "Public gastroenterology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "cuh-gastro",
+    name: "Cork University Hospital Gastroenterology",
+    specialty: ["gastro"],
+    county: ["cork-city"],
+    blurb: "Public gastroenterology/hepatology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "mercy-cork-gastro",
+    name: "Mercy University Hospital, Cork — Gastroenterology",
+    specialty: ["gastro"],
+    county: ["cork-city"],
+    blurb: "Public gastroenterology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "uhg-gastro",
+    name: "University Hospital Galway Gastroenterology",
+    specialty: ["gastro"],
+    county: ["galway"],
+    blurb: "Public gastroenterology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "portiuncula-gastro",
+    name: "Portiuncula University Hospital Gastroenterology",
+    specialty: ["gastro"],
+    county: ["galway"],
+    blurb: "Public gastroenterology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "uhl-gastro",
+    name: "University Hospital Limerick Gastroenterology",
+    specialty: ["gastro"],
+    county: ["limerick"],
+    blurb: "Public gastroenterology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "waterford-gastro",
+    name: "University Hospital Waterford Gastroenterology",
+    specialty: ["gastro"],
+    county: ["waterford"],
+    blurb: "Public gastroenterology department.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
   },
   {
     id: "find-gastro",
-    name: "Find gastroenterology care near you",
+    name: "Regional gastroenterology / GI-endoscopy units",
     specialty: ["gastro"],
     county: ["national"],
-    blurb: "No compact national list of public gastroenterology departments exists — services sit within major hospitals per region.",
-    details: [],
-    referral: "GP referral.",
+    blurb: "Also has regional consultant-led general medicine with GI/endoscopy services: Sligo, Letterkenny, Kerry (Tralee), Mullingar, Drogheda, and Wexford.",
+    details: ["A 2024 Irish study (14 women, University of Galway) found women's abdominal pain is often normalised and dismissed, with patients having to 'fight their case' for care — see 'Know your rights' for the full citation."],
+    referral: "GP referral, usually via Healthlink.",
     contact: {}
   },
 
@@ -1829,28 +2082,161 @@ const ENTRIES = [
     name: "Beaumont Hospital iPainCentre",
     specialty: ["pain"],
     county: ["dublin"],
-    blurb: "Sláintecare-funded integrated community-based pain management team.",
+    blurb: "Sláintecare-funded integrated community-based pain management team, clinical lead Dr David Moore. Beaumont also runs a separate Pain Medicine service.",
     details: [],
     referral: "GP referral.",
     contact: { web: "mypainmatters.ie" }
+  },
+  {
+    id: "stjames-pain",
+    name: "St James's Hospital Pain Medicine",
+    specialty: ["pain"],
+    county: ["dublin"],
+    blurb: "Public chronic pain management service.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "mater-pain",
+    name: "Mater Misericordiae University Hospital Pain Service",
+    specialty: ["pain"],
+    county: ["dublin"],
+    blurb: "Public chronic pain management service.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "stvincents-pain",
+    name: "St Vincent's University Hospital Pain Service",
+    specialty: ["pain"],
+    county: ["dublin"],
+    blurb: "Multidisciplinary pain service, including a psychology-led pain management programme.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "tallaght-pain",
+    name: "Tallaght University Hospital Pain Medicine",
+    specialty: ["pain"],
+    county: ["dublin"],
+    blurb: "Pain Medicine service plus the Ulysses Pain Management Programme.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "01 414 3104" }
+  },
+  {
+    id: "stlukes-rathgar-pain",
+    name: "St Luke's Hospital, Rathgar — Pain Service",
+    specialty: ["pain"],
+    county: ["dublin"],
+    blurb: "Public chronic pain management service.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "stcolumcilles-pain",
+    name: "St Columcille's Hospital, Loughlinstown — Pain Service",
+    specialty: ["pain"],
+    county: ["dublin"],
+    blurb: "Multidisciplinary team pain service.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "01 282 5800" }
+  },
+  {
+    id: "naas-pain",
+    name: "Naas General Hospital Pain Management",
+    specialty: ["pain"],
+    county: ["kildare"],
+    blurb: "Public chronic pain clinic, Consultant Dr Anne Heffernan.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "045 849 884" }
+  },
+  {
+    id: "portlaoise-pain",
+    name: "Midland Regional Hospital Portlaoise Pain Service",
+    specialty: ["pain"],
+    county: ["laois"],
+    blurb: "Listed as a public pain service by the Irish Pain Society — not independently re-confirmed.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "cuh-pain",
+    name: "Cork University Hospital Pain Service",
+    specialty: ["pain"],
+    county: ["cork-city"],
+    blurb: "Public chronic pain management service.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "mercy-cork-pain",
+    name: "Mercy University Hospital, Cork — Pain Service",
+    specialty: ["pain"],
+    county: ["cork-city"],
+    blurb: "Listed as a public pain service by the Irish Pain Society — not independently re-confirmed.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "uhg-pain",
+    name: "University Hospital Galway / Merlin Park Pain Clinic",
+    specialty: ["pain"],
+    county: ["galway"],
+    blurb: "Consultant-run chronic pain clinic.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "sligo-pain",
+    name: "Sligo University Hospital Chronic Pain Unit",
+    specialty: ["pain"],
+    county: ["sligo"],
+    blurb: "Chronic pain unit with a Sláintecare pain-management education programme.",
+    details: ["Flagged as subject to a temporary closure/consultant-recruitment issue — verify current status before travelling."],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "waterford-pain",
+    name: "University Hospital Waterford Pain Service",
+    specialty: ["pain"],
+    county: ["waterford"],
+    blurb: "Listed as a public pain service by the Irish Pain Society, but a live HSE page couldn't be confirmed — public status uncertain.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: {}
   },
   {
     id: "chronic-pain-ireland",
     name: "Chronic Pain Ireland",
     specialty: ["pain"],
     county: ["national"],
-    blurb: "National patient advocacy charity. A 2021 national survey found 11,932 people on public chronic pain waiting lists, with severe understaffing (0.55 pain specialists per 100,000 people) and no national model of care.",
+    blurb: "National patient advocacy charity, runs a confidential phone support service for over-18s. A 2021 national survey found 11,932 people on public chronic pain waiting lists, with severe understaffing (0.55 pain specialists per 100,000 people) and no national model of care.",
     details: ["Signposts to the HSE Counselling in Primary Care Service (8 free sessions via GP referral) for chronic-pain-related mental health support."],
     referral: "Self-referral.",
     contact: {}
   },
   {
     id: "find-pain-clinic",
-    name: "Find your nearest public chronic pain clinic",
+    name: "About the '16 public pain clinics' figure",
     specialty: ["pain"],
     county: ["national"],
-    blurb: "16 public chronic pain services exist nationally, but a full compact list of all sites wasn't found — four confirmed sites are listed individually above (all Limerick/Dublin).",
-    details: ["As of a Nov 2024 investigation, 14,445 people were waiting nationally, half over six months."],
+    blurb: "The often-cited '16 hospitals' figure is 2020 survey data — the live picture has since changed. Confirmed CLOSED: Our Lady of Lourdes Drogheda (203 patients referred back to GPs when its only consultant left). Not currently running a pain clinic: University Hospital Kerry, Letterkenny, Cavan/Monaghan, Portiuncula, Midland Regional Tullamore.",
+    details: [
+      "A 2024 investigation found these clinics disproportionately treat conditions affecting more women than men — fibromyalgia, migraine, chronic pelvic pain, osteoarthritis — and that 14,445 people were waiting nationally, half over six months.",
+      "Treat the sites listed individually above as the working list — some (Sligo, Waterford, Mercy Cork) have uncertain current status; phone ahead.",
+    ],
     referral: "GP referral.",
     contact: {}
   },
@@ -1861,8 +2247,11 @@ const ENTRIES = [
     name: "Beaumont Hospital Long Covid Clinic",
     specialty: ["longcovid"],
     county: ["dublin"],
-    blurb: "One of six public Long Covid clinics nationally. Long Covid Advocacy Ireland notes women are more likely to get Long Covid.",
-    details: ["Typically runs one day per week; long waiting times reported."],
+    blurb: "One of six HSE Long Covid clinics nationally, overseen by Dr Eoghan de Barra (Infectious Diseases).",
+    details: [
+      "Typically runs one day per week; long waiting times reported.",
+      "No public Long Covid service exists for children (under-16s) — parents are directed to GPs/general paediatrics instead.",
+    ],
     referral: "GP referral.",
     contact: {}
   },
@@ -1871,7 +2260,7 @@ const ENTRIES = [
     name: "St James's Hospital Long Covid Clinic",
     specialty: ["longcovid"],
     county: ["dublin"],
-    blurb: "One of six public Long Covid clinics nationally.",
+    blurb: "One of six HSE Long Covid clinics nationally, run by Dr Ciarán Bannan with Dr Aoife Laffan (neurology).",
     details: [],
     referral: "GP referral.",
     contact: {}
@@ -1881,38 +2270,38 @@ const ENTRIES = [
     name: "St Vincent's University Hospital Long Covid Clinic",
     specialty: ["longcovid"],
     county: ["dublin"],
-    blurb: "One of six public Long Covid clinics nationally.",
-    details: [],
+    blurb: "One of six HSE Long Covid clinics nationally, run by Dr Stefano Savinelli.",
+    details: ["A separate Mater Hospital Long Covid clinic (Dr Jack Lambert) closed in Dec 2022 when HSE funding was withdrawn — don't refer here expecting it's still running."],
     referral: "GP referral.",
     contact: {}
   },
   {
     id: "longcovid-cork",
-    name: "Cork Long Covid Clinic",
+    name: "Cork University Hospital Long Covid Clinic",
     specialty: ["longcovid"],
     county: ["cork-city"],
-    blurb: "One of six public Long Covid clinics nationally.",
+    blurb: "One of six HSE Long Covid clinics nationally, run by Dr Katie McFaul (patients also seen by Dr Arthur Jackson).",
     details: [],
     referral: "GP referral.",
     contact: {}
   },
   {
     id: "longcovid-limerick",
-    name: "Limerick Long Covid Clinic",
+    name: "University Hospital Limerick Long Covid Clinic",
     specialty: ["longcovid"],
     county: ["limerick"],
-    blurb: "One of six public Long Covid clinics nationally.",
-    details: ["Flagged as not operational as of March 2025 due to staffing — check current status before travelling."],
+    blurb: "One of six HSE Long Covid clinics nationally.",
+    details: ["Not operational as of March 2025 due to staffing (per Long Covid Advocacy Ireland) — ask to be referred elsewhere if this hasn't changed."],
     referral: "GP referral.",
     contact: {}
   },
   {
     id: "longcovid-galway",
-    name: "Galway Long Covid Clinic",
+    name: "University Hospital Galway Long Covid Clinic",
     specialty: ["longcovid"],
     county: ["galway"],
-    blurb: "One of six public Long Covid clinics nationally.",
-    details: [],
+    blurb: "One of six HSE Long Covid clinics nationally, run by Dr David Gallagher (Infectious Diseases) with Dr Mike Harrison (Respiratory).",
+    details: ["Referrals go to Dr Gallagher's office."],
     referral: "GP referral.",
     contact: {}
   },
@@ -1931,8 +2320,11 @@ const ENTRIES = [
     name: "Irish ME/CFS Association",
     specialty: ["longcovid"],
     county: ["national"],
-    blurb: "Estimated 10,000–19,000 people in Ireland have ME/CFS (using international prevalence data, as no Irish-specific study exists). Historically, this illness has often been psychologised — a well-known international pattern.",
-    details: ["Runs public meetings, a newsletter, and an information helpline/telephone support network."],
+    blurb: "Estimated 10,000–19,000 people in Ireland have ME/CFS (using international prevalence data, as no Irish-specific incidence study exists).",
+    details: [
+      "Runs public meetings, a newsletter, and an information helpline/telephone support network.",
+      "An Irish qualitative focus-group study (15 patients, 6 carers) found patients describe real delays to diagnosis and poor awareness/understanding from healthcare professionals — this is Irish-specific evidence, not just international literature.",
+    ],
     referral: "Self-referral.",
     contact: { web: "irishmecfs.org" }
   },
@@ -1978,10 +2370,11 @@ const ENTRIES = [
     blurb: "Ireland's national public genetics service, including hereditary cancer risk (BRCA and similar). Free.",
     details: [
       "Based at Children's Health Ireland at Crumlin, with satellite clinics at Cork University Hospital, University Hospital Limerick, and University Hospital Galway.",
-      "A referral letter from your GP or consultant is required before assessment.",
+      "A referral letter from your GP or consultant is required before assessment. Non-urgent waits can be up to 2 years.",
+      "Correction: an earlier version of this entry listed 01 409 6739 as the general contact — that's actually a clinician-only clinical-advice voicemail, not the public line.",
     ],
     referral: "GP or consultant referral.",
-    contact: { phone: "01 409 6739", address: "Children's Health Ireland at Crumlin, Dublin 12" }
+    contact: { phone: "01 456 0953", email: "clinical.genetics@childrenshealthireland.ie", address: "Children's Health Ireland at Crumlin, Dublin 12" }
   },
   {
     id: "cancer-genetics-stjames",
@@ -2150,10 +2543,13 @@ const ENTRIES = [
     name: "STI Clinic — Monaghan General Hospital",
     specialty: ["sexualhealth"],
     county: ["monaghan"],
-    blurb: "Free, HSE-operated STI/GUM clinic.",
-    details: ["Phone number not captured in the source research — contact the hospital switchboard directly."],
-    referral: "Self-referral.",
-    contact: {}
+    blurb: "Free, HSE-operated STI/GUM clinic — historically by appointment, Tuesday mornings.",
+    details: [
+      "Sources conflict: several confirm a Monaghan clinic at this number, but one directory states there's no dedicated Monaghan clinic and points to Cavan General or Drogheda instead.",
+      "Phone ahead to confirm before travelling. The same phone number appears in our data attached to the Louth/Drogheda clinic too — this may be a shared regional line.",
+    ],
+    referral: "Self-referral — phone ahead to confirm.",
+    contact: { phone: "086 824 1847" }
   },
   {
     id: "sh24-roi",
@@ -2178,12 +2574,35 @@ const ENTRIES = [
 
   // ---- Pelvic Health Physiotherapy ----
   {
+    id: "cuh-pelvic-physio",
+    name: "Cork University Hospital Pelvic Health Physiotherapy",
+    specialty: ["pelvicphysio"],
+    county: ["cork-city"],
+    blurb: "Named public pelvic-health physiotherapy service — but only accepts referrals from CUH Urology & Colorectal, not directly from GPs.",
+    details: [],
+    referral: "Referral only from CUH Urology or Colorectal — ask your consultant to refer you if relevant.",
+    contact: {}
+  },
+  {
+    id: "cavan-monaghan-pelvic-physio",
+    name: "Cavan Monaghan Hospital Pelvic Health Physiotherapy",
+    specialty: ["pelvicphysio"],
+    county: ["cavan", "monaghan"],
+    blurb: "Named public pelvic-health physiotherapy service, self-referral accepted.",
+    details: [],
+    referral: "Self-referral, GP, or consultant referral, Mon–Fri.",
+    contact: {}
+  },
+  {
     id: "find-pelvic-physio",
     name: "Find a pelvic-health-trained physiotherapist",
     specialty: ["pelvicphysio"],
     county: ["national"],
-    blurb: "No dedicated national pelvic-health referral pathway exists — public access is via standard GP/PHN/hospital referral to a primary care physiotherapist, and only some have specialist pelvic-health/continence training.",
-    details: ["Ask specifically whether a pelvic-health-trained physio is available, not just general physiotherapy — this isn't guaranteed and may require asking to be redirected."],
+    blurb: "There's no public directory of individual pelvic-health physios, but the picture is more structured than 'ask your local physio': national clinical guidelines (HSE continence care; RCPI/Institute of Obstetricians & Gynaecologists guidelines on prolapse, incontinence, and mesh complications) all name pelvic-health physio as first-line therapy.",
+    details: [
+      "Most maternity hospitals run women's-health physiotherapy for pregnancy-related pelvic girdle pain via midwife referral.",
+      "Outside the two named services above, ask specifically whether a pelvic-health-trained physio is available at your local primary care centre — this isn't guaranteed and may require asking to be redirected.",
+    ],
     referral: "GP, PHN, or hospital referral to your local primary care centre.",
     contact: {}
   },
@@ -2204,9 +2623,9 @@ const ENTRIES = [
     name: "University Hospital Limerick Vascular Service",
     specialty: ["vascular"],
     county: ["limerick"],
-    blurb: "Public vascular service, including varicose vein treatment.",
+    blurb: "Treats AAA (abdominal aortic aneurysm), varicose veins, and AV fistula.",
     details: [],
-    referral: "GP referral.",
+    referral: "GP, consultant, PHN, or health centre referral.",
     contact: {}
   },
   {
@@ -2220,22 +2639,72 @@ const ENTRIES = [
     contact: {}
   },
   {
+    id: "western-vascular-institute",
+    name: "Western Vascular Institute (University Hospital Galway)",
+    specialty: ["vascular"],
+    county: ["galway"],
+    blurb: "High-volume public/private tertiary vascular referral centre for the West.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
     id: "stvincents-vascular",
     name: "St Vincent's University Hospital Vascular Surgery",
     specialty: ["vascular"],
     county: ["dublin"],
-    blurb: "Varicose vein management including surgery, laser/radiofrequency ablation, and Clarivein.",
+    blurb: "Regional referral centre for south-east Dublin, Wicklow, Wexford, Carlow, and Kilkenny. Varicose vein management including surgery, laser/radiofrequency ablation, and ClariVein.",
     details: [],
     referral: "GP referral.",
-    contact: { web: "stvincents.ie" }
+    contact: { phone: "01 221 3035", web: "stvincents.ie" }
+  },
+  {
+    id: "beaumont-vascular",
+    name: "Beaumont Hospital Vascular Service",
+    specialty: ["vascular"],
+    county: ["dublin"],
+    blurb: "Vascular/endovascular arterial and venous disease.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "mater-vascular",
+    name: "Mater Misericordiae University Hospital Vascular Service",
+    specialty: ["vascular"],
+    county: ["dublin"],
+    blurb: "Public vascular surgery service.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "cuh-vascular",
+    name: "Cork University Hospital Vascular Service",
+    specialty: ["vascular"],
+    county: ["cork-city"],
+    blurb: "Tertiary vascular centre for the South, with a hybrid theatre.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "021 492 2318" }
+  },
+  {
+    id: "waterford-vascular",
+    name: "University Hospital Waterford Vascular Service",
+    specialty: ["vascular"],
+    county: ["waterford"],
+    blurb: "Regional vascular service for the South East.",
+    details: [],
+    referral: "GP referral.",
+    contact: {}
   },
   {
     id: "find-vascular",
-    name: "Find vascular care near you",
+    name: "Vascular care — pregnancy-related & pelvic congestion",
     specialty: ["vascular"],
     county: ["national"],
-    blurb: "This category received very little research so far — genuinely the thinnest in the directory right now.",
-    details: ["Referral typically routes through GP → general/vascular surgery outpatients at your nearest regional hospital."],
+    blurb: "Referral for varicose veins and general vascular concerns is via GP to the vascular surgery departments listed above. Pregnancy-related vascular issues and pelvic congestion syndrome are niche and typically managed via interventional radiology within the tertiary centres.",
+    details: ["No dedicated Irish patient-advocacy body was found for venous/pelvic congestion conditions specifically — this is a genuine gap."],
     referral: "GP referral.",
     contact: {}
   },
