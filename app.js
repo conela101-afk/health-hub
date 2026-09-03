@@ -164,9 +164,25 @@
     `;
   }
 
+  function urgentCareBannerHtml(){
+    return `
+      <a class="urgent-banner" href="#/out-of-hours">
+        <span class="urgent-banner-head">
+          <span class="urgent-icon">${iconSvg(PIN_ICON, 18)}</span>
+          <div>
+            <h2>Need care today, but it's not a 999 emergency?</h2>
+            <p>Find your local out-of-hours GP service — Ireland &amp; Northern Ireland, phone-first, no walk-in.</p>
+          </div>
+        </span>
+        <span class="urgent-more">Find out-of-hours care ›</span>
+      </a>
+    `;
+  }
+
   function renderHome(){
     app.innerHTML = `
       ${crisisBannerHtml()}
+      ${urgentCareBannerHtml()}
 
       <div class="hero">
         <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
@@ -441,6 +457,46 @@
     return `<div class="org-grid">${SUPPORT_ORGS.map(orgCardHtml).join("")}</div>`;
   }
 
+  function outOfHoursRowHtml(o){
+    return `
+      <div class="ooh-row">
+        <div class="ooh-main">
+          <div class="ooh-name">${o.name}</div>
+          <div class="ooh-counties">${o.counties}${o.note ? ` — ${o.note}` : ""}</div>
+        </div>
+        <div class="ooh-phone">${contactLinkHtml("phone", o.phone)}</div>
+      </div>
+    `;
+  }
+
+  function renderOutOfHours(){
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Out-of-hours &amp; urgent care</h1>
+        <p class="count">Not a 999 emergency, but can't wait for your own GP? Ireland &amp; Northern Ireland</p>
+      </div>
+
+      <div class="callout">
+        <strong>These are phone-first services — there is no walk-in.</strong> Call ahead; a nurse or GP will triage you over the phone and either give advice, book you an appointment, or direct you to an Emergency Department. Coverage follows GP-practice membership, not strict county lines, and can change — if in doubt, use the official finders linked below.
+      </div>
+
+      <p class="section-title">Republic of Ireland: GP out-of-hours co-ops</p>
+      <div class="ooh-list">${OUT_OF_HOURS_ROI.map(outOfHoursRowHtml).join("")}</div>
+      <p class="ooh-source"><a href="https://www2.hse.ie/services/find-urgent-emergency-care/" target="_blank" rel="noopener">HSE: find urgent &amp; emergency care near you ↗</a></p>
+
+      <p class="section-title">Northern Ireland: Phone First &amp; GP out-of-hours</p>
+      <div class="ooh-list">${OUT_OF_HOURS_NI.map(outOfHoursRowHtml).join("")}</div>
+      <div class="callout">
+        Western and South Eastern Trust areas also run Phone First services — we couldn't confirm a stable direct number for either, so use the nidirect link below or your GP surgery's own out-of-hours recorded message.
+      </div>
+      <p class="ooh-source"><a href="https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services" target="_blank" rel="noopener">nidirect: urgent &amp; emergency care services ↗</a> · <a href="https://www.nidirect.gov.uk/emergency-department-average-waiting-times" target="_blank" rel="noopener">NI ED waiting times ↗</a></p>
+
+      <p class="section-title">Injury units</p>
+      <p class="callout">For a broken bone, sprain, or wound that isn't life-threatening, a Local Injury Unit (LIU) can often see you faster than an Emergency Department — but not every hospital has one, and they don't treat every kind of injury. Use the HSE finder above to check your nearest.</p>
+    `;
+  }
+
   function renderAdvocacyGeneral(){
     return `
       <div class="callout">
@@ -487,6 +543,7 @@
     if (parts[0] === "search" && parts[1]) return renderSearch(decodeURIComponent(parts.slice(1).join("/")));
     if (parts[0] === "entry" && parts[1]) return renderEntry(parts[1]);
     if (parts[0] === "advocacy") return renderAdvocacy(parts[1] || "guide");
+    if (parts[0] === "out-of-hours") return renderOutOfHours();
     return renderHome();
   }
 

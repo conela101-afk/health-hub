@@ -3468,3 +3468,29 @@ const GENERAL_ADVOCACY_ORGS = [
     contact: { web: "irishrurallink.ie", phone: "090 648 2744", email: "info@irishrurallink.ie" },
   },
 ];
+
+// Stage 2 of the broadening brief: out-of-hours / urgent-care navigation.
+// These are GP co-operatives (ROI) and Phone First services (NI) — all
+// appointment-only, no walk-ins. Coverage follows GP-practice membership,
+// not strict county lines, and boundaries/numbers do change — the HSE and
+// nidirect finder links are the authoritative source; treat this list as a
+// solid starting point, verified September 2026.
+const OUT_OF_HOURS_ROI = [
+  { name: "D-Doc", counties: "North Dublin", phone: "0818 224 476" },
+  { name: "DubDoc", counties: "Dublin 8 & south inner city", phone: "01 454 5607" },
+  { name: "EastDoc", counties: "North-east Wicklow / south Co. Dublin fringe", phone: "01 209 4021" },
+  { name: "KDOC", counties: "Kildare, West Wicklow", phone: "045 848 701" },
+  { name: "Caredoc", counties: "Carlow, Kilkenny, Wexford, Waterford, South Tipperary, South Wicklow", phone: "0818 300 365" },
+  { name: "SouthDoc", counties: "Cork, Kerry", phone: "0818 355 999" },
+  { name: "Shannondoc", counties: "Limerick, Clare, North Tipperary", phone: "0818 123 500" },
+  { name: "WestDoc", counties: "Galway, Mayo, Roscommon", phone: "0818 360 000" },
+  { name: "NoWDOC", counties: "Donegal, South Leitrim", phone: "0818 400 911" },
+  { name: "NEDOC", counties: "Meath, Louth (excl. Dundalk), Cavan, Monaghan", phone: "1800 777 911" },
+  { name: "MIDOC", counties: "Longford, Westmeath, Laois, Offaly", phone: "1800 302 702" },
+];
+const OUT_OF_HOURS_NI = [
+  { name: "Northern Trust — Phone First", counties: "Antrim, Ballymena, Coleraine & Northern Trust area", phone: "0300 123 1 123", note: "Mon–Fri 8am–6pm" },
+  { name: "Southern Trust — Phone First", counties: "Armagh, Craigavon, Newry & Southern Trust area", phone: "0300 123 3111", note: "Mon–Fri 9am–9pm" },
+  { name: "Belfast Trust GP Out of Hours — North & West Belfast", counties: "North & West Belfast", phone: "028 9074 4447" },
+  { name: "Belfast Trust GP Out of Hours — South & East Belfast", counties: "South & East Belfast", phone: "028 9079 6220" },
+];
