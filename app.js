@@ -308,6 +308,10 @@
       ? `<p class="detail-section-title">Good to know</p><ul class="detail-list">${e.details.map(d => `<li>${linkifyText(d)}</li>`).join("")}</ul>`
       : "";
 
+    const resourcesHtml = (e.resources && e.resources.length)
+      ? `<p class="detail-section-title">Learn more</p><ul class="resource-list">${e.resources.map(r => `<li><a href="${r.url}" target="_blank" rel="noopener">${r.label} ↗</a></li>`).join("")}</ul>`
+      : "";
+
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="javascript:history.back()">‹ Back</a>
@@ -319,6 +323,7 @@
         ${contactLines.length ? `<div class="contact-block">${contactLines.join("")}</div>` : ""}
         ${detailsHtml}
         ${e.referral ? `<div class="referral-note"><strong>How to get in:</strong> ${linkifyText(e.referral)}</div>` : ""}
+        ${resourcesHtml}
       </div>
     `;
   }

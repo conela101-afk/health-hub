@@ -103,7 +103,10 @@ const ENTRIES = [
       "Ward 2 South is the dedicated pregnancy loss & gynaecology ward for inpatient care."
     ],
     referral: "GP or CUMH referral.",
-    contact: { phone: "Via CUMH switchboard", address: "Kinsale Road Clinic, Cork" }
+    contact: { phone: "Via CUMH switchboard", address: "Kinsale Road Clinic, Cork" },
+    resources: [
+      { label: "Miscarriage — patient.info", url: "https://patient.info/pregnancy/miscarriage-and-bleeding-in-early-pregnancy" }
+    ]
   },
   {
     id: "cumh-loss",
@@ -449,7 +452,12 @@ const ENTRIES = [
       "For complex/severe cases referred on from a regional centre — not a first stop for a new diagnosis.",
     ],
     referral: "GP → regional centre → supra-regional referral if complex.",
-    contact: { address: "Lee Clinic, CUMH, Wilton, Cork" }
+    contact: { address: "Lee Clinic, CUMH, Wilton, Cork" },
+    resources: [
+      { label: "Endometriosis — patient.info", url: "https://patient.info/womens-health/pelvic-pain-in-women/endometriosis" },
+      { label: "Fibroids — patient.info", url: "https://patient.info/womens-health/periods-and-period-problems/fibroids" },
+      { label: "Adenomyosis — patient.info", url: "https://patient.info/features/womens-health/is-adenomyosis-the-cause-of-your-heavy-painful-periods" }
+    ]
   },
   {
     id: "tallaght-endo-centre",
@@ -532,7 +540,11 @@ const ENTRIES = [
     blurb: "The first of the six HSE complex-menopause clinics, opened Dec 2021.",
     details: [],
     referral: "GP/consultant/ANP referral.",
-    contact: { phone: "01 637 3100" }
+    contact: { phone: "01 637 3100" },
+    resources: [
+      { label: "Menopause — patient.info", url: "https://patient.info/womens-health/menopause" },
+      { label: "HRT — patient.info", url: "https://patient.info/womens-health/menopause/hormone-replacement-therapy-hrt" }
+    ]
   },
   {
     id: "rotunda-menopause",
@@ -573,6 +585,20 @@ const ENTRIES = [
     details: [],
     referral: "GP/consultant/ANP referral.",
     contact: { web: "hse.ie" }
+  },
+  {
+    id: "the-menopause-hub",
+    name: "The Menopause Hub (private)",
+    specialty: ["menopause"],
+    county: ["dublin", "cork-city"],
+    blurb: "Private menopause clinic — an option if you can pay and don't want to wait for a public complex-menopause clinic referral.",
+    details: [
+      "Three clinics: Mount Merrion, Co. Dublin; Santry, Dublin 9; and Rosewood, Ballincollig, Cork.",
+      "Self-referral — no GP letter needed. Consultation fees apply; check current pricing directly.",
+      "Virtual consultations also available.",
+    ],
+    referral: "Self-referral, book online or by phone.",
+    contact: { phone: "01 210 7948 (Mount Merrion) / 01 485 3066 (Santry) / 021 242 7122 (Cork)", email: "info@themenopausehub.ie", web: "themenopausehub.ie" }
   },
   {
     id: "cork-fertility-hub",
@@ -1519,7 +1545,10 @@ const ENTRIES = [
     blurb: "Free Contraception Scheme provider (ages 17–35); also pregnancy counselling.",
     details: ["5-7 Cathal Brugha Street, Dublin 1, D01 F9K7 — 01 872 7088.", "The Square Shopping Centre, Tallaght, D24 HK33 — 01 459 7685.", "Pregnancy counselling also at Galway, Limerick, Waterford."],
     referral: "Self-referral.",
-    contact: { phone: "01 872 7088" }
+    contact: { phone: "01 872 7088" },
+    resources: [
+      { label: "Contraception methods — patient.info", url: "https://patient.info/sexual-health/contraception-methods" }
+    ]
   },
   {
     id: "well-woman-coolock",
@@ -1889,7 +1918,12 @@ const ENTRIES = [
       "Department locations/phone numbers above are current; individual consultant names change more often, so we haven't listed them.",
     ],
     referral: "GP referral.",
-    contact: {}
+    contact: {},
+    resources: [
+      { label: "Rheumatoid arthritis — patient.info", url: "https://patient.info/bones-joints-muscles/rheumatoid-arthritis-leaflet" },
+      { label: "Ankylosing spondylitis — patient.info", url: "https://patient.info/bones-joints-muscles/ankylosing-spondylitis" },
+      { label: "Lupus — patient.info", url: "https://patient.info/skin-conditions/lupus-systemic-lupus-erythematosus" }
+    ]
   },
 
   // ---- Neurology & Migraine ----
@@ -1901,7 +1935,10 @@ const ENTRIES = [
     blurb: "National information line staffed by a Clinical Nurse Specialist. Migraine affects ~15% of the population and is three times more common in women.",
     details: [],
     referral: "Self-referral to the Advice Line.",
-    contact: { phone: "01 906 1012", email: "info@migraine.ie", address: "Unit 14, Block 5, Port Tunnel Business Park, Clonshaugh, Dublin 17" }
+    contact: { phone: "01 906 1012", email: "info@migraine.ie", address: "Unit 14, Block 5, Port Tunnel Business Park, Clonshaugh, Dublin 17" },
+    resources: [
+      { label: "Migraine — patient.info", url: "https://patient.info/brain-nerves/migraine-leaflet" }
+    ]
   },
   {
     id: "beaumont-migraine-clinic",
@@ -2043,7 +2080,11 @@ const ENTRIES = [
     blurb: "Also has regional consultant-led general medicine with GI/endoscopy services: Sligo, Letterkenny, Kerry (Tralee), Mullingar, Drogheda, and Wexford.",
     details: ["A 2024 Irish study (14 women, University of Galway) found women's abdominal pain is often normalised and dismissed, with patients having to 'fight their case' for care — see 'Know your rights' for the full citation."],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: {},
+    resources: [
+      { label: "IBS — patient.info", url: "https://patient.info/digestive-health/irritable-bowel-syndrome-leaflet" },
+      { label: "Coeliac disease — patient.info", url: "https://patient.info/digestive-health/coeliac-disease-leaflet" }
+    ]
   },
 
   // ---- Chronic Pain Management ----
@@ -2238,7 +2279,10 @@ const ENTRIES = [
       "Treat the sites listed individually above as the working list — some (Sligo, Waterford, Mercy Cork) have uncertain current status; phone ahead.",
     ],
     referral: "GP referral.",
-    contact: {}
+    contact: {},
+    resources: [
+      { label: "Fibromyalgia — patient.info", url: "https://patient.info/signs-symptoms/tiredness-fatigue/fibromyalgia" }
+    ]
   },
 
   // ---- Long Covid & ME/CFS ----
@@ -2253,7 +2297,10 @@ const ENTRIES = [
       "No public Long Covid service exists for children (under-16s) — parents are directed to GPs/general paediatrics instead.",
     ],
     referral: "GP referral.",
-    contact: {}
+    contact: {},
+    resources: [
+      { label: "Post-viral fatigue — patient.info", url: "https://patient.info/news-and-features/what-you-need-to-know-about-post-viral-fatigue" }
+    ]
   },
   {
     id: "longcovid-stjames",
@@ -2326,7 +2373,10 @@ const ENTRIES = [
       "An Irish qualitative focus-group study (15 patients, 6 carers) found patients describe real delays to diagnosis and poor awareness/understanding from healthcare professionals — this is Irish-specific evidence, not just international literature.",
     ],
     referral: "Self-referral.",
-    contact: { web: "irishmecfs.org" }
+    contact: { web: "irishmecfs.org" },
+    resources: [
+      { label: "ME/CFS — patient.info", url: "https://patient.info/signs-symptoms/tiredness-fatigue/chronic-fatigue-syndrome-myalgic-encephalomyelitis" }
+    ]
   },
   {
     id: "me-advocates-ireland",
@@ -2358,7 +2408,10 @@ const ENTRIES = [
     blurb: "~50% of women over 50 will have an osteoporosis-related fracture (vs 20% of men); 7 in 10 hip fractures happen to women. There is no national osteoporosis screening programme — DEXA scans are GP-referral only.",
     details: ["Maintains its own county-by-county list of DXA scan locations (public and private) on their website — worth checking directly for your area."],
     referral: "GP referral for a DEXA scan; self-referral to the Society for information.",
-    contact: { phone: "01 637 5050", email: "info@irishosteoporosis.ie", address: "Unit 1B, Clonskeagh Square, Dublin 14" }
+    contact: { phone: "01 637 5050", email: "info@irishosteoporosis.ie", address: "Unit 1B, Clonskeagh Square, Dublin 14" },
+    resources: [
+      { label: "Osteoporosis — patient.info", url: "https://patient.info/bones-joints-muscles/osteoporosis-leaflet" }
+    ]
   },
 
   // ---- Genetics & Hereditary Cancer Risk ----
@@ -3245,5 +3298,29 @@ const SUPPORT_ORGS = [
     offer: "Peer support network.",
     tags: ["mesh", "urology", "gynaecology"],
     contact: {},
+  },
+  {
+    id: "safe-ireland",
+    name: "SAFE Ireland",
+    remit: "National network of 37 independent domestic violence services.",
+    offer: "Phone them and they'll connect you to the service nearest you; also runs policy/advocacy work on gender-based violence.",
+    tags: ["domestic violence", "policy"],
+    contact: { web: "safeireland.ie", phone: "01 578 3001" },
+  },
+  {
+    id: "ms-ireland",
+    name: "MS Ireland",
+    remit: "National charity for multiple sclerosis, which is roughly 3x more common in women.",
+    offer: "Information line staffed Mon–Fri, counselling, and local support groups.",
+    tags: ["multiple sclerosis", "neurology"],
+    contact: { web: "ms-society.ie", phone: "0818 233 233", email: "info@ms-society.ie" },
+  },
+  {
+    id: "coeliac-society-ireland",
+    name: "Coeliac Society of Ireland",
+    remit: "National charity for coeliac disease, an autoimmune condition more common in women.",
+    offer: "Helpline, gluten-free food guidance, and local branch support.",
+    tags: ["coeliac disease", "gastroenterology"],
+    contact: { web: "coeliac.ie", phone: "01 872 1471", email: "info@coeliac.ie" },
   },
 ];
