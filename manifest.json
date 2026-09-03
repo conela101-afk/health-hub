@@ -1,7 +1,7 @@
 {
-  "name": "Women's Health Hub — Ireland & NI",
-  "short_name": "WHH",
-  "description": "A free directory for navigating women's health services and your rights across Ireland and Northern Ireland.",
+  "name": "Health Hub — Ireland & NI",
+  "short_name": "Health Hub",
+  "description": "A free directory for navigating health, care and advocacy services across Ireland and Northern Ireland — women's health, general health services, and how to get help, complain, or find support.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

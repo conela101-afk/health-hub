@@ -170,8 +170,8 @@
 
       <div class="hero">
         <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
-        <h1>Navigating women's health, <em>wherever you are</em>.</h1>
-        <p>A free directory for all women's health needs — growing to cover every specialty, not just maternity. Plus your rights: how to complain, get a second opinion, or request your records. Everywhere in Ireland and Northern Ireland.</p>
+        <h1>Navigating health &amp; care, <em>wherever you are</em>.</h1>
+        <p>A free directory for health services and your rights across Ireland and Northern Ireland — women's health in full depth, plus general advocacy, complaints support, and out-of-hours care, with more being added.</p>
       </div>
 
       <div class="index-grid">
