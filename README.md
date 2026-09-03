@@ -1,4 +1,4 @@
-# Women's Health Hub — Ireland & NI
+# Health Hub — Ireland & NI
 
 A free, installable directory for navigating women's health services and your rights across Ireland and Northern Ireland. Two layers:
 
