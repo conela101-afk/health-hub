@@ -3475,22 +3475,102 @@ const GENERAL_ADVOCACY_ORGS = [
 // not strict county lines, and boundaries/numbers do change — the HSE and
 // nidirect finder links are the authoritative source; treat this list as a
 // solid starting point, verified September 2026.
+// `sites` are physical treatment centres (appointment-only — always phone
+// first), sourced from each service's own locations page. Coordinates are
+// approximate town-centre points, not exact building pins — accurate enough
+// to show which service covers your area, not for street-level navigation.
 const OUT_OF_HOURS_ROI = [
-  { name: "D-Doc", counties: "North Dublin", phone: "0818 224 476" },
-  { name: "DubDoc", counties: "Dublin 8 & south inner city", phone: "01 454 5607" },
-  { name: "EastDoc", counties: "North-east Wicklow / south Co. Dublin fringe", phone: "01 209 4021" },
-  { name: "KDOC", counties: "Kildare, West Wicklow", phone: "045 848 701" },
-  { name: "Caredoc", counties: "Carlow, Kilkenny, Wexford, Waterford, South Tipperary, South Wicklow", phone: "0818 300 365" },
-  { name: "SouthDoc", counties: "Cork, Kerry", phone: "0818 355 999" },
-  { name: "Shannondoc", counties: "Limerick, Clare, North Tipperary", phone: "0818 123 500" },
-  { name: "WestDoc", counties: "Galway, Mayo, Roscommon", phone: "0818 360 000" },
-  { name: "NoWDOC", counties: "Donegal, South Leitrim", phone: "0818 400 911" },
-  { name: "NEDOC", counties: "Meath, Louth (excl. Dundalk), Cavan, Monaghan", phone: "1800 777 911" },
-  { name: "MIDOC", counties: "Longford, Westmeath, Laois, Offaly", phone: "1800 302 702" },
+  { name: "D-Doc", counties: "North Dublin", phone: "0818 224 476", sites: [
+    { town: "Ballymun", lat: 53.3925, lng: -6.2650 },
+    { town: "Coolock", lat: 53.3872, lng: -6.2072 },
+    { town: "Hartstown", lat: 53.3958, lng: -6.4283 },
+    { town: "North Strand", lat: 53.3562, lng: -6.2447 },
+    { town: "Swords", lat: 53.4597, lng: -6.2181 },
+  ]},
+  { name: "DubDoc", counties: "Dublin 8 & south inner city", phone: "01 454 5607", sites: [
+    { town: "Dublin 8 (Heytesbury St)", lat: 53.3324, lng: -6.2697 },
+  ]},
+  { name: "EastDoc", counties: "North-east Wicklow / south Co. Dublin fringe", phone: "01 209 4021", sites: [] },
+  { name: "KDOC", counties: "Kildare, West Wicklow", phone: "045 848 701", sites: [
+    { town: "Naas", lat: 53.2158, lng: -6.6669 },
+    { town: "Celbridge", lat: 53.3389, lng: -6.5453 },
+  ]},
+  { name: "Caredoc", counties: "Carlow, Kilkenny, Wexford, Waterford, South Tipperary, South Wicklow", phone: "0818 300 365", sites: [
+    { town: "Arklow", lat: 52.7936, lng: -6.1508 },
+    { town: "Carlow", lat: 52.8365, lng: -6.9341 },
+    { town: "Cashel", lat: 52.5192, lng: -7.8908 },
+    { town: "Clonmel", lat: 52.3556, lng: -7.7000 },
+    { town: "Dungarvan", lat: 52.0919, lng: -7.6197 },
+    { town: "Enniscorthy", lat: 52.5033, lng: -6.5686 },
+    { town: "Gorey", lat: 52.6742, lng: -6.2953 },
+    { town: "Kilkenny", lat: 52.6541, lng: -7.2448 },
+    { town: "New Ross", lat: 52.3958, lng: -6.9469 },
+    { town: "Tipperary Town", lat: 52.4747, lng: -8.1611 },
+    { town: "Waterford", lat: 52.2593, lng: -7.1101 },
+    { town: "Wexford", lat: 52.3369, lng: -6.4633 },
+    { town: "Wicklow Town", lat: 52.9808, lng: -6.0447 },
+  ]},
+  { name: "SouthDoc", counties: "Cork, Kerry", phone: "0818 355 999", sites: [
+    { town: "Mallow", lat: 52.1369, lng: -8.6408 },
+    { town: "Macroom", lat: 51.9028, lng: -8.9647 },
+    { town: "Skibbereen", lat: 51.5497, lng: -9.2622 },
+    { town: "Cork City (Kinsale Rd)", lat: 51.8794, lng: -8.4750 },
+    { town: "Tralee", lat: 52.2712, lng: -9.7025 },
+    { town: "Listowel", lat: 52.4467, lng: -9.4900 },
+    { town: "Killarney", lat: 52.0599, lng: -9.5044 },
+  ]},
+  { name: "Shannondoc", counties: "Limerick, Clare, North Tipperary", phone: "0818 123 500", sites: [
+    { town: "Limerick City (Dooradoyle)", lat: 52.6389, lng: -8.6386 },
+    { town: "Hospital, Co. Limerick", lat: 52.4933, lng: -8.4272 },
+    { town: "Newcastle West", lat: 52.4489, lng: -9.0522 },
+    { town: "Nenagh", lat: 52.8631, lng: -8.1975 },
+    { town: "Roscrea", lat: 52.9536, lng: -7.7936 },
+    { town: "Thurles", lat: 52.6800, lng: -7.8064 },
+    { town: "Ennis", lat: 52.8436, lng: -8.9864 },
+    { town: "Ennistymon", lat: 52.9436, lng: -9.2900 },
+    { town: "Kilrush", lat: 52.6389, lng: -9.4881 },
+    { town: "Milltown Malbay", lat: 52.8611, lng: -9.3986 },
+    { town: "Shannon", lat: 52.7167, lng: -8.8642 },
+  ]},
+  { name: "WestDoc", counties: "Galway, Mayo, Roscommon", phone: "0818 360 000", sites: [
+    { town: "Ballina", lat: 54.1153, lng: -9.1547 },
+    { town: "Ballinasloe", lat: 53.3319, lng: -8.2192 },
+    { town: "Castlebar", lat: 53.8517, lng: -9.2986 },
+    { town: "Craughwell", lat: 53.2333, lng: -8.7397 },
+    { town: "Galway City", lat: 53.2707, lng: -9.0568 },
+    { town: "Knock", lat: 53.7900, lng: -8.9200 },
+    { town: "Roscommon Town", lat: 53.6278, lng: -8.1875 },
+    { town: "Tuam", lat: 53.5150, lng: -8.8500 },
+    { town: "Westport", lat: 53.8014, lng: -9.5175 },
+  ]},
+  { name: "NoWDOC", counties: "Donegal, South Leitrim", phone: "0818 400 911", sites: [
+    { town: "Letterkenny (approx.)", lat: 54.9503, lng: -7.7339 },
+    { town: "Carrick-on-Shannon", lat: 53.9453, lng: -8.0972 },
+  ]},
+  { name: "NEDOC", counties: "Meath, Louth (excl. Dundalk), Cavan, Monaghan", phone: "1800 777 911", sites: [
+    { town: "Cavan", lat: 53.9908, lng: -7.3606 },
+    { town: "Castleblayney", lat: 54.1236, lng: -6.7317 },
+    { town: "Drogheda", lat: 53.7178, lng: -6.3478 },
+    { town: "Navan", lat: 53.6528, lng: -6.6819 },
+  ]},
+  { name: "MIDOC", counties: "Longford, Westmeath, Laois, Offaly", phone: "1800 302 702", sites: [
+    { town: "Tullamore", lat: 53.2739, lng: -7.4931 },
+    { town: "Longford", lat: 53.7275, lng: -7.7931 },
+    { town: "Mullingar", lat: 53.5253, lng: -7.3378 },
+    { town: "Portlaoise", lat: 53.0344, lng: -7.2989 },
+  ]},
 ];
 const OUT_OF_HOURS_NI = [
-  { name: "Northern Trust — Phone First", counties: "Antrim, Ballymena, Coleraine & Northern Trust area", phone: "0300 123 1 123", note: "Mon–Fri 8am–6pm" },
-  { name: "Southern Trust — Phone First", counties: "Armagh, Craigavon, Newry & Southern Trust area", phone: "0300 123 3111", note: "Mon–Fri 9am–9pm" },
-  { name: "Belfast Trust GP Out of Hours — North & West Belfast", counties: "North & West Belfast", phone: "028 9074 4447" },
-  { name: "Belfast Trust GP Out of Hours — South & East Belfast", counties: "South & East Belfast", phone: "028 9079 6220" },
+  { name: "Northern Trust — Phone First", counties: "Antrim, Ballymena, Coleraine & Northern Trust area", phone: "0300 123 1 123", note: "Mon–Fri 8am–6pm", sites: [
+    { town: "Antrim (approx. Trust area)", lat: 54.7180, lng: -6.2100 },
+  ]},
+  { name: "Southern Trust — Phone First", counties: "Armagh, Craigavon, Newry & Southern Trust area", phone: "0300 123 3111", note: "Mon–Fri 9am–9pm", sites: [
+    { town: "Craigavon (approx. Trust area)", lat: 54.4522, lng: -6.3919 },
+  ]},
+  { name: "Belfast Trust GP Out of Hours — North & West Belfast", counties: "North & West Belfast", phone: "028 9074 4447", sites: [
+    { town: "North & West Belfast (approx.)", lat: 54.5975, lng: -5.9550 },
+  ]},
+  { name: "Belfast Trust GP Out of Hours — South & East Belfast", counties: "South & East Belfast", phone: "028 9079 6220", sites: [
+    { town: "South & East Belfast (approx.)", lat: 54.5825, lng: -5.9350 },
+  ]},
 ];

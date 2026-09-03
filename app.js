@@ -469,6 +469,23 @@
     `;
   }
 
+  function initOohMap(){
+    if (typeof L === "undefined") return;
+    const mapEl = document.getElementById("ooh-map");
+    if (!mapEl) return;
+    const map = L.map("ooh-map", { scrollWheelZoom: false }).setView([53.35, -7.8], 6.3);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(map);
+    [...OUT_OF_HOURS_ROI, ...OUT_OF_HOURS_NI].forEach(service => {
+      (service.sites || []).forEach(site => {
+        L.marker([site.lat, site.lng]).addTo(map)
+          .bindPopup(`<strong>${service.name}</strong><br>${site.town}<br><a href="tel:${service.phone.replace(/[^\d+]/g, "")}">${service.phone}</a>`);
+      });
+    });
+  }
+
   function renderOutOfHours(){
     app.innerHTML = `
       <div class="page-head">
@@ -480,6 +497,10 @@
       <div class="callout">
         <strong>These are phone-first services — there is no walk-in.</strong> Call ahead; a nurse or GP will triage you over the phone and either give advice, book you an appointment, or direct you to an Emergency Department. Coverage follows GP-practice membership, not strict county lines, and can change — if in doubt, use the official finders linked below.
       </div>
+
+      <p class="section-title">Map of treatment centres</p>
+      <div id="ooh-map" class="ooh-map"></div>
+      <p class="ooh-source">Pins are approximate town-centre locations, not exact buildings — always phone first, these are appointment-only.</p>
 
       <p class="section-title">Republic of Ireland: GP out-of-hours co-ops</p>
       <div class="ooh-list">${OUT_OF_HOURS_ROI.map(outOfHoursRowHtml).join("")}</div>
@@ -495,6 +516,7 @@
       <p class="section-title">Injury units</p>
       <p class="callout">For a broken bone, sprain, or wound that isn't life-threatening, a Local Injury Unit (LIU) can often see you faster than an Emergency Department — but not every hospital has one, and they don't treat every kind of injury. Use the HSE finder above to check your nearest.</p>
     `;
+    initOohMap();
   }
 
   function renderAdvocacyGeneral(){
