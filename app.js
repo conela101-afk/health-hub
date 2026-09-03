@@ -61,6 +61,18 @@
     sexualhealth: '<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
     pelvicphysio: '<circle cx="12" cy="5" r="2"/><path d="M12 7v6M8 10l4 3 4-3M9 20l3-4 3 4"/>',
     vascular: '<path d="M12 3v18M12 8c-3 0-4 2-4 4M12 16c3 0 4-2 4-4"/>',
+    ophthalmology: '<path d="M2 12s4-6.5 10-6.5S22 12 22 12s-4 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    dermatology: '<path d="M4 8l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 16l8 4 8-4"/>',
+    respiratory: '<path d="M12 4v5M8 9c-2.5 0-3.5 2-3.5 5 0 2.5 1 5 2.5 5s2-2 2-3.5V9zM16 9c2.5 0 3.5 2 3.5 5 0 2.5-1 5-2.5 5s-2-2-2-3.5V9z"/><path d="M6.5 7c1-1.5 3-2 5.5-2s4.5.5 5.5 2"/>',
+    ent: '<path d="M12 5a7 7 0 0 1 7 7c0 3-2 4-2 6.5a2 2 0 0 1-4 0"/><path d="M12 5a7 7 0 0 0-7 7c0 2 1 3.2 2.2 4"/>',
+    diabetes: '<path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/><path d="M9.5 13h5M12 10.5v5"/>',
+    nephrology: '<path d="M14 3c-4 0-7 4-7 9s3 9 7 9c3.5 0 6-2.5 6-6 0-2.5-1.5-4-4-4s-4 1.5-4 4"/>',
+    haematology: '<rect x="7" y="6" width="10" height="13" rx="2"/><path d="M12 3v3M9 10.5h6M9 13.5h6"/>',
+    orthopaedics: '<circle cx="8" cy="8" r="3"/><path d="M8 11v6a3 3 0 1 0 6 0v-3h3"/>',
+    adultmh: '<circle cx="12" cy="12" r="8"/><path d="M9 9.3c0-1.8 1.3-3 3-3s3 1.3 3 3c0 2-3 2.2-3 4.5"/><circle cx="12" cy="16.3" r="0.8"/>',
+    dental: '<path d="M12 4c-1.8 0-3 .9-4.3.9C6.3 4.9 5 6 5 8.3c0 2.6.9 4.4 1.4 7 .3 1.4.9 1.9 1.3 1.9.6 0 1-2.7 1.8-2.7s1.1 2.7 1.7 2.7 1.1-2.7 1.8-2.7 1.1 2.7 1.7 2.7c.4 0 1-.5 1.3-1.9.5-2.6 1.4-4.4 1.4-7 0-2.3-1.3-3.4-2.7-3.4-1.3 0-2.5-.9-4.3-.9z"/>',
+    allergy: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6.5 6.5l2 2M15.5 15.5l2 2M6.5 17.5l2-2M15.5 8.5l2-2"/>',
+    palliative: '<path d="M12 3v4"/><path d="M9 21h6"/><path d="M10 21V11a2 2 0 0 1 4 0v10"/><path d="M9.5 8c0 1.3 1.2 1.8 1.2 3.2"/>',
   };
   const PIN_ICON = '<path d="M12 21s-6.5-6-6.5-11A6.5 6.5 0 0 1 12 3.5 6.5 6.5 0 0 1 18.5 10c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>';
 
@@ -96,10 +108,12 @@
   // mention a website by name rather than storing it as a separate field.
   function linkifyText(text){
     if (!text) return text;
-    const urlPattern = /\b((?:[a-z0-9-]+\.)+(?:ie|com|org|net|uk|info|ca)(?:\/[^\s)]*)?)/gi;
-    return text.replace(urlPattern, (match) => {
-      const trailing = (match.match(/[.,;:!?]+$/) || [""])[0];
-      const clean = trailing ? match.slice(0, -trailing.length) : match;
+    const pattern = /([\w.+-]+@(?:[a-z0-9-]+\.)+(?:ie|com|org|net|uk|info|ca))|(\b(?:[a-z0-9-]+\.)+(?:ie|com|org|net|uk|info|ca)(?:\/[^\s)]*)?)/gi;
+    return text.replace(pattern, (match, email, domain) => {
+      const raw = email || domain;
+      const trailing = (raw.match(/[.,;:!?]+$/) || [""])[0];
+      const clean = trailing ? raw.slice(0, -trailing.length) : raw;
+      if (email) return `<a href="mailto:${clean}">${clean}</a>${trailing}`;
       const href = /^https?:\/\//.test(clean) ? clean : `https://${clean}`;
       return `<a href="${href}" target="_blank" rel="noopener">${clean}</a>${trailing}`;
     });

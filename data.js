@@ -31,6 +31,18 @@ const SPECIALTIES = [
   { id: "sexualhealth", label: "Sexual Health & STI Testing" },
   { id: "pelvicphysio", label: "Pelvic Health Physiotherapy" },
   { id: "vascular", label: "Vascular" },
+  { id: "ophthalmology", label: "Ophthalmology & Eye Care" },
+  { id: "dermatology", label: "Dermatology & Skin" },
+  { id: "respiratory", label: "Respiratory Medicine & CF" },
+  { id: "ent", label: "ENT & Audiology" },
+  { id: "diabetes", label: "Endocrinology & Diabetes" },
+  { id: "nephrology", label: "Nephrology & Kidney" },
+  { id: "haematology", label: "Haematology & Blood Disorders" },
+  { id: "orthopaedics", label: "Orthopaedics" },
+  { id: "adultmh", label: "Mental Health Services (General Adult)" },
+  { id: "dental", label: "Dental & Oral Health" },
+  { id: "allergy", label: "Allergy & Immunology" },
+  { id: "palliative", label: "Palliative & End-of-Life Care" },
 ];
 
 // All 32 traditional counties (26 Republic + 6 Northern Ireland), so every
@@ -2760,6 +2772,715 @@ const ENTRIES = [
     details: ["No dedicated Irish patient-advocacy body was found for venous/pelvic congestion conditions specifically — this is a genuine gap."],
     referral: "GP referral.",
     contact: {}
+  },
+
+  // ---- Ophthalmology & Eye Care ----
+  {
+    id: "rveeh-dublin",
+    name: "Royal Victoria Eye and Ear Hospital",
+    specialty: ["ophthalmology", "ent"],
+    county: ["dublin"],
+    blurb: "Ireland's national referral centre for eye and ENT conditions, founded 1895.",
+    details: [],
+    referral: "GP or consultant referral.",
+    contact: { address: "Adelaide Road, Dublin 2" }
+  },
+  {
+    id: "retinascreen",
+    name: "Diabetic RetinaScreen",
+    specialty: ["ophthalmology", "diabetes"],
+    county: ["national"],
+    blurb: "National, free screening and treatment programme for diabetic retinopathy, for anyone with diabetes aged 12+.",
+    details: [
+      "About 225,000 people in Ireland have diabetes; roughly 1 in 20 (~12,000) are at risk of vision loss from retinopathy.",
+      "Screening runs from primary-care centres nationwide — self-register online to find your nearest.",
+    ],
+    referral: "Self-registration.",
+    contact: { phone: "1800 45 45 55", email: "access@diabeticretinascreen.ie", web: "hse.ie/diabeticretinascreen" }
+  },
+  {
+    id: "rvh-belfast-eye-ent",
+    name: "Royal Victoria Hospital — Eye & Ear Department",
+    specialty: ["ophthalmology", "ent"],
+    county: ["antrim"],
+    blurb: "Belfast Trust's regional tertiary eye/ENT centre — medical & surgical retina, glaucoma, neuro-ophthalmology, paediatric, cornea, oculoplastics, and diabetic clinics. Eye Casualty is a walk-in urgent service.",
+    details: ["ENT is also based here, in the Eyes and ENT Building, Level 8a."],
+    referral: "GP, optometrist, or clinician referral. Eye Casualty is walk-in for urgent eye problems.",
+    contact: { address: "Grosvenor Road, Belfast BT12 6BA" }
+  },
+  {
+    id: "altnagelvin-eye",
+    name: "Altnagelvin Area Hospital — Ophthalmology",
+    specialty: ["ophthalmology"],
+    county: ["londonderry"],
+    blurb: "Western Trust's second eye service and training centre.",
+    details: [],
+    referral: "GP or optometrist referral.",
+    contact: {}
+  },
+  {
+    id: "ni-diabetic-eye-screening",
+    name: "NI Diabetic Eye Screening Programme",
+    specialty: ["ophthalmology", "diabetes"],
+    county: ["antrim"],
+    blurb: "Northern Ireland's equivalent of RetinaScreen, for people with diabetes.",
+    details: [],
+    referral: "Automatic invitation once registered with a GP as having diabetes.",
+    contact: { phone: "028 9615 7600", address: "Forster Green Hospital, 110 Saintfield Road, Belfast BT8 6HD" }
+  },
+  {
+    id: "vision-ireland",
+    name: "Vision Ireland (formerly NCBI)",
+    specialty: ["ophthalmology"],
+    county: ["national"],
+    blurb: "National charity for blind and vision-impaired people, ~55,000 service users.",
+    details: [
+      "Recently rebranded from NCBI — some of its own contact pages may still show the old name; confirm current details before relying on them.",
+      "Runs an Eye Clinic Liaison Officer (ECLO) service at the Mater, RVEEH, CHI Temple Street, and CHI Crumlin.",
+    ],
+    referral: "Self-referral.",
+    contact: { phone: "01 830 7033", email: "info@ncbi.ie", address: "Whitworth Road, Drumcondra, Dublin 9" }
+  },
+  {
+    id: "fighting-blindness-ireland",
+    name: "Fighting Blindness",
+    specialty: ["ophthalmology", "genetics"],
+    county: ["national"],
+    blurb: "Research and patient advocacy for inherited and retinal sight-loss conditions.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { web: "fightingblindness.ie" }
+  },
+  {
+    id: "irish-guide-dogs",
+    name: "Irish Guide Dogs for the Blind",
+    specialty: ["ophthalmology"],
+    county: ["national"],
+    blurb: "Guide dogs and mobility support for people who are blind or vision-impaired.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { email: "info@guidedogs.ie" }
+  },
+  {
+    id: "feach",
+    name: "Féach",
+    specialty: ["ophthalmology", "parenting"],
+    county: ["national"],
+    blurb: "National support organisation for parents of children who are blind or vision-impaired.",
+    details: [],
+    referral: "Self-referral.",
+    contact: {}
+  },
+  {
+    id: "childvision",
+    name: "ChildVision",
+    specialty: ["ophthalmology", "parenting"],
+    county: ["dublin"],
+    blurb: "National education centre for blind and vision-impaired children.",
+    details: [],
+    referral: "Self-referral or via early-intervention services.",
+    contact: {}
+  },
+  {
+    id: "rnib-ni",
+    name: "RNIB Northern Ireland",
+    specialty: ["ophthalmology"],
+    county: ["antrim"],
+    blurb: "Support and advocacy for blind and vision-impaired people in Northern Ireland.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { web: "rnib.org.uk" }
+  },
+
+  // ---- Dermatology & Skin ----
+  {
+    id: "irish-skin-foundation",
+    name: "Irish Skin Foundation",
+    specialty: ["dermatology"],
+    county: ["national"],
+    blurb: "National skin-health charity — 54% of the Irish population is affected by a skin condition annually.",
+    details: ["Free nurse-led \"Ask-a-Nurse\" phone guidance on psoriasis, eczema, hidradenitis suppurativa, acne, rosacea, and skin cancer."],
+    referral: "Self-referral to Ask-a-Nurse.",
+    contact: { phone: "01 486 6280", email: "info@irishskin.ie" }
+  },
+  {
+    id: "find-dermatology",
+    name: "About dermatology waiting times",
+    specialty: ["dermatology"],
+    county: ["national"],
+    blurb: "Dermatology access is in genuine crisis on both sides of the border, and no clean public directory of individual hospital dermatology departments exists — this is the strongest documented waiting-list evidence found in this pass.",
+    details: [
+      "ROI: the outpatient dermatology waiting list rose 87.6% from 29,955 (Dec 2015) to 56,203 (Dec 2023) — 84% adults, 16% children — plus 1,109 on the inpatient list (NTPF data).",
+      "NI: 49,048 people were waiting for a first dermatology outpatient appointment as of Sept 2025 across the five Trusts; 8,382 had waited more than four years.",
+      "Skin cancer is Ireland's most common cancer (13,000+ new cases/year, expected to double by 2040); melanoma 5-year survival is 92% with early diagnosis, and treating late-stage melanoma costs over 25x more than early-stage.",
+      "GP e-referral to pigmented-lesion (suspicious mole) clinics exists and is faster than routine dermatology referral if melanoma is suspected — ask your GP specifically about this pathway.",
+    ],
+    referral: "GP referral; ask about urgent pigmented-lesion referral if a mole or skin change is suspicious.",
+    contact: {}
+  },
+
+  // ---- Respiratory Medicine & Cystic Fibrosis ----
+  {
+    id: "cf-designated-centres",
+    name: "HSE-Designated Cystic Fibrosis Centres",
+    specialty: ["respiratory"],
+    county: ["national"],
+    blurb: "Ireland has the highest incidence of CF per head of population in the world — over 1,100 patients, with roughly 1 in 19 people carrying the gene.",
+    details: [
+      "Main centres: Beaumont Hospital, St Vincent's University Hospital, CHI (Crumlin, Temple Street, Tallaght), University Hospital Galway, Cork University Hospital (Cork Centre for CF / \"3CF\" — the second-largest adult programme, 200+ patients), and University Hospital Limerick.",
+      "Additional CF clinics: Cavan General, Mayo University, Our Lady of Lourdes Drogheda, Sligo University, and University Hospital Waterford.",
+      "The National Lung Transplant Programme is based at the Mater Misericordiae University Hospital.",
+    ],
+    referral: "GP or respiratory consultant referral.",
+    contact: { phone: "01 209 4684", email: "cfnurses@svuh.ie", extra: "SVUH CF nurses line, for adult CF queries" }
+  },
+  {
+    id: "belfast-cf-adult",
+    name: "Belfast Trust Adult Cystic Fibrosis Service",
+    specialty: ["respiratory"],
+    county: ["antrim"],
+    blurb: "Regional adult CF service for Northern Ireland, ages 17+.",
+    details: [],
+    referral: "GP or respiratory consultant referral.",
+    contact: { phone: "028 9504 8197" }
+  },
+  {
+    id: "cf-ireland",
+    name: "Cystic Fibrosis Ireland",
+    specialty: ["respiratory"],
+    county: ["national"],
+    blurb: "National CF patient charity since 1963 — information, support, and grants.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "01 496 2433", email: "info@cfireland.ie", web: "cfireland.ie" }
+  },
+  {
+    id: "asthma-society-ireland",
+    name: "Asthma Society of Ireland",
+    specialty: ["respiratory"],
+    county: ["dublin"],
+    blurb: "Represents an estimated 380,000+ people with asthma in Ireland.",
+    details: ["Runs the joint Asthma/COPD Adviceline with COPD Support Ireland; also has a WhatsApp nurse line."],
+    referral: "Self-referral to the Adviceline.",
+    contact: { phone: "1800 44 54 64", extra: "WhatsApp nurse: 086 059 0132", address: "42–43 Amiens Street, Dublin 1" }
+  },
+  {
+    id: "copd-support-ireland",
+    name: "COPD Support Ireland",
+    specialty: ["respiratory"],
+    county: ["dublin"],
+    blurb: "Local support groups for people living with COPD, including \"Singing for Better Lung Health\" groups.",
+    details: ["Partners with the Asthma Society on the shared Asthma/COPD Adviceline (1800 44 54 64)."],
+    referral: "Self-referral.",
+    contact: { web: "copd.ie" }
+  },
+  {
+    id: "ilfa",
+    name: "Irish Lung Fibrosis Association (ILFA)",
+    specialty: ["respiratory"],
+    county: ["dublin"],
+    blurb: "Support for the estimated 5,000 people in Ireland living with lung fibrosis (1,000+ new cases a year). No national registry exists.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "086 871 5264", email: "info@ilfa.ie", address: "Carmichael Centre, 4 North Brunswick Street, Dublin 7" }
+  },
+
+  // ---- ENT & Audiology ----
+  {
+    id: "hse-audiology",
+    name: "HSE Audiology Service",
+    specialty: ["ent"],
+    county: ["national"],
+    blurb: "Free audiology assessment for medical-card holders, under-18s, and third-level students, via GP or ENT-consultant referral.",
+    details: [
+      "Community audiology centres exist in most counties (examples include Carlow, Cavan/Cootehill, Clare, Cork/St Finbarr's, Donegal, Galway, Kerry, Kildare, Laois, Limerick, Louth, Mayo, Offaly, Roscommon, and Sligo/Leitrim) — this isn't an exhaustive list, check the HSE's own audiology page for your nearest.",
+      "HSE audiology does not supply hearing aids directly to everyone — ask about the hearing-aid pathway when referred.",
+    ],
+    referral: "GP or ENT-consultant referral.",
+    contact: { web: "hse.ie" }
+  },
+  {
+    id: "chime-deafhear",
+    name: "Chime (formerly DeafHear)",
+    specialty: ["ent"],
+    county: ["national"],
+    blurb: "National charity for people who are deaf or hard of hearing.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { web: "chime.ie" }
+  },
+  {
+    id: "irish-deaf-society",
+    name: "Irish Deaf Society",
+    specialty: ["ent"],
+    county: ["dublin"],
+    blurb: "National organisation of and for the Deaf community.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "01 860 1878", email: "info@irishdeafsociety.ie" }
+  },
+  {
+    id: "rnid-ni",
+    name: "RNID (Northern Ireland)",
+    specialty: ["ent"],
+    county: ["antrim"],
+    blurb: "Support and advocacy for people who are deaf or have hearing loss in Northern Ireland.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { web: "rnid.org.uk" }
+  },
+
+  // ---- Endocrinology & Diabetes ----
+  {
+    id: "diabetes-ireland",
+    name: "Diabetes Ireland",
+    specialty: ["diabetes"],
+    county: ["dublin"],
+    blurb: "National diabetes charity — around 225,000 people in Ireland live with diabetes.",
+    details: ["Runs CODE education programmes, a children's Sweetpea Kidz Club, camps, and local support branches."],
+    referral: "Self-referral to the helpline.",
+    contact: { phone: "01 842 8118", email: "info@diabetes.ie", address: "19 Northwood House, Northwood Business Campus, Santry, Dublin 9" }
+  },
+  {
+    id: "diabetes-uk-ni",
+    name: "Diabetes UK Northern Ireland",
+    specialty: ["diabetes"],
+    county: ["antrim"],
+    blurb: "An estimated 96,000–120,000 people in Northern Ireland live with diabetes (figures vary by source; ~90% Type 2).",
+    details: ["Runs Live Well Hubs and the Together Type 1 peer-support programme."],
+    referral: "Self-referral.",
+    contact: { phone: "028 9066 6646", email: "n.ireland@diabetes.org.uk", extra: "UK helpline: 0345 123 2399", address: "First Floor Suite 1, Lisburn Square House, 10 Haslems Lane, Lisburn BT28 1TW" }
+  },
+  {
+    id: "find-thyroid-support",
+    name: "Thyroid conditions — a support gap",
+    specialty: ["diabetes"],
+    county: ["national"],
+    blurb: "No dedicated, registered Republic-of-Ireland thyroid patient charity currently exists — a genuine gap.",
+    details: [
+      "For thyroid cancer specifically, the Irish Cancer Society Support Line can help: 1800 200 700, supportline@irishcancer.ie.",
+      "ThyCa Ireland runs an informal Dublin-based support group.",
+      "The UK's British Thyroid Foundation runs a helpline open to callers from Ireland: 01423 810 093.",
+      "An informal \"Thyroid Support Ireland\" Facebook group exists (~5,300 members) — useful for peer support, but it's not a charity and isn't clinically moderated.",
+    ],
+    referral: "GP referral for diagnosis/treatment; self-referral to the support options above.",
+    contact: {}
+  },
+  {
+    id: "find-pcos-ireland",
+    name: "PCOS — Ireland-specific data is thin",
+    specialty: ["diabetes", "gynae"],
+    county: ["national"],
+    blurb: "Polycystic ovary syndrome is one of the most common hormonal conditions in women of reproductive age, and is often undiagnosed for a long time.",
+    details: [
+      "International cohort studies document substantial diagnostic delay (roughly a year of help-seeking, plus around 7 more months to diagnosis) — but this is international, not Irish-specific, data.",
+      "PCOS is linked to higher long-term risk of type 2 diabetes and cardiovascular disease, which is why it's listed here as well as under gynaecology.",
+      "Private clinics (e.g. Women's Health Raheny) advertise shorter waits for PCOS assessment than the public system — private, fees apply, not independently verified by us.",
+    ],
+    referral: "GP referral for public assessment (via gynaecology or endocrinology).",
+    contact: {}
+  },
+
+  // ---- Nephrology & Kidney ----
+  {
+    id: "ika",
+    name: "Irish Kidney Association (IKA)",
+    specialty: ["nephrology"],
+    county: ["dublin"],
+    blurb: "National charity for people with end-stage kidney disease, since 1978.",
+    details: ["Runs a free Dublin Support Centre for patients travelling for treatment near Beaumont, plus patient holidays and organ-donation promotion."],
+    referral: "Self-referral.",
+    contact: { phone: "01 620 5306", email: "info@ika.ie", address: "Donor House, Block 43A, Park West, Dublin 12" }
+  },
+  {
+    id: "find-dialysis-units",
+    name: "Dialysis units nationally",
+    specialty: ["nephrology"],
+    county: ["national"],
+    blurb: "Haemodialysis units exist at Beaumont (the national kidney transplant centre), the Mater, St Vincent's, Tallaght (AMNCH), Cork University Hospital, Mayo General (Castlebar), and Cavan General, plus private units (e.g. Beacon, Northern Cross).",
+    details: ["For the full current list, the Irish Nephrology Society and Irish Kidney Association both maintain dialysis-centre maps — check theirs directly, as unit capacity and locations do change."],
+    referral: "Nephrology consultant referral.",
+    contact: { web: "irishnephrology.ie/renal-units" }
+  },
+  {
+    id: "belfast-city-nephrology",
+    name: "Belfast City Hospital — Regional Nephrology",
+    specialty: ["nephrology"],
+    county: ["antrim"],
+    blurb: "Northern Ireland's regional nephrology centre.",
+    details: [],
+    referral: "GP or consultant referral.",
+    contact: { address: "Lisburn Road, Belfast BT9 7AB" }
+  },
+  {
+    id: "antrim-dialysis",
+    name: "Antrim Area Hospital — Dialysis & Home Therapies",
+    specialty: ["nephrology"],
+    county: ["antrim"],
+    blurb: "Northern Trust dialysis service — home therapies, pre-dialysis care, and transplant follow-up.",
+    details: [],
+    referral: "Nephrology consultant referral.",
+    contact: {}
+  },
+  {
+    id: "nikpa",
+    name: "Northern Ireland Kidney Patients' Association (NIKPA)",
+    specialty: ["nephrology"],
+    county: ["antrim"],
+    blurb: "Patient support, grants, and organ-donation promotion for kidney patients in Northern Ireland.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "07935 159804", email: "info@nikpa.org", address: "c/o Dialysis Unit, Belfast City Hospital" }
+  },
+
+  // ---- Haematology & Blood Disorders ----
+  {
+    id: "stjames-stem-cell-transplant",
+    name: "St James's Hospital — National Adult Stem Cell/Bone Marrow Transplant Programme",
+    specialty: ["haematology"],
+    county: ["dublin"],
+    blurb: "Ireland's national programme for adult stem cell and bone marrow transplants.",
+    details: [],
+    referral: "Haematology consultant referral.",
+    contact: {}
+  },
+  {
+    id: "irish-haemophilia-society",
+    name: "Irish Haemophilia Society",
+    specialty: ["haematology"],
+    county: ["national"],
+    blurb: "Represents people with haemophilia, von Willebrand disease, and other inherited bleeding disorders, since 1968.",
+    details: ["The National Haemophilia Centre has historically been based at St James's Hospital."],
+    referral: "Self-referral.",
+    contact: { web: "haemophilia.ie" }
+  },
+  {
+    id: "find-blood-disorder-support",
+    name: "Non-malignant blood disorders — a support gap",
+    specialty: ["haematology"],
+    county: ["national"],
+    blurb: "Beyond haemophilia, there's no dedicated Irish patient body for rarer non-cancer blood disorders (aplastic anaemia, MDS, PNH, MPNs) — a genuine gap.",
+    details: [
+      "People in Ireland with these conditions largely rely on international bodies: AAMDSIF (aplastic anaemia/MDS), MPN-specific networks, and Anthony Nolan for stem-cell transplant support.",
+      "Blood cancers are covered separately by the Irish Cancer Society.",
+    ],
+    referral: "Haematology consultant referral.",
+    contact: {}
+  },
+  {
+    id: "belfast-haematology",
+    name: "Belfast Trust — Regional Haematology",
+    specialty: ["haematology"],
+    county: ["antrim"],
+    blurb: "Northern Ireland's regional haematology service.",
+    details: ["Blood-cancer support in NI is largely via UK bodies: Leukaemia UK, Blood Cancer UK, Anthony Nolan, and Cancer Focus NI."],
+    referral: "GP or consultant referral.",
+    contact: {}
+  },
+
+  // ---- Orthopaedics ----
+  {
+    id: "cappagh-orthopaedic-hospital",
+    name: "National Orthopaedic Hospital Cappagh",
+    specialty: ["orthopaedics"],
+    county: ["dublin"],
+    blurb: "Ireland's largest elective orthopaedic centre — 1,600–1,700+ hip/knee replacement and revision surgeries a year.",
+    details: [],
+    referral: "GP or orthopaedic consultant referral.",
+    contact: { phone: "01 814 0400", address: "Cappagh Road, Finglas, Dublin 11" }
+  },
+  {
+    id: "croom-orthopaedic-hospital",
+    name: "Croom Orthopaedic Hospital",
+    specialty: ["orthopaedics"],
+    county: ["limerick"],
+    blurb: "Mid-West regional orthopaedic hospital, with a new theatre complex from 2021.",
+    details: [],
+    referral: "GP or orthopaedic consultant referral.",
+    contact: { address: "Croom, Co. Limerick" }
+  },
+  {
+    id: "merlin-park-orthopaedics",
+    name: "Merlin Park University Hospital — Orthopaedics",
+    specialty: ["orthopaedics"],
+    county: ["galway"],
+    blurb: "Saolta group's orthopaedic service for the West.",
+    details: [],
+    referral: "GP or orthopaedic consultant referral.",
+    contact: {}
+  },
+  {
+    id: "kilcreene-orthopaedic-hospital",
+    name: "Kilcreene Orthopaedic Hospital",
+    specialty: ["orthopaedics"],
+    county: ["kilkenny"],
+    blurb: "Orthopaedic hospital serving the South East.",
+    details: ["Some services were announced to be transferring towards University Hospital Waterford from 2019 — current status unconfirmed, phone ahead."],
+    referral: "GP or orthopaedic consultant referral.",
+    contact: {}
+  },
+  {
+    id: "musgrave-park-hospital",
+    name: "Musgrave Park Hospital — Regional Centre for Orthopaedic Surgery",
+    specialty: ["orthopaedics"],
+    county: ["antrim"],
+    blurb: "Northern Ireland's regional orthopaedic centre — around 44 consultant orthopaedic surgeons, ~35,000 outpatient and ~9,000 inpatient/day-case appointments a year. Houses the Primary Joint Unit for hip/knee replacement.",
+    details: [],
+    referral: "GP or orthopaedic consultant referral.",
+    contact: { address: "Belfast" }
+  },
+  {
+    id: "swah-enniskillen-orthopaedics",
+    name: "South West Acute Hospital — Orthopaedics",
+    specialty: ["orthopaedics"],
+    county: ["fermanagh"],
+    blurb: "Western Trust hospital running high-volume day-case joint-replacement lists.",
+    details: [],
+    referral: "GP or orthopaedic consultant referral.",
+    contact: { address: "Enniskillen" }
+  },
+  {
+    id: "find-orthopaedic-waiting",
+    name: "About orthopaedic waiting times",
+    specialty: ["orthopaedics", "bonehealth"],
+    county: ["national"],
+    blurb: "Orthopaedics is one of the biggest drivers of outpatient waiting-list growth on both sides of the border. Osteoarthritis, the leading reason for hip/knee replacement, is more common in women.",
+    details: [
+      "ROI: waiting-list numbers by specialty and hospital are published monthly by the National Treatment Purchase Fund (NTPF) — check ntpf.ie for current figures rather than relying on a fixed number here.",
+      "If you've waited over a year in the public system, ask your GP or consultant about NTPF insourcing/outsourcing options.",
+      "NI patients waiting 12+ months via an NHS trust may be eligible for the Republic of Ireland Reimbursement Scheme, which allows surgery in a ROI private hospital.",
+      "A Northern Ireland study of 991 patients waiting 3+ years for joint replacement found significant quality-of-life loss and increased reliance on opioids, antidepressants, and out-of-hours/ED visits while waiting.",
+    ],
+    referral: "GP referral.",
+    contact: { web: "ntpf.ie" }
+  },
+
+  // ---- Mental Health Services (General Adult) ----
+  {
+    id: "yourmentalhealth-info-line",
+    name: "HSE YourMentalHealth Information Line",
+    specialty: ["adultmh"],
+    county: ["national"],
+    blurb: "National mental health information line.",
+    details: ["Also runs a free text-message support service: text HELLO to 50808."],
+    referral: "Self-referral.",
+    contact: { phone: "1800 111 888" }
+  },
+  {
+    id: "cmht-referral-explainer",
+    name: "How adult mental health referral works (ROI)",
+    specialty: ["adultmh"],
+    county: ["national"],
+    blurb: "For moderate-to-severe difficulties, your GP refers you to a Community Mental Health Team (CMHT) covering ages 18–65 — a psychiatrist, community mental health nurse, psychologist, social worker, and occupational therapist. Over-65s are referred to a Psychiatry of Later Life (POLL) team instead.",
+    details: [
+      "Self-referral directly to a CMHT generally isn't possible in the Republic — you need a GP or other health professional to refer you.",
+      "A free National Counselling Service exists for adults in specified circumstances — ask your GP.",
+      "For urgent needs outside office hours, contact your GP out-of-hours service or your local hospital's mental health unit.",
+    ],
+    referral: "GP referral.",
+    contact: {}
+  },
+  {
+    id: "belfast-cmht-selfreferral",
+    name: "Belfast Trust — Community Mental Health Team Self-Referral",
+    specialty: ["adultmh"],
+    county: ["antrim"],
+    blurb: "Belfast is unusual in allowing self-referral directly to a CMHT by phone, rather than requiring a GP referral.",
+    details: [],
+    referral: "Self-referral by phone.",
+    contact: { phone: "028 9504 0346" }
+  },
+  {
+    id: "northern-trust-adult-mh-teams",
+    name: "Northern Trust — Adult Mental Health Teams",
+    specialty: ["adultmh"],
+    county: ["antrim"],
+    blurb: "Runs 9 adult mental health teams (ages 18–64), Monday–Friday 9am–5pm.",
+    details: ["NI-wide mental health waiting lists have grown substantially — one Trust has cited waits of around 5 years for CMHT assessment in some cases."],
+    referral: "GP referral via the Referral Management / Clinical Communication Gateway.",
+    contact: {}
+  },
+
+  // ---- Dental & Oral Health ----
+  {
+    id: "dtss-scheme",
+    name: "Dental Treatment Services Scheme (DTSS)",
+    specialty: ["dental"],
+    county: ["national"],
+    blurb: "Free annual dental exam and other treatment for medical-card holders aged 16+.",
+    details: [
+      "Covers a free exam each calendar year, extractions as needed, and up to two fillings a year; one first-stage front-tooth root canal a year is also covered. Dentures and some other treatments need prior HSE approval.",
+      "Some dentists have been withdrawing from the scheme due to contract terms — if your regular dentist no longer offers DTSS, ask your HSE Local Health Office for one that does.",
+    ],
+    referral: "Self-referral to any participating dentist.",
+    contact: {}
+  },
+  {
+    id: "treatment-benefit-scheme",
+    name: "Treatment Benefit Scheme (dental)",
+    specialty: ["dental"],
+    county: ["national"],
+    blurb: "PRSI-based scheme (run by the Department of Social Protection, not the HSE) giving a free annual oral exam plus a subsidised scale-and-polish.",
+    details: ["The scheme pays a €42 subsidy toward cleaning/periodontal treatment; you pay the balance (roughly €15)."],
+    referral: "Self-referral to any participating dentist — check your PRSI eligibility first.",
+    contact: { web: "gov.ie" }
+  },
+  {
+    id: "hse-public-dental-clinics",
+    name: "HSE Public Dental Clinics",
+    specialty: ["dental"],
+    county: ["national"],
+    blurb: "Routine and emergency dental care, plus special-care dentistry, based in primary care centres — with hospital referral where needed.",
+    details: [],
+    referral: "Contact your Local Health Office to register.",
+    contact: {}
+  },
+  {
+    id: "ni-dental-access",
+    name: "About NI dental access",
+    specialty: ["dental"],
+    county: ["antrim"],
+    blurb: "NHS dental access in Northern Ireland is in a well-documented crisis.",
+    details: [
+      "Health Service dental registrations fell 21.9% (down 268,370) year-on-year to 958,009 in Q2 2025/26. Fewer than 44% of adults are now registered — an all-time low.",
+      "Of roughly 360 dental practices in NI, only two remain fully NHS; most have gone partly or fully private.",
+      "The Business Services Organisation (BSO) maintains a postcode-searchable directory of practices still accepting new NHS patients — check this before assuming none are available near you.",
+    ],
+    referral: "Self-referral via the BSO directory.",
+    contact: { web: "hscbusiness.hscni.net" }
+  },
+
+  // ---- Allergy & Immunology ----
+  {
+    id: "stjames-clinical-immunology",
+    name: "St James's Hospital — Clinical Immunology Department",
+    specialty: ["allergy"],
+    county: ["dublin"],
+    blurb: "Ireland's leading adult allergy/immunology centre — a twice-weekly outpatient clinic plus a 5-day ambulatory day ward. Accredited Jeffrey Modell Foundation centre and Ireland's first UCARE centre.",
+    details: ["Specialist adult allergy provision is very limited nationally — this is one of the only dedicated services."],
+    referral: "GP or consultant referral.",
+    contact: {}
+  },
+  {
+    id: "chi-paediatric-allergy",
+    name: "Children's Health Ireland — Paediatric Allergy",
+    specialty: ["allergy", "parenting"],
+    county: ["dublin"],
+    blurb: "Paediatric allergy service prioritising anaphylaxis, food allergy, and allergic rhino-conjunctivitis.",
+    details: [],
+    referral: "GP referral via Healthlink.",
+    contact: {}
+  },
+  {
+    id: "ifan",
+    name: "Irish Food Allergy Network (IFAN)",
+    specialty: ["allergy", "parenting"],
+    county: ["national"],
+    blurb: "Clinical and education resources for food allergy, including the \"egg ladder\" reintroduction guidance.",
+    details: [],
+    referral: "Self-referral for information.",
+    contact: {}
+  },
+  {
+    id: "regional-immunology-service-ni",
+    name: "Regional Immunology Service Northern Ireland",
+    specialty: ["allergy"],
+    county: ["antrim"],
+    blurb: "Specialist allergy/immunology assessment for Northern Ireland, including a General Anaesthetic Allergy Clinic run jointly with anaesthetics.",
+    details: [],
+    referral: "GP or consultant referral.",
+    contact: {}
+  },
+  {
+    id: "find-adult-allergy-support",
+    name: "Adult allergy support — a gap",
+    specialty: ["allergy"],
+    county: ["national"],
+    blurb: "No large, dedicated national charity for adult allergy patients was confirmed to exist in Ireland — a genuine gap.",
+    details: [
+      "Food-allergy-specific support and education is available via IFAN.",
+      "The Asthma Society of Ireland's Adviceline also covers allergic asthma and hay fever.",
+      "Anaphylaxis Ireland's current operational status could not be confirmed — verify it's still active before relying on it.",
+    ],
+    referral: "GP or consultant referral for clinical care.",
+    contact: {}
+  },
+
+  // ---- Palliative & End-of-Life Care ----
+  {
+    id: "iapc-referral-directory",
+    name: "IAPC: find your local palliative care service",
+    specialty: ["palliative"],
+    county: ["national"],
+    blurb: "The Irish Association for Palliative Care maintains a county-by-county directory of specialist palliative teams and hospices.",
+    details: [
+      "Examples from their directory: Kerry Specialist Palliative Care at UH Kerry, St Brigid's Hospice (The Curragh), North West Hospice (Sligo), Roscommon Palliative Care Support Unit (090 663 2200), and the South East Palliative Care Centre at UH Waterford — this isn't the full list, check the IAPC directory for your area.",
+      "Palliative care is delivered at home via community palliative homecare teams, in specialist inpatient hospices, in general hospitals, and in day services.",
+    ],
+    referral: "GP or hospital doctor referral.",
+    contact: {}
+  },
+  {
+    id: "irish-hospice-foundation",
+    name: "Irish Hospice Foundation",
+    specialty: ["palliative", "loss"],
+    county: ["dublin"],
+    blurb: "National hospice and bereavement charity.",
+    details: [
+      "Runs Nurses for Night Care (funded via IHF, referred through your local specialist palliative homecare team), the Think Ahead end-of-life planning tool, and Caru.",
+    ],
+    referral: "Self-referral to the support lines; Nurses for Night Care via your palliative homecare team.",
+    contact: { extra: "Bereavement Support Line: 1800 80 70 77 (Mon–Fri 10am–1pm) · Information & Support Line: 1800 60 70 66 (Mon–Fri 9am–6pm)", address: "Morrison Chambers (4th Floor), 32 Nassau Street, Dublin 2" }
+  },
+  {
+    id: "irish-cancer-society-night-nursing",
+    name: "Irish Cancer Society Night Nursing",
+    specialty: ["palliative", "cancer"],
+    county: ["national"],
+    blurb: "Free night nursing care at home for people with cancer at end of life.",
+    details: [],
+    referral: "Referral via your public health nurse or palliative care team.",
+    contact: { phone: "1800 200 700" }
+  },
+  {
+    id: "lauralynn",
+    name: "LauraLynn",
+    specialty: ["palliative", "parenting"],
+    county: ["dublin"],
+    blurb: "Ireland's only children's hospice.",
+    details: ["Make-A-Wish Ireland is a separate charity that also supports children with life-threatening conditions."],
+    referral: "Referral via your child's medical team.",
+    contact: {}
+  },
+  {
+    id: "aiihpc-palliative-hub",
+    name: "All-Ireland Institute of Hospice and Palliative Care (AIIHPC)",
+    specialty: ["palliative"],
+    county: ["national"],
+    blurb: "Runs the Palliative Hub, an all-island resource for patients, families, and professionals.",
+    details: [],
+    referral: "Self-referral for information.",
+    contact: {}
+  },
+  {
+    id: "marie-curie-hospice-belfast",
+    name: "Marie Curie Hospice Belfast",
+    specialty: ["palliative"],
+    county: ["antrim"],
+    blurb: "Hospice and Hospice Care at Home (Belfast & South Eastern Trusts).",
+    details: [],
+    referral: "GP, district nurse, or hospital team referral.",
+    contact: { phone: "028 9088 2000", email: "mcccbelfastreferrals@mariecurie.org.uk", extra: "Marie Curie UK support line: 0800 090 2309", address: "1A Kensington Road, Belfast BT5 6NF" }
+  },
+  {
+    id: "ni-hospice",
+    name: "Northern Ireland Hospice",
+    specialty: ["palliative"],
+    county: ["antrim"],
+    blurb: "Adult and children's hospice services across Northern Ireland.",
+    details: [],
+    referral: "GP, district nurse, or hospital team referral.",
+    contact: { phone: "028 9078 1836", email: "referrals@nihospice.org", address: "74 Somerton Road, Belfast BT15 3LH" }
   },
 ];
 
