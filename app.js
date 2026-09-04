@@ -509,7 +509,7 @@
     `).join("");
     return `
       <div class="callout">
-        <strong>Why this page exists:</strong> being dismissed or not believed is a well-documented pattern in Irish healthcare, not something you're imagining — most recently confirmed by the Department of Health's own 2025 listening forum with 142 women, and a peer-reviewed 2024 Irish study on pain dismissal. This page exists to make the practical steps easier to find.
+        <strong>Why this page exists:</strong> being dismissed or not believed is a documented pattern across Irish healthcare, not something you're imagining. The clearest recent evidence is from women's health — the Department of Health's own 2025 listening forum with 142 women, and a peer-reviewed 2024 Irish study on pain dismissal — but the pattern isn't limited to it. This page exists to make the practical steps easier to find, whatever you're dealing with.
         <span class="source-note">Sources: Dept of Health &amp; NWC, "Our Health, Our Voices" (Oct 2025) · Windrim, McGuire &amp; Durand, BMC Women's Health (2024)</span>
       </div>
       <div class="guide-list">${guideHtml}</div>
