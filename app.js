@@ -593,11 +593,18 @@
 
   function schemeCardHtml(s){
     const linksHtml = s.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join("");
+    const prepHtml = s.prep && s.prep.length
+      ? `<details class="scheme-prep">
+          <summary>What to prepare before you start ${iconSvg(CHEVRON_ICON, 14)}</summary>
+          <ul>${s.prep.map(p => `<li>${linkifyText(p)}</li>`).join("")}</ul>
+        </details>`
+      : "";
     return `
       <div class="scheme-card">
         <h2>${s.name}</h2>
         <p class="remit">${s.blurb}</p>
         <div class="scheme-links">${linksHtml}</div>
+        ${prepHtml}
       </div>
     `;
   }

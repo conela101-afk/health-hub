@@ -326,6 +326,16 @@ h1,h2,h3{ font-family:var(--font); }
 .scheme-links a{ font-size:13px; font-weight:600; color:var(--violet-deep); text-decoration:none; }
 .scheme-links a:hover{ text-decoration:underline; }
 
+.scheme-prep{ margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
+.scheme-prep summary{
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:6px;
+  font-size:12.5px; font-weight:700; color:var(--sand-deep);
+}
+.scheme-prep summary::-webkit-details-marker{ display:none; }
+.scheme-prep summary svg{ flex-shrink:0; }
+.scheme-prep ul{ margin:10px 0 0; padding-left:20px; }
+.scheme-prep li{ font-size:13px; line-height:1.6; margin-bottom:7px; color:var(--ink); }
+
 .referral-note{
   background:var(--sand-tint);
   padding:14px 16px; font-size:14px; color:#6B4F1B; margin-top:18px; border-radius:var(--radius);

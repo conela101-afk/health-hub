@@ -3869,6 +3869,19 @@ const ADVOCACY_GUIDE = [
       "The Patient Advocacy Service (PAS) is free, independent, and confidential — they can walk you through writing and lodging a complaint about a public acute hospital, or after a patient-safety incident. Consider contacting them before you write anything formal.",
       "AIMS Ireland specifically helps with maternity-care complaint letters if your complaint relates to pregnancy or birth care.",
       "Keep a simple log throughout: date, who you spoke to, what was said, what was promised. Invaluable if you need to escalate.",
+      "The stated timelines aren't always kept in practice — the Ombudsman's own reports document cases where a response took nearly three years, and another where an investigation hadn't started nine months after acknowledgement. If your complaint is running well past its deadline, that's grounds to chase it in writing, not a sign you're being unreasonable (see the letter templates above).",
+      "The 12-month deadline to complain is enforced strictly, even in the hardest circumstances — a hospital has refused to deal with a bereaved couple's complaint about their newborn's death because it fell outside that window. If you're unsure whether to complain, don't let time run out while you decide.",
+    ],
+  },
+  {
+    id: "open-disclosure",
+    title: "If something went wrong — Open Disclosure",
+    tips: [
+      "Open disclosure is your right to be told, openly and honestly, when something has gone wrong in your care — what happened, why, and what's being done to stop it happening to someone else. It's not the same as a complaint; it's the health service coming to you.",
+      "Since 26 September 2024, disclosure of 'notifiable incidents' (a defined list of serious patient-safety events) is a legal requirement under the Patient Safety (Notifiable Incidents and Open Disclosure) Act 2023 — not just good practice. For incidents outside that specific list, open disclosure is still HSE policy, just not legally mandatory in the same way.",
+      "You're entitled to an apology or expression of regret as part of this — it isn't an admission of legal liability, and shouldn't be withheld for that reason.",
+      "If you believe something went wrong and nobody has raised it with you, you can ask directly: \"Has this been treated as a patient safety incident, and is open disclosure being considered?\" You don't need to wait to be approached.",
+      "Open disclosure and a formal complaint aren't mutually exclusive — you can have an open disclosure conversation and still complain through Your Service Your Say if you're unhappy with how things were handled.",
     ],
   },
   {
@@ -4683,6 +4696,63 @@ promised, what happened next. It's the single most useful thing you can do
 if you need to escalate.`,
   },
   {
+    id: "complaint-overdue-roi",
+    title: "Chasing an overdue complaint (Republic of Ireland)",
+    jurisdiction: "roi",
+    useFor: "Your Your Service Your Say complaint has gone past its stated deadline (30 working days for a Stage 2 investigation, or 20 working days if it said it needed more time) with no update. This happens more often than the official timelines suggest — the Ombudsman's own reports document waits of many months, occasionally years — so chasing it in writing is a normal, reasonable step, not an overreaction.",
+    sendTo: "The complaints officer handling your complaint, or yoursay@hse.ie if you don't have a direct contact.",
+    deadline: "No fixed deadline for sending this — send it as soon as the stated timeline has passed.",
+    body: `[Your name]
+[Your address]
+[Your phone / email]
+
+[Date]
+
+The Complaints Officer
+[Service / hospital name]
+[Address]
+
+  or: yoursay@hse.ie
+
+RE: FOLLOW-UP ON COMPLAINT [reference, if known] — OVERDUE RESPONSE
+
+Dear Complaints Officer,
+
+I am following up on my formal complaint made under Your Service Your Say
+on [date] [, reference number ___ if given].
+
+I understand that a complaints officer should contact me within 5 working
+days if an investigation is required, and that I should receive a response
+within 30 working days — or be told if more time is needed, with an update
+at least every 20 working days.
+
+As of today, [X] working days have passed since I made my complaint, and I
+have not received [an acknowledgement / an update / a response] in that
+time.
+
+Could you please:
+
+  1. Confirm whether my complaint is being investigated, and by whom.
+  2. Give me a current expected timeline for a response.
+  3. If there has been a delay, explain briefly why, so I understand where
+     things stand.
+
+I am not looking to cause difficulty — I understand services are stretched
+— but I would appreciate an update, and I'd like this chase noted on my
+complaint file.
+
+Yours faithfully,
+
+[Signature]
+[Printed name]
+
+---
+If you've sent this and still hear nothing after a further reasonable
+period, that's a legitimate basis to go to the Patient Advocacy Service
+(0818 293 003) for help escalating, or straight to the Ombudsman if you
+believe the HSE's own process has stalled entirely.`,
+  },
+  {
     id: "ombudsman-escalation-roi",
     title: "Escalation to the Ombudsman (Republic of Ireland)",
     jurisdiction: "roi",
@@ -4755,6 +4825,14 @@ const SCHEME_LINKS = [
     name: "Medical Card",
     jurisdiction: "roi",
     blurb: "Free GP visits, prescribed medicines, and public hospital care if you qualify — means-tested under 70, or automatic in some circumstances.",
+    prep: [
+      "The single biggest cause of delay is an incomplete application — have everything below ready before you start, not gathered as you go.",
+      "PPS number for everyone the card would cover.",
+      "Proof of income for the means test (payslips, social welfare statement, or accounts if self-employed) — for everyone in the household being assessed, not just you.",
+      "Proof of any allowable expenses you want counted (rent or mortgage statements, childcare costs, nursing home/home care costs) — these raise your effective income limit, so it's worth including them rather than leaving money on the table.",
+      "Proof of address and, if relevant, evidence you intend to live in Ireland for at least a year.",
+      "If applying on medical/hardship grounds above the income limit, ask your GP or consultant for a supporting letter detailing your condition and its costs before you submit — this goes to a medical officer for a discretionary decision.",
+    ],
     links: [
       { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/medical-card/" },
       { label: "Apply online", url: "https://www.mymedicalcard.ie/" },
@@ -4793,6 +4871,14 @@ const SCHEME_LINKS = [
     name: "Fair Deal (Nursing Homes Support Scheme)",
     jurisdiction: "roi",
     blurb: "Financial support for long-term nursing home care — you contribute a share of your income and assets, the State pays the rest. A four-step process: application, care needs assessment, financial assessment, optional Nursing Home Loan.",
+    prep: [
+      "Be ready for the form itself: the official NHSS1 application runs to around 34 pages, with roughly a dozen pages of explanatory notes before you even reach the applicant's name — widely reported as one of the most daunting forms in the Irish health system. Read it once through before filling anything in, rather than starting cold.",
+      "It covers the care needs assessment and the financial assessment together, so gather both sets of information before you start: medical/functional information for the care needs side, and income/asset documents (bank and investment statements, property valuations, PPS numbers) for the financial side.",
+      "Decide in advance who the 'specified person' applying on the applicant's behalf will be, if the applicant can't apply themselves — there's a strict priority order (a court-appointed decision-making representative or enduring power of attorney first, then spouse/partner, then an adult child). Sort this out before you start, not partway through.",
+      "Decide whether you'll want the Nursing Home Loan (deferring the asset-based contribution until after death) — you don't have to decide immediately, but knowing your preference in advance speeds up that section.",
+      "Families typically have about three months before a nursing home placement becomes urgent, which is roughly how long the full process can take start to finish — so begin as early as you realistically can rather than waiting for a crisis point.",
+      "If more than one family member needs to be involved (siblings, joint decision-making), start those conversations before the form, not during it — disagreement mid-application is one of the most common causes of delay reported by families.",
+    ],
     links: [
       { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-older-people/nursing-homes-support-scheme-1/" },
       { label: "HSE application process", url: "https://www2.hse.ie/services/schemes-allowances/fair-deal-scheme/" },
