@@ -417,7 +417,7 @@
 
     app.innerHTML = `
       <div class="page-head">
-        <a class="back-link" href="javascript:history.back()">‹ Back</a>
+        <a class="back-link" href="#" data-action="back">‹ Back</a>
       </div>
       <div class="detail-card">
         <h1>${e.name}</h1>
@@ -604,6 +604,8 @@
   app.addEventListener("click", (e) => {
     const btn = e.target.closest(".copy-btn");
     if (btn) window.copyTemplateText(btn.dataset.templateId);
+    const backLink = e.target.closest('[data-action="back"]');
+    if (backLink){ e.preventDefault(); history.back(); }
   });
 
   function schemeCardHtml(s){
@@ -728,7 +730,7 @@
 
       ${sectionRenderers[active]()}
 
-      <div class="callout" style="margin-top:24px;">
+      <div class="callout callout-spaced">
         Contact details and processes change — this page was last reviewed September 2026. Confirm current details on the organisation's own site before relying on them. This is signposting, not legal or medical advice.
       </div>
     `;
