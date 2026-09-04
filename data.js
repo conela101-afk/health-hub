@@ -2436,7 +2436,7 @@ const ENTRIES = [
     county: ["national"],
     blurb: "Rheumatoid arthritis affects an estimated 45,000 people in Ireland (2,000+ new diagnoses/year), more commonly women, usually diagnosed between ages 30–50.",
     details: [
-      "No Ireland-specific diagnostic-delay figure was found. The international benchmark for axial spondyloarthritis is a 7.4-year average delay (IMAS study, 27 countries) — women wait notably longer than men (11.2 vs 5.2 years in one cohort).",
+      "There's no Ireland-specific diagnostic-delay figure available. The international benchmark for axial spondyloarthritis is a 7.4-year average delay (IMAS study, 27 countries) — women wait notably longer than men (11.2 vs 5.2 years in one cohort).",
       "Department locations/phone numbers above are current; individual consultant names change more often, so we haven't listed them.",
     ],
     referral: "GP referral.",
@@ -3279,7 +3279,7 @@ const ENTRIES = [
     specialty: ["vascular"],
     county: ["national"],
     blurb: "Referral for varicose veins and general vascular concerns is via GP to the vascular surgery departments listed above. Pregnancy-related vascular issues and pelvic congestion syndrome are niche and typically managed via interventional radiology within the tertiary centres.",
-    details: ["No dedicated Irish patient-advocacy body was found for venous/pelvic congestion conditions specifically — this is a genuine gap."],
+    details: ["There's no dedicated Irish patient group for venous or pelvic congestion conditions specifically — general vascular or chronic-pain charities are the closest fit if you're looking for peer support."],
     referral: "GP referral.",
     contact: {}
   },
@@ -3418,7 +3418,7 @@ const ENTRIES = [
     name: "About dermatology waiting times",
     specialty: ["dermatology"],
     county: ["national"],
-    blurb: "Dermatology access is in genuine crisis on both sides of the border, and no clean public directory of individual hospital dermatology departments exists — this is the strongest documented waiting-list evidence found in this pass.",
+    blurb: "Dermatology access is in crisis on both sides of the border, and there's no single public directory of individual hospital dermatology departments.",
     details: [
       "ROI: the outpatient dermatology waiting list rose 87.6% from 29,955 (Dec 2015) to 56,203 (Dec 2023) — 84% adults, 16% children — plus 1,109 on the inpatient list (NTPF data).",
       "NI: 49,048 people were waiting for a first dermatology outpatient appointment as of Sept 2025 across the five Trusts; 8,382 had waited more than four years.",
@@ -3563,10 +3563,10 @@ const ENTRIES = [
   },
   {
     id: "find-thyroid-support",
-    name: "Thyroid conditions — a support gap",
+    name: "About thyroid condition support in Ireland",
     specialty: ["diabetes"],
     county: ["national"],
-    blurb: "No dedicated, registered Republic-of-Ireland thyroid patient charity currently exists — a genuine gap.",
+    blurb: "There's no dedicated, registered thyroid patient charity in the Republic of Ireland at the moment — here's where to turn instead.",
     details: [
       "For thyroid cancer specifically, the Irish Cancer Society Support Line can help: 1800 200 700, supportline@irishcancer.ie.",
       "ThyCa Ireland runs an informal Dublin-based support group.",
@@ -3578,7 +3578,7 @@ const ENTRIES = [
   },
   {
     id: "find-pcos-ireland",
-    name: "PCOS — Ireland-specific data is thin",
+    name: "About PCOS diagnosis and support",
     specialty: ["diabetes", "gynae"],
     county: ["national"],
     blurb: "Polycystic ovary syndrome is one of the most common hormonal conditions in women of reproductive age, and is often undiagnosed for a long time.",
@@ -3666,10 +3666,10 @@ const ENTRIES = [
   },
   {
     id: "find-blood-disorder-support",
-    name: "Non-malignant blood disorders — a support gap",
+    name: "About non-malignant blood disorder support",
     specialty: ["haematology"],
     county: ["national"],
-    blurb: "Beyond haemophilia, there's no dedicated Irish patient body for rarer non-cancer blood disorders (aplastic anaemia, MDS, PNH, MPNs) — a genuine gap.",
+    blurb: "Beyond haemophilia, there's no dedicated Irish patient body for rarer non-cancer blood disorders (aplastic anaemia, MDS, PNH, MPNs).",
     details: [
       "People in Ireland with these conditions largely rely on international bodies: AAMDSIF (aplastic anaemia/MDS), MPN-specific networks, and Anthony Nolan for stem-cell transplant support.",
       "Blood cancers are covered separately by the Irish Cancer Society.",
@@ -3903,10 +3903,10 @@ const ENTRIES = [
   },
   {
     id: "find-adult-allergy-support",
-    name: "Adult allergy support — a gap",
+    name: "About adult allergy support",
     specialty: ["allergy"],
     county: ["national"],
-    blurb: "No large, dedicated national charity for adult allergy patients was confirmed to exist in Ireland — a genuine gap.",
+    blurb: "There's no large, dedicated national charity for adult allergy patients in Ireland at the moment.",
     details: [
       "Food-allergy-specific support and education is available via IFAN.",
       "The Asthma Society of Ireland's Adviceline also covers allergic asthma and hay fever.",
