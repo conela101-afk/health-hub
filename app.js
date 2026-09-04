@@ -17,6 +17,57 @@
     if (e.key === "Escape") quickExit();
   });
 
+  // Simple mode: a persistent, sitewide low-clutter/high-contrast toggle for
+  // moments of sensory overload, panic, or executive dysfunction. Stores only
+  // an on/off flag, locally — same "nothing leaves your browser" model as the
+  // rest of the site, just persisted across visits instead of per-page.
+  const SIMPLE_MODE_KEY = "hh-simple-mode";
+  function getSimpleMode(){
+    try { return localStorage.getItem(SIMPLE_MODE_KEY) === "1"; } catch(err){ return false; }
+  }
+  function setSimpleMode(on){
+    try { localStorage.setItem(SIMPLE_MODE_KEY, on ? "1" : "0"); } catch(err){ /* private browsing etc: falls back to session-only */ }
+    document.body.classList.toggle("simple-mode", on);
+    const btn = document.getElementById("simpleModeBtn");
+    if (btn){
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.textContent = on ? "Simple mode: on" : "Simple mode";
+    }
+  }
+  document.body.classList.toggle("simple-mode", getSimpleMode());
+  const simpleModeBtn = document.getElementById("simpleModeBtn");
+  if (simpleModeBtn){
+    simpleModeBtn.setAttribute("aria-pressed", getSimpleMode() ? "true" : "false");
+    simpleModeBtn.textContent = getSimpleMode() ? "Simple mode: on" : "Simple mode";
+    simpleModeBtn.addEventListener("click", () => {
+      setSimpleMode(!getSimpleMode());
+      route();
+    });
+  }
+
+  // Shared local-storage helpers for Patient Passport and the call/referral
+  // log — the only two features on the site that hold personal health
+  // content across visits, and only because the person using them explicitly
+  // opted in (see the "Save on this device" toggle on each page). Both are
+  // plain JSON in localStorage, not encrypted: an encryption key that lives
+  // on the same device as the data it protects doesn't stop someone who has
+  // physically unlocked the device from reading it, so the actual safeguard
+  // here is the opt-in and the plain-language warning, not a crypto layer
+  // that would just be theatre. Never call these without the user having
+  // ticked the save toggle on the relevant page first.
+  function readStore(key){
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : null;
+    } catch(err){ return null; }
+  }
+  function writeStore(key, value){
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch(err){ /* private browsing / storage full: silently no-ops, data stays in the form only */ }
+  }
+  function clearStore(key){
+    try { localStorage.removeItem(key); } catch(err){ /* no-op */ }
+  }
+
   function updateTabbar(parts){
     let active = null;
     if (parts.length === 0) active = "home";
@@ -191,7 +242,7 @@
       </span>
     `).join("");
     return `
-      <details class="crisis-banner">
+      <details class="crisis-banner"${getSimpleMode() ? " open" : ""}>
         <summary class="crisis-banner-head">
           <span class="crisis-icon">${iconSvg(ICON_PATHS.crisis, 18)}</span>
           <span class="banner-head-text">
@@ -210,7 +261,7 @@
 
   function urgentCareBannerHtml(){
     return `
-      <details class="urgent-banner">
+      <details class="urgent-banner"${getSimpleMode() ? " open" : ""}>
         <summary class="urgent-banner-head">
           <span class="urgent-icon">${iconSvg(PIN_ICON, 18)}</span>
           <span class="banner-head-text">
@@ -228,11 +279,31 @@
   }
 
   function renderHome(){
+    const simple = getSimpleMode();
+    const quickPills = simple
+      ? `
+        <a class="pill" href="#/specialty/crisis">Mental health crisis support</a>
+        <a class="pill" href="#/out-of-hours">Out-of-hours &amp; urgent care</a>
+        <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
+        <a class="pill" href="#/prep">Prep for an appointment</a>
+        <a class="pill" href="#/passport">My Patient Passport</a>
+      `
+      : `
+        <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
+        <a class="pill" href="#/specialty/parenting">Parenting &amp; new motherhood</a>
+        <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
+        <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
+        <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
+        <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
+        <a class="pill" href="#/prep">Prep for an appointment</a>
+        <a class="pill" href="#/passport">My Patient Passport</a>
+        <a class="pill" href="#/log">My call &amp; referral log</a>
+      `;
     app.innerHTML = `
       <div class="hero hero-top">
         <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
         <h1>Navigating health &amp; care, <em>wherever you are</em>.</h1>
-        <p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine and women's health, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>
+        ${simple ? "" : `<p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine and women's health, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>`}
       </div>
 
       ${crisisBannerHtml()}
@@ -253,14 +324,7 @@
 
       <div class="quick-links">
         <h3>Often searched</h3>
-        <div class="quick-link-row">
-          <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
-          <a class="pill" href="#/specialty/parenting">Parenting &amp; new motherhood</a>
-          <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
-          <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
-          <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
-          <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
-        </div>
+        <div class="quick-link-row">${quickPills}</div>
       </div>
     `;
   }
@@ -615,9 +679,10 @@
     `;
   }
 
-  window.copyTemplateText = function(id){
-    const el = document.getElementById("template-" + id);
-    const btn = document.querySelector(`.copy-btn[data-template-id="${id}"]`);
+  // Shared by static letter templates and the generated text on the
+  // Pre-Appointment Prep page — copies one element's textContent to the
+  // clipboard and flashes the triggering button to confirm it worked.
+  function copyElementText(el, btn){
     if (!el || !btn) return;
     const text = el.textContent;
     const done = () => { const orig = btn.textContent; btn.textContent = "Copied ✓"; setTimeout(() => { btn.textContent = orig; }, 1800); };
@@ -633,11 +698,18 @@
       sel.removeAllRanges();
       done();
     }
+  }
+
+  window.copyTemplateText = function(id){
+    const el = document.getElementById("template-" + id);
+    const btn = document.querySelector(`.copy-btn[data-template-id="${id}"]`);
+    copyElementText(el, btn);
   };
 
   app.addEventListener("click", (e) => {
     const btn = e.target.closest(".copy-btn");
-    if (btn) window.copyTemplateText(btn.dataset.templateId);
+    if (btn && btn.dataset.templateId) window.copyTemplateText(btn.dataset.templateId);
+    if (btn && btn.dataset.copyTarget) copyElementText(document.getElementById(btn.dataset.copyTarget), btn);
     const backLink = e.target.closest('[data-action="back"]');
     if (backLink){ e.preventDefault(); history.back(); }
   });
@@ -741,6 +813,342 @@
     initOohMap();
   }
 
+  // Pre-Appointment Prep + silent waiting-room check-in. Deliberately built
+  // with no persistence at all: everything typed here lives only in the DOM
+  // for this page view and is gone on refresh or navigation. The generated
+  // text is a verbatim echo of what the user typed — the app never infers,
+  // suggests, or auto-completes any medical content — so this stays a
+  // note-taking aid, not a source of medical advice or a stored health record.
+  function renderPrep(){
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Before your appointment</h1>
+        <p class="count">Get your thoughts in order, then bring it with you</p>
+      </div>
+
+      <div class="callout">
+        Nothing you type on this page is saved anywhere, on this device or off it — refreshing or leaving clears it. Copy or print your checklist before you go. This only ever repeats back what you type; it's a note-taking aid, not medical advice.
+      </div>
+
+      <div class="prep-card">
+        <h2>Consultation checklist</h2>
+        <p class="remit">Two minutes now saves forgetting the thing you actually came in for.</p>
+        <label class="prep-label" for="prepSymptoms">Your top concerns today — what, and since when</label>
+        <textarea id="prepSymptoms" class="prep-input" rows="3" placeholder="e.g. Lower back pain, worse in the mornings, started about 3 weeks ago"></textarea>
+
+        <label class="prep-label" for="prepQuestions">Questions you want answered before you leave</label>
+        <textarea id="prepQuestions" class="prep-input" rows="3" placeholder="e.g. Do I need a scan? What are the treatment options?"></textarea>
+
+        <label class="prep-label" for="prepNeeds">Anything you need from this visit</label>
+        <textarea id="prepNeeds" class="prep-input" rows="2" placeholder="e.g. Repeat prescription, referral letter, sick cert"></textarea>
+
+        <label class="prep-label" for="prepMeds">Current medications &amp; doses</label>
+        <textarea id="prepMeds" class="prep-input" rows="2" placeholder="e.g. Metformin 500mg twice daily"></textarea>
+
+        <button type="button" class="copy-btn" id="prepGenerate">Build my checklist</button>
+        <pre class="template-text" id="prepOutput" hidden></pre>
+        <button type="button" class="copy-btn" id="prepCopy" data-copy-target="prepOutput" hidden>Copy checklist</button>
+      </div>
+
+      <div class="prep-card">
+        <h2>Waiting outside? Ask reception to text you</h2>
+        <p class="remit">If a crowded or noisy waiting room is difficult for you, this drafts a message asking reception to let you wait elsewhere and text you when it's your turn. Whether they can accommodate it is up to the service — this only drafts the ask.</p>
+
+        <label class="prep-label" for="waitTime">Appointment time</label>
+        <input type="text" id="waitTime" class="prep-input" placeholder="e.g. 2:30pm">
+
+        <label class="prep-label" for="waitClinician">Clinician or department</label>
+        <input type="text" id="waitClinician" class="prep-input" placeholder="e.g. Dr Smith / Outpatients">
+
+        <label class="prep-label" for="waitLocation">Where you'll be waiting</label>
+        <input type="text" id="waitLocation" class="prep-input" placeholder="e.g. the car park, outside the entrance">
+
+        <label class="prep-label" for="waitPhone">Your phone number</label>
+        <input type="text" id="waitPhone" class="prep-input" placeholder="e.g. 087 123 4567">
+
+        <button type="button" class="copy-btn" id="waitGenerate">Build my message</button>
+        <pre class="template-text" id="waitOutput" hidden></pre>
+        <button type="button" class="copy-btn" id="waitCopy" data-copy-target="waitOutput" hidden>Copy message</button>
+      </div>
+    `;
+
+    document.getElementById("prepGenerate").addEventListener("click", () => {
+      const symptoms = document.getElementById("prepSymptoms").value.trim();
+      const questions = document.getElementById("prepQuestions").value.trim();
+      const needs = document.getElementById("prepNeeds").value.trim();
+      const meds = document.getElementById("prepMeds").value.trim();
+      const sections = [];
+      if (symptoms) sections.push("TOP CONCERNS TODAY\n" + symptoms);
+      if (questions) sections.push("QUESTIONS TO ASK\n" + questions);
+      if (needs) sections.push("WHAT I NEED FROM THIS VISIT\n" + needs);
+      if (meds) sections.push("CURRENT MEDICATIONS\n" + meds);
+      const out = document.getElementById("prepOutput");
+      out.textContent = sections.length ? sections.join("\n\n") : "Fill in at least one field above, then try again.";
+      out.hidden = false;
+      document.getElementById("prepCopy").hidden = false;
+    });
+
+    document.getElementById("waitGenerate").addEventListener("click", () => {
+      const time = document.getElementById("waitTime").value.trim() || "[time]";
+      const clinician = document.getElementById("waitClinician").value.trim() || "[clinician / department]";
+      const loc = document.getElementById("waitLocation").value.trim() || "[nearby location]";
+      const phone = document.getElementById("waitPhone").value.trim() || "[phone number]";
+      const out = document.getElementById("waitOutput");
+      out.textContent = `Hello, I have arrived for my appointment at ${time} with ${clinician}. I'd find it easier to wait outside the waiting room if that's possible — I'll be in ${loc}. Could you text or call me on ${phone} when it's nearly my turn? Thank you.`;
+      out.hidden = false;
+      document.getElementById("waitCopy").hidden = false;
+    });
+  }
+
+  // Patient Passport & call/referral log. The only two features that can
+  // hold personal health content across visits — and only because the user
+  // explicitly ticked "Save on this device". Off by default; unticking or
+  // "Clear" removes the stored copy immediately (see readStore/writeStore
+  // comment above for why this is plain, not encrypted, storage).
+  const PASSPORT_KEY = "hh-passport";
+  const PASSPORT_SAVE_KEY = "hh-passport-save-on";
+  const PASSPORT_FIELDS = [
+    { id: "name", label: "Name", type: "input", placeholder: "Full name" },
+    { id: "mrn", label: "Medical record / hospital chart number", type: "input", placeholder: "If you know it" },
+    { id: "gp", label: "GP name & phone", type: "input", placeholder: "e.g. Dr Byrne, 021 123 4567" },
+    { id: "emergencyContact", label: "Emergency contact name & phone", type: "input", placeholder: "e.g. Jane Byrne (sister), 087 123 4567" },
+    { id: "conditions", label: "Conditions & surgical history", type: "textarea", placeholder: "e.g. Type 1 diabetes since 2014; appendectomy 2019" },
+    { id: "medications", label: "Current medications & doses", type: "textarea", placeholder: "e.g. Metformin 500mg twice daily" },
+    { id: "allergies", label: "Allergies", type: "textarea", placeholder: "e.g. Penicillin — rash" },
+    { id: "accessNeeds", label: "Access & communication needs", type: "textarea", placeholder: "e.g. Requires written instructions for medication changes; sensitive to noise; needs wheelchair access" },
+  ];
+
+  function renderPassport(){
+    const isSaving = readStore(PASSPORT_SAVE_KEY) === true;
+    const saved = isSaving ? (readStore(PASSPORT_KEY) || {}) : {};
+
+    const fieldsHtml = PASSPORT_FIELDS.map(f => {
+      const val = escapeHtml(saved[f.id] || "");
+      return f.type === "textarea"
+        ? `<label class="prep-label" for="pp-${f.id}">${f.label}</label><textarea id="pp-${f.id}" class="prep-input" rows="2" placeholder="${f.placeholder}">${val}</textarea>`
+        : `<label class="prep-label" for="pp-${f.id}">${f.label}</label><input type="text" id="pp-${f.id}" class="prep-input" placeholder="${f.placeholder}" value="${val}">`;
+    }).join("");
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>My Patient Passport</h1>
+        <p class="count">A one-page summary to hand to a doctor who doesn't know you yet</p>
+      </div>
+
+      <div class="callout">
+        This form only ever shows back exactly what you type — nothing here is suggested, autocompleted, or filled in for you. By default nothing is saved: refreshing this page clears it, so copy or print your summary before you leave. Tick "Save on this device" only if you want it to still be here next time — it's then stored in plain text in this browser, which means anyone who can unlock this device can read it. If that's a risk for you, leave it unticked and use Copy or Print each time instead.
+      </div>
+
+      <div class="prep-card">
+        <label class="save-toggle">
+          <input type="checkbox" id="ppSaveToggle" ${isSaving ? "checked" : ""}>
+          <span>Save on this device</span>
+        </label>
+
+        ${fieldsHtml}
+
+        <button type="button" class="copy-btn" id="ppGenerate">Build my summary</button>
+        <pre class="template-text" id="ppOutput" hidden></pre>
+        <button type="button" class="copy-btn" id="ppCopy" data-copy-target="ppOutput" hidden>Copy summary</button>
+        <button type="button" class="danger-btn" id="ppClear" ${isSaving ? "" : "hidden"}>Clear saved passport from this device</button>
+      </div>
+    `;
+
+    function currentValues(){
+      const values = {};
+      PASSPORT_FIELDS.forEach(f => { values[f.id] = document.getElementById("pp-" + f.id).value.trim(); });
+      return values;
+    }
+
+    const clearBtn = document.getElementById("ppClear");
+
+    PASSPORT_FIELDS.forEach(f => {
+      document.getElementById("pp-" + f.id).addEventListener("input", () => {
+        if (document.getElementById("ppSaveToggle").checked) writeStore(PASSPORT_KEY, currentValues());
+      });
+    });
+
+    document.getElementById("ppSaveToggle").addEventListener("change", (e) => {
+      if (e.target.checked){
+        writeStore(PASSPORT_SAVE_KEY, true);
+        writeStore(PASSPORT_KEY, currentValues());
+        clearBtn.hidden = false;
+      } else {
+        writeStore(PASSPORT_SAVE_KEY, false);
+        clearStore(PASSPORT_KEY);
+        clearBtn.hidden = true;
+      }
+    });
+
+    clearBtn.addEventListener("click", () => {
+      clearStore(PASSPORT_KEY);
+      writeStore(PASSPORT_SAVE_KEY, false);
+      document.getElementById("ppSaveToggle").checked = false;
+      clearBtn.hidden = true;
+      PASSPORT_FIELDS.forEach(f => { document.getElementById("pp-" + f.id).value = ""; });
+    });
+
+    document.getElementById("ppGenerate").addEventListener("click", () => {
+      const v = currentValues();
+      const lines = PASSPORT_FIELDS.filter(f => v[f.id]).map(f => `${f.label.toUpperCase()}\n${v[f.id]}`);
+      const out = document.getElementById("ppOutput");
+      out.textContent = lines.length ? lines.join("\n\n") : "Fill in at least one field above, then try again.";
+      out.hidden = false;
+      document.getElementById("ppCopy").hidden = false;
+    });
+  }
+
+  const LOG_KEY = "hh-call-log";
+  const LOG_SAVE_KEY = "hh-call-log-save-on";
+
+  function renderLog(){
+    const isSaving = readStore(LOG_SAVE_KEY) === true;
+    let entries = isSaving ? (readStore(LOG_KEY) || []) : [];
+
+    function entryRowHtml(en){
+      return `
+        <div class="log-entry">
+          <div class="log-entry-head">
+            <span class="log-date">${escapeHtml(en.date || "(no date)")}</span>
+            ${en.service ? `<span class="log-service">${escapeHtml(en.service)}</span>` : ""}
+            <button type="button" class="log-delete" data-id="${en.id}" aria-label="Delete this entry">✕</button>
+          </div>
+          ${en.person ? `<p class="log-line"><strong>Spoke to:</strong> ${escapeHtml(en.person)}</p>` : ""}
+          ${en.said ? `<p class="log-line"><strong>What was said:</strong> ${escapeHtml(en.said)}</p>` : ""}
+          ${en.promised ? `<p class="log-line"><strong>Promised:</strong> ${escapeHtml(en.promised)}</p>` : ""}
+          ${en.followUp ? `<p class="log-line"><strong>Follow up by:</strong> ${escapeHtml(en.followUp)}</p>` : ""}
+        </div>
+      `;
+    }
+
+    function entriesListHtml(){
+      return entries.length
+        ? entries.slice().sort((a, b) => (b.date || "").localeCompare(a.date || "")).map(entryRowHtml).join("")
+        : `<div class="empty-state">No entries yet — add your first call or conversation below.</div>`;
+    }
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>My call &amp; referral log</h1>
+        <p class="count">Your own record of who you spoke to and what was said</p>
+      </div>
+
+      <div class="callout">
+        Write down what was said, not what you think it meant — this is your personal recollection, not a verified record. By default nothing is saved: leaving this page clears it, so copy your log before you go. Tick "Save on this device" to keep it between visits — it's then stored in plain text in this browser, readable by anyone who can unlock this device. Leave it unticked if that's a risk for you.
+      </div>
+
+      <div class="prep-card">
+        <label class="save-toggle">
+          <input type="checkbox" id="logSaveToggle" ${isSaving ? "checked" : ""}>
+          <span>Save on this device</span>
+        </label>
+        <button type="button" class="danger-btn" id="logClear" ${isSaving ? "" : "hidden"}>Clear saved log from this device</button>
+      </div>
+
+      <div class="prep-card">
+        <h2>Add an entry</h2>
+        <label class="prep-label" for="logDate">Date</label>
+        <input type="date" id="logDate" class="prep-input">
+        <label class="prep-label" for="logService">Service / department contacted</label>
+        <input type="text" id="logService" class="prep-input" placeholder="e.g. Outpatients, CUH">
+        <label class="prep-label" for="logPerson">Name &amp; role of person you spoke to</label>
+        <input type="text" id="logPerson" class="prep-input" placeholder="e.g. Mary, secretary to Dr Byrne">
+        <label class="prep-label" for="logSaid">What was said</label>
+        <textarea id="logSaid" class="prep-input" rows="2" placeholder="Write what was said, in your own words"></textarea>
+        <label class="prep-label" for="logPromised">What was promised, if anything</label>
+        <input type="text" id="logPromised" class="prep-input" placeholder="e.g. Doctor will review chart by Thursday">
+        <label class="prep-label" for="logFollowUp">Follow up by</label>
+        <input type="date" id="logFollowUp" class="prep-input">
+        <button type="button" class="copy-btn" id="logAdd">Add entry</button>
+      </div>
+
+      <div class="prep-card">
+        <div class="log-list-head">
+          <h2>Your entries</h2>
+          <button type="button" class="copy-btn" id="logCopyAll">Copy full log</button>
+        </div>
+        <div class="log-list" id="logList">${entriesListHtml()}</div>
+        <pre class="template-text" id="logCopyOutput" hidden></pre>
+      </div>
+    `;
+
+    function persist(){
+      if (document.getElementById("logSaveToggle").checked) writeStore(LOG_KEY, entries);
+    }
+
+    function refreshList(){
+      const listEl = document.getElementById("logList");
+      listEl.innerHTML = entriesListHtml();
+      listEl.querySelectorAll(".log-delete").forEach(btn => {
+        btn.addEventListener("click", () => {
+          entries = entries.filter(en => en.id !== btn.dataset.id);
+          persist();
+          refreshList();
+        });
+      });
+    }
+
+    document.getElementById("logAdd").addEventListener("click", () => {
+      const said = document.getElementById("logSaid").value.trim();
+      const service = document.getElementById("logService").value.trim();
+      const person = document.getElementById("logPerson").value.trim();
+      const promised = document.getElementById("logPromised").value.trim();
+      if (!said && !service && !person && !promised) return;
+      entries.push({
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+        date: document.getElementById("logDate").value || new Date().toISOString().slice(0, 10),
+        service, person, said, promised,
+        followUp: document.getElementById("logFollowUp").value,
+      });
+      persist();
+      refreshList();
+      ["logDate", "logService", "logPerson", "logSaid", "logPromised", "logFollowUp"].forEach(id => { document.getElementById(id).value = ""; });
+    });
+
+    document.getElementById("logSaveToggle").addEventListener("change", (e) => {
+      const clearBtn = document.getElementById("logClear");
+      if (e.target.checked){
+        writeStore(LOG_SAVE_KEY, true);
+        writeStore(LOG_KEY, entries);
+        clearBtn.hidden = false;
+      } else {
+        writeStore(LOG_SAVE_KEY, false);
+        clearStore(LOG_KEY);
+        clearBtn.hidden = true;
+      }
+    });
+
+    document.getElementById("logClear").addEventListener("click", () => {
+      entries = [];
+      clearStore(LOG_KEY);
+      writeStore(LOG_SAVE_KEY, false);
+      document.getElementById("logSaveToggle").checked = false;
+      document.getElementById("logClear").hidden = true;
+      refreshList();
+    });
+
+    document.getElementById("logCopyAll").addEventListener("click", (e) => {
+      const sorted = entries.slice().sort((a, b) => (a.date || "").localeCompare(b.date || ""));
+      const text = sorted.map(en => [
+        `Date: ${en.date || "(no date)"}`,
+        en.service ? `Service: ${en.service}` : null,
+        en.person ? `Spoke to: ${en.person}` : null,
+        en.said ? `What was said: ${en.said}` : null,
+        en.promised ? `Promised: ${en.promised}` : null,
+        en.followUp ? `Follow up by: ${en.followUp}` : null,
+      ].filter(Boolean).join("\n")).join("\n\n---\n\n");
+      const out = document.getElementById("logCopyOutput");
+      out.textContent = text || "No entries to copy yet.";
+      out.hidden = false;
+      copyElementText(out, e.target);
+    });
+
+    refreshList();
+  }
+
   function renderAdvocacyGeneral(){
     return `
       <div class="callout">
@@ -810,6 +1218,9 @@
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
+    else if (parts[0] === "prep") renderPrep();
+    else if (parts[0] === "passport") renderPassport();
+    else if (parts[0] === "log") renderLog();
     else renderHome();
 
     announceRouteChange();
