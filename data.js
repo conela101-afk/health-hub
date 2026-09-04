@@ -112,7 +112,8 @@ const ENTRIES = [
       "Cois Tí brings maternity & gynae care into the community for low-risk pregnancies."
     ],
     referral: "GP referral (public); self-arranged for private care.",
-    contact: { phone: "021 492 0955 / 021 492 0950", web: "irelandsouthwid.cumh.hse.ie", address: "CUMH, Wilton, Cork" }
+    contact: { phone: "021 492 0500", web: "www2.hse.ie/services/hospitals/cork-university-maternity-hospital/", address: "CUMH, Wilton, Cork" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-epu",
@@ -126,10 +127,11 @@ const ENTRIES = [
       "Ward 2 South is the dedicated pregnancy loss & gynaecology ward for inpatient care."
     ],
     referral: "GP or CUMH referral.",
-    contact: { phone: "Via CUMH switchboard", address: "Kinsale Road Clinic, Cork" },
+    contact: { phone: "021 492 7441", address: "Kinsale Road Clinic, Cork" },
     resources: [
       { label: "Miscarriage — patient.info", url: "https://patient.info/pregnancy/miscarriage-and-bleeding-in-early-pregnancy" }
-    ]
+    ],
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-loss",
@@ -139,7 +141,8 @@ const ENTRIES = [
     blurb: "Led by Prof. Keelin O'Donoghue with Clinical Midwife Specialists in Bereavement & Loss.",
     details: ["Contact via CUMH main reception; ask specifically for the Bereavement & Loss team."],
     referral: "Ask for this team by name via CUMH.",
-    contact: { phone: "021 492 0955", address: "CUMH, Wilton, Cork" }
+    contact: { phone: "021 492 0500", address: "CUMH, Wilton, Cork" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-birth-reflections",
@@ -149,7 +152,8 @@ const ENTRIES = [
     blurb: "A midwife-led listening service for processing a difficult or traumatic birth.",
     details: ["Self-referral or via your GP/PHN — ask CUMH switchboard to connect you."],
     referral: "Self-referral possible.",
-    contact: { phone: "021 492 0955", address: "CUMH, Wilton, Cork" }
+    contact: { phone: "021 492 0500", address: "CUMH, Wilton, Cork" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-social-work",
@@ -159,7 +163,8 @@ const ENTRIES = [
     blurb: "Free practical and emotional support service.",
     details: ["Referral by your medical team."],
     referral: "Via medical team.",
-    contact: { phone: "021 492 0955" }
+    contact: { phone: "021 492 0500" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-ambulatory-gynae",
@@ -179,7 +184,8 @@ const ENTRIES = [
     blurb: "Part of CUMH Women's Health services.",
     details: ["GP referral. Ask specifically to be referred for suspected endometriosis, not just 'pelvic pain' — this affects triage."],
     referral: "GP referral (name the suspected condition).",
-    contact: { web: "irelandsouthwid.cumh.hse.ie" }
+    contact: { web: "www2.hse.ie/services/hospitals/cork-university-maternity-hospital/" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-urogynae",
@@ -189,7 +195,8 @@ const ENTRIES = [
     blurb: "Prolapse, incontinence, pelvic floor issues.",
     details: ["GP referral."],
     referral: "GP referral.",
-    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Urogynaecology." }
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Urogynaecology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-gynae-onc",
@@ -199,7 +206,8 @@ const ENTRIES = [
     blurb: "Suspected or confirmed gynaecological cancers.",
     details: ["GP referral — if you suspect cancer, ask your GP to state this explicitly on the referral so it's triaged on the rapid access pathway."],
     referral: "GP referral, flagged as rapid access.",
-    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Gynae-Oncology." }
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Gynae-Oncology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-colposcopy",
@@ -209,7 +217,8 @@ const ENTRIES = [
     blurb: "Follow-up after an abnormal CervicalCheck smear result.",
     details: ["Referral is automatic through CervicalCheck once a result requires it."],
     referral: "Automatic via CervicalCheck.",
-    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Colposcopy." }
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Colposcopy." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-menopause",
@@ -219,7 +228,8 @@ const ENTRIES = [
     blurb: "For menopause symptoms not managed at GP level.",
     details: ["GP referral."],
     referral: "GP referral.",
-    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for the Complex Menopause Clinic." }
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for the Complex Menopause Clinic." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-fertility",
@@ -229,7 +239,8 @@ const ENTRIES = [
     blurb: "Initial public fertility investigations.",
     details: ["GP referral."],
     referral: "GP referral.",
-    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for the Fertility Hub." }
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for the Fertility Hub." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-pmb",
@@ -239,7 +250,8 @@ const ENTRIES = [
     blurb: "Rapid-access pathway for postmenopausal bleeding.",
     details: ["GP referral, flagged as postmenopausal bleeding for correct triage."],
     referral: "GP referral (rapid access).",
-    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for the Postmenopausal Bleeding Clinic." }
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for the Postmenopausal Bleeding Clinic." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-physio",
@@ -249,7 +261,8 @@ const ENTRIES = [
     blurb: "Pelvic floor, postnatal, and pregnancy-related physiotherapy.",
     details: ["Referral via GP, PHN, or your antenatal/postnatal team."],
     referral: "GP, PHN, or maternity team.",
-    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Women's Health Physiotherapy." }
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Women's Health Physiotherapy." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cuh-urology",
@@ -262,7 +275,8 @@ const ENTRIES = [
       "There's no separate rapid-access female urology clinic — ask your GP whether urogynaecology (CUMH) or general urology (CUH) is the better first referral, as symptoms often overlap."
     ],
     referral: "GP referral.",
-    contact: { phone: "021 492 0955 (ask for Urology outpatients)" }
+    contact: { phone: "021 465 3699 (Central Appointments — ask for Urology outpatients)" },
+    checked: "4 Sep 2026"
   },
   {
     id: "phn-corkcity",
@@ -282,7 +296,8 @@ const ENTRIES = [
     blurb: "PHN service based at Mallow Primary Care Centre.",
     details: ["Mon–Fri 09:00–17:00."],
     referral: "Self-referral or GP.",
-    contact: { phone: "022 58700", address: "Mallow Primary Care Centre" }
+    contact: { phone: "022 58700", address: "Mallow Primary Care Centre" },
+    checked: "4 Sep 2026"
   },
   {
     id: "phn-castletownbere",
@@ -292,7 +307,8 @@ const ENTRIES = [
     blurb: "West Cork PHN example — coverage areas are parish-based and change with staffing.",
     details: ["For other West Cork towns, contact your local health centre or GP."],
     referral: "Self-referral or GP.",
-    contact: { phone: "027 70353" }
+    contact: { phone: "027 70353" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-pmht",
@@ -305,7 +321,8 @@ const ENTRIES = [
       "Referral via GP, obstetric team, midwife, or PHN — ask explicitly for 'referral to the Specialist Perinatal Mental Health Team', as generic mental health referrals can be triaged differently."
     ],
     referral: "GP, midwife, obstetric team, or PHN — name the team explicitly.",
-    contact: { phone: "Via CUMH switchboard, Support Services" }
+    contact: { phone: "Via CUMH switchboard, Support Services" },
+    checked: "4 Sep 2026"
   },
   {
     id: "pnd-ireland",
@@ -315,7 +332,8 @@ const ENTRIES = [
     blurb: "Cork-based charity: coffee mornings, peer support, friendship for women with PND.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "021 492 2083 / 086 787 2107", email: "support@pnd.ie" }
+    contact: { phone: "021 492 2083 / 086 787 2107", email: "support@pnd.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nurture",
@@ -325,7 +343,8 @@ const ENTRIES = [
     blurb: "Affordable, timely counselling for perinatal mental health, birth trauma, fertility issues, grief.",
     details: ["No-wait-list model in most areas."],
     referral: "Self-referral.",
-    contact: { web: "nurturehealth.ie" }
+    contact: { web: "nurturehealth.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cuidiu-pnd",
@@ -335,7 +354,8 @@ const ENTRIES = [
     blurb: "Free peer listening by phone and email.",
     details: ["Check cuidiu.ie for current local contacts."],
     referral: "Self-referral.",
-    contact: { web: "cuidiu.ie" }
+    contact: { web: "cuidiu.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cuidiu-cork-bf",
@@ -348,7 +368,8 @@ const ENTRIES = [
       "Text before calling if it's before 9am or after 9pm."
     ],
     referral: "Self-referral, no cost.",
-    contact: { web: "cuidiucork.ie", email: "cork@cuidiu.ie" }
+    contact: { web: "cuidiucork.ie", email: "cork@cuidiu.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "svc-cork",
@@ -368,7 +389,8 @@ const ENTRIES = [
     blurb: "Free, confidential, trauma-informed support for women experiencing domestic abuse, and anyone experiencing sexual violence.",
     details: [],
     referral: "Self-referral, no cost.",
-    contact: { address: "Wolfe Tone Square, Bantry, Co. Cork" }
+    contact: { address: "Wolfe Tone Square, Bantry, Co. Cork" },
+    checked: "4 Sep 2026"
   },
   {
     id: "womens-aid",
@@ -378,7 +400,8 @@ const ENTRIES = [
     blurb: "24-hour freephone helpline for women experiencing domestic violence.",
     details: ["Support in 200+ languages via Language Line."],
     referral: "Self-referral, no cost.",
-    contact: { phone: "1800 341 900" }
+    contact: { phone: "1800 341 900" },
+    checked: "4 Sep 2026"
   },
   {
     id: "satu",
@@ -388,7 +411,8 @@ const ENTRIES = [
     blurb: "Free specialist care for anyone over 14 recently sexually assaulted — medical, forensic (optional), and follow-up.",
     details: ["Accessed via SVC Cork accompaniment, GP, ED, or self-referral."],
     referral: "Self-referral, GP, ED, or via SVC Cork.",
-    contact: { web: "www2.hse.ie/sexual-assault-treatment-units" }
+    contact: { web: "www2.hse.ie/services/domestic-sexual-gender-based-violence/" },
+    checked: "4 Sep 2026"
   },
   {
     id: "skibb-frc",
@@ -408,7 +432,8 @@ const ENTRIES = [
     blurb: "Community hub and family resource centre.",
     details: [],
     referral: "Drop in or contact directly.",
-    contact: { phone: "027 50069", address: "Slip, Bantry, Co. Cork" }
+    contact: { phone: "027 50069", address: "Slip, Bantry, Co. Cork" },
+    checked: "4 Sep 2026"
   },
   {
     id: "clon-frc",
@@ -418,7 +443,8 @@ const ENTRIES = [
     blurb: "Community hub and family resource centre.",
     details: [],
     referral: "Drop in or contact directly.",
-    contact: { phone: "023 883 3702" }
+    contact: { phone: "023 883 3702" },
+    checked: "4 Sep 2026"
   },
   {
     id: "haven-castletownbere",
@@ -428,7 +454,8 @@ const ENTRIES = [
     blurb: "Community hub and family resource centre, Castletownbere.",
     details: [],
     referral: "Drop in or contact directly.",
-    contact: { phone: "027 70718" }
+    contact: { phone: "027 70718" },
+    checked: "4 Sep 2026"
   },
   {
     id: "co-action",
@@ -438,7 +465,8 @@ const ENTRIES = [
     blurb: "Disability and family support services across West Cork.",
     details: ["Serves Bantry, Castletownbere, Clonakilty, and Dunmanway."],
     referral: "Contact directly.",
-    contact: { phone: "Bantry 027 50114 / Castletownbere 027 70835" }
+    contact: { phone: "Bantry 027 50114 / Castletownbere 027 70835" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cork-arc-westcork",
@@ -448,7 +476,8 @@ const ENTRIES = [
     blurb: "Cancer support services, including for gynaecological cancers.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "027 53891" }
+    contact: { phone: "027 53891" },
+    checked: "4 Sep 2026"
   },
   {
     id: "wellbeing-network-wc",
@@ -458,7 +487,8 @@ const ENTRIES = [
     blurb: "Directory of local classes and groups by catchment area.",
     details: ["Covers Beara, Bantry, Clonakilty, Dunmanway/Drimoleague, Mizen, Rosscarbery, Skibbereen."],
     referral: "Browse directly.",
-    contact: { web: "thewellbeingnetwork.ie/westcork" }
+    contact: { web: "thewellbeingnetwork.ie/westcork" },
+    checked: "4 Sep 2026"
   },
 
   // National specialty pathways, added Sep 2026. Sourced from the National
@@ -475,12 +505,13 @@ const ENTRIES = [
       "For complex/severe cases referred on from a regional centre — not a first stop for a new diagnosis.",
     ],
     referral: "GP → regional centre → supra-regional referral if complex.",
-    contact: { address: "Lee Clinic, CUMH, Wilton, Cork" },
+    contact: { address: "Lee Clinic, Lee Road, Mount Desert, Cork, T23 KV2K" },
     resources: [
       { label: "Endometriosis — patient.info", url: "https://patient.info/womens-health/pelvic-pain-in-women/endometriosis" },
       { label: "Fibroids — patient.info", url: "https://patient.info/womens-health/periods-and-period-problems/fibroids" },
       { label: "Adenomyosis — patient.info", url: "https://patient.info/features/womens-health/is-adenomyosis-the-cause-of-your-heavy-painful-periods" }
-    ]
+    ],
+    checked: "4 Sep 2026"
   },
   {
     id: "tallaght-endo-centre",
@@ -490,7 +521,8 @@ const ENTRIES = [
     blurb: "The other supra-regional centre for complex (Stage 4) endometriosis care, alongside CUMH.",
     details: ["For complex/severe cases referred on from a regional centre — not a first stop for a new diagnosis."],
     referral: "GP → regional centre → supra-regional referral if complex.",
-    contact: { web: "hse.ie" }
+    contact: { web: "hse.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rotunda-endo",
@@ -500,7 +532,8 @@ const ENTRIES = [
     blurb: "Established regional specialist centre for moderate endometriosis care.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 873 0596", web: "rotunda.ie" }
+    contact: { phone: "01 873 0596", web: "rotunda.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "coombe-endo",
@@ -510,7 +543,8 @@ const ENTRIES = [
     blurb: "Established regional specialist centre for moderate endometriosis care.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 408 5200", address: "Cork Street, Dublin D08 XW7X" }
+    contact: { phone: "01 408 5200", address: "Cork Street, Dublin D08 XW7X" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhl-endo",
@@ -520,7 +554,8 @@ const ENTRIES = [
     blurb: "Established regional specialist centre for moderate endometriosis care.",
     details: [],
     referral: "GP referral.",
-    contact: { web: "hse.ie" }
+    contact: { web: "hse.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhg-endo",
@@ -530,7 +565,8 @@ const ENTRIES = [
     blurb: "Regional endometriosis centre in development under the National Endometriosis Framework — may not be fully operational yet.",
     details: [],
     referral: "GP referral — ask whether the service is live yet.",
-    contact: { phone: "091 524 222" }
+    contact: { phone: "091 524 222" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nmh-endo",
@@ -540,7 +576,8 @@ const ENTRIES = [
     blurb: "Regional endometriosis centre in development under the National Endometriosis Framework — may not be fully operational yet. NMH also takes wider gynaecology referrals from Wicklow and the south-east.",
     details: [],
     referral: "GP referral — ask whether the service is live yet.",
-    contact: { phone: "01 637 3100" }
+    contact: { phone: "01 637 3100" },
+    checked: "4 Sep 2026"
   },
   {
     id: "tallaght-emergency-gynae",
@@ -564,7 +601,8 @@ const ENTRIES = [
       "HRT is VAT-free and free of charge under the HRT scheme (from June 2025).",
     ],
     referral: "GP/consultant/ANP referral.",
-    contact: { address: "Unit 3, CUMH Kinsale Road, South Ring Business Park, Cork" }
+    contact: { address: "Unit 3, CUMH Kinsale Road, South Ring Business Park, Cork" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nmh-menopause",
@@ -578,7 +616,8 @@ const ENTRIES = [
     resources: [
       { label: "Menopause — patient.info", url: "https://patient.info/womens-health/menopause" },
       { label: "HRT — patient.info", url: "https://patient.info/womens-health/menopause/hormone-replacement-therapy-hrt" }
-    ]
+    ],
+    checked: "4 Sep 2026"
   },
   {
     id: "rotunda-menopause",
@@ -588,7 +627,8 @@ const ENTRIES = [
     blurb: "Clinical lead Dr Caoimhe Hartley.",
     details: [],
     referral: "GP/consultant/ANP referral.",
-    contact: { phone: "01 873 0596", web: "rotunda.ie" }
+    contact: { phone: "01 873 0596", web: "rotunda.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "coombe-menopause",
@@ -598,7 +638,8 @@ const ENTRIES = [
     blurb: "One of six HSE specialist complex-menopause clinics nationally.",
     details: [],
     referral: "GP/consultant/ANP referral.",
-    contact: { phone: "01 408 5200" }
+    contact: { phone: "01 408 5200" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhg-menopause",
@@ -608,7 +649,8 @@ const ENTRIES = [
     blurb: "Runs one afternoon a week.",
     details: [],
     referral: "GP/consultant/ANP referral.",
-    contact: { phone: "091 524 222" }
+    contact: { phone: "091 524 222" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nenagh-menopause",
@@ -618,7 +660,8 @@ const ENTRIES = [
     blurb: "One of six HSE specialist complex-menopause clinics nationally.",
     details: [],
     referral: "GP/consultant/ANP referral.",
-    contact: { web: "hse.ie" }
+    contact: { web: "hse.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "the-menopause-hub",
@@ -634,7 +677,8 @@ const ENTRIES = [
       "Virtual consultations also available.",
     ],
     referral: "Self-referral, book online or by phone.",
-    contact: { phone: "01 210 7948 (Mount Merrion) / 01 485 3066 (Santry) / 021 242 7122 (Cork)", email: "info@themenopausehub.ie", web: "themenopausehub.ie" }
+    contact: { phone: "01 210 7948 (Mount Merrion) / 01 485 3066 (Santry)", email: "info@themenopausehub.ie", web: "themenopausehub.ie" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Private sector: Bon Secours, Mater Private, Beacon ----
@@ -658,7 +702,8 @@ const ENTRIES = [
       "Direct settlement with all main health insurers; self-pay options available — ask the hospital for a quote.",
     ],
     referral: "GP or specialist referral required, sent via Healthlink. Not self-referral.",
-    contact: { phone: "021 4542807", email: "info@bonsecours.ie", web: "bonsecours.ie/services/gynaecology" }
+    contact: { phone: "021 4542807", email: "info@bonsecours.ie", web: "bonsecours.ie/services/gynaecology" },
+    checked: "4 Sep 2026"
   },
   {
     id: "bons-menopause-cork",
@@ -674,7 +719,8 @@ const ENTRIES = [
       "Direct settlement with all main insurers; self-pay available.",
     ],
     referral: "GP or specialist referral via Healthlink.",
-    contact: { phone: "085 864 5371", email: "BSCMenopauseCare@bonsecours.ie", web: "bonsecours.ie/services/womens-health", address: "Bon Secours Hospital, Western Road Entrance, Cork, T12 DV56" }
+    contact: { phone: "085 864 5371", email: "BSCMenopauseCare@bonsecours.ie", web: "bonsecours.ie/services/womens-health", address: "Bon Secours Hospital, Western Road Entrance, Cork, T12 DV56" },
+    checked: "4 Sep 2026"
   },
   {
     id: "bons-breast-cork",
@@ -691,7 +737,8 @@ const ENTRIES = [
       "Located on the 3rd floor of the hospital; check in with the receptionist on arrival.",
     ],
     referral: "GP referral to the breast clinic, under NCCP guidelines.",
-    contact: { phone: "021 494 1910", email: "breastcarecentre@bonsecours.ie", address: "Bon Secours Hospital, Western Road Entrance, Cork, T12 DV56" }
+    contact: { phone: "021 494 1910", email: "breastcarecentre@bonsecours.ie", address: "Bon Secours Hospital, Western Road Entrance, Cork, T12 DV56" },
+    checked: "4 Sep 2026"
   },
   {
     id: "bons-breast-limerick",
@@ -709,7 +756,8 @@ const ENTRIES = [
       "Onward referral to medical and radiation oncology can be arranged.",
     ],
     referral: "GP referral via Healthlink. Urgent symptoms are offered a triple assessment appointment under NCCP 2021 guidelines.",
-    contact: { phone: "061 426100", email: "bslinfo@bonsecours.ie", address: "Towlerton, Ballysimon, Limerick, V94 9D36" }
+    contact: { phone: "061 426100", email: "bslinfo@bonsecours.ie", address: "Towlerton, Ballysimon, Limerick, V94 9D36" },
+    checked: "4 Sep 2026"
   },
   {
     id: "bons-pelvic-health",
@@ -727,7 +775,8 @@ const ENTRIES = [
       "No direct phone published for this clinic specifically — use the relevant hospital's main number.",
     ],
     referral: "GP or specialist referral via Healthlink.",
-    contact: { web: "bonsecours.ie/services/womens-health" }
+    contact: { web: "bonsecours.ie/services/womens-health" },
+    checked: "4 Sep 2026"
   },
   {
     id: "bons-hysteroscopy-dublin",
@@ -743,7 +792,8 @@ const ENTRIES = [
       "Direct settlement with all main insurers; self-pay available.",
     ],
     referral: "GP or specialist referral via Healthlink.",
-    contact: { phone: "01 806 5300", email: "drbarryappointments@outlook.com", address: "Glasnevin Hill, Glasnevin, Dublin 9, D09 YN97" }
+    contact: { phone: "01 806 5300", email: "drbarryappointments@outlook.com", address: "Glasnevin Hill, Glasnevin, Dublin 9, D09 YN97" },
+    checked: "4 Sep 2026"
   },
   {
     id: "bons-dexa",
@@ -759,7 +809,8 @@ const ENTRIES = [
       "Contact the individual hospital to arrange — numbers are on the Bon Secours contact page.",
     ],
     referral: "GP or specialist referral via Healthlink.",
-    contact: { web: "bonsecours.ie/services/womens-health" }
+    contact: { web: "bonsecours.ie/services/womens-health" },
+    checked: "4 Sep 2026"
   },
   {
     id: "materprivate-womens-centre-cork",
@@ -776,7 +827,8 @@ const ENTRIES = [
       "Onward referral within the Mater Private network for cardiology, pelvic health, gastroenterology, colorectal, general surgery and rheumatology.",
     ],
     referral: "Referral required — GP or specialist, sent to ereferralscork@materprivate.ie or via Healthlink.",
-    contact: { phone: "021 601 3200", email: "ereferralscork@materprivate.ie", web: "materprivate.ie/our-services/womens-health", address: "Mater Private Network, Citygate, Mahon, Cork, T12 K199" }
+    contact: { phone: "021 601 3200", email: "ereferralscork@materprivate.ie", web: "materprivate.ie/our-services/womens-health", address: "Mater Private Network, Citygate, Mahon, Cork, T12 K199" },
+    checked: "4 Sep 2026"
   },
   {
     id: "materprivate-menopause-cork",
@@ -794,7 +846,8 @@ const ENTRIES = [
       "Bring copies of any recent blood, breast, endocrine, cardiac or gynaecological tests, and a GP summary if your history is complex.",
     ],
     referral: "Referral required — GP or specialist, to ereferralscork@materprivate.ie or via Healthlink.",
-    contact: { phone: "021 601 3200", email: "ereferralscork@materprivate.ie", web: "materprivate.ie/our-services/womens-health/menopause-clinic", address: "Mater Private Network, Citygate, Mahon, Cork, T12 K199" }
+    contact: { phone: "021 601 3200", email: "ereferralscork@materprivate.ie", web: "materprivate.ie/our-services/womens-health/menopause-clinic", address: "Mater Private Network, Citygate, Mahon, Cork, T12 K199" },
+    checked: "4 Sep 2026"
   },
   {
     id: "materprivate-breast-dublin",
@@ -811,7 +864,8 @@ const ENTRIES = [
       "A referral letter is required before an appointment can be confirmed.",
     ],
     referral: "Referral letter required before an appointment is confirmed. GP/specialist referral to ereferrals@materprivate.ie or via Healthlink.",
-    contact: { phone: "1800 123 456", email: "ereferrals@materprivate.ie", web: "materprivate.ie/our-services/womens-health/breast-surgery", address: "Cancer Centre, Mater Private Network, Eccles Street, Dublin 7, D07 WKW8", extra: "From outside Ireland: +353 (0)51 595 110" }
+    contact: { phone: "1800 123 456", email: "ereferrals@materprivate.ie", web: "materprivate.ie/our-services/general-surgery/breast-surgery", address: "Cancer Centre, Mater Private Network, Eccles Street, Dublin 7, D07 WKW8" },
+    checked: "4 Sep 2026"
   },
   {
     id: "beacon-womens-centre",
@@ -831,7 +885,8 @@ const ENTRIES = [
       "The site doesn't state whether self-referral is accepted or a GP letter is required — phone ahead to check.",
     ],
     referral: "Phone ahead to check — not stated whether self-referral is accepted.",
-    contact: { phone: "01 293 8684", email: "womenscentre@beaconhospital.ie", web: "beaconhospital.ie/department-service/womens-centre/", address: "Beacon Hospital, Sandyford, Dublin 18, D18 AK68", extra: "Fax: 01 293 8641" }
+    contact: { phone: "01 293 8684", email: "womenscentre@beaconhospital.ie", web: "beaconhospital.ie/department-service/womens-centre/", address: "Beacon Hospital, Sandyford, Dublin 18, D18 AK68", extra: "Fax: 01 293 8641" },
+    checked: "4 Sep 2026"
   },
   {
     id: "beacon-breast-centre",
@@ -846,7 +901,8 @@ const ENTRIES = [
       "Main hospital switchboard: 01 293 6600.",
     ],
     referral: "Not confirmed — phone ahead.",
-    contact: { phone: "01 293 8686", web: "beaconhospital.ie/contact/", address: "Beacon Hospital, Sandyford, Dublin 18, D18 AK68", extra: "Fax: 01 293 8641" }
+    contact: { phone: "01 293 8686", web: "beaconhospital.ie/department-service/breast-centre/", address: "Beacon Hospital, Sandyford, Dublin 18, D18 AK68" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Private sector, continued: Blackrock Health, Kingsbridge/Ulster
@@ -868,7 +924,8 @@ const ENTRIES = [
       "Located at 2-5 Warrington Place, Dublin 2 — separate from the main Blackrock Clinic site.",
     ],
     referral: "GP or consultant referral letter required.",
-    contact: { phone: "01 578 4414", email: "WomensHealthCentre@blackrockhealth.com", web: "blackrockhealth.com/womens-health-centre", address: "2-5 Warrington Place, Dublin 2" }
+    contact: { phone: "01 578 4414", email: "WomensHealthCentre@blackrockhealth.com", web: "blackrockhealth.com/womens-health-centre", address: "2-5 Warrington Place, Dublin 2" },
+    checked: "4 Sep 2026"
   },
   {
     id: "galway-clinic-gynae",
@@ -883,7 +940,8 @@ const ENTRIES = [
       "Number below is the clinic's general switchboard — ask to be directed to gynaecology or a named consultant.",
     ],
     referral: "GP or consultant referral letter required.",
-    contact: { phone: "091 785 000", web: "galwayclinic.com", address: "Doughiska, Galway, H91 HHT0" }
+    contact: { phone: "091 785 000", web: "galwayclinic.com", address: "Doughiska, Galway, H91 HHT0" },
+    checked: "4 Sep 2026"
   },
   {
     id: "hermitage-clinic-gynae",
@@ -895,7 +953,8 @@ const ENTRIES = [
     blurb: "Private gynaecology at the Hermitage Clinic, part of Blackrock Health.",
     details: [],
     referral: "GP or consultant referral letter required.",
-    contact: { phone: "01 645 9171", email: "info@hermitageclinic.ie", address: "Old Lucan Road, Dublin 20" }
+    contact: { phone: "01 645 9000", email: "info@hermitageclinic.ie", address: "Old Lucan Road, Dublin 20" },
+    checked: "4 Sep 2026"
   },
   {
     id: "kingsbridge-womens-health",
@@ -910,7 +969,8 @@ const ENTRIES = [
       "Phone lines: Mon–Fri 9am–5pm, Sat 9am–3pm. A contact form is available outside those hours.",
     ],
     referral: "Self-referral or GP referral — check current policy when booking.",
-    contact: { phone: "028 9066 7878", email: "info@kingsbridgeprivatehospital.com", web: "kingsbridgeprivatehospital.com/services/womens-health/", address: "801-815 Lisburn Road, Belfast BT9 7GX" }
+    contact: { phone: "028 9066 7878", email: "info@kingsbridgeprivatehospital.com", web: "kingsbridgeprivatehospital.com/services/womens-health/", address: "801-815 Lisburn Road, Belfast BT9 7GX" },
+    checked: "4 Sep 2026"
   },
   {
     id: "ulster-independent-gynae",
@@ -925,7 +985,8 @@ const ENTRIES = [
       "Also runs a dedicated Pelvic Health Physiotherapy service — see the separate entry under Pelvic Health.",
     ],
     referral: "GP or consultant referral — check current policy when booking.",
-    contact: { phone: "028 9066 1212", email: "info@uic.org", web: "ulsterindependentclinic.com/services/gynaecology", address: "245 Stranmillis Road, Belfast BT9 5JH" }
+    contact: { phone: "028 9066 1212", email: "info@uic.org", web: "ulsterindependentclinic.com/services/gynaecology", address: "245 Stranmillis Road, Belfast BT9 5JH" },
+    checked: "4 Sep 2026"
   },
   {
     id: "ulster-independent-pelvic-physio",
@@ -937,7 +998,8 @@ const ENTRIES = [
     blurb: "Private pelvic health physiotherapy in Belfast, alongside the clinic's gynaecology service.",
     details: ["One of very few private pelvic health physio options in Northern Ireland listed with a public contact."],
     referral: "Self-referral or GP referral — check current policy when booking.",
-    contact: { phone: "028 9066 1212", email: "info@uic.org", web: "ulsterindependentclinic.com/services/pelvic-health", address: "245 Stranmillis Road, Belfast BT9 5JH" }
+    contact: { phone: "028 9066 1212", email: "info@uic.org", web: "ulsterindependentclinic.com/services/pelvic-ealth", address: "245 Stranmillis Road, Belfast BT9 5JH" },
+    checked: "4 Sep 2026"
   },
   {
     id: "upmc-autheven-womens-health",
@@ -953,7 +1015,8 @@ const ENTRIES = [
       "The only private women's health option covering the south-east border counties (Kilkenny, Carlow, south Laois/Tipperary).",
     ],
     referral: "GP referral.",
-    contact: { phone: "056 777 5275", web: "upmc.ie/services/womens-health", address: "Freshford Road, Kilkenny, R95 D370" }
+    contact: { phone: "056 777 5275", web: "upmc.ie/services/womens-health", address: "Freshford Road, Kilkenny, R95 D370" },
+    checked: "4 Sep 2026"
   },
 
   {
@@ -967,7 +1030,8 @@ const ENTRIES = [
       "The Cork hub gained HPRA licensing for IUI in 2025; IUI referrals began December 2025.",
     ],
     referral: "GP referral to the hub.",
-    contact: { address: "Lee Road Clinic, Cork" }
+    contact: { address: "Lee Road Clinic, Cork" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rotunda-fertility",
@@ -977,7 +1041,8 @@ const ENTRIES = [
     blurb: "One of six HSE Regional Fertility Hubs. Around 125 couples/month are referred nationally for publicly-funded AHR.",
     details: [],
     referral: "GP referral to the hub.",
-    contact: { phone: "01 873 0596", web: "rotunda.ie" }
+    contact: { phone: "01 873 0596", web: "rotunda.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nmh-fertility",
@@ -987,7 +1052,8 @@ const ENTRIES = [
     blurb: "One of six HSE Regional Fertility Hubs.",
     details: [],
     referral: "GP referral to the hub.",
-    contact: { phone: "01 637 3100" }
+    contact: { phone: "01 637 3100" },
+    checked: "4 Sep 2026"
   },
   {
     id: "coombe-fertility",
@@ -997,7 +1063,8 @@ const ENTRIES = [
     blurb: "One of six HSE Regional Fertility Hubs.",
     details: [],
     referral: "GP referral to the hub.",
-    contact: { phone: "01 408 5200" }
+    contact: { phone: "01 408 5200" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhg-fertility",
@@ -1007,7 +1074,8 @@ const ENTRIES = [
     blurb: "One of six HSE Regional Fertility Hubs.",
     details: [],
     referral: "GP referral to the hub.",
-    contact: { phone: "091 524 222" }
+    contact: { phone: "091 524 222" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nenagh-fertility",
@@ -1017,7 +1085,8 @@ const ENTRIES = [
     blurb: "One of six HSE Regional Fertility Hubs.",
     details: [],
     referral: "GP referral to the hub.",
-    contact: { web: "hse.ie" }
+    contact: { web: "hse.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "hse-approved-ahr-clinics",
@@ -1034,7 +1103,8 @@ const ENTRIES = [
       "Waterstone Clinic (Cork; satellites Kildare, Waterford).",
     ],
     referral: "Referred on by your Regional Fertility Hub.",
-    contact: { web: "citizensinformation.ie/en/health/health-services/reproductive-health/hse-assisted-human-reproduction-ahr-services/" }
+    contact: { web: "citizensinformation.ie/en/health/health-services/reproductive-health/hse-assisted-human-reproduction-ahr-services/" },
+    checked: "4 Sep 2026"
   },
   {
     id: "national-eating-disorders",
@@ -1047,7 +1117,8 @@ const ENTRIES = [
       "See the Support & advocacy organisations list on the 'Know your rights' page for Bodywhys' helpline and peer support groups.",
     ],
     referral: "GP referral.",
-    contact: { web: "hse.ie" }
+    contact: { web: "hse.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "national-contraception-scheme",
@@ -1060,7 +1131,8 @@ const ENTRIES = [
       "Emergency contraception is also available without a prescription from participating pharmacies.",
     ],
     referral: "Register with a participating GP or family planning clinic.",
-    contact: { web: "hse.ie" }
+    contact: { web: "hse.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "my-options",
@@ -1070,7 +1142,8 @@ const ENTRIES = [
     blurb: "Free, confidential HSE phone line for advice on an unplanned pregnancy — options counselling and information.",
     details: ["Not a booking line for a termination — an information and counselling service."],
     referral: "Self-referral, phone directly.",
-    contact: { phone: "1800 828 010", web: "myoptions.ie" }
+    contact: { phone: "1800 828 010", web: "myoptions.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "breastcheck",
@@ -1080,7 +1153,8 @@ const ENTRIES = [
     blurb: "Free breast screening (mammogram) for eligible women, run by the National Screening Service.",
     details: ["Screening reminders are also visible in the HSE Health App."],
     referral: "Automatic invitation by eligible age band, or self-register if not yet invited.",
-    contact: { web: "breastcheck.ie" }
+    contact: { web: "breastcheck.ie" },
+    checked: "4 Sep 2026"
   },
 
   // Crisis, neurodiversity, parenting, and infertility — added Sep 2026 in
@@ -1094,7 +1168,8 @@ const ENTRIES = [
     blurb: "Free, confidential, 24/7 emotional support — for any kind of distress, not just suicide risk.",
     details: ["Same freephone number across Ireland and Northern Ireland.", "Also available by email if you'd rather write than talk."],
     referral: "Self-referral, phone any time.",
-    contact: { phone: "116 123", email: "jo@samaritans.ie", web: "samaritans.org" }
+    contact: { phone: "116 123", email: "jo@samaritans.ie", web: "samaritans.org" },
+    checked: "4 Sep 2026"
   },
   {
     id: "text-50808",
@@ -1104,7 +1179,8 @@ const ENTRIES = [
     blurb: "Free, 24/7 HSE-funded crisis text line — text HELLO to start.",
     details: ["A trained crisis volunteer texts back and forth with you in real time.", "Good option if a phone call isn't possible or feels like too much."],
     referral: "Self-referral — text HELLO to 50808.",
-    contact: { phone: "Text HELLO to 50808", web: "text50808.ie" }
+    contact: { phone: "Text HELLO to 50808", web: "textaboutit.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "pieta",
@@ -1114,7 +1190,8 @@ const ENTRIES = [
     blurb: "Free 24/7 helpline and therapy specifically for suicidal ideation, self-harm, and bereavement by suicide.",
     details: ["Also runs a text service: text HELP to 51444."],
     referral: "Self-referral, phone or text any time.",
-    contact: { phone: "1800 247 247", web: "pieta.ie" }
+    contact: { phone: "1800 247 247", web: "pieta.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "lifeline-ni",
@@ -1124,7 +1201,8 @@ const ENTRIES = [
     blurb: "Northern Ireland's 24/7 regional crisis response helpline — trauma, suicide, self-harm, abuse.",
     details: ["Free from NI landlines and mobiles.", "Can arrange a face-to-face follow-up appointment locally where appropriate."],
     referral: "Self-referral, phone any time.",
-    contact: { phone: "0808 808 8000", web: "lifelinehelpline.info" }
+    contact: { phone: "0808 808 8000", web: "lifelinehelpline.info" },
+    checked: "4 Sep 2026"
   },
   {
     id: "emergency-mh",
@@ -1134,7 +1212,8 @@ const ENTRIES = [
     blurb: "If you or someone else is in immediate physical danger, this overrides everything else on this page.",
     details: ["Both 999 and 112 work across Ireland and Northern Ireland — use whichever you remember.", "Or go directly to your nearest Emergency Department / A&E."],
     referral: "Emergency — no referral needed.",
-    contact: { phone: "999 / 112" }
+    contact: { phone: "999 / 112" },
+    checked: "4 Sep 2026"
   },
   {
     id: "asiam",
@@ -1144,7 +1223,8 @@ const ENTRIES = [
     blurb: "Ireland's autism charity, autistic-led — information, a legal clinic, and support for newly-diagnosed families.",
     details: ["Runs support programmes for parents of recently-diagnosed children and for autistic teenagers."],
     referral: "Self-referral via website.",
-    contact: { web: "asiam.ie" }
+    contact: { web: "asiam.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "adhd-ireland",
@@ -1154,7 +1234,8 @@ const ENTRIES = [
     blurb: "Information, helpline, and networking for people with ADHD, parents, and professionals.",
     details: ["Also runs an ADHD School Friendly Programme for teachers and schools."],
     referral: "Self-referral, phone or email helpline.",
-    contact: { web: "adhdireland.ie" }
+    contact: { web: "adhdireland.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "aspire-ireland",
@@ -1164,7 +1245,8 @@ const ENTRIES = [
     blurb: "Information and support across autism, ADHD, and AuDHD (overlapping autism + ADHD) more broadly.",
     details: [],
     referral: "Self-referral via website.",
-    contact: { web: "aspireireland.ie" }
+    contact: { web: "aspireireland.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "hse-assessment-of-need",
@@ -1174,7 +1256,8 @@ const ENTRIES = [
     blurb: "The statutory pathway for a child's autism/disability assessment under the Disability Act.",
     details: ["Waiting times nationally are long — this is a known, acknowledged system limitation, not a reflection of your case's urgency.", "Adult diagnosis is a separate, less standardised pathway — see AsIAm's adult diagnosis guidance."],
     referral: "Apply via your local Children's Disability Network Team (CDNT).",
-    contact: { web: "hse.ie" }
+    contact: { web: "hse.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cuidiu",
@@ -1184,7 +1267,8 @@ const ENTRIES = [
     blurb: "Volunteer-led parent-to-parent support: antenatal classes, breastfeeding support, and postnatal depression peer support.",
     details: ["Local branches nationwide — check the website for your area."],
     referral: "Self-referral via website.",
-    contact: { web: "cuidiu.ie" }
+    contact: { web: "cuidiu.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nurture-pnd",
@@ -1194,7 +1278,8 @@ const ENTRIES = [
     blurb: "Support and counselling specifically around pregnancy, birth, and postnatal depression.",
     details: [],
     referral: "Self-referral via website.",
-    contact: { web: "nurturecharity.org" }
+    contact: { web: "nurturehealth.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "treoir",
@@ -1204,7 +1289,8 @@ const ENTRIES = [
     blurb: "Free, confidential information for parents who are not married to or living with each other — legal, social welfare, and parenting questions.",
     details: [],
     referral: "Self-referral via website.",
-    contact: { web: "treoir.ie" }
+    contact: { web: "treoir.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nisig",
@@ -1214,7 +1300,8 @@ const ENTRIES = [
     blurb: "Peer support and information for anyone experiencing infertility, alongside the clinical AHR pathway.",
     details: [],
     referral: "Self-referral via website.",
-    contact: { web: "nisig.ie" }
+    contact: { web: "nisig.ie" },
+    checked: "4 Sep 2026"
   },
 
   // ==========================================================================
@@ -1237,7 +1324,8 @@ const ENTRIES = [
     blurb: "Maternity unit alongside a midwifery-led unit — Cavan is described as the main hospital for Cavan and Monaghan (and nearby border areas of Leitrim, Longford and Meath, though those counties have their own closer anchor hospitals covered elsewhere on this site).",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "049 437 6613", address: "Lisdaran, Cavan" }
+    contact: { phone: "049 437 6613", address: "Lisdaran, Cavan" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cavan-gynae",
@@ -1258,7 +1346,8 @@ const ENTRIES = [
     blurb: "The maternity unit for Co. Donegal.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "074 912 5888", address: "Kilmacrennan Rd, Letterkenny F92 AE81" }
+    contact: { phone: "074 912 5888", address: "Kilmacrennan Rd, Letterkenny F92 AE81" },
+    checked: "4 Sep 2026"
   },
   {
     id: "letterkenny-gynae",
@@ -1279,7 +1368,8 @@ const ENTRIES = [
     blurb: "One of three Dublin maternity hospitals — also a maternity option for Kildare, which has no maternity unit of its own (Naas General doesn't run one).",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "01 408 5200", email: "patientadvocacy@coombe.ie", address: "Cork Street, Dublin D08 XW7X" }
+    contact: { phone: "01 408 5200", email: "patientadvocacy@coombe.ie", address: "Cork Street, Dublin D08 XW7X" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nmh-maternity",
@@ -1289,7 +1379,8 @@ const ENTRIES = [
     blurb: "One of three Dublin maternity hospitals — also a maternity option for Kildare and Wicklow, neither of which has a maternity unit of its own.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "01 637 3100", address: "Holles St, Dublin D02 YH21" }
+    contact: { phone: "01 637 3100", address: "Holles St, Dublin D02 YH21" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rotunda-maternity",
@@ -1299,7 +1390,8 @@ const ENTRIES = [
     blurb: "One of three Dublin maternity hospitals — also a maternity option for Kildare, which has no maternity unit of its own.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "01 873 0596", address: "Parnell Square East, Dublin D01 P5W9", web: "rotunda.ie" }
+    contact: { phone: "01 817 1700", web: "rotunda.ie", address: "Parnell Square East, Dublin D01 P5W9" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhg-maternity",
@@ -1309,7 +1401,8 @@ const ENTRIES = [
     blurb: "The maternity unit for Galway city and much of the west.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "091 524 222", address: "Newcastle Rd, Galway H91 YR71" }
+    contact: { phone: "091 524 222", address: "Newcastle Rd, Galway H91 YR71" },
+    checked: "4 Sep 2026"
   },
   {
     id: "portiuncula-maternity",
@@ -1319,7 +1412,8 @@ const ENTRIES = [
     blurb: "Maternity unit serving east Galway and surrounding areas — also the real catchment hospital for Roscommon, which has had no maternity department of its own since 1978.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "090 9648200", email: "info.portiuncula@hse.ie", address: "Ballinasloe, Co. Galway H53 T971" }
+    contact: { phone: "090 9648200", email: "info.portiuncula@hse.ie", address: "Ballinasloe, Co. Galway H53 T971" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhk-maternity",
@@ -1329,7 +1423,8 @@ const ENTRIES = [
     blurb: "The maternity unit for Co. Kerry.",
     details: ["Maternity Emergency Service: 066 718 4324."],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "066 718 4000", address: "Tralee, Co. Kerry V92 NX94" }
+    contact: { phone: "066 718 4000", address: "Tralee, Co. Kerry V92 NX94" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhk-gynae",
@@ -1350,7 +1445,8 @@ const ENTRIES = [
     blurb: "The maternity unit for Co. Kilkenny.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "056 778 5000", address: "Freshford Rd, Kilkenny R95 FY71" }
+    contact: { phone: "056 778 5000", address: "Freshford Rd, Kilkenny R95 FY71" },
+    checked: "4 Sep 2026"
   },
   {
     id: "portlaoise-maternity",
@@ -1360,7 +1456,8 @@ const ENTRIES = [
     blurb: "The maternity unit for Co. Laois.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "057 869 6481" }
+    contact: { phone: "057 869 6481" },
+    checked: "4 Sep 2026"
   },
   {
     id: "limerick-maternity",
@@ -1370,7 +1467,8 @@ const ENTRIES = [
     blurb: "The maternity unit for the Mid-West.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "061 483 129", address: "Ennis Road, Limerick V94 C566" }
+    contact: { phone: "061 483 129", address: "Ennis Road, Limerick V94 C566" },
+    checked: "4 Sep 2026"
   },
   {
     id: "drogheda-maternity",
@@ -1402,7 +1500,8 @@ const ENTRIES = [
     blurb: "The maternity unit for Co. Mayo.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "094 9021733", address: "Westport Rd, Castlebar" }
+    contact: { phone: "094 9021733", address: "Westport Rd, Castlebar" },
+    checked: "4 Sep 2026"
   },
   {
     id: "mayo-gynae",
@@ -1423,7 +1522,8 @@ const ENTRIES = [
     blurb: "The maternity unit for the northwest — catchment explicitly includes Sligo, Leitrim, south Donegal and west Cavan.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "071 917 1111", address: "The Mall, Sligo F91 H684" }
+    contact: { phone: "071 917 1111", address: "The Mall, Sligo F91 H684" },
+    checked: "4 Sep 2026"
   },
   {
     id: "sligo-gynae",
@@ -1444,7 +1544,8 @@ const ENTRIES = [
     blurb: "The maternity unit for Co. Tipperary, based in Clonmel.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "052 617 7000" }
+    contact: { phone: "052 617 7000" },
+    checked: "4 Sep 2026"
   },
   {
     id: "tipperary-gynae",
@@ -1465,7 +1566,8 @@ const ENTRIES = [
     blurb: "The maternity unit for the southeast.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "051 848 000", address: "Dunmore Road, Waterford X91 ER8E" }
+    contact: { phone: "051 848 000", address: "Dunmore Road, Waterford X91 ER8E" },
+    checked: "4 Sep 2026"
   },
   {
     id: "mullingar-maternity",
@@ -1475,7 +1577,8 @@ const ENTRIES = [
     blurb: "The maternity unit for Co. Westmeath — confirmed as also serving Co. Longford, which has no maternity unit of its own.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "044 934 0221", address: "Co. Westmeath N91 NA43" }
+    contact: { phone: "044 934 0221", address: "Co. Westmeath N91 NA43" },
+    checked: "4 Sep 2026"
   },
   {
     id: "mullingar-gynae",
@@ -1496,7 +1599,8 @@ const ENTRIES = [
     blurb: "The maternity unit for Co. Wexford.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "053 915 3000", address: "Newtown Rd, Wexford Y35 Y17D" }
+    contact: { phone: "053 915 3000", address: "Newtown Rd, Wexford Y35 Y17D" },
+    checked: "4 Sep 2026"
   },
   {
     id: "wexford-gynae",
@@ -1551,7 +1655,8 @@ const ENTRIES = [
     blurb: "Antrim Area Hospital maternity unit. Causeway Maternity Hub in Coleraine no longer delivers births (closed July 2023).",
     details: [],
     referral: "Self-referral form on northerntrust.hscni.net.",
-    contact: { address: "Bretten Hall, Bush Road, Antrim BT41 2RL" }
+    contact: { phone: "028 9442 4000", address: "Bretten Hall, Bush Road, Antrim BT41 2RL" },
+    checked: "4 Sep 2026"
   },
   {
     id: "se-trust-maternity",
@@ -1561,7 +1666,8 @@ const ENTRIES = [
     blurb: "Ulster Hospital delivery suite plus a 'Home from Home' alongside midwifery-led unit. Downe and Lagan Valley units no longer deliver births (antenatal care continues).",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "028 9056 1364", email: "Maternity.Reception@setrust.hscni.net" }
+    contact: { phone: "028 9056 1364", email: "Maternity.Reception@setrust.hscni.net" },
+    checked: "4 Sep 2026"
   },
   {
     id: "southern-trust-maternity",
@@ -1571,7 +1677,8 @@ const ENTRIES = [
     blurb: "Craigavon Area Hospital and Daisy Hill Hospital, Newry (~5,100 births/yr). Birth at Home team since 2022.",
     details: [],
     referral: "Self-referral form on southerntrust.hscni.net.",
-    contact: { email: "antenatal.midwives@southerntrust.hscni.net" }
+    contact: { phone: "028 3833 4444", email: "antenatal.midwives@southerntrust.hscni.net" },
+    checked: "4 Sep 2026"
   },
   {
     id: "craigavon-gynae",
@@ -1592,7 +1699,8 @@ const ENTRIES = [
     blurb: "Altnagelvin Hospital (Derry/Londonderry) and South West Acute Hospital (Enniskillen) — the Trust's own assessment unit is named for Omagh, Co. Tyrone, so this already covers the west of the county.",
     details: ["Altnagelvin Maternal & Fetal Assessment Unit: 028 7161 1412.", "SWAH/Omagh Fetal Maternal Assessment (24hr): 028 8283 3100."],
     referral: "Self-referral.",
-    contact: { phone: "028 7134 5171" }
+    contact: { phone: "028 7134 5171" },
+    checked: "4 Sep 2026"
   },
   {
     id: "altnagelvin-gynae",
@@ -1626,7 +1734,8 @@ const ENTRIES = [
     blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
     details: [],
     referral: "GP, midwife, obstetrician, or psychiatrist referral.",
-    contact: { phone: "01 637 3100" }
+    contact: { phone: "01 637 3100" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rotunda-perinatal-mh",
@@ -1636,7 +1745,8 @@ const ENTRIES = [
     blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
     details: [],
     referral: "GP, midwife, obstetrician, or psychiatrist referral.",
-    contact: { phone: "01 873 0596", web: "rotunda.ie" }
+    contact: { phone: "01 817 2541", web: "rotunda.ie/mental-health/" },
+    checked: "4 Sep 2026"
   },
   {
     id: "coombe-perinatal-mh",
@@ -1646,7 +1756,8 @@ const ENTRIES = [
     blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
     details: [],
     referral: "GP, midwife, obstetrician, or psychiatrist referral.",
-    contact: { phone: "01 408 5200" }
+    contact: { phone: "01 408 5569", web: "coombe.ie/specialist-perinatal-mental-health-iris-clinic" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhl-perinatal-mh",
@@ -1656,7 +1767,8 @@ const ENTRIES = [
     blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
     details: [],
     referral: "GP, midwife, obstetrician, or psychiatrist referral.",
-    contact: { phone: "061 483 129" }
+    contact: { phone: "061 483 129" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhg-perinatal-mh",
@@ -1666,7 +1778,8 @@ const ENTRIES = [
     blurb: "One of six national Specialist Perinatal Mental Health hub teams. The other 13 ROI maternity units are 'spoke' sites with a mental-health midwife linked to a hub team.",
     details: [],
     referral: "GP, midwife, obstetrician, or psychiatrist referral.",
-    contact: { phone: "091 524 222" }
+    contact: { phone: "091 524 222" },
+    checked: "4 Sep 2026"
   },
   {
     id: "belfast-perinatal-mh",
@@ -1676,7 +1789,8 @@ const ENTRIES = [
     blurb: "Specialist perinatal MH teams now exist in all five NI Trusts. Note: NI has no dedicated inpatient Mother & Baby Unit — a known, acknowledged gap.",
     details: ["Clinics also at Crumlin Road Health Centre, Woodstock Lodge, and the Royal Jubilee Maternity Hospital."],
     referral: "GP, midwife, or health visitor referral.",
-    contact: { phone: "028 9504 6223", address: "Knockbracken Healthcare Park, Belfast" }
+    contact: { phone: "028 9504 6223", address: "Knockbracken Healthcare Park, Belfast" },
+    checked: "4 Sep 2026"
   },
   {
     id: "southern-perinatal-mh",
@@ -1686,7 +1800,8 @@ const ENTRIES = [
     blurb: "Accepts referrals from 12 weeks' pregnancy to baby's first birthday.",
     details: [],
     referral: "GP, midwife, or health visitor referral.",
-    contact: { phone: "028 3833 4444", extra: "Main hospital switchboard — ask for the Perinatal Mental Health Team." }
+    contact: { phone: "028 3833 4444", extra: "Main hospital switchboard — ask for the Perinatal Mental Health Team." },
+    checked: "4 Sep 2026"
   },
 
   // ---- Domestic & Sexual Violence: 17 ROI Rape Crisis Centres ----
@@ -1698,7 +1813,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 306 600", web: "amrcc.ie" }
+    contact: { phone: "1800 306 600", web: "amrcc.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-carlow",
@@ -1708,7 +1824,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 727 737" }
+    contact: { phone: "1800 727 737", web: "carlow-kildare-slrcc.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-donegal",
@@ -1718,7 +1835,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 448 844", address: "Letterkenny" }
+    contact: { phone: "1800 448 844", web: "donegalrapecrisis.ie", address: "2A Grand Central Canal Road, Letterkenny, Co. Donegal F92 PN40" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-dublin",
@@ -1728,7 +1846,8 @@ const ENTRIES = [
     blurb: "National 24hr helpline.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 778 888", web: "drcc.ie" }
+    contact: { phone: "1800 778 888", web: "drcc.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-northeast",
@@ -1748,7 +1867,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 355 355", web: "galwayrcc.org" }
+    contact: { phone: "1800 355 355", web: "galwayrcc.org" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-kerry",
@@ -1758,7 +1878,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 633 333", web: "krsac.com", address: "Tralee" }
+    contact: { phone: "1800 633 333", web: "krsac.com", address: "Tralee" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-kilkenny",
@@ -1768,7 +1889,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 478 478", web: "kasa.ie" }
+    contact: { phone: "1800 478 478", web: "kasa.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-midwest",
@@ -1778,7 +1900,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 311 511", web: "rapecrisis.ie" }
+    contact: { phone: "1800 311 511", web: "rapecrisis.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-mayo",
@@ -1788,7 +1911,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 234 900", web: "mrcc.ie", address: "Castlebar" }
+    contact: { phone: "1800 234 900", web: "mrcc.ie", address: "Castlebar" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-sligo",
@@ -1798,7 +1922,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 750 780", web: "srcc.ie" }
+    contact: { phone: "1800 750 780", web: "srcc.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-tipperary",
@@ -1808,7 +1933,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 340 340", web: "trcc.ie", address: "Clonmel" }
+    contact: { phone: "1800 340 340", web: "trcc.ie", address: "Clonmel" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-tullamore",
@@ -1818,7 +1944,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 323 232" }
+    contact: { phone: "1800 323 232", web: "tullamorerapecrisis.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-waterford",
@@ -1828,7 +1955,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 296 296", web: "waterfordrsac.ie" }
+    contact: { phone: "1800 296 296", web: "waterfordrsac.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-westcork",
@@ -1838,7 +1966,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 832 001", web: "westcorkwomensproject.ie" }
+    contact: { phone: "1800 832 001", web: "westcorkwomensproject.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rcc-wexford",
@@ -1848,7 +1977,8 @@ const ENTRIES = [
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "1800 33 00 33", web: "wexfordrapecrisis.com" }
+    contact: { phone: "1800 33 00 33", web: "wexfordrapecrisis.com" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Domestic & Sexual Violence: 6 ROI SATUs (Sexual Assault Treatment Units) ----
@@ -1860,7 +1990,8 @@ const ENTRIES = [
     blurb: "Sexual Assault Treatment Unit — forensic and medical care after a recent sexual assault.",
     details: ["Weekdays 8am–4:30pm: 021 492 6297.", "Out-of-hours: 021 492 6100."],
     referral: "Via An Garda Síochána or direct self-referral.",
-    contact: { phone: "021 492 6297" }
+    contact: { phone: "021 492 6297" },
+    checked: "4 Sep 2026"
   },
   {
     id: "satu-donegal",
@@ -1880,7 +2011,8 @@ const ENTRIES = [
     blurb: "Sexual Assault Treatment Unit.",
     details: ["Weekdays 8am–5pm: 01 817 1736.", "Out-of-hours: 01 817 1700."],
     referral: "Via An Garda Síochána or direct self-referral.",
-    contact: { phone: "01 817 1736" }
+    contact: { phone: "01 817 1736" },
+    checked: "4 Sep 2026"
   },
   {
     id: "satu-galway",
@@ -1900,7 +2032,8 @@ const ENTRIES = [
     blurb: "Sexual Assault Treatment Unit.",
     details: ["Weekdays 8am–5pm: 044 9394239.", "Out-of-hours switchboard: 044 93 40221."],
     referral: "Via An Garda Síochána or direct self-referral.",
-    contact: { phone: "044 9394239" }
+    contact: { phone: "044 9394239" },
+    checked: "4 Sep 2026"
   },
   {
     id: "satu-waterford",
@@ -1910,7 +2043,8 @@ const ENTRIES = [
     blurb: "Sexual Assault Treatment Unit. Note: there is no SATU in Limerick — out-of-hours access there routes via Cork or Galway.",
     details: ["Weekdays 8am–5pm: 051 842 157.", "Out-of-hours: 051 848 000."],
     referral: "Via An Garda Síochána or direct self-referral.",
-    contact: { phone: "051 842 157" }
+    contact: { phone: "051 842 157" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Domestic & Sexual Violence: Northern Ireland ----
@@ -1922,7 +2056,8 @@ const ENTRIES = [
     blurb: "NI's single regional Sexual Assault Referral Centre — the NI equivalent of a SATU, covering the whole of Northern Ireland.",
     details: [],
     referral: "Self-referral or via PSNI, 24/7.",
-    contact: { phone: "0800 389 4424", web: "therowan.hscni.net", address: "Antrim Area Hospital, 45 Bush Road, Antrim BT41 2RL" }
+    contact: { phone: "0800 389 4424", web: "therowan.hscni.net", address: "Antrim Area Hospital, 45 Bush Road, Antrim BT41 2RL" },
+    checked: "4 Sep 2026"
   },
   {
     id: "nexus-ni",
@@ -1932,7 +2067,8 @@ const ENTRIES = [
     blurb: "Specialist counselling for sexual-abuse survivors, and the 24hr NI Domestic & Sexual Abuse Helpline.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "0808 802 1414" }
+    contact: { phone: "0808 802 1414" },
+    checked: "4 Sep 2026"
   },
   {
     id: "womens-aid-ni",
@@ -1942,7 +2078,8 @@ const ENTRIES = [
     blurb: "Domestic violence support and refuge network across Northern Ireland.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "028 9024 9041", email: "info@womensaidni.org", address: "129 University Street, Belfast BT7 1HP" }
+    contact: { phone: "028 9024 9041", email: "info@womensaidni.org", address: "The Annex, 30 Adelaide Park, Belfast BT9 6FY" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Cancer support: regional centres (ROI) + NI ----
@@ -1954,7 +2091,8 @@ const ENTRIES = [
     blurb: "Free counselling and complementary therapy across three Dublin locations.",
     details: ["ARC House, 65 Eccles Street, D07 TD35.", "559 South Circular Road, Dublin 8.", "Lowell House, 23 Herbert Avenue, Dublin 4."],
     referral: "Self-referral.",
-    contact: { phone: "01 215 0250", email: "info@arccancersupport.ie" }
+    contact: { phone: "01 215 0250", email: "info@arccancersupport.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cork-arc-house",
@@ -1964,7 +2102,8 @@ const ENTRIES = [
     blurb: "Free cancer support services, including for gynaecological cancers.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "021 427 6688" }
+    contact: { phone: "021 427 6688" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cork-cancer-care-centre",
@@ -1974,7 +2113,8 @@ const ENTRIES = [
     blurb: "Free cancer support services.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "021 4949090" }
+    contact: { phone: "021 4949090" },
+    checked: "4 Sep 2026"
   },
   {
     id: "recovery-haven-kerry",
@@ -1984,7 +2124,8 @@ const ENTRIES = [
     blurb: "Free cancer support services.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "066 719 2122" }
+    contact: { phone: "066 719 2122" },
+    checked: "4 Sep 2026"
   },
   {
     id: "solas-waterford",
@@ -1994,7 +2135,8 @@ const ENTRIES = [
     blurb: "Free cancer support services.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "051 304604" }
+    contact: { phone: "051 304604" },
+    checked: "4 Sep 2026"
   },
   {
     id: "purple-house-bray",
@@ -2004,7 +2146,8 @@ const ENTRIES = [
     blurb: "Free cancer support services.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "01 286 6966" }
+    contact: { phone: "01 286 6966" },
+    checked: "4 Sep 2026"
   },
   {
     id: "suir-haven-thurles",
@@ -2014,7 +2157,8 @@ const ENTRIES = [
     blurb: "Free cancer support services.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "0504 21197" }
+    contact: { phone: "0504 21197" },
+    checked: "4 Sep 2026"
   },
   {
     id: "hope-cancer-wexford",
@@ -2024,7 +2168,8 @@ const ENTRIES = [
     blurb: "Free cancer support services.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "053 923 8555" }
+    contact: { phone: "053 923 8555" },
+    checked: "4 Sep 2026"
   },
   {
     id: "action-cancer-ni",
@@ -2034,7 +2179,8 @@ const ENTRIES = [
     blurb: "Breast screening (ages 40–49 & 70+) and therapeutic services from 15 regional locations across NI.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "028 9080 3344", email: "info@actioncancer.org", address: "20 Windsor Avenue, Belfast BT9 6EE" }
+    contact: { phone: "028 9080 3344", email: "info@actioncancer.org", address: "20 Windsor Avenue, Belfast BT9 6EE" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cancer-focus-ni",
@@ -2044,7 +2190,8 @@ const ENTRIES = [
     blurb: "Cancer Nurseline and support services across Northern Ireland.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "0800 783 3339", email: "nurseline@cancerfocusni.org", address: "40-44 Eglantine Avenue, Belfast BT9 6DX" }
+    contact: { phone: "0800 783 3339", email: "nurseline@cancerfocusni.org", address: "40-44 Eglantine Avenue, Belfast BT9 6DX" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Contraception & reproductive health: access points ----
@@ -2059,7 +2206,8 @@ const ENTRIES = [
     contact: { phone: "01 872 7088" },
     resources: [
       { label: "Contraception methods — patient.info", url: "https://patient.info/sexual-health/contraception-methods" }
-    ]
+    ],
+    checked: "4 Sep 2026"
   },
   {
     id: "well-woman-coolock",
@@ -2069,7 +2217,8 @@ const ENTRIES = [
     blurb: "Free Contraception Scheme access point.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "01 848 4511" }
+    contact: { phone: "01 848 4511" },
+    checked: "4 Sep 2026"
   },
   {
     id: "femplus-blanchardstown",
@@ -2079,7 +2228,8 @@ const ENTRIES = [
     blurb: "Free Contraception Scheme access point.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "01 821 0999" }
+    contact: { phone: "01 821 0999" },
+    checked: "4 Sep 2026"
   },
   {
     id: "informing-choices-ni",
@@ -2089,7 +2239,8 @@ const ENTRIES = [
     blurb: "Central Access Point for reproductive healthcare information in Northern Ireland.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "028 9031 6100", email: "info@informingchoicesni.org", address: "Ascot House, 24-31 Shaftesbury Square, Belfast BT2 7DB" }
+    contact: { phone: "028 9031 6100", email: "info@informingchoicesni.org", address: "Ascot House, 24-31 Shaftesbury Square, Belfast BT2 7DB" },
+    checked: "4 Sep 2026"
   },
   {
     id: "common-youth-ni",
@@ -2099,7 +2250,8 @@ const ENTRIES = [
     blurb: "Sexual health service for under-25s in Northern Ireland (formerly Brook NI).",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "028 9032 8866", email: "hello@commonyouth.com" }
+    contact: { phone: "028 9032 8866", email: "hello@commonyouth.com" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Breastfeeding: La Leche League (Cuidiú already exists) ----
@@ -2111,7 +2263,8 @@ const ENTRIES = [
     blurb: "100 volunteer Leaders across 35 breastfeeding support groups island-wide.",
     details: ["NI groups via Belfast: 028 9581 8118 / lalecheleaguebelfast@gmail.com."],
     referral: "Self-referral via website.",
-    contact: { web: "lalecheleagueireland.com/groups" }
+    contact: { web: "lalecheleagueireland.com/groups" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Baby loss: additional national orgs ----
@@ -2123,7 +2276,8 @@ const ENTRIES = [
     blurb: "Support for bereaved parents and siblings after the death of a child.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "01 404 5378", web: "anamcara.ie", address: "Tallaght, Dublin 24" }
+    contact: { phone: "01 404 5378", web: "anamcara.ie", address: "Tallaght, Dublin 24" },
+    checked: "4 Sep 2026"
   },
   {
     id: "ectopic-ireland",
@@ -2133,7 +2287,8 @@ const ENTRIES = [
     blurb: "Support and information specifically after an ectopic pregnancy.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "089 436 5742", web: "ectopicireland.ie" }
+    contact: { phone: "086 893 6992", web: "ectopicireland.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "sands-ni",
@@ -2143,7 +2298,8 @@ const ENTRIES = [
     blurb: "Stillbirth and neonatal death support, with monthly local groups in Antrim, Belfast, Downpatrick, Enniskillen, Newry, North Down, and Portadown.",
     details: ["UK Sands helpline: 0808 164 3332."],
     referral: "Self-referral.",
-    contact: { phone: "07740 993450", email: "NorthernIreland@sands.org.uk" }
+    contact: { phone: "07740 993450", email: "NorthernIreland@sandsvolunteer.org.uk" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Patchy categories: no compact national list exists (per source doc).
@@ -2157,7 +2313,8 @@ const ENTRIES = [
     blurb: "There's no single national PHN directory — access is via your local health centre.",
     details: ["No compact public list exists for this — genuinely needs local knowledge. If you know your area's PHN contact, this is exactly the kind of thing worth reporting via the link in the footer."],
     referral: "Contact HSE Live or find your local health centre.",
-    contact: { phone: "1800 700 700", web: "hse.ie" }
+    contact: { phone: "1800 700 700", web: "hse.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-urology",
@@ -2167,7 +2324,8 @@ const ENTRIES = [
     blurb: "No compact national list exists — urology services relevant to women's health (recurrent UTIs, incontinence, urogynae) sit within major hospitals per region.",
     details: ["Start with your nearest major hospital (e.g. CUH Cork, UHL Limerick, UHG Galway, or a Dublin academic hospital) or ask your GP directly."],
     referral: "GP referral.",
-    contact: {}
+    contact: {},
+    checked: "4 Sep 2026"
   },
   {
     id: "find-gynae-onc",
@@ -2177,7 +2335,8 @@ const ENTRIES = [
     blurb: "No compact national list exists — these clinics are distributed across designated cancer centres and CervicalCheck colposcopy units.",
     details: ["Colposcopy after an abnormal CervicalCheck result is automatic. For a new suspected-cancer concern, ask your GP to refer you on the rapid-access pathway explicitly."],
     referral: "GP referral, flagged as rapid access; colposcopy is automatic via CervicalCheck.",
-    contact: {}
+    contact: {},
+    checked: "4 Sep 2026"
   },
   {
     id: "find-breastfeeding-group",
@@ -2187,7 +2346,8 @@ const ENTRIES = [
     blurb: "HSE runs breastfeeding groups searchable by county, though there's no compact master list.",
     details: [],
     referral: "Self-referral via the HSE's searchable directory.",
-    contact: { web: "www2.hse.ie/services/breastfeeding-support" }
+    contact: { web: "www2.hse.ie/services/breastfeeding-support" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-frc",
@@ -2224,7 +2384,8 @@ const ENTRIES = [
       "Runs the free Heartlink West supportline: 091 544310.",
     ],
     referral: "Self-referral for information and supports.",
-    contact: { phone: "091 332999", email: "healthteam@croi.ie", address: "Croí House, Moyola Lane, Newcastle, Galway H91 FF68" }
+    contact: { phone: "091 332999", email: "healthteam@croi.ie", address: "Croí House, Moyola Lane, Newcastle, Galway H91 FF68" },
+    checked: "4 Sep 2026"
   },
   {
     id: "irish-heart-foundation",
@@ -2234,7 +2395,8 @@ const ENTRIES = [
     blurb: "Publishes 'Her Heart Matters' women's heart health resources, with HSE and Dept of Health support.",
     details: [],
     referral: "Self-referral for information and supports.",
-    contact: { phone: "01 668 5001", email: "info@irishheart.ie", address: "17-19 Rathmines Rd Lower, Dublin D06 C780" }
+    contact: { phone: "01 668 5001", email: "info@irishheart.ie", address: "17-19 Rathmines Rd Lower, Dublin D06 C780" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-chest-pain-clinic",
@@ -2244,7 +2406,8 @@ const ENTRIES = [
     blurb: "Nurse-led rapid-access clinics run out of most public hospitals with a cardiology department — no single compact national list found yet.",
     details: ["Confirmed example: University Hospital Limerick offers same-week GP-referral assessment. Ask your GP whether your nearest hospital runs one."],
     referral: "GP referral.",
-    contact: {}
+    contact: {},
+    checked: "4 Sep 2026"
   },
 
   // ---- Rheumatology & Autoimmune ----
@@ -2256,7 +2419,8 @@ const ENTRIES = [
     blurb: "National helpline and Clinic Referral Programme linking newly-diagnosed patients into self-management support.",
     details: ["A 2026 survey (1,400+ respondents, 85% women) found people with more severe symptoms nearly twice as likely to wait over a year for a first rheumatology appointment."],
     referral: "Self-referral to the helpline; ask about the Clinic Referral Programme.",
-    contact: { phone: "0818 252 846", email: "helpline@arthritisireland.ie" }
+    contact: { phone: "0818 252 846", email: "helpline@arthritisireland.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "versus-arthritis-ni",
@@ -2266,7 +2430,8 @@ const ENTRIES = [
     blurb: "Information and support for arthritis and autoimmune joint conditions in Northern Ireland.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "028 9078 2940", email: "niservicesteam@versusarthritis.org" }
+    contact: { phone: "028 9078 2940", email: "niservicesteam@versusarthritis.org" },
+    checked: "4 Sep 2026"
   },
   {
     id: "belfast-rheumatology",
@@ -2276,7 +2441,8 @@ const ENTRIES = [
     blurb: "Operates across three Belfast Trust hospital sites, including inflammatory arthritis and lupus flare-management resources.",
     details: [],
     referral: "GP referral.",
-    contact: { web: "belfasttrust.hscni.net" }
+    contact: { web: "belfasttrust.hscni.net" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cuh-rheumatology",
@@ -2286,7 +2452,8 @@ const ENTRIES = [
     blurb: "Public rheumatology department.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "021 492 2468" }
+    contact: { phone: "021 492 2468" },
+    checked: "4 Sep 2026"
   },
   {
     id: "sivuh-rheumatology",
@@ -2316,7 +2483,8 @@ const ENTRIES = [
     blurb: "Regional rheumatology unit at Our Lady's Hospital, serving the North West.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "071 9820406" }
+    contact: { phone: "071 9820406" },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhl-rheumatology",
@@ -2326,7 +2494,8 @@ const ENTRIES = [
     blurb: "Public rheumatology department (Rheumatology Clinical Network hub site).",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "061 485215" }
+    contact: { phone: "061 485215" },
+    checked: "4 Sep 2026"
   },
   {
     id: "tullamore-rheumatology",
@@ -2367,7 +2536,8 @@ const ENTRIES = [
     blurb: "Public rheumatology department (Rheumatology Clinical Network hub site).",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 221 3130" }
+    contact: { phone: "01 221 4779" },
+    checked: "4 Sep 2026"
   },
   {
     id: "mater-rheumatology",
@@ -2377,7 +2547,8 @@ const ENTRIES = [
     blurb: "Public rheumatology department.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 803 4141" }
+    contact: { phone: "01 803 4141" },
+    checked: "4 Sep 2026"
   },
   {
     id: "stjames-rheumatology",
@@ -2387,7 +2558,8 @@ const ENTRIES = [
     blurb: "Public rheumatology department.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 416 2551" }
+    contact: { phone: "01 416 2551" },
+    checked: "4 Sep 2026"
   },
   {
     id: "beaumont-rheumatology",
@@ -2445,7 +2617,8 @@ const ENTRIES = [
       { label: "Rheumatoid arthritis — patient.info", url: "https://patient.info/bones-joints-muscles/rheumatoid-arthritis-leaflet" },
       { label: "Ankylosing spondylitis — patient.info", url: "https://patient.info/bones-joints-muscles/ankylosing-spondylitis" },
       { label: "Lupus — patient.info", url: "https://patient.info/skin-conditions/lupus-systemic-lupus-erythematosus" }
-    ]
+    ],
+    checked: "4 Sep 2026"
   },
 
   // ---- Neurology & Migraine ----
@@ -2457,10 +2630,11 @@ const ENTRIES = [
     blurb: "National information line staffed by a Clinical Nurse Specialist. Migraine affects ~15% of the population and is three times more common in women.",
     details: [],
     referral: "Self-referral to the Advice Line.",
-    contact: { phone: "01 906 1012", email: "info@migraine.ie", address: "Unit 14, Block 5, Port Tunnel Business Park, Clonshaugh, Dublin 17" },
+    contact: { phone: "01 906 1012", email: "info@migraine.ie", address: "Northside Enterprise Centre, Block C, Bunratty Drive, Coolock, Dublin D17 PD77" },
     resources: [
       { label: "Migraine — patient.info", url: "https://patient.info/brain-nerves/migraine-leaflet" }
-    ]
+    ],
+    checked: "4 Sep 2026"
   },
   {
     id: "beaumont-migraine-clinic",
@@ -2470,7 +2644,8 @@ const ENTRIES = [
     blurb: "Specialist headache/migraine clinic referenced by the Migraine Association.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Headache/Migraine Clinic." }
+    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Headache/Migraine Clinic." },
+    checked: "4 Sep 2026"
   },
 
   // ---- Gastroenterology & IBD ----
@@ -2482,7 +2657,8 @@ const ENTRIES = [
     blurb: "National charity for IBD (Crohn's/ulcerative colitis), which affects at least 40,000 people in Ireland, most often diagnosed between ages 15–35.",
     details: ["Helpline hours: Mon/Wed/Fri 09:30–12:30."],
     referral: "Self-referral to the helpline.",
-    contact: { phone: "01 531 2983", email: "info@crohnscolitis.ie", address: "Carmichael Centre, North Brunswick Street, Dublin 7", web: "crohnscolitis.ie" }
+    contact: { phone: "01 531 2983", email: "info@crohnscolitis.ie", address: "Carmichael Centre, North Brunswick Street, Dublin 7", web: "crohnscolitis.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "stjames-gastro",
@@ -2492,7 +2668,8 @@ const ENTRIES = [
     blurb: "A 3-site public gastroenterology/hepatology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "stvincents-gastro",
@@ -2502,7 +2679,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology/hepatology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "beaumont-gastro",
@@ -2512,7 +2690,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "mater-gastro",
@@ -2522,7 +2701,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "connolly-gastro",
@@ -2532,7 +2712,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 646 5000", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "01 646 5000", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cuh-gastro",
@@ -2542,7 +2723,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology/hepatology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "mercy-cork-gastro",
@@ -2552,7 +2734,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "021 427 1971", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "021 427 1971", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhg-gastro",
@@ -2562,7 +2745,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "portiuncula-gastro",
@@ -2572,7 +2756,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "090 964 8200", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "090 964 8200", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhl-gastro",
@@ -2582,7 +2767,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "waterford-gastro",
@@ -2592,7 +2778,8 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for Gastroenterology." }
+    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for Gastroenterology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-gastro",
@@ -2648,7 +2835,8 @@ const ENTRIES = [
     blurb: "Sláintecare-funded integrated community-based pain management team, clinical lead Dr David Moore. Beaumont also runs a separate Pain Medicine service.",
     details: [],
     referral: "GP referral.",
-    contact: { web: "mypainmatters.ie" }
+    contact: { web: "mypainmatters.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "stjames-pain",
@@ -2658,7 +2846,8 @@ const ENTRIES = [
     blurb: "Public chronic pain management service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Pain Medicine." }
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Pain Medicine." },
+    checked: "4 Sep 2026"
   },
   {
     id: "mater-pain",
@@ -2668,7 +2857,8 @@ const ENTRIES = [
     blurb: "Public chronic pain management service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for the Pain Service." }
+    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for the Pain Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "stvincents-pain",
@@ -2678,7 +2868,8 @@ const ENTRIES = [
     blurb: "Multidisciplinary pain service, including a psychology-led pain management programme.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for the Pain Service." }
+    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for the Pain Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "tallaght-pain",
@@ -2688,7 +2879,8 @@ const ENTRIES = [
     blurb: "Pain Medicine service plus the Ulysses Pain Management Programme.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 414 3104" }
+    contact: { phone: "01 414 3104" },
+    checked: "4 Sep 2026"
   },
   {
     id: "stlukes-rathgar-pain",
@@ -2698,7 +2890,8 @@ const ENTRIES = [
     blurb: "Public chronic pain management service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 406 5000", extra: "Main hospital switchboard — ask for the Pain Service." }
+    contact: { phone: "01 406 5000", extra: "Main hospital switchboard — ask for the Pain Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "stcolumcilles-pain",
@@ -2708,7 +2901,8 @@ const ENTRIES = [
     blurb: "Multidisciplinary team pain service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "01 282 5800" }
+    contact: { phone: "01 282 5800" },
+    checked: "4 Sep 2026"
   },
   {
     id: "naas-pain",
@@ -2718,7 +2912,8 @@ const ENTRIES = [
     blurb: "Public chronic pain clinic, Consultant Dr Anne Heffernan.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "045 849 884" }
+    contact: { phone: "045 849 500" },
+    checked: "4 Sep 2026"
   },
   {
     id: "portlaoise-pain",
@@ -2728,7 +2923,8 @@ const ENTRIES = [
     blurb: "Listed as a public pain service by the Irish Pain Society — not independently re-confirmed.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "057 862 1364", extra: "Main hospital switchboard — ask for the Pain Service." }
+    contact: { phone: "057 862 1364", extra: "Main hospital switchboard — ask for the Pain Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cuh-pain",
@@ -2738,7 +2934,8 @@ const ENTRIES = [
     blurb: "Public chronic pain management service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for the Pain Service." }
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for the Pain Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "mercy-cork-pain",
@@ -2748,7 +2945,8 @@ const ENTRIES = [
     blurb: "Listed as a public pain service by the Irish Pain Society — not independently re-confirmed.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "021 427 1971", extra: "Main hospital switchboard — ask for the Pain Service." }
+    contact: { phone: "021 427 1971", extra: "Main hospital switchboard — ask for the Pain Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "uhg-pain",
@@ -2758,7 +2956,8 @@ const ENTRIES = [
     blurb: "Consultant-run chronic pain clinic.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the Pain Clinic." }
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the Pain Clinic." },
+    checked: "4 Sep 2026"
   },
   {
     id: "sligo-pain",
@@ -2768,7 +2967,8 @@ const ENTRIES = [
     blurb: "Chronic pain unit with a Sláintecare pain-management education programme.",
     details: ["Flagged as subject to a temporary closure/consultant-recruitment issue — verify current status before travelling."],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "071 917 1111", extra: "Main hospital switchboard — ask for the Chronic Pain Unit." }
+    contact: { phone: "071 917 1111", extra: "Main hospital switchboard — ask for the Chronic Pain Unit." },
+    checked: "4 Sep 2026"
   },
   {
     id: "waterford-pain",
@@ -2778,7 +2978,8 @@ const ENTRIES = [
     blurb: "Listed as a public pain service by the Irish Pain Society, but a live HSE page couldn't be confirmed — public status uncertain.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for the Pain Service." }
+    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for the Pain Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "chronic-pain-ireland",
@@ -2788,7 +2989,8 @@ const ENTRIES = [
     blurb: "National patient advocacy charity, runs a confidential phone support service for over-18s. A 2021 national survey found 11,932 people on public chronic pain waiting lists, with severe understaffing (0.55 pain specialists per 100,000 people) and no national model of care.",
     details: ["Signposts to the HSE Counselling in Primary Care Service (8 free sessions via GP referral) for chronic-pain-related mental health support.", "Support line runs Tue/Thu/Fri, 9:30am–5pm."],
     referral: "Self-referral.",
-    contact: { phone: "01 804 7567", web: "chronicpain.ie" }
+    contact: { phone: "01 804 7567", web: "chronicpain.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-pain-clinic",
@@ -2822,7 +3024,8 @@ const ENTRIES = [
     contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." },
     resources: [
       { label: "Post-viral fatigue — patient.info", url: "https://patient.info/news-and-features/what-you-need-to-know-about-post-viral-fatigue" }
-    ]
+    ],
+    checked: "4 Sep 2026"
   },
   {
     id: "longcovid-stjames",
@@ -2832,7 +3035,8 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Ciarán Bannan with Dr Aoife Laffan (neurology).",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." },
+    checked: "4 Sep 2026"
   },
   {
     id: "longcovid-stvincents",
@@ -2842,7 +3046,8 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Stefano Savinelli.",
     details: ["A separate Mater Hospital Long Covid clinic (Dr Jack Lambert) closed in Dec 2022 when HSE funding was withdrawn — don't refer here expecting it's still running."],
     referral: "GP referral.",
-    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
+    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." },
+    checked: "4 Sep 2026"
   },
   {
     id: "longcovid-cork",
@@ -2852,7 +3057,8 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Katie McFaul (patients also seen by Dr Arthur Jackson).",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." },
+    checked: "4 Sep 2026"
   },
   {
     id: "longcovid-limerick",
@@ -2862,7 +3068,8 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally.",
     details: ["Not operational as of March 2025 due to staffing (per Long Covid Advocacy Ireland) — ask to be referred elsewhere if this hasn't changed."],
     referral: "GP referral.",
-    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
+    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for the Long Covid Clinic." },
+    checked: "4 Sep 2026"
   },
   {
     id: "longcovid-galway",
@@ -2872,7 +3079,8 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr David Gallagher (Infectious Diseases) with Dr Mike Harrison (Respiratory).",
     details: ["Referrals go to Dr Gallagher's office."],
     referral: "GP referral.",
-    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the Long Covid Clinic." },
+    checked: "4 Sep 2026"
   },
   {
     id: "long-covid-advocacy-ireland",
@@ -2882,7 +3090,8 @@ const ENTRIES = [
     blurb: "Ireland's only formal Long Covid patient advocacy group, run by patients (several team members unwell themselves).",
     details: [],
     referral: "Self-referral via mailing list.",
-    contact: { email: "irishlcalist@gmail.com", web: "longcovidadvocacyireland.com" }
+    contact: { email: "irishlcalist@gmail.com", web: "longcovidadvocacyireland.com" },
+    checked: "4 Sep 2026"
   },
   {
     id: "irish-mecfs-association",
@@ -2898,7 +3107,8 @@ const ENTRIES = [
     contact: { web: "irishmecfs.org" },
     resources: [
       { label: "ME/CFS — patient.info", url: "https://patient.info/signs-symptoms/tiredness-fatigue/chronic-fatigue-syndrome-myalgic-encephalomyelitis" }
-    ]
+    ],
+    checked: "4 Sep 2026"
   },
   {
     id: "me-advocates-ireland",
@@ -2908,7 +3118,8 @@ const ENTRIES = [
     blurb: "Volunteer-run advocacy group (founded 2017) pushing for better ME healthcare provision and HSE/Dept of Health engagement.",
     details: ["No dedicated contact website found — Facebook is currently their main public presence."],
     referral: "Self-referral.",
-    contact: { web: "facebook.com/MEAdvocatesIreland" }
+    contact: { web: "facebook.com/MEAdvocatesIreland" },
+    checked: "4 Sep 2026"
   },
   {
     id: "me-support-ni",
@@ -2918,7 +3129,8 @@ const ENTRIES = [
     blurb: "Support for people with ME/CFS in Northern Ireland.",
     details: [],
     referral: "Self-referral.",
-    contact: { email: "info@mesupportni.com" }
+    contact: { email: "info@mesupportni.com" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Bone Health & Osteoporosis ----
@@ -2933,7 +3145,8 @@ const ENTRIES = [
     contact: { phone: "01 637 5050", email: "info@irishosteoporosis.ie", address: "Unit 1B, Clonskeagh Square, Dublin 14" },
     resources: [
       { label: "Osteoporosis — patient.info", url: "https://patient.info/bones-joints-muscles/osteoporosis-leaflet" }
-    ]
+    ],
+    checked: "4 Sep 2026"
   },
 
   // ---- Genetics & Hereditary Cancer Risk ----
@@ -2949,7 +3162,8 @@ const ENTRIES = [
       "Correction: an earlier version of this entry listed 01 409 6739 as the general contact — that's actually a clinician-only clinical-advice voicemail, not the public line.",
     ],
     referral: "GP or consultant referral.",
-    contact: { phone: "01 456 0953", email: "clinical.genetics@childrenshealthireland.ie", address: "Children's Health Ireland at Crumlin, Dublin 12" }
+    contact: { phone: "01 409 6739", email: "clinical.genetics@childrenshealthireland.ie", address: "Children's Health Ireland at Crumlin, Dublin 12" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cancer-genetics-stjames",
@@ -2959,7 +3173,8 @@ const ENTRIES = [
     blurb: "Alternative public referral point for hereditary cancer risk assessment (e.g. BRCA), via GP or your oncology team.",
     details: [],
     referral: "GP or oncology team referral.",
-    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Cancer Genetics." }
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Cancer Genetics." },
+    checked: "4 Sep 2026"
   },
   {
     id: "lynch-syndrome-ireland",
@@ -2969,7 +3184,8 @@ const ENTRIES = [
     blurb: "Support for people affected by Lynch syndrome (hereditary colorectal/ovarian/endometrial cancer risk).",
     details: ["A voluntary group of people with Lynch syndrome, or who know someone affected, sharing information and peer support.", "The Irish Cancer Society Support Line (1800 200 700) can also help with talking to family about genetic risk."],
     referral: "Self-referral.",
-    contact: { email: "lynchsyndromeirl@gmail.com", web: "lynchsyndromeireland.com" }
+    contact: { email: "lynchsyndromeirl@gmail.com", web: "lynchsyndromeireland.com" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Sexual Health & STI Testing (GUM clinics) ----
@@ -2981,7 +3197,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic — the largest in the west (~4,000 attendances/yr).",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the STI Clinic." }
+    contact: { phone: "091 525 200" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-cork",
@@ -2991,7 +3208,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic. PrEP available.",
     details: ["Mon–Fri 9am–4pm."],
     referral: "Self-referral.",
-    contact: { phone: "021 496 6844" }
+    contact: { phone: "021 496 6844" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-limerick",
@@ -3001,7 +3219,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic, covering Dooradoyle, Ennis General, and Nenagh General.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "061 482 382" }
+    contact: { phone: "061 482 382" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-mater-dublin",
@@ -3011,7 +3230,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "01 803 2063" }
+    contact: { phone: "01 803 2063" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-guide-stjames",
@@ -3021,7 +3241,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "01 416 2315" }
+    contact: { phone: "01 416 2315" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-gmhs-dublin",
@@ -3031,7 +3252,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated sexual health service.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "01 921 2730" }
+    contact: { phone: "01 921 2730" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-sligo",
@@ -3041,7 +3263,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "071 917 0473" }
+    contact: { phone: "071 917 0473" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-tipperary",
@@ -3061,7 +3284,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "051 842 646" }
+    contact: { phone: "051 842 646" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-letterkenny",
@@ -3071,7 +3295,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "074 912 3715" }
+    contact: { phone: "074 912 3715" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-drogheda",
@@ -3081,7 +3306,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "086 824 1847" }
+    contact: { phone: "086 824 1847" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-mayo",
@@ -3091,7 +3317,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "094 902 1733 ext 3501" }
+    contact: { phone: "087 451 8971" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-mullingar",
@@ -3101,7 +3328,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "086 416 9830" }
+    contact: { phone: "087 710 4152" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-portlaoise",
@@ -3111,7 +3339,8 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "086 859 1273" }
+    contact: { phone: "086 859 1273" },
+    checked: "4 Sep 2026"
   },
   {
     id: "gum-monaghan",
@@ -3124,7 +3353,8 @@ const ENTRIES = [
       "Phone ahead to confirm before travelling. The same phone number appears in our data attached to the Louth/Drogheda clinic too — this may be a shared regional line.",
     ],
     referral: "Self-referral — phone ahead to confirm.",
-    contact: { phone: "086 824 1847" }
+    contact: { phone: "086 824 1847" },
+    checked: "4 Sep 2026"
   },
   {
     id: "sh24-roi",
@@ -3134,7 +3364,8 @@ const ENTRIES = [
     blurb: "Free at-home STI test kits for anyone 17+ in Ireland — HIV, chlamydia, gonorrhoea, syphilis. Results by text/phone within ~72 hours.",
     details: [],
     referral: "Self-referral, order online.",
-    contact: { web: "sh24.ie" }
+    contact: { web: "sh24.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "sh24-ni",
@@ -3144,7 +3375,8 @@ const ENTRIES = [
     blurb: "The Northern Ireland / UK equivalent of sh24.ie.",
     details: [],
     referral: "Self-referral, order online.",
-    contact: { web: "sh24.org.uk" }
+    contact: { web: "sh24.org.uk" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Pelvic Health Physiotherapy ----
@@ -3156,7 +3388,8 @@ const ENTRIES = [
     blurb: "Named public pelvic-health physiotherapy service — but only accepts referrals from CUH Urology & Colorectal, not directly from GPs.",
     details: [],
     referral: "Referral only from CUH Urology or Colorectal — ask your consultant to refer you if relevant.",
-    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Pelvic Health Physiotherapy." }
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Pelvic Health Physiotherapy." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cavan-monaghan-pelvic-physio",
@@ -3166,7 +3399,8 @@ const ENTRIES = [
     blurb: "Named public pelvic-health physiotherapy service, self-referral accepted.",
     details: [],
     referral: "Self-referral, GP, or consultant referral, Mon–Fri.",
-    contact: { phone: "049 437 6000", extra: "Main hospital switchboard — ask for Pelvic Health Physiotherapy." }
+    contact: { phone: "049 437 6000", extra: "Main hospital switchboard — ask for Pelvic Health Physiotherapy." },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-pelvic-physio",
@@ -3201,7 +3435,8 @@ const ENTRIES = [
     blurb: "Treats AAA (abdominal aortic aneurysm), varicose veins, and AV fistula.",
     details: [],
     referral: "GP, consultant, PHN, or health centre referral.",
-    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for the Vascular Service." }
+    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for the Vascular Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "saolta-vascular",
@@ -3211,7 +3446,8 @@ const ENTRIES = [
     blurb: "Varicose vein procedures at Roscommon University Hospital; all arterial and complex vascular surgery at Galway University Hospitals.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for Vascular Services." }
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for Vascular Services." },
+    checked: "4 Sep 2026"
   },
   {
     id: "western-vascular-institute",
@@ -3221,7 +3457,8 @@ const ENTRIES = [
     blurb: "High-volume public/private tertiary vascular referral centre for the West.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the Western Vascular Institute." }
+    contact: { phone: "091 542 535", email: "wvi@vascular.ie", web: "vascular.ie", address: "Block 2C, Department of Vascular & Endovascular Surgery, University Hospital Galway" },
+    checked: "4 Sep 2026"
   },
   {
     id: "stvincents-vascular",
@@ -3231,7 +3468,8 @@ const ENTRIES = [
     blurb: "Regional referral centre for south-east Dublin, Wicklow, Wexford, Carlow, and Kilkenny. Varicose vein management including surgery, laser/radiofrequency ablation, and ClariVein.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 221 3035", web: "stvincents.ie" }
+    contact: { phone: "01 221 3709", web: "stvincents.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "beaumont-vascular",
@@ -3241,7 +3479,8 @@ const ENTRIES = [
     blurb: "Vascular/endovascular arterial and venous disease.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Vascular Service." }
+    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Vascular Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "mater-vascular",
@@ -3251,7 +3490,8 @@ const ENTRIES = [
     blurb: "Public vascular surgery service.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for the Vascular Service." }
+    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for the Vascular Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "cuh-vascular",
@@ -3271,7 +3511,8 @@ const ENTRIES = [
     blurb: "Regional vascular service for the South East.",
     details: [],
     referral: "GP referral.",
-    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for the Vascular Service." }
+    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for the Vascular Service." },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-vascular",
@@ -3293,7 +3534,8 @@ const ENTRIES = [
     blurb: "Ireland's national referral centre for eye and ENT conditions, founded 1895.",
     details: [],
     referral: "GP or consultant referral.",
-    contact: { address: "Adelaide Road, Dublin 2" }
+    contact: { address: "Adelaide Road, Dublin 2" },
+    checked: "4 Sep 2026"
   },
   {
     id: "retinascreen",
@@ -3306,7 +3548,8 @@ const ENTRIES = [
       "Screening runs from primary-care centres nationwide — self-register online to find your nearest.",
     ],
     referral: "Self-registration.",
-    contact: { phone: "1800 45 45 55", email: "access@diabeticretinascreen.ie", web: "hse.ie/diabeticretinascreen" }
+    contact: { phone: "1800 700 700", email: "access@diabeticretinascreen.ie", web: "hse.ie/diabeticretinascreen" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rvh-belfast-eye-ent",
@@ -3326,7 +3569,8 @@ const ENTRIES = [
     blurb: "Western Trust's second eye service and training centre.",
     details: [],
     referral: "GP or optometrist referral.",
-    contact: { phone: "028 7134 5171", extra: "Main hospital switchboard — ask for Ophthalmology." }
+    contact: { phone: "028 7134 5171", extra: "Main hospital switchboard — ask for Ophthalmology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "ni-diabetic-eye-screening",
@@ -3359,7 +3603,8 @@ const ENTRIES = [
     blurb: "Research and patient advocacy for inherited and retinal sight-loss conditions.",
     details: [],
     referral: "Self-referral.",
-    contact: { web: "fightingblindness.ie" }
+    contact: { web: "fightingblindness.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "irish-guide-dogs",
@@ -3369,7 +3614,8 @@ const ENTRIES = [
     blurb: "Guide dogs and mobility support for people who are blind or vision-impaired.",
     details: [],
     referral: "Self-referral.",
-    contact: { email: "info@guidedogs.ie" }
+    contact: { email: "info@guidedogs.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "feach",
@@ -3379,7 +3625,8 @@ const ENTRIES = [
     blurb: "National support organisation for parents of children who are blind or vision-impaired.",
     details: [],
     referral: "Self-referral.",
-    contact: { email: "info@feach.ie", web: "feach.ie" }
+    contact: { email: "info@feach.ie", web: "feach.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "childvision",
@@ -3389,7 +3636,8 @@ const ENTRIES = [
     blurb: "National education centre for blind and vision-impaired children.",
     details: [],
     referral: "Self-referral or via early-intervention services.",
-    contact: { phone: "01 837 3635", email: "info@childvision.ie", address: "Grace Park Road, Drumcondra, Dublin 9, D09 WK0H" }
+    contact: { phone: "01 837 3635", email: "info@childvision.ie", address: "Grace Park Road, Drumcondra, Dublin 9, D09 WK0H" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rnib-ni",
@@ -3399,7 +3647,8 @@ const ENTRIES = [
     blurb: "Support and advocacy for blind and vision-impaired people in Northern Ireland.",
     details: [],
     referral: "Self-referral.",
-    contact: { web: "rnib.org.uk" }
+    contact: { web: "rnib.org.uk" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Dermatology & Skin ----
@@ -3411,7 +3660,8 @@ const ENTRIES = [
     blurb: "National skin-health charity — 54% of the Irish population is affected by a skin condition annually.",
     details: ["Free nurse-led \"Ask-a-Nurse\" phone guidance on psoriasis, eczema, hidradenitis suppurativa, acne, rosacea, and skin cancer."],
     referral: "Self-referral to Ask-a-Nurse.",
-    contact: { phone: "01 486 6280", email: "info@irishskin.ie" }
+    contact: { phone: "01 486 6280", email: "info@irishskin.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-dermatology",
@@ -3426,7 +3676,8 @@ const ENTRIES = [
       "GP e-referral to pigmented-lesion (suspicious mole) clinics exists and is faster than routine dermatology referral if melanoma is suspected — ask your GP specifically about this pathway.",
     ],
     referral: "GP referral; ask about urgent pigmented-lesion referral if a mole or skin change is suspicious.",
-    contact: {}
+    contact: {},
+    checked: "4 Sep 2026"
   },
 
   // ---- Respiratory Medicine & Cystic Fibrosis ----
@@ -3442,7 +3693,8 @@ const ENTRIES = [
       "The National Lung Transplant Programme is based at the Mater Misericordiae University Hospital.",
     ],
     referral: "GP or respiratory consultant referral.",
-    contact: { phone: "01 209 4684", email: "cfnurses@svuh.ie", extra: "SVUH CF nurses line, for adult CF queries" }
+    contact: { phone: "01 221 4684", email: "cfnurses@svuh.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "belfast-cf-adult",
@@ -3462,7 +3714,8 @@ const ENTRIES = [
     blurb: "National CF patient charity since 1963 — information, support, and grants.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "01 496 2433", email: "info@cfireland.ie", web: "cfireland.ie" }
+    contact: { phone: "01 496 2433", email: "info@cfireland.ie", web: "cfireland.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "asthma-society-ireland",
@@ -3472,7 +3725,8 @@ const ENTRIES = [
     blurb: "Represents an estimated 380,000+ people with asthma in Ireland.",
     details: ["Runs the joint Asthma/COPD Adviceline with COPD Support Ireland; also has a WhatsApp nurse line."],
     referral: "Self-referral to the Adviceline.",
-    contact: { phone: "1800 44 54 64", extra: "WhatsApp nurse: 086 059 0132", address: "42–43 Amiens Street, Dublin 1" }
+    contact: { phone: "1800 44 54 64", extra: "WhatsApp nurse: 086 059 0132", address: "42–43 Amiens Street, Dublin 1" },
+    checked: "4 Sep 2026"
   },
   {
     id: "copd-support-ireland",
@@ -3482,7 +3736,8 @@ const ENTRIES = [
     blurb: "Local support groups for people living with COPD, including \"Singing for Better Lung Health\" groups.",
     details: ["Partners with the Asthma Society on the shared Asthma/COPD Adviceline (1800 44 54 64)."],
     referral: "Self-referral.",
-    contact: { web: "copd.ie" }
+    contact: { web: "copd.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "ilfa",
@@ -3492,7 +3747,8 @@ const ENTRIES = [
     blurb: "Support for the estimated 5,000 people in Ireland living with lung fibrosis (1,000+ new cases a year). No national registry exists.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "086 871 5264", email: "info@ilfa.ie", address: "Carmichael Centre, 4 North Brunswick Street, Dublin 7" }
+    contact: { phone: "086 871 5264", email: "info@ilfa.ie", address: "Carmichael Centre, 4 North Brunswick Street, Dublin 7" },
+    checked: "4 Sep 2026"
   },
 
   // ---- ENT & Audiology ----
@@ -3507,7 +3763,8 @@ const ENTRIES = [
       "HSE audiology does not supply hearing aids directly to everyone — ask about the hearing-aid pathway when referred.",
     ],
     referral: "GP or ENT-consultant referral.",
-    contact: { web: "hse.ie" }
+    contact: { web: "hse.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "chime-deafhear",
@@ -3517,7 +3774,8 @@ const ENTRIES = [
     blurb: "National charity for people who are deaf or hard of hearing.",
     details: [],
     referral: "Self-referral.",
-    contact: { web: "chime.ie" }
+    contact: { web: "chime.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "irish-deaf-society",
@@ -3527,7 +3785,8 @@ const ENTRIES = [
     blurb: "National organisation of and for the Deaf community.",
     details: [],
     referral: "Self-referral.",
-    contact: { phone: "01 860 1878", email: "info@irishdeafsociety.ie" }
+    contact: { phone: "01 860 1878", email: "info@irishdeafsociety.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "rnid-ni",
@@ -3537,7 +3796,8 @@ const ENTRIES = [
     blurb: "Support and advocacy for people who are deaf or have hearing loss in Northern Ireland.",
     details: [],
     referral: "Self-referral.",
-    contact: { web: "rnid.org.uk" }
+    contact: { web: "rnid.org.uk" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Endocrinology & Diabetes ----
@@ -3559,7 +3819,8 @@ const ENTRIES = [
     blurb: "An estimated 96,000–120,000 people in Northern Ireland live with diabetes (figures vary by source; ~90% Type 2).",
     details: ["Runs Live Well Hubs and the Together Type 1 peer-support programme."],
     referral: "Self-referral.",
-    contact: { phone: "028 9066 6646", email: "n.ireland@diabetes.org.uk", extra: "UK helpline: 0345 123 2399", address: "First Floor Suite 1, Lisburn Square House, 10 Haslems Lane, Lisburn BT28 1TW" }
+    contact: { phone: "028 9066 6646", email: "n.ireland@diabetes.org.uk", extra: "UK helpline: 0345 123 2399", address: "First Floor Suite 1, Lisburn Square House, 10 Haslems Lane, Lisburn BT28 1TW" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-thyroid-support",
@@ -3574,7 +3835,8 @@ const ENTRIES = [
       "An informal \"Thyroid Support Ireland\" Facebook group exists (~5,300 members) — useful for peer support, but it's not a charity and isn't clinically moderated.",
     ],
     referral: "GP referral for diagnosis/treatment; self-referral to the support options above.",
-    contact: { web: "www2.hse.ie/conditions/underactive-thyroid-hypothyroidism/" }
+    contact: { web: "www2.hse.ie/conditions/underactive-thyroid-hypothyroidism/" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-pcos-ireland",
@@ -3588,7 +3850,8 @@ const ENTRIES = [
       "Private clinics (e.g. Women's Health Raheny) advertise shorter waits for PCOS assessment than the public system — private, fees apply, not independently verified by us.",
     ],
     referral: "GP referral for public assessment (via gynaecology or endocrinology).",
-    contact: { web: "www2.hse.ie/conditions/polycystic-ovary-syndrome/" }
+    contact: { web: "www2.hse.ie/conditions/polycystic-ovary-syndrome/" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Nephrology & Kidney ----
@@ -3600,7 +3863,8 @@ const ENTRIES = [
     blurb: "National charity for people with end-stage kidney disease, since 1978.",
     details: ["Runs a free Dublin Support Centre for patients travelling for treatment near Beaumont, plus patient holidays and organ-donation promotion."],
     referral: "Self-referral.",
-    contact: { phone: "01 620 5306", email: "info@ika.ie", address: "Donor House, Block 43A, Park West, Dublin 12" }
+    contact: { phone: "01 620 5306", email: "info@ika.ie", address: "Donor House, Block 43A, Park West, Dublin 12" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-dialysis-units",
@@ -3610,7 +3874,8 @@ const ENTRIES = [
     blurb: "Haemodialysis units exist at Beaumont (the national kidney transplant centre), the Mater, St Vincent's, Tallaght (AMNCH), Cork University Hospital, Mayo General (Castlebar), and Cavan General, plus private units (e.g. Beacon, Northern Cross).",
     details: ["For the full current list, the Irish Nephrology Society and Irish Kidney Association both maintain dialysis-centre maps — check theirs directly, as unit capacity and locations do change."],
     referral: "Nephrology consultant referral.",
-    contact: { web: "irishnephrology.ie/renal-units" }
+    contact: { web: "irishnephrology.ie/renal-units" },
+    checked: "4 Sep 2026"
   },
   {
     id: "belfast-city-nephrology",
@@ -3630,7 +3895,8 @@ const ENTRIES = [
     blurb: "Northern Trust dialysis service — home therapies, pre-dialysis care, and transplant follow-up.",
     details: [],
     referral: "Nephrology consultant referral.",
-    contact: { phone: "028 9442 4000", extra: "Main hospital switchboard — ask for Dialysis & Home Therapies." }
+    contact: { phone: "028 9442 4000", extra: "Main hospital switchboard — ask for Dialysis & Home Therapies." },
+    checked: "4 Sep 2026"
   },
   {
     id: "nikpa",
@@ -3652,7 +3918,8 @@ const ENTRIES = [
     blurb: "Ireland's national programme for adult stem cell and bone marrow transplants.",
     details: [],
     referral: "Haematology consultant referral.",
-    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for the Stem Cell/Bone Marrow Transplant Programme." }
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for the Stem Cell/Bone Marrow Transplant Programme." },
+    checked: "4 Sep 2026"
   },
   {
     id: "irish-haemophilia-society",
@@ -3662,7 +3929,8 @@ const ENTRIES = [
     blurb: "Represents people with haemophilia, von Willebrand disease, and other inherited bleeding disorders, since 1968.",
     details: ["The National Haemophilia Centre has historically been based at St James's Hospital."],
     referral: "Self-referral.",
-    contact: { web: "haemophilia.ie" }
+    contact: { web: "haemophilia.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-blood-disorder-support",
@@ -3675,7 +3943,8 @@ const ENTRIES = [
       "Blood cancers are covered separately by the Irish Cancer Society.",
     ],
     referral: "Haematology consultant referral.",
-    contact: {}
+    contact: {},
+    checked: "4 Sep 2026"
   },
   {
     id: "belfast-haematology",
@@ -3697,7 +3966,8 @@ const ENTRIES = [
     blurb: "Ireland's largest elective orthopaedic centre — 1,600–1,700+ hip/knee replacement and revision surgeries a year.",
     details: [],
     referral: "GP or orthopaedic consultant referral.",
-    contact: { phone: "01 814 0400", address: "Cappagh Road, Finglas, Dublin 11" }
+    contact: { phone: "01 814 0400", address: "Cappagh Road, Finglas, Dublin 11" },
+    checked: "4 Sep 2026"
   },
   {
     id: "croom-orthopaedic-hospital",
@@ -3737,7 +4007,8 @@ const ENTRIES = [
     blurb: "Northern Ireland's regional orthopaedic centre — around 44 consultant orthopaedic surgeons, ~35,000 outpatient and ~9,000 inpatient/day-case appointments a year. Houses the Primary Joint Unit for hip/knee replacement.",
     details: [],
     referral: "GP or orthopaedic consultant referral.",
-    contact: { address: "Belfast" }
+    contact: { address: "Belfast" },
+    checked: "4 Sep 2026"
   },
   {
     id: "swah-enniskillen-orthopaedics",
@@ -3747,7 +4018,8 @@ const ENTRIES = [
     blurb: "Western Trust hospital running high-volume day-case joint-replacement lists.",
     details: [],
     referral: "GP or orthopaedic consultant referral.",
-    contact: { address: "Enniskillen" }
+    contact: { address: "Enniskillen" },
+    checked: "4 Sep 2026"
   },
   {
     id: "find-orthopaedic-waiting",
@@ -3762,7 +4034,8 @@ const ENTRIES = [
       "A Northern Ireland study of 991 patients waiting 3+ years for joint replacement found significant quality-of-life loss and increased reliance on opioids, antidepressants, and out-of-hours/ED visits while waiting.",
     ],
     referral: "GP referral.",
-    contact: { web: "ntpf.ie" }
+    contact: { web: "ntpf.ie" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Mental Health Services (General Adult) ----
@@ -3774,7 +4047,8 @@ const ENTRIES = [
     blurb: "National mental health information line.",
     details: ["Also runs a free text-message support service: text HELLO to 50808."],
     referral: "Self-referral.",
-    contact: { phone: "1800 111 888" }
+    contact: { phone: "1800 111 888" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cmht-referral-explainer",
@@ -3788,7 +4062,8 @@ const ENTRIES = [
       "For urgent needs outside office hours, contact your GP out-of-hours service or your local hospital's mental health unit.",
     ],
     referral: "GP referral.",
-    contact: {}
+    contact: {},
+    checked: "4 Sep 2026"
   },
   {
     id: "belfast-cmht-selfreferral",
@@ -3798,7 +4073,8 @@ const ENTRIES = [
     blurb: "Belfast is unusual in allowing self-referral directly to a CMHT by phone, rather than requiring a GP referral.",
     details: [],
     referral: "Self-referral by phone.",
-    contact: { phone: "028 9504 0346" }
+    contact: { phone: "028 9504 0346" },
+    checked: "4 Sep 2026"
   },
   {
     id: "northern-trust-adult-mh-teams",
@@ -3808,7 +4084,8 @@ const ENTRIES = [
     blurb: "Runs 9 adult mental health teams (ages 18–64), Monday–Friday 9am–5pm.",
     details: ["NI-wide mental health waiting lists have grown substantially — one Trust has cited waits of around 5 years for CMHT assessment in some cases."],
     referral: "GP referral via the Referral Management / Clinical Communication Gateway.",
-    contact: { phone: "028 9442 4000", extra: "Main hospital switchboard — ask for Adult Mental Health." }
+    contact: { phone: "028 9442 4000", extra: "Main hospital switchboard — ask for Adult Mental Health." },
+    checked: "4 Sep 2026"
   },
 
   // ---- Dental & Oral Health ----
@@ -3823,7 +4100,8 @@ const ENTRIES = [
       "Some dentists have been withdrawing from the scheme due to contract terms — if your regular dentist no longer offers DTSS, ask your HSE Local Health Office for one that does.",
     ],
     referral: "Self-referral to any participating dentist.",
-    contact: { web: "citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/dental-services/" }
+    contact: { web: "citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/dental-services/" },
+    checked: "4 Sep 2026"
   },
   {
     id: "treatment-benefit-scheme",
@@ -3833,7 +4111,8 @@ const ENTRIES = [
     blurb: "PRSI-based scheme (run by the Department of Social Protection, not the HSE) giving a free annual oral exam plus a subsidised scale-and-polish.",
     details: ["The scheme pays a €42 subsidy toward cleaning/periodontal treatment; you pay the balance (roughly €15)."],
     referral: "Self-referral to any participating dentist — check your PRSI eligibility first.",
-    contact: { web: "gov.ie" }
+    contact: { web: "gov.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "hse-public-dental-clinics",
@@ -3843,7 +4122,8 @@ const ENTRIES = [
     blurb: "Routine and emergency dental care, plus special-care dentistry, based in primary care centres — with hospital referral where needed.",
     details: [],
     referral: "Contact your Local Health Office to register.",
-    contact: { web: "citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/dental-services/" }
+    contact: { web: "citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/dental-services/" },
+    checked: "4 Sep 2026"
   },
   {
     id: "ni-dental-access",
@@ -3857,7 +4137,8 @@ const ENTRIES = [
       "The Business Services Organisation (BSO) maintains a postcode-searchable directory of practices still accepting new NHS patients — check this before assuming none are available near you.",
     ],
     referral: "Self-referral via the BSO directory.",
-    contact: { web: "hscbusiness.hscni.net" }
+    contact: { web: "hscbusiness.hscni.net" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Allergy & Immunology ----
@@ -3869,7 +4150,8 @@ const ENTRIES = [
     blurb: "Ireland's leading adult allergy/immunology centre — a twice-weekly outpatient clinic plus a 5-day ambulatory day ward. Accredited Jeffrey Modell Foundation centre and Ireland's first UCARE centre.",
     details: ["Specialist adult allergy provision is very limited nationally — this is one of the only dedicated services."],
     referral: "GP or consultant referral.",
-    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Clinical Immunology." }
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Clinical Immunology." },
+    checked: "4 Sep 2026"
   },
   {
     id: "chi-paediatric-allergy",
@@ -3879,7 +4161,8 @@ const ENTRIES = [
     blurb: "Paediatric allergy service prioritising anaphylaxis, food allergy, and allergic rhino-conjunctivitis.",
     details: [],
     referral: "GP referral via Healthlink.",
-    contact: { phone: "01 409 6100", extra: "Runs clinics at CHI Crumlin, Temple Street, Tallaght and Connolly — this number is for CHI Crumlin appointments." }
+    contact: { phone: "01 409 6100", extra: "Runs clinics at CHI Crumlin, Temple Street, Tallaght and Connolly — this number is for CHI Crumlin appointments." },
+    checked: "4 Sep 2026"
   },
   {
     id: "ifan",
@@ -3889,7 +4172,8 @@ const ENTRIES = [
     blurb: "Clinical and education resources for food allergy, including the \"egg ladder\" reintroduction guidance.",
     details: [],
     referral: "Self-referral for information.",
-    contact: { email: "info@ifan.ie", web: "ifan.ie" }
+    contact: { email: "info@ifan.ie", web: "ifan.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "regional-immunology-service-ni",
@@ -3913,7 +4197,8 @@ const ENTRIES = [
       "Anaphylaxis Ireland's current operational status could not be confirmed — verify it's still active before relying on it.",
     ],
     referral: "GP or consultant referral for clinical care.",
-    contact: {}
+    contact: {},
+    checked: "4 Sep 2026"
   },
 
   // ---- Palliative & End-of-Life Care ----
@@ -3928,7 +4213,8 @@ const ENTRIES = [
       "Palliative care is delivered at home via community palliative homecare teams, in specialist inpatient hospices, in general hospitals, and in day services.",
     ],
     referral: "GP or hospital doctor referral.",
-    contact: { phone: "01 873 4735", email: "info@iapc.ie", web: "iapc.ie" }
+    contact: { phone: "01 873 4735", email: "info@iapc.ie", web: "iapc.ie" },
+    checked: "4 Sep 2026"
   },
   {
     id: "irish-hospice-foundation",
@@ -3950,7 +4236,8 @@ const ENTRIES = [
     blurb: "Free night nursing care at home for people with cancer at end of life.",
     details: [],
     referral: "Referral via your public health nurse or palliative care team.",
-    contact: { phone: "1800 200 700" }
+    contact: { phone: "1800 200 700" },
+    checked: "4 Sep 2026"
   },
   {
     id: "lauralynn",
@@ -3960,7 +4247,8 @@ const ENTRIES = [
     blurb: "Ireland's only children's hospice.",
     details: ["Make-A-Wish Ireland is a separate charity that also supports children with life-threatening conditions."],
     referral: "Referral via your child's medical team.",
-    contact: { phone: "01 289 3151", email: "referrals@lauralynn.ie", address: "Leopardstown Road, Foxrock, Dublin 18, D18 X063" }
+    contact: { phone: "01 289 3151", email: "info@lauralynn.ie", address: "Leopardstown Road, Foxrock, Dublin 18, D18 R620" },
+    checked: "4 Sep 2026"
   },
   {
     id: "aiihpc-palliative-hub",
@@ -3970,7 +4258,8 @@ const ENTRIES = [
     blurb: "Runs the Palliative Hub, an all-island resource for patients, families, and professionals.",
     details: [],
     referral: "Self-referral for information.",
-    contact: { phone: "01 491 2948", email: "info@aiihpc.org", web: "aiihpc.org" }
+    contact: { phone: "01 491 2948", email: "info@aiihpc.org", web: "aiihpc.org" },
+    checked: "4 Sep 2026"
   },
   {
     id: "marie-curie-hospice-belfast",
@@ -3980,7 +4269,8 @@ const ENTRIES = [
     blurb: "Hospice and Hospice Care at Home (Belfast & South Eastern Trusts).",
     details: [],
     referral: "GP, district nurse, or hospital team referral.",
-    contact: { phone: "028 9088 2000", email: "mcccbelfastreferrals@mariecurie.org.uk", extra: "Marie Curie UK support line: 0800 090 2309", address: "1A Kensington Road, Belfast BT5 6NF" }
+    contact: { phone: "028 9088 2000", email: "referralsni@mariecurie.org.uk", address: "1A Kensington Road, Belfast BT5 6NF" },
+    checked: "4 Sep 2026"
   },
   {
     id: "ni-hospice",
