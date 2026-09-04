@@ -5382,6 +5382,19 @@ const SCHEME_LINKS = [
     ],
   },
   {
+    id: "ntpf",
+    name: "NTPF & waiting list rights",
+    jurisdiction: "roi",
+    blurb: "If you've been waiting longer than the public target time for an outpatient appointment, procedure, or diagnostic scan, you may be able to get National Treatment Purchase Fund (NTPF) funding for treatment elsewhere — often at a private facility, at no cost to you. Target times and funding rounds change, so check current figures on the NTPF's own site rather than relying on a number here.",
+    prep: [
+      "Ask your GP or hospital consultant directly whether you're eligible for NTPF referral — a referral from them is usually how this actually gets triggered, rather than applying yourself first.",
+      "Have your hospital chart number and the date you were added to the waiting list ready when you ask.",
+    ],
+    links: [
+      { label: "Current waiting-list figures & how NTPF funding works — ntpf.ie", url: "https://ntpf.ie" },
+    ],
+  },
+  {
     id: "ni-health-costs",
     name: "Help with health costs (dental, optical, travel)",
     jurisdiction: "ni",

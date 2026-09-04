@@ -17,6 +17,34 @@
     if (e.key === "Escape") quickExit();
   });
 
+  // Simple mode: a persistent, sitewide low-clutter/high-contrast toggle for
+  // moments of sensory overload, panic, or executive dysfunction. Stores only
+  // an on/off flag, locally — same "nothing leaves your browser" model as the
+  // rest of the site, just persisted across visits instead of per-page.
+  const SIMPLE_MODE_KEY = "hh-simple-mode";
+  function getSimpleMode(){
+    try { return localStorage.getItem(SIMPLE_MODE_KEY) === "1"; } catch(err){ return false; }
+  }
+  function setSimpleMode(on){
+    try { localStorage.setItem(SIMPLE_MODE_KEY, on ? "1" : "0"); } catch(err){ /* private browsing etc: falls back to session-only */ }
+    document.body.classList.toggle("simple-mode", on);
+    const btn = document.getElementById("simpleModeBtn");
+    if (btn){
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.textContent = on ? "Simple mode: on" : "Simple mode";
+    }
+  }
+  document.body.classList.toggle("simple-mode", getSimpleMode());
+  const simpleModeBtn = document.getElementById("simpleModeBtn");
+  if (simpleModeBtn){
+    simpleModeBtn.setAttribute("aria-pressed", getSimpleMode() ? "true" : "false");
+    simpleModeBtn.textContent = getSimpleMode() ? "Simple mode: on" : "Simple mode";
+    simpleModeBtn.addEventListener("click", () => {
+      setSimpleMode(!getSimpleMode());
+      route();
+    });
+  }
+
   function updateTabbar(parts){
     let active = null;
     if (parts.length === 0) active = "home";
@@ -191,7 +219,7 @@
       </span>
     `).join("");
     return `
-      <details class="crisis-banner">
+      <details class="crisis-banner"${getSimpleMode() ? " open" : ""}>
         <summary class="crisis-banner-head">
           <span class="crisis-icon">${iconSvg(ICON_PATHS.crisis, 18)}</span>
           <span class="banner-head-text">
@@ -210,7 +238,7 @@
 
   function urgentCareBannerHtml(){
     return `
-      <details class="urgent-banner">
+      <details class="urgent-banner"${getSimpleMode() ? " open" : ""}>
         <summary class="urgent-banner-head">
           <span class="urgent-icon">${iconSvg(PIN_ICON, 18)}</span>
           <span class="banner-head-text">
@@ -228,11 +256,28 @@
   }
 
   function renderHome(){
+    const simple = getSimpleMode();
+    const quickPills = simple
+      ? `
+        <a class="pill" href="#/specialty/crisis">Mental health crisis support</a>
+        <a class="pill" href="#/out-of-hours">Out-of-hours &amp; urgent care</a>
+        <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
+        <a class="pill" href="#/prep">Prep for an appointment</a>
+      `
+      : `
+        <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
+        <a class="pill" href="#/specialty/parenting">Parenting &amp; new motherhood</a>
+        <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
+        <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
+        <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
+        <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
+        <a class="pill" href="#/prep">Prep for an appointment</a>
+      `;
     app.innerHTML = `
       <div class="hero hero-top">
         <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
         <h1>Navigating health &amp; care, <em>wherever you are</em>.</h1>
-        <p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine and women's health, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>
+        ${simple ? "" : `<p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine and women's health, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>`}
       </div>
 
       ${crisisBannerHtml()}
@@ -253,14 +298,7 @@
 
       <div class="quick-links">
         <h3>Often searched</h3>
-        <div class="quick-link-row">
-          <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
-          <a class="pill" href="#/specialty/parenting">Parenting &amp; new motherhood</a>
-          <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
-          <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
-          <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
-          <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
-        </div>
+        <div class="quick-link-row">${quickPills}</div>
       </div>
     `;
   }
@@ -615,9 +653,10 @@
     `;
   }
 
-  window.copyTemplateText = function(id){
-    const el = document.getElementById("template-" + id);
-    const btn = document.querySelector(`.copy-btn[data-template-id="${id}"]`);
+  // Shared by static letter templates and the generated text on the
+  // Pre-Appointment Prep page — copies one element's textContent to the
+  // clipboard and flashes the triggering button to confirm it worked.
+  function copyElementText(el, btn){
     if (!el || !btn) return;
     const text = el.textContent;
     const done = () => { const orig = btn.textContent; btn.textContent = "Copied ✓"; setTimeout(() => { btn.textContent = orig; }, 1800); };
@@ -633,11 +672,18 @@
       sel.removeAllRanges();
       done();
     }
+  }
+
+  window.copyTemplateText = function(id){
+    const el = document.getElementById("template-" + id);
+    const btn = document.querySelector(`.copy-btn[data-template-id="${id}"]`);
+    copyElementText(el, btn);
   };
 
   app.addEventListener("click", (e) => {
     const btn = e.target.closest(".copy-btn");
-    if (btn) window.copyTemplateText(btn.dataset.templateId);
+    if (btn && btn.dataset.templateId) window.copyTemplateText(btn.dataset.templateId);
+    if (btn && btn.dataset.copyTarget) copyElementText(document.getElementById(btn.dataset.copyTarget), btn);
     const backLink = e.target.closest('[data-action="back"]');
     if (backLink){ e.preventDefault(); history.back(); }
   });
@@ -741,6 +787,94 @@
     initOohMap();
   }
 
+  // Pre-Appointment Prep + silent waiting-room check-in. Deliberately built
+  // with no persistence at all: everything typed here lives only in the DOM
+  // for this page view and is gone on refresh or navigation. The generated
+  // text is a verbatim echo of what the user typed — the app never infers,
+  // suggests, or auto-completes any medical content — so this stays a
+  // note-taking aid, not a source of medical advice or a stored health record.
+  function renderPrep(){
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Before your appointment</h1>
+        <p class="count">Get your thoughts in order, then bring it with you</p>
+      </div>
+
+      <div class="callout">
+        Nothing you type on this page is saved anywhere, on this device or off it — refreshing or leaving clears it. Copy or print your checklist before you go. This only ever repeats back what you type; it's a note-taking aid, not medical advice.
+      </div>
+
+      <div class="prep-card">
+        <h2>Consultation checklist</h2>
+        <p class="remit">Two minutes now saves forgetting the thing you actually came in for.</p>
+        <label class="prep-label" for="prepSymptoms">Your top concerns today — what, and since when</label>
+        <textarea id="prepSymptoms" class="prep-input" rows="3" placeholder="e.g. Lower back pain, worse in the mornings, started about 3 weeks ago"></textarea>
+
+        <label class="prep-label" for="prepQuestions">Questions you want answered before you leave</label>
+        <textarea id="prepQuestions" class="prep-input" rows="3" placeholder="e.g. Do I need a scan? What are the treatment options?"></textarea>
+
+        <label class="prep-label" for="prepNeeds">Anything you need from this visit</label>
+        <textarea id="prepNeeds" class="prep-input" rows="2" placeholder="e.g. Repeat prescription, referral letter, sick cert"></textarea>
+
+        <label class="prep-label" for="prepMeds">Current medications &amp; doses</label>
+        <textarea id="prepMeds" class="prep-input" rows="2" placeholder="e.g. Metformin 500mg twice daily"></textarea>
+
+        <button type="button" class="copy-btn" id="prepGenerate">Build my checklist</button>
+        <pre class="template-text" id="prepOutput" hidden></pre>
+        <button type="button" class="copy-btn" id="prepCopy" data-copy-target="prepOutput" hidden>Copy checklist</button>
+      </div>
+
+      <div class="prep-card">
+        <h2>Waiting outside? Ask reception to text you</h2>
+        <p class="remit">If a crowded or noisy waiting room is difficult for you, this drafts a message asking reception to let you wait elsewhere and text you when it's your turn. Whether they can accommodate it is up to the service — this only drafts the ask.</p>
+
+        <label class="prep-label" for="waitTime">Appointment time</label>
+        <input type="text" id="waitTime" class="prep-input" placeholder="e.g. 2:30pm">
+
+        <label class="prep-label" for="waitClinician">Clinician or department</label>
+        <input type="text" id="waitClinician" class="prep-input" placeholder="e.g. Dr Smith / Outpatients">
+
+        <label class="prep-label" for="waitLocation">Where you'll be waiting</label>
+        <input type="text" id="waitLocation" class="prep-input" placeholder="e.g. the car park, outside the entrance">
+
+        <label class="prep-label" for="waitPhone">Your phone number</label>
+        <input type="text" id="waitPhone" class="prep-input" placeholder="e.g. 087 123 4567">
+
+        <button type="button" class="copy-btn" id="waitGenerate">Build my message</button>
+        <pre class="template-text" id="waitOutput" hidden></pre>
+        <button type="button" class="copy-btn" id="waitCopy" data-copy-target="waitOutput" hidden>Copy message</button>
+      </div>
+    `;
+
+    document.getElementById("prepGenerate").addEventListener("click", () => {
+      const symptoms = document.getElementById("prepSymptoms").value.trim();
+      const questions = document.getElementById("prepQuestions").value.trim();
+      const needs = document.getElementById("prepNeeds").value.trim();
+      const meds = document.getElementById("prepMeds").value.trim();
+      const sections = [];
+      if (symptoms) sections.push("TOP CONCERNS TODAY\n" + symptoms);
+      if (questions) sections.push("QUESTIONS TO ASK\n" + questions);
+      if (needs) sections.push("WHAT I NEED FROM THIS VISIT\n" + needs);
+      if (meds) sections.push("CURRENT MEDICATIONS\n" + meds);
+      const out = document.getElementById("prepOutput");
+      out.textContent = sections.length ? sections.join("\n\n") : "Fill in at least one field above, then try again.";
+      out.hidden = false;
+      document.getElementById("prepCopy").hidden = false;
+    });
+
+    document.getElementById("waitGenerate").addEventListener("click", () => {
+      const time = document.getElementById("waitTime").value.trim() || "[time]";
+      const clinician = document.getElementById("waitClinician").value.trim() || "[clinician / department]";
+      const loc = document.getElementById("waitLocation").value.trim() || "[nearby location]";
+      const phone = document.getElementById("waitPhone").value.trim() || "[phone number]";
+      const out = document.getElementById("waitOutput");
+      out.textContent = `Hello, I have arrived for my appointment at ${time} with ${clinician}. I'd find it easier to wait outside the waiting room if that's possible — I'll be in ${loc}. Could you text or call me on ${phone} when it's nearly my turn? Thank you.`;
+      out.hidden = false;
+      document.getElementById("waitCopy").hidden = false;
+    });
+  }
+
   function renderAdvocacyGeneral(){
     return `
       <div class="callout">
@@ -806,6 +940,7 @@
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
+    else if (parts[0] === "prep") renderPrep();
     else renderHome();
 
     announceRouteChange();

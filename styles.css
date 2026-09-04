@@ -103,6 +103,13 @@ h1,h2,h3{ font-family:var(--font); }
   padding:7px 12px; cursor:pointer; white-space:nowrap;
 }
 .quick-exit-btn:hover, .quick-exit-btn:focus{ color:var(--ink); background:var(--line); }
+.simple-mode-btn{
+  font-family:var(--font); font-size:11.5px; font-weight:700; color:var(--ink-soft);
+  background:var(--surface-2); border:none; border-radius:var(--radius-pill);
+  padding:7px 12px; cursor:pointer; white-space:nowrap;
+}
+.simple-mode-btn:hover, .simple-mode-btn:focus{ color:var(--ink); background:var(--line); }
+.simple-mode-btn[aria-pressed="true"]{ background:var(--violet); color:#fff; }
 .search-toggle{ display:none; }
 
 .search-bar{
@@ -369,6 +376,24 @@ h1,h2,h3{ font-family:var(--font); }
 .scheme-prep ul{ margin:10px 0 0; padding-left:20px; }
 .scheme-prep li{ font-size:13px; line-height:1.6; margin-bottom:7px; color:var(--ink); }
 
+/* ---------- Pre-appointment prep ---------- */
+.prep-card{
+  background:var(--surface); border-radius:var(--radius-lg);
+  padding:18px 20px; margin-bottom:14px; box-shadow:var(--shadow);
+}
+.prep-card h2{ font-family:var(--font-display); font-size:16.5px; font-weight:600; margin:0 0 4px; color:var(--ink); }
+.prep-card .remit{ font-size:13px; color:var(--ink-soft); margin:0 0 14px; line-height:1.5; }
+.prep-label{ display:block; font-size:12.5px; font-weight:700; color:var(--violet-deep); margin:14px 0 6px; }
+.prep-label:first-of-type{ margin-top:0; }
+.prep-input{
+  width:100%; font-family:var(--font); font-size:14.5px; color:var(--ink);
+  background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius);
+  padding:11px 13px; resize:vertical;
+}
+.prep-input:focus{ outline:none; border-color:var(--violet); box-shadow:0 0 0 4px var(--violet-tint); }
+.prep-card .copy-btn{ margin-top:14px; display:block; }
+.prep-card .template-text{ margin-top:10px; }
+
 .referral-note{
   background:var(--sand-tint);
   padding:14px 16px; font-size:14px; color:#6B4F1B; margin-top:18px; border-radius:var(--radius);
@@ -516,6 +541,24 @@ h1,h2,h3{ font-family:var(--font); }
   .hero h1{ font-size:36px; }
   .index-grid{ grid-template-columns:1fr 1fr; }
 }
+
+/* ---------- Simple / low-load mode ----------
+   Toggled sitewide via a class on <body>. Deliberately not a separate page:
+   applies uniformly to whatever route is already showing, so it works no
+   matter where someone is in the app when they need it. Bigger tap targets
+   and higher-contrast text, not a different feature set. */
+.simple-mode{ font-size:17px; }
+.simple-mode p, .simple-mode li, .simple-mode .blurb, .simple-mode .remit,
+.simple-mode .detail, .simple-mode .summary{ color:var(--ink); }
+.simple-mode a, .simple-mode button, .simple-mode .tab-item, .simple-mode .pill{ min-height:44px; }
+.simple-mode .tabbar .tab-item svg{ width:26px; height:26px; }
+.simple-mode .tabbar .tab-item span{ font-size:13.5px; font-weight:700; }
+.simple-mode .entry-card, .simple-mode .row, .simple-mode .org-card,
+.simple-mode .scheme-card, .simple-mode .template-card, .simple-mode .rights-card,
+.simple-mode .prep-card{ padding:22px; }
+.simple-mode .crisis-banner, .simple-mode .urgent-banner{ border-left-width:7px; }
+.simple-mode .index-tile h2{ font-size:19px; }
+.simple-mode .pill{ font-size:14.5px; padding:12px 18px; }
 
 @media (prefers-reduced-motion: reduce){
   *, *::before, *::after{
