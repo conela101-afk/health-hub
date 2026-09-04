@@ -89,6 +89,10 @@
     palliative: '<path d="M12 3v4"/><path d="M9 21h6"/><path d="M10 21V11a2 2 0 0 1 4 0v10"/><path d="M9.5 8c0 1.3 1.2 1.8 1.2 3.2"/>',
   };
   const PIN_ICON = '<path d="M12 21s-6.5-6-6.5-11A6.5 6.5 0 0 1 12 3.5 6.5 6.5 0 0 1 18.5 10c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>';
+  // Neutral grid icon for "By specialty" — matches the tab-bar icon for the
+  // same section. Previously used the gynae (♀) symbol, which read as a
+  // women's-health-first visual signal on a now general-health-first home page.
+  const GRID_ICON = '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>';
 
   function iconSvg(pathData, size){
     return `<svg width="${size||18}" height="${size||18}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${pathData}</svg>`;
@@ -236,7 +240,7 @@
 
       <div class="index-grid">
         <a class="index-tile tile-a" href="#/specialty">
-          <span class="tile-icon">${iconSvg(ICON_PATHS.gynae, 28)}</span>
+          <span class="tile-icon">${iconSvg(GRID_ICON, 28)}</span>
           <h2>By specialty</h2>
           <p>41 categories, from cardiology to gynaecology to chronic pain</p>
         </a>
