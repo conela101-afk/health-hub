@@ -1152,7 +1152,7 @@
   function renderAdvocacyGeneral(){
     return `
       <div class="callout">
-        Not everyone's needs are covered by the women's-health-specific orgs above. These national bodies help specific groups navigate or advocate within the health &amp; social care system — regardless of gender or age.
+        Not everyone's needs are covered by the women's-health-specific orgs under the Support orgs tab. These national bodies help specific groups navigate or advocate within the health &amp; social care system — regardless of gender or age.
       </div>
       <div class="org-grid">${GENERAL_ADVOCACY_ORGS.map(orgCardHtml).join("")}</div>
     `;
@@ -1193,7 +1193,11 @@
     const label = heading ? heading.textContent.trim() : (document.title || "Page");
     const announcer = document.getElementById("routeAnnouncer");
     if (announcer) announcer.textContent = label;
-    if (hasRoutedOnce) app.focus({ preventScroll: true });
+    // Skip while the search input itself has focus — the debounced input
+    // handler above triggers this same route change on every keystroke, and
+    // moving focus to #app mid-typing blurs the field, which dismisses the
+    // on-screen keyboard on mobile.
+    if (hasRoutedOnce && document.activeElement !== searchInput) app.focus({ preventScroll: true });
     hasRoutedOnce = true;
   }
 

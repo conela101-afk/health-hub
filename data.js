@@ -937,7 +937,7 @@ const ENTRIES = [
     blurb: "Private consultant-led gynaecology at the Galway Clinic, part of Blackrock Health.",
     details: [
       "Blackrock Health's gynaecology service is described as running across its Dublin and Galway clinics jointly.",
-      "Number below is the clinic's general switchboard — ask to be directed to gynaecology or a named consultant.",
+      "Number above is the clinic's general switchboard — ask to be directed to gynaecology or a named consultant.",
     ],
     referral: "GP or consultant referral letter required.",
     contact: { phone: "091 785 000", web: "galwayclinic.com", address: "Doughiska, Galway, H91 HHT0" },
@@ -4316,7 +4316,7 @@ const ADVOCACY_GUIDE = [
       "Ask directly what the clinical reason is for ruling out a serious cause — you're entitled to that explanation.",
       "Ask for that reasoning to be documented: \"I'd like this recorded in my notes.\"",
       "Ask for safety-netting: what specifically should prompt you to come back or go to A&E?",
-      "This pattern is well documented in Ireland, not just anecdotal — see 'Why this page exists' below. You are not imagining it.",
+      "This pattern is well documented in Ireland, not just anecdotal — see 'Why this page exists' above. You are not imagining it.",
     ],
   },
   {
@@ -4347,7 +4347,7 @@ const ADVOCACY_GUIDE = [
       "The Patient Advocacy Service (PAS) is free, independent, and confidential — they can walk you through writing and lodging a complaint about a public acute hospital, or after a patient-safety incident. Consider contacting them before you write anything formal.",
       "AIMS Ireland specifically helps with maternity-care complaint letters if your complaint relates to pregnancy or birth care.",
       "Keep a simple log throughout: date, who you spoke to, what was said, what was promised. Invaluable if you need to escalate.",
-      "The stated timelines aren't always kept in practice — the Ombudsman's own reports document cases where a response took nearly three years, and another where an investigation hadn't started nine months after acknowledgement. If your complaint is running well past its deadline, that's grounds to chase it in writing, not a sign you're being unreasonable (see the letter templates above).",
+      "The stated timelines aren't always kept in practice — the Ombudsman's own reports document cases where a response took nearly three years, and another where an investigation hadn't started nine months after acknowledgement. If your complaint is running well past its deadline, that's grounds to chase it in writing, not a sign you're being unreasonable (see the Letter templates tab).",
       "The 12-month deadline to complain is enforced strictly, even in the hardest circumstances — a hospital has refused to deal with a bereaved couple's complaint about their newborn's death because it fell outside that window. If you're unsure whether to complain, don't let time run out while you decide.",
     ],
   },
@@ -4368,7 +4368,7 @@ const ADVOCACY_GUIDE = [
     tips: [
       "You can bring a support person to any appointment, or ask to take notes yourself.",
       "The Patient Advocacy Service can support you directly through a complaint process, not just point you to the right form.",
-      "Peer support through a condition-specific charity (see the directory below) can help you understand what 'normal' process actually looks like for your situation.",
+      "Peer support through a condition-specific charity (see the Support orgs tab) can help you understand what 'normal' process actually looks like for your situation.",
     ],
   },
   {
@@ -4401,7 +4401,7 @@ const HOSPITAL_FOI = [
     typeLabel: "HSE hospital — central process",
     summary: "No dedicated hospital FOI officer. The HSE's old central FOI landing page is currently unreachable — the link below goes to the HSE's data protection contact page instead, which is the live route to the same office, though the page itself is branded 'data protection', not 'FOI'.",
     steps: [
-      "For your own routine records, a GDPR Subject Access Request is usually the faster route — see 'Accessing your records' above.",
+      "For your own routine records, a GDPR Subject Access Request is usually the faster route — see 'Accessing your records' in The guide tab.",
       "FOI proper still matters specifically for sensitive/psychiatric records, a child's records, or a deceased person's records. If that's you, state clearly you're applying under the Freedom of Information Act 2014 when you contact this office, since the page won't prompt you to.",
       "No fee for your own personal information either way. Under FOI: acknowledged within 10 working days, response generally within 20 working days.",
     ],
@@ -4419,7 +4419,7 @@ const HOSPITAL_FOI = [
       "State clearly that you're making the request under the Freedom of Information Act 2014, and describe the records you want (service, approximate dates).",
       "Under the FOI Act, acknowledgement is due within 10 working days — if a high volume of requests is cited, an extension can push the response out further.",
     ],
-    note: "For your own maternity or health records specifically, a GDPR Subject Access Request is usually faster than FOI — see 'Accessing your records' above. This mailbox is CUMH-specific — don't reuse it for other hospitals.",
+    note: "For your own maternity or health records specifically, a GDPR Subject Access Request is usually faster than FOI — see 'Accessing your records' in The guide tab. This mailbox is CUMH-specific — don't reuse it for other hospitals.",
     contact: { email: "CUMH.FOI@hse.ie", address: "Medical Records Department, 1 East Room, Wilton Road, Cork, T12 YEO2" },
   },
   {
