@@ -17,7 +17,8 @@
     if (e.key === "Escape") quickExit();
   });
 
-  // Simple mode: a persistent, sitewide low-clutter/high-contrast toggle for
+  // Calm mode (user-facing label; internal names kept as "simple" for
+  // continuity): a persistent, sitewide low-clutter/high-contrast toggle for
   // moments of sensory overload, panic, or executive dysfunction. Stores only
   // an on/off flag, locally — same "nothing leaves your browser" model as the
   // rest of the site, just persisted across visits instead of per-page.
@@ -31,14 +32,14 @@
     const btn = document.getElementById("simpleModeBtn");
     if (btn){
       btn.setAttribute("aria-pressed", on ? "true" : "false");
-      btn.textContent = on ? "Simple mode: on" : "Simple mode";
+      btn.textContent = on ? "Calm mode: on" : "Calm mode";
     }
   }
   document.body.classList.toggle("simple-mode", getSimpleMode());
   const simpleModeBtn = document.getElementById("simpleModeBtn");
   if (simpleModeBtn){
     simpleModeBtn.setAttribute("aria-pressed", getSimpleMode() ? "true" : "false");
-    simpleModeBtn.textContent = getSimpleMode() ? "Simple mode: on" : "Simple mode";
+    simpleModeBtn.textContent = getSimpleMode() ? "Calm mode: on" : "Calm mode";
     simpleModeBtn.addEventListener("click", () => {
       setSimpleMode(!getSimpleMode());
       route();
