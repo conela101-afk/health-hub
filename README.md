@@ -54,6 +54,18 @@ To add a new county (e.g. Kerry), add it to the `COUNTIES` array at the top of `
 
 There's no build step — save the file, refresh the browser, done.
 
+## Content conventions
+
+These have built up over successive editing passes — keep following them:
+
+- **Link, don't duplicate.** Official schemes/forms get linked to their live page, never transcribed (rates and forms go stale). Write original content — letter templates, walkthroughs — only for documented pain points, not as a substitute for a link.
+- **No clinical triage or symptom-checker scope.** This is a directory and advocacy toolkit, not a source of medical advice — crossing that line is a medico-legal risk.
+- **`checked: "D Mon YYYY"`** is an optional per-entry verification-date stamp. Add it only to entries you've actually just re-verified against a live source — never backfilled or added speculatively.
+- **No AI-sounding copy.** Avoid formulaic hedge phrases repeated across entries (e.g. a tag like "— a genuine gap" reused everywhere) and research-process leakage ("was found", "in this pass"). Write plain, direct prose, and match the site's existing "About X" naming convention for informational/caveat entries.
+- **Never add a URL to `data.js` without verifying it live first.**
+- **Keep language general, not gendered, by default.** Most of the site (general medicine, the advocacy/rights guide, letter templates, crisis and out-of-hours info) applies to everyone and should read that way. Only use women-specific framing where the entry is genuinely about a women's-health-specific topic or organisation (maternity, gynae, endometriosis, menopause, fertility, a women's-health charity/campaign, etc.) — don't let it default in elsewhere.
+- **`sector: "private"` is only for entries where the entity itself is a private company** (e.g. Beacon Hospital, Mater Private, Blackrock Health, Bon Secours, Kingsbridge). Do not apply it to a public/HSE hospital or publicly-funded pathway just because it also accepts private patients or refers into private providers (e.g. a public maternity hospital's "private care" option, or an HSE-funded referral into a private fertility clinic) — accepting private patients is standard for public hospitals and isn't itself grounds for the tag.
+
 ## What's already fact-checked vs. what isn't
 
 This v1 was compiled from public HSE and voluntary-sector websites. Phone numbers, staff, and referral pathways change — **every entry should be verified by phone before this is shared widely.** Treat it as a strong first draft, not a finished, liability-safe product.
