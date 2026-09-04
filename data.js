@@ -1233,11 +1233,22 @@ const ENTRIES = [
     id: "cavan-maternity",
     name: "Cavan General Hospital Maternity",
     specialty: ["obs"],
-    county: ["cavan"],
-    blurb: "Maternity unit alongside a midwifery-led unit.",
+    county: ["cavan", "monaghan"],
+    blurb: "Maternity unit alongside a midwifery-led unit — Cavan is described as the main hospital for Cavan and Monaghan (and nearby border areas of Leitrim, Longford and Meath, though those counties have their own closer anchor hospitals covered elsewhere on this site).",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "049 437 6613", address: "Lisdaran, Cavan" }
+  },
+  {
+    id: "cavan-gynae",
+    name: "Cavan General Hospital Gynaecology",
+    specialty: ["gynae"],
+    county: ["cavan", "monaghan"],
+    blurb: "Public gynaecology alongside obstetric, acute medical and surgical services — Cavan/Monaghan's main hospital for this.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "049 437 6000", extra: "Main hospital switchboard — ask for Gynaecology.", address: "Lisdaran, Cavan H12 Y3C8" },
+    checked: "4 Sep 2026"
   },
   {
     id: "letterkenny-maternity",
@@ -1248,6 +1259,17 @@ const ENTRIES = [
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "074 912 5888", address: "Kilmacrennan Rd, Letterkenny F92 AE81" }
+  },
+  {
+    id: "letterkenny-gynae",
+    name: "Letterkenny University Hospital Gynaecology",
+    specialty: ["gynae"],
+    county: ["donegal"],
+    blurb: "Public gynaecology department — its service was significant enough to be the subject of a dedicated Saolta service review.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "074 912 5888", extra: "Main hospital switchboard — ask for Gynaecology.", address: "Kilmacrennan Rd, Letterkenny F92 AE81" },
+    checked: "4 Sep 2026"
   },
   {
     id: "coombe-maternity",
@@ -1305,9 +1327,20 @@ const ENTRIES = [
     specialty: ["obs"],
     county: ["kerry"],
     blurb: "The maternity unit for Co. Kerry.",
-    details: [],
+    details: ["Maternity Emergency Service: 066 718 4324."],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "066 718 4000", address: "Tralee, Co. Kerry V92 NX94" }
+  },
+  {
+    id: "uhk-gynae",
+    name: "University Hospital Kerry Gynaecology",
+    specialty: ["gynae"],
+    county: ["kerry"],
+    blurb: "Public gynaecology — outpatient, inpatient, ambulatory gynae, fertility, urogynaecology, menorrhagia and colposcopy clinics, confirmed on the hospital's own site.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "066 718 4000", extra: "Main hospital switchboard — ask for Gynaecology.", address: "Tralee, Co. Kerry V92 NX94" },
+    checked: "4 Sep 2026"
   },
   {
     id: "kilkenny-maternity",
@@ -1386,11 +1419,22 @@ const ENTRIES = [
     id: "sligo-maternity",
     name: "Sligo University Hospital Maternity",
     specialty: ["obs"],
-    county: ["sligo"],
-    blurb: "The maternity unit for the northwest.",
+    county: ["sligo", "leitrim"],
+    blurb: "The maternity unit for the northwest — catchment explicitly includes Sligo, Leitrim, south Donegal and west Cavan.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "071 917 1111", address: "The Mall, Sligo F91 H684" }
+  },
+  {
+    id: "sligo-gynae",
+    name: "Sligo University Hospital Gynaecology",
+    specialty: ["gynae"],
+    county: ["sligo", "leitrim"],
+    blurb: "Public gynaecology, including outreach antenatal/gynae clinics in Carrick-on-Shannon and Manorhamilton — both in Co. Leitrim.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "071 917 1111", extra: "Main hospital switchboard — ask for Gynaecology.", address: "The Mall, Sligo F91 H684" },
+    checked: "4 Sep 2026"
   },
   {
     id: "tipperary-maternity",
@@ -1401,6 +1445,17 @@ const ENTRIES = [
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "052 617 7000" }
+  },
+  {
+    id: "tipperary-gynae",
+    name: "Tipperary University Hospital Gynaecology (South Tipp General)",
+    specialty: ["gynae"],
+    county: ["tipperary"],
+    blurb: "Public gynaecology department, based in Clonmel.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "052 617 7000", extra: "Main hospital switchboard — ask for Gynaecology.", address: "Western Road, Clonmel, Co. Tipperary E91 W651" },
+    checked: "4 Sep 2026"
   },
   {
     id: "waterford-maternity",
@@ -1416,11 +1471,22 @@ const ENTRIES = [
     id: "mullingar-maternity",
     name: "Midland Regional Hospital Mullingar Maternity",
     specialty: ["obs"],
-    county: ["westmeath"],
-    blurb: "The maternity unit for Co. Westmeath.",
+    county: ["westmeath", "longford"],
+    blurb: "The maternity unit for Co. Westmeath — confirmed as also serving Co. Longford, which has no maternity unit of its own.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "044 934 0221", address: "Co. Westmeath N91 NA43" }
+  },
+  {
+    id: "mullingar-gynae",
+    name: "Midland Regional Hospital Mullingar Gynaecology",
+    specialty: ["gynae"],
+    county: ["westmeath", "longford"],
+    blurb: "Public gynaecology department, serving Westmeath and Longford — previously Longford had no entry on this site at all.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "044 934 0221", extra: "Main hospital switchboard — ask for Gynaecology.", address: "Longford Road, Mullingar, Co. Westmeath N91 NA43" },
+    checked: "4 Sep 2026"
   },
   {
     id: "wexford-maternity",
