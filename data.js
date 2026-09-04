@@ -536,11 +536,22 @@ const ENTRIES = [
     id: "nmh-endo",
     name: "National Maternity Hospital — Endometriosis (in development)",
     specialty: ["endo", "gynae"],
-    county: ["dublin"],
-    blurb: "Regional endometriosis centre in development under the National Endometriosis Framework — may not be fully operational yet.",
+    county: ["dublin", "wicklow"],
+    blurb: "Regional endometriosis centre in development under the National Endometriosis Framework — may not be fully operational yet. NMH also takes wider gynaecology referrals from Wicklow and the south-east.",
     details: [],
     referral: "GP referral — ask whether the service is live yet.",
     contact: { phone: "01 637 3100" }
+  },
+  {
+    id: "tallaght-emergency-gynae",
+    name: "Tallaght University Hospital Emergency Gynaecology Unit",
+    specialty: ["gynae"],
+    county: ["dublin", "kildare"],
+    blurb: "Urgent gynaecology assessment — the confirmed route for Kildare, which has no gynaecology or maternity department of its own (Naas General doesn't run either).",
+    details: [],
+    referral: "GP referral, or via Emergency Department.",
+    contact: { phone: "01 414 2000", address: "Tallaght University Hospital, Tallaght, Dublin 24, D24 NR0A" },
+    checked: "4 Sep 2026"
   },
   {
     id: "cumh-menopause-clinic",
@@ -1242,8 +1253,8 @@ const ENTRIES = [
     id: "coombe-maternity",
     name: "Coombe Hospital Maternity",
     specialty: ["obs"],
-    county: ["dublin"],
-    blurb: "One of three Dublin maternity hospitals.",
+    county: ["dublin", "kildare"],
+    blurb: "One of three Dublin maternity hospitals — also a maternity option for Kildare, which has no maternity unit of its own (Naas General doesn't run one).",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "01 408 5200", email: "patientadvocacy@coombe.ie", address: "Cork Street, Dublin D08 XW7X" }
@@ -1252,8 +1263,8 @@ const ENTRIES = [
     id: "nmh-maternity",
     name: "National Maternity Hospital Maternity",
     specialty: ["obs"],
-    county: ["dublin"],
-    blurb: "One of three Dublin maternity hospitals.",
+    county: ["dublin", "kildare", "wicklow"],
+    blurb: "One of three Dublin maternity hospitals — also a maternity option for Kildare and Wicklow, neither of which has a maternity unit of its own.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "01 637 3100", address: "Holles St, Dublin D02 YH21" }
@@ -1262,8 +1273,8 @@ const ENTRIES = [
     id: "rotunda-maternity",
     name: "Rotunda Hospital Maternity",
     specialty: ["obs"],
-    county: ["dublin"],
-    blurb: "One of three Dublin maternity hospitals.",
+    county: ["dublin", "kildare"],
+    blurb: "One of three Dublin maternity hospitals — also a maternity option for Kildare, which has no maternity unit of its own.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "01 873 0596", address: "Parnell Square East, Dublin D01 P5W9", web: "rotunda.ie" }
@@ -1456,11 +1467,22 @@ const ENTRIES = [
     id: "western-trust-maternity",
     name: "Western Trust Maternity (Altnagelvin & SWAH)",
     specialty: ["obs"],
-    county: ["londonderry", "fermanagh"],
-    blurb: "Altnagelvin Hospital (Derry/Londonderry) and South West Acute Hospital (Enniskillen).",
+    county: ["londonderry", "fermanagh", "tyrone"],
+    blurb: "Altnagelvin Hospital (Derry/Londonderry) and South West Acute Hospital (Enniskillen) — the Trust's own assessment unit is named for Omagh, Co. Tyrone, so this already covers the west of the county.",
     details: ["Altnagelvin Maternal & Fetal Assessment Unit: 028 7161 1412.", "SWAH/Omagh Fetal Maternal Assessment (24hr): 028 8283 3100."],
     referral: "Self-referral.",
     contact: { phone: "028 7134 5171" }
+  },
+  {
+    id: "swah-gynae",
+    name: "South West Acute Hospital Gynaecology (Enniskillen)",
+    specialty: ["gynae"],
+    county: ["fermanagh", "tyrone"],
+    blurb: "Runs Women's Health Clinics and obstetrics/gynaecology services, unlike emergency general surgery which was suspended at SWAH in 2022 — confirmed still running. Covers all of Fermanagh and west Tyrone.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "028 6638 2000", extra: "Main hospital switchboard — ask for Gynaecology.", address: "124 Irvinestown Road, Enniskillen, Co. Fermanagh BT74 6DN" },
+    checked: "4 Sep 2026"
   },
 
   // ---- Perinatal & Maternal Mental Health: other 5 hub hospitals + NI ----
@@ -2183,6 +2205,17 @@ const ENTRIES = [
     details: [],
     referral: "GP referral.",
     contact: { phone: "057 9358603" }
+  },
+  {
+    id: "tullamore-maternity",
+    name: "Midland Regional Hospital Tullamore Maternity",
+    specialty: ["obs"],
+    county: ["offaly"],
+    blurb: "The maternity unit for Co. Offaly.",
+    details: [],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "057 932 1501", extra: "Main hospital switchboard — ask for the Maternity Unit.", address: "Arden Road, Tullamore, Co. Offaly R35 NY51" },
+    checked: "4 Sep 2026"
   },
   {
     id: "waterford-rheumatology",
@@ -3578,7 +3611,7 @@ const ENTRIES = [
     id: "swah-enniskillen-orthopaedics",
     name: "South West Acute Hospital — Orthopaedics",
     specialty: ["orthopaedics"],
-    county: ["fermanagh"],
+    county: ["fermanagh", "tyrone"],
     blurb: "Western Trust hospital running high-volume day-case joint-replacement lists.",
     details: [],
     referral: "GP or orthopaedic consultant referral.",
