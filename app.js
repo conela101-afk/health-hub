@@ -214,7 +214,7 @@
       <div class="hero hero-top">
         <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
         <h1>Navigating health &amp; care, <em>wherever you are</em>.</h1>
-        <p>A free directory for health services and your rights across Ireland and Northern Ireland — women's health in full depth, plus general advocacy, complaints support, and out-of-hours care, with more being added.</p>
+        <p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine and women's health, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>
       </div>
 
       ${crisisBannerHtml()}
@@ -224,7 +224,7 @@
         <a class="index-tile tile-a" href="#/specialty">
           <span class="tile-icon">${iconSvg(ICON_PATHS.gynae, 28)}</span>
           <h2>By specialty</h2>
-          <p>Obs &amp; gynae, urology, mental health, and more</p>
+          <p>41 categories, from cardiology to gynaecology to chronic pain</p>
         </a>
         <a class="index-tile tile-b" href="#/county">
           <span class="tile-icon">${iconSvg(PIN_ICON, 28)}</span>
@@ -310,17 +310,56 @@
     `;
   }
 
+  function entryHay(e){
+    return [e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel)]
+      .join(" ").toLowerCase();
+  }
+
+  function providerGroupCardHtml(provider, entries){
+    const specs = [...new Set(entries.flatMap(e => e.specialty.map(specialtyLabel)))].join(", ");
+    return `
+      <details class="template-card">
+        <summary class="template-head">
+          <span class="banner-head-text">
+            <h2>${provider}</h2>
+            <p>${entries.length} service${entries.length === 1 ? "" : "s"} — ${specs}</p>
+          </span>
+          <span class="banner-chevron">${iconSvg(CHEVRON_ICON, 16)}</span>
+        </summary>
+        <div class="template-body">${entries.map(entryCardHtml).join("")}</div>
+      </details>
+    `;
+  }
+
   function renderSearch(query){
     const q = query.toLowerCase();
-    const results = ENTRIES.filter(e => {
-      const hay = [e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel)]
-        .join(" ").toLowerCase();
-      return hay.includes(q);
-    });
+    const terms = q.split(/\s+/).filter(Boolean);
+    const isPrivateQuery = terms.includes("private");
+    const otherTerms = terms.filter(t => t !== "private");
+
+    let privateEntries = [];
+    if (isPrivateQuery){
+      privateEntries = ENTRIES.filter(e => e.sector === "private");
+      if (otherTerms.length){
+        privateEntries = privateEntries.filter(e =>
+          otherTerms.every(t => entryHay(e).includes(t) || (e.provider || "").toLowerCase().includes(t))
+        );
+      }
+    }
+    const privateIds = new Set(privateEntries.map(e => e.id));
+
+    const results = ENTRIES.filter(e => !privateIds.has(e.id) && entryHay(e).includes(q));
     const matchesOrg = o => [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase().includes(q);
     const orgResults = SUPPORT_ORGS.filter(matchesOrg);
     const generalOrgResults = GENERAL_ADVOCACY_ORGS.filter(matchesOrg);
-    const totalCount = results.length + orgResults.length + generalOrgResults.length;
+    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length;
+
+    const byProvider = {};
+    privateEntries.forEach(e => { (byProvider[e.provider] = byProvider[e.provider] || []).push(e); });
+    const privateSection = privateEntries.length
+      ? `<p class="section-title">Private hospitals &amp; clinics</p>${Object.keys(byProvider).sort().map(p => providerGroupCardHtml(p, byProvider[p])).join("")}`
+      : "";
+
     const cards = results.length ? results.map(entryCardHtml).join("") : "";
     const orgCards = orgResults.length
       ? `<p class="section-title">Support &amp; advocacy organisations</p><div class="org-grid">${orgResults.map(orgCardHtml).join("")}</div>`
@@ -329,7 +368,7 @@
       ? `<p class="section-title">General advocacy &amp; support</p><div class="org-grid">${generalOrgResults.map(orgCardHtml).join("")}</div>`
       : "";
     const body = totalCount
-      ? `${cards}${orgCards}${generalOrgCards}`
+      ? `${privateSection}${cards}${orgCards}${generalOrgCards}`
       : `<div class="empty-state">No matches for "${query}". Try a broader term, like a condition, area, or organisation name.</div>`;
     app.innerHTML = `
       <div class="page-head">

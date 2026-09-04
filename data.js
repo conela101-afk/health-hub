@@ -20,7 +20,7 @@ const SPECIALTIES = [
   { id: "neurodiversity", label: "Neurodiversity (Autism, ADHD)" },
   { id: "parenting", label: "Parenting & New Motherhood" },
   { id: "crisis",  label: "Mental Health Crisis Support" },
-  { id: "cardiology", label: "Cardiology & Women's Heart Health" },
+  { id: "cardiology", label: "Cardiology" },
   { id: "rheumatology", label: "Rheumatology & Autoimmune" },
   { id: "neurology", label: "Neurology & Migraine" },
   { id: "gastro",  label: "Gastroenterology & IBD" },
@@ -603,6 +603,8 @@ const ENTRIES = [
     name: "The Menopause Hub (private)",
     specialty: ["menopause"],
     county: ["dublin", "cork-city"],
+    sector: "private",
+    provider: "The Menopause Hub",
     blurb: "Private menopause clinic — an option if you can pay and don't want to wait for a public complex-menopause clinic referral.",
     details: [
       "Three clinics: Mount Merrion, Co. Dublin; Santry, Dublin 9; and Rosewood, Ballincollig, Cork.",
@@ -622,6 +624,8 @@ const ENTRIES = [
     name: "Bon Secours Gynaecology (private)",
     specialty: ["gynae", "endo", "menopause"],
     county: ["cork-city", "dublin", "galway", "limerick", "kerry", "cavan"],
+    sector: "private",
+    provider: "Bon Secours Health System",
     blurb: "Private consultant gynaecology and urogynaecology across six Bon Secours locations.",
     details: [
       "Covers endometriosis, fibroids, incontinence, pelvic floor disorders, menstrual disorders and gynaecological oncology — the mix varies by hospital.",
@@ -639,6 +643,8 @@ const ENTRIES = [
     name: "Bon Secours Menopause Care, Cork",
     specialty: ["menopause"],
     county: ["cork-city"],
+    sector: "private",
+    provider: "Bon Secours Health System",
     blurb: "Private menopause clinic for women with added complexity, including during chemotherapy.",
     details: [
       "Bon Secours describes this as for the cohort whose menopause is more complex because of co-morbidities, including patients undergoing chemotherapy — routine menopause care is expected to stay in primary care.",
@@ -653,6 +659,8 @@ const ENTRIES = [
     name: "Bon Secours Specialist Breast Care Centre, Cork",
     specialty: ["cancer"],
     county: ["cork-city"],
+    sector: "private",
+    provider: "Bon Secours Health System",
     blurb: "Rapid-access triple assessment clinic for symptomatic breast problems.",
     details: [
       "Triple assessment = clinical history and breast exam, mammogram/ultrasound, and biopsy if needed.",
@@ -668,6 +676,8 @@ const ENTRIES = [
     name: "Bon Secours Breast Care Centre, Limerick",
     specialty: ["cancer", "genetics"],
     county: ["limerick", "clare", "tipperary"],
+    sector: "private",
+    provider: "Bon Secours Health System",
     blurb: "Consultant-led breast clinic with triple assessment and a family-history screening service.",
     details: [
       "Triple Assessment Clinic runs Thursday afternoons; Breast Surgery Clinic (new surgical, family history, results and review patients) runs Tuesday afternoons.",
@@ -684,6 +694,8 @@ const ENTRIES = [
     name: "Bon Secours Pelvic Health Services & Clinic",
     specialty: ["pelvicphysio", "urology", "gynae"],
     county: ["cork-city", "dublin", "galway", "kerry"],
+    sector: "private",
+    provider: "Bon Secours Health System",
     blurb: "Assessment and management of pelvic floor disorders and urinary incontinence.",
     details: [
       "Available at the Cork, Dublin, Galway and Tralee hospitals.",
@@ -700,6 +712,8 @@ const ENTRIES = [
     name: "Bon Secours Outpatient Hysteroscopy Clinic, Dublin",
     specialty: ["gynae"],
     county: ["dublin"],
+    sector: "private",
+    provider: "Bon Secours Health System",
     blurb: "Outpatient hysteroscopy for abnormal bleeding and other gynaecological symptoms.",
     details: [
       "Runs at Bon Secours Hospital Dublin, Glasnevin.",
@@ -714,6 +728,8 @@ const ENTRIES = [
     name: "Bon Secours Osteoporosis Screening (DEXA)",
     specialty: ["bonehealth"],
     county: ["cork-city", "dublin", "galway", "limerick", "kerry"],
+    sector: "private",
+    provider: "Bon Secours Health System",
     blurb: "DEXA bone density scanning at five Bon Secours hospitals.",
     details: [
       "Available at Cork, Dublin, Galway, Limerick and Tralee.",
@@ -728,6 +744,8 @@ const ENTRIES = [
     name: "Centre for Women's Health, Mater Private Cork",
     specialty: ["gynae", "urology", "menopause", "contraception", "sexualhealth"],
     county: ["cork-city"],
+    sector: "private",
+    provider: "Mater Private Network",
     blurb: "Hospital-based private women's health centre — gynaecology, urogynaecology, menopause and contraception under one roof.",
     details: [
       "Opened 2022; Mater Private describes it as the first hospital-based centre of its kind in Munster.",
@@ -743,6 +761,8 @@ const ENTRIES = [
     name: "Menopause Clinic, Mater Private Cork",
     specialty: ["menopause"],
     county: ["cork-city"],
+    sector: "private",
+    provider: "Mater Private Network",
     blurb: "Weekly consultant-led clinic for routine and complex menopause care.",
     details: [
       "Runs weekly within the Centre for Women's Health, led by menopause specialist Dr Clare Cromwell.",
@@ -759,6 +779,8 @@ const ENTRIES = [
     name: "Breast Surgery, Mater Private Dublin",
     specialty: ["cancer"],
     county: ["dublin"],
+    sector: "private",
+    provider: "Mater Private Network",
     blurb: "Private breast surgery for benign and malignant breast lumps, at the Cancer Centre on Eccles Street.",
     details: [
       "Surgery for breast lumps — the site notes 80% of breast lumps are benign.",
@@ -774,6 +796,8 @@ const ENTRIES = [
     name: "Beacon Women's Centre",
     specialty: ["gynae", "menopause", "endo", "contraception", "cancer"],
     county: ["dublin"],
+    sector: "private",
+    provider: "Beacon Hospital",
     blurb: "Private gynaecology service covering menopause, endometriosis, pelvic pain and contraception.",
     details: [
       "Established 2007. Run by consultant gynaecologists with women's health nurse specialists, on the Beacon Hospital campus.",
@@ -792,6 +816,8 @@ const ENTRIES = [
     name: "Beacon Breast Centre",
     specialty: ["cancer"],
     county: ["dublin"],
+    sector: "private",
+    provider: "Beacon Hospital",
     blurb: "Private breast centre at Beacon Hospital, Sandyford.",
     details: [
       "Listed in Beacon Hospital's published contact directory — service detail and referral route not yet confirmed beyond this.",
@@ -811,6 +837,8 @@ const ENTRIES = [
     name: "Blackrock Health Women's Health Centre",
     specialty: ["gynae", "menopause", "cancer", "bonehealth", "pelvicphysio"],
     county: ["dublin"],
+    sector: "private",
+    provider: "Blackrock Health",
     blurb: "Private multi-specialty women's health centre — gynaecology, breast health, menopause, bone health and pelvic floor under one roof.",
     details: [
       "Consultant-led clinics: gynaecology, urology, breast health, endocrinology, gastroenterology, pain medicine, cardiology, dermatology, psychology, health screening and rheumatology.",
@@ -825,6 +853,8 @@ const ENTRIES = [
     name: "Galway Clinic Gynaecology (private)",
     specialty: ["gynae"],
     county: ["galway"],
+    sector: "private",
+    provider: "Blackrock Health",
     blurb: "Private consultant-led gynaecology at the Galway Clinic, part of Blackrock Health.",
     details: [
       "Blackrock Health's gynaecology service is described as running across its Dublin and Galway clinics jointly.",
@@ -838,6 +868,8 @@ const ENTRIES = [
     name: "Hermitage Clinic Gynaecology (private)",
     specialty: ["gynae"],
     county: ["dublin"],
+    sector: "private",
+    provider: "Blackrock Health",
     blurb: "Private gynaecology at the Hermitage Clinic, part of Blackrock Health.",
     details: [],
     referral: "GP or consultant referral letter required.",
@@ -848,6 +880,8 @@ const ENTRIES = [
     name: "Kingsbridge Private Hospital Women's Health & Gynaecology",
     specialty: ["gynae", "endo"],
     county: ["antrim"],
+    sector: "private",
+    provider: "Kingsbridge Private Hospital",
     blurb: "Private gynaecology clinics and surgery in Belfast — investigation through to surgery, including endometriosis, fibroids and PCOS.",
     details: [
       "Covers diagnostic services and treatment for complex issues including endometriosis, fibroids and polycystic ovary disease, through to gynae surgery.",
@@ -861,6 +895,8 @@ const ENTRIES = [
     name: "Ulster Independent Clinic Gynaecology",
     specialty: ["gynae", "menopause", "contraception"],
     county: ["antrim"],
+    sector: "private",
+    provider: "Ulster Independent Clinic",
     blurb: "Private gynaecology in Belfast — screening, contraception, menopause management and surgery.",
     details: [
       "Services include preventive screenings, contraception, pelvic exams, menopause management and gynaecological surgery.",
@@ -874,6 +910,8 @@ const ENTRIES = [
     name: "Ulster Independent Clinic Pelvic Health Physiotherapy",
     specialty: ["pelvicphysio"],
     county: ["antrim"],
+    sector: "private",
+    provider: "Ulster Independent Clinic",
     blurb: "Private pelvic health physiotherapy in Belfast, alongside the clinic's gynaecology service.",
     details: ["One of very few private pelvic health physio options in Northern Ireland listed with a public contact."],
     referral: "Self-referral or GP referral — check current policy when booking.",
@@ -884,6 +922,8 @@ const ENTRIES = [
     name: "UPMC Aut Even Hospital Women's Health",
     specialty: ["gynae", "urology", "endo", "fertility", "pelvicphysio", "contraception"],
     county: ["kilkenny"],
+    sector: "private",
+    provider: "UPMC Aut Even Hospital",
     blurb: "Private women's health service in Kilkenny — bladder/urinary issues, endometriosis, fertility, fibroids, prolapse, pelvic pain and PCOS.",
     details: [
       "Diagnoses and treats bladder leakage and other urinary tract disorders, endometriosis, fertility problems, fibroids, pelvic floor prolapse, pelvic pain and PCOS.",
