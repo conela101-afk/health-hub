@@ -4744,6 +4744,99 @@ the "clinical judgment" paragraph above for an NI complaint.`,
   },
 ];
 
+// Entitlements & schemes — deliberately link-out only, no rates or thresholds
+// transcribed here. Figures change annually (usually in the Budget) and an
+// official page can't go stale the way a copied number can. Verified live
+// (some via a browser-UA curl check, since citizensinformation.ie blocks
+// default bot user agents but serves real browsers fine). Last reviewed: Sep 2026.
+const SCHEME_LINKS = [
+  {
+    id: "medical-card",
+    name: "Medical Card",
+    jurisdiction: "roi",
+    blurb: "Free GP visits, prescribed medicines, and public hospital care if you qualify — means-tested under 70, or automatic in some circumstances.",
+    links: [
+      { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/medical-card/" },
+      { label: "Apply online", url: "https://www.mymedicalcard.ie/" },
+    ],
+  },
+  {
+    id: "gp-visit-card",
+    name: "GP Visit Card",
+    jurisdiction: "roi",
+    blurb: "Free GP visits (not hospital charges or medicines) if you don't qualify for a full medical card. No means test if you're under 8, over 70, or on Carer's Benefit/Allowance.",
+    links: [
+      { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/gp-visit-cards/" },
+    ],
+  },
+  {
+    id: "dps",
+    name: "Drugs Payment Scheme",
+    jurisdiction: "roi",
+    blurb: "Caps what you and your family pay for approved prescribed drugs and medicines per month. Also the route to free HRT — you need DPS registration first.",
+    links: [
+      { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/drugs-and-medicines/drugs-payment-scheme/" },
+      { label: "Apply online", url: "https://www.mydps.ie/" },
+    ],
+  },
+  {
+    id: "lti",
+    name: "Long-Term Illness Scheme",
+    jurisdiction: "roi",
+    blurb: "Free drugs, medicines and appliances for treating one of a fixed list of long-term conditions — no means test. The list is narrow and hasn't changed in decades, so check it covers your condition before assuming it applies.",
+    links: [
+      { label: "Full condition list & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/drugs-and-medicines/long-term-illness-scheme/" },
+    ],
+  },
+  {
+    id: "fair-deal",
+    name: "Fair Deal (Nursing Homes Support Scheme)",
+    jurisdiction: "roi",
+    blurb: "Financial support for long-term nursing home care — you contribute a share of your income and assets, the State pays the rest. A four-step process: application, care needs assessment, financial assessment, optional Nursing Home Loan.",
+    links: [
+      { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-older-people/nursing-homes-support-scheme-1/" },
+      { label: "HSE application process", url: "https://www2.hse.ie/services/schemes-allowances/fair-deal-scheme/" },
+    ],
+  },
+  {
+    id: "maternity-benefit",
+    name: "Maternity Benefit",
+    jurisdiction: "roi",
+    blurb: "A weekly payment during maternity leave if you have enough PRSI contributions, paid by the Department of Social Protection — separate from any employer maternity pay.",
+    links: [
+      { label: "Eligibility, rate & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/social-welfare/families-and-children/maternity-benefit/" },
+      { label: "Apply online", url: "https://www.mywelfare.ie" },
+    ],
+  },
+  {
+    id: "treatment-benefit",
+    name: "Treatment Benefit Scheme",
+    jurisdiction: "roi",
+    blurb: "Contributions towards dental, optical and hearing-aid costs (and a hairpiece/wig grant for medical hair loss) for insured workers, the self-employed, and some retired people. Apply through your provider, not directly.",
+    links: [
+      { label: "What's covered & PRSI conditions — Citizens Information", url: "https://www.citizensinformation.ie/en/social-welfare/disability-and-illness/treatment-benefit-scheme/" },
+    ],
+  },
+  {
+    id: "ni-health-costs",
+    name: "Help with health costs (dental, optical, travel)",
+    jurisdiction: "ni",
+    blurb: "NHS prescriptions are free for everyone in Northern Ireland — no scheme needed. Help with dental, optical and travel costs depends on your circumstances; apply with form HC1 if you're not automatically covered.",
+    links: [
+      { label: "Who qualifies & how to claim — nidirect", url: "https://www.nidirect.gov.uk/articles/help-health-costs" },
+    ],
+  },
+  {
+    id: "ni-care-home-fees",
+    name: "Paying for care home fees",
+    jurisdiction: "ni",
+    blurb: "Your HSC Trust assesses your needs and finances to work out what you contribute towards residential or nursing home care.",
+    links: [
+      { label: "How the assessment works — nidirect", url: "https://www.nidirect.gov.uk/articles/paying-your-residential-care-or-nursing-home-fees" },
+    ],
+  },
+];
+
 // Advocacy and condition-specific support organisations. These are searchable
 // alongside the main directory. Last reviewed: Sep 2026.
 const SUPPORT_ORGS = [

@@ -460,6 +460,7 @@
   const ADVOCACY_SECTIONS = [
     { id: "guide", label: "The guide" },
     { id: "templates", label: "Letter templates" },
+    { id: "schemes", label: "Entitlements" },
     { id: "hospitals", label: "FOI by hospital" },
     { id: "contacts", label: "Who to contact" },
     { id: "orgs", label: "Support orgs" },
@@ -590,6 +591,31 @@
     if (btn) window.copyTemplateText(btn.dataset.templateId);
   });
 
+  function schemeCardHtml(s){
+    const linksHtml = s.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join("");
+    return `
+      <div class="scheme-card">
+        <h2>${s.name}</h2>
+        <p class="remit">${s.blurb}</p>
+        <div class="scheme-links">${linksHtml}</div>
+      </div>
+    `;
+  }
+
+  function renderAdvocacySchemes(){
+    const roi = SCHEME_LINKS.filter(s => s.jurisdiction === "roi");
+    const ni = SCHEME_LINKS.filter(s => s.jurisdiction === "ni");
+    return `
+      <div class="callout">
+        Rates, income limits and thresholds change every year, usually in the Budget — rather than publish figures that go stale, we link straight to the official page for each scheme.
+      </div>
+      <p class="detail-section-title">Republic of Ireland</p>
+      ${roi.map(schemeCardHtml).join("")}
+      <p class="detail-section-title">Northern Ireland</p>
+      ${ni.map(schemeCardHtml).join("")}
+    `;
+  }
+
   function renderAdvocacyOrgs(){
     return `<div class="org-grid">${SUPPORT_ORGS.map(orgCardHtml).join("")}</div>`;
   }
@@ -666,7 +692,7 @@
   }
 
   function renderAdvocacy(section){
-    const sectionRenderers = { guide: renderAdvocacyGuide, templates: renderAdvocacyTemplates, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs, general: renderAdvocacyGeneral };
+    const sectionRenderers = { guide: renderAdvocacyGuide, templates: renderAdvocacyTemplates, schemes: renderAdvocacySchemes, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs, general: renderAdvocacyGeneral };
     const active = sectionRenderers[section] ? section : "guide";
 
     app.innerHTML = `

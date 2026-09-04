@@ -315,6 +315,17 @@ h1,h2,h3{ font-family:var(--font); }
   padding:14px 16px; margin:0; max-height:420px; overflow-y:auto;
 }
 
+/* ---------- Entitlements & schemes ---------- */
+.scheme-card{
+  background:var(--surface); border-radius:var(--radius-lg);
+  padding:16px 18px; margin-bottom:12px; box-shadow:var(--shadow);
+}
+.scheme-card h2{ font-family:var(--font-display); font-size:15.5px; font-weight:600; margin:0 0 4px; color:var(--ink); }
+.scheme-card .remit{ font-size:13px; color:var(--ink-soft); margin:0 0 10px; line-height:1.5; }
+.scheme-links{ display:flex; flex-direction:column; gap:6px; }
+.scheme-links a{ font-size:13px; font-weight:600; color:var(--violet-deep); text-decoration:none; }
+.scheme-links a:hover{ text-decoration:underline; }
+
 .referral-note{
   background:var(--sand-tint);
   padding:14px 16px; font-size:14px; color:#6B4F1B; margin-top:18px; border-radius:var(--radius);
