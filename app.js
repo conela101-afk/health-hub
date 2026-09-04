@@ -676,6 +676,7 @@
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
       maxZoom: 18,
+      referrerPolicy: "no-referrer",
     }).addTo(map);
     [...OUT_OF_HOURS_ROI, ...OUT_OF_HOURS_NI].forEach(service => {
       (service.sites || []).forEach(site => {
