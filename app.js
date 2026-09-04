@@ -311,10 +311,31 @@
     `;
   }
 
-  function renderList(kind, id){
+  const SECTOR_FILTERS = [
+    { id: "", label: "All" },
+    { id: "public", label: "Public" },
+    { id: "private", label: "Private" },
+  ];
+
+  function sectorFilterHtml(id, active){
+    const options = SECTOR_FILTERS.map(f => {
+      const href = f.id ? `#/specialty/${id}/${f.id}` : `#/specialty/${id}`;
+      return `<a class="segment${f.id === active ? " active" : ""}" href="${href}">${f.label}</a>`;
+    }).join("");
+    return `<div class="segmented">${options}</div>`;
+  }
+
+  function renderList(kind, id, sector){
     const label = kind === "specialty" ? specialtyLabel(id) : countyLabel(id);
-    const results = ENTRIES.filter(e => kind === "specialty" ? e.specialty.includes(id) : e.county.includes(id));
+    const allResults = ENTRIES.filter(e => kind === "specialty" ? e.specialty.includes(id) : e.county.includes(id));
+    const activeSector = kind === "specialty" && (sector === "public" || sector === "private") ? sector : "";
+    const results = activeSector === "private"
+      ? allResults.filter(e => e.sector === "private")
+      : activeSector === "public"
+      ? allResults.filter(e => e.sector !== "private")
+      : allResults;
     const backHref = kind === "specialty" ? "#/specialty" : "#/county";
+    const filterHtml = kind === "specialty" ? sectorFilterHtml(id, activeSector) : "";
     const cards = results.length
       ? results.map(entryCardHtml).join("")
       : `<div class="empty-state">Nothing listed here yet.</div>`;
@@ -324,6 +345,7 @@
         <h1>${escapeHtml(label)}</h1>
         <p class="count">${results.length} service${results.length === 1 ? "" : "s"}</p>
       </div>
+      ${filterHtml}
       ${cards}
     `;
   }
@@ -777,7 +799,7 @@
 
     if (parts.length === 0) renderHome();
     else if (parts[0] === "specialty" && !parts[1]) renderSpecialtyIndex();
-    else if (parts[0] === "specialty" && parts[1]) renderList("specialty", parts[1]);
+    else if (parts[0] === "specialty" && parts[1]) renderList("specialty", parts[1], parts[2]);
     else if (parts[0] === "county" && !parts[1]) renderCountyIndex();
     else if (parts[0] === "county" && parts[1]) renderList("county", parts[1]);
     else if (parts[0] === "search" && parts[1]) renderSearch(decodeURIComponent(parts.slice(1).join("/")));
