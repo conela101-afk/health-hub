@@ -1293,8 +1293,8 @@ const ENTRIES = [
     id: "portiuncula-maternity",
     name: "Portiuncula University Hospital Maternity",
     specialty: ["obs"],
-    county: ["galway"],
-    blurb: "Maternity unit serving east Galway and surrounding areas.",
+    county: ["galway", "roscommon"],
+    blurb: "Maternity unit serving east Galway and surrounding areas — also the real catchment hospital for Roscommon, which has had no maternity department of its own since 1978.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "090 9648200", email: "info.portiuncula@hse.ie", address: "Ballinasloe, Co. Galway H53 T971" }
@@ -1372,6 +1372,17 @@ const ENTRIES = [
     contact: { phone: "094 9021733", address: "Westport Rd, Castlebar" }
   },
   {
+    id: "mayo-gynae",
+    name: "Mayo University Hospital Gynaecology",
+    specialty: ["gynae"],
+    county: ["mayo"],
+    blurb: "Public gynaecology department at Mayo's main acute hospital.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "094 904 2171", extra: "Main hospital switchboard — ask for Gynaecology.", address: "Westport Road, Castlebar, Co. Mayo F23 KH70" },
+    checked: "4 Sep 2026"
+  },
+  {
     id: "sligo-maternity",
     name: "Sligo University Hospital Maternity",
     specialty: ["obs"],
@@ -1421,6 +1432,39 @@ const ENTRIES = [
     referral: "GP referral under the Maternity & Infant Care Scheme.",
     contact: { phone: "053 915 3000", address: "Newtown Rd, Wexford Y35 Y17D" }
   },
+  {
+    id: "wexford-gynae",
+    name: "Wexford General Hospital Gynaecology",
+    specialty: ["gynae"],
+    county: ["wexford"],
+    blurb: "Public gynaecology department, with its own direct line separate from the main switchboard.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "053 914 2233", address: "Newtown Rd, Wexford Y35 Y17D" },
+    checked: "4 Sep 2026"
+  },
+  {
+    id: "stlukes-kilkenny-maternity",
+    name: "St Luke's General Hospital Maternity (Carlow/Kilkenny)",
+    specialty: ["obs"],
+    county: ["kilkenny", "carlow"],
+    blurb: "The maternity unit for the shared Carlow/Kilkenny hospital catchment.",
+    details: ["Obstetric Assessment Unit: 056 778 5044 (daytime only)."],
+    referral: "GP referral under the Maternity & Infant Care Scheme.",
+    contact: { phone: "056 778 5288", address: "Freshford Road, Kilkenny, R95 FY71" },
+    checked: "4 Sep 2026"
+  },
+  {
+    id: "stlukes-kilkenny-gynae",
+    name: "St Luke's General Hospital Gynaecology (Carlow/Kilkenny)",
+    specialty: ["gynae"],
+    county: ["kilkenny", "carlow"],
+    blurb: "Public gynaecology department for the shared Carlow/Kilkenny catchment — previously the only county pairing in the South East with no gynaecology entry at all.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "056 778 5000", extra: "Main hospital switchboard — ask for Gynaecology.", address: "Freshford Road, Kilkenny, R95 FY71" },
+    checked: "4 Sep 2026"
+  },
 
   // ---- NI Maternity, by Trust (5) ----
   {
@@ -1464,6 +1508,17 @@ const ENTRIES = [
     contact: { email: "antenatal.midwives@southerntrust.hscni.net" }
   },
   {
+    id: "craigavon-gynae",
+    name: "Craigavon Area Hospital Gynaecology",
+    specialty: ["gynae"],
+    county: ["armagh"],
+    blurb: "Gynaecology ward, located on Maternity Level 1 at Craigavon Area Hospital.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "028 3833 4444", extra: "Main hospital switchboard — ask for the Gynaecology Ward, Maternity Level 1.", address: "68 Lurgan Road, Portadown, Craigavon BT63 5QQ" },
+    checked: "4 Sep 2026"
+  },
+  {
     id: "western-trust-maternity",
     name: "Western Trust Maternity (Altnagelvin & SWAH)",
     specialty: ["obs"],
@@ -1472,6 +1527,17 @@ const ENTRIES = [
     details: ["Altnagelvin Maternal & Fetal Assessment Unit: 028 7161 1412.", "SWAH/Omagh Fetal Maternal Assessment (24hr): 028 8283 3100."],
     referral: "Self-referral.",
     contact: { phone: "028 7134 5171" }
+  },
+  {
+    id: "altnagelvin-gynae",
+    name: "Altnagelvin Area Hospital Gynaecology",
+    specialty: ["gynae"],
+    county: ["londonderry"],
+    blurb: "Gynaecology, including an Early Pregnancy Assessment Unit — Ward 43.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "028 7134 5171", extra: "Main hospital switchboard — ask for Ward 43, Gynaecology/EPAU.", address: "Glenshane Road, Londonderry BT47 6SB" },
+    checked: "4 Sep 2026"
   },
   {
     id: "swah-gynae",
@@ -2436,7 +2502,7 @@ const ENTRIES = [
     id: "portiuncula-gastro",
     name: "Portiuncula University Hospital Gastroenterology",
     specialty: ["gastro"],
-    county: ["galway"],
+    county: ["galway", "roscommon"],
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
