@@ -801,6 +801,99 @@ const ENTRIES = [
     contact: { phone: "01 293 8686", web: "beaconhospital.ie/contact/", address: "Beacon Hospital, Sandyford, Dublin 18, D18 AK68", extra: "Fax: 01 293 8641" }
   },
 
+  // ---- Private sector, continued: Blackrock Health, Kingsbridge/Ulster
+  // Independent (NI), UPMC Aut Even. Sourced from each provider's own site,
+  // checked 2026-09-04. Limerick Clinic (Blackrock Health) is a diagnostics
+  // facility per its own site, with no confirmed women's-health service —
+  // not included rather than guessed.
+  {
+    id: "blackrock-womens-health-centre",
+    name: "Blackrock Health Women's Health Centre",
+    specialty: ["gynae", "menopause", "cancer", "bonehealth", "pelvicphysio"],
+    county: ["dublin"],
+    blurb: "Private multi-specialty women's health centre — gynaecology, breast health, menopause, bone health and pelvic floor under one roof.",
+    details: [
+      "Consultant-led clinics: gynaecology, urology, breast health, endocrinology, gastroenterology, pain medicine, cardiology, dermatology, psychology, health screening and rheumatology.",
+      "Part of the Blackrock Health group (Blackrock Clinic, Galway Clinic, Hermitage Clinic, Limerick Clinic).",
+      "Located at 2-5 Warrington Place, Dublin 2 — separate from the main Blackrock Clinic site.",
+    ],
+    referral: "GP or consultant referral letter required.",
+    contact: { phone: "01 578 4414", email: "WomensHealthCentre@blackrockhealth.com", web: "blackrockhealth.com/womens-health-centre", address: "2-5 Warrington Place, Dublin 2" }
+  },
+  {
+    id: "galway-clinic-gynae",
+    name: "Galway Clinic Gynaecology (private)",
+    specialty: ["gynae"],
+    county: ["galway"],
+    blurb: "Private consultant-led gynaecology at the Galway Clinic, part of Blackrock Health.",
+    details: [
+      "Blackrock Health's gynaecology service is described as running across its Dublin and Galway clinics jointly.",
+      "Number below is the clinic's general switchboard — ask to be directed to gynaecology or a named consultant.",
+    ],
+    referral: "GP or consultant referral letter required.",
+    contact: { phone: "091 785 000", web: "galwayclinic.com", address: "Doughiska, Galway, H91 HHT0" }
+  },
+  {
+    id: "hermitage-clinic-gynae",
+    name: "Hermitage Clinic Gynaecology (private)",
+    specialty: ["gynae"],
+    county: ["dublin"],
+    blurb: "Private gynaecology at the Hermitage Clinic, part of Blackrock Health.",
+    details: [],
+    referral: "GP or consultant referral letter required.",
+    contact: { phone: "01 645 9171", email: "info@hermitageclinic.ie", address: "Old Lucan Road, Dublin 20" }
+  },
+  {
+    id: "kingsbridge-womens-health",
+    name: "Kingsbridge Private Hospital Women's Health & Gynaecology",
+    specialty: ["gynae", "endo"],
+    county: ["antrim"],
+    blurb: "Private gynaecology clinics and surgery in Belfast — investigation through to surgery, including endometriosis, fibroids and PCOS.",
+    details: [
+      "Covers diagnostic services and treatment for complex issues including endometriosis, fibroids and polycystic ovary disease, through to gynae surgery.",
+      "Phone lines: Mon–Fri 9am–5pm, Sat 9am–3pm. A contact form is available outside those hours.",
+    ],
+    referral: "Self-referral or GP referral — check current policy when booking.",
+    contact: { phone: "028 9066 7878", email: "info@kingsbridgeprivatehospital.com", web: "kingsbridgeprivatehospital.com/services/womens-health/", address: "801-815 Lisburn Road, Belfast BT9 7GX" }
+  },
+  {
+    id: "ulster-independent-gynae",
+    name: "Ulster Independent Clinic Gynaecology",
+    specialty: ["gynae", "menopause", "contraception"],
+    county: ["antrim"],
+    blurb: "Private gynaecology in Belfast — screening, contraception, menopause management and surgery.",
+    details: [
+      "Services include preventive screenings, contraception, pelvic exams, menopause management and gynaecological surgery.",
+      "Also runs a dedicated Pelvic Health Physiotherapy service — see the separate entry under Pelvic Health.",
+    ],
+    referral: "GP or consultant referral — check current policy when booking.",
+    contact: { phone: "028 9066 1212", email: "info@uic.org", web: "ulsterindependentclinic.com/services/gynaecology", address: "245 Stranmillis Road, Belfast BT9 5JH" }
+  },
+  {
+    id: "ulster-independent-pelvic-physio",
+    name: "Ulster Independent Clinic Pelvic Health Physiotherapy",
+    specialty: ["pelvicphysio"],
+    county: ["antrim"],
+    blurb: "Private pelvic health physiotherapy in Belfast, alongside the clinic's gynaecology service.",
+    details: ["One of very few private pelvic health physio options in Northern Ireland listed with a public contact."],
+    referral: "Self-referral or GP referral — check current policy when booking.",
+    contact: { phone: "028 9066 1212", email: "info@uic.org", web: "ulsterindependentclinic.com/services/pelvic-health", address: "245 Stranmillis Road, Belfast BT9 5JH" }
+  },
+  {
+    id: "upmc-autheven-womens-health",
+    name: "UPMC Aut Even Hospital Women's Health",
+    specialty: ["gynae", "urology", "endo", "fertility", "pelvicphysio", "contraception"],
+    county: ["kilkenny"],
+    blurb: "Private women's health service in Kilkenny — bladder/urinary issues, endometriosis, fertility, fibroids, prolapse, pelvic pain and PCOS.",
+    details: [
+      "Diagnoses and treats bladder leakage and other urinary tract disorders, endometriosis, fertility problems, fibroids, pelvic floor prolapse, pelvic pain and PCOS.",
+      "Also offers annual pelvic exams and cervical screening, family planning and contraception, physiotherapy for chronic conditions or post-surgical recovery, and HPV vaccination.",
+      "The only private women's health option covering the south-east border counties (Kilkenny, Carlow, south Laois/Tipperary).",
+    ],
+    referral: "GP referral.",
+    contact: { phone: "056 777 5275", web: "upmc.ie/services/womens-health", address: "Freshford Road, Kilkenny, R95 D370" }
+  },
+
   {
     id: "cork-fertility-hub",
     name: "Cork Regional Fertility Hub",
