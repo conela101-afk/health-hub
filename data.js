@@ -612,6 +612,195 @@ const ENTRIES = [
     referral: "Self-referral, book online or by phone.",
     contact: { phone: "01 210 7948 (Mount Merrion) / 01 485 3066 (Santry) / 021 242 7122 (Cork)", email: "info@themenopausehub.ie", web: "themenopausehub.ie" }
   },
+
+  // ---- Private sector: Bon Secours, Mater Private, Beacon ----
+  // Sourced directly from each provider's own site, checked 2026-09-03/04.
+  // Blackrock Health, Kingsbridge/NI private and Aut Even are still outstanding
+  // (web access outage mid-research) — not included here, to follow separately.
+  {
+    id: "bons-gynae-network",
+    name: "Bon Secours Gynaecology (private)",
+    specialty: ["gynae", "endo", "menopause"],
+    county: ["cork-city", "dublin", "galway", "limerick", "kerry", "cavan"],
+    blurb: "Private consultant gynaecology and urogynaecology across six Bon Secours locations.",
+    details: [
+      "Covers endometriosis, fibroids, incontinence, pelvic floor disorders, menstrual disorders and gynaecological oncology — the mix varies by hospital.",
+      "Cork: 021 4542807 (main reception; the site says to contact individual consultants directly).",
+      "Dublin: 01 806 5300 (main reception; contact individual consultants).",
+      "Galway: 091 381900. Limerick: 061 426100. Tralee: 066 714 9890 (tgynaecology@bonsecours.ie).",
+      "Cavan Clinic: 049 4332697 — the only private gynaecology listed for the north-east border area.",
+      "Direct settlement with all main health insurers; self-pay options available — ask the hospital for a quote.",
+    ],
+    referral: "GP or specialist referral required, sent via Healthlink. Not self-referral.",
+    contact: { phone: "021 4542807", email: "info@bonsecours.ie", web: "bonsecours.ie/services/gynaecology" }
+  },
+  {
+    id: "bons-menopause-cork",
+    name: "Bon Secours Menopause Care, Cork",
+    specialty: ["menopause"],
+    county: ["cork-city"],
+    blurb: "Private menopause clinic for women with added complexity, including during chemotherapy.",
+    details: [
+      "Bon Secours describes this as for the cohort whose menopause is more complex because of co-morbidities, including patients undergoing chemotherapy — routine menopause care is expected to stay in primary care.",
+      "Menopause management is listed at Cork and Dublin; only Cork publishes a direct contact.",
+      "Direct settlement with all main insurers; self-pay available.",
+    ],
+    referral: "GP or specialist referral via Healthlink.",
+    contact: { phone: "085 864 5371", email: "BSCMenopauseCare@bonsecours.ie", web: "bonsecours.ie/services/womens-health", address: "Bon Secours Hospital, Western Road Entrance, Cork, T12 DV56" }
+  },
+  {
+    id: "bons-breast-cork",
+    name: "Bon Secours Specialist Breast Care Centre, Cork",
+    specialty: ["cancer"],
+    county: ["cork-city"],
+    blurb: "Rapid-access triple assessment clinic for symptomatic breast problems.",
+    details: [
+      "Triple assessment = clinical history and breast exam, mammogram/ultrasound, and biopsy if needed.",
+      "Referrals follow National Cancer Control Programme guidelines for symptomatic breast problems.",
+      "Multidisciplinary team: breast surgeons, breast care nurse, medical and radiation oncologists, radiologists, pathologists.",
+      "Located on the 3rd floor of the hospital; check in with the receptionist on arrival.",
+    ],
+    referral: "GP referral to the breast clinic, under NCCP guidelines.",
+    contact: { phone: "021 494 1910", email: "breastcarecentre@bonsecours.ie", address: "Bon Secours Hospital, Western Road Entrance, Cork, T12 DV56" }
+  },
+  {
+    id: "bons-breast-limerick",
+    name: "Bon Secours Breast Care Centre, Limerick",
+    specialty: ["cancer", "genetics"],
+    county: ["limerick", "clare", "tipperary"],
+    blurb: "Consultant-led breast clinic with triple assessment and a family-history screening service.",
+    details: [
+      "Triple Assessment Clinic runs Thursday afternoons; Breast Surgery Clinic (new surgical, family history, results and review patients) runs Tuesday afternoons.",
+      "Offers assessment and screening for women with a family history of breast cancer.",
+      "Tomosynthesis 3D mammogram for patients aged 35 and older, ultrasound, and needle biopsy if an abnormality is found.",
+      "Oncoplastic and reconstructive surgery offered, including reconstruction following mastectomy.",
+      "Onward referral to medical and radiation oncology can be arranged.",
+    ],
+    referral: "GP referral via Healthlink. Urgent symptoms are offered a triple assessment appointment under NCCP 2021 guidelines.",
+    contact: { phone: "061 426100", email: "bslinfo@bonsecours.ie", address: "Towlerton, Ballysimon, Limerick, V94 9D36" }
+  },
+  {
+    id: "bons-pelvic-health",
+    name: "Bon Secours Pelvic Health Services & Clinic",
+    specialty: ["pelvicphysio", "urology", "gynae"],
+    county: ["cork-city", "dublin", "galway", "kerry"],
+    blurb: "Assessment and management of pelvic floor disorders and urinary incontinence.",
+    details: [
+      "Available at the Cork, Dublin, Galway and Tralee hospitals.",
+      "Covers pelvic floor disorders, urinary incontinence and related pelvic health issues.",
+      "Sits alongside the uro-gynaecology service — Bon Secours groups pelvic health under urology on its site.",
+      "One of very few private pelvic health options listed outside Dublin.",
+      "No direct phone published for this clinic specifically — use the relevant hospital's main number.",
+    ],
+    referral: "GP or specialist referral via Healthlink.",
+    contact: { web: "bonsecours.ie/services/womens-health" }
+  },
+  {
+    id: "bons-hysteroscopy-dublin",
+    name: "Bon Secours Outpatient Hysteroscopy Clinic, Dublin",
+    specialty: ["gynae"],
+    county: ["dublin"],
+    blurb: "Outpatient hysteroscopy for abnormal bleeding and other gynaecological symptoms.",
+    details: [
+      "Runs at Bon Secours Hospital Dublin, Glasnevin.",
+      "For evaluation and treatment of a range of gynaecological symptoms without an inpatient admission.",
+      "Direct settlement with all main insurers; self-pay available.",
+    ],
+    referral: "GP or specialist referral via Healthlink.",
+    contact: { phone: "01 806 5300", email: "drbarryappointments@outlook.com", address: "Glasnevin Hill, Glasnevin, Dublin 9, D09 YN97" }
+  },
+  {
+    id: "bons-dexa",
+    name: "Bon Secours Osteoporosis Screening (DEXA)",
+    specialty: ["bonehealth"],
+    county: ["cork-city", "dublin", "galway", "limerick", "kerry"],
+    blurb: "DEXA bone density scanning at five Bon Secours hospitals.",
+    details: [
+      "Available at Cork, Dublin, Galway, Limerick and Tralee.",
+      "Relevant after early menopause, on long-term steroids, or with a family history of osteoporosis.",
+      "Contact the individual hospital to arrange — numbers are on the Bon Secours contact page.",
+    ],
+    referral: "GP or specialist referral via Healthlink.",
+    contact: { web: "bonsecours.ie/services/womens-health" }
+  },
+  {
+    id: "materprivate-womens-centre-cork",
+    name: "Centre for Women's Health, Mater Private Cork",
+    specialty: ["gynae", "urology", "menopause", "contraception", "sexualhealth"],
+    county: ["cork-city"],
+    blurb: "Hospital-based private women's health centre — gynaecology, urogynaecology, menopause and contraception under one roof.",
+    details: [
+      "Opened 2022; Mater Private describes it as the first hospital-based centre of its kind in Munster.",
+      "Covers gynaecology, urogynaecology, pre- and post-obstetric care, sexual health, contraception, perimenopause/menopause, plastic and reconstructive surgery, and minimally invasive surgery.",
+      "Multidisciplinary: consultants, a GP, nursing staff and allied health professionals, with a pessary and continence nurse specialist available.",
+      "Onward referral within the Mater Private network for cardiology, pelvic health, gastroenterology, colorectal, general surgery and rheumatology.",
+    ],
+    referral: "Referral required — GP or specialist, sent to ereferralscork@materprivate.ie or via Healthlink.",
+    contact: { phone: "021 601 3200", email: "ereferralscork@materprivate.ie", web: "materprivate.ie/our-services/womens-health", address: "Mater Private Network, Citygate, Mahon, Cork, T12 K199" }
+  },
+  {
+    id: "materprivate-menopause-cork",
+    name: "Menopause Clinic, Mater Private Cork",
+    specialty: ["menopause"],
+    county: ["cork-city"],
+    blurb: "Weekly consultant-led clinic for routine and complex menopause care.",
+    details: [
+      "Runs weekly within the Centre for Women's Health, led by menopause specialist Dr Clare Cromwell.",
+      "First appointment covers symptoms, medical and family history, and an individualised treatment plan; bloods may be taken.",
+      "Because it's in a hospital setting, care is coordinated with general gynaecology and urogynaecology, with a pessary and continence nurse specialist on hand.",
+      "Additional tests may carry extra cost — pelvic ultrasound, DEXA scan, Mirena coil insertion, STI screening, nurse support, or onward consultant referral.",
+      "Bring copies of any recent blood, breast, endocrine, cardiac or gynaecological tests, and a GP summary if your history is complex.",
+    ],
+    referral: "Referral required — GP or specialist, to ereferralscork@materprivate.ie or via Healthlink.",
+    contact: { phone: "021 601 3200", email: "ereferralscork@materprivate.ie", web: "materprivate.ie/our-services/womens-health/menopause-clinic", address: "Mater Private Network, Citygate, Mahon, Cork, T12 K199" }
+  },
+  {
+    id: "materprivate-breast-dublin",
+    name: "Breast Surgery, Mater Private Dublin",
+    specialty: ["cancer"],
+    county: ["dublin"],
+    blurb: "Private breast surgery for benign and malignant breast lumps, at the Cancer Centre on Eccles Street.",
+    details: [
+      "Surgery for breast lumps — the site notes 80% of breast lumps are benign.",
+      "Options include lumpectomy, mastectomy and lymph node removal, depending on the condition.",
+      "Based at the Cancer Centre, Mater Private Network, Eccles Street.",
+      "A referral letter is required before an appointment can be confirmed.",
+    ],
+    referral: "Referral letter required before an appointment is confirmed. GP/specialist referral to ereferrals@materprivate.ie or via Healthlink.",
+    contact: { phone: "1800 123 456", email: "ereferrals@materprivate.ie", web: "materprivate.ie/our-services/womens-health/breast-surgery", address: "Cancer Centre, Mater Private Network, Eccles Street, Dublin 7, D07 WKW8", extra: "From outside Ireland: +353 (0)51 595 110" }
+  },
+  {
+    id: "beacon-womens-centre",
+    name: "Beacon Women's Centre",
+    specialty: ["gynae", "menopause", "endo", "contraception", "cancer"],
+    county: ["dublin"],
+    blurb: "Private gynaecology service covering menopause, endometriosis, pelvic pain and contraception.",
+    details: [
+      "Established 2007. Run by consultant gynaecologists with women's health nurse specialists, on the Beacon Hospital campus.",
+      "Covers menopause health, gynaecological cancers, endometriosis, ovarian cysts, reproductive health, contraception, menstrual dysfunction and pelvic pain.",
+      "Minimally invasive procedures — hysteroscopy and laparoscopy — with access to the hospital's theatres if surgery is needed.",
+      "On-site laboratory handles cervical screening (smear test) samples and biopsies taken at the clinic.",
+      "Works alongside the Beacon psychology team and Beacon Care Fertility.",
+      "Located on the third floor of Suite 36 in the Mall — take the lift by Beacon for Kids.",
+      "The site doesn't state whether self-referral is accepted or a GP letter is required — phone ahead to check.",
+    ],
+    referral: "Phone ahead to check — not stated whether self-referral is accepted.",
+    contact: { phone: "01 293 8684", email: "womenscentre@beaconhospital.ie", web: "beaconhospital.ie/department-service/womens-centre/", address: "Beacon Hospital, Sandyford, Dublin 18, D18 AK68", extra: "Fax: 01 293 8641" }
+  },
+  {
+    id: "beacon-breast-centre",
+    name: "Beacon Breast Centre",
+    specialty: ["cancer"],
+    county: ["dublin"],
+    blurb: "Private breast centre at Beacon Hospital, Sandyford.",
+    details: [
+      "Listed in Beacon Hospital's published contact directory — service detail and referral route not yet confirmed beyond this.",
+      "Main hospital switchboard: 01 293 6600.",
+    ],
+    referral: "Not confirmed — phone ahead.",
+    contact: { phone: "01 293 8686", web: "beaconhospital.ie/contact/", address: "Beacon Hospital, Sandyford, Dublin 18, D18 AK68", extra: "Fax: 01 293 8641" }
+  },
+
   {
     id: "cork-fertility-hub",
     name: "Cork Regional Fertility Hub",
