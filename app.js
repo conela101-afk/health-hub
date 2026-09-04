@@ -156,6 +156,8 @@
       : `<div class="org-card">${inner}</div>`;
   }
 
+  const CHEVRON_ICON = '<path d="M6 9l6 6 6-6"/>';
+
   function crisisBannerHtml(){
     const chips = CRISIS_RESOURCES.map(c => `
       <span class="crisis-contact">
@@ -164,45 +166,52 @@
       </span>
     `).join("");
     return `
-      <div class="crisis-banner">
-        <div class="crisis-banner-head">
+      <details class="crisis-banner">
+        <summary class="crisis-banner-head">
           <span class="crisis-icon">${iconSvg(ICON_PATHS.crisis, 18)}</span>
-          <div>
+          <span class="banner-head-text">
             <h2>In a mental health crisis right now?</h2>
-            <p>Free, confidential, 24/7 support. You don't need a referral or a diagnosis to use any of these.</p>
-          </div>
+            <p>Free, confidential, 24/7 support — tap to see helplines.</p>
+          </span>
+          <span class="banner-chevron">${iconSvg(CHEVRON_ICON, 16)}</span>
+        </summary>
+        <div class="crisis-banner-body">
+          <div class="crisis-contacts">${chips}</div>
+          <a class="crisis-more" href="#/specialty/crisis">More crisis support &amp; details ›</a>
         </div>
-        <div class="crisis-contacts">${chips}</div>
-        <a class="crisis-more" href="#/specialty/crisis">More crisis support &amp; details ›</a>
-      </div>
+      </details>
     `;
   }
 
   function urgentCareBannerHtml(){
     return `
-      <a class="urgent-banner" href="#/out-of-hours">
-        <span class="urgent-banner-head">
+      <details class="urgent-banner">
+        <summary class="urgent-banner-head">
           <span class="urgent-icon">${iconSvg(PIN_ICON, 18)}</span>
-          <div>
+          <span class="banner-head-text">
             <h2>Need care today, but it's not a 999 emergency?</h2>
-            <p>Find your local out-of-hours GP service — Ireland &amp; Northern Ireland, phone-first, no walk-in.</p>
-          </div>
-        </span>
-        <span class="urgent-more">Find out-of-hours care ›</span>
-      </a>
+            <p>Find your local out-of-hours GP service — tap for details.</p>
+          </span>
+          <span class="banner-chevron">${iconSvg(CHEVRON_ICON, 16)}</span>
+        </summary>
+        <div class="urgent-banner-body">
+          <p>Ireland &amp; Northern Ireland, phone-first, no walk-in.</p>
+          <a class="urgent-more" href="#/out-of-hours">Find out-of-hours care ›</a>
+        </div>
+      </details>
     `;
   }
 
   function renderHome(){
     app.innerHTML = `
-      ${crisisBannerHtml()}
-      ${urgentCareBannerHtml()}
-
-      <div class="hero">
+      <div class="hero hero-top">
         <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
         <h1>Navigating health &amp; care, <em>wherever you are</em>.</h1>
         <p>A free directory for health services and your rights across Ireland and Northern Ireland — women's health in full depth, plus general advocacy, complaints support, and out-of-hours care, with more being added.</p>
       </div>
+
+      ${crisisBannerHtml()}
+      ${urgentCareBannerHtml()}
 
       <div class="index-grid">
         <a class="index-tile tile-a" href="#/specialty">

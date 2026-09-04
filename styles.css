@@ -112,16 +112,33 @@ h1,h2,h3{ font-family:var(--font); }
 .tab-item span{ font-size:11px; font-weight:600; }
 .tab-item.active{ color:var(--violet-deep); }
 
-/* ---------- Crisis banner ---------- */
-.crisis-banner{
-  background:var(--surface); border-radius:var(--radius-lg);
-  border-left:4px solid var(--coral-deep);
-  padding:18px 20px; margin:18px 0 0; box-shadow:var(--shadow);
+/* ---------- Expandable banners (crisis / urgent) ---------- */
+.crisis-banner, .urgent-banner{
+  display:block; background:var(--surface); border-radius:var(--radius-lg);
+  padding:14px 18px; margin:12px 0 0; box-shadow:var(--shadow);
 }
-.crisis-banner-head{ display:flex; align-items:flex-start; gap:10px; margin-bottom:14px; }
+.crisis-banner{ border-left:4px solid var(--coral-deep); }
+.urgent-banner{ border-left:4px solid var(--sage-deep); }
+
+.crisis-banner-head, .urgent-banner-head{
+  display:flex; align-items:flex-start; gap:10px;
+  list-style:none; cursor:pointer; margin:0; padding:2px 0;
+}
+.crisis-banner-head::-webkit-details-marker, .urgent-banner-head::-webkit-details-marker{ display:none; }
+.banner-head-text{ flex:1; min-width:0; }
 .crisis-banner .crisis-icon{ flex-shrink:0; color:var(--coral-deep); margin-top:1px; }
-.crisis-banner h2{ font-family:var(--font-display); font-size:17px; font-weight:600; margin:0 0 3px; color:var(--ink); }
-.crisis-banner p{ font-size:13px; color:var(--ink-soft); margin:0; line-height:1.5; }
+.urgent-banner .urgent-icon{ flex-shrink:0; color:var(--sage-deep); margin-top:1px; }
+.crisis-banner h2, .urgent-banner h2{ font-family:var(--font-display); font-weight:600; margin:0 0 2px; color:var(--ink); }
+.crisis-banner h2{ font-size:16px; }
+.urgent-banner h2{ font-size:15px; }
+.crisis-banner p, .urgent-banner p{ font-size:12.5px; color:var(--ink-soft); margin:0; line-height:1.5; }
+.banner-chevron{
+  flex-shrink:0; color:var(--ink-faint); margin-top:2px;
+  transition:transform .15s ease;
+}
+.crisis-banner[open] .banner-chevron, .urgent-banner[open] .banner-chevron{ transform:rotate(180deg); }
+
+.crisis-banner-body, .urgent-banner-body{ padding-top:14px; }
 .crisis-contacts{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
 .crisis-contact{
   display:flex; flex-direction:column; gap:1px;
@@ -130,20 +147,9 @@ h1,h2,h3{ font-family:var(--font); }
 }
 .crisis-contact .cc-name{ font-size:11.5px; font-weight:600; color:var(--ink-soft); }
 .crisis-contact .cc-value{ font-size:13.5px; font-weight:700; color:var(--coral-deep); }
-.crisis-more{ font-size:12.5px; font-weight:600; color:var(--violet-deep); }
-
-/* ---------- Urgent (out-of-hours) banner ---------- */
-.urgent-banner{
-  display:block; background:var(--surface); border-radius:var(--radius-lg);
-  border-left:4px solid var(--sage-deep);
-  padding:16px 20px; margin:14px 0 0; box-shadow:var(--shadow);
-  text-decoration:none;
-}
-.urgent-banner-head{ display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; }
-.urgent-banner .urgent-icon{ flex-shrink:0; color:var(--sage-deep); margin-top:1px; }
-.urgent-banner h2{ font-family:var(--font-display); font-size:16px; font-weight:600; margin:0 0 3px; color:var(--ink); }
-.urgent-banner p{ font-size:13px; color:var(--ink-soft); margin:0; line-height:1.5; }
-.urgent-more{ font-size:12.5px; font-weight:600; color:var(--sage-deep); }
+.crisis-more{ font-size:12.5px; font-weight:600; color:var(--violet-deep); display:inline-block; }
+.urgent-banner-body p{ margin-bottom:8px; }
+.urgent-more{ font-size:12.5px; font-weight:600; color:var(--sage-deep); display:inline-block; }
 
 /* ---------- Out-of-hours page ---------- */
 .ooh-list{ display:flex; flex-direction:column; gap:8px; margin:12px 0 18px; }
