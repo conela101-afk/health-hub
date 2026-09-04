@@ -178,7 +178,7 @@ const ENTRIES = [
     blurb: "Prolapse, incontinence, pelvic floor issues.",
     details: ["GP referral."],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Urogynaecology." }
   },
   {
     id: "cumh-gynae-onc",
@@ -188,7 +188,7 @@ const ENTRIES = [
     blurb: "Suspected or confirmed gynaecological cancers.",
     details: ["GP referral — if you suspect cancer, ask your GP to state this explicitly on the referral so it's triaged on the rapid access pathway."],
     referral: "GP referral, flagged as rapid access.",
-    contact: {}
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Gynae-Oncology." }
   },
   {
     id: "cumh-colposcopy",
@@ -198,7 +198,7 @@ const ENTRIES = [
     blurb: "Follow-up after an abnormal CervicalCheck smear result.",
     details: ["Referral is automatic through CervicalCheck once a result requires it."],
     referral: "Automatic via CervicalCheck.",
-    contact: {}
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Colposcopy." }
   },
   {
     id: "cumh-menopause",
@@ -208,7 +208,7 @@ const ENTRIES = [
     blurb: "For menopause symptoms not managed at GP level.",
     details: ["GP referral."],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for the Complex Menopause Clinic." }
   },
   {
     id: "cumh-fertility",
@@ -218,7 +218,7 @@ const ENTRIES = [
     blurb: "Initial public fertility investigations.",
     details: ["GP referral."],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for the Fertility Hub." }
   },
   {
     id: "cumh-pmb",
@@ -228,7 +228,7 @@ const ENTRIES = [
     blurb: "Rapid-access pathway for postmenopausal bleeding.",
     details: ["GP referral, flagged as postmenopausal bleeding for correct triage."],
     referral: "GP referral (rapid access).",
-    contact: {}
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for the Postmenopausal Bleeding Clinic." }
   },
   {
     id: "cumh-physio",
@@ -238,7 +238,7 @@ const ENTRIES = [
     blurb: "Pelvic floor, postnatal, and pregnancy-related physiotherapy.",
     details: ["Referral via GP, PHN, or your antenatal/postnatal team."],
     referral: "GP, PHN, or maternity team.",
-    contact: {}
+    contact: { phone: "021 492 0500", extra: "Main hospital switchboard — ask for Women's Health Physiotherapy." }
   },
   {
     id: "cuh-urology",
@@ -1012,7 +1012,7 @@ const ENTRIES = [
       "Waterstone Clinic (Cork; satellites Kildare, Waterford).",
     ],
     referral: "Referred on by your Regional Fertility Hub.",
-    contact: {}
+    contact: { web: "citizensinformation.ie/en/health/health-services/reproductive-health/hse-assisted-human-reproduction-ahr-services/" }
   },
   {
     id: "national-eating-disorders",
@@ -1110,9 +1110,9 @@ const ENTRIES = [
     specialty: ["crisis", "mh"],
     county: ["national"],
     blurb: "If you or someone else is in immediate physical danger, this overrides everything else on this page.",
-    details: ["Call 999 or 112 (both work across Ireland and Northern Ireland).", "Or go directly to your nearest Emergency Department / A&E."],
+    details: ["Both 999 and 112 work across Ireland and Northern Ireland — use whichever you remember.", "Or go directly to your nearest Emergency Department / A&E."],
     referral: "Emergency — no referral needed.",
-    contact: {}
+    contact: { phone: "999 / 112" }
   },
   {
     id: "asiam",
@@ -1509,7 +1509,7 @@ const ENTRIES = [
     blurb: "Accepts referrals from 12 weeks' pregnancy to baby's first birthday.",
     details: [],
     referral: "GP, midwife, or health visitor referral.",
-    contact: {}
+    contact: { phone: "028 3833 4444", extra: "Main hospital switchboard — ask for the Perinatal Mental Health Team." }
   },
 
   // ---- Domestic & Sexual Violence: 17 ROI Rape Crisis Centres ----
@@ -2239,7 +2239,7 @@ const ENTRIES = [
     blurb: "Regional rheumatology service covering Cavan, Monaghan, Louth, and Meath.",
     details: [],
     referral: "GP or consultant referral.",
-    contact: {}
+    contact: { phone: "046 907 2630", extra: "Main hospital switchboard — ask for Rheumatology." }
   },
   {
     id: "find-rheumatology",
@@ -2282,7 +2282,7 @@ const ENTRIES = [
     blurb: "Specialist headache/migraine clinic referenced by the Migraine Association.",
     details: [],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Headache/Migraine Clinic." }
   },
 
   // ---- Gastroenterology & IBD ----
@@ -2304,7 +2304,7 @@ const ENTRIES = [
     blurb: "A 3-site public gastroenterology/hepatology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "stvincents-gastro",
@@ -2314,7 +2314,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology/hepatology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "beaumont-gastro",
@@ -2324,7 +2324,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "mater-gastro",
@@ -2334,7 +2334,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "connolly-gastro",
@@ -2344,7 +2344,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "01 646 5000", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "cuh-gastro",
@@ -2354,7 +2354,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology/hepatology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "mercy-cork-gastro",
@@ -2364,7 +2364,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "021 427 1971", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "uhg-gastro",
@@ -2374,7 +2374,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "portiuncula-gastro",
@@ -2384,7 +2384,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "090 964 8200", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "uhl-gastro",
@@ -2394,7 +2394,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "waterford-gastro",
@@ -2404,7 +2404,7 @@ const ENTRIES = [
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for Gastroenterology." }
   },
   {
     id: "find-gastro",
@@ -2470,7 +2470,7 @@ const ENTRIES = [
     blurb: "Public chronic pain management service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Pain Medicine." }
   },
   {
     id: "mater-pain",
@@ -2480,7 +2480,7 @@ const ENTRIES = [
     blurb: "Public chronic pain management service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for the Pain Service." }
   },
   {
     id: "stvincents-pain",
@@ -2490,7 +2490,7 @@ const ENTRIES = [
     blurb: "Multidisciplinary pain service, including a psychology-led pain management programme.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for the Pain Service." }
   },
   {
     id: "tallaght-pain",
@@ -2510,7 +2510,7 @@ const ENTRIES = [
     blurb: "Public chronic pain management service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "01 406 5000", extra: "Main hospital switchboard — ask for the Pain Service." }
   },
   {
     id: "stcolumcilles-pain",
@@ -2540,7 +2540,7 @@ const ENTRIES = [
     blurb: "Listed as a public pain service by the Irish Pain Society — not independently re-confirmed.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "057 862 1364", extra: "Main hospital switchboard — ask for the Pain Service." }
   },
   {
     id: "cuh-pain",
@@ -2550,7 +2550,7 @@ const ENTRIES = [
     blurb: "Public chronic pain management service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for the Pain Service." }
   },
   {
     id: "mercy-cork-pain",
@@ -2560,7 +2560,7 @@ const ENTRIES = [
     blurb: "Listed as a public pain service by the Irish Pain Society — not independently re-confirmed.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "021 427 1971", extra: "Main hospital switchboard — ask for the Pain Service." }
   },
   {
     id: "uhg-pain",
@@ -2570,7 +2570,7 @@ const ENTRIES = [
     blurb: "Consultant-run chronic pain clinic.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the Pain Clinic." }
   },
   {
     id: "sligo-pain",
@@ -2580,7 +2580,7 @@ const ENTRIES = [
     blurb: "Chronic pain unit with a Sláintecare pain-management education programme.",
     details: ["Flagged as subject to a temporary closure/consultant-recruitment issue — verify current status before travelling."],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "071 917 1111", extra: "Main hospital switchboard — ask for the Chronic Pain Unit." }
   },
   {
     id: "waterford-pain",
@@ -2590,7 +2590,7 @@ const ENTRIES = [
     blurb: "Listed as a public pain service by the Irish Pain Society, but a live HSE page couldn't be confirmed — public status uncertain.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
-    contact: {}
+    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for the Pain Service." }
   },
   {
     id: "chronic-pain-ireland",
@@ -2598,9 +2598,9 @@ const ENTRIES = [
     specialty: ["pain"],
     county: ["national"],
     blurb: "National patient advocacy charity, runs a confidential phone support service for over-18s. A 2021 national survey found 11,932 people on public chronic pain waiting lists, with severe understaffing (0.55 pain specialists per 100,000 people) and no national model of care.",
-    details: ["Signposts to the HSE Counselling in Primary Care Service (8 free sessions via GP referral) for chronic-pain-related mental health support."],
+    details: ["Signposts to the HSE Counselling in Primary Care Service (8 free sessions via GP referral) for chronic-pain-related mental health support.", "Support line runs Tue/Thu/Fri, 9:30am–5pm."],
     referral: "Self-referral.",
-    contact: {}
+    contact: { phone: "01 804 7567", web: "chronicpain.ie" }
   },
   {
     id: "find-pain-clinic",
@@ -2631,7 +2631,7 @@ const ENTRIES = [
       "No public Long Covid service exists for children (under-16s) — parents are directed to GPs/general paediatrics instead.",
     ],
     referral: "GP referral.",
-    contact: {},
+    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." },
     resources: [
       { label: "Post-viral fatigue — patient.info", url: "https://patient.info/news-and-features/what-you-need-to-know-about-post-viral-fatigue" }
     ]
@@ -2644,7 +2644,7 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Ciarán Bannan with Dr Aoife Laffan (neurology).",
     details: [],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
   },
   {
     id: "longcovid-stvincents",
@@ -2654,7 +2654,7 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Stefano Savinelli.",
     details: ["A separate Mater Hospital Long Covid clinic (Dr Jack Lambert) closed in Dec 2022 when HSE funding was withdrawn — don't refer here expecting it's still running."],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
   },
   {
     id: "longcovid-cork",
@@ -2664,7 +2664,7 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Katie McFaul (patients also seen by Dr Arthur Jackson).",
     details: [],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
   },
   {
     id: "longcovid-limerick",
@@ -2674,7 +2674,7 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally.",
     details: ["Not operational as of March 2025 due to staffing (per Long Covid Advocacy Ireland) — ask to be referred elsewhere if this hasn't changed."],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
   },
   {
     id: "longcovid-galway",
@@ -2684,7 +2684,7 @@ const ENTRIES = [
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr David Gallagher (Infectious Diseases) with Dr Mike Harrison (Respiratory).",
     details: ["Referrals go to Dr Gallagher's office."],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the Long Covid Clinic." }
   },
   {
     id: "long-covid-advocacy-ireland",
@@ -2718,9 +2718,9 @@ const ENTRIES = [
     specialty: ["longcovid"],
     county: ["national"],
     blurb: "Volunteer-run advocacy group (founded 2017) pushing for better ME healthcare provision and HSE/Dept of Health engagement.",
-    details: [],
+    details: ["No dedicated contact website found — Facebook is currently their main public presence."],
     referral: "Self-referral.",
-    contact: {}
+    contact: { web: "facebook.com/MEAdvocatesIreland" }
   },
   {
     id: "me-support-ni",
@@ -2771,7 +2771,7 @@ const ENTRIES = [
     blurb: "Alternative public referral point for hereditary cancer risk assessment (e.g. BRCA), via GP or your oncology team.",
     details: [],
     referral: "GP or oncology team referral.",
-    contact: {}
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Cancer Genetics." }
   },
   {
     id: "lynch-syndrome-ireland",
@@ -2779,9 +2779,9 @@ const ENTRIES = [
     specialty: ["genetics", "cancer"],
     county: ["national"],
     blurb: "Support for people affected by Lynch syndrome (hereditary colorectal/ovarian/endometrial cancer risk).",
-    details: ["Contact details not independently verified this pass — search for their current site before relying on this."],
+    details: ["A voluntary group of people with Lynch syndrome, or who know someone affected, sharing information and peer support.", "The Irish Cancer Society Support Line (1800 200 700) can also help with talking to family about genetic risk."],
     referral: "Self-referral.",
-    contact: {}
+    contact: { email: "lynchsyndromeirl@gmail.com", web: "lynchsyndromeireland.com" }
   },
 
   // ---- Sexual Health & STI Testing (GUM clinics) ----
@@ -2793,7 +2793,7 @@ const ENTRIES = [
     blurb: "Free, HSE-operated STI/GUM clinic — the largest in the west (~4,000 attendances/yr).",
     details: [],
     referral: "Self-referral.",
-    contact: {}
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the STI Clinic." }
   },
   {
     id: "gum-cork",
@@ -2968,7 +2968,7 @@ const ENTRIES = [
     blurb: "Named public pelvic-health physiotherapy service — but only accepts referrals from CUH Urology & Colorectal, not directly from GPs.",
     details: [],
     referral: "Referral only from CUH Urology or Colorectal — ask your consultant to refer you if relevant.",
-    contact: {}
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Pelvic Health Physiotherapy." }
   },
   {
     id: "cavan-monaghan-pelvic-physio",
@@ -2978,7 +2978,7 @@ const ENTRIES = [
     blurb: "Named public pelvic-health physiotherapy service, self-referral accepted.",
     details: [],
     referral: "Self-referral, GP, or consultant referral, Mon–Fri.",
-    contact: {}
+    contact: { phone: "049 437 6000", extra: "Main hospital switchboard — ask for Pelvic Health Physiotherapy." }
   },
   {
     id: "find-pelvic-physio",
@@ -3013,7 +3013,7 @@ const ENTRIES = [
     blurb: "Treats AAA (abdominal aortic aneurysm), varicose veins, and AV fistula.",
     details: [],
     referral: "GP, consultant, PHN, or health centre referral.",
-    contact: {}
+    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for the Vascular Service." }
   },
   {
     id: "saolta-vascular",
@@ -3023,7 +3023,7 @@ const ENTRIES = [
     blurb: "Varicose vein procedures at Roscommon University Hospital; all arterial and complex vascular surgery at Galway University Hospitals.",
     details: [],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for Vascular Services." }
   },
   {
     id: "western-vascular-institute",
@@ -3033,7 +3033,7 @@ const ENTRIES = [
     blurb: "High-volume public/private tertiary vascular referral centre for the West.",
     details: [],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for the Western Vascular Institute." }
   },
   {
     id: "stvincents-vascular",
@@ -3053,7 +3053,7 @@ const ENTRIES = [
     blurb: "Vascular/endovascular arterial and venous disease.",
     details: [],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Vascular Service." }
   },
   {
     id: "mater-vascular",
@@ -3063,7 +3063,7 @@ const ENTRIES = [
     blurb: "Public vascular surgery service.",
     details: [],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for the Vascular Service." }
   },
   {
     id: "cuh-vascular",
@@ -3083,7 +3083,7 @@ const ENTRIES = [
     blurb: "Regional vascular service for the South East.",
     details: [],
     referral: "GP referral.",
-    contact: {}
+    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for the Vascular Service." }
   },
   {
     id: "find-vascular",
@@ -3138,7 +3138,7 @@ const ENTRIES = [
     blurb: "Western Trust's second eye service and training centre.",
     details: [],
     referral: "GP or optometrist referral.",
-    contact: {}
+    contact: { phone: "028 7134 5171", extra: "Main hospital switchboard — ask for Ophthalmology." }
   },
   {
     id: "ni-diabetic-eye-screening",
@@ -3191,7 +3191,7 @@ const ENTRIES = [
     blurb: "National support organisation for parents of children who are blind or vision-impaired.",
     details: [],
     referral: "Self-referral.",
-    contact: {}
+    contact: { email: "info@feach.ie", web: "feach.ie" }
   },
   {
     id: "childvision",
@@ -3201,7 +3201,7 @@ const ENTRIES = [
     blurb: "National education centre for blind and vision-impaired children.",
     details: [],
     referral: "Self-referral or via early-intervention services.",
-    contact: {}
+    contact: { phone: "01 837 3635", email: "info@childvision.ie", address: "Grace Park Road, Drumcondra, Dublin 9, D09 WK0H" }
   },
   {
     id: "rnib-ni",
@@ -3386,7 +3386,7 @@ const ENTRIES = [
       "An informal \"Thyroid Support Ireland\" Facebook group exists (~5,300 members) — useful for peer support, but it's not a charity and isn't clinically moderated.",
     ],
     referral: "GP referral for diagnosis/treatment; self-referral to the support options above.",
-    contact: {}
+    contact: { web: "www2.hse.ie/conditions/underactive-thyroid-hypothyroidism/" }
   },
   {
     id: "find-pcos-ireland",
@@ -3400,7 +3400,7 @@ const ENTRIES = [
       "Private clinics (e.g. Women's Health Raheny) advertise shorter waits for PCOS assessment than the public system — private, fees apply, not independently verified by us.",
     ],
     referral: "GP referral for public assessment (via gynaecology or endocrinology).",
-    contact: {}
+    contact: { web: "www2.hse.ie/conditions/polycystic-ovary-syndrome/" }
   },
 
   // ---- Nephrology & Kidney ----
@@ -3442,7 +3442,7 @@ const ENTRIES = [
     blurb: "Northern Trust dialysis service — home therapies, pre-dialysis care, and transplant follow-up.",
     details: [],
     referral: "Nephrology consultant referral.",
-    contact: {}
+    contact: { phone: "028 9442 4000", extra: "Main hospital switchboard — ask for Dialysis & Home Therapies." }
   },
   {
     id: "nikpa",
@@ -3464,7 +3464,7 @@ const ENTRIES = [
     blurb: "Ireland's national programme for adult stem cell and bone marrow transplants.",
     details: [],
     referral: "Haematology consultant referral.",
-    contact: {}
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for the Stem Cell/Bone Marrow Transplant Programme." }
   },
   {
     id: "irish-haemophilia-society",
@@ -3497,7 +3497,7 @@ const ENTRIES = [
     blurb: "Northern Ireland's regional haematology service.",
     details: ["Blood-cancer support in NI is largely via UK bodies: Leukaemia UK, Blood Cancer UK, Anthony Nolan, and Cancer Focus NI."],
     referral: "GP or consultant referral.",
-    contact: {}
+    contact: { phone: "028 9024 0503", extra: "Main hospital switchboard — ask for Haematology." }
   },
 
   // ---- Orthopaedics ----
@@ -3529,7 +3529,7 @@ const ENTRIES = [
     blurb: "Saolta group's orthopaedic service for the West.",
     details: [],
     referral: "GP or orthopaedic consultant referral.",
-    contact: {}
+    contact: { phone: "091 544 544", extra: "Main hospital switchboard — ask for Orthopaedics." }
   },
   {
     id: "kilcreene-orthopaedic-hospital",
@@ -3539,7 +3539,7 @@ const ENTRIES = [
     blurb: "Orthopaedic hospital serving the South East.",
     details: ["Some services were announced to be transferring towards University Hospital Waterford from 2019 — current status unconfirmed, phone ahead."],
     referral: "GP or orthopaedic consultant referral.",
-    contact: {}
+    contact: { phone: "056 778 5500", extra: "Main hospital switchboard." }
   },
   {
     id: "musgrave-park-hospital",
@@ -3620,7 +3620,7 @@ const ENTRIES = [
     blurb: "Runs 9 adult mental health teams (ages 18–64), Monday–Friday 9am–5pm.",
     details: ["NI-wide mental health waiting lists have grown substantially — one Trust has cited waits of around 5 years for CMHT assessment in some cases."],
     referral: "GP referral via the Referral Management / Clinical Communication Gateway.",
-    contact: {}
+    contact: { phone: "028 9442 4000", extra: "Main hospital switchboard — ask for Adult Mental Health." }
   },
 
   // ---- Dental & Oral Health ----
@@ -3635,7 +3635,7 @@ const ENTRIES = [
       "Some dentists have been withdrawing from the scheme due to contract terms — if your regular dentist no longer offers DTSS, ask your HSE Local Health Office for one that does.",
     ],
     referral: "Self-referral to any participating dentist.",
-    contact: {}
+    contact: { web: "citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/dental-services/" }
   },
   {
     id: "treatment-benefit-scheme",
@@ -3655,7 +3655,7 @@ const ENTRIES = [
     blurb: "Routine and emergency dental care, plus special-care dentistry, based in primary care centres — with hospital referral where needed.",
     details: [],
     referral: "Contact your Local Health Office to register.",
-    contact: {}
+    contact: { web: "citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/dental-services/" }
   },
   {
     id: "ni-dental-access",
@@ -3681,7 +3681,7 @@ const ENTRIES = [
     blurb: "Ireland's leading adult allergy/immunology centre — a twice-weekly outpatient clinic plus a 5-day ambulatory day ward. Accredited Jeffrey Modell Foundation centre and Ireland's first UCARE centre.",
     details: ["Specialist adult allergy provision is very limited nationally — this is one of the only dedicated services."],
     referral: "GP or consultant referral.",
-    contact: {}
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Clinical Immunology." }
   },
   {
     id: "chi-paediatric-allergy",
@@ -3691,7 +3691,7 @@ const ENTRIES = [
     blurb: "Paediatric allergy service prioritising anaphylaxis, food allergy, and allergic rhino-conjunctivitis.",
     details: [],
     referral: "GP referral via Healthlink.",
-    contact: {}
+    contact: { phone: "01 409 6100", extra: "Runs clinics at CHI Crumlin, Temple Street, Tallaght and Connolly — this number is for CHI Crumlin appointments." }
   },
   {
     id: "ifan",
@@ -3701,7 +3701,7 @@ const ENTRIES = [
     blurb: "Clinical and education resources for food allergy, including the \"egg ladder\" reintroduction guidance.",
     details: [],
     referral: "Self-referral for information.",
-    contact: {}
+    contact: { email: "info@ifan.ie", web: "ifan.ie" }
   },
   {
     id: "regional-immunology-service-ni",
@@ -3711,7 +3711,7 @@ const ENTRIES = [
     blurb: "Specialist allergy/immunology assessment for Northern Ireland, including a General Anaesthetic Allergy Clinic run jointly with anaesthetics.",
     details: [],
     referral: "GP or consultant referral.",
-    contact: {}
+    contact: { phone: "028 9024 0503", extra: "Main hospital switchboard." }
   },
   {
     id: "find-adult-allergy-support",
@@ -3740,7 +3740,7 @@ const ENTRIES = [
       "Palliative care is delivered at home via community palliative homecare teams, in specialist inpatient hospices, in general hospitals, and in day services.",
     ],
     referral: "GP or hospital doctor referral.",
-    contact: {}
+    contact: { phone: "01 873 4735", email: "info@iapc.ie", web: "iapc.ie" }
   },
   {
     id: "irish-hospice-foundation",
@@ -3772,7 +3772,7 @@ const ENTRIES = [
     blurb: "Ireland's only children's hospice.",
     details: ["Make-A-Wish Ireland is a separate charity that also supports children with life-threatening conditions."],
     referral: "Referral via your child's medical team.",
-    contact: {}
+    contact: { phone: "01 289 3151", email: "referrals@lauralynn.ie", address: "Leopardstown Road, Foxrock, Dublin 18, D18 X063" }
   },
   {
     id: "aiihpc-palliative-hub",
@@ -3782,7 +3782,7 @@ const ENTRIES = [
     blurb: "Runs the Palliative Hub, an all-island resource for patients, families, and professionals.",
     details: [],
     referral: "Self-referral for information.",
-    contact: {}
+    contact: { phone: "01 491 2948", email: "info@aiihpc.org", web: "aiihpc.org" }
   },
   {
     id: "marie-curie-hospice-belfast",
