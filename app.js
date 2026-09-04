@@ -91,7 +91,7 @@
   const PIN_ICON = '<path d="M12 21s-6.5-6-6.5-11A6.5 6.5 0 0 1 12 3.5 6.5 6.5 0 0 1 18.5 10c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>';
 
   function iconSvg(pathData, size){
-    return `<svg width="${size||18}" height="${size||18}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${pathData}</svg>`;
+    return `<svg width="${size||18}" height="${size||18}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${pathData}</svg>`;
   }
 
   // Turns a raw contact field into a tappable link: tel:/mailto:/https:/maps.
@@ -734,6 +734,24 @@
     `;
   }
 
+  // Hash routing swaps #app's content without a real page load, which means
+  // a screen reader hears nothing when navigation "succeeds" and keyboard
+  // focus stays wherever it was (often back on a link in the old page).
+  // After every render, announce the new page's heading via a live region.
+  // Focus only moves to #app (tabindex="-1") on the SECOND and later route
+  // calls — on the very first page load, the browser/screen reader already
+  // announces the document title and starts at the top naturally, so moving
+  // focus there too would skip that initial announcement and the skip-link.
+  let hasRoutedOnce = false;
+  function announceRouteChange(){
+    const heading = app.querySelector("h1");
+    const label = heading ? heading.textContent.trim() : (document.title || "Page");
+    const announcer = document.getElementById("routeAnnouncer");
+    if (announcer) announcer.textContent = label;
+    if (hasRoutedOnce) app.focus({ preventScroll: true });
+    hasRoutedOnce = true;
+  }
+
   function route(){
     const hash = location.hash || "#/";
     const parts = hash.replace(/^#\//, "").split("/").filter(Boolean);
@@ -742,20 +760,27 @@
     if (parts[0] !== "search") searchInput.value = "";
     updateTabbar(parts);
 
-    if (parts.length === 0) return renderHome();
-    if (parts[0] === "specialty" && !parts[1]) return renderSpecialtyIndex();
-    if (parts[0] === "specialty" && parts[1]) return renderList("specialty", parts[1]);
-    if (parts[0] === "county" && !parts[1]) return renderCountyIndex();
-    if (parts[0] === "county" && parts[1]) return renderList("county", parts[1]);
-    if (parts[0] === "search" && parts[1]) return renderSearch(decodeURIComponent(parts.slice(1).join("/")));
-    if (parts[0] === "entry" && parts[1]) return renderEntry(parts[1]);
-    if (parts[0] === "advocacy") return renderAdvocacy(parts[1] || "guide");
-    if (parts[0] === "out-of-hours") return renderOutOfHours();
-    return renderHome();
+    if (parts.length === 0) renderHome();
+    else if (parts[0] === "specialty" && !parts[1]) renderSpecialtyIndex();
+    else if (parts[0] === "specialty" && parts[1]) renderList("specialty", parts[1]);
+    else if (parts[0] === "county" && !parts[1]) renderCountyIndex();
+    else if (parts[0] === "county" && parts[1]) renderList("county", parts[1]);
+    else if (parts[0] === "search" && parts[1]) renderSearch(decodeURIComponent(parts.slice(1).join("/")));
+    else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
+    else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
+    else if (parts[0] === "out-of-hours") renderOutOfHours();
+    else renderHome();
+
+    announceRouteChange();
   }
 
+  // Script tags sit at the end of body with no defer/async, so the DOM is
+  // already parsed by the time this runs — calling route() once here is
+  // enough. (A DOMContentLoaded listener used to also be registered here,
+  // which fired a split second later and ran route() a second time on
+  // every load — harmless for rendering, but it broke the "only move focus
+  // on the second-and-later navigation" check in announceRouteChange.)
   window.addEventListener("hashchange", route);
-  window.addEventListener("DOMContentLoaded", route);
   route();
 
   // Register service worker for offline use
