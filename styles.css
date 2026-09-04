@@ -376,6 +376,8 @@ h1,h2,h3{ font-family:var(--font); }
 }
 .referral-note strong{ color:var(--sand-deep); }
 
+.checked-note{ font-size:11.5px; color:var(--ink-faint); margin:16px 0 0; }
+
 /* ---------- Advocacy / know your rights page ---------- */
 .segmented{
   display:flex; gap:6px; margin:0 0 20px; overflow-x:auto;

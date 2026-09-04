@@ -1,5 +1,12 @@
 // The Pocket Guide — service directory data
 // Structure is deliberately flat so new counties/specialties can be appended later.
+//
+// Optional per-entry field: checked: "D Mon YYYY" — the date this specific
+// entry's contact details were actually verified against a live source.
+// Only added going forward, to entries genuinely checked on that date — not
+// backfilled onto older entries just to make them look current. An entry
+// with no `checked` field simply predates the convention; that's honest,
+// not a defect.
 
 // Alphabetical by label, deliberately — an earlier ordering led with the
 // women's-health-specific categories (maternity, gynae...) before general
@@ -509,7 +516,7 @@ const ENTRIES = [
     id: "uhl-endo",
     name: "University Hospital Limerick — Endometriosis (regional)",
     specialty: ["endo", "gynae"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "Established regional specialist centre for moderate endometriosis care.",
     details: [],
     referral: "GP referral.",
@@ -1315,7 +1322,7 @@ const ENTRIES = [
     id: "limerick-maternity",
     name: "University Maternity Hospital Limerick",
     specialty: ["obs"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "The maternity unit for the Mid-West.",
     details: [],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
@@ -1325,11 +1332,23 @@ const ENTRIES = [
     id: "drogheda-maternity",
     name: "Our Lady of Lourdes Hospital Maternity (Drogheda)",
     specialty: ["obs"],
-    county: ["louth"],
-    blurb: "The maternity unit for Co. Louth, alongside a midwifery-led unit.",
-    details: [],
+    county: ["louth", "meath"],
+    blurb: "One of the busiest maternity units in the country, serving the whole north-east corridor including Meath and south Monaghan, alongside a midwifery-led unit.",
+    details: ["Direct department lines: Antenatal Clinic (041 983 7601, ext. 2275), Labour Ward (ext. 2122)."],
     referral: "GP referral under the Maternity & Infant Care Scheme.",
-    contact: { phone: "041 983 7601", address: "Drogheda, Co. Louth A92 VW28" }
+    contact: { phone: "041 983 7601", address: "Windmill Road, Moneymore, Drogheda, Co. Louth A92 VW28" },
+    checked: "4 Sep 2026"
+  },
+  {
+    id: "drogheda-gynae",
+    name: "Our Lady of Lourdes Hospital Gynaecology (Drogheda)",
+    specialty: ["gynae"],
+    county: ["louth", "meath"],
+    blurb: "Public gynaecology department at the north-east's main acute hospital — the closest gynae service for most of Louth and Meath, filling what was previously the thinnest specialty/region combination on this site.",
+    details: [],
+    referral: "GP referral, usually via Healthlink.",
+    contact: { phone: "041 983 7601", extra: "Main hospital switchboard — ask for Gynaecology.", address: "Windmill Road, Moneymore, Drogheda, Co. Louth A92 VW28" },
+    checked: "4 Sep 2026"
   },
   {
     id: "mayo-maternity",
@@ -1479,7 +1498,7 @@ const ENTRIES = [
     id: "uhl-perinatal-mh",
     name: "University Maternity Hospital Limerick Specialist Perinatal MH Team",
     specialty: ["mh"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
     details: [],
     referral: "GP, midwife, obstetrician, or psychiatrist referral.",
@@ -1601,7 +1620,7 @@ const ENTRIES = [
     id: "rcc-midwest",
     name: "Rape Crisis Midwest (Limerick)",
     specialty: ["dsv"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
@@ -2149,7 +2168,7 @@ const ENTRIES = [
     id: "uhl-rheumatology",
     name: "University Hospital Limerick Rheumatology",
     specialty: ["rheumatology"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "Public rheumatology department (Rheumatology Clinical Network hub site).",
     details: [],
     referral: "GP referral.",
@@ -2394,7 +2413,7 @@ const ENTRIES = [
     id: "uhl-gastro",
     name: "University Hospital Limerick Gastroenterology",
     specialty: ["gastro"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
@@ -2430,7 +2449,7 @@ const ENTRIES = [
     id: "uhl-pain-management",
     name: "University Hospital Limerick Pain Management",
     specialty: ["pain"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "One of 16 publicly funded chronic pain services nationally — a 2024 investigation found these clinics disproportionately treat conditions affecting more women than men (fibromyalgia, migraine, chronic pelvic pain, osteoarthritis).",
     details: [],
     referral: "GP referral.",
@@ -2440,7 +2459,7 @@ const ENTRIES = [
     id: "stjohns-limerick-pain",
     name: "St John's Hospital Limerick Pain Management",
     specialty: ["pain"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "One of 16 publicly funded chronic pain services nationally.",
     details: [],
     referral: "GP referral.",
@@ -2674,7 +2693,7 @@ const ENTRIES = [
     id: "longcovid-limerick",
     name: "University Hospital Limerick Long Covid Clinic",
     specialty: ["longcovid"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "One of six HSE Long Covid clinics nationally.",
     details: ["Not operational as of March 2025 due to staffing (per Long Covid Advocacy Ireland) — ask to be referred elsewhere if this hasn't changed."],
     referral: "GP referral.",
@@ -2813,7 +2832,7 @@ const ENTRIES = [
     id: "gum-limerick",
     name: "STI Clinic — University Hospital Limerick / Ennis / Nenagh",
     specialty: ["sexualhealth"],
-    county: ["limerick"],
+    county: ["limerick", "clare", "tipperary"],
     blurb: "Free, HSE-operated STI/GUM clinic, covering Dooradoyle, Ennis General, and Nenagh General.",
     details: [],
     referral: "Self-referral.",
@@ -3013,7 +3032,7 @@ const ENTRIES = [
     id: "uhl-vascular",
     name: "University Hospital Limerick Vascular Service",
     specialty: ["vascular"],
-    county: ["limerick"],
+    county: ["limerick", "clare"],
     blurb: "Treats AAA (abdominal aortic aneurysm), varicose veins, and AV fistula.",
     details: [],
     referral: "GP, consultant, PHN, or health centre referral.",

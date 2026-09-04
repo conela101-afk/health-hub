@@ -419,6 +419,13 @@
       ? `<p class="detail-section-title">Learn more</p><ul class="resource-list">${e.resources.map(r => `<li><a href="${r.url}" target="_blank" rel="noopener">${r.label} ↗</a></li>`).join("")}</ul>`
       : "";
 
+    // Optional per-entry verification date. Only shown when present — we're
+    // not backfilling a fake date onto the ~330 entries that predate this
+    // field, only adding it to entries actually checked from here on.
+    const checkedHtml = e.checked
+      ? `<p class="checked-note">Checked ${escapeHtml(e.checked)}</p>`
+      : "";
+
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#" data-action="back">‹ Back</a>
@@ -431,6 +438,7 @@
         ${detailsHtml}
         ${e.referral ? `<div class="referral-note"><strong>How to get in:</strong> ${linkifyText(e.referral)}</div>` : ""}
         ${resourcesHtml}
+        ${checkedHtml}
       </div>
     `;
   }
