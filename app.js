@@ -785,7 +785,11 @@
     const label = heading ? heading.textContent.trim() : (document.title || "Page");
     const announcer = document.getElementById("routeAnnouncer");
     if (announcer) announcer.textContent = label;
-    if (hasRoutedOnce) app.focus({ preventScroll: true });
+    // Skip while the search input itself has focus — the debounced input
+    // handler above triggers this same route change on every keystroke, and
+    // moving focus to #app mid-typing blurs the field, which dismisses the
+    // on-screen keyboard on mobile.
+    if (hasRoutedOnce && document.activeElement !== searchInput) app.focus({ preventScroll: true });
     hasRoutedOnce = true;
   }
 
