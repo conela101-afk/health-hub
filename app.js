@@ -103,6 +103,13 @@
     return value;
   }
 
+  function escapeHtml(str){
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
   // Finds bare domain mentions inside free text ("check cuidiu.ie for...")
   // and turns them into real links, since most of the site's prose bullets
   // mention a website by name rather than storing it as a separate field.
@@ -413,6 +420,7 @@
 
   const ADVOCACY_SECTIONS = [
     { id: "guide", label: "The guide" },
+    { id: "templates", label: "Letter templates" },
     { id: "hospitals", label: "FOI by hospital" },
     { id: "contacts", label: "Who to contact" },
     { id: "orgs", label: "Support orgs" },
@@ -454,27 +462,94 @@
     `;
   }
 
-  function renderAdvocacyContacts(){
-    const rightsHtml = RIGHTS_BODIES.map(r => {
-      const c = r.contact || {};
-      const contactBits = [];
-      if (c.phone) contactBits.push(contactLinkHtml("phone", c.phone));
-      if (c.email) contactBits.push(contactLinkHtml("email", c.email));
-      if (c.web) contactBits.push(contactLinkHtml("web", c.web));
-      return `
-        <div class="rights-card">
-          <span class="step-badge">${r.step}</span>
-          <div class="rights-body">
-            <h2>${r.name}</h2>
-            <p class="role">${r.role}</p>
-            <p class="detail">${linkifyText(r.detail)}</p>
-            ${contactBits.length ? `<div class="contact-line">${contactBits.join("")}</div>` : ""}
-          </div>
+  function rightsBodyCardHtml(r){
+    const c = r.contact || {};
+    const contactBits = [];
+    if (c.phone) contactBits.push(contactLinkHtml("phone", c.phone));
+    if (c.email) contactBits.push(contactLinkHtml("email", c.email));
+    if (c.web) contactBits.push(contactLinkHtml("web", c.web));
+    return `
+      <div class="rights-card">
+        <span class="step-badge">${r.step}</span>
+        <div class="rights-body">
+          <h2>${r.name}</h2>
+          <p class="role">${r.role}</p>
+          <p class="detail">${linkifyText(r.detail)}</p>
+          ${contactBits.length ? `<div class="contact-line">${contactBits.join("")}</div>` : ""}
         </div>
-      `;
-    }).join("");
-    return `<div class="rights-ladder">${rightsHtml}</div>`;
+      </div>
+    `;
   }
+
+  function renderAdvocacyContacts(){
+    const roiHtml = RIGHTS_BODIES.map(rightsBodyCardHtml).join("");
+    const niHtml = RIGHTS_BODIES_NI.map(rightsBodyCardHtml).join("");
+    return `
+      <p class="detail-section-title">Republic of Ireland</p>
+      <div class="rights-ladder">${roiHtml}</div>
+      <p class="detail-section-title">Northern Ireland</p>
+      <div class="rights-ladder">${niHtml}</div>
+    `;
+  }
+
+  function renderAdvocacyTemplates(){
+    const roi = LETTER_TEMPLATES.filter(t => t.jurisdiction === "roi");
+    const ni = LETTER_TEMPLATES.filter(t => t.jurisdiction === "ni");
+    const cardHtml = t => `
+      <details class="template-card">
+        <summary class="template-head">
+          <span class="banner-head-text">
+            <h2>${t.title}</h2>
+            <p>${t.useFor}</p>
+          </span>
+          <span class="banner-chevron">${iconSvg(CHEVRON_ICON, 16)}</span>
+        </summary>
+        <div class="template-body">
+          <div class="template-meta">
+            <div class="line"><span class="k">Send to</span><span>${linkifyText(t.sendTo)}</span></div>
+            <div class="line"><span class="k">Deadline</span><span>${linkifyText(t.deadline)}</span></div>
+            ${t.enclose ? `<div class="line"><span class="k">Enclose</span><span>${linkifyText(t.enclose)}</span></div>` : ""}
+          </div>
+          <button type="button" class="copy-btn" data-template-id="${t.id}">Copy letter text</button>
+          <pre class="template-text" id="template-${t.id}">${escapeHtml(t.body)}</pre>
+        </div>
+      </details>
+    `;
+    return `
+      <div class="callout">
+        These are our own plain-language templates, not official forms — fill in the brackets, then copy, paste and send by email or post. We link to the official form instead where one exists (see "Send to").
+      </div>
+      <p class="detail-section-title">Republic of Ireland</p>
+      ${roi.map(cardHtml).join("")}
+      <p class="detail-section-title">Northern Ireland</p>
+      ${ni.map(cardHtml).join("")}
+    `;
+  }
+
+  window.copyTemplateText = function(id){
+    const el = document.getElementById("template-" + id);
+    const btn = document.querySelector(`.copy-btn[data-template-id="${id}"]`);
+    if (!el || !btn) return;
+    const text = el.textContent;
+    const done = () => { const orig = btn.textContent; btn.textContent = "Copied ✓"; setTimeout(() => { btn.textContent = orig; }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(() => {});
+    } else {
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      document.execCommand("copy");
+      sel.removeAllRanges();
+      done();
+    }
+  };
+
+  app.addEventListener("click", (e) => {
+    const btn = e.target.closest(".copy-btn");
+    if (btn) window.copyTemplateText(btn.dataset.templateId);
+  });
 
   function renderAdvocacyOrgs(){
     return `<div class="org-grid">${SUPPORT_ORGS.map(orgCardHtml).join("")}</div>`;
@@ -552,7 +627,7 @@
   }
 
   function renderAdvocacy(section){
-    const sectionRenderers = { guide: renderAdvocacyGuide, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs, general: renderAdvocacyGeneral };
+    const sectionRenderers = { guide: renderAdvocacyGuide, templates: renderAdvocacyTemplates, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs, general: renderAdvocacyGeneral };
     const active = sectionRenderers[section] ? section : "guide";
 
     app.innerHTML = `

@@ -3817,7 +3817,7 @@ const ADVOCACY_GUIDE = [
       "For your own records, a GDPR 'Subject Access Request' (SAR) is usually the fastest route: first copy free, response within one calendar month (extendable by two months if complex), no reason required. Apply separately to each provider — GP, hospital, consultant, imaging.",
       "Freedom of Information (FOI) is a separate, narrower route: it applies to records held by public bodies, and matters after death (GDPR rights don't survive death) or for non-personal institutional records (policies, incident reports).",
       "Some medical-card holders' GP records are held by the HSE as custodian — those may route through FOI rather than a SAR. If unsure, ask the provider which applies.",
-      "HSE SAR form and guidance: hse.ie/eng/gdpr/requesting-information-from-the-hse",
+      "HSE SAR form and guidance: www2.hse.ie/data-protection-and-your-rights/data-protection-requests/",
     ],
   },
   {
@@ -3840,6 +3840,21 @@ const ADVOCACY_GUIDE = [
       "Peer support through a condition-specific charity (see the directory below) can help you understand what 'normal' process actually looks like for your situation.",
     ],
   },
+  {
+    id: "scripts",
+    title: "What to actually say",
+    tips: [
+      "Opening: \"Before we start — I've got three things I want to cover, and the most important one is [X]. Can we make sure we get to that one?\"",
+      "Asking for a referral: \"What would need to be true for a referral to [specialty] to be appropriate? I want to understand the threshold.\"",
+      "If a referral is declined: \"Could I ask you to note in my record that I requested a referral to [specialty] on [date], and the reason it wasn't made? I'd like the reasoning on file.\"",
+      "Asking for a second opinion: \"This isn't about my confidence in you — I'd just like another set of eyes on it before I decide. Would you refer me, or should I go back to my GP?\"",
+      "When a symptom is being dismissed: \"Can I ask what you've ruled out, and what made you rule it out?\" — asking for the reasoning gets further than disputing the conclusion.",
+      "When you're told it's stress, hormones, or your weight: \"I hear you. Can we also check [X], so it's ruled out rather than assumed? I'd rather know.\"",
+      "Getting something recorded: \"Would you mind recording that in my notes, in the words I used?\" If refused, you can still write to the service afterwards and ask for a note of your disagreement to be added — a right under GDPR Article 16.",
+      "Closing: \"So the plan is [X], and I should hear about [Y] within [timeframe]. Who do I contact if I haven't heard by then, and what's the number? What should bring me back, and what should send me to A&E?\"",
+      "If you're bringing someone with you, their job is to remember, not to advocate: \"Sorry — could you say that again? I want to write it down properly\" is the single most useful thing a support person can say.",
+    ],
+  },
 ];
 
 // Escalation ladder: who to contact, in the order the system expects you to try them.
@@ -3853,26 +3868,28 @@ const HOSPITAL_FOI = [
     region: "Cork",
     type: "hse",
     typeLabel: "HSE hospital — central process",
-    summary: "No dedicated hospital FOI officer. CUH's own site currently routes FOI enquiries to the HSE's central Freedom of Information process.",
+    summary: "No dedicated hospital FOI officer. The HSE's old central FOI landing page has been retired; use its data protection contact page instead — it doesn't specifically brand itself 'FOI', but it's the live route in.",
     steps: [
       "State clearly that you're making the request under the Freedom of Information Act 2014.",
       "Describe the exact records you want, with as much detail as possible (service, location, approximate dates).",
       "No fee for your own personal information. Acknowledged within 10 working days, response generally within 20 working days.",
     ],
-    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/", form: "HSE FOI Request Form (PDF, on hse.ie)" },
+    contact: { web: "www2.hse.ie/data-protection-and-your-rights/" },
   },
   {
     id: "cumh",
     name: "Cork University Maternity Hospital (CUMH)",
     region: "Cork",
     type: "hse",
-    typeLabel: "HSE hospital — central process",
-    summary: "Same as CUH — no separate CUMH FOI officer found. Requests route through the same HSE central FOI process.",
+    typeLabel: "HSE hospital — own FOI mailbox",
+    summary: "CUMH's Medical Records Department runs its own FOI mailbox, separate from the central HSE process — confirmed working via direct correspondence.",
     steps: [
-      "Same process as CUH (above): write under the FOI Act 2014, describe the exact records, and submit via the HSE FOI process.",
+      "Email CUMH.FOI@hse.ie directly rather than using the general HSE route.",
+      "State clearly that you're making the request under the Freedom of Information Act 2014, and describe the records you want (service, approximate dates).",
+      "Under the FOI Act, acknowledgement is due within 10 working days — if a high volume of requests is cited, an extension can push the response out further.",
     ],
-    note: "For your own maternity or health records specifically, a GDPR Subject Access Request is usually faster than FOI — see 'Accessing your records' above.",
-    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+    note: "For your own maternity or health records specifically, a GDPR Subject Access Request is usually faster than FOI — see 'Accessing your records' above. This mailbox is CUMH-specific — don't reuse it for other hospitals.",
+    contact: { email: "CUMH.FOI@hse.ie", address: "Medical Records Department, 1 East Room, Wilton Road, Cork, T12 YEO2" },
   },
   {
     id: "sivuh",
@@ -3946,7 +3963,7 @@ const HOSPITAL_FOI = [
     steps: [
       "Same central HSE process as CUH (above): write under the FOI Act 2014, describe the records, and submit via the HSE FOI process.",
     ],
-    contact: { phone: "(091) 524 222 (hospital main line)", web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+    contact: { phone: "(091) 524 222 (hospital main line)", web: "www2.hse.ie/data-protection-and-your-rights/" },
   },
   {
     id: "uhl",
@@ -3958,7 +3975,7 @@ const HOSPITAL_FOI = [
     steps: [
       "Same central HSE process as CUH (above).",
     ],
-    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+    contact: { web: "www2.hse.ie/data-protection-and-your-rights/" },
   },
   {
     id: "portiuncula",
@@ -3971,7 +3988,7 @@ const HOSPITAL_FOI = [
       "For FOI: same central HSE process as CUH (above).",
     ],
     note: "For your own records specifically, a GDPR Subject Access Request is usually faster — this hospital's DPO contact is ddpo.west@hse.ie.",
-    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+    contact: { web: "www2.hse.ie/data-protection-and-your-rights/" },
   },
   {
     id: "portlaoise",
@@ -3984,7 +4001,7 @@ const HOSPITAL_FOI = [
       "For FOI: same central HSE process as CUH (above).",
     ],
     note: "For your own records specifically, a GDPR Subject Access Request is usually faster — this hospital's DPO contact is ddpo.dmlUH@hse.ie.",
-    contact: { web: "hse.ie/eng/services/yourhealthservice/info/foi/" },
+    contact: { web: "www2.hse.ie/data-protection-and-your-rights/" },
   },
   {
     id: "belfast-trust",
@@ -4150,28 +4167,44 @@ const RIGHTS_BODIES = [
     step: 1,
     name: "HSE Your Service Your Say (YSYS)",
     role: "First-line formal complaints about HSE public services.",
-    detail: "Raise informally with staff first if you can. A formal complaint gets acknowledged within 5 working days, with an investigation report generally within 30 working days. Generally within 12 months of the event.",
-    contact: { phone: "1800 424 555", email: "yoursay@hse.ie", web: "hse.ie/complaints-feedback" },
+    detail: "Raise informally with staff first if you can — a manager tries to resolve it within 48 hours. If it goes formal, a complaints officer contacts you within 5 working days if an investigation is needed, and responds within 30 working days (updating you every 20 working days if it takes longer). Generally within 12 months of the event, or of becoming aware of it. Doesn't cover private hospitals, or matters already before a court.",
+    contact: { phone: "1800 424 555", email: "yoursay@hse.ie", web: "www2.hse.ie/complaints-feedback/your-service-your-say/" },
+  },
+  {
+    id: "ysys-review",
+    step: 2,
+    name: "YSYS Stage 3 — internal review",
+    role: "Ask for your Stage 2 complaint decision to be reviewed internally, before going external.",
+    detail: "A review officer — not the person who handled your original complaint — reviews the Stage 2 findings and recommendations, generally within 20 working days. The letter with your Stage 2 report tells you how to request this. A commonly-used form of words: \"I am unhappy with the response I have received to my complaint and request that the HSE undertake a review of the complaint under Stage 3 of Your Service, Your Say.\"",
+    contact: { email: "yoursay@hse.ie" },
   },
   {
     id: "pas",
-    step: 2,
+    step: 3,
     name: "Patient Advocacy Service",
     role: "Free, independent, confidential support making a complaint.",
-    detail: "Funded by the Department of Health. Supports complaints about HSE public acute hospitals and HSE-run nursing homes, and support after a patient-safety incident. Can help you escalate further if needed.",
-    contact: { web: "patientadvocacyservice.ie" },
+    detail: "Funded by the Department of Health. Supports complaints about HSE public acute hospitals and HSE-run nursing homes, and support after a patient-safety incident. Can help you write and lodge a complaint at any stage — worth contacting before you write anything formal, not just when you're stuck.",
+    contact: { phone: "0818 293 003", web: "patientadvocacyservice.ie" },
   },
   {
     id: "ombudsman",
-    step: 3,
+    step: 4,
     name: "Office of the Ombudsman",
     role: "Independent external review if you're not satisfied with how a public body handled things.",
-    detail: "Cannot examine matters of clinical judgement or diagnosis, private care, or employment issues. Usually you need to have gone to the HSE first.",
+    detail: "Cannot examine matters of clinical judgement or diagnosis, private care, or employment issues — focus your complaint on how a decision was made, communicated or recorded, not the clinical decision itself. Generally within 12 months of the action or decision, though the Ombudsman may still help beyond that if there's a good reason for the delay. Usually you need to have completed the HSE's process first.",
     contact: { phone: "01 639 5600", web: "ombudsman.ie" },
   },
   {
-    id: "medical-council",
+    id: "oco",
     step: 4,
+    name: "Ombudsman for Children",
+    role: "Independent external review for complaints about services for children, including hospitals.",
+    detail: "Accepts complaints from under-18s directly, and from adults on a child's behalf. You need to give the service a chance to resolve it first, then make a formal complaint to the organisation, before coming to this office.",
+    contact: { phone: "1800 20 20 40", web: "oco.ie" },
+  },
+  {
+    id: "medical-council",
+    step: 5,
     name: "Medical Council",
     role: "Fitness-to-practise complaints about a registered doctor.",
     detail: "Anyone can make a complaint. Goes through a Preliminary Proceedings Committee, then potentially a Fitness to Practise Committee.",
@@ -4179,7 +4212,7 @@ const RIGHTS_BODIES = [
   },
   {
     id: "nmbi",
-    step: 4,
+    step: 5,
     name: "Nursing & Midwifery Board of Ireland (NMBI)",
     role: "Fitness-to-practise complaints about a nurse or midwife.",
     detail: "Equivalent process to the Medical Council, for nursing and midwifery staff.",
@@ -4187,7 +4220,7 @@ const RIGHTS_BODIES = [
   },
   {
     id: "hiqa",
-    step: 4,
+    step: 5,
     name: "HIQA",
     role: "Raise a safety or quality concern about a service.",
     detail: "HIQA sets standards and inspects services but can't investigate an individual complaint directly — raising a concern can still prompt a look at the service.",
@@ -4195,11 +4228,479 @@ const RIGHTS_BODIES = [
   },
   {
     id: "hpra",
-    step: 4,
+    step: 5,
     name: "HPRA",
     role: "Report a problem with a medicine or medical device.",
     detail: "Relevant for adverse reactions to medication, or device complications (e.g. vaginal mesh, contraceptive devices).",
     contact: { web: "hpra.ie" },
+  },
+];
+
+// Northern Ireland complaints ladder — a genuinely different system, not a
+// variant of the Republic's. Trust complaints managers are the first step for
+// hospital/community care; NIPSO is the external review and, unlike the
+// Republic's Ombudsman, CAN look at care and treatment, not just process.
+// Sourced from nidirect and nipso.org.uk. Last reviewed: Sep 2026.
+const RIGHTS_BODIES_NI = [
+  {
+    id: "ni-trust-complaints",
+    step: 1,
+    name: "Your HSC Trust's complaints manager",
+    role: "First step for a hospital or community social care complaint.",
+    detail: "Acknowledgement within 2–3 working days. Full response within 20 working days for a hospital or social care complaint (10 working days if you complain directly to a GP, dentist, pharmacist or optician). Usually within 6 months of becoming aware of the issue, and normally no later than 12 months after the event.",
+    contact: { web: "nidirect.gov.uk/articles/how-complain-or-raise-concerns-about-health-services" },
+  },
+  {
+    id: "pcc-ni",
+    step: 1,
+    name: "Patient and Client Council (PCC)",
+    role: "Free, independent support making a complaint, similar to the Republic's Patient Advocacy Service.",
+    detail: "A freephone support service that can help you raise concerns or make a complaint about any HSC service in Northern Ireland.",
+    contact: { phone: "0800 917 0222", email: "info@pcc-ni.net" },
+  },
+  {
+    id: "nipso",
+    step: 2,
+    name: "Northern Ireland Public Services Ombudsman (NIPSO)",
+    role: "Independent external review — broader than the Republic's Ombudsman.",
+    detail: "Covers hospitals, care homes, social workers, doctors, dentists and opticians, and CAN look at care and treatment as well as administrative process — unlike the Republic's Ombudsman, which cannot examine clinical judgement. Generally within 6 months of the provider completing its own complaints process.",
+    contact: { phone: "0800 34 34 24", web: "nipso.org.uk" },
+  },
+  {
+    id: "rqia",
+    step: 2,
+    name: "RQIA",
+    role: "Raise a safety or quality concern about a regulated service.",
+    detail: "RQIA doesn't have legal powers to investigate an individual complaint, but uses concerns raised with it to inform inspections and reviews — similar in role to HIQA in the Republic.",
+    contact: { phone: "028 9536 1111", email: "info@rqia.org.uk" },
+  },
+];
+
+// Letter templates for FOI/SAR requests and formal complaints. These are our
+// own drafting, not copies of any official form — always link to the
+// official form/portal where one exists (see each template's "useFor"), and
+// use these when the official route needs a written letter rather than a form.
+// No rates or figures here that go stale; only statutory timelines, which
+// change rarely. Last reviewed: Sep 2026.
+const LETTER_TEMPLATES = [
+  {
+    id: "sar-roi",
+    title: "Subject Access Request (Republic of Ireland)",
+    jurisdiction: "roi",
+    useFor: "Your own medical records from any Irish provider — HSE hospital, voluntary hospital, GP, consultant, private clinic, or imaging centre.",
+    sendTo: "The provider's Data Protection Officer. For HSE services, use the regional data protection office covering the location of the service.",
+    deadline: "One month, extendable by a further two months if complex — they must tell you in writing within the first month if they're extending.",
+    enclose: "A copy of government-issued photo ID (passport, driving licence, or public services card).",
+    body: `[Your name]
+[Your address]
+[Your date of birth]
+[Your phone / email]
+
+[Date]
+
+The Data Protection Officer
+[Hospital / practice / clinic name]
+[Address]
+
+RE: SUBJECT ACCESS REQUEST UNDER ARTICLE 15 GDPR
+
+Dear Data Protection Officer,
+
+I am making a subject access request under Article 15 of the General Data
+Protection Regulation and the Data Protection Act 2018 for a copy of the
+personal data you hold about me.
+
+MY DETAILS
+Full name:              [name, and any previous names you were treated under]
+Date of birth:          [DOB]
+Address:                [current address]
+Hospital / patient no.: [if known]
+
+WHAT I AM REQUESTING
+I am requesting a complete copy of my records, including but not limited to:
+
+  - all medical and nursing notes
+  - GP and consultant correspondence, referral letters and referral responses
+  - discharge summaries and clinic letters
+  - results of all tests, including laboratory and pathology results
+  - imaging reports (and, where held, the images themselves)
+  - operation notes, anaesthetic records and consent forms
+  - medication and prescribing records
+  - appointment records, including any cancelled or missed appointments
+  - any record of complaints, incidents or concerns relating to my care
+
+Period covered:  [e.g. 1 January 2019 to the present / all records held]
+Service(s):      [e.g. Gynaecology outpatients; Emergency Department;
+                  Maternity — specify departments and approximate dates]
+Location(s):     [e.g. Cork University Maternity Hospital]
+
+FORMAT
+I would like to receive this [electronically, as PDF, by secure email to the
+address above / in hard copy by post].
+
+IDENTIFICATION
+I enclose a copy of [passport / driving licence / public services card] as
+proof of identity.
+
+TIMELINE
+I understand you must respond without undue delay and in any event within one
+month of receipt. If you consider the request complex and intend to extend
+that period by up to two further months, please tell me in writing within the
+first month, with your reasons.
+
+If you intend to withhold any part of my records, please tell me which parts,
+the specific legal basis for withholding them, and confirm you have released
+everything that can be released.
+
+Please acknowledge receipt of this request.
+
+Yours faithfully,
+
+[Signature]
+[Printed name]`,
+  },
+  {
+    id: "foi-roi",
+    title: "FOI request (Republic of Ireland)",
+    jurisdiction: "roi",
+    useFor: "Non-personal records held by an FOI body (policies, protocols, waiting-list statistics), a deceased relative's records, or — if you have a medical card — GP records the HSE holds as custodian. Not for your own records from a private hospital or private GP visit (use the SAR template instead).",
+    sendTo: "The FOI officer of the body that holds the records. Check the hospital's own FOI contact first — some voluntary hospitals run their own FOI office rather than routing through the HSE's central process.",
+    deadline: "Acknowledged within 10 working days; decision normally within 20 working days.",
+    enclose: "Proof of identity for personal records; for a deceased person's records, evidence of your relationship (e.g. grant of probate) plus your own ID.",
+    body: `[Your name]
+[Your address]
+[Your phone / email]
+
+[Date]
+
+The Freedom of Information Officer
+[Body name]
+[Address]
+
+RE: REQUEST UNDER THE FREEDOM OF INFORMATION ACT 2014
+
+Dear FOI Officer,
+
+I am making a request under the Freedom of Information Act 2014 for the
+following records.
+
+RECORDS REQUESTED
+[Be as specific as you can. Name the service, the location, the date range,
+and the type of document. Examples:]
+
+  1. The current [department name] policy or standard operating procedure on
+     [subject], as in force on [date].
+
+  2. Any protocol, pathway or referral-prioritisation criteria used by
+     [service] for [condition], covering [date range].
+
+  3. Aggregated, anonymised waiting-list figures for [service] at
+     [location] for the period [date range], excluding any personal
+     information.
+
+TIME PERIOD:  [date range]
+FORMAT:       I would prefer to receive these records electronically by email
+              to the address above.
+
+BASIS OF REQUEST
+[Choose the paragraph that applies and delete the others:]
+
+  [ ] Personal records: These records contain my own personal information.
+      I understand no fee applies to a request for personal records. I enclose
+      a copy of [ID document] as proof of identity.
+
+  [ ] Records of a deceased person: I am seeking the records of [name],
+      date of birth [DOB], who died on [date]. I am their [personal
+      representative administering the estate / spouse / next of kin /
+      other — specify]. I enclose [death certificate / grant of probate /
+      evidence of relationship] and a copy of my own photo ID.
+
+  [ ] Non-personal records: I understand there is no fee for the initial
+      request. If search, retrieval and copying charges are likely to apply,
+      please tell me the estimated cost before you begin work.
+
+ASSISTANCE
+If any part of this request is unclear, please contact me rather than
+refusing it — I am happy to narrow or reword it.
+
+I understand you must acknowledge this request within 10 working days and
+issue a decision within 20 working days.
+
+Yours faithfully,
+
+[Signature]
+[Printed name]`,
+  },
+  {
+    id: "foi-internal-review-roi",
+    title: "FOI internal review request (Republic of Ireland)",
+    jurisdiction: "roi",
+    useFor: "An FOI request that was refused in whole or in part, or that got no response at all.",
+    sendTo: "The FOI officer of the body you originally applied to.",
+    deadline: "Within 3 weeks of the decision, or after 4 weeks from your original request if you got no response. Fee: free for personal records, €30 for non-personal (€10 with a medical card).",
+    body: `[Your name and address]
+[Date]
+
+The FOI Officer
+[Body name]
+[Address]
+
+RE: REQUEST FOR INTERNAL REVIEW — FOI reference [ref number]
+
+Dear FOI Officer,
+
+I refer to my FOI request of [date] (your reference [ref]) and to your
+decision of [date].
+
+I am requesting an internal review of that decision under section 21 of the
+Freedom of Information Act 2014.
+
+[Choose and adapt:]
+
+  [ ] No response received. I made my request on [date]. More than four weeks
+      have passed and I have received no decision. I am therefore seeking an
+      internal review on the basis of a deemed refusal.
+
+  [ ] Records refused. The decision refused [all / part] of my request,
+      relying on section [X]. I am asking that this be reviewed because:
+      [set out your reasons].
+
+  [ ] Records incomplete. The records released do not include [describe what
+      is missing and why you believe it exists]. Please confirm whether these
+      records exist and, if so, release them or state the exemption relied on.
+
+[If a fee applies:]
+I enclose the internal review fee of €[30 / 10]. [I hold a medical card,
+number ___, and am applying the reduced fee.]
+
+I understand the review will be carried out by a member of staff more senior
+than the original decision-maker, and that I may apply to the Office of the
+Information Commissioner if I remain dissatisfied.
+
+Yours faithfully,
+[Signature]
+[Printed name]`,
+  },
+  {
+    id: "records-ni",
+    title: "Access to health records (Northern Ireland)",
+    jurisdiction: "ni",
+    useFor: "Your own health or social care records from an HSC Trust, GP surgery, or NI Ambulance Service.",
+    sendTo: "The hospital's records manager, or the Trust's data protection officer. GP records go to your surgery. Check whether the Trust publishes its own application form first — many do.",
+    deadline: "One calendar month, extendable by up to two further months if complex.",
+    enclose: "A copy of photographic ID.",
+    body: `[Your name]
+[Your address]
+[Your date of birth]
+[Your phone / email]
+[H&C number, if known]
+
+[Date]
+
+The Data Protection Officer / Health Records Manager
+[Trust or GP practice name]
+[Address]
+
+RE: SUBJECT ACCESS REQUEST — UK GDPR AND DATA PROTECTION ACT 2018
+
+Dear Sir or Madam,
+
+I am making a subject access request under the UK GDPR and the Data
+Protection Act 2018 for a copy of the health and social care records you hold
+about me.
+
+MY DETAILS
+Full name:            [name, and any previous names]
+Date of birth:        [DOB]
+Current address:      [address]
+H&C number:           [if known]
+GP practice:          [name and address]
+
+RECORDS REQUESTED
+I am requesting a complete copy of my records, including:
+
+  - medical and nursing notes
+  - correspondence between my GP and the Trust, including referral letters
+    and referral outcomes
+  - clinic letters and discharge summaries
+  - test and laboratory results
+  - imaging reports
+  - operation, anaesthetic and consent records
+  - medication records
+  - appointment and waiting-list records
+  - any record of complaints or incidents relating to my care
+
+Period:      [date range, or "all records held"]
+Service(s):  [department / specialty and approximate dates]
+Location(s): [hospital or facility]
+
+FORMAT
+I would like these [electronically as PDF / in hard copy].
+
+IDENTIFICATION
+I enclose a copy of my [passport / driving licence] as proof of identity.
+
+TIMELINE
+I understand you have one calendar month to respond, extendable by up to two
+further months if the request is complex, in which case you will tell me
+within the first month.
+
+If any part of my records is withheld, please tell me which parts and the
+basis on which they are withheld.
+
+Yours faithfully,
+[Signature]
+[Printed name]
+
+---
+If refused, delayed past the deadline, or your records are released
+incomplete, you can complain to the Information Commissioner's Office
+(ico.org.uk).`,
+  },
+  {
+    id: "complaint-ysys-roi",
+    title: "Formal complaint (HSE Your Service Your Say)",
+    jurisdiction: "roi",
+    useFor: "A formal complaint about an HSE public service, or a service provided on the HSE's behalf.",
+    sendTo: "yoursay@hse.ie, or the complaints officer for the service.",
+    deadline: "Generally within 12 months of the event, or of becoming aware of it. Before sending it, consider contacting the Patient Advocacy Service (0818 293 003) — free, independent, and they can help you write it.",
+    body: `[Your name]
+[Your address]
+[Your date of birth]
+[Your phone / email]
+[Hospital or patient number, if known]
+
+[Date]
+
+The Complaints Officer
+[Service / hospital name]
+[Address]
+
+  or: yoursay@hse.ie
+
+RE: FORMAL COMPLAINT UNDER YOUR SERVICE YOUR SAY
+
+Dear Complaints Officer,
+
+I am making a formal complaint under the HSE's Your Service Your Say
+procedure about my experience of [service] at [location].
+
+1. WHO AND WHERE
+Service:      [department / ward / clinic]
+Location:     [hospital or centre]
+Date(s):      [dates of the events complained about]
+Staff:        [names or roles, if known]
+
+2. WHAT HAPPENED
+[Set this out in date order. Keep it factual. One event per paragraph.]
+
+  On [date], I attended [service] because [reason]. [What happened.]
+  On [date], [next event].
+
+3. WHAT MY CONCERNS ARE
+[Focus on process and administration — how decisions were made,
+communicated, recorded, or followed up. For example:]
+
+  a. [e.g. My symptoms as I described them were not recorded in my notes.]
+  b. [e.g. I was told a referral had been made on [date]. It was not made
+     until [date], and I was not told of the delay.]
+  c. [e.g. No safety-netting advice was given about what should prompt me
+     to return.]
+
+4. THE EFFECT ON ME
+[Practical, medical, financial — whatever is true. Keep it short.]
+
+5. WHAT I HAVE ALREADY DONE
+[e.g. On [date] I raised this with the ward manager. On [date] I phoned
+[number] and spoke to [name]. I have received no response.]
+
+6. WHAT I WOULD LIKE TO HAPPEN
+[Be concrete. Reasonable asks a complaints officer can actually action:]
+
+  - a written explanation of [specific point]
+  - a correction or addition to my records to reflect [what]
+  - confirmation of what has changed in the service as a result
+  - a meeting with [role]
+  - an apology
+
+7. DOCUMENTS ENCLOSED
+[e.g. copy of appointment letter dated __; copy of correspondence.]
+
+I understand a complaints officer will contact me within 5 working days if
+an investigation is required, and that I should receive a response within
+30 working days, or be told if more time is needed.
+
+Please acknowledge receipt of this complaint in writing.
+
+Yours faithfully,
+
+[Signature]
+[Printed name]
+
+---
+Keep a log from day one: date, who you spoke to, what was said, what was
+promised, what happened next. It's the single most useful thing you can do
+if you need to escalate.`,
+  },
+  {
+    id: "ombudsman-escalation-roi",
+    title: "Escalation to the Ombudsman (Republic of Ireland)",
+    jurisdiction: "roi",
+    useFor: "Escalating after you've completed the HSE's Your Service Your Say process (including a Stage 3 internal review) and remain unsatisfied.",
+    sendTo: "Office of the Ombudsman, 6 Earlsfort Terrace, Dublin 2, D02 W773.",
+    deadline: "Generally within 12 months of the action or decision.",
+    body: `[Your name and address]
+[Date]
+
+Office of the Ombudsman
+6 Earlsfort Terrace, Dublin 2, D02 W773
+
+RE: COMPLAINT ABOUT [HSE / service provider name]
+    HSE complaint reference: [ref]
+
+Dear Sir or Madam,
+
+I am bringing a complaint to your office about [body name] having completed
+the HSE's Your Service Your Say process.
+
+WHAT HAPPENED
+[Two or three short paragraphs. Same facts as your original complaint.]
+
+WHAT I COMPLAINED ABOUT AND WHEN
+I made a formal complaint on [date] (reference [ref]).
+I received a Stage 2 report on [date].
+I requested a Stage 3 internal review on [date] and received the outcome on
+[date]. [or: I did not receive a response within the stated timeframe.]
+
+WHY I AM NOT SATISFIED
+[Be specific. Focus on administrative practice, not clinical judgment. For
+example: the investigation did not address point [X] of my complaint; the
+findings were not supported by the records; a recommendation was made but no
+evidence has been provided that it was implemented.]
+
+I understand your office cannot examine clinical judgment. My complaint
+concerns [how the decision was made / how it was communicated / how it was
+recorded / whether the process was followed], not the clinical decision
+itself.
+
+WHAT I AM LOOKING FOR
+[e.g. a finding on whether the process was properly followed; a
+recommendation that my record be corrected; an explanation.]
+
+ENCLOSED
+  - copy of my original complaint dated [date]
+  - copy of the Stage 2 report dated [date]
+  - copy of the Stage 3 internal review outcome dated [date]
+
+Yours faithfully,
+[Signature]
+[Printed name]
+
+---
+For Northern Ireland, the equivalent letter goes to NIPSO, Progressive
+House, 33 Wellington Place, Belfast BT1 6HN, within 6 months of the provider
+completing its own process. NIPSO CAN look at care and treatment, so drop
+the "clinical judgment" paragraph above for an NI complaint.`,
   },
 ];
 
