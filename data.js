@@ -3159,11 +3159,11 @@ const ENTRIES = [
     details: [
       "Based at Children's Health Ireland at Crumlin, with satellite clinics at Cork University Hospital, University Hospital Limerick, and University Hospital Galway.",
       "A referral letter from your GP or consultant is required before assessment. Non-urgent waits can be up to 2 years.",
-      "Correction: an earlier version of this entry listed 01 409 6739 as the general contact — that's actually a clinician-only clinical-advice voicemail, not the public line.",
+      "General enquiries line is answered 9am–5pm Mon–Fri (4pm Fridays). For an urgent query outside a scheduled appointment, the department directs patients to the same number.",
     ],
     referral: "GP or consultant referral.",
     contact: { phone: "01 409 6739", email: "clinical.genetics@childrenshealthireland.ie", address: "Children's Health Ireland at Crumlin, Dublin 12" },
-    checked: "4 Sep 2026"
+    checked: "5 Sep 2026"
   },
   {
     id: "cancer-genetics-stjames",
