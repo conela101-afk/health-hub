@@ -3,6 +3,20 @@
   const searchInput = document.getElementById("searchInput");
   const tabbar = document.getElementById("tabbar");
 
+  // Quick exit: instantly leaves the site with no back-button trail back in
+  // (location.replace, not location.href). Doesn't erase browser history
+  // already made before this point — no web API can do that — but it stops
+  // someone glancing over a shoulder from seeing this site on the next tap
+  // of "back". Bound to the visible button and to Escape from anywhere.
+  function quickExit(){
+    window.location.replace("https://www.google.com");
+  }
+  const quickExitBtn = document.getElementById("quickExitBtn");
+  if (quickExitBtn) quickExitBtn.addEventListener("click", quickExit);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") quickExit();
+  });
+
   function updateTabbar(parts){
     let active = null;
     if (parts.length === 0) active = "home";
@@ -303,7 +317,7 @@
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="${backHref}">‹ ${kind === "specialty" ? "Specialties" : "Areas"}</a>
-        <h1>${label}</h1>
+        <h1>${escapeHtml(label)}</h1>
         <p class="count">${results.length} service${results.length === 1 ? "" : "s"}</p>
       </div>
       ${cards}
@@ -367,13 +381,14 @@
     const generalOrgCards = generalOrgResults.length
       ? `<p class="section-title">General advocacy &amp; support</p><div class="org-grid">${generalOrgResults.map(orgCardHtml).join("")}</div>`
       : "";
+    const safeQuery = escapeHtml(query);
     const body = totalCount
       ? `${privateSection}${cards}${orgCards}${generalOrgCards}`
-      : `<div class="empty-state">No matches for "${query}". Try a broader term, like a condition, area, or organisation name.</div>`;
+      : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
-        <h1>Search: "${query}"</h1>
+        <h1>Search: "${safeQuery}"</h1>
         <p class="count">${totalCount} result${totalCount === 1 ? "" : "s"}</p>
       </div>
       ${body}
