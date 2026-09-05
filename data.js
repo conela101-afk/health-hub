@@ -5573,12 +5573,42 @@ const SCHEME_LINKS = [
     ],
   },
   {
+    id: "domiciliary-care-allowance",
+    name: "Domiciliary Care Allowance (DCA)",
+    jurisdiction: "roi",
+    blurb: "A monthly payment for a child under 16 who needs substantially more care and attention than a child of the same age without their disability — based on the level of care needed, not on a specific diagnosis, and not means-tested.",
+    prep: [
+      "Ask your GP, consultant or CDNT team for supporting medical evidence before you apply — the application is assessed on the care needs it describes.",
+    ],
+    links: [
+      { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/social-welfare/disability-and-illness/domiciliary-care-allowance/" },
+    ],
+  },
+  {
+    id: "aim-preschool",
+    name: "Access and Inclusion Model (AIM)",
+    jurisdiction: "roi",
+    blurb: "Supports for a child with a disability to take part in the free preschool (ECCE) programme, from minor adjustments up to additional one-to-one support — no diagnosis required. Applied for jointly by the parent and the preschool provider.",
+    links: [
+      { label: "How it works & how to apply — Access and Inclusion Model", url: "https://aim.gov.ie" },
+    ],
+  },
+  {
     id: "ni-health-costs",
     name: "Help with health costs (dental, optical, travel)",
     jurisdiction: "ni",
     blurb: "NHS prescriptions are free for everyone in Northern Ireland — no scheme needed. Help with dental, optical and travel costs depends on your circumstances; apply with form HC1 if you're not automatically covered.",
     links: [
       { label: "Who qualifies & how to claim — nidirect", url: "https://www.nidirect.gov.uk/articles/help-health-costs" },
+    ],
+  },
+  {
+    id: "dla-children",
+    name: "Disability Living Allowance for children (DLA)",
+    jurisdiction: "ni",
+    blurb: "A not-means-tested benefit for a child under 16 with care needs and/or mobility difficulties well beyond what's normal for their age, made up of a care component and a mobility component. Apply via the DLA1 child form through the Department for Communities' Disability and Carers Service.",
+    links: [
+      { label: "How it works & how to apply — nidirect", url: "https://www.nidirect.gov.uk/articles/disability-living-allowance-children" },
     ],
   },
   {
