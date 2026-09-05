@@ -1,7 +1,7 @@
 {
   "name": "Health Hub — Ireland & NI",
   "short_name": "Health Hub",
-  "description": "A free directory for navigating health, care and advocacy services across Ireland and Northern Ireland — general health services and women's health, public and private, and how to get help, complain, or find support.",
+  "description": "A free directory for navigating health, care and advocacy services across Ireland and Northern Ireland — general health services, women's health, and neurodiversity/disability pathways, public and private, and how to get help, complain, or find support.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
