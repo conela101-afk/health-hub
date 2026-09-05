@@ -88,6 +88,73 @@ with a GP" or "changing your GP".
 },
 ```
 
+## 4. Domiciliary Care Allowance (ROI)
+
+Non-means-tested monthly payment for a child under 16 with a disability
+requiring significantly more care than a child of the same age without that
+disability — based on level of care needed, not diagnosis. Likely
+`citizensinformation.ie` (same "social-welfare/families-and-children/"
+section as the existing `maternity-benefit` scheme link) and/or
+`mywelfare.ie` for the application itself. Search "citizensinformation
+domiciliary care allowance".
+
+```js
+{
+  id: "domiciliary-care-allowance",
+  name: "Domiciliary Care Allowance (DCA)",
+  jurisdiction: "roi",
+  blurb: "A monthly payment for a child under 16 who needs substantially more care and attention than a child of the same age without their disability — based on the level of care needed, not on a specific diagnosis, and not means-tested.",
+  prep: [
+    "Ask your GP, consultant or CDNT team for supporting medical evidence before you apply — the application is assessed on the care needs it describes.",
+  ],
+  links: [
+    { label: "How it works & how to apply — VERIFY-THIS-URL", url: "VERIFY-THIS-URL" },
+  ],
+},
+```
+
+## 5. Access and Inclusion Model (AIM) — preschool supports (ROI)
+
+Supports for a child with a disability to take part in the free preschool
+(ECCE) programme — seven levels of support, no diagnosis required, applied
+for jointly by parent and preschool provider via the Early Years Hive.
+Likely `hse.ie` or a dedicated `aim.gov.ie`/`preschoolaccess.ie`-style
+domain. Search "Access and Inclusion Model AIM preschool".
+
+```js
+{
+  id: "aim-preschool",
+  name: "Access and Inclusion Model (AIM)",
+  jurisdiction: "roi",
+  blurb: "Supports for a child with a disability to take part in the free preschool (ECCE) programme, from minor adjustments up to additional one-to-one support — no diagnosis required. Applied for jointly by the parent and the preschool provider.",
+  links: [
+    { label: "How it works & how to apply — VERIFY-THIS-URL", url: "VERIFY-THIS-URL" },
+  ],
+},
+```
+
+## 6. Disability Living Allowance for children (NI)
+
+Not-means-tested benefit for a disabled child under 16, with a care
+component and a mobility component, administered by the Department for
+Communities' Disability and Carers Service. Likely
+`nidirect.gov.uk/articles/disability-living-allowance-children` (matches
+the site's existing `nidirect.gov.uk/articles/...` URL pattern already used
+for the `ni-health-costs` and `ni-care-home-fees` scheme links, but this
+exact slug is unverified) — confirm before using.
+
+```js
+{
+  id: "dla-children",
+  name: "Disability Living Allowance for children (DLA)",
+  jurisdiction: "ni",
+  blurb: "A not-means-tested benefit for a child under 16 with care needs and/or mobility difficulties well beyond what's normal for their age, made up of a care component and a mobility component. Apply via the DLA1 child form through the Department for Communities' Disability and Carers Service.",
+  links: [
+    { label: "How it works & how to apply — VERIFY-THIS-URL", url: "VERIFY-THIS-URL" },
+  ],
+},
+```
+
 ## Also worth a look while online
 
 Not urgent, but from the same review — no action needed unless you want to
@@ -102,3 +169,16 @@ extend further:
   built (see README.md's "Content conventions" section) — they'd have the
   app render legal/clinical judgments it isn't positioned to make, not a
   URL-verification gap.
+- **Items 4–6 above** were added during the CDNT (Children's Disability
+  Network Team) / early-intervention content pass (Sep 2026), which hit the
+  exact same no-egress restriction described at the top of this file.
+  `data.js` did get several new CDNT-related `ENTRIES` and org entries from
+  that pass (specialty `childdisability`; e.g. `hse-cdnt-referral`,
+  `ni-child-development-clinic`, `ni-ea-sen-assessment`, `enable-ireland`,
+  `down-syndrome-ireland`, `autism-ni`, `contact-ni`, `childrens-law-centre-ni`,
+  `senac-ni`, and more) — those use bare root domains for well-established
+  national bodies (the same lower-risk pattern already used throughout this
+  file for e.g. `hse.ie`, `asiam.ie`, `advocacy.ie`), which is a different
+  and lower-risk case than a fabricated deep link, so they went in directly
+  rather than being queued here. Only the three scheme links above, which
+  need a *specific unverified page*, were held back.
