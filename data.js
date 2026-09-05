@@ -280,38 +280,6 @@ const ENTRIES = [
     checked: "4 Sep 2026"
   },
   {
-    id: "phn-corkcity",
-    name: "Public Health Nurse Office — Cork City",
-    specialty: ["phn"],
-    county: ["cork-city"],
-    blurb: "Not sure who your PHN is? Start here.",
-    details: ["Postnatal home visits, infant checks, referrals to home support/chiropody/respite, aftercare after discharge.", "Self-referral is possible in most areas."],
-    referral: "Self-referral or GP.",
-    contact: { phone: "021 492 3847" }
-  },
-  {
-    id: "phn-mallow",
-    name: "Public Health Nursing — Mallow / North Cork",
-    specialty: ["phn"],
-    county: ["cork-north"],
-    blurb: "PHN service based at Mallow Primary Care Centre.",
-    details: ["Mon–Fri 09:00–17:00."],
-    referral: "Self-referral or GP.",
-    contact: { phone: "022 58700", address: "Mallow Primary Care Centre" },
-    checked: "4 Sep 2026"
-  },
-  {
-    id: "phn-castletownbere",
-    name: "Public Health Nursing — Castletownbere",
-    specialty: ["phn"],
-    county: ["cork-west"],
-    blurb: "West Cork PHN example — coverage areas are parish-based and change with staffing.",
-    details: ["For other West Cork towns, contact your local health centre or GP."],
-    referral: "Self-referral or GP.",
-    contact: { phone: "027 70353" },
-    checked: "4 Sep 2026"
-  },
-  {
     id: "cumh-pmht",
     name: "CUMH Specialist Perinatal Mental Health Team (PMHT)",
     specialty: ["mh"],
@@ -1915,11 +1883,24 @@ const ENTRIES = [
     name: "Belfast Trust Community Perinatal Mental Health Service",
     specialty: ["mh"],
     county: ["antrim"],
-    blurb: "Specialist perinatal MH teams now exist in all five NI Trusts. Note: NI has no dedicated inpatient Mother & Baby Unit — a known, acknowledged gap.",
+    blurb: "Specialist perinatal MH teams now exist in all five NI Trusts. See the 'Mother & Baby Unit status' entry for inpatient care.",
     details: ["Clinics also at Crumlin Road Health Centre, Woodstock Lodge, and the Royal Jubilee Maternity Hospital."],
     referral: "GP, midwife, or health visitor referral.",
     contact: { phone: "028 9504 6223", address: "Knockbracken Healthcare Park, Belfast" },
     checked: "4 Sep 2026"
+  },
+  {
+    id: "mbu-status",
+    name: "Mother & Baby Unit status (ROI & NI)",
+    specialty: ["mh", "obs"],
+    county: ["national"],
+    blurb: "No mother & baby psychiatric unit currently operates in either jurisdiction — mothers needing inpatient mental health care are admitted without their baby.",
+    details: [
+      "Northern Ireland: confirmed — Belfast City Hospital, expected to open 2028/29 (announced 30 April 2026).",
+      "Republic of Ireland: funded via Budget 2026 but no opening date yet — planned units at St Vincent's, Dublin (co-located with the new National Maternity Hospital) and a 6-bed unit in Limerick (St Joseph's Hospital campus)."
+    ],
+    referral: "Not applicable — no unit yet open in either jurisdiction. For perinatal mental health support in the meantime, see the Specialist Perinatal Mental Health Team entries.",
+    checked: "5 Sep 2026"
   },
   {
     id: "southern-perinatal-mh",
@@ -2435,15 +2416,19 @@ const ENTRIES = [
   // Honest pointer entries rather than fabricated county-by-county listings —
   // these are explicitly flagged as needing local knowledge / crowdsourcing. ----
   {
-    id: "find-phn",
+    id: "phn-locator",
     name: "Find your local Public Health Nurse",
     specialty: ["phn"],
     county: ["national"],
-    blurb: "There's no single national PHN directory — access is via your local health centre.",
-    details: ["No compact public list exists for this — genuinely needs local knowledge. If you know your area's PHN contact, this is exactly the kind of thing worth reporting via the link in the footer."],
-    referral: "Contact HSE Live or find your local health centre.",
-    contact: { phone: "1800 700 700", web: "hse.ie" },
-    checked: "4 Sep 2026"
+    blurb: "PHNs are based at your local Primary Care Centre and their coverage areas are informal and change with staffing — so the right first step is finding your centre, not a fixed contact list.",
+    details: [
+      "ROI: use the HSE's Primary Care Centre locator to find your nearest centre, then ask reception for Public Health Nursing.",
+      "NI: use the HSC Service Finder to find your nearest health centre, then ask for the Health Visiting / Public Health Nursing team.",
+      "You can also be referred by your GP or midwife."
+    ],
+    referral: "Self-referral via your local Primary Care Centre, or GP/midwife referral.",
+    contact: { phone: "1800 700 700", web: "www2.hse.ie/services/primary-care-centres/" },
+    checked: "5 Sep 2026"
   },
   {
     id: "find-urology",
