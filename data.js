@@ -1249,6 +1249,86 @@ const ENTRIES = [
     contact: { web: "aspireireland.ie" },
     checked: "4 Sep 2026"
   },
+  // Adult ADHD & adult autism diagnosis pathways (ROI & NI) — added Sep 2026
+  // from an all-island adult neurodiversity navigation guide. Public adult
+  // pathways are limited or absent on both sides of the border; see the
+  // "Adult ADHD & autism diagnosis" tip in Know Your Rights for the private-
+  // pathway and shared-care caveats these entries deliberately don't repeat.
+  {
+    id: "hse-adult-adhd-clinics",
+    name: "HSE Adult ADHD Clinics (National Clinical Programme)",
+    specialty: ["neurodiversity"],
+    county: ["national"],
+    blurb: "The public route to adult ADHD assessment and treatment — but only where a clinic team has been funded. As of 2025, 7 of the planned 11 regional teams are funded and 5 fully operational, so roughly half the country still has no dedicated service.",
+    details: [
+      "Pathway where a team exists: GP → referral to your local Adult Mental Health Team (which also screens for co-occurring conditions) → referral on to the Adult ADHD Clinic.",
+      "Waiting times aren't published at patient level. Real-world reports suggest roughly 18 months to 2+ years, and some areas (including Cork and south Dublin/Wicklow) have at times paused new referrals due to capacity.",
+      "If there's no team in your area yet, ask your GP about the current local arrangement rather than assuming there's nothing to be referred to — provision is expanding, unevenly, as Budget 2025 funding for the remaining teams comes online.",
+      "A private diagnosis does not guarantee this service will take over your prescribing — see the private-pathway note in the Know Your Rights advocacy guide.",
+    ],
+    referral: "GP referral to your local Adult Mental Health Team, who refer on to the Adult ADHD Clinic if appropriate.",
+    contact: { web: "hse.ie" },
+    checked: "5 Sep 2026",
+  },
+  {
+    id: "umaap-adult-adhd",
+    name: "UMAAP — Understanding & Managing Adult ADHD Programme",
+    specialty: ["neurodiversity"],
+    county: ["national"],
+    blurb: "A free 6-week online programme for adults with ADHD, run by ADHD Ireland with UCD and the HSE's National Clinical Programme for ADHD in Adults. No diagnosis, referral, or wait for an assessment slot required.",
+    details: [
+      "Open to anyone 18+ living in the Republic of Ireland who self-identifies as having ADHD or has a formal diagnosis — worth accessing while you're waiting for (or instead of pursuing) a formal assessment.",
+      "Combines ADHD psychoeducation with acceptance and commitment therapy (ACT) techniques.",
+    ],
+    referral: "Self-referral via ADHD Ireland's website.",
+    contact: { web: "adhdireland.ie" },
+    checked: "5 Sep 2026",
+  },
+  {
+    id: "adult-adhd-ni",
+    name: "Adult ADHD assessment (Northern Ireland HSC)",
+    specialty: ["neurodiversity"],
+    county: ["national"],
+    blurb: "There is no regionally commissioned adult ADHD service in Northern Ireland — provision exists only informally within general adult mental health teams, and Trusts aren't required to keep an ADHD-specific waiting list.",
+    details: [
+      "Where reported, waits are very long: Belfast Trust reported roughly 8 years (1,710 adults waiting in 2022–23, up from 837 the year before); South Eastern Trust roughly 7.5 years. Other Trusts don't record adult ADHD waits separately from general adult mental health waits.",
+      "NHS Right to Choose does not apply in Northern Ireland — it's England-only, so it can't be used here to access a faster private-to-NHS-funded route.",
+      "An Individual Funding Request to fund assessment or treatment outside the normal pathway can be made but is rarely successful.",
+    ],
+    referral: "Ask your GP to refer you to your local HSC Trust's adult mental health team.",
+    contact: { web: "nidirect.gov.uk" },
+    checked: "5 Sep 2026",
+  },
+  {
+    id: "hse-autism-protocol-adult",
+    name: "National Autism Assessment and Intervention Pathway Protocol (adults)",
+    specialty: ["neurodiversity"],
+    county: ["national"],
+    blurb: "Ireland's first standardised HSE-wide autism assessment approach, effective from 25 March 2026 — the first to explicitly include adults, who can self-refer. Genuinely new, but real-world adult access is expected to lag well behind children's in the early rollout.",
+    details: [
+      "Uses a tiered model — clear presentation, unclear presentation, and continuing presentation — matching more intensive assessment to less straightforward cases.",
+      "Applies across HSE services and Section 38/39-funded providers, and can involve private providers.",
+      "Rollout began July 2026 with children prioritised first — treat this as a development worth watching rather than a fast route to adult assessment right now. Worth re-checking status with your local HSE service every few months.",
+      "11 new 'in-reach' teams (psychologist, occupational therapist, speech & language therapist) are being recruited nationally to support delivery.",
+    ],
+    referral: "Self-refer once the protocol is operating in your area — ask your GP or local HSE disability/mental health service for current status.",
+    contact: { web: "hse.ie" },
+    checked: "5 Sep 2026",
+  },
+  {
+    id: "adult-autism-ni",
+    name: "Adult Autism Assessment (HSC Trust)",
+    specialty: ["neurodiversity"],
+    county: ["national"],
+    blurb: "Assessment is available through each Health & Social Care Trust via GP referral, but demand vastly outstrips capacity — waits of up to 5 years reported in some Trust areas, against a 13-week target.",
+    details: [
+      "Governed by the Autism Strategy 2023–2028 ('To Respect, To Listen, To Involve'), underpinned by the Autism Act (NI) 2011 and the Autism (Amendment) Act (NI) 2022, with an Independent Autism Reviewer overseeing progress.",
+      "There's been no significant new investment in autism assessment services since 2016, despite prevalence estimates roughly tripling (from about 1 in 50 to 1 in 17 children) over that period — a long wait reflects known, acknowledged capacity limits, not your case's urgency.",
+    ],
+    referral: "Ask your GP to refer you to your local HSC Trust's autism assessment service.",
+    contact: { web: "nidirect.gov.uk" },
+    checked: "5 Sep 2026",
+  },
   {
     id: "hse-assessment-of-need",
     name: "HSE Assessment of Need (autism/disability)",
@@ -4448,6 +4528,20 @@ const ADVOCACY_GUIDE = [
       "Keep a dated record of every referral, call and letter, and ask each service to confirm your child's position on its waiting list in writing — this is the single most useful habit while you wait.",
     ],
   },
+  {
+    id: "adult-adhd-autism-diagnosis",
+    title: "Adult ADHD & autism diagnosis: what to expect (ROI & NI)",
+    tips: [
+      "Set expectations early: on both sides of the border, public adult pathways are limited or absent, and most adults who want a timely diagnosis end up paying privately.",
+      "A private diagnosis does not guarantee ongoing publicly-funded medication or monitoring — GPs are not obliged to take over prescribing, and are increasingly declining to, citing the medico-legal risk of prescribing controlled medication without secondary-care backup.",
+      "Before booking a private ADHD assessment, ask the provider directly what their shared-care success rate is with GPs in your area, and budget for the possibility of ongoing private prescribing costs if no GP will take it on.",
+      "In the Republic, the Drug Payment Scheme caps a household's monthly prescription cost at €80 regardless of who is prescribing, and you can claim 20% back on qualifying private assessment/treatment costs via Revenue's Med 1 health expenses relief.",
+      "For a private autism assessment, look for a clinician using ADOS-2 who is registered with PSI (Psychological Society of Ireland) or CORU in the Republic; in Northern Ireland, look for RQIA-registered providers and check the RQIA register directly if you're unsure.",
+      "Don't assume generic 'NHS ADHD/autism' content found online applies in Northern Ireland — NHS Right to Choose, commonly mentioned in that content, does not apply here.",
+      "A diagnosis report from an HSE-recognised or RQIA-registered provider is generally accepted for welfare and education supports, but confirm with the specific scheme before relying on that.",
+      "Free support doesn't require a diagnosis while you wait: ADHD Ireland's UMAAP programme and AsIAm/Autism NI/ADD-NI peer support are all open to self-identifying adults, not only those with a formal diagnosis.",
+    ],
+  },
 ];
 
 // Escalation ladder: who to contact, in the order the system expects you to try them.
@@ -5474,6 +5568,65 @@ const SCHEME_LINKS = [
       { label: "How the assessment works — nidirect", url: "https://www.nidirect.gov.uk/articles/paying-your-residential-care-or-nursing-home-fees" },
     ],
   },
+  {
+    id: "disability-allowance",
+    name: "Disability Allowance",
+    jurisdiction: "roi",
+    blurb: "A means-tested weekly payment (roughly €244/week) for people aged 16–66 with an injury, disease or disability expected to last at least a year, assessed on substantial restriction to work suitable for your age and experience — not on diagnosis alone.",
+    prep: [
+      "Ask your GP or specialist to complete the medical report section with your functional restrictions clearly described, not just your diagnosis — that's what's actually assessed.",
+    ],
+    links: [
+      { label: "Eligibility & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/social-welfare/disability-and-illness/disability-allowance/" },
+    ],
+  },
+  {
+    id: "pip-ni",
+    name: "Personal Independence Payment (PIP)",
+    jurisdiction: "ni",
+    blurb: "A non-means-tested benefit for people aged 16 to State Pension age with a long-term health condition or disability, made up of a daily living component and a mobility component. Assessed on functional impact, not diagnosis — a diagnosis strengthens a claim but isn't strictly required.",
+    links: [
+      { label: "How it works & how to apply — nidirect", url: "https://www.nidirect.gov.uk/articles/personal-independence-payment" },
+    ],
+  },
+  {
+    id: "work-and-access",
+    name: "Work and Access",
+    jurisdiction: "roi",
+    blurb: "Seven Department of Social Protection supports helping a person with a disability or long-term health condition get, or stay in, a job — workplace needs assessments, equipment, and workplace adaptation grants. Replaced the Reasonable Accommodation Fund and Disability Awareness Support Scheme in July 2024. Doesn't cover the cost of getting a diagnosis or treatment.",
+    links: [
+      { label: "What's included & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/employment/employment-and-disability/work-and-access-programme/" },
+      { label: "gov.ie service page", url: "https://www.gov.ie/en/service/47db8-work-and-access-supports/" },
+    ],
+  },
+  {
+    id: "employability-service",
+    name: "EmployAbility Service",
+    jurisdiction: "roi",
+    blurb: "A supported employment service helping people with a disability, injury or illness find and keep a job, including a job coach who works with both you and the employer. Access is via referral from your local Intreo office.",
+    links: [
+      { label: "How it works — Citizens Information", url: "https://www.citizensinformation.ie/en/employment/employment-and-disability/supported-employment-for-people-with-disabilities/" },
+      { label: "Find your local service — employabilityireland.ie", url: "https://employabilityireland.ie/" },
+    ],
+  },
+  {
+    id: "access-to-work-ni",
+    name: "Access to Work (NI)",
+    jurisdiction: "ni",
+    blurb: "Practical, tailored help for a disability or health condition that affects your work — equipment, workplace adaptations, or a support worker. For people aged 16+ in paid employment (or about to start), including self-employed.",
+    links: [
+      { label: "Employment support schemes — nidirect", url: "https://www.nidirect.gov.uk/information-and-services/employment-support-people-disabilities-or-health-conditions/work-schemes" },
+    ],
+  },
+  {
+    id: "workable-ni",
+    name: "Workable (NI)",
+    jurisdiction: "ni",
+    blurb: "Ongoing, person-centred support to secure and stay in paid work where your disability creates substantial barriers to employment — delivered by Disability Action, Supported Employment Solutions, and Ulster Supported Employment & Learning, funded by the Department for Communities.",
+    links: [
+      { label: "How it works — nidirect", url: "https://www.nidirect.gov.uk/articles/workable-ni" },
+    ],
+  },
 ];
 
 // Advocacy and condition-specific support organisations. These are searchable
@@ -5638,6 +5791,38 @@ const SUPPORT_ORGS = [
     offer: "A range of direct support services — check locally for what's actually running in your area.",
     tags: ["disability", "Northern Ireland"],
     contact: { web: "cedar-foundation.org" },
+  },
+  {
+    id: "add-ni",
+    name: "ADD-NI",
+    remit: "Northern Ireland charity supporting children, young people, adults and families affected by ADHD, based in Belfast with a satellite office in Dungannon.",
+    offer: "Adult CBT programme and adult support meetings, alongside information and support for families.",
+    tags: ["adhd", "neurodiversity", "Northern Ireland"],
+    contact: { web: "addni.org" },
+  },
+  {
+    id: "nas-northern-ireland",
+    name: "National Autistic Society Northern Ireland",
+    remit: "Part of the UK's National Autistic Society, running a dedicated NI service since 2005 with a purpose-built centre in Carryduff.",
+    offer: "Day services for autistic people with high support needs, plus branches and groups across Northern Ireland.",
+    tags: ["autism", "neurodiversity", "Northern Ireland"],
+    contact: { web: "autism.org.uk" },
+  },
+  {
+    id: "irish-society-for-autism",
+    name: "Irish Society for Autism",
+    remit: "Ireland's longest-established dedicated autism organisation, founded 1963.",
+    offer: "Residential services for adults with autism in Dublin, Galway, Kildare, Meath, Westmeath and Wexford, alongside information and awareness work.",
+    tags: ["autism", "neurodiversity", "adult services"],
+    contact: { web: "autism.ie" },
+  },
+  {
+    id: "incadds",
+    name: "INCADDS",
+    remit: "Umbrella body for ADHD support groups across Ireland (Irish National Council for ADHD Support Groups).",
+    offer: "Information on diagnosis and treatment, and links to local ADHD support groups nationwide.",
+    tags: ["adhd", "neurodiversity"],
+    contact: { web: "incadds.ie" },
   },
 ];
 
