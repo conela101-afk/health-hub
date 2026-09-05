@@ -5536,6 +5536,43 @@ const SCHEME_LINKS = [
     ],
   },
   {
+    id: "cross-border-directive",
+    name: "Cross-Border Healthcare Directive (EU)",
+    jurisdiction: "roi",
+    blurb: "Lets you get planned healthcare in another EU/EEA country and claim back what it would have cost you in the Irish public system — you pay upfront and reclaim afterwards, so check what's covered and get prior authorisation where required before you book anything.",
+    prep: [
+      "Check whether your specific treatment needs prior authorisation from the HSE before you travel — some do, some don't, and this changes the reimbursement risk if you go ahead without it.",
+      "Get a detailed quote and itemised invoice from the overseas provider — reimbursement is capped at the equivalent Irish public cost, not what you actually paid.",
+    ],
+    links: [
+      { label: "How it works & how to claim — Citizens Information", url: "https://www.citizensinformation.ie/en/health/eu-healthcare/cross-border-directive/" },
+    ],
+  },
+  {
+    id: "treatment-abroad-scheme",
+    name: "Treatment Abroad Scheme (TAS)",
+    jurisdiction: "roi",
+    blurb: "For treatment that isn't available in Ireland at all — your consultant applies to the HSE for prior approval, and if approved the HSE pays the overseas provider directly rather than you claiming money back. A narrower, slower-moving scheme than the Cross-Border Directive, for a smaller set of situations.",
+    prep: [
+      "This starts with your consultant, not you directly — ask them whether your treatment qualifies and whether they'll make the E112/S2 application on your behalf.",
+    ],
+    links: [
+      { label: "How it works & how to apply — HSE", url: "https://www2.hse.ie/services/schemes-allowances/treatment-abroad-scheme/" },
+    ],
+  },
+  {
+    id: "gms-gp-registration",
+    name: "Registering with, or changing, a GP",
+    jurisdiction: "roi",
+    blurb: "If your local GP practices are closed to new patients, the HSE's list of GPs participating in the GMS scheme is the place to start — and there's a formal process for changing GP if the one you're with isn't working out, not just walking into a new practice.",
+    prep: [
+      "If every practice near you says it's full, ask your Medical Card / GP Visit Card local health office (not the GP practice) for help placing you — this is a recognised gap, not something you have to solve alone.",
+    ],
+    links: [
+      { label: "Find a GP in Ireland — HSE", url: "https://www2.hse.ie/services/find-a-gp/" },
+    ],
+  },
+  {
     id: "ni-health-costs",
     name: "Help with health costs (dental, optical, travel)",
     jurisdiction: "ni",
