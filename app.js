@@ -304,7 +304,7 @@
       <div class="hero hero-top">
         <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
         <h1>Navigating health &amp; care, <em>wherever you are</em>.</h1>
-        ${simple ? "" : `<p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine and women's health, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>`}
+        ${simple ? "" : `<p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine, women's health, and neurodiversity/disability pathways, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>`}
       </div>
 
       ${crisisBannerHtml()}
@@ -1153,7 +1153,7 @@
   function renderAdvocacyGeneral(){
     return `
       <div class="callout">
-        Not everyone's needs are covered by the women's-health-specific orgs under the Support orgs tab. These national bodies help specific groups navigate or advocate within the health &amp; social care system — regardless of gender or age.
+        The Support orgs tab already spans women's health, neurodiversity, disability, cancer, and more — but not everyone's needs are covered there. These national bodies help specific groups navigate or advocate within the health &amp; social care system — regardless of gender or age.
       </div>
       <div class="org-grid">${GENERAL_ADVOCACY_ORGS.map(orgCardHtml).join("")}</div>
     `;
