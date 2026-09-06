@@ -3,6 +3,9 @@
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-09-06 [Claude Code]
+- User-reported gap: Dunmanway Family Resource Centre (West Cork) had no listing despite two other West Cork hub entries (Bantry, Skibbereen) explicitly naming Dunmanway/Drimoleague as part of their coverage area. Added it, verified via live web search (phone, address, email, web). `data.js`: 462 → 463 entries.
+
+## 2026-09-06 [Claude Code]
 - Phase E1 (Interactive Administrative Toolkit), implemented per the revised plan doc — adapted from its React/Tailwind reference code to this project's actual vanilla-JS + hand-rolled CSS architecture (no framework here), reusing existing components rather than adding new ones where they already covered the same need:
   - **New: interactive Subject Access Request builder** (`#/advocacy/sar-builder`, linked from Letter templates) — a guided form with a live-updating letter preview, as a form-driven alternative to the existing fill-in-the-brackets `sar-roi`/`sar-ni` templates (kept as-is; both are useful). Cites Article 15 GDPR / UK GDPR only, never DPA 2018 Section 91 (which governs law-enforcement processing, not health records access — the existing static templates already got this right, and the new builder matches). States the correct one-calendar-month-plus-two-month-extension timeframe. Zero persistence, by design: re-filling a name/DOB/address form takes moments, and there's no reason for that combination to sit in browser storage.
   - **Enhanced: appointment-prep consultation checklist** (`#/prep`) — added appointment date/doctor/clinic fields, a Print/save-PDF button, and *optional* persistence.

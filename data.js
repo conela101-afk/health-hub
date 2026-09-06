@@ -426,6 +426,17 @@ const ENTRIES = [
     checked: "4 Sep 2026"
   },
   {
+    id: "dunmanway-frc",
+    name: "Dunmanway Family Resource Centre",
+    specialty: ["hub"],
+    county: ["cork-west"],
+    blurb: "Community hub and family resource centre.",
+    details: [],
+    referral: "Drop in or contact directly.",
+    contact: { phone: "023 885 6818", email: "info@dfrc.ie", web: "dfrc.ie", address: "Kilbarry Road, Dunmanway, Co. Cork, P47 EC43" },
+    checked: "6 Sep 2026"
+  },
+  {
     id: "haven-castletownbere",
     name: "Haven Family & Community Resource Centre",
     specialty: ["hub"],
