@@ -3408,6 +3408,31 @@ const ENTRIES = [
     ],
     checked: "4 Sep 2026"
   },
+  {
+    id: "irish-fracture-liaison-service",
+    name: "About the Irish Fracture Liaison Service",
+    specialty: ["bonehealth"],
+    county: ["national"],
+    blurb: "A Fracture Liaison Service identifies people who've had a fragility fracture, assesses them for osteoporosis and falls risk, and starts treatment to prevent the next one — but coverage is patchy, not a guaranteed pathway.",
+    details: [
+      "Confirmed running at Beaumont, St James's, and St Vincent's University Hospitals — some HSE regions (Mid-West, South-West) had no FLS coverage at all as of the most recent national database report.",
+      "If you or a family member has had a fragility fracture (a break from a low-impact fall) and weren't referred, ask your GP or the orthopaedic team directly about local FLS availability.",
+    ],
+    referral: "Automatic if your treating hospital runs an FLS; otherwise ask your GP or orthopaedic team.",
+    contact: {},
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "royal-osteoporosis-society-ni",
+    name: "Royal Osteoporosis Society (for NI)",
+    specialty: ["bonehealth"],
+    county: ["antrim"],
+    blurb: "UK-wide osteoporosis charity — the practical equivalent of the Irish Osteoporosis Society for people in Northern Ireland.",
+    details: [],
+    referral: "Self-referral to the helpline; GP referral for a DEXA scan.",
+    contact: { phone: "0808 800 0035", web: "theros.org.uk" },
+    checked: "6 Sep 2026"
+  },
 
   // ---- Genetics & Hereditary Cancer Risk ----
   {
@@ -4225,6 +4250,39 @@ const ENTRIES = [
     referral: "Self-referral.",
     contact: { web: "haemophilia.ie" },
     checked: "4 Sep 2026"
+  },
+  {
+    id: "national-coagulation-centre",
+    name: "National Coagulation Centre, St James's Hospital",
+    specialty: ["haematology"],
+    county: ["dublin"],
+    blurb: "Ireland's national treatment centre for haemophilia and other inherited bleeding disorders.",
+    details: ["Referral letters are sent by post or fax; the team also takes phone queries about the referral process itself."],
+    referral: "GP or consultant referral.",
+    contact: { phone: "01 416 2141", extra: "Alt: 01 416 2142" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "cuh-haematology",
+    name: "Cork University Hospital Haematology",
+    specialty: ["haematology"],
+    county: ["cork-city"],
+    blurb: "Regional haematology service for the South, covering both blood cancers and non-malignant blood disorders.",
+    details: ["Out of hours (5pm-8am weekdays, all weekend/bank holidays), the hospital switchboard can page the on-call Haematology Registrar."],
+    referral: "GP referral.",
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Haematology." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "uhl-haematology",
+    name: "University Hospital Limerick Haematology",
+    specialty: ["haematology"],
+    county: ["limerick"],
+    blurb: "Regional haematology service for the Mid-West.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for Haematology." },
+    checked: "6 Sep 2026"
   },
   {
     id: "find-blood-disorder-support",
