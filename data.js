@@ -3737,10 +3737,10 @@ const ENTRIES = [
     specialty: ["ophthalmology", "ent"],
     county: ["dublin"],
     blurb: "Ireland's national referral centre for eye and ENT conditions, founded 1895.",
-    details: [],
+    details: ["Routine (non-urgent) referral waiting times are currently around 3 years — ask your GP about urgent-pathway criteria if your symptoms warrant it."],
     referral: "GP or consultant referral.",
-    contact: { address: "Adelaide Road, Dublin 2" },
-    checked: "4 Sep 2026"
+    contact: { phone: "01 664 4600", address: "Adelaide Road, Dublin 2", web: "rveeh.ie" },
+    checked: "6 Sep 2026"
   },
   {
     id: "retinascreen",
@@ -4226,6 +4226,32 @@ const ENTRIES = [
     referral: "GP or orthopaedic consultant referral.",
     contact: { address: "Enniskillen" },
     checked: "4 Sep 2026"
+  },
+  {
+    id: "upmc-sports-surgery-clinic",
+    name: "UPMC Sports Surgery Clinic (Santry)",
+    specialty: ["orthopaedics"],
+    county: ["dublin"],
+    sector: "private",
+    provider: "UPMC",
+    blurb: "Private orthopaedic hospital covering shoulder, hip, knee, spine, hand, foot & ankle surgery and sports medicine.",
+    details: ["Sports Medicine Department: 01 526 2040.", "Northwood Avenue, Santry, Dublin 9."],
+    referral: "Consultant/GP referral for surgical consults; no referral needed for physiotherapy. Self-pay or health-insurance-funded.",
+    contact: { phone: "01 526 2000", web: "sportssurgeryclinic.com" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "upmc-kildare-clane",
+    name: "UPMC Kildare Hospital (Clane)",
+    specialty: ["orthopaedics", "urology"],
+    county: ["kildare"],
+    sector: "private",
+    provider: "UPMC",
+    blurb: "39-bed private hospital covering orthopaedics, urology, general surgery, endoscopy and paediatric day care, with on-site physiotherapy and imaging (X-ray/CT/MRI).",
+    details: [],
+    referral: "Consultant/GP referral. Self-pay or health-insurance-funded.",
+    contact: { phone: "045 982 300", web: "upmc.ie/locations/hospitals/kildare" },
+    checked: "6 Sep 2026"
   },
   {
     id: "find-orthopaedic-waiting",
@@ -4857,6 +4883,33 @@ const ENTRIES = [
     contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for the Cancer Centre." },
   },
   {
+    id: "slron-radiation-oncology",
+    name: "St Luke's Radiation Oncology Network (SLRON)",
+    specialty: ["oncology"],
+    county: ["dublin"],
+    blurb: "Ireland's public radiation oncology network — three centres (St Luke's Hospital Rathgar, and radiation oncology centres on the St James's and Beaumont Hospital campuses) delivering the radiotherapy component of cancer treatment nationwide.",
+    details: [
+      "Works alongside, not instead of, the NCCP-designated cancer centres above — those handle diagnosis, surgery and chemotherapy; SLRON delivers radiotherapy as part of the same treatment plan.",
+      "St James's site: 01 420 6900.",
+    ],
+    referral: "Referred by your treating oncology team as part of a wider cancer-care plan — not a direct-access service.",
+    contact: { phone: "01 406 5000", web: "stlukesnetwork.ie" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "upmc-whitfield-waterford",
+    name: "UPMC Whitfield Hospital (Waterford)",
+    specialty: ["oncology"],
+    county: ["waterford"],
+    sector: "private",
+    provider: "UPMC",
+    blurb: "Private hospital hosting the UPMC Hillman Cancer Centre — the South East's only private radiotherapy service (two linear accelerators), alongside general private surgical and diagnostic care.",
+    details: ["Cork Road, Butlerstown North, Waterford."],
+    referral: "Consultant/oncologist referral (a radiotherapy referral form is required). Self-pay or health-insurance-funded.",
+    contact: { phone: "051 337 400", web: "upmc.ie/locations/hospitals/whitfield" },
+    checked: "6 Sep 2026"
+  },
+  {
     id: "irish-cancer-society-support",
     name: "Irish Cancer Society Support Line & Daffodil Centres",
     specialty: ["oncology", "cancer"],
@@ -5102,6 +5155,70 @@ const ENTRIES = [
     ],
     referral: "Self-referral via the directory, or GP/Trust referral.",
     contact: { web: "services.drugsandalcoholni.info", email: "substanceuse@hscni.net" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "coolmine-tc",
+    name: "Coolmine Therapeutic Community",
+    specialty: ["addiction"],
+    county: ["dublin"],
+    sector: "voluntary",
+    blurb: "Community-based and residential drug and alcohol treatment, running since 1973 — includes a men's residential service (The Lodge), a women's residential service (Ashleigh House), day programmes, and a community addiction team for Dublin 15.",
+    details: [
+      "PACT (community-based assessment and treatment) can be reached directly for a quicker first contact than the main office.",
+      "Programmes are free at the point of use; HSE/Drug and Alcohol Task Force funded.",
+    ],
+    referral: "Self-referral, GP, or addiction-service referral for an assessment.",
+    contact: { phone: "01 699 1587", extra: "PACT direct line: 086 415 9099", email: "info@coolminetc.ie", web: "coolmine.ie" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "merchants-quay-ireland",
+    name: "Merchants Quay Ireland",
+    specialty: ["addiction"],
+    county: ["dublin"],
+    sector: "voluntary",
+    blurb: "Drug and alcohol harm-reduction and treatment service at the Riverbank Centre, alongside homelessness support — needle exchange, drop-in health care, counselling, and drug-free programmes.",
+    details: [
+      "Open-access drop-in during service hours; you don't need an appointment for the harm-reduction side.",
+      "Riverbank Centre, 13 Merchants Quay, Dublin 8.",
+    ],
+    referral: "Self-referral (drop-in or phone for an appointment).",
+    contact: { phone: "01 524 0968", extra: "Helpline: 01 524 0927", web: "mqi.ie" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "cuan-mhuire-network",
+    name: "Cuan Mhuire (residential treatment)",
+    specialty: ["addiction"],
+    county: ["kildare", "galway", "limerick", "cork-west", "down"],
+    sector: "voluntary",
+    provider: "Cuan Mhuire",
+    blurb: "Ireland's largest voluntary residential addiction treatment provider — 12-week programmes for alcohol/gambling, 20-week for drugs, across five centres including one in Northern Ireland.",
+    details: [
+      "Athy, Co. Kildare: 059 863 1493.",
+      "Coolarne, Athenry, Co. Galway: 091 797 102.",
+      "Bruree, Co. Limerick: 063 90555.",
+      "Farnanes, Co. Cork (near Crookstown/Ovens): 021 733 5994.",
+      "Newry, Northern Ireland: 028 3084 9010.",
+    ],
+    referral: "Self, family, GP, or statutory-service referral; self-funded places also available.",
+    contact: { phone: "059 863 1493", email: "admission@cuanmhuire.ie", web: "cuanmhuire.ie" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "addiction-ni",
+    name: "Addiction NI",
+    specialty: ["addiction"],
+    county: ["antrim"],
+    sector: "voluntary",
+    blurb: "Belfast-based charity providing free counselling and family support for alcohol and drug misuse — separate adult (18-54) and older-persons (55+) services.",
+    details: [
+      "East Belfast office: 219 Albertbridge Road, 028 9073 1602.",
+      "South Belfast office: 40 Elmwood Avenue, 028 9066 4434.",
+    ],
+    referral: "Self-referral — a GP referral is not required.",
+    contact: { phone: "028 9073 1602", web: "addictionni.com" },
     checked: "6 Sep 2026"
   },
 

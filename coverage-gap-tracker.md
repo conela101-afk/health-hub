@@ -61,11 +61,11 @@ Raw counts below are a quick reference only — `GAPS.md` already ran the popula
 
 ## 3. Specialty-level density audit
 
-Counted directly from `data.js` (422 entries total, 6 Sep 2026). Specialties under 5 services:
+Counted directly from `data.js` (438 entries total, updated 6 Sep 2026 evening). Specialties under 5 services:
 
 | Specialty | Total services | Status | Notes |
 |---|---|---|---|
-| Addiction & Substance Use | 3 | 🔴 | Still thin — highest-priority specialty gap in the dataset. |
+| Addiction & Substance Use | 7 (was 3) | 🟢 Resolved | Added Coolmine TC, Merchants Quay Ireland, Cuan Mhuire network (5 sites incl. NI), Addiction NI — see `REVIEW.md` 2026-09-06. |
 | Dermatology | 2 | 🔴 | |
 | Neurology & Migraine | 2 | 🔴 | |
 | Paediatrics | 2 | 🔴 | |
