@@ -309,6 +309,7 @@
         <a class="pill" href="#/prep">Prep for an appointment</a>
         <a class="pill" href="#/passport">My Patient Passport</a>
         <a class="pill" href="#/log">My call &amp; referral log</a>
+        <a class="pill" href="#/facilities">Find a Facility (nursing homes &amp; disability centres — pilot)</a>
       `;
     app.innerHTML = `
       <div class="hero hero-top">
@@ -324,7 +325,7 @@
         <a class="index-tile tile-a" href="#/specialty">
           <span class="tile-icon">${iconSvg(GRID_ICON, 28)}</span>
           <h2>By specialty</h2>
-          <p>41 categories, from cardiology to gynaecology to chronic pain</p>
+          <p>${SPECIALTIES.length} categories, from cardiology to gynaecology to chronic pain</p>
         </a>
         <a class="index-tile tile-b" href="#/county">
           <span class="tile-icon">${iconSvg(PIN_ICON, 28)}</span>
@@ -824,6 +825,62 @@
     initOohMap();
   }
 
+  // "Find a Facility" — regulated residential centres (HIQA/RQIA), kept
+  // deliberately separate from the specialty directory in ENTRIES. Reads
+  // from the standalone FACILITIES array in data/facilities.js, not from
+  // data.js — see that file's header comment for why, and for its current
+  // seed-only status (a handful of verified examples, not the full
+  // register — the live CSV ingest is blocked by this project's network
+  // access, not skipped by choice).
+  const FACILITY_TYPE_LABELS = {
+    older_persons: "Nursing homes (older persons)",
+    disability_residential: "Disability residential centres",
+    ni_registered_service: "Northern Ireland registered services",
+  };
+
+  function facilityRowHtml(f){
+    return `
+      <div class="ooh-row">
+        <div class="ooh-main">
+          <div class="ooh-name">${f.name}</div>
+          <div class="ooh-counties">${f.county_or_trust} · ${f.sector} · ${contactLinkHtml("address", f.address)}</div>
+          <div class="ooh-counties"><a href="${f.source_url}" target="_blank" rel="noopener">Source ↗</a> · checked ${f.last_checked}</div>
+        </div>
+        <div class="ooh-phone">${contactLinkHtml("phone", f.phone)}</div>
+      </div>
+    `;
+  }
+
+  function renderFacilities(){
+    const list = typeof FACILITIES !== "undefined" ? FACILITIES : [];
+    const groups = ["older_persons", "disability_residential", "ni_registered_service"]
+      .map(type => ({ type, items: list.filter(f => f.type === type) }))
+      .filter(g => g.items.length > 0);
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Find a Facility</h1>
+        <p class="count">${list.length} regulated centre${list.length === 1 ? "" : "s"} — a pilot, not the full register</p>
+      </div>
+
+      <div class="callout">
+        <strong>This covers nursing homes and disability residential centres only</strong> — regulated centres inspected by HIQA (Republic of Ireland) and services registered with RQIA (Northern Ireland). It does not cover hospitals, private clinics, or outpatient specialists — for those, use <a href="#/specialty">Browse by specialty</a> instead.
+      </div>
+
+      <div class="callout">
+        This is a small, individually-verified pilot set, not the full HIQA/RQIA register — see the source note below each entry. A full ingest of the official CSV exports is planned; it's not done yet because this project's current environment can't reach external data sources to fetch them in bulk.
+      </div>
+
+      ${groups.map(g => `
+        <p class="section-title">${FACILITY_TYPE_LABELS[g.type] || g.type}</p>
+        <div class="ooh-list">${g.items.map(facilityRowHtml).join("")}</div>
+      `).join("")}
+
+      <p class="ooh-source">Sources: ${typeof FACILITIES_ATTRIBUTION !== "undefined" ? `${FACILITIES_ATTRIBUTION.hiqa} ${FACILITIES_ATTRIBUTION.rqia}` : "HIQA (ROI) and RQIA (NI)."} Each entry above links to its own source page — check there for the current inspection status before relying on this list.</p>
+    `;
+  }
+
   // Pre-Appointment Prep + silent waiting-room check-in. Deliberately built
   // with no persistence at all: everything typed here lives only in the DOM
   // for this page view and is gone on refresh or navigation. The generated
@@ -1229,6 +1286,7 @@
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
+    else if (parts[0] === "facilities") renderFacilities();
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();

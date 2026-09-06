@@ -72,6 +72,8 @@ The new xlsx isn't just more data — it's a different shape of data (149 rows o
 
 I'd flag this as the single highest-leverage decision left before more content gets produced, since it changes what "done" looks like for coverage. **This decision is still open** — the spreadsheet hasn't been shared into a session yet, so there's nothing to act on here until then.
 
+**Update, 6 Sept 2026 (later the same day):** decision made — a separate "Find a Facility" layer, seeded from the HIQA/RQIA CSV exports, not a `data.js` replacement. See the Phase D decision doc. Implemented in `data/facilities.js` and a new `#/facilities` page, but with one real constraint the decision doc didn't anticipate: this session's network egress is fully blocked (confirmed against multiple unrelated domains), so the live CSV exports couldn't actually be fetched. Shipped as a 4-facility verified pilot instead of the full register — see `CHANGELOG.md` for exactly what that means and what's still needed to do the full ingest (either network access, or the CSVs uploaded directly into a session).
+
 **Phase E — App Improvements PDF features (defer, sequence last)**
 This is a full second product surface (Patient Passport, incident logs, referral tracker, medication/taper tracker, complaint wizard, off-site check-in, low-load crisis UI) — genuinely good and consistent with your advocacy mission, but it's new local-storage app architecture, not content population. Recommend:
 - Don't start this until Phase A/B/C are live — it competes for the same Cowork session time and the coverage gaps are the more urgent patient-facing problem right now.

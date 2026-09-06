@@ -2,6 +2,16 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-09-06 [Claude Code]
+- Added `data/facilities.js` (Phase D — see `MASTER-BUILD-PLAN.md` §2 Phase D and the Phase D decision doc) — a standalone "Find a Facility" layer, kept separate from `data.js`, not cross-referenced or deduped against it this pass.
+- New "Find a Facility" page (`#/facilities`), reachable from a home-page quick-link pill, clearly labelled as covering only regulated residential centres (nursing homes + disability residential via HIQA, registered services via RQIA) — not hospitals or outpatient services.
+- **Scope change from the Phase D spec:** the spec called for ingesting the live HIQA/RQIA CSV exports directly. This session's network egress is fully blocked (confirmed via multiple unrelated domains, not HIQA-specific — even example.com and data.gov.ie fail the same way), so the bulk fetch isn't possible here. Seeded `data/facilities.js` instead with 4 real, individually verified facilities (3 HIQA-registered nursing homes, 1 RQIA-registered NI service) as a working pilot of the schema and UI, clearly labelled in-app as a pilot rather than the full register. No disability-residential example included — individual centre addresses for that population aren't surfaced through public search, reasonably for resident privacy, unlike nursing homes.
+- Attribution text for HIQA and RQIA/OGL included in `data/facilities.js` and shown in-app.
+- Added `data/facilities.js` to `sw.js`'s precache list, bumped cache version to v4 so existing installs pick it up.
+- Drive-by fix: the homepage's "By specialty" tile had a hardcoded "41 categories" (stale since the specialty list grew to 52) — made it read `SPECIALTIES.length` dynamically.
+- Verified in-browser via Playwright: the facilities page renders correctly (page-head, two scope-callouts, grouped sections, per-entry phone/address/source links), no app-caused console errors.
+- **Next step, when unblocked:** either fetch the real HIQA/RQIA CSVs directly (network access needed) or have the CSVs uploaded into a session for a full ingest — see `data/facilities.js`'s header comment for the exact source URLs and target schema.
+
 ## 2026-09-06 [Claude]
 - Geo push per `GAPS.md` priority order: Down (3→8), Londonderry (3→7), Meath (3→4), Armagh (3→7, as a side effect of two multi-county entries). Added Women's Aid Armagh Down, Foyle Women's Aid, Meath Women's Refuge & Support Services, Zest (Derry), and the Southern Trust Mental Health Referral and Booking Centre.
 - Tyrone is now the only untouched county from `GAPS.md`'s original top-5 priority list.
