@@ -2579,6 +2579,31 @@ const ENTRIES = [
     checked: "6 Sep 2026"
   },
   {
+    id: "hse-cardiology-referral",
+    name: "About HSE cardiology outpatient & heart failure clinic referral",
+    specialty: ["cardiology"],
+    county: ["national"],
+    blurb: "A GP or consultant referral letter is needed for a cardiology outpatient appointment or cardiac tests — heart failure clinics run at many (not all) hospitals, staffed by specialist heart failure nurses.",
+    details: [
+      "Named examples: University Hospital Limerick, Ennis Hospital, and Nenagh Hospital all run heart failure clinics.",
+      "A chronic disease management programme in general practice now provides structured heart failure care through your GP, and some areas use virtual/phone consultation between a GP and a cardiologist to avoid an outpatient referral altogether — ask your GP if this is available locally.",
+    ],
+    referral: "GP or consultant referral letter.",
+    contact: {},
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "ni-cardiology-hub",
+    name: "Royal Victoria Hospital Belfast — Regional Cardiology & Cardiac Surgery",
+    specialty: ["cardiology"],
+    county: ["antrim"],
+    blurb: "NI's sole cardiac surgery provider (around 1,000 operations a year) and Regional Medical Cardiology Centre, also running the region's congenital heart disease service (antenatal, paediatric, and adult).",
+    details: [],
+    referral: "GP or consultant referral.",
+    contact: { extra: "Belfast Trust switchboard — ask for Cardiology or Cardiac Surgery." },
+    checked: "6 Sep 2026"
+  },
+  {
     id: "find-chest-pain-clinic",
     name: "Find your nearest Rapid Access Chest Pain Clinic",
     specialty: ["cardiology"],
@@ -5156,9 +5181,55 @@ const ENTRIES = [
     specialty: ["paediatrics"],
     county: ["dublin"],
     blurb: "The tertiary hub for paediatric care: CHI at Crumlin, Temple Street, Tallaght, and Connolly, with the new National Children's Hospital in development.",
-    details: ["Community/developmental paediatrics links to Public Health Nurse developmental checks.", "Paediatric outpatient and assessment/A&E units also run at general hospitals nationwide — individual hospital paediatric-unit listings need further verification before publishing as firm entries."],
+    details: [
+      "Community/developmental paediatrics links to Public Health Nurse developmental checks.",
+      "Regional (\"model 4R\"), major (\"model 3\"), and local (\"model 2\") hospitals nationwide also run paediatric assessment units and outpatient departments as part of the HSE's National Model of Care for Paediatric Healthcare — see named regional examples below.",
+    ],
     referral: "GP or ED referral.",
     contact: { web: "www.chi.ie" },
+  },
+  {
+    id: "cuh-paediatrics",
+    name: "Cork University Hospital Paediatric Assessment Unit",
+    specialty: ["paediatrics"],
+    county: ["cork-city"],
+    blurb: "Rapid-access assessment for children under 16, based in the Seahorse Day Ward — strictly by GP referral.",
+    details: ["GP referral line (for GPs only): 087 410 8074."],
+    referral: "GP referral only.",
+    contact: { phone: "021 492 2449" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "uhg-paediatrics",
+    name: "University Hospital Galway — St Bernadette's Children's Unit",
+    specialty: ["paediatrics"],
+    county: ["galway"],
+    blurb: "A 32-bed paediatric unit (11 infant cots, 21 beds) with its own paediatric emergency department for newborns to age 16.",
+    details: [],
+    referral: "GP or ED referral.",
+    contact: { phone: "091 524 222", extra: "Main hospital switchboard — ask for St Bernadette's / Paediatrics." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "uhl-paediatrics",
+    name: "University Hospital Limerick — The Children's Ark",
+    specialty: ["paediatrics"],
+    county: ["limerick"],
+    blurb: "UHL's paediatric unit — Rainbow Ward for babies and children up to 3, Sunshine Ward for ages 3 to 16.",
+    details: [],
+    referral: "GP or ED referral.",
+    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for The Children's Ark." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "uhw-paediatrics",
+    name: "University Hospital Waterford Paediatrics",
+    specialty: ["paediatrics"],
+    county: ["waterford"],
+    blurb: "General paediatric ward and outpatient department.",
+    details: [],
+    referral: "GP or ED referral.",
+    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for Paediatrics." },
   },
   {
     id: "ni-paediatrics",
@@ -5177,10 +5248,32 @@ const ENTRIES = [
     name: "HSE Adult Weight Management Services",
     specialty: ["weightmanagement"],
     county: ["national"],
-    blurb: "A tiered model (Tier 1 health promotion, Tier 2 community lifestyle, Tier 3 specialist multidisciplinary weight management, Tier 4 bariatric surgery) — bariatric surgery centres are limited, and referral is through specialist services after Tier 3.",
-    details: ["Dietetics referral is via GP or primary care.", "Specific ROI service names and locations for Tiers 3-4 are thinly documented publicly — check with your GP for what's currently available in your area."],
+    blurb: "A tiered model (Tier 1 health promotion, Tier 2 community lifestyle, Tier 3 specialist multidisciplinary weight management, Tier 4 bariatric surgery) — there are only two public Tier 3/4 specialist services nationally, so capacity is limited and geographically concentrated.",
+    details: ["Dietetics referral for Tier 1/2 support is via GP or primary care.", "For Tier 3/4 (specialist multidisciplinary care and bariatric surgery), see the two named public services below — St Columcille's Hospital (Dublin) and University Hospital Galway."],
     referral: "GP/primary-care referral.",
     contact: {},
+  },
+  {
+    id: "st-columcilles-obesity-centre",
+    name: "St Columcille's Hospital Centre for Obesity Management",
+    specialty: ["weightmanagement"],
+    county: ["dublin"],
+    blurb: "A public Tier 3 specialist multidisciplinary weight management service, working with St Vincent's University Hospital for bariatric surgery referral.",
+    details: ["Email is the most reliable way to contact them — phone queries may go to an answering machine.", "Referral forms go to Central Referrals: centralreferral.office@hse.ie, or by post to Central Referrals, St Columcille's Hospital, Loughlinstown, Dublin 18, D18 V9K1."],
+    referral: "GP, consultant, or other health professional referral.",
+    contact: { phone: "01 211 5243", email: "schcom@hse.ie", address: "St Columcille's Hospital, Bray Road, Shanganagh, Loughlinstown, Co. Dublin D18 V9K1" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "uhg-bariatric-service",
+    name: "University Hospital Galway Bariatric/Obesity Service",
+    specialty: ["weightmanagement"],
+    county: ["galway"],
+    blurb: "One of only two public specialist multidisciplinary services for obesity and bariatric surgery in Ireland, serving GP referrals from across the western seaboard.",
+    details: ["Multidisciplinary team covers dietetics, physiotherapy, occupational therapy, social work, medicine, nursing, surgery, and psychology."],
+    referral: "GP referral.",
+    contact: { phone: "091 524 222", extra: "Main hospital switchboard — ask for the Bariatric/Obesity Service." },
+    checked: "6 Sep 2026"
   },
   {
     id: "ni-weight-management",
