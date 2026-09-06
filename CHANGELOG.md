@@ -3,6 +3,9 @@
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-09-06 [Claude Code]
+- User feedback: the SAR builder (`#/advocacy/sar-builder`, added in Phase E1) was only discoverable by first opening the "Letter templates" sub-tab of Advocacy — not visible from the default landing tab or the home page. Added a `.pill`-styled link both in the home page's "Often searched" quick links and as an actual pill (not just inline text) in the Letter templates callout, so it's reachable in two more places without needing to already know it's buried under a sub-tab.
+
+## 2026-09-06 [Claude Code]
 - User-reported gap: Dunmanway Family Resource Centre (West Cork) had no listing despite two other West Cork hub entries (Bantry, Skibbereen) explicitly naming Dunmanway/Drimoleague as part of their coverage area. Added it, verified via live web search (phone, address, email, web). `data.js`: 462 → 463 entries.
 
 ## 2026-09-06 [Claude Code]

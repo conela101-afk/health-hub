@@ -310,6 +310,7 @@
         <a class="pill" href="#/passport">My Patient Passport</a>
         <a class="pill" href="#/log">My call &amp; referral log</a>
         <a class="pill" href="#/facilities">Find a Facility (regulated centres, HIQA &amp; RQIA)</a>
+        <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
       `;
     app.innerHTML = `
       <div class="hero hero-top">
@@ -685,7 +686,10 @@
         These are our own plain-language templates, not official forms — fill in the brackets, then copy, paste and send by email or post. We link to the official form instead where one exists (see "Send to").
       </div>
       <div class="callout">
-        <strong>Prefer a guided form?</strong> <a href="#/advocacy/sar-builder">Build your Subject Access Request step by step</a> — fill in your details once and get a ready-to-send letter, rather than editing the brackets below by hand.
+        <strong>Prefer a guided form?</strong> Fill in your details once and get a ready-to-send letter, rather than editing the brackets below by hand.
+        <div class="quick-link-row callout-pill-row">
+          <a class="pill" href="#/advocacy/sar-builder">Build my SAR letter</a>
+        </div>
       </div>
       <p class="detail-section-title">Republic of Ireland</p>
       ${roi.map(cardHtml).join("")}
