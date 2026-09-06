@@ -309,7 +309,7 @@
         <a class="pill" href="#/prep">Prep for an appointment</a>
         <a class="pill" href="#/passport">My Patient Passport</a>
         <a class="pill" href="#/log">My call &amp; referral log</a>
-        <a class="pill" href="#/facilities">Find a Facility (nursing homes &amp; disability centres — pilot)</a>
+        <a class="pill" href="#/facilities">Find a Facility (regulated centres, HIQA &amp; RQIA)</a>
       `;
     app.innerHTML = `
       <div class="hero hero-top">
@@ -825,60 +825,114 @@
     initOohMap();
   }
 
-  // "Find a Facility" — regulated residential centres (HIQA/RQIA), kept
-  // deliberately separate from the specialty directory in ENTRIES. Reads
-  // from the standalone FACILITIES array in data/facilities.js, not from
-  // data.js — see that file's header comment for why, and for its current
-  // seed-only status (a handful of verified examples, not the full
-  // register — the live CSV ingest is blocked by this project's network
-  // access, not skipped by choice).
-  const FACILITY_TYPE_LABELS = {
-    older_persons: "Nursing homes (older persons)",
-    disability_residential: "Disability residential centres",
-    ni_registered_service: "Northern Ireland registered services",
-  };
+  // "Find a Facility" — regulated centres from HIQA (ROI) and RQIA (NI),
+  // kept deliberately separate from the specialty directory in ENTRIES.
+  // Reads from the standalone FACILITIES array in data/facilities.js, not
+  // from data.js — see that file's header comment for the full source
+  // breakdown, known gaps, and attribution. 4,111 rows across 15 regulated
+  // service types (nursing homes, disability residential, dental
+  // practices, domiciliary care, hospitals, and more) — too many to list
+  // flat on one page, so this is an index-by-type -> filtered-list flow,
+  // the same shape as the specialty browse pages.
+  const FACILITY_LIST_CAP = 150;
+
+  function facilityTypeSlug(type){
+    return type.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  }
 
   function facilityRowHtml(f){
+    const addressLine = f.address
+      ? contactLinkHtml("address", f.postcode ? `${f.address}, ${f.postcode}` : f.address)
+      : (f.county_or_trust || "Address not published in the source register");
     return `
       <div class="ooh-row">
         <div class="ooh-main">
           <div class="ooh-name">${f.name}</div>
-          <div class="ooh-counties">${f.county_or_trust} · ${f.sector} · ${contactLinkHtml("address", f.address)}</div>
-          <div class="ooh-counties"><a href="${f.source_url}" target="_blank" rel="noopener">Source ↗</a> · checked ${f.last_checked}</div>
+          <div class="ooh-counties">${f.county_or_trust} · ${f.sector}${f.jurisdiction ? ` · ${f.jurisdiction}` : ""} · ${addressLine}</div>
+          <div class="ooh-counties">
+            ${f.provider && f.provider !== f.name ? `${f.provider} · ` : ""}${f.max_occupancy != null ? `Max ${f.max_occupancy} · ` : ""}${f.url ? `<a href="${f.url}" target="_blank" rel="noopener">Source ↗</a> · ` : ""}${f.last_checked ? `registered/checked ${f.last_checked}` : ""}
+          </div>
         </div>
-        <div class="ooh-phone">${contactLinkHtml("phone", f.phone)}</div>
+        <div class="ooh-phone">${f.phone ? contactLinkHtml("phone", f.phone) : ""}</div>
       </div>
     `;
   }
 
   function renderFacilities(){
     const list = typeof FACILITIES !== "undefined" ? FACILITIES : [];
-    const groups = ["older_persons", "disability_residential", "ni_registered_service"]
-      .map(type => ({ type, items: list.filter(f => f.type === type) }))
-      .filter(g => g.items.length > 0);
+    const counts = {};
+    list.forEach(f => { counts[f.type] = (counts[f.type] || 0) + 1; });
+    const types = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
 
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
         <h1>Find a Facility</h1>
-        <p class="count">${list.length} regulated centre${list.length === 1 ? "" : "s"} — a pilot, not the full register</p>
+        <p class="count">${list.length} regulated centres/services, from HIQA (ROI) and RQIA (NI) registers</p>
       </div>
 
       <div class="callout">
-        <strong>This covers nursing homes and disability residential centres only</strong> — regulated centres inspected by HIQA (Republic of Ireland) and services registered with RQIA (Northern Ireland). It does not cover hospitals, private clinics, or outpatient specialists — for those, use <a href="#/specialty">Browse by specialty</a> instead.
+        <strong>This is regulator/registry data, not a curated directory</strong> — it lists what's registered, not what's recommended, and doesn't include GP practices, pharmacies, or outpatient clinics. For condition-specific services with referral guidance, use <a href="#/specialty">Browse by specialty</a> instead.
       </div>
 
-      <div class="callout">
-        This is a small, individually-verified pilot set, not the full HIQA/RQIA register — see the source note below each entry. A full ingest of the official CSV exports is planned; it's not done yet because this project's current environment can't reach external data sources to fetch them in bulk.
+      <div class="simple-list">
+        ${types.map(type => {
+          const accent = accentForId(type);
+          return `<a class="row" href="#/facilities/${facilityTypeSlug(type)}">
+            <span class="cat-icon tag-${accent}">${iconSvg(PIN_ICON, 18)}</span>
+            <span class="row-body">
+              <h2>${type}</h2>
+              <span class="n">${counts[type]} record${counts[type] === 1 ? "" : "s"}</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>`;
+        }).join("")}
       </div>
 
-      ${groups.map(g => `
-        <p class="section-title">${FACILITY_TYPE_LABELS[g.type] || g.type}</p>
-        <div class="ooh-list">${g.items.map(facilityRowHtml).join("")}</div>
-      `).join("")}
-
-      <p class="ooh-source">Sources: ${typeof FACILITIES_ATTRIBUTION !== "undefined" ? `${FACILITIES_ATTRIBUTION.hiqa} ${FACILITIES_ATTRIBUTION.rqia}` : "HIQA (ROI) and RQIA (NI)."} Each entry above links to its own source page — check there for the current inspection status before relying on this list.</p>
+      <p class="ooh-source">${typeof FACILITIES_ATTRIBUTION !== "undefined" ? `${FACILITIES_ATTRIBUTION.hiqa} ${FACILITIES_ATTRIBUTION.rqia} ${FACILITIES_ATTRIBUTION.hospitals}` : "Sources: HIQA (ROI) and RQIA (NI)."} Each entry links to its own source page — check there for current inspection status before relying on this list.</p>
     `;
+  }
+
+  function renderFacilityList(slug){
+    const list = typeof FACILITIES !== "undefined" ? FACILITIES : [];
+    const items = list.filter(f => facilityTypeSlug(f.type) === slug);
+    const type = items[0] ? items[0].type : slug;
+
+    function draw(query){
+      const q = (query || "").trim().toLowerCase();
+      const filtered = q
+        ? items.filter(f => `${f.name} ${f.county_or_trust} ${f.address} ${f.provider}`.toLowerCase().includes(q))
+        : items;
+      const shown = filtered.slice(0, FACILITY_LIST_CAP);
+      const listEl = document.getElementById("facility-results");
+      const countEl = document.getElementById("facility-result-count");
+      if (countEl){
+        countEl.textContent = filtered.length > shown.length
+          ? `Showing ${shown.length} of ${filtered.length} — refine your search to narrow further`
+          : `${filtered.length} record${filtered.length === 1 ? "" : "s"}`;
+      }
+      if (listEl) listEl.innerHTML = shown.map(facilityRowHtml).join("") || `<p class="callout">No matches. Try a different name, county, or provider.</p>`;
+    }
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/facilities">‹ Find a Facility</a>
+        <h1>${type}</h1>
+        <p class="count" id="facility-result-count">${items.length} record${items.length === 1 ? "" : "s"}</p>
+      </div>
+      <div class="search-field search-field-inline">
+        <input type="search" id="facility-filter" placeholder="Search by name, county, or provider…" autocomplete="off">
+      </div>
+      <div class="ooh-list" id="facility-results"></div>
+    `;
+
+    draw("");
+    const filterInput = document.getElementById("facility-filter");
+    let debounce;
+    filterInput.addEventListener("input", () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => draw(filterInput.value), 150);
+    });
   }
 
   // Pre-Appointment Prep + silent waiting-room check-in. Deliberately built
@@ -1286,7 +1340,8 @@
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
-    else if (parts[0] === "facilities") renderFacilities();
+    else if (parts[0] === "facilities" && !parts[1]) renderFacilities();
+    else if (parts[0] === "facilities" && parts[1]) renderFacilityList(parts[1]);
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
