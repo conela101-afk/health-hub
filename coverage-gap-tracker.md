@@ -81,7 +81,9 @@ Resolved since the last pass (6 Sep 2026, this session):
 
 All of the build plan's Tier 3 thin-category list (`MASTER-BUILD-PLAN.md` §2 Phase A item 7) is now resolved: Eating Disorders, Dermatology, Cardiology, Bone Health, Breastfeeding, Dental, Haematology.
 
-Still at exactly 5 (🟡/🟢 borderline, not re-verified this pass): Genetics, Eating Disorders, Crisis, Nephrology, Allergy & Immunology, Older Persons.
+**Correction, 6 Sep 2026 (later):** the raw-count "🟢 at 5+" call on Cardiology above was wrong in substance, even though the number was accurate. User feedback (having actually used the site) found the specialty had zero named PCI centres, cardiothoracic surgery, electrophysiology/ablation, TAVI, or tilt-table/POTS services — the 5-7 entries were charities and locator-style notes, not clinical infrastructure. Enriched to 16 real entries (see `CHANGELOG.md`). **Lesson for future passes:** raw entry count is a weak signal for specialties with many distinct sub-procedures/infrastructure types (surgery vs. intervention vs. diagnostics vs. charity/support) — a count above the 🟢 threshold doesn't mean the specialty actually covers what people search for. Worth spot-checking depth, not just count, on the specialties still marked adequate below.
+
+Still at exactly 5 (🟡/🟢 borderline, not re-verified this pass, and per the correction above, "5" alone shouldn't be trusted without checking what's actually in those 5): Genetics, Eating Disorders, Crisis, Nephrology, Allergy & Immunology, Older Persons.
 
 Specialties flagged by the review as high-traffic even though not thinnest:
 

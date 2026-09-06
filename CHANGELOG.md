@@ -3,6 +3,17 @@
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-09-06 [Claude Code]
+- User feedback: Cardiology was thin on real clinical infrastructure (7 entries — mostly charities and locator-style "about" notes) despite being a specialty with well-documented national structure. Enriched to 16 entries:
+  - Added all 4 of Ireland's national comprehensive cardiac centres (24/7 primary PCI + electrophysiology + TAVI/structural + cardiac surgery): Mater Misericordiae (also the national heart/lung transplant + VAD centre), St James's (Keith Shaw Unit), Cork University Hospital, University Hospital Galway (cardiac surgery status flagged as unconfirmed there, unlike the other 3).
+  - Added the next tier of public PCI centres: University Hospital Limerick (24/7) and University Hospital Waterford (Mon–Fri 9-5, smaller hours flagged), plus Tallaght University Hospital's named Chest Pain Service.
+  - Added named private electrophysiology/ablation/TAVI/tilt-table services: Bon Secours Cork Cardiology (Urgent & Express Cardiac Care Clinic) and Mater Private Network Heart & Vascular (Dublin + Cork) — both explicitly mention tilt table testing and POTS (postural orthostatic tachycardia syndrome) so that search term actually surfaces something, per direct user request.
+  - Enriched the existing Beacon Hospital and Blackrock Clinic entries with their specific cardiology services (RACC, Rapid Cardiac Care, electrophysiology/ablation) rather than leaving them as generic hospital listings.
+  - Rewrote the "find your nearest Rapid Access Chest Pain Clinic" note to point at the now-named public and private examples instead of just saying "no compact list found."
+  - Verified in-browser: searches for "pots", "tavi", "ablation", "electrophysiology", "PCI", and "tilt table" all now return real results (2-6 each), zero console errors.
+  - Sourced via live web search from HSE/National Heart Programme documentation, hospital sites, and cross-checked switchboard numbers already verified elsewhere in `data.js`. `data.js`: 463 → 472 entries.
+  - **Not done, flagged as still thin:** this covers the major named centres, not a fully exhaustive map of every RACPC/RACC nationally (the site is honest about this in the locator note) — a genuine future pass could try to fill in the remaining public hospitals' rapid-access chest pain services one by one.
+
+## 2026-09-06 [Claude Code]
 - User feedback: the SAR builder (`#/advocacy/sar-builder`, added in Phase E1) was only discoverable by first opening the "Letter templates" sub-tab of Advocacy — not visible from the default landing tab or the home page. Added a `.pill`-styled link both in the home page's "Often searched" quick links and as an actual pill (not just inline text) in the Letter templates callout, so it's reachable in two more places without needing to already know it's buried under a sub-tab.
 
 ## 2026-09-06 [Claude Code]

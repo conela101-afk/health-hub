@@ -908,7 +908,11 @@ const ENTRIES = [
     sector: "private",
     provider: "Beacon Hospital",
     blurb: "Large private acute hospital in Sandyford — particularly strong orthopaedics, cardiology, oncology and emergency care, alongside its women's health and breast centres listed separately above.",
-    details: ["Holds its 7th consecutive JCI accreditation (2025).", "Contact your chosen consultant's secretary for a specific referral, or the main switchboard if you don't have one."],
+    details: [
+      "Holds its 7th consecutive JCI accreditation (2025).",
+      "Runs a Rapid Access Cardiology Clinic (RACC) for urgent GP-referred chest pain/cardiac assessment.",
+      "Contact your chosen consultant's secretary for a specific referral, or the main switchboard if you don't have one.",
+    ],
     referral: "GP or consultant referral; self-pay or health-insurance-funded.",
     contact: { phone: "01 293 6600", web: "beaconhospital.ie", address: "Beacon Court, Sandyford, Dublin 18, D18 AK68" },
     checked: "6 Sep 2026"
@@ -927,7 +931,11 @@ const ENTRIES = [
     sector: "private",
     provider: "Blackrock Health",
     blurb: "Long-established private hospital in Blackrock — particularly known for cardiac and orthopaedic care, with over 300 consultants across 40+ specialties. Flagship site of the Blackrock Health group.",
-    details: ["Holds long-standing JCI accreditation.", "GP referral needed for most diagnostics, treatments and procedures; a GP Liaison line is available (01 206 4304)."],
+    details: [
+      "Holds long-standing JCI accreditation.",
+      "Runs a private Rapid Cardiac Care service (also at the Galway Clinic) plus electrophysiology/ablation for arrhythmias including atrial fibrillation.",
+      "GP referral needed for most diagnostics, treatments and procedures; a GP Liaison line is available (01 206 4304).",
+    ],
     referral: "GP referral required for most services; self-pay or health-insurance-funded.",
     contact: { phone: "01 283 2222", web: "blackrockhealth.com", address: "Rock Road, Blackrock, Co. Dublin, A94 E4X7" },
     checked: "6 Sep 2026"
@@ -2710,15 +2718,124 @@ const ENTRIES = [
     checked: "6 Sep 2026"
   },
   {
+    id: "mater-cardiology-comprehensive",
+    name: "Mater Misericordiae University Hospital — Cardiology & Cardiothoracic Surgery",
+    specialty: ["cardiology"],
+    county: ["dublin"],
+    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI for heart attacks, electrophysiology/ablation, TAVI and other structural heart procedures, and cardiac surgery. Also the national centre for heart & lung transplantation and ventricular assist devices (VAD).",
+    details: [
+      "The 4 comprehensive cardiac centres nationally are Mater, St James's, Cork University Hospital, and University Hospital Galway — between them they carry out about 75% of Ireland's primary PCI for heart attacks.",
+      "TAVI has been running here since 2008, in partnership with Mater Private next door.",
+    ],
+    referral: "GP or consultant referral; emergency STEMI (heart attack) cases go directly via ambulance/cath lab activation, not routine referral.",
+    contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Cardiology or Cardiothoracic Surgery." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "stjames-cardiothoracic",
+    name: "St James's Hospital — Cardiology & Cardiothoracic Surgery (Keith Shaw Unit)",
+    specialty: ["cardiology"],
+    county: ["dublin"],
+    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI, TAVI, and adult cardiac surgery (coronary artery bypass and valve surgery) at the Keith Shaw Unit, a national referral centre for acquired adult heart disease.",
+    details: [],
+    referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Cardiology or the Keith Shaw Unit." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "cuh-cardiology-comprehensive",
+    name: "Cork University Hospital — Cardiology & Cardiothoracic Surgery",
+    specialty: ["cardiology"],
+    county: ["cork-city"],
+    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI and cardiothoracic surgery, providing a regional acute service to Cork/Kerry and a tertiary referral service across the southern region (population 1m+).",
+    details: [],
+    referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Cardiology." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "uhg-cardiology-comprehensive",
+    name: "University Hospital Galway — Cardiology",
+    specialty: ["cardiology"],
+    county: ["galway"],
+    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI for the West/Saolta region.",
+    details: ["Cardiac surgery availability here isn't independently confirmed — the other 3 comprehensive centres (Mater, St James's, CUH) explicitly run cardiac surgery programmes; ask directly if this is what you need."],
+    referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
+    contact: { phone: "091 524 222", extra: "Main hospital switchboard — ask for Cardiology." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "uhl-cardiology-pci",
+    name: "University Hospital Limerick — Cardiology & Primary PCI",
+    specialty: ["cardiology"],
+    county: ["limerick"],
+    blurb: "24/7 primary PCI centre for the Mid-West, alongside a nurse-led Rapid Access Chest Pain service offering same-week GP-referral assessment.",
+    details: [],
+    referral: "GP referral for the chest pain clinic; emergency STEMI cases go directly via ambulance/cath lab activation.",
+    contact: { phone: "061 301 111", extra: "Main hospital switchboard — ask for Cardiology or Rapid Access Chest Pain." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "uhw-cardiology-pci",
+    name: "University Hospital Waterford — Cardiology & PCI",
+    specialty: ["cardiology"],
+    county: ["waterford"],
+    blurb: "PCI centre for the South-East, with more limited hours (Mon–Fri, 9am–5pm) than the 24/7 comprehensive centres — outside those hours, patients are transferred to a 24/7 centre.",
+    details: [],
+    referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
+    contact: { phone: "051 848 000", extra: "Main hospital switchboard — ask for Cardiology." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "tallaght-chest-pain",
+    name: "Tallaght University Hospital Chest Pain Service",
+    specialty: ["cardiology"],
+    county: ["dublin"],
+    blurb: "Rapid access chest pain assessment service.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "01 414 2749", extra: "Main hospital switchboard: 01 414 2000." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "bons-cork-cardiology",
+    name: "Bon Secours Hospital Cork — Cardiology",
+    specialty: ["cardiology"],
+    county: ["cork-city"],
+    sector: "private",
+    provider: "Bon Secours Health System",
+    blurb: "Private cardiology service including an Urgent & Express Cardiac Care Clinic (a GP fast-track for urgent heart/vascular assessment), electrophysiology for heart rhythm disorders, and tilt table testing for unexplained fainting/dizziness and suspected POTS (postural orthostatic tachycardia syndrome).",
+    details: ["The Urgent & Express Cardiac Care Clinic is specifically a fast-track route for GPs, not a walk-in service — ask your GP to refer you directly if urgent."],
+    referral: "GP or consultant referral; self-pay or health-insurance-funded.",
+    contact: { phone: "1800 203 444", web: "bonsecours.ie/services/urgent-express-cardiac-care-clinic-cork" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "materprivate-heart-vascular",
+    name: "Mater Private Network Heart & Vascular",
+    specialty: ["cardiology"],
+    county: ["dublin", "cork-city"],
+    sector: "private",
+    provider: "Mater Private Network",
+    blurb: "Private cardiology across Dublin and Cork campuses — TAVI (run jointly with the adjacent public Mater hospital since 2008), electrophysiology/ablation for arrhythmias, and tilt table testing for unexplained fainting/dizziness and suspected POTS (postural orthostatic tachycardia syndrome).",
+    details: ["Also home to the Cardiovascular Research Institute (CVRI Dublin), a research collaboration with RCSI."],
+    referral: "GP or consultant referral; self-pay or health-insurance-funded.",
+    contact: { web: "materprivate.ie/our-services/heart-vascular" },
+    checked: "6 Sep 2026"
+  },
+  {
     id: "find-chest-pain-clinic",
     name: "Find your nearest Rapid Access Chest Pain Clinic",
     specialty: ["cardiology"],
     county: ["national"],
-    blurb: "Nurse-led rapid-access clinics run out of most public hospitals with a cardiology department — no single compact national list found yet.",
-    details: ["Confirmed example: University Hospital Limerick offers same-week GP-referral assessment. Ask your GP whether your nearest hospital runs one."],
+    blurb: "Nurse-led rapid-access clinics run out of most public hospitals with a cardiology department, plus fast-track private equivalents at Beacon, Blackrock, Bon Secours, and other private hospitals — no single compact national list of every public site found yet.",
+    details: [
+      "Confirmed public examples: University Hospital Limerick and Tallaght University Hospital both offer named rapid access chest pain services — see their own entries above. Ask your GP whether your nearest hospital runs one if it isn't listed here.",
+      "Confirmed private examples: Beacon Hospital's Rapid Access Cardiology Clinic (RACC), Blackrock Health's Rapid Cardiac Care (Dublin & Galway Clinics), and Bon Secours Cork's Urgent & Express Cardiac Care Clinic — see their own entries.",
+    ],
     referral: "GP referral.",
     contact: {},
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
 
   // ---- Rheumatology & Autoimmune ----
