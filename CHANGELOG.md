@@ -3,6 +3,11 @@
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-09-06 [Claude Code]
+- JCI accreditation enrichment from a user-supplied `private_jci_enrichment.csv`: added a JCI-accreditation fact to 15 existing `data.js` entries (RVEEH, the Bon Secours network, all 3 Mater Private entries, both Beacon entries, Galway/Hermitage Clinic gynae, Blackrock Health Women's Health Centre, UPMC Aut Even, UPMC Whitfield, and all 6 St Vincent's University Hospital entries), and added 6 new entries for hospitals previously missing entirely (Beacon Hospital, Blackrock Clinic, Kingsbridge Sligo, St Vincent's Private Hospital, St Patrick's Mental Health Services, St John of God Hospital).
+- Flagged two discrepancies in the source data rather than silently resolving them: a Galway Clinic phone-number mismatch between `data.js` and the enrichment CSV, and Kingsbridge Sligo's JCI status ("unknown" per the CSV vs. "accredited" per the hospital's own site).
+- `data.js`: 456 → 462 entries. See `REVIEW.md` for the full breakdown.
+
+## 2026-09-06 [Claude Code]
 - **Full Phase D ingest, superseding the earlier 4-facility pilot.** The user supplied the original HIQA/RQIA/HIA/HSE source files directly, plus a pre-merged "master scaffold" CSV (4,111 rows across 5 sources — see `data/sources/README.md` for the full breakdown, verification done, and known gaps). Regenerated `data/facilities.js` from that scaffold via a new, reproducible `data/sources/build-facilities.py` script rather than hand-writing entries.
 - Reworked the `#/facilities` page: was a flat list of 4 items, now an index-by-type page (15 regulated service types, from Disability Residential Centre at 1,805 records down to Adoption Agency at 3) linking to `#/facilities/<type>` list pages, each with a live client-side name/county/provider filter capped at 150 rendered rows at a time (4,111 rows is too many to render flat).
 - Bumped `sw.js` cache v4 → v5 — `facilities.js` grew from a few KB to ~1.9MB.
