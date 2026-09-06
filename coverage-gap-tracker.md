@@ -66,18 +66,20 @@ Counted directly from `data.js` (446 entries total, updated 6 Sep 2026 evening).
 | Specialty | Total services | Status | Notes |
 |---|---|---|---|
 | PHN | 2 | 🟢 (by design) | Locator-pattern entries, not a raw-count gap — see §1. |
-| Bone Health & Osteoporosis | 4 | 🟡 | Still open — Tier 3 item, not yet touched. |
-| Children's Disability | 4 | 🟡 | Still open. |
-| Haematology | 4 | 🟡 | Still open — Tier 3 item, not yet touched. |
+| Dental & Oral Health | 4 | 🟢 (by design) | Two entitlement schemes (DTSS, Treatment Benefit) + a public-clinic locator + an NI-crisis explainer already answer "how do I actually get dental care" — same locator-pattern logic as PHN. Raw count isn't the right measure here; not adding more entries just to hit a number. |
+| Children's Disability | 4 | 🟡 | Still open — not a Tier 2/3 build-plan item, lower priority. |
 | Adult Mental Health | 4 | 🟡 | Worth checking against `mh` (20) and `crisis` (5) for overlap before treating as a true gap. |
-| Dental & Oral Health | 4 | 🟡 | Still open — Tier 3 item, not yet touched. |
 | Weight Management | 4 | 🟡 | Grew from 2 via the earlier Tier 2 specialty build-out; still borderline. |
 
 Resolved since the last pass (6 Sep 2026, this session):
 - **Addiction & Substance Use**: 3 → 7 🟢 — added Coolmine TC, Merchants Quay Ireland, Cuan Mhuire network (5 sites incl. NI), Addiction NI. See `REVIEW.md`.
 - **Neurology & Migraine**: 2 → 7 🟢 — added Beaumont National Neuroscience Centre, MS Ireland, Epilepsy Ireland, MS Society NI, Epilepsy Action NI.
 - **Dermatology**: 2 → 5 🟢 — added St James's, Cork University Hospital, and Royal Victoria Hospital Belfast dermatology departments.
+- **Bone Health & Osteoporosis**: 4 → 6 🟢 — added an "About the Irish Fracture Liaison Service" explainer (coverage is genuinely patchy — Beaumont/St James's/St Vincent's confirmed, Mid-West/South-West had none per the national database report) and the Royal Osteoporosis Society for NI users.
+- **Haematology**: 4 → 7 🟢 — added the National Coagulation Centre (St James's — the actual clinical service behind the Irish Haemophilia Society charity entry), plus Cork University Hospital and University Hospital Limerick regional haematology.
 - **Cardiology**, **General Paediatrics**: already at 5 and 6 respectively from the earlier Tier 1/2 specialty build-out (PR #9) — tracker previously understated these.
+
+All of the build plan's Tier 3 thin-category list (`MASTER-BUILD-PLAN.md` §2 Phase A item 7) is now resolved: Eating Disorders, Dermatology, Cardiology, Bone Health, Breastfeeding, Dental, Haematology.
 
 Still at exactly 5 (🟡/🟢 borderline, not re-verified this pass): Genetics, Eating Disorders, Crisis, Nephrology, Allergy & Immunology, Older Persons.
 
