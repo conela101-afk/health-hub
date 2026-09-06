@@ -5010,7 +5010,7 @@ const ENTRIES = [
     blurb: "HSE-funded respite services — an HSE referral is required.",
     details: [],
     referral: "HSE referral required.",
-    contact: { web: "rehab.ie" },
+    contact: { web: "rehab.ie/rehabcare/" },
   },
   {
     id: "sjog-brothers-charity",
@@ -5076,27 +5076,33 @@ const ENTRIES = [
     checked: "6 Sep 2026"
   },
   {
-    id: "ldatf-directory",
-    name: "Local & Regional Drug and Alcohol Task Forces",
+    id: "drugs-ie-services-directory",
+    name: "Find local drug & alcohol support (Drugs.ie)",
     specialty: ["addiction"],
-    county: ["dublin", "wicklow", "cork-city"],
-    blurb: "14 Local Drug and Alcohol Task Forces (12 in greater Dublin, 1 in Bray, 1 in Cork) plus Regional Task Forces, implementing the national drugs strategy.",
+    county: ["national"],
+    blurb: "The HSE's searchable directory of local addiction services, support groups, and counselling — the practical next step after the national helpline if you want in-person or ongoing support near you.",
     details: [
-      "Examples: Ballyfermot LDATF; Blanchardstown LDATF (Dublin 15); Clondalkin DATF (D22); North West Regional DATF (Sligo).",
-      "Full directory at drugsandalcohol.ie.",
+      "Also offers free, confidential live chat.",
+      "Local services are funded and coordinated through your area's Drug and Alcohol Task Force — 14 across the country (12 in greater Dublin, 1 in Bray, 1 in Cork), plus Regional Task Forces covering the rest — but you don't need to know this to use the directory; just search by your area.",
     ],
-    referral: "Self-referral — find your local Task Force via the directory.",
-    contact: { web: "drugsandalcohol.ie" },
+    referral: "Self-referral via the directory or live chat.",
+    contact: { web: "services.drugs.ie", email: "drugs.ie@hse.ie" },
+    checked: "6 Sep 2026"
   },
   {
     id: "ni-substance-misuse",
-    name: "NI substance misuse services (HSC Trusts)",
+    name: "Find local drug & alcohol support (NI)",
     specialty: ["addiction"],
     county: ["national"],
-    blurb: "Addiction services via the 5 HSC Trusts, with a directory at drugsandalcoholni.info.",
-    details: ["DAMHS (Drug & Alcohol Mental Health Service) for under-18s is based at Beechcroft, Belfast.", "AA/NA support groups operate all-island."],
-    referral: "GP or Trust referral.",
-    contact: { web: "drugsandalcoholni.info" },
+    blurb: "A searchable directory of drug and alcohol treatment and support services across Northern Ireland, from brief advice to longer-term one-to-one or residential treatment.",
+    details: [
+      "If the online finder is down, HSC's substance-use team can point you to services directly: substanceuse@hscni.net.",
+      "DAMHS (Drug & Alcohol Mental Health Service) for under-18s is based at Beechcroft, Belfast.",
+      "AA/NA support groups operate all-island.",
+    ],
+    referral: "Self-referral via the directory, or GP/Trust referral.",
+    contact: { web: "services.drugsandalcoholni.info", email: "substanceuse@hscni.net" },
+    checked: "6 Sep 2026"
   },
 
   // ---- Allied Health (Physio, OT, SLT, Podiatry) ----
@@ -5186,7 +5192,7 @@ const ENTRIES = [
       "Regional (\"model 4R\"), major (\"model 3\"), and local (\"model 2\") hospitals nationwide also run paediatric assessment units and outpatient departments as part of the HSE's National Model of Care for Paediatric Healthcare — see named regional examples below.",
     ],
     referral: "GP or ED referral.",
-    contact: { web: "www.chi.ie" },
+    contact: { web: "childrenshealthireland.ie" },
   },
   {
     id: "cuh-paediatrics",
