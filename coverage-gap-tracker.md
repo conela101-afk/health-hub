@@ -61,25 +61,25 @@ Raw counts below are a quick reference only — `GAPS.md` already ran the popula
 
 ## 3. Specialty-level density audit
 
-Counted directly from `data.js` (438 entries total, updated 6 Sep 2026 evening). Specialties under 5 services:
+Counted directly from `data.js` (446 entries total, updated 6 Sep 2026 evening). Specialties under 5 services:
 
 | Specialty | Total services | Status | Notes |
 |---|---|---|---|
-| Addiction & Substance Use | 7 (was 3) | 🟢 Resolved | Added Coolmine TC, Merchants Quay Ireland, Cuan Mhuire network (5 sites incl. NI), Addiction NI — see `REVIEW.md` 2026-09-06. |
-| Dermatology | 2 | 🔴 | |
-| Neurology & Migraine | 2 | 🔴 | |
-| Paediatrics | 2 | 🔴 | |
-| Weight Management | 2 | 🔴 | |
 | PHN | 2 | 🟢 (by design) | Locator-pattern entries, not a raw-count gap — see §1. |
-| Cardiology | 3 | 🔴 | |
+| Bone Health & Osteoporosis | 4 | 🟡 | Still open — Tier 3 item, not yet touched. |
+| Children's Disability | 4 | 🟡 | Still open. |
+| Haematology | 4 | 🟡 | Still open — Tier 3 item, not yet touched. |
 | Adult Mental Health | 4 | 🟡 | Worth checking against `mh` (20) and `crisis` (5) for overlap before treating as a true gap. |
-| Children's Disability | 4 | 🟡 | |
-| Haematology | 4 | 🟡 | |
-| Nephrology | 5 | 🟡 | |
-| Allergy | 5 | 🟡 | |
-| Genetics | 5 | 🟡 | |
-| Older Persons | 5 | 🟡 | |
-| Crisis | 5 | 🟡 | |
+| Dental & Oral Health | 4 | 🟡 | Still open — Tier 3 item, not yet touched. |
+| Weight Management | 4 | 🟡 | Grew from 2 via the earlier Tier 2 specialty build-out; still borderline. |
+
+Resolved since the last pass (6 Sep 2026, this session):
+- **Addiction & Substance Use**: 3 → 7 🟢 — added Coolmine TC, Merchants Quay Ireland, Cuan Mhuire network (5 sites incl. NI), Addiction NI. See `REVIEW.md`.
+- **Neurology & Migraine**: 2 → 7 🟢 — added Beaumont National Neuroscience Centre, MS Ireland, Epilepsy Ireland, MS Society NI, Epilepsy Action NI.
+- **Dermatology**: 2 → 5 🟢 — added St James's, Cork University Hospital, and Royal Victoria Hospital Belfast dermatology departments.
+- **Cardiology**, **General Paediatrics**: already at 5 and 6 respectively from the earlier Tier 1/2 specialty build-out (PR #9) — tracker previously understated these.
+
+Still at exactly 5 (🟡/🟢 borderline, not re-verified this pass): Genetics, Eating Disorders, Crisis, Nephrology, Allergy & Immunology, Older Persons.
 
 Specialties flagged by the review as high-traffic even though not thinnest:
 
