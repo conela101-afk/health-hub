@@ -50,7 +50,9 @@ Everything here is already written, sourced, and just needs pasting into `data.j
 
 Apply the enrichment schema (phone / access route / last-reviewed / cost / source) from `service-card-enrichment-template.md` as you paste each one in, rather than pasting first and enriching later — same number of edits, less risk of leaving half the cards behind.
 
-*Status check against the live repo (6 Sept 2026): items 1 (MBU) and 2 (PHN locator) are already done, per `REVIEW.md`'s 2026-09-05 log entry. Item 3 (Adult ADHD/Autism) and item 5's Men's Health/Prostate line also already appear in `data.js` per recent commit history. Re-verify what's actually left in items 4, 6, and 7 before starting a paste session — don't assume the full list is still outstanding.*
+*Status check against the live repo (6 Sept 2026, updated evening): items 1 (MBU) and 2 (PHN locator) are already done, per `REVIEW.md`'s 2026-09-05 log entry. Item 3 (Adult ADHD/Autism) and item 5's Men's Health/Prostate line also already appear in `data.js` per recent commit history. Item 6's Addiction line is now done too (3→7 entries, see `REVIEW.md` 2026-09-06). Still genuinely open: Adult Disability/Allied Health/General Paediatrics/Weight Management from item 6, and Eating Disorders/Dermatology/Cardiology/Bone Health/Dental/Haematology from item 7 (Breastfeeding in item 7 is already resolved — see `coverage-gap-tracker.md` §1).*
+
+*Separately, `main`'s `data.js` was accidentally wiped to a placeholder by two direct-to-main commits on 6 Sept 2026 and had to be restored (see `CHANGELOG.md`); the RVEEH/SLRON/UPMC content those commits claimed to add but never wrote has now been redone from scratch.*
 
 **Phase B — Advocacy/toolkit layer (ready content, but decide format first)**
 The toolkit doc (FOI/SAR, YSYS complaints, Fair Deal, Medical Card, DPS/LTI, complaint-letter writing, NI equivalents) is content-complete. Before building it in:
