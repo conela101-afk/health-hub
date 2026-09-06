@@ -2852,6 +2852,61 @@ const ENTRIES = [
     contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Headache/Migraine Clinic." },
     checked: "4 Sep 2026"
   },
+  {
+    id: "beaumont-national-neuroscience",
+    name: "Beaumont Hospital National Neuroscience Centre",
+    specialty: ["neurology"],
+    county: ["dublin"],
+    blurb: "Ireland's national neurology/neurosurgery centre — covers epilepsy, stroke, MS, movement disorders, and general neurology alongside neurosurgery.",
+    details: ["Dedicated line for traumatic brain injury referrals: 1800 872 862 (1800-TRAUMA)."],
+    referral: "GP referral via Healthlink to the Neurology Department.",
+    contact: { phone: "01 797 4105", email: "neurologyadmin@beaumont.ie" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "ms-ireland",
+    name: "MS Ireland",
+    specialty: ["neurology"],
+    county: ["national"],
+    blurb: "National charity for people with multiple sclerosis — information line plus local support services.",
+    details: ["Clinical referrals for a new or existing MS diagnosis go to the Multiple Sclerosis Unit, Department of Neurology, St James's Hospital, not to the charity directly."],
+    referral: "Self-referral to the information line; GP/neurology referral for clinical assessment.",
+    contact: { phone: "0818 233 233", web: "ms-society.ie" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "epilepsy-ireland",
+    name: "Epilepsy Ireland",
+    specialty: ["neurology"],
+    county: ["national"],
+    blurb: "National charity supporting people with epilepsy of all ages — Community Resource Officers, and a Young Epilepsy Programme (8-24).",
+    details: ["St James's Hospital runs a Regional Epilepsy Service for clinical referrals."],
+    referral: "Self-referral to the charity; GP/neurology referral for clinical assessment.",
+    contact: { phone: "01 455 7500", email: "info@epilepsy.ie", web: "epilepsy.ie" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "ms-society-ni",
+    name: "MS Society Northern Ireland",
+    specialty: ["neurology"],
+    county: ["antrim"],
+    blurb: "Northern Ireland branch of the MS Society — Belfast resource centre plus a UK-wide helpline.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "0808 800 8000", extra: "Belfast Resource Centre: 028 9080 2802", email: "info@mssocietyni.co.uk" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "epilepsy-action-ni",
+    name: "Epilepsy Action Northern Ireland",
+    specialty: ["neurology"],
+    county: ["antrim"],
+    blurb: "NI arm of Epilepsy Action — information, advice, and support for anyone affected by epilepsy.",
+    details: [],
+    referral: "Self-referral.",
+    contact: { phone: "028 9018 4015", extra: "UK-wide helpline: 0808 800 5050", email: "helpline@epilepsy.org.uk" },
+    checked: "6 Sep 2026"
+  },
 
   // ---- Gastroenterology & IBD ----
   {
@@ -3867,6 +3922,39 @@ const ENTRIES = [
     referral: "Self-referral to Ask-a-Nurse.",
     contact: { phone: "01 486 6280", email: "info@irishskin.ie" },
     checked: "4 Sep 2026"
+  },
+  {
+    id: "stjames-dermatology",
+    name: "St James's Hospital Dermatology",
+    specialty: ["dermatology"],
+    county: ["dublin"],
+    blurb: "Public dermatology department covering general skin conditions and pigmented-lesion (suspicious mole) referrals.",
+    details: [],
+    referral: "GP referral via Healthlink (general dermatology or pigmented lesion) or by letter.",
+    contact: { phone: "01 416 2102", extra: "Main hospital switchboard: 01 410 3000 — ask for Dermatology." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "cuh-dermatology",
+    name: "Cork University Hospital Dermatology",
+    specialty: ["dermatology"],
+    county: ["cork-city"],
+    blurb: "Regional dermatology centre for the South, based in the Victoria Wing.",
+    details: [],
+    referral: "GP referral by letter; appointments sent directly once triaged by the consultant.",
+    contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Dermatology." },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "rvh-belfast-dermatology",
+    name: "Royal Victoria Hospital Belfast Dermatology",
+    specialty: ["dermatology"],
+    county: ["antrim"],
+    blurb: "Belfast Trust's regional dermatology service, including outpatient, day-treatment, and Mohs surgery.",
+    details: [],
+    referral: "GP referral.",
+    contact: { phone: "028 9024 0503", extra: "Main hospital switchboard — ask for Dermatology." },
+    checked: "6 Sep 2026"
   },
   {
     id: "find-dermatology",
