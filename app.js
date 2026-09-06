@@ -684,11 +684,196 @@
       <div class="callout">
         These are our own plain-language templates, not official forms — fill in the brackets, then copy, paste and send by email or post. We link to the official form instead where one exists (see "Send to").
       </div>
+      <div class="callout">
+        <strong>Prefer a guided form?</strong> <a href="#/advocacy/sar-builder">Build your Subject Access Request step by step</a> — fill in your details once and get a ready-to-send letter, rather than editing the brackets below by hand.
+      </div>
       <p class="detail-section-title">Republic of Ireland</p>
       ${roi.map(cardHtml).join("")}
       <p class="detail-section-title">Northern Ireland</p>
       ${ni.map(cardHtml).join("")}
     `;
+  }
+
+  // Interactive Subject Access Request (SAR) builder — a guided-form
+  // alternative to the fill-in-the-brackets templates above. Deliberately
+  // has NO persistence at all (unlike the appointment-prep checklist,
+  // which offers an opt-in save): a SAR letter carries a full name, DOB,
+  // and address together, and there's no reason to make that combination
+  // sit in browser storage when re-filling the form takes moments. Article
+  // 15 GDPR / UK GDPR is the sole statutory basis cited — not DPA 2018
+  // Section 91, which governs law-enforcement data processing and has no
+  // bearing on requesting your own medical records.
+  const SAR_RECORD_TYPES = [
+    { id: "sarNotes", label: "Complete medical chart & clinical notes", checked: true },
+    { id: "sarLabs", label: "Lab results & pathology reports", checked: true },
+    { id: "sarImaging", label: "Diagnostic imaging reports (X-ray, MRI, CT)", checked: true },
+    { id: "sarMdt", label: "Multidisciplinary team (MDT) / allied health notes", checked: false },
+    { id: "sarCorrespondence", label: "Correspondence between GP and consultant", checked: false },
+  ];
+  const SAR_TEXT_FIELDS = ["sarName", "sarDob", "sarAddress", "sarContact", "sarChartNumber", "sarFacility", "sarDepartment", "sarStartDate", "sarEndDate"];
+
+  function generateSarLetter(){
+    const val = id => (document.getElementById(id).value || "").trim();
+    const isRoi = document.getElementById("sarJurisdiction").value === "roi";
+    const actReference = isRoi
+      ? "Article 15 of the General Data Protection Regulation (GDPR) and the Data Protection Act 2018"
+      : "Article 15 of the UK GDPR and the Data Protection Act 2018";
+
+    const name = val("sarName") || "[Your name]";
+    const dob = val("sarDob") || "[Your date of birth]";
+    const address = val("sarAddress") || "[Your address]";
+    const contact = val("sarContact");
+    const chartNumber = val("sarChartNumber");
+    const facility = val("sarFacility") || "[Hospital / practice / clinic name]";
+    const department = val("sarDepartment");
+    const allRecords = document.getElementById("sarAllRecords").checked;
+    const startDate = val("sarStartDate");
+    const endDate = val("sarEndDate");
+    const format = document.getElementById("sarFormat").value;
+
+    const recordsList = SAR_RECORD_TYPES
+      .filter(r => document.getElementById(r.id).checked)
+      .map(r => r.label);
+
+    const dateScope = allRecords
+      ? "all records held by your facility"
+      : `records covering the period from ${startDate || "[start date]"} to ${endDate || "[end date]"}`;
+
+    return `[${name}]
+[${address}]
+[Date of birth: ${dob}]
+${contact ? `[${contact}]\n` : ""}
+[Date]
+
+The Data Protection Officer
+${facility}
+${department ? `Department: ${department}` : ""}
+
+RE: SUBJECT ACCESS REQUEST UNDER ARTICLE 15 GDPR
+
+Dear Data Protection Officer,
+
+I am making a subject access request under ${actReference} for a copy of the personal data you hold about me.
+
+MY DETAILS
+Full name:              ${name}
+Date of birth:          ${dob}
+Address:                ${address}
+${chartNumber ? `Hospital / patient no.: ${chartNumber}` : ""}
+
+WHAT I AM REQUESTING
+I am requesting ${dateScope}${department ? ` from ${department}` : ""}, including but not limited to:
+${recordsList.length ? recordsList.map(r => `  - ${r}`).join("\n") : "  - [tick at least one record type above]"}
+
+FORMAT
+I would like to receive this ${format === "digital" ? "electronically, as PDF, by secure email" : "in hard copy by post"}.
+
+TIMELINE
+Under GDPR, you must respond to this request within one calendar month of receipt. This can be extended by up to two further months for complex or numerous requests, provided you notify me of the extension and the reason within the first month. This request is free of charge in the vast majority of cases.
+
+If you intend to withhold any part of my records, please tell me which parts, the specific legal basis for withholding them, and confirm you have released everything that can be released.
+
+Please acknowledge receipt of this request.
+
+Yours faithfully,
+
+${name}`;
+  }
+
+  function renderSarBuilder(){
+    const checklistHtml = SAR_RECORD_TYPES.map(r => `
+      <label class="check-row">
+        <input type="checkbox" id="${r.id}" ${r.checked ? "checked" : ""}>
+        <span>${r.label}</span>
+      </label>
+    `).join("");
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/advocacy/templates">‹ Letter templates</a>
+        <h1>Build a Subject Access Request</h1>
+        <p class="count">Fill in your details — the letter on the right updates as you go</p>
+      </div>
+
+      <div class="callout">
+        <strong>Administrative request, not legal advice:</strong> this builds a standard Subject Access Request (SAR) letter under GDPR — the statutory right anyone has to a copy of their own personal data. It does not draft legal claims or complaints alleging clinical negligence; for those, see the other templates and guidance in this section.
+      </div>
+
+      <div class="prep-card">
+        <label class="prep-label" for="sarJurisdiction">Jurisdiction</label>
+        <select id="sarJurisdiction" class="prep-input">
+          <option value="roi">Republic of Ireland (GDPR)</option>
+          <option value="ni">Northern Ireland / UK (UK GDPR)</option>
+        </select>
+
+        <label class="prep-label" for="sarName">Full name</label>
+        <input type="text" id="sarName" class="prep-input" placeholder="e.g. Mary Murphy">
+
+        <label class="prep-label" for="sarDob">Date of birth</label>
+        <input type="text" id="sarDob" class="prep-input" placeholder="e.g. 4 May 1985">
+
+        <label class="prep-label" for="sarAddress">Address</label>
+        <textarea id="sarAddress" class="prep-input" rows="2" placeholder="Your current address"></textarea>
+
+        <label class="prep-label" for="sarContact">Phone or email (optional)</label>
+        <input type="text" id="sarContact" class="prep-input" placeholder="e.g. 087 123 4567">
+
+        <label class="prep-label" for="sarChartNumber">Medical record / chart number (optional)</label>
+        <input type="text" id="sarChartNumber" class="prep-input" placeholder="If you know it">
+
+        <label class="prep-label" for="sarFacility">Hospital / facility name</label>
+        <input type="text" id="sarFacility" class="prep-input" placeholder="e.g. St James's Hospital">
+
+        <label class="prep-label" for="sarDepartment">Department / specialty (optional)</label>
+        <input type="text" id="sarDepartment" class="prep-input" placeholder="e.g. Gynaecology, ED, Maternity">
+
+        <label class="save-toggle">
+          <input type="checkbox" id="sarAllRecords" checked>
+          <span>Request all historical records (untick to set a date range)</span>
+        </label>
+        <div id="sarDateRange" hidden>
+          <label class="prep-label" for="sarStartDate">From</label>
+          <input type="text" id="sarStartDate" class="prep-input" placeholder="e.g. January 2019">
+          <label class="prep-label" for="sarEndDate">To</label>
+          <input type="text" id="sarEndDate" class="prep-input" placeholder="e.g. present">
+        </div>
+
+        <span class="prep-label">Records to request</span>
+        <div class="check-list">${checklistHtml}</div>
+
+        <label class="prep-label" for="sarFormat">Preferred format</label>
+        <select id="sarFormat" class="prep-input">
+          <option value="digital">Digital copy (PDF via secure email)</option>
+          <option value="paper">Physical hard copy (post)</option>
+        </select>
+
+        <p class="save-note">Nothing you type here is saved or sent anywhere — this form only exists in your browser tab. Closing or refreshing the page clears it.</p>
+      </div>
+
+      <div class="prep-card">
+        <h2>Generated letter preview</h2>
+        <pre class="template-text" id="sarOutput"></pre>
+        <button type="button" class="copy-btn" id="sarCopy" data-copy-target="sarOutput">Copy letter text</button>
+        <button type="button" class="copy-btn" id="sarPrint">Print / save PDF</button>
+      </div>
+    `;
+
+    function refresh(){ document.getElementById("sarOutput").textContent = generateSarLetter(); }
+
+    SAR_TEXT_FIELDS.forEach(id => document.getElementById(id).addEventListener("input", refresh));
+    document.getElementById("sarJurisdiction").addEventListener("change", refresh);
+    document.getElementById("sarFormat").addEventListener("change", refresh);
+    SAR_RECORD_TYPES.forEach(r => document.getElementById(r.id).addEventListener("change", refresh));
+
+    const dateRange = document.getElementById("sarDateRange");
+    document.getElementById("sarAllRecords").addEventListener("change", (e) => {
+      dateRange.hidden = e.target.checked;
+      refresh();
+    });
+
+    document.getElementById("sarPrint").addEventListener("click", () => printOnly("sarOutput"));
+
+    refresh();
   }
 
   // Shared by static letter templates and the generated text on the
@@ -935,13 +1120,37 @@
     });
   }
 
-  // Pre-Appointment Prep + silent waiting-room check-in. Deliberately built
-  // with no persistence at all: everything typed here lives only in the DOM
-  // for this page view and is gone on refresh or navigation. The generated
-  // text is a verbatim echo of what the user typed — the app never infers,
-  // suggests, or auto-completes any medical content — so this stays a
-  // note-taking aid, not a source of medical advice or a stored health record.
+  // Print-only mode: hides site chrome and everything in the current page
+  // except the one element marked .print-target, so "Print / Save PDF"
+  // buttons produce a clean letter/checklist rather than the whole app
+  // shell. Shared by the appointment-prep checklist and the SAR builder.
+  function printOnly(targetId){
+    document.querySelectorAll(".print-target").forEach(el => el.classList.remove("print-target"));
+    const target = document.getElementById(targetId);
+    if (target) target.classList.add("print-target");
+    document.body.classList.add("printing-letter");
+    window.print();
+  }
+  window.addEventListener("afterprint", () => document.body.classList.remove("printing-letter"));
+
+  // Pre-Appointment Prep + silent waiting-room check-in. The consultation
+  // checklist optionally saves to this device — off by default, same
+  // opt-in "Save on this device" pattern as Patient Passport (see PASSPORT_KEY
+  // below) — since losing your notes to a refresh mid-appointment is a real
+  // cost too. The waiting-room message stays session-only: it's short-lived
+  // by nature and re-typing it is no hardship. The generated text is a
+  // verbatim echo of what the user types — the app never infers, suggests,
+  // or auto-completes any medical content — so this stays a note-taking
+  // aid, not medical advice or an inferred health record.
+  const APPT_PREP_KEY = "hh-appt-prep";
+  const APPT_PREP_SAVE_KEY = "hh-appt-prep-save-on";
+  const APPT_PREP_FIELDS = ["apptDate", "apptClinician", "apptClinic", "prepSymptoms", "prepQuestions", "prepNeeds", "prepMeds"];
+
   function renderPrep(){
+    const isSaving = readStore(APPT_PREP_SAVE_KEY) === true;
+    const saved = isSaving ? (readStore(APPT_PREP_KEY) || {}) : {};
+    const v = id => escapeHtml(saved[id] || "");
+
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
@@ -950,32 +1159,50 @@
       </div>
 
       <div class="callout">
-        Nothing you type on this page is saved anywhere, on this device or off it — refreshing or leaving clears it. Copy or print your checklist before you go. This only ever repeats back what you type; it's a note-taking aid, not medical advice.
+        By default nothing on this page is saved anywhere — refreshing or leaving clears it, so copy or print your checklist before you go. Tick "Save on this device" below only if you want the consultation checklist still here next time; it's then stored in plain text in this browser. This only ever repeats back what you type — it's a note-taking aid, not medical advice.
       </div>
 
       <div class="prep-card">
         <h2>Consultation checklist</h2>
         <p class="remit">Two minutes now saves forgetting the thing you actually came in for.</p>
+
+        <label class="save-toggle">
+          <input type="checkbox" id="apptSaveToggle" ${isSaving ? "checked" : ""}>
+          <span>Save on this device</span>
+        </label>
+
+        <label class="prep-label" for="apptDate">Appointment date</label>
+        <input type="text" id="apptDate" class="prep-input" placeholder="e.g. 12 Sept 2026" value="${v("apptDate")}">
+
+        <label class="prep-label" for="apptClinician">Doctor / specialty</label>
+        <input type="text" id="apptClinician" class="prep-input" placeholder="e.g. Dr Smith / Cardiology" value="${v("apptClinician")}">
+
+        <label class="prep-label" for="apptClinic">Clinic or hospital</label>
+        <input type="text" id="apptClinic" class="prep-input" placeholder="e.g. St James's Hospital" value="${v("apptClinic")}">
+
         <label class="prep-label" for="prepSymptoms">Your top concerns today — what, and since when</label>
-        <textarea id="prepSymptoms" class="prep-input" rows="3" placeholder="e.g. Lower back pain, worse in the mornings, started about 3 weeks ago"></textarea>
+        <textarea id="prepSymptoms" class="prep-input" rows="3" placeholder="e.g. Lower back pain, worse in the mornings, started about 3 weeks ago">${v("prepSymptoms")}</textarea>
 
         <label class="prep-label" for="prepQuestions">Questions you want answered before you leave</label>
-        <textarea id="prepQuestions" class="prep-input" rows="3" placeholder="e.g. Do I need a scan? What are the treatment options?"></textarea>
+        <textarea id="prepQuestions" class="prep-input" rows="3" placeholder="e.g. Do I need a scan? What are the treatment options?">${v("prepQuestions")}</textarea>
 
         <label class="prep-label" for="prepNeeds">Anything you need from this visit</label>
-        <textarea id="prepNeeds" class="prep-input" rows="2" placeholder="e.g. Repeat prescription, referral letter, sick cert"></textarea>
+        <textarea id="prepNeeds" class="prep-input" rows="2" placeholder="e.g. Repeat prescription, referral letter, sick cert">${v("prepNeeds")}</textarea>
 
         <label class="prep-label" for="prepMeds">Current medications &amp; doses</label>
-        <textarea id="prepMeds" class="prep-input" rows="2" placeholder="e.g. Metformin 500mg twice daily"></textarea>
+        <textarea id="prepMeds" class="prep-input" rows="2" placeholder="e.g. Metformin 500mg twice daily">${v("prepMeds")}</textarea>
 
         <button type="button" class="copy-btn" id="prepGenerate">Build my checklist</button>
         <pre class="template-text" id="prepOutput" hidden></pre>
         <button type="button" class="copy-btn" id="prepCopy" data-copy-target="prepOutput" hidden>Copy checklist</button>
+        <button type="button" class="copy-btn" id="prepPrint" hidden>Print / save PDF</button>
+        <button type="button" class="danger-btn" id="apptClear" ${isSaving ? "" : "hidden"}>Clear saved checklist from this device</button>
+        <p class="save-note">${isSaving ? "Saved only on this device/browser. Use Clear if you're on a shared or public computer." : ""}</p>
       </div>
 
       <div class="prep-card">
         <h2>Waiting outside? Ask reception to text you</h2>
-        <p class="remit">If a crowded or noisy waiting room is difficult for you, this drafts a message asking reception to let you wait elsewhere and text you when it's your turn. Whether they can accommodate it is up to the service — this only drafts the ask.</p>
+        <p class="remit">If a crowded or noisy waiting room is difficult for you, this drafts a message asking reception to let you wait elsewhere and text you when it's your turn. Whether they can accommodate it is up to the service — this only drafts the ask. Nothing on this card is saved.</p>
 
         <label class="prep-label" for="waitTime">Appointment time</label>
         <input type="text" id="waitTime" class="prep-input" placeholder="e.g. 2:30pm">
@@ -995,21 +1222,64 @@
       </div>
     `;
 
+    function currentApptValues(){
+      const values = {};
+      APPT_PREP_FIELDS.forEach(id => { values[id] = document.getElementById(id).value.trim(); });
+      return values;
+    }
+
+    const apptClearBtn = document.getElementById("apptClear");
+    const saveNote = document.querySelector(".save-note");
+
+    APPT_PREP_FIELDS.forEach(id => {
+      document.getElementById(id).addEventListener("input", () => {
+        if (document.getElementById("apptSaveToggle").checked) writeStore(APPT_PREP_KEY, currentApptValues());
+      });
+    });
+
+    document.getElementById("apptSaveToggle").addEventListener("change", (e) => {
+      if (e.target.checked){
+        writeStore(APPT_PREP_SAVE_KEY, true);
+        writeStore(APPT_PREP_KEY, currentApptValues());
+        apptClearBtn.hidden = false;
+        saveNote.textContent = "Saved only on this device/browser. Use Clear if you're on a shared or public computer.";
+      } else {
+        writeStore(APPT_PREP_SAVE_KEY, false);
+        clearStore(APPT_PREP_KEY);
+        apptClearBtn.hidden = true;
+        saveNote.textContent = "";
+      }
+    });
+
+    apptClearBtn.addEventListener("click", () => {
+      clearStore(APPT_PREP_KEY);
+      writeStore(APPT_PREP_SAVE_KEY, false);
+      document.getElementById("apptSaveToggle").checked = false;
+      apptClearBtn.hidden = true;
+      saveNote.textContent = "";
+      APPT_PREP_FIELDS.forEach(id => { document.getElementById(id).value = ""; });
+    });
+
     document.getElementById("prepGenerate").addEventListener("click", () => {
-      const symptoms = document.getElementById("prepSymptoms").value.trim();
-      const questions = document.getElementById("prepQuestions").value.trim();
-      const needs = document.getElementById("prepNeeds").value.trim();
-      const meds = document.getElementById("prepMeds").value.trim();
+      const v2 = currentApptValues();
+      const header = [];
+      if (v2.apptDate) header.push(`Appointment: ${v2.apptDate}`);
+      if (v2.apptClinician) header.push(`With: ${v2.apptClinician}`);
+      if (v2.apptClinic) header.push(`At: ${v2.apptClinic}`);
       const sections = [];
-      if (symptoms) sections.push("TOP CONCERNS TODAY\n" + symptoms);
-      if (questions) sections.push("QUESTIONS TO ASK\n" + questions);
-      if (needs) sections.push("WHAT I NEED FROM THIS VISIT\n" + needs);
-      if (meds) sections.push("CURRENT MEDICATIONS\n" + meds);
+      if (header.length) sections.push(header.join("\n"));
+      if (v2.prepSymptoms) sections.push("TOP CONCERNS TODAY\n" + v2.prepSymptoms);
+      if (v2.prepQuestions) sections.push("QUESTIONS TO ASK\n" + v2.prepQuestions);
+      if (v2.prepNeeds) sections.push("WHAT I NEED FROM THIS VISIT\n" + v2.prepNeeds);
+      if (v2.prepMeds) sections.push("CURRENT MEDICATIONS\n" + v2.prepMeds);
       const out = document.getElementById("prepOutput");
       out.textContent = sections.length ? sections.join("\n\n") : "Fill in at least one field above, then try again.";
       out.hidden = false;
       document.getElementById("prepCopy").hidden = false;
+      document.getElementById("prepPrint").hidden = false;
     });
+
+    document.getElementById("prepPrint").addEventListener("click", () => printOnly("prepOutput"));
 
     document.getElementById("waitGenerate").addEventListener("click", () => {
       const time = document.getElementById("waitTime").value.trim() || "[time]";
@@ -1338,6 +1608,7 @@
     else if (parts[0] === "county" && parts[1]) renderList("county", parts[1]);
     else if (parts[0] === "search" && parts[1]) renderSearch(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
+    else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
     else if (parts[0] === "facilities" && !parts[1]) renderFacilities();

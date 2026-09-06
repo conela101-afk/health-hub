@@ -396,11 +396,11 @@ h1,h2,h3{ font-family:var(--font); }
 .prep-card .template-text{ margin-top:10px; }
 
 /* ---------- Save-on-device toggle & destructive actions ----------
-   Used on Patient Passport and the call/referral log — the only two
-   features that can hold personal data across visits, and only once this
-   box is ticked. Kept visually distinct (danger-btn) from the ordinary
-   copy-btn actions since clearing here is permanent and on-device only,
-   nothing to undo from a server. */
+   Used on Patient Passport, the call/referral log, and the appointment-prep
+   checklist — features that can hold personal data across visits, and only
+   once this box is ticked. Kept visually distinct (danger-btn) from the
+   ordinary copy-btn actions since clearing here is permanent and
+   on-device only, nothing to undo from a server. */
 .save-toggle{
   display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600;
   color:var(--ink); margin-bottom:14px; cursor:pointer;
@@ -412,6 +412,37 @@ h1,h2,h3{ font-family:var(--font); }
   padding:9px 16px; margin-top:14px; cursor:pointer; display:block;
 }
 .danger-btn[hidden]{ display:none; }
+.save-note{ font-size:12px; color:var(--ink-soft); margin:8px 0 0; }
+.save-note:empty{ display:none; }
+
+/* ---------- Checkbox lists (e.g. SAR builder record-type picker) ---------- */
+.check-list{ display:flex; flex-direction:column; gap:8px; margin:6px 0 0; }
+.check-row{ display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:var(--ink); cursor:pointer; }
+.check-row input{ width:18px; height:18px; margin-top:1px; accent-color:var(--violet); cursor:pointer; flex-shrink:0; }
+
+/* ---------- Print-only mode ----------
+   Toggled via JS (printOnly() in app.js) right before window.print(), so
+   "Print / save PDF" buttons on generated letters/checklists print just
+   the letter, not the whole app shell. Cleared again on the browser's
+   afterprint event. */
+@media print {
+  body.printing-letter .topbar,
+  body.printing-letter .tabbar,
+  body.printing-letter .footer,
+  body.printing-letter .page-head,
+  body.printing-letter .callout,
+  body.printing-letter .prep-card:not(:has(.print-target)),
+  body.printing-letter .prep-card > *:not(.print-target){ display:none !important; }
+  body.printing-letter .prep-card:has(.print-target){
+    background:transparent; box-shadow:none; padding:0; margin:0;
+  }
+  body.printing-letter .print-target{
+    display:block !important; white-space:pre-wrap; font-family:var(--font);
+    font-size:13px; line-height:1.5; color:#000; background:#fff;
+    border:none; border-radius:0; padding:0; margin:0;
+    max-height:none; overflow:visible;
+  }
+}
 
 /* ---------- Call & referral log ---------- */
 .log-list-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
