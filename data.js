@@ -1185,6 +1185,17 @@ const ENTRIES = [
     checked: "4 Sep 2026"
   },
   {
+    id: "zest-foyle",
+    name: "Zest (Healing the Hurt)",
+    specialty: ["crisis", "mh"],
+    county: ["londonderry"],
+    blurb: "Derry-based counselling, education, and therapeutic support specifically for people affected by self-harm and suicide.",
+    details: ["Outside office hours, Zest itself directs people to Lifeline (0808 808 8000) for 24/7 crisis support."],
+    referral: "Self-referral.",
+    contact: { phone: "028 7126 6999", address: "15a Queen Street, Derry BT48 7EQ" },
+    checked: "6 Sep 2026"
+  },
+  {
     id: "emergency-mh",
     name: "In immediate danger",
     specialty: ["crisis", "mh"],
@@ -2201,6 +2212,39 @@ const ENTRIES = [
     referral: "Self-referral.",
     contact: { phone: "028 9024 9041", email: "info@womensaidni.org", address: "The Annex, 30 Adelaide Park, Belfast BT9 6FY" },
     checked: "4 Sep 2026"
+  },
+  {
+    id: "womens-aid-armagh-down",
+    name: "Women's Aid Armagh Down",
+    specialty: ["dsv"],
+    county: ["down", "armagh"],
+    blurb: "Local Women's Aid group covering Armagh and Down District — refuge, outreach, and support for women and children experiencing domestic abuse.",
+    details: [],
+    referral: "Self-referral; 24hr NI Domestic & Sexual Abuse Helpline: 0808 802 1414.",
+    contact: { phone: "028 3025 0765", email: "admin@womensaidarmaghdown.org" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "foyle-womens-aid",
+    name: "Foyle Women's Aid",
+    specialty: ["dsv"],
+    county: ["londonderry"],
+    blurb: "Domestic and sexual violence support covering Derry/Londonderry, Strabane, Limavady, and Dungiven, including secure refuge accommodation.",
+    details: [],
+    referral: "Self-referral; 24hr NI Domestic & Sexual Abuse Helpline: 0808 802 1414.",
+    contact: { phone: "028 7141 6800", address: "Foyle Family Justice Centre, 7-9 Bishop Street, Derry/Londonderry BT48 6PL" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "meath-womens-refuge",
+    name: "Meath Women's Refuge & Support Services",
+    specialty: ["dsv"],
+    county: ["meath"],
+    blurb: "Emergency refuge, a 24-hour helpline, and outreach support (including court accompaniment) for women and children experiencing domestic violence in Co. Meath.",
+    details: [],
+    referral: "Self-referral, 24 hours a day.",
+    contact: { phone: "046 902 2393", address: "39 Flowerhill, Navan, Co. Meath" },
+    checked: "6 Sep 2026"
   },
 
   // ---- Cancer support: regional centres (ROI) + NI ----
@@ -4464,6 +4508,17 @@ const ENTRIES = [
     referral: "GP referral via the Referral Management / Clinical Communication Gateway.",
     contact: { phone: "028 9442 4000", extra: "Main hospital switchboard — ask for Adult Mental Health." },
     checked: "4 Sep 2026"
+  },
+  {
+    id: "southern-trust-mh-referral-centre",
+    name: "Southern Trust — Mental Health Referral and Booking Centre",
+    specialty: ["adultmh"],
+    county: ["armagh", "down"],
+    blurb: "Single referral point for adult mental health services across Armagh, Banbridge, Craigavon, Dungannon, and Newry & Mourne.",
+    details: [],
+    referral: "GP referral via the Mental Health Referral and Booking Centre.",
+    contact: { phone: "028 3752 8771", extra: "Newry/Mourne area: 028 3025 2423" },
+    checked: "6 Sep 2026"
   },
 
   // ---- Dental & Oral Health ----

@@ -47,3 +47,16 @@ coverage, not neglect:
 3. Leitrim, Longford, Cork North — no action needed, reviewed and closed out.
 
 Next geo review due: Sep 2027.
+
+## Progress update: 6 Sep 2026
+
+Worked the top of the priority list (Down, Londonderry, Meath, plus partial Armagh coverage as a side effect — see `REVIEW.md` for the specific entries added):
+
+| County | Entries (5 Sep) | Entries (6 Sep) | Rate (5 Sep) | Rate (6 Sep) |
+|---|---|---|---|---|
+| Down | 3 | 8 | 0.54 | 1.45 |
+| Londonderry | 3 | 7 | 1.19 | 2.78 |
+| Meath | 3 | 4 | 1.36 | 1.82 |
+| Armagh | 3 | 7 | 1.54 | 3.60 |
+
+Real improvement, but none of these are "closed out" yet the way Leitrim/Longford/Cork North are — they've moved off the absolute floor, not up to Cork-City-level adequacy. **Tyrone is now the only untouched county from the original top-5 list.** Wicklow/Kildare/Wexford/Louth/Mayo (secondary tier) also untouched.

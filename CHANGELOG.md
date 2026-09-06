@@ -3,6 +3,11 @@
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-09-06 [Claude]
+- Geo push per `GAPS.md` priority order: Down (3→8), Londonderry (3→7), Meath (3→4), Armagh (3→7, as a side effect of two multi-county entries). Added Women's Aid Armagh Down, Foyle Women's Aid, Meath Women's Refuge & Support Services, Zest (Derry), and the Southern Trust Mental Health Referral and Booking Centre.
+- Tyrone is now the only untouched county from `GAPS.md`'s original top-5 priority list.
+- `data.js` now at 456 entries.
+
+## 2026-09-06 [Claude]
 - Enriched Bone Health & Osteoporosis (4 → 6: Irish Fracture Liaison Service explainer, Royal Osteoporosis Society NI) and Haematology (4 → 7: National Coagulation Centre, CUH Haematology, UHL Haematology).
 - Reviewed Dental & Oral Health (4 entries) and judged it adequate by design (schemes + locator + NI explainer), same reasoning as PHN — no new entries added there.
 - This closes every item in `MASTER-BUILD-PLAN.md`'s Tier 3 thin-category list.
