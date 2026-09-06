@@ -139,6 +139,16 @@
     dental: '<path d="M12 4c-1.8 0-3 .9-4.3.9C6.3 4.9 5 6 5 8.3c0 2.6.9 4.4 1.4 7 .3 1.4.9 1.9 1.3 1.9.6 0 1-2.7 1.8-2.7s1.1 2.7 1.7 2.7 1.1-2.7 1.8-2.7 1.1 2.7 1.7 2.7c.4 0 1-.5 1.3-1.9.5-2.6 1.4-4.4 1.4-7 0-2.3-1.3-3.4-2.7-3.4-1.3 0-2.5-.9-4.3-.9z"/>',
     allergy: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6.5 6.5l2 2M15.5 15.5l2 2M6.5 17.5l2-2M15.5 8.5l2-2"/>',
     palliative: '<path d="M12 3v4"/><path d="M9 21h6"/><path d="M10 21V11a2 2 0 0 1 4 0v10"/><path d="M9.5 8c0 1.3 1.2 1.8 1.2 3.2"/>',
+    "mens-health": '<circle cx="10" cy="14" r="5"/><path d="M14 10l6-6M14 4h6v6"/>',
+    camhs: '<circle cx="9" cy="7" r="2.6"/><path d="M9 9.6c-2.8 0-4.5 2.4-4.5 6.9h9c0-4.5-1.7-6.9-4.5-6.9z"/><path d="M15.5 8c0-1.3.9-2.2 2-2.2s2 .9 2 2.2c0 1.6-2 2.6-2 4.2-0-1.6-2-2.6-2-4.2z"/>',
+    olderpersons: '<circle cx="12" cy="6" r="2.6"/><path d="M12 8.6v5M8 21l2.5-7.5M16 21l-2.5-7.5M8.5 12.5h7"/><path d="M18 4.5c1 .8 1 2 0 3"/>',
+    oncology: '<path d="M9 4c1.5 2 1.5 5 3 5s1.5-3 3-5M12 9v4"/><path d="M12 13c-3 2.5-3 6-1 8M12 13c3 2.5 3 6 1 8"/><circle cx="12" cy="6" r="1.2"/>',
+    stroke: '<path d="M13 2 5 14h5l-1 8 8-12h-5l1-8z"/><circle cx="18.5" cy="6" r="2"/>',
+    adultdisability: '<circle cx="12" cy="4.5" r="2"/><path d="M12 6.8v6.2M6 10.5h12M12 13l-4 8M12 13l4 8"/><circle cx="6" cy="19" r="1.8"/>',
+    addiction: '<path d="M9 3h6M10 3v4.5L6 15a4 4 0 0 0 4 6h4a4 4 0 0 0 4-6l-4-7.5V3"/><path d="M8 15h8"/>',
+    alliedhealth: '<circle cx="8" cy="6" r="2.3"/><path d="M8 8.3v5.7M5 11h6M6.5 14l-2 7M9.5 14l2 7"/><path d="M16 5v6M13.5 8h5"/>',
+    paediatrics: '<circle cx="12" cy="7" r="3"/><path d="M7 21c0-4 2.2-7 5-7s5 3 5 7"/><path d="M9.5 6.5c.5.7 1.5.7 2 0M14 3.5c1.3 0 2 1 2 2.2 0 1.6-2 1.8-2 3.3"/>',
+    weightmanagement: '<path d="M12 3v3M8 6h8l1.5 15h-11z"/><path d="M12 10a3 3 0 0 0-2.2 5"/>',
   };
   const PIN_ICON = '<path d="M12 21s-6.5-6-6.5-11A6.5 6.5 0 0 1 12 3.5 6.5 6.5 0 0 1 18.5 10c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>';
   // Neutral grid icon for "By specialty" — matches the tab-bar icon for the
