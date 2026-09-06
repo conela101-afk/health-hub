@@ -127,11 +127,12 @@ h1,h2,h3{ font-family:var(--font); }
   border-color:var(--violet); box-shadow:0 0 0 4px var(--violet-tint);
 }
 .search-field svg{ flex-shrink:0; color:var(--ink-faint); }
-#searchInput{
+.search-field input{
   width:100%; border:0; outline:0; background:transparent;
   font-family:var(--font); font-size:15.5px; color:var(--ink);
 }
-#searchInput::placeholder{ color:var(--ink-faint); }
+.search-field input::placeholder{ color:var(--ink-faint); }
+.search-field-inline{ margin-bottom:18px; }
 
 /* ---------- App shell ---------- */
 .app{ max-width:720px; margin:0 auto; padding:8px 20px 90px; min-height:70vh; }
