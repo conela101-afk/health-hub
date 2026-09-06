@@ -679,10 +679,11 @@ const ENTRIES = [
       "Galway: 091 381900. Limerick: 061 426100. Tralee: 066 714 9890 (tgynaecology@bonsecours.ie).",
       "Cavan Clinic: 049 4332697 — the only private gynaecology listed for the north-east border area.",
       "Direct settlement with all main health insurers; self-pay options available — ask the hospital for a quote.",
+      "The Bon Secours group holds JCI accreditation plus JCI Enterprise Accreditation — the first health system in Ireland to hold Enterprise-level status, covering the group's hospitals together rather than certifying each site separately.",
     ],
     referral: "GP or specialist referral required, sent via Healthlink. Not self-referral.",
     contact: { phone: "021 4542807", email: "info@bonsecours.ie", web: "bonsecours.ie/services/gynaecology" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "bons-menopause-cork",
@@ -804,10 +805,11 @@ const ENTRIES = [
       "Covers gynaecology, urogynaecology, pre- and post-obstetric care, sexual health, contraception, perimenopause/menopause, plastic and reconstructive surgery, and minimally invasive surgery.",
       "Multidisciplinary: consultants, a GP, nursing staff and allied health professionals, with a pessary and continence nurse specialist available.",
       "Onward referral within the Mater Private network for cardiology, pelvic health, gastroenterology, colorectal, general surgery and rheumatology.",
+      "The Mater Private Network was re-accredited by JCI in September 2023.",
     ],
     referral: "Referral required — GP or specialist, sent to ereferralscork@materprivate.ie or via Healthlink.",
     contact: { phone: "021 601 3200", email: "ereferralscork@materprivate.ie", web: "materprivate.ie/our-services/womens-health", address: "Mater Private Network, Citygate, Mahon, Cork, T12 K199" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "materprivate-menopause-cork",
@@ -823,10 +825,11 @@ const ENTRIES = [
       "Because it's in a hospital setting, care is coordinated with general gynaecology and urogynaecology, with a pessary and continence nurse specialist on hand.",
       "Additional tests may carry extra cost — pelvic ultrasound, DEXA scan, Mirena coil insertion, STI screening, nurse support, or onward consultant referral.",
       "Bring copies of any recent blood, breast, endocrine, cardiac or gynaecological tests, and a GP summary if your history is complex.",
+      "The Mater Private Network was re-accredited by JCI in September 2023.",
     ],
     referral: "Referral required — GP or specialist, to ereferralscork@materprivate.ie or via Healthlink.",
     contact: { phone: "021 601 3200", email: "ereferralscork@materprivate.ie", web: "materprivate.ie/our-services/womens-health/menopause-clinic", address: "Mater Private Network, Citygate, Mahon, Cork, T12 K199" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "materprivate-breast-dublin",
@@ -841,10 +844,11 @@ const ENTRIES = [
       "Options include lumpectomy, mastectomy and lymph node removal, depending on the condition.",
       "Based at the Cancer Centre, Mater Private Network, Eccles Street.",
       "A referral letter is required before an appointment can be confirmed.",
+      "The Mater Private Network was re-accredited by JCI in September 2023.",
     ],
     referral: "Referral letter required before an appointment is confirmed. GP/specialist referral to ereferrals@materprivate.ie or via Healthlink.",
     contact: { phone: "1800 123 456", email: "ereferrals@materprivate.ie", web: "materprivate.ie/our-services/general-surgery/breast-surgery", address: "Cancer Centre, Mater Private Network, Eccles Street, Dublin 7, D07 WKW8" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "beacon-womens-centre",
@@ -862,10 +866,11 @@ const ENTRIES = [
       "Works alongside the Beacon psychology team and Beacon Care Fertility.",
       "Located on the third floor of Suite 36 in the Mall — take the lift by Beacon for Kids.",
       "The site doesn't state whether self-referral is accepted or a GP letter is required — phone ahead to check.",
+      "Beacon Hospital holds its 7th consecutive JCI accreditation (2025).",
     ],
     referral: "Phone ahead to check — not stated whether self-referral is accepted.",
     contact: { phone: "01 293 8684", email: "womenscentre@beaconhospital.ie", web: "beaconhospital.ie/department-service/womens-centre/", address: "Beacon Hospital, Sandyford, Dublin 18, D18 AK68", extra: "Fax: 01 293 8641" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "beacon-breast-centre",
@@ -878,10 +883,24 @@ const ENTRIES = [
     details: [
       "Listed in Beacon Hospital's published contact directory — service detail and referral route not yet confirmed beyond this.",
       "Main hospital switchboard: 01 293 6600.",
+      "Beacon Hospital holds its 7th consecutive JCI accreditation (2025).",
     ],
     referral: "Not confirmed — phone ahead.",
     contact: { phone: "01 293 8686", web: "beaconhospital.ie/department-service/breast-centre/", address: "Beacon Hospital, Sandyford, Dublin 18, D18 AK68" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "beacon-hospital-general",
+    name: "Beacon Hospital",
+    specialty: ["orthopaedics", "cardiology", "cancer"],
+    county: ["dublin"],
+    sector: "private",
+    provider: "Beacon Hospital",
+    blurb: "Large private acute hospital in Sandyford — particularly strong orthopaedics, cardiology, oncology and emergency care, alongside its women's health and breast centres listed separately above.",
+    details: ["Holds its 7th consecutive JCI accreditation (2025).", "Contact your chosen consultant's secretary for a specific referral, or the main switchboard if you don't have one."],
+    referral: "GP or consultant referral; self-pay or health-insurance-funded.",
+    contact: { phone: "01 293 6600", web: "beaconhospital.ie", address: "Beacon Court, Sandyford, Dublin 18, D18 AK68" },
+    checked: "6 Sep 2026"
   },
 
   // ---- Private sector, continued: Blackrock Health, Kingsbridge/Ulster
@@ -889,6 +908,19 @@ const ENTRIES = [
   // checked 2026-09-04. Limerick Clinic (Blackrock Health) is a diagnostics
   // facility per its own site, with no confirmed women's-health service —
   // not included rather than guessed.
+  {
+    id: "blackrock-clinic-general",
+    name: "Blackrock Clinic",
+    specialty: ["cardiology", "cancer", "orthopaedics"],
+    county: ["dublin"],
+    sector: "private",
+    provider: "Blackrock Health",
+    blurb: "Long-established private hospital in Blackrock — particularly known for cardiac and orthopaedic care, with over 300 consultants across 40+ specialties. Flagship site of the Blackrock Health group.",
+    details: ["Holds long-standing JCI accreditation.", "GP referral needed for most diagnostics, treatments and procedures; a GP Liaison line is available (01 206 4304)."],
+    referral: "GP referral required for most services; self-pay or health-insurance-funded.",
+    contact: { phone: "01 283 2222", web: "blackrockhealth.com", address: "Rock Road, Blackrock, Co. Dublin, A94 E4X7" },
+    checked: "6 Sep 2026"
+  },
   {
     id: "blackrock-womens-health-centre",
     name: "Blackrock Health Women's Health Centre",
@@ -901,10 +933,11 @@ const ENTRIES = [
       "Consultant-led clinics: gynaecology, urology, breast health, endocrinology, gastroenterology, pain medicine, cardiology, dermatology, psychology, health screening and rheumatology.",
       "Part of the Blackrock Health group (Blackrock Clinic, Galway Clinic, Hermitage Clinic, Limerick Clinic).",
       "Located at 2-5 Warrington Place, Dublin 2 — separate from the main Blackrock Clinic site.",
+      "Blackrock Clinic itself holds long-standing JCI accreditation.",
     ],
     referral: "GP or consultant referral letter required.",
     contact: { phone: "01 578 4414", email: "WomensHealthCentre@blackrockhealth.com", web: "blackrockhealth.com/womens-health-centre", address: "2-5 Warrington Place, Dublin 2" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "galway-clinic-gynae",
@@ -917,10 +950,11 @@ const ENTRIES = [
     details: [
       "Blackrock Health's gynaecology service is described as running across its Dublin and Galway clinics jointly.",
       "Number above is the clinic's general switchboard — ask to be directed to gynaecology or a named consultant.",
+      "Historically JCI-accredited as part of the Blackrock Health group — a separately sourced list gave the switchboard as 091 785 800 rather than 091 785 000 listed here; unconfirmed which is current, try the other if one doesn't connect.",
     ],
     referral: "GP or consultant referral letter required.",
     contact: { phone: "091 785 000", web: "galwayclinic.com", address: "Doughiska, Galway, H91 HHT0" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "hermitage-clinic-gynae",
@@ -930,10 +964,10 @@ const ENTRIES = [
     sector: "private",
     provider: "Blackrock Health",
     blurb: "Private gynaecology at the Hermitage Clinic, part of Blackrock Health.",
-    details: [],
+    details: ["JCI-accredited across multiple accreditation cycles."],
     referral: "GP or consultant referral letter required.",
     contact: { phone: "01 645 9000", email: "info@hermitageclinic.ie", address: "Old Lucan Road, Dublin 20" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "kingsbridge-womens-health",
@@ -950,6 +984,22 @@ const ENTRIES = [
     referral: "Self-referral or GP referral — check current policy when booking.",
     contact: { phone: "028 9066 7878", email: "info@kingsbridgeprivatehospital.com", web: "kingsbridgeprivatehospital.com/services/womens-health/", address: "801-815 Lisburn Road, Belfast BT9 7GX" },
     checked: "4 Sep 2026"
+  },
+  {
+    id: "kingsbridge-sligo",
+    name: "Kingsbridge Private Hospital, Sligo",
+    specialty: ["orthopaedics", "urology", "olderpersons"],
+    county: ["sligo"],
+    sector: "private",
+    provider: "Kingsbridge Healthcare Group",
+    blurb: "Regional private hospital serving the North-West — broad range of specialties including orthopaedics, urology, ENT, ophthalmology, vascular, geriatrics, gynaecology, oncology and cardiology.",
+    details: [
+      "A separate enrichment source listed this hospital's JCI status as unknown, but the hospital's own site describes it as JCI-accredited — unconfirmed independently, phone ahead if this matters to you.",
+      "Bring any previous scans or referral letters to your appointment.",
+    ],
+    referral: "GP referral.",
+    contact: { phone: "071 916 2649", email: "sligo@kingsbridgeprivatehospital.com", web: "kingsbridgeprivatehospital.com", address: "Ray McSharry Road, Sligo, F91 X054" },
+    checked: "6 Sep 2026"
   },
   {
     id: "ulster-independent-gynae",
@@ -992,10 +1042,11 @@ const ENTRIES = [
       "Diagnoses and treats bladder leakage and other urinary tract disorders, endometriosis, fertility problems, fibroids, pelvic floor prolapse, pelvic pain and PCOS.",
       "Also offers annual pelvic exams and cervical screening, family planning and contraception, physiotherapy for chronic conditions or post-surgical recovery, and HPV vaccination.",
       "The only private women's health option covering the south-east border counties (Kilkenny, Carlow, south Laois/Tipperary).",
+      "UPMC Aut Even holds its 6th JCI accreditation (Dec 2024).",
     ],
     referral: "GP referral.",
     contact: { phone: "056 777 5275", web: "upmc.ie/services/womens-health", address: "Freshford Road, Kilkenny, R95 D370" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
 
   {
@@ -2783,10 +2834,10 @@ const ENTRIES = [
     specialty: ["rheumatology"],
     county: ["dublin"],
     blurb: "Public rheumatology department (Rheumatology Clinical Network hub site).",
-    details: [],
+    details: ["St Vincent's University Hospital is the only public acute Level 4 hospital in Ireland with JCI accreditation (5th reaccreditation, 2025)."],
     referral: "GP referral.",
     contact: { phone: "01 221 4779" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "mater-rheumatology",
@@ -2981,10 +3032,10 @@ const ENTRIES = [
     specialty: ["gastro"],
     county: ["dublin"],
     blurb: "Public gastroenterology/hepatology department.",
-    details: [],
+    details: ["St Vincent's University Hospital is the only public acute Level 4 hospital in Ireland with JCI accreditation (5th reaccreditation, 2025)."],
     referral: "GP referral, usually via Healthlink.",
     contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for Gastroenterology." },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "beaumont-gastro",
@@ -3170,10 +3221,10 @@ const ENTRIES = [
     specialty: ["pain"],
     county: ["dublin"],
     blurb: "Multidisciplinary pain service, including a psychology-led pain management programme.",
-    details: [],
+    details: ["St Vincent's University Hospital is the only public acute Level 4 hospital in Ireland with JCI accreditation (5th reaccreditation, 2025)."],
     referral: "GP referral, usually via Healthlink.",
     contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for the Pain Service." },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "tallaght-pain",
@@ -3348,10 +3399,13 @@ const ENTRIES = [
     specialty: ["longcovid"],
     county: ["dublin"],
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Stefano Savinelli.",
-    details: ["A separate Mater Hospital Long Covid clinic (Dr Jack Lambert) closed in Dec 2022 when HSE funding was withdrawn — don't refer here expecting it's still running."],
+    details: [
+      "A separate Mater Hospital Long Covid clinic (Dr Jack Lambert) closed in Dec 2022 when HSE funding was withdrawn — don't refer here expecting it's still running.",
+      "St Vincent's University Hospital is the only public acute Level 4 hospital in Ireland with JCI accreditation (5th reaccreditation, 2025).",
+    ],
     referral: "GP referral.",
     contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for the Long Covid Clinic." },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "longcovid-cork",
@@ -3795,10 +3849,10 @@ const ENTRIES = [
     specialty: ["vascular"],
     county: ["dublin"],
     blurb: "Regional referral centre for south-east Dublin, Wicklow, Wexford, Carlow, and Kilkenny. Varicose vein management including surgery, laser/radiofrequency ablation, and ClariVein.",
-    details: [],
+    details: ["St Vincent's University Hospital is the only public acute Level 4 hospital in Ireland with JCI accreditation (5th reaccreditation, 2025)."],
     referral: "GP referral.",
     contact: { phone: "01 221 3709", web: "stvincents.ie" },
-    checked: "4 Sep 2026"
+    checked: "6 Sep 2026"
   },
   {
     id: "beaumont-vascular",
@@ -3861,7 +3915,10 @@ const ENTRIES = [
     specialty: ["ophthalmology", "ent"],
     county: ["dublin"],
     blurb: "Ireland's national referral centre for eye and ENT conditions, founded 1895.",
-    details: ["Routine (non-urgent) referral waiting times are currently around 3 years — ask your GP about urgent-pathway criteria if your symptoms warrant it."],
+    details: [
+      "Routine (non-urgent) referral waiting times are currently around 3 years — ask your GP about urgent-pathway criteria if your symptoms warrant it.",
+      "JCI-accredited, under a long-standing accreditation programme.",
+    ],
     referral: "GP or consultant referral.",
     contact: { phone: "01 664 4600", address: "Adelaide Road, Dublin 2", web: "rveeh.ie" },
     checked: "6 Sep 2026"
@@ -4520,6 +4577,40 @@ const ENTRIES = [
     contact: { phone: "028 3752 8771", extra: "Newry/Mourne area: 028 3025 2423" },
     checked: "6 Sep 2026"
   },
+  {
+    id: "st-patricks-mental-health",
+    name: "St Patrick's Mental Health Services",
+    specialty: ["adultmh", "mh"],
+    county: ["dublin"],
+    sector: "private",
+    provider: "St Patrick's Mental Health Services",
+    blurb: "Ireland's largest independent (private) mental health hospital — anxiety, addiction and dual diagnosis, bipolar disorder, depression, eating disorders, OCD, and psychosis recovery, for young adults through to older adults. Also runs a second campus at St Edmundsbury, Lucan.",
+    details: [
+      "Referrals go through the Referral and Assessment Service, not a GP letter alone — GPs send eReferrals via Healthlink or practice IT systems (Socrates/HealthOne), selecting \"St Patrick's Mental Health Services\" then \"Psychiatric Referral Service.\"",
+      "Referral and Assessment Service: 01 249 3635, Mon–Fri 9am–5pm; main switchboard (incl. outside those hours): 01 249 3200.",
+      "JCI accreditation status not confirmed — listed as a private hospital on the HIA's hospital list, but not confirmed JCI-accredited.",
+    ],
+    referral: "GP referral (eReferral via Healthlink or practice IT system).",
+    contact: { phone: "01 249 3200", web: "stpatricks.ie", address: "James's Street, Dublin 8, D08 K7YW" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "st-john-of-god-hospital",
+    name: "St John of God Hospital (Stillorgan)",
+    specialty: ["adultmh", "mh"],
+    county: ["dublin"],
+    sector: "private",
+    provider: "St John of God",
+    blurb: "Independent (private) psychiatric hospital in Stillorgan, covering inpatient and outpatient mental health care.",
+    details: [
+      "Referral and Assessment Service: 01 277 1450 (office hours); 01 277 1400 outside office hours.",
+      "Referrals accepted via Healthlink, Healthmail, post or fax — inpatient admission forms go to the Admissions Office or referrals@sjog.ie.",
+      "JCI accreditation status not confirmed — listed as a private hospital on the HIA's hospital list, but not confirmed JCI-accredited.",
+    ],
+    referral: "GP or consultant referral.",
+    contact: { phone: "01 288 1781", web: "stjohnofgodhospital.ie", address: "Stillorgan, Co. Dublin" },
+    checked: "6 Sep 2026"
+  },
 
   // ---- Dental & Oral Health ----
   {
@@ -4768,9 +4859,10 @@ const ENTRIES = [
     specialty: ["mens-health"],
     county: ["dublin"],
     blurb: "One of 8 NCCP-designated Rapid Access Prostate Clinics.",
-    details: [],
+    details: ["St Vincent's University Hospital is the only public acute Level 4 hospital in Ireland with JCI accreditation (5th reaccreditation, 2025)."],
     referral: "GP referral (Healthlink).",
     contact: { phone: "01 221 3055" },
+    checked: "6 Sep 2026"
   },
   {
     id: "cuh-orchid-prostate",
@@ -5105,9 +5197,22 @@ const ENTRIES = [
     sector: "private",
     provider: "UPMC",
     blurb: "Private hospital hosting the UPMC Hillman Cancer Centre — the South East's only private radiotherapy service (two linear accelerators), alongside general private surgical and diagnostic care.",
-    details: ["Cork Road, Butlerstown North, Waterford."],
+    details: ["Cork Road, Butlerstown North, Waterford.", "JCI-accredited, historically including the Hillman Cancer Centre."],
     referral: "Consultant/oncologist referral (a radiotherapy referral form is required). Self-pay or health-insurance-funded.",
     contact: { phone: "051 337 400", web: "upmc.ie/locations/hospitals/whitfield" },
+    checked: "6 Sep 2026"
+  },
+  {
+    id: "stvincents-private-hospital",
+    name: "St Vincent's Private Hospital",
+    specialty: ["oncology", "cancer"],
+    county: ["dublin"],
+    sector: "private",
+    provider: "St Vincent's Healthcare Group",
+    blurb: "Ireland's largest private hospital and largest private provider of cancer care — medical oncology, radiation oncology, surgery and brachytherapy, plus over 50 other specialties. Shares its campus with the public St Vincent's University Hospital.",
+    details: ["Re-accredited by JCI in October 2024."],
+    referral: "GP or consultant referral; self-pay or health-insurance-funded.",
+    contact: { phone: "01 263 8000", web: "svph.ie", address: "Herbert Avenue, Merrion Road, Dublin 4, D04 N2E0" },
     checked: "6 Sep 2026"
   },
   {
