@@ -2,6 +2,15 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-09-07 [Claude]
+- **Crisis category gap fix.** User feedback: `crisis` was helpline/text-only with no physical facilities listed. Added 6 acute inpatient psychiatric unit entries (Mental Health Commission approved centres) covering Louth/Meath (Drogheda, Cross Lanes) and Dublin (Ashlin Centre/Beaumont, Connolly Hospital, St Aloysius/Mater, Jonathan Swift Clinic/St James's, Tallaght). Each entry is explicit that these are **not** walk-in crisis centres — admission is via GP/CMHT referral or assessment through the linked hospital's own ED, per those hospitals' own published psychiatry pages. `data.js`: 591 → 597 entries.
+- Tagged the pre-existing `hse-approved-ahr-clinics` entry `sector: "private"` (its name already said "Private" but the field was missing).
+- **Sector filter audit** (see `SECTOR_AUDIT.md`) — private/public filters are high-traffic, reviewed comprehensively per standing practice. Findings: `sector` only had two live values (`private`/`voluntary`) with "Public" implemented as *not-private* rather than a real category, and voluntary hospitals (St Vincent's, the Mater) were silently bucketed under "Public." Fixed:
+  - `app.js`: added `sectorOf(e)` as the single source of truth for sector classification (was previously two independent code paths — tab filter and search — with drift risk).
+  - `app.js`: `SECTOR_FILTERS` now has 4 tabs — All / Public / Private / Voluntary.
+  - Audited all 555 then-untagged entries for mislabeling; found none beyond the AHR clinic fix above — 24 entries mention "private" in free text but are correctly left untagged (mixed-pathway institutions, e.g. CUMH maternity).
+  - Not done this pass: no `voluntary` magic search keyword yet (only `private` exists); "Public" tab label may still read ambiguously (state-run vs. publicly-funded) — flagged, not blocking.
+
 ## 2026-09-06 [Claude Code]
 - User feedback: Cardiology was thin on real clinical infrastructure (7 entries — mostly charities and locator-style "about" notes) despite being a specialty with well-documented national structure. Enriched to 16 entries:
   - Added all 4 of Ireland's national comprehensive cardiac centres (24/7 primary PCI + electrophysiology + TAVI/structural + cardiac surgery): Mater Misericordiae (also the national heart/lung transplant + VAD centre), St James's (Keith Shaw Unit), Cork University Hospital, University Hospital Galway (cardiac surgery status flagged as unconfirmed there, unlike the other 3).

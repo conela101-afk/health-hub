@@ -1140,6 +1140,7 @@ const ENTRIES = [
   {
     id: "hse-approved-ahr-clinics",
     name: "HSE-Approved Private AHR/IVF Clinics",
+    sector: "private",
     specialty: ["fertility"],
     county: ["national"],
     blurb: "Eight HSE-approved private clinic sites your Regional Fertility Hub can refer you on to, if needed — you choose which.",
@@ -1276,6 +1277,97 @@ const ENTRIES = [
     contact: { phone: "999 / 112" },
     checked: "4 Sep 2026"
   },
+
+  // Acute psychiatric inpatient units (Mental Health Commission approved
+  // centres) — added Sep 2026 in response to user feedback that the crisis
+  // category was helpline/text-only with no physical facilities listed.
+  // IMPORTANT: none of these are walk-in crisis or assessment centres.
+  // Admission is via GP/CMHT referral, or via assessment by the psychiatric
+  // liaison team at the linked hospital's own Emergency Department — this
+  // is explicit HSE/hospital policy, not a Health Hub simplification (see
+  // e.g. Beaumont Hospital psychiatry page, Ashlin Centre). Contact numbers
+  // below are hospital switchboards where a direct unit line wasn't publicly
+  // published — verify before relying on them for anything urgent.
+  {
+    id: "drogheda-dept-psychiatry",
+    name: "Drogheda Department of Psychiatry (Cross Lanes)",
+    specialty: ["crisis", "adultmh"],
+    county: ["louth", "meath"],
+    blurb: "Acute inpatient psychiatric unit for the Louth/Meath area — 46 beds covering a combined population of roughly 360,000. Not a walk-in unit.",
+    details: [
+      "Admission is via your GP or Community Mental Health Team, or via assessment at Our Lady of Lourdes Hospital's Emergency Department in a crisis — you don't present directly to Cross Lanes itself.",
+      "HSE figures reported around 1,320 people experiencing a mental health crisis being turned away in 2024 due to bed capacity, with Louth/Meath having no dedicated psychiatric beds outside this unit. Worth knowing before you go, not a reason to avoid going if you need urgent care.",
+      "The Cara Suite in Navan (Meath) offers a related day-service alternative for GP-referred patients, open weekdays, with phone support from familiar clinicians at weekends.",
+    ],
+    referral: "GP or Community Mental Health Team referral; emergencies via Our Lady of Lourdes Hospital ED.",
+    contact: { phone: "041 983 7601", web: "www2.hse.ie/services/hospitals/our-lady-of-lourdes-hospital-drogheda/", address: "Cross Lanes, Drogheda, Co. Louth, A92 TC3R" },
+  },
+  {
+    id: "ashlin-centre-beaumont",
+    name: "Ashlin Centre — North Dublin Mental Health Services",
+    specialty: ["crisis", "adultmh"],
+    county: ["dublin"],
+    blurb: "Acute inpatient psychiatric unit on the Beaumont Hospital campus, covering North Dublin (roughly Dublin 3, 5, 9, 11, 13, 17 and north county Dublin) — 46 beds. Not a walk-in unit.",
+    details: [
+      "Admission is via your GP or Community Mental Health Team, or via assessment at Beaumont Hospital's Emergency Department in a crisis — the unit itself does not run an out-of-hours walk-in assessment service.",
+      "Includes the Sheehan Unit, a dedicated 8-bed Psychiatry of Old Age ward for over-65s, referred via the local POA team.",
+    ],
+    referral: "GP or Community Mental Health Team referral; emergencies via Beaumont Hospital ED.",
+    contact: { phone: "01 797 7200", web: "beaumont.ie/psychiatry", address: "Beaumont Road, Dublin 9, D09 A0KH" },
+  },
+  {
+    id: "connolly-hospital-psychiatry",
+    name: "Department of Psychiatry, Connolly Hospital",
+    specialty: ["crisis", "adultmh"],
+    county: ["dublin"],
+    blurb: "Acute inpatient psychiatric unit at Connolly Hospital, Blanchardstown, covering Dublin North City (roughly Cabra to Mulhuddart) — 47 beds across Ash and Pine wards. Not a walk-in unit.",
+    details: [
+      "Admission is via your GP or Community Mental Health Team, or via assessment at Connolly Hospital's Emergency Department in a crisis.",
+      "Direct unit phone line not publicly listed — number below is the main hospital switchboard; ask to be put through to the Department of Psychiatry.",
+    ],
+    referral: "GP or Community Mental Health Team referral; emergencies via Connolly Hospital ED.",
+    contact: { phone: "01 646 5000", address: "Mill Road, Blanchardstown, Dublin 15, D15 X40D" },
+  },
+  {
+    id: "st-aloysius-mater",
+    name: "St Aloysius Ward, Mater Misericordiae University Hospital",
+    specialty: ["crisis", "adultmh"],
+    county: ["dublin"],
+    blurb: "Acute inpatient psychiatric unit for Dublin North Central, based at the Mater Hospital. Not a walk-in unit.",
+    details: [
+      "Admission is via your GP or Community Mental Health Team, or via assessment at the Mater's Emergency Department in a crisis.",
+      "Direct unit phone line not publicly listed — number below is the main hospital switchboard; ask to be put through to St Aloysius Ward / psychiatry.",
+    ],
+    referral: "GP or Community Mental Health Team referral; emergencies via Mater Hospital ED.",
+    contact: { phone: "01 803 2000", address: "Eccles Street, Dublin 7, D07 R2WY" },
+  },
+  {
+    id: "jonathan-swift-clinic",
+    name: "Jonathan Swift Clinic, St James's Hospital",
+    specialty: ["crisis", "adultmh"],
+    county: ["dublin"],
+    blurb: "Acute psychiatric unit for Dublin South Central, with three wards — Fownes (acute admissions), Becket (low dependency), and Conolly Norman (psychiatry of the older person). Not a walk-in unit.",
+    details: [
+      "Admission is via your GP or Community Mental Health Team, or via assessment at St James's Hospital's Emergency Department in a crisis.",
+      "Referrals for the wider Dublin South Central Mental Health Service go through the ACCES Team — useful if you're trying to find your specific catchment team rather than the hospital ward directly.",
+    ],
+    referral: "GP or Community Mental Health Team referral; emergencies via St James's Hospital ED.",
+    contact: { phone: "01 703 6158", email: "acces@hse.ie", extra: "ACCES Team — for catchment/referral queries, not urgent care." },
+  },
+  {
+    id: "apu-tallaght",
+    name: "Acute Psychiatric Unit, Tallaght University Hospital",
+    specialty: ["crisis", "adultmh"],
+    county: ["dublin"],
+    blurb: "Acute inpatient psychiatric unit for Dublin South West / Tallaght, with three wards — Cedar (female), Rowan (male), Aspen (high observation). Not a walk-in unit.",
+    details: [
+      "Admission is via your GP or Community Mental Health Team, or via assessment at Tallaght University Hospital's Emergency Department in a crisis.",
+      "Direct unit phone line not publicly listed — number below is the main hospital switchboard; ask to be put through to the Acute Psychiatric Unit.",
+    ],
+    referral: "GP or Community Mental Health Team referral; emergencies via Tallaght University Hospital ED.",
+    contact: { phone: "01 414 2000", address: "Tallaght, Dublin 24, D24 NR0A" },
+  },
+
   {
     id: "asiam",
     name: "AsIAm",
