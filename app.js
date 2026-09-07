@@ -388,10 +388,25 @@
     `;
   }
 
+  // Single source of truth for sector classification, shared by the tab
+  // filter and by search. An entry with no `sector` field is a public
+  // HSE/HSC institution by default — untagged does not mean unaudited;
+  // see AI_RULES.md / GAPS.md sector-audit note for how that default was
+  // verified. Entries may still *mention* private options in their free
+  // text (e.g. a public maternity hospital offering private care) without
+  // being tagged "private" here — sector reflects the institution's own
+  // character, not every pathway available through it.
+  function sectorOf(e){
+    return e.sector === "private" ? "private"
+      : e.sector === "voluntary" ? "voluntary"
+      : "public";
+  }
+
   const SECTOR_FILTERS = [
     { id: "", label: "All" },
     { id: "public", label: "Public" },
     { id: "private", label: "Private" },
+    { id: "voluntary", label: "Voluntary" },
   ];
 
   function sectorFilterHtml(id, active){
@@ -405,11 +420,10 @@
   function renderList(kind, id, sector){
     const label = kind === "specialty" ? specialtyLabel(id) : countyLabel(id);
     const allResults = ENTRIES.filter(e => kind === "specialty" ? e.specialty.includes(id) : e.county.includes(id));
-    const activeSector = kind === "specialty" && (sector === "public" || sector === "private") ? sector : "";
-    const results = activeSector === "private"
-      ? allResults.filter(e => e.sector === "private")
-      : activeSector === "public"
-      ? allResults.filter(e => e.sector !== "private")
+    const validSectors = ["public", "private", "voluntary"];
+    const activeSector = kind === "specialty" && validSectors.includes(sector) ? sector : "";
+    const results = activeSector
+      ? allResults.filter(e => sectorOf(e) === activeSector)
       : allResults;
     const backHref = kind === "specialty" ? "#/specialty" : "#/county";
     const filterHtml = kind === "specialty" ? sectorFilterHtml(id, activeSector) : "";
@@ -456,7 +470,7 @@
 
     let privateEntries = [];
     if (isPrivateQuery){
-      privateEntries = ENTRIES.filter(e => e.sector === "private");
+      privateEntries = ENTRIES.filter(e => sectorOf(e) === "private");
       if (otherTerms.length){
         privateEntries = privateEntries.filter(e =>
           otherTerms.every(t => entryHay(e).includes(t) || (e.provider || "").toLowerCase().includes(t))

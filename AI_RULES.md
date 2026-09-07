@@ -31,5 +31,6 @@ This repo is sometimes edited by more than one AI assistant (currently Claude, G
 ## Recent AI sessions
 *(newest first — both tools append here)*
 
+- 2026-09-07 [Claude] — Added 6 crisis-category inpatient psychiatric unit entries (`data.js`: 591 → 597) and completed a sector filter audit: `sectorOf()` unified in `app.js`, added a "Voluntary" tab, tagged `hse-approved-ahr-clinics` as private. See `CHANGELOG.md` and `SECTOR_AUDIT.md`.
 - 2026-09-06 [Claude] — Added `AI_RULES.md` and `MASTER-BUILD-PLAN.md` to the repo; reconciled the build plan's inventory table against the tracker work done earlier the same day. No `data.js` changes made this session.
 - 2026-09-06 [Claude] — Added `coverage-gap-tracker.md`, `service-card-enrichment-template.md`, `accessibility-statement.md`, reconciled against actual `data.js` counts and `GAPS.md`/`REVIEW.md` findings. No `data.js` changes made this session.
