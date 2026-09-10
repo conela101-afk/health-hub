@@ -506,6 +506,7 @@ const ENTRIES = [
   {
     id: "tallaght-endo-centre",
     name: "Tallaght University Hospital Endometriosis Centre",
+    sector: "voluntary",
     specialty: ["endo", "gynae"],
     county: ["dublin"],
     blurb: "The other supra-regional centre for complex (Stage 4) endometriosis care, alongside CUMH.",
@@ -517,6 +518,7 @@ const ENTRIES = [
   {
     id: "rotunda-endo",
     name: "Rotunda Hospital — Endometriosis (regional)",
+    sector: "voluntary",
     specialty: ["endo", "gynae"],
     county: ["dublin"],
     blurb: "Established regional specialist centre for moderate endometriosis care.",
@@ -561,6 +563,7 @@ const ENTRIES = [
   {
     id: "nmh-endo",
     name: "National Maternity Hospital — Endometriosis (in development)",
+    sector: "voluntary",
     specialty: ["endo", "gynae"],
     county: ["dublin", "wicklow"],
     blurb: "Regional endometriosis centre in development under the National Endometriosis Framework — may not be fully operational yet. NMH also takes wider gynaecology referrals from Wicklow and the south-east.",
@@ -572,6 +575,7 @@ const ENTRIES = [
   {
     id: "tallaght-emergency-gynae",
     name: "Tallaght University Hospital Emergency Gynaecology Unit",
+    sector: "voluntary",
     specialty: ["gynae"],
     county: ["dublin", "kildare"],
     blurb: "Urgent gynaecology assessment — the confirmed route for Kildare, which has no gynaecology or maternity department of its own (Naas General doesn't run either).",
@@ -597,6 +601,7 @@ const ENTRIES = [
   {
     id: "nmh-menopause",
     name: "National Maternity Hospital Complex Menopause Clinic",
+    sector: "voluntary",
     specialty: ["menopause"],
     county: ["dublin"],
     blurb: "The first of the six HSE complex-menopause clinics, opened Dec 2021.",
@@ -612,6 +617,7 @@ const ENTRIES = [
   {
     id: "rotunda-menopause",
     name: "Rotunda Hospital Complex Menopause Clinic",
+    sector: "voluntary",
     specialty: ["menopause"],
     county: ["dublin"],
     blurb: "Clinical lead Dr Caoimhe Hartley.",
@@ -1085,6 +1091,7 @@ const ENTRIES = [
   {
     id: "rotunda-fertility",
     name: "Rotunda Hospital Regional Fertility Hub",
+    sector: "voluntary",
     specialty: ["fertility"],
     county: ["dublin"],
     blurb: "One of six HSE Regional Fertility Hubs. Around 125 couples/month are referred nationally for publicly-funded AHR.",
@@ -1096,6 +1103,7 @@ const ENTRIES = [
   {
     id: "nmh-fertility",
     name: "National Maternity Hospital Regional Fertility Hub",
+    sector: "voluntary",
     specialty: ["fertility"],
     county: ["dublin"],
     blurb: "One of six HSE Regional Fertility Hubs.",
@@ -1305,6 +1313,7 @@ const ENTRIES = [
   {
     id: "ashlin-centre-beaumont",
     name: "Ashlin Centre — North Dublin Mental Health Services",
+    sector: "voluntary",
     specialty: ["crisis", "adultmh"],
     county: ["dublin"],
     blurb: "Acute inpatient psychiatric unit on the Beaumont Hospital campus, covering North Dublin (roughly Dublin 3, 5, 9, 11, 13, 17 and north county Dublin) — 46 beds. Not a walk-in unit.",
@@ -1331,6 +1340,7 @@ const ENTRIES = [
   {
     id: "st-aloysius-mater",
     name: "St Aloysius Ward, Mater Misericordiae University Hospital",
+    sector: "voluntary",
     specialty: ["crisis", "adultmh"],
     county: ["dublin"],
     blurb: "Acute inpatient psychiatric unit for Dublin North Central, based at the Mater Hospital. Not a walk-in unit.",
@@ -1344,19 +1354,21 @@ const ENTRIES = [
   {
     id: "jonathan-swift-clinic",
     name: "Jonathan Swift Clinic, St James's Hospital",
+    sector: "voluntary",
     specialty: ["crisis", "adultmh"],
     county: ["dublin"],
     blurb: "Acute psychiatric unit for Dublin South Central, with three wards — Fownes (acute admissions), Becket (low dependency), and Conolly Norman (psychiatry of the older person). Not a walk-in unit.",
     details: [
       "Admission is via your GP or Community Mental Health Team, or via assessment at St James's Hospital's Emergency Department in a crisis.",
-      "Referrals for the wider Dublin South Central Mental Health Service go through the ACCES Team — useful if you're trying to find your specific catchment team rather than the hospital ward directly.",
+      "The ACCES Team (01 703 6158, acces@hse.ie) is a separate, homelessness-specific mental health service for CHO7 — not a general catchment finder. If you're trying to locate your own local Community Mental Health Team rather than this hospital ward, the HSE's Dublin South Central team map is the right starting point, not ACCES.",
     ],
     referral: "GP or Community Mental Health Team referral; emergencies via St James's Hospital ED.",
-    contact: { phone: "01 703 6158", email: "acces@hse.ie", extra: "ACCES Team — for catchment/referral queries, not urgent care." },
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for the Jonathan Swift Clinic." },
   },
   {
     id: "apu-tallaght",
     name: "Acute Psychiatric Unit, Tallaght University Hospital",
+    sector: "voluntary",
     specialty: ["crisis", "adultmh"],
     county: ["dublin"],
     blurb: "Acute inpatient psychiatric unit for Dublin South West / Tallaght, with three wards — Cedar (female), Rowan (male), Aspen (high observation). Not a walk-in unit.",
@@ -1655,6 +1667,7 @@ const ENTRIES = [
   {
     id: "nmh-maternity",
     name: "National Maternity Hospital Maternity",
+    sector: "voluntary",
     specialty: ["obs"],
     county: ["dublin", "kildare", "wicklow"],
     blurb: "One of three Dublin maternity hospitals — also a maternity option for Kildare and Wicklow, neither of which has a maternity unit of its own.",
@@ -1666,6 +1679,7 @@ const ENTRIES = [
   {
     id: "rotunda-maternity",
     name: "Rotunda Hospital Maternity",
+    sector: "voluntary",
     specialty: ["obs"],
     county: ["dublin", "kildare"],
     blurb: "One of three Dublin maternity hospitals — also a maternity option for Kildare, which has no maternity unit of its own.",
@@ -2010,6 +2024,7 @@ const ENTRIES = [
   {
     id: "nmh-perinatal-mh",
     name: "National Maternity Hospital Specialist Perinatal MH Team",
+    sector: "voluntary",
     specialty: ["mh"],
     county: ["dublin"],
     blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
@@ -2021,6 +2036,7 @@ const ENTRIES = [
   {
     id: "rotunda-perinatal-mh",
     name: "Rotunda Hospital Specialist Perinatal MH Team",
+    sector: "voluntary",
     specialty: ["mh"],
     county: ["dublin"],
     blurb: "One of six national Specialist Perinatal Mental Health hub teams.",
@@ -2279,6 +2295,7 @@ const ENTRIES = [
   {
     id: "satu-cork",
     name: "Cork SATU (South Infirmary Victoria University Hospital)",
+    sector: "voluntary",
     specialty: ["dsv"],
     county: ["cork-city"],
     blurb: "Sexual Assault Treatment Unit — forensic and medical care after a recent sexual assault.",
@@ -2300,6 +2317,7 @@ const ENTRIES = [
   {
     id: "satu-dublin",
     name: "Dublin SATU (Rotunda Hospital campus)",
+    sector: "voluntary",
     specialty: ["dsv"],
     county: ["dublin"],
     blurb: "Sexual Assault Treatment Unit.",
@@ -2812,6 +2830,7 @@ const ENTRIES = [
   {
     id: "mater-cardiology-comprehensive",
     name: "Mater Misericordiae University Hospital — Cardiology & Cardiothoracic Surgery",
+    sector: "voluntary",
     specialty: ["cardiology"],
     county: ["dublin"],
     blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI for heart attacks, electrophysiology/ablation, TAVI and other structural heart procedures, and cardiac surgery. Also the national centre for heart & lung transplantation and ventricular assist devices (VAD).",
@@ -2826,6 +2845,7 @@ const ENTRIES = [
   {
     id: "stjames-cardiothoracic",
     name: "St James's Hospital — Cardiology & Cardiothoracic Surgery (Keith Shaw Unit)",
+    sector: "voluntary",
     specialty: ["cardiology"],
     county: ["dublin"],
     blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI, TAVI, and adult cardiac surgery (coronary artery bypass and valve surgery) at the Keith Shaw Unit, a national referral centre for acquired adult heart disease.",
@@ -2881,6 +2901,7 @@ const ENTRIES = [
   {
     id: "tallaght-chest-pain",
     name: "Tallaght University Hospital Chest Pain Service",
+    sector: "voluntary",
     specialty: ["cardiology"],
     county: ["dublin"],
     blurb: "Rapid access chest pain assessment service.",
@@ -2978,6 +2999,7 @@ const ENTRIES = [
   {
     id: "sivuh-rheumatology",
     name: "South Infirmary-Victoria Hospital Rheumatology",
+    sector: "voluntary",
     specialty: ["rheumatology"],
     county: ["cork-city"],
     blurb: "Public rheumatology department.",
@@ -3051,6 +3073,7 @@ const ENTRIES = [
   {
     id: "stvincents-rheumatology",
     name: "St Vincent's University Hospital Rheumatology",
+    sector: "voluntary",
     specialty: ["rheumatology"],
     county: ["dublin"],
     blurb: "Public rheumatology department (Rheumatology Clinical Network hub site).",
@@ -3062,6 +3085,7 @@ const ENTRIES = [
   {
     id: "mater-rheumatology",
     name: "Mater Misericordiae University Hospital Rheumatology",
+    sector: "voluntary",
     specialty: ["rheumatology"],
     county: ["dublin"],
     blurb: "Public rheumatology department.",
@@ -3073,6 +3097,7 @@ const ENTRIES = [
   {
     id: "stjames-rheumatology",
     name: "St James's Hospital Rheumatology",
+    sector: "voluntary",
     specialty: ["rheumatology"],
     county: ["dublin"],
     blurb: "Public rheumatology department.",
@@ -3084,6 +3109,7 @@ const ENTRIES = [
   {
     id: "beaumont-rheumatology",
     name: "Beaumont Hospital Rheumatology",
+    sector: "voluntary",
     specialty: ["rheumatology"],
     county: ["dublin"],
     blurb: "Public rheumatology department.",
@@ -3104,6 +3130,7 @@ const ENTRIES = [
   {
     id: "tallaght-rheumatology",
     name: "Tallaght University Hospital Rheumatology",
+    sector: "voluntary",
     specialty: ["rheumatology"],
     county: ["dublin"],
     blurb: "Public rheumatology department.",
@@ -3159,6 +3186,7 @@ const ENTRIES = [
   {
     id: "beaumont-migraine-clinic",
     name: "Beaumont Hospital Headache/Migraine Clinic",
+    sector: "voluntary",
     specialty: ["neurology"],
     county: ["dublin"],
     blurb: "Specialist headache/migraine clinic referenced by the Migraine Association.",
@@ -3170,6 +3198,7 @@ const ENTRIES = [
   {
     id: "beaumont-national-neuroscience",
     name: "Beaumont Hospital National Neuroscience Centre",
+    sector: "voluntary",
     specialty: ["neurology"],
     county: ["dublin"],
     blurb: "Ireland's national neurology/neurosurgery centre — covers epilepsy, stroke, MS, movement disorders, and general neurology alongside neurosurgery.",
@@ -3238,6 +3267,7 @@ const ENTRIES = [
   {
     id: "stjames-gastro",
     name: "St James's Hospital Gastroenterology (also covers Tallaght & Naas)",
+    sector: "voluntary",
     specialty: ["gastro"],
     county: ["dublin", "kildare"],
     blurb: "A 3-site public gastroenterology/hepatology department.",
@@ -3249,6 +3279,7 @@ const ENTRIES = [
   {
     id: "stvincents-gastro",
     name: "St Vincent's University Hospital Gastroenterology",
+    sector: "voluntary",
     specialty: ["gastro"],
     county: ["dublin"],
     blurb: "Public gastroenterology/hepatology department.",
@@ -3260,6 +3291,7 @@ const ENTRIES = [
   {
     id: "beaumont-gastro",
     name: "Beaumont Hospital Gastroenterology",
+    sector: "voluntary",
     specialty: ["gastro"],
     county: ["dublin"],
     blurb: "Public gastroenterology department.",
@@ -3271,6 +3303,7 @@ const ENTRIES = [
   {
     id: "mater-gastro",
     name: "Mater Misericordiae University Hospital Gastroenterology",
+    sector: "voluntary",
     specialty: ["gastro"],
     county: ["dublin"],
     blurb: "Public gastroenterology department.",
@@ -3304,6 +3337,7 @@ const ENTRIES = [
   {
     id: "mercy-cork-gastro",
     name: "Mercy University Hospital, Cork — Gastroenterology",
+    sector: "voluntary",
     specialty: ["gastro"],
     county: ["cork-city"],
     blurb: "Public gastroenterology department.",
@@ -3405,6 +3439,7 @@ const ENTRIES = [
   {
     id: "beaumont-ipaincentre",
     name: "Beaumont Hospital iPainCentre",
+    sector: "voluntary",
     specialty: ["pain"],
     county: ["dublin"],
     blurb: "Sláintecare-funded integrated community-based pain management team, clinical lead Dr David Moore. Beaumont also runs a separate Pain Medicine service.",
@@ -3416,6 +3451,7 @@ const ENTRIES = [
   {
     id: "stjames-pain",
     name: "St James's Hospital Pain Medicine",
+    sector: "voluntary",
     specialty: ["pain"],
     county: ["dublin"],
     blurb: "Public chronic pain management service.",
@@ -3427,6 +3463,7 @@ const ENTRIES = [
   {
     id: "mater-pain",
     name: "Mater Misericordiae University Hospital Pain Service",
+    sector: "voluntary",
     specialty: ["pain"],
     county: ["dublin"],
     blurb: "Public chronic pain management service.",
@@ -3438,6 +3475,7 @@ const ENTRIES = [
   {
     id: "stvincents-pain",
     name: "St Vincent's University Hospital Pain Service",
+    sector: "voluntary",
     specialty: ["pain"],
     county: ["dublin"],
     blurb: "Multidisciplinary pain service, including a psychology-led pain management programme.",
@@ -3449,6 +3487,7 @@ const ENTRIES = [
   {
     id: "tallaght-pain",
     name: "Tallaght University Hospital Pain Medicine",
+    sector: "voluntary",
     specialty: ["pain"],
     county: ["dublin"],
     blurb: "Pain Medicine service plus the Ulysses Pain Management Programme.",
@@ -3515,6 +3554,7 @@ const ENTRIES = [
   {
     id: "mercy-cork-pain",
     name: "Mercy University Hospital, Cork — Pain Service",
+    sector: "voluntary",
     specialty: ["pain"],
     county: ["cork-city"],
     blurb: "Listed as a public pain service by the Irish Pain Society — not independently re-confirmed.",
@@ -3588,6 +3628,7 @@ const ENTRIES = [
   {
     id: "longcovid-beaumont",
     name: "Beaumont Hospital Long Covid Clinic",
+    sector: "voluntary",
     specialty: ["longcovid"],
     county: ["dublin"],
     blurb: "One of six HSE Long Covid clinics nationally, overseen by Dr Eoghan de Barra (Infectious Diseases).",
@@ -3605,6 +3646,7 @@ const ENTRIES = [
   {
     id: "longcovid-stjames",
     name: "St James's Hospital Long Covid Clinic",
+    sector: "voluntary",
     specialty: ["longcovid"],
     county: ["dublin"],
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Ciarán Bannan with Dr Aoife Laffan (neurology).",
@@ -3616,6 +3658,7 @@ const ENTRIES = [
   {
     id: "longcovid-stvincents",
     name: "St Vincent's University Hospital Long Covid Clinic",
+    sector: "voluntary",
     specialty: ["longcovid"],
     county: ["dublin"],
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Stefano Savinelli.",
@@ -3771,6 +3814,7 @@ const ENTRIES = [
   {
     id: "cancer-genetics-stjames",
     name: "Cancer Genetics Service, St James's Hospital",
+    sector: "voluntary",
     specialty: ["genetics", "cancer"],
     county: ["dublin"],
     blurb: "Alternative public referral point for hereditary cancer risk assessment (e.g. BRCA), via GP or your oncology team.",
@@ -3806,6 +3850,7 @@ const ENTRIES = [
   {
     id: "gum-cork",
     name: "STI Clinic — South Infirmary Victoria University Hospital, Cork",
+    sector: "voluntary",
     specialty: ["sexualhealth"],
     county: ["cork-city"],
     blurb: "Free, HSE-operated STI/GUM clinic. PrEP available.",
@@ -3839,6 +3884,7 @@ const ENTRIES = [
   {
     id: "gum-guide-stjames",
     name: "GUIDE Clinic — St James's Hospital, Dublin",
+    sector: "voluntary",
     specialty: ["sexualhealth"],
     county: ["dublin"],
     blurb: "Free, HSE-operated STI/GUM clinic.",
@@ -4066,6 +4112,7 @@ const ENTRIES = [
   {
     id: "stvincents-vascular",
     name: "St Vincent's University Hospital Vascular Surgery",
+    sector: "voluntary",
     specialty: ["vascular"],
     county: ["dublin"],
     blurb: "Regional referral centre for south-east Dublin, Wicklow, Wexford, Carlow, and Kilkenny. Varicose vein management including surgery, laser/radiofrequency ablation, and ClariVein.",
@@ -4077,6 +4124,7 @@ const ENTRIES = [
   {
     id: "beaumont-vascular",
     name: "Beaumont Hospital Vascular Service",
+    sector: "voluntary",
     specialty: ["vascular"],
     county: ["dublin"],
     blurb: "Vascular/endovascular arterial and venous disease.",
@@ -4088,6 +4136,7 @@ const ENTRIES = [
   {
     id: "mater-vascular",
     name: "Mater Misericordiae University Hospital Vascular Service",
+    sector: "voluntary",
     specialty: ["vascular"],
     county: ["dublin"],
     blurb: "Public vascular surgery service.",
@@ -4272,6 +4321,7 @@ const ENTRIES = [
   {
     id: "stjames-dermatology",
     name: "St James's Hospital Dermatology",
+    sector: "voluntary",
     specialty: ["dermatology"],
     county: ["dublin"],
     blurb: "Public dermatology department covering general skin conditions and pigmented-lesion (suspicious mole) referrals.",
@@ -4390,6 +4440,44 @@ const ENTRIES = [
     contact: { phone: "086 871 5264", email: "info@ilfa.ie", address: "Carmichael Centre, 4 North Brunswick Street, Dublin 7" },
     checked: "4 Sep 2026"
   },
+  {
+    id: "mater-pulmonary-hypertension",
+    name: "National Pulmonary Hypertension Unit, Mater Hospital",
+    sector: "voluntary",
+    specialty: ["respiratory"],
+    county: ["dublin"],
+    blurb: "Ireland's only national referral and treatment centre for pulmonary hypertension, established 2003.",
+    details: [
+      "Weekly clinics followed by a multidisciplinary team meeting; works closely with the Mater's adult congenital heart disease group and lung transplant team.",
+    ],
+    referral: "Consultant cardiologist or respiratory physician referral.",
+    contact: { phone: "01 803 4420", extra: "01 803 4423", email: "pha@mater.ie", address: "56 Eccles Street, Dublin 7" },
+    checked: "10 Sep 2026"
+  },
+  {
+    id: "svuh-ild",
+    name: "St Vincent's University Hospital — Interstitial Lung Disease (ILD) Service",
+    sector: "voluntary",
+    specialty: ["respiratory"],
+    county: ["dublin"],
+    blurb: "National referral centre for interstitial lung disease and pulmonary fibrosis.",
+    details: [],
+    referral: "GP e-referral via Healthlink to Respiratory Medicine, specifying ILD evaluation; consultant referral also accepted.",
+    contact: { phone: "01 221 4208", address: "Suite 5, Herbert Wing, St Vincent's University Hospital, Elm Park, Dublin 4" },
+    checked: "10 Sep 2026"
+  },
+  {
+    id: "beaumont-ild-ifpf",
+    name: "Beaumont Hospital — Irish Familial Pulmonary Fibrosis Centre & Regional ILD Service",
+    sector: "voluntary",
+    specialty: ["respiratory"],
+    county: ["dublin"],
+    blurb: "Regional ILD centre and the designated national centre for familial pulmonary fibrosis, including genetic testing and counselling for families with a history of lung fibrosis.",
+    details: [],
+    referral: "GP referral via Healthlink or the respiratory integrated care hub, specifying ILD evaluation.",
+    contact: { phone: "01 809 3058", email: "respiratoryadmin@beaumont.ie" },
+    checked: "10 Sep 2026"
+  },
 
   // ---- ENT & Audiology ----
   {
@@ -4493,6 +4581,20 @@ const ENTRIES = [
     contact: { web: "www2.hse.ie/conditions/polycystic-ovary-syndrome/" },
     checked: "4 Sep 2026"
   },
+  {
+    id: "beaumont-pituitary-adrenal",
+    name: "Beaumont Hospital — Pituitary & Complex Adrenal Endocrinology",
+    sector: "voluntary",
+    specialty: ["diabetes"],
+    county: ["dublin"],
+    blurb: "National referral centre for pituitary disease, adrenal tumours and complex neuroendocrine conditions, with a weekly pituitary/adrenal/thyroid MDT and joint clinics with neurosurgery.",
+    details: [
+      "St James's Hospital's own endocrinology service (checked 10 Sep 2026) covers general/thyroid/reproductive endocrinology and diabetes but does not currently list adrenal or neuroendocrine services on its own site — Beaumont is the confirmed centre for those.",
+    ],
+    referral: "GP referral via Healthlink, addressed to the Pituitary/Adrenal MDT; practices without Healthlink can email endocrinologyadmin@beaumont.ie.",
+    contact: { phone: "01 809 2811", email: "endocrinologyadmin@beaumont.ie" },
+    checked: "10 Sep 2026"
+  },
 
   // ---- Nephrology & Kidney ----
   {
@@ -4553,6 +4655,7 @@ const ENTRIES = [
   {
     id: "stjames-stem-cell-transplant",
     name: "St James's Hospital — National Adult Stem Cell/Bone Marrow Transplant Programme",
+    sector: "voluntary",
     specialty: ["haematology"],
     county: ["dublin"],
     blurb: "Ireland's national programme for adult stem cell and bone marrow transplants.",
@@ -4575,6 +4678,7 @@ const ENTRIES = [
   {
     id: "national-coagulation-centre",
     name: "National Coagulation Centre, St James's Hospital",
+    sector: "voluntary",
     specialty: ["haematology"],
     county: ["dublin"],
     blurb: "Ireland's national treatment centre for haemophilia and other inherited bleeding disorders.",
@@ -4634,6 +4738,7 @@ const ENTRIES = [
   {
     id: "cappagh-orthopaedic-hospital",
     name: "National Orthopaedic Hospital Cappagh",
+    sector: "voluntary",
     specialty: ["orthopaedics"],
     county: ["dublin"],
     blurb: "Ireland's largest elective orthopaedic centre — 1,600–1,700+ hip/knee replacement and revision surgeries a year.",
@@ -4735,6 +4840,34 @@ const ENTRIES = [
     referral: "GP referral.",
     contact: { web: "ntpf.ie" },
     checked: "4 Sep 2026"
+  },
+  {
+    id: "national-burns-unit-sjh",
+    name: "National Burns Unit, St James's Hospital",
+    sector: "voluntary",
+    specialty: ["orthopaedics"],
+    county: ["dublin"],
+    blurb: "National burns service for patients aged 14+, from across the island of Ireland.",
+    details: [
+      "Paediatric major burns (under 14) go to the Plastic Surgery Service at CHI Temple Street, the national centre for paediatric major burns — referrals there must be made by phone to the on-call Plastic Surgery doctor.",
+    ],
+    referral: "Referred from Emergency Departments, GP practices, or healthcare centres; direct emergency transfer for major burns.",
+    contact: { phone: "01 416 2326" },
+    checked: "10 Sep 2026"
+  },
+  {
+    id: "national-major-trauma-centres",
+    name: "About Ireland's Major Trauma Centres",
+    specialty: ["orthopaedics"],
+    county: ["dublin", "cork-city"],
+    blurb: "Major Trauma Centres at the Mater Hospital (Central Trauma Network, Dublin) and Cork University Hospital (South Trauma Network) receive high-severity trauma via ambulance diversion, not routine referral. Operational since April 2023.",
+    details: [
+      "St Vincent's University Hospital and Tallaght University Hospital are designated Trauma Units for the Dublin area, working alongside the Mater as the Major Trauma Centre.",
+      "This isn't a self-referral or GP-referral pathway — patients reach these centres via emergency ambulance diversion (PHECC protocol) or inter-hospital transfer.",
+    ],
+    referral: "Not GP-referred — reached via emergency ambulance diversion or inter-hospital trauma transfer.",
+    contact: { web: "gov.ie" },
+    checked: "10 Sep 2026"
   },
 
   // ---- Mental Health Services (General Adult) ----
@@ -4889,6 +5022,7 @@ const ENTRIES = [
   {
     id: "stjames-clinical-immunology",
     name: "St James's Hospital — Clinical Immunology Department",
+    sector: "voluntary",
     specialty: ["allergy"],
     county: ["dublin"],
     blurb: "Ireland's leading adult allergy/immunology centre — a twice-weekly outpatient clinic plus a 5-day ambulatory day ward. Accredited Jeffrey Modell Foundation centre and Ireland's first UCARE centre.",
@@ -4900,6 +5034,7 @@ const ENTRIES = [
   {
     id: "chi-paediatric-allergy",
     name: "Children's Health Ireland — Paediatric Allergy",
+    sector: "voluntary",
     specialty: ["allergy", "parenting"],
     county: ["dublin"],
     blurb: "Paediatric allergy service prioritising anaphylaxis, food allergy, and allergic rhino-conjunctivitis.",
@@ -5045,6 +5180,7 @@ const ENTRIES = [
   {
     id: "beaumont-prostate-rac",
     name: "Beaumont Hospital Rapid Access Prostate Clinic",
+    sector: "voluntary",
     specialty: ["mens-health"],
     county: ["dublin"],
     blurb: "One of 8 NCCP-designated Rapid Access Prostate Clinics — target is around 20 days from GP referral to first assessment.",
@@ -5056,6 +5192,7 @@ const ENTRIES = [
   {
     id: "mater-prostate-rac",
     name: "Mater Misericordiae University Hospital Rapid Access Prostate Clinic",
+    sector: "voluntary",
     specialty: ["mens-health"],
     county: ["dublin"],
     blurb: "One of 8 NCCP-designated Rapid Access Prostate Clinics.",
@@ -5066,6 +5203,7 @@ const ENTRIES = [
   {
     id: "stjames-prostate-rac",
     name: "St James's Hospital Rapid Access Prostate Clinic",
+    sector: "voluntary",
     specialty: ["mens-health"],
     county: ["dublin"],
     blurb: "One of 8 NCCP-designated Rapid Access Prostate Clinics; also a designated centre for prostate cancer surgery.",
@@ -5076,6 +5214,7 @@ const ENTRIES = [
   {
     id: "stvincents-prostate-rac",
     name: "St Vincent's University Hospital Rapid Access Prostate Clinic",
+    sector: "voluntary",
     specialty: ["mens-health"],
     county: ["dublin"],
     blurb: "One of 8 NCCP-designated Rapid Access Prostate Clinics.",
@@ -5328,6 +5467,7 @@ const ENTRIES = [
   {
     id: "mater-cancer-centre",
     name: "Mater Misericordiae University Hospital Cancer Centre",
+    sector: "voluntary",
     specialty: ["oncology"],
     county: ["dublin"],
     blurb: "One of 8 NCCP-designated adult cancer centres.",
@@ -5338,6 +5478,7 @@ const ENTRIES = [
   {
     id: "stjames-cancer-centre",
     name: "St James's Hospital Cancer Centre",
+    sector: "voluntary",
     specialty: ["oncology"],
     county: ["dublin"],
     blurb: "One of 8 NCCP-designated adult cancer centres; upper-GI cancer surgery is centred here.",
@@ -5484,6 +5625,7 @@ const ENTRIES = [
   {
     id: "beaumont-thrombectomy",
     name: "Beaumont Hospital Stroke & Thrombectomy Service",
+    sector: "voluntary",
     specialty: ["stroke"],
     county: ["dublin"],
     blurb: "One of Ireland's 2 comprehensive/endovascular thrombectomy (EVT) centres, operating 24/7 — an ESO-certified Stroke Centre.",
@@ -5827,6 +5969,7 @@ const ENTRIES = [
   {
     id: "chi-hub",
     name: "Children's Health Ireland (CHI) — Paediatric Hospitals",
+    sector: "voluntary",
     specialty: ["paediatrics"],
     county: ["dublin"],
     blurb: "The tertiary hub for paediatric care: CHI at Crumlin, Temple Street, Tallaght, and Connolly, with the new National Children's Hospital in development.",
