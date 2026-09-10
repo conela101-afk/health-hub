@@ -70,14 +70,17 @@ const SPECIALTIES = [
 // All 32 traditional counties (26 Republic + 6 Northern Ireland), so every
 // county has somewhere to browse even before it has entries. Cork keeps its
 // existing sub-area split (already used by real entries); other counties
-// start empty and are populated as service data is researched.
+// start empty and are populated as service data is researched. Cork's
+// sub-area labels lead with the county name ("Cork (City)") so the area
+// list reads as one Cork entry with a qualifier, not three separate
+// counties — and so they sort alphabetically in place, same as any other.
 const COUNTIES = [
-  { id: "cork-city",  label: "Cork City" },
-  { id: "cork-north", label: "North Cork" },
-  { id: "cork-west",  label: "West Cork" },
   { id: "carlow",     label: "Carlow" },
   { id: "cavan",      label: "Cavan" },
   { id: "clare",      label: "Clare" },
+  { id: "cork-city",  label: "Cork (City)" },
+  { id: "cork-north", label: "Cork (North)" },
+  { id: "cork-west",  label: "Cork (West)" },
   { id: "donegal",    label: "Donegal" },
   { id: "dublin",     label: "Dublin" },
   { id: "galway",     label: "Galway" },
@@ -6700,10 +6703,9 @@ I enclose a copy of [passport / driving licence / public services card] as
 proof of identity.
 
 TIMELINE
-I understand you must respond without undue delay and in any event within one
-month of receipt. If you consider the request complex and intend to extend
-that period by up to two further months, please tell me in writing within the
-first month, with your reasons.
+Under Article 15, you have one month from receipt to respond. If the request
+is complex and you intend to extend that by up to two further months, please
+tell me in writing within the first month, with your reasons.
 
 If you intend to withhold any part of my records, please tell me which parts,
 the specific legal basis for withholding them, and confirm you have released
@@ -6763,8 +6765,8 @@ BASIS OF REQUEST
 [Choose the paragraph that applies and delete the others:]
 
   [ ] Personal records: These records contain my own personal information.
-      I understand no fee applies to a request for personal records. I enclose
-      a copy of [ID document] as proof of identity.
+      No fee applies to a request for personal records. I enclose a copy of
+      [ID document] as proof of identity.
 
   [ ] Records of a deceased person: I am seeking the records of [name],
       date of birth [DOB], who died on [date]. I am their [personal
@@ -6772,15 +6774,15 @@ BASIS OF REQUEST
       other — specify]. I enclose [death certificate / grant of probate /
       evidence of relationship] and a copy of my own photo ID.
 
-  [ ] Non-personal records: I understand there is no fee for the initial
-      request. If search, retrieval and copying charges are likely to apply,
-      please tell me the estimated cost before you begin work.
+  [ ] Non-personal records: There is no fee for the initial request. If
+      search, retrieval and copying charges are likely to apply, please give
+      me an estimated cost before you begin work.
 
 ASSISTANCE
 If any part of this request is unclear, please contact me rather than
-refusing it — I am happy to narrow or reword it.
+refusing it outright — I can narrow or reword it.
 
-I understand you must acknowledge this request within 10 working days and
+Under the Act, you must acknowledge this request within 10 working days and
 issue a decision within 20 working days.
 
 Yours faithfully,
@@ -6830,9 +6832,9 @@ Freedom of Information Act 2014.
 I enclose the internal review fee of €[30 / 10]. [I hold a medical card,
 number ___, and am applying the reduced fee.]
 
-I understand the review will be carried out by a member of staff more senior
-than the original decision-maker, and that I may apply to the Office of the
-Information Commissioner if I remain dissatisfied.
+Please confirm the review will be carried out by someone more senior than the
+original decision-maker. If I remain dissatisfied with the outcome, I can
+apply to the Office of the Information Commissioner.
 
 Yours faithfully,
 [Signature]
@@ -6898,8 +6900,8 @@ IDENTIFICATION
 I enclose a copy of my [passport / driving licence] as proof of identity.
 
 TIMELINE
-I understand you have one calendar month to respond, extendable by up to two
-further months if the request is complex, in which case you will tell me
+You have one calendar month to respond under the UK GDPR, extendable by up to
+two further months for a complex request — in which case, please tell me
 within the first month.
 
 If any part of my records is withheld, please tell me which parts and the
@@ -6983,9 +6985,9 @@ communicated, recorded, or followed up. For example:]
 7. DOCUMENTS ENCLOSED
 [e.g. copy of appointment letter dated __; copy of correspondence.]
 
-I understand a complaints officer will contact me within 5 working days if
-an investigation is required, and that I should receive a response within
-30 working days, or be told if more time is needed.
+A complaints officer should contact me within 5 working days if an
+investigation is required, with a response within 30 working days, or an
+explanation if more time is needed.
 
 Please acknowledge receipt of this complaint in writing.
 
@@ -6996,14 +6998,13 @@ Yours faithfully,
 
 ---
 Keep a log from day one: date, who you spoke to, what was said, what was
-promised, what happened next. It's the single most useful thing you can do
-if you need to escalate.`,
+promised, what happened next. You'll need it if this goes to escalation.`,
   },
   {
     id: "complaint-overdue-roi",
     title: "Chasing an overdue complaint (Republic of Ireland)",
     jurisdiction: "roi",
-    useFor: "Your Your Service Your Say complaint has gone past its stated deadline (30 working days for a Stage 2 investigation, or 20 working days if it said it needed more time) with no update. This happens more often than the official timelines suggest — the Ombudsman's own reports document waits of many months, occasionally years — so chasing it in writing is a normal, reasonable step, not an overreaction.",
+    useFor: "Your Your Service Your Say complaint has gone past its stated deadline (30 working days for a Stage 2 investigation, or 20 working days if it said it needed more time) with no update. The Ombudsman's own reports document waits of many months, sometimes years, so it's worth chasing in writing rather than waiting it out.",
     sendTo: "The complaints officer handling your complaint, or yoursay@hse.ie if you don't have a direct contact.",
     deadline: "No fixed deadline for sending this — send it as soon as the stated timeline has passed.",
     body: `[Your name]
@@ -7025,10 +7026,10 @@ Dear Complaints Officer,
 I am following up on my formal complaint made under Your Service Your Say
 on [date] [, reference number ___ if given].
 
-I understand that a complaints officer should contact me within 5 working
-days if an investigation is required, and that I should receive a response
-within 30 working days — or be told if more time is needed, with an update
-at least every 20 working days.
+Under the Your Service Your Say process, a complaints officer should have
+contacted me within 5 working days if an investigation was required, with a
+response due within 30 working days — or an update at least every 20 working
+days if more time was needed.
 
 As of today, [X] working days have passed since I made my complaint, and I
 have not received [an acknowledgement / an update / a response] in that
@@ -7041,9 +7042,8 @@ Could you please:
   3. If there has been a delay, explain briefly why, so I understand where
      things stand.
 
-I am not looking to cause difficulty — I understand services are stretched
-— but I would appreciate an update, and I'd like this chase noted on my
-complaint file.
+I'd appreciate an update, and I'd like this follow-up noted on my complaint
+file.
 
 Yours faithfully,
 
@@ -7092,10 +7092,9 @@ example: the investigation did not address point [X] of my complaint; the
 findings were not supported by the records; a recommendation was made but no
 evidence has been provided that it was implemented.]
 
-I understand your office cannot examine clinical judgment. My complaint
-concerns [how the decision was made / how it was communicated / how it was
-recorded / whether the process was followed], not the clinical decision
-itself.
+My complaint concerns [how the decision was made / how it was communicated /
+how it was recorded / whether the process was followed], not the clinical
+decision itself, which falls outside your office's remit.
 
 WHAT I AM LOOKING FOR
 [e.g. a finding on whether the process was properly followed; a
@@ -7130,10 +7129,10 @@ const SCHEME_LINKS = [
     jurisdiction: "roi",
     blurb: "Free GP visits, prescribed medicines, and public hospital care if you qualify — means-tested under 70, or automatic in some circumstances.",
     prep: [
-      "The single biggest cause of delay is an incomplete application — have everything below ready before you start, not gathered as you go.",
+      "An incomplete application is the most common cause of delay — have everything below ready before you start, not gathered as you go.",
       "PPS number for everyone the card would cover.",
       "Proof of income for the means test (payslips, social welfare statement, or accounts if self-employed) — for everyone in the household being assessed, not just you.",
-      "Proof of any allowable expenses you want counted (rent or mortgage statements, childcare costs, nursing home/home care costs) — these raise your effective income limit, so it's worth including them rather than leaving money on the table.",
+      "Proof of any allowable expenses you want counted (rent or mortgage statements, childcare costs, nursing home/home care costs) — these raise your effective income limit, so include them.",
       "Proof of address and, if relevant, evidence you intend to live in Ireland for at least a year.",
       "If applying on medical/hardship grounds above the income limit, ask your GP or consultant for a supporting letter detailing your condition and its costs before you submit — this goes to a medical officer for a discretionary decision.",
     ],
