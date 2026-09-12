@@ -323,6 +323,7 @@ h1,h2,h3{ font-family:var(--font); }
 .resource-list li{ font-size:14.5px; line-height:1.6; margin-bottom:7px; }
 .resource-list a{ color:var(--violet-deep); text-decoration:none; font-weight:600; }
 .resource-list a:hover{ text-decoration:underline; }
+.resource-list a.disabled-link{ color:var(--ink-faint); pointer-events:none; }
 
 /* ---------- Letter templates ---------- */
 .template-card{

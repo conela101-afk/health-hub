@@ -28,6 +28,7 @@ jobs:
           node --check app.js
           node --check data.js
           node --check data/facilities.js
+          node --check data/conditions.js
           node --check sw.js
 
       - name: Guard against data.js being wiped or truncated

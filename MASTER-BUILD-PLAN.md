@@ -83,6 +83,12 @@ This is a full second product surface (Patient Passport, incident logs, referral
 
 *Note: `Patient Passport` and a call/referral log already exist in the repo per git history (commits around "Add Patient Passport and call/referral log"). Confirm what the PDF actually adds beyond what's already shipped before scoping this phase, rather than treating it as entirely new.*
 
+**Phase F — Condition information directory (link-out layer, MVP shipped 12 Sept 2026)**
+A new research doc (`Health_Hub_Condition_Directory__All-Island_Source_Verification_and_Link-Out_Architecture.md`) proposed a three-tier "search a condition → link out" feature: official A-Z (HSE/NHS/nidirect/patient.info), disease charities, and a medication-leaflet search (HPRA/medicines.ie/emc/MHRA). Treated the same way Phase D's facilities register was: a separate layer (`data/facilities.js` → now also `data/conditions.js`), not a `data.js` change.
+- **Shipped:** `#/conditions` (search/filter index + detail pages, 104 conditions from the doc's Section E seed list) and `#/medicines` (live drug-name search redirect to regulator leaflet databases). See `CHANGELOG.md` (12 Sept 2026) for the full breakdown.
+- **The same network-egress block hit during Phase D recurred** — this session couldn't reach any external domain to verify a single URL live. Rather than guess ~90 HSE/NHS slugs from a stated pattern (a real link-rot risk the source doc itself warns against), only the 13 conditions where the doc wrote out a complete, pre-confirmed URL got a condition-specific deep link; every other condition still resolves via a universal HSE/nidirect/NHS-search fallback block shown on every detail page.
+- **Open follow-up, needs a session with real network access:** work through the remaining ~91 conditions' HSE.ie/NHS.uk deep links (verify-then-store, per site convention), then layer in Tier 2 (the charity list in the source doc's Section B — BHF, Versus Arthritis, Diabetes UK/Ireland, Irish Cancer Society, Mind, etc.) the same way Stage 2 of the source doc recommends. Not blocking — the shipped fallback links mean nothing in `#/conditions` is currently a dead end.
+
 ---
 
 ## 3. Suggested next session
