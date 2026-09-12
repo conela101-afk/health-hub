@@ -1183,6 +1183,30 @@ const ENTRIES = [
     checked: "6 Sep 2026"
   },
   {
+    id: "stvincents-eating-disorder",
+    name: "St Vincent's University Hospital Adult Eating Disorder Service",
+    specialty: ["eating", "mh"],
+    county: ["dublin"],
+    blurb: "Public adult eating disorder service — as of recent reporting, one of the only sources of dedicated inpatient beds for adults nationally (3 beds), against the National Clinical Programme's target of 20.",
+    details: ["This scarcity is well documented, not a one-off complaint — treat waiting times as a real risk to plan around, and ask your GP about the Bodywhys peer-support route (see Support orgs) alongside a referral, not instead of one."],
+    referral: "GP or consultant referral.",
+    contact: { phone: "01 221 4000", extra: "Main hospital switchboard — ask for the Adult Eating Disorder Service." },
+    checked: "12 Sep 2026"
+  },
+  {
+    id: "lois-bridges",
+    name: "Lois Bridges",
+    specialty: ["eating"],
+    county: ["dublin"],
+    sector: "private",
+    provider: "Lois Bridges",
+    blurb: "Ireland's only dedicated residential and day-patient treatment centre solely for anorexia, bulimia, and binge eating disorder, based in Sutton.",
+    details: ["A GP referral form is downloadable from their site; call ahead as beds are described as operating at capacity most of the time."],
+    referral: "GP referral (referral form on their website); self-pay or health-insurance-funded.",
+    contact: { phone: "01 839 6147", email: "info@loisbridges.ie", web: "loisbridges.ie", address: "3 Greenfield Road, Sutton, Dublin" },
+    checked: "12 Sep 2026"
+  },
+  {
     id: "national-contraception-scheme",
     name: "HSE Free Contraception Scheme",
     specialty: ["contraception"],
@@ -3837,6 +3861,17 @@ const ENTRIES = [
     contact: { email: "lynchsyndromeirl@gmail.com", web: "lynchsyndromeireland.com" },
     checked: "4 Sep 2026"
   },
+  {
+    id: "ni-regional-genetics",
+    name: "Northern Ireland Regional Genetics Service",
+    specialty: ["genetics"],
+    county: ["antrim"],
+    blurb: "NI's single genetics service, based at Belfast City Hospital but running face-to-face clinics across the region (Altnagelvin, Antrim Area, Causeway, Daisy Hill, South West Acute, Ulster Hospital, and others).",
+    details: [],
+    referral: "GP or consultant referral.",
+    contact: { phone: "028 9504 8022", email: "genetic.medicine@belfasttrust.hscni.net", address: "Department of Medical Genetics, A Floor, Belfast City Hospital, Lisburn Road, Belfast BT9 7AB" },
+    checked: "12 Sep 2026"
+  },
 
   // ---- Sexual Health & STI Testing (GUM clinics) ----
   {
@@ -4623,6 +4658,20 @@ const ENTRIES = [
     checked: "4 Sep 2026"
   },
   {
+    id: "beaumont-kidney-centre",
+    name: "Beaumont Hospital Kidney Centre / National Kidney Transplant Service",
+    specialty: ["nephrology"],
+    county: ["dublin"],
+    blurb: "Ireland's national referral centre for kidney transplantation (the National Kidney Transplant Service, NKTS) and the country's largest nephrology/dialysis provider — haemodialysis, peritoneal dialysis, plasma exchange, and around 30,000 haemodialysis treatments a year.",
+    details: [
+      "Runs 2 satellite haemodialysis units in the Dublin region (Northern Cross and Beacon Renal, Sandyford) plus one in Drogheda.",
+      "Dialysis Therapies Centre direct line: 01 809 2730.",
+    ],
+    referral: "Nephrology consultant referral for transplant assessment; GP or consultant referral for general nephrology.",
+    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for the Kidney Centre or Renal Unit.", web: "nkts.ie" },
+    checked: "12 Sep 2026"
+  },
+  {
     id: "belfast-city-nephrology",
     name: "Belfast City Hospital — Regional Nephrology",
     specialty: ["nephrology"],
@@ -4936,7 +4985,7 @@ const ENTRIES = [
   {
     id: "st-patricks-mental-health",
     name: "St Patrick's Mental Health Services",
-    specialty: ["adultmh", "mh"],
+    specialty: ["adultmh", "mh", "eating"],
     county: ["dublin"],
     sector: "private",
     provider: "St Patrick's Mental Health Services",
@@ -4944,6 +4993,7 @@ const ENTRIES = [
     details: [
       "Referrals go through the Referral and Assessment Service, not a GP letter alone — GPs send eReferrals via Healthlink or practice IT systems (Socrates/HealthOne), selecting \"St Patrick's Mental Health Services\" then \"Psychiatric Referral Service.\"",
       "Referral and Assessment Service: 01 249 3635, Mon–Fri 9am–5pm; main switchboard (incl. outside those hours): 01 249 3200.",
+      "Runs a dedicated Eating Disorders Programme (adults 18+) with inpatient, day-care, and outpatient options — same Referral and Assessment Service route as above.",
       "JCI accreditation status not confirmed — listed as a private hospital on the HIA's hospital list, but not confirmed JCI-accredited.",
     ],
     referral: "GP referral (eReferral via Healthlink or practice IT system).",
@@ -5400,6 +5450,28 @@ const ENTRIES = [
     details: ["Falls clinics cross-link with Bone Health & Osteoporosis services."],
     referral: "GP or hospital referral.",
     contact: { web: "hse.ie" },
+  },
+  {
+    id: "stjames-medel",
+    name: "St James's Hospital — Medicine for the Elderly (MedEl)",
+    specialty: ["olderpersons"],
+    county: ["dublin"],
+    blurb: "Comprehensive geriatric assessment for over-65s — admission, rehabilitation, and day-hospital care, plus specialist clinics including a Falls & Blackout Unit, falls & osteoporosis service, and memory clinic.",
+    details: [],
+    referral: "GP or hospital referral.",
+    contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Medicine for the Elderly (MedEl)." },
+    checked: "12 Sep 2026"
+  },
+  {
+    id: "beaumont-geriatric-medicine",
+    name: "Beaumont Hospital — Department of Geriatric Medicine",
+    specialty: ["olderpersons"],
+    county: ["dublin"],
+    blurb: "Multidisciplinary geriatric care — acute inpatient services, general geriatric clinics, a nurse-led day hospital at the St Joseph's Hospital campus, and a fracture liaison clinic.",
+    details: [],
+    referral: "GP or hospital referral.",
+    contact: { phone: "01 809 3000", extra: "Main hospital switchboard — ask for Geriatric Medicine." },
+    checked: "12 Sep 2026"
   },
   {
     id: "asi-national",
