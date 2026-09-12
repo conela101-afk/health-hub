@@ -1,0 +1,72 @@
+name: Data integrity check
+
+# Catches the failure mode described in CHANGELOG.md's 2026-09-06 incident:
+# a direct push to main silently truncated data.js to a 1-line placeholder,
+# and nothing caught it until someone noticed by hand. This runs on every
+# push to main (direct or merged) and on every PR, so a wiped or
+# syntactically broken data file fails loudly instead of shipping quietly.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Syntax-check JS files
+        run: |
+          set -e
+          node --check app.js
+          node --check data.js
+          node --check data/facilities.js
+          node --check data/conditions.js
+          node --check sw.js
+
+      - name: Guard against data.js being wiped or truncated
+        run: |
+          set -e
+          count=$(grep -c '^\s*id: "' data.js || true)
+          size=$(wc -c < data.js)
+          echo "data.js: $count entries, $size bytes"
+          if [ "$count" -lt 400 ]; then
+            echo "::error file=data.js::Only $count entries found (expected 400+). This looks like the 2026-09-06-style wipe -- data.js may have been truncated to a placeholder."
+            exit 1
+          fi
+          if [ "$size" -lt 200000 ]; then
+            echo "::error file=data.js::Only $size bytes (expected 200KB+). data.js may have been truncated."
+            exit 1
+          fi
+
+      - name: Guard against data/facilities.js being wiped or truncated
+        run: |
+          set -e
+          count=$(grep -o '"id"' data/facilities.js | wc -l)
+          size=$(wc -c < data/facilities.js)
+          echo "data/facilities.js: $count entries, $size bytes"
+          if [ "$count" -lt 3000 ]; then
+            echo "::error file=data/facilities.js::Only $count entries found (expected 3000+ -- the register has 4,111 rows per data/sources/README.md). File may have been truncated."
+            exit 1
+          fi
+          if [ "$size" -lt 500000 ]; then
+            echo "::error file=data/facilities.js::Only $size bytes (expected 500KB+). File may have been truncated."
+            exit 1
+          fi
+
+      - name: Guard against app.js being wiped or truncated
+        run: |
+          set -e
+          size=$(wc -c < app.js)
+          echo "app.js: $size bytes"
+          if [ "$size" -lt 30000 ]; then
+            echo "::error file=app.js::Only $size bytes (expected 30KB+). app.js may have been truncated."
+            exit 1
+          fi
