@@ -404,15 +404,16 @@
 
   const SECTOR_FILTERS = [
     { id: "", label: "All" },
-    { id: "public", label: "Public" },
+    { id: "public", label: "Public", title: "State-run HSE/HSC bodies (voluntary hospitals like St Vincent's and the Mater have their own tab)" },
     { id: "private", label: "Private" },
-    { id: "voluntary", label: "Voluntary" },
+    { id: "voluntary", label: "Voluntary", title: "Legally independent, HSE/HSC-funded voluntary hospitals (e.g. St Vincent's, the Mater)" },
   ];
 
   function sectorFilterHtml(id, active){
     const options = SECTOR_FILTERS.map(f => {
       const href = f.id ? `#/specialty/${id}/${f.id}` : `#/specialty/${id}`;
-      return `<a class="segment${f.id === active ? " active" : ""}" href="${href}">${f.label}</a>`;
+      const titleAttr = f.title ? ` title="${f.title}"` : "";
+      return `<a class="segment${f.id === active ? " active" : ""}" href="${href}"${titleAttr}>${f.label}</a>`;
     }).join("");
     return `<div class="segmented">${options}</div>`;
   }
@@ -466,7 +467,8 @@
     const q = query.toLowerCase();
     const terms = q.split(/\s+/).filter(Boolean);
     const isPrivateQuery = terms.includes("private");
-    const otherTerms = terms.filter(t => t !== "private");
+    const isVoluntaryQuery = terms.includes("voluntary");
+    const otherTerms = terms.filter(t => t !== "private" && t !== "voluntary");
 
     let privateEntries = [];
     if (isPrivateQuery){
@@ -477,18 +479,32 @@
         );
       }
     }
+    let voluntaryEntries = [];
+    if (isVoluntaryQuery){
+      voluntaryEntries = ENTRIES.filter(e => sectorOf(e) === "voluntary");
+      if (otherTerms.length){
+        voluntaryEntries = voluntaryEntries.filter(e =>
+          otherTerms.every(t => entryHay(e).includes(t) || (e.provider || "").toLowerCase().includes(t))
+        );
+      }
+    }
     const privateIds = new Set(privateEntries.map(e => e.id));
+    const voluntaryIds = new Set(voluntaryEntries.map(e => e.id));
 
-    const results = ENTRIES.filter(e => !privateIds.has(e.id) && entryHay(e).includes(q));
+    const results = ENTRIES.filter(e => !privateIds.has(e.id) && !voluntaryIds.has(e.id) && entryHay(e).includes(q));
     const matchesOrg = o => [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase().includes(q);
     const orgResults = SUPPORT_ORGS.filter(matchesOrg);
     const generalOrgResults = GENERAL_ADVOCACY_ORGS.filter(matchesOrg);
-    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length;
+    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length + voluntaryEntries.length;
 
     const byProvider = {};
     privateEntries.forEach(e => { (byProvider[e.provider] = byProvider[e.provider] || []).push(e); });
     const privateSection = privateEntries.length
       ? `<p class="section-title">Private hospitals &amp; clinics</p>${Object.keys(byProvider).sort().map(p => providerGroupCardHtml(p, byProvider[p])).join("")}`
+      : "";
+
+    const voluntarySection = voluntaryEntries.length
+      ? `<p class="section-title">Voluntary hospitals</p>${voluntaryEntries.map(entryCardHtml).join("")}`
       : "";
 
     const cards = results.length ? results.map(entryCardHtml).join("") : "";
@@ -500,7 +516,7 @@
       : "";
     const safeQuery = escapeHtml(query);
     const body = totalCount
-      ? `${privateSection}${cards}${orgCards}${generalOrgCards}`
+      ? `${privateSection}${voluntarySection}${cards}${orgCards}${generalOrgCards}`
       : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>`;
     app.innerHTML = `
       <div class="page-head">
