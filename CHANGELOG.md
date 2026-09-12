@@ -2,6 +2,12 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-09-12 [Claude]
+- Closed out the two open follow-ups from `SECTOR_AUDIT.md`:
+  - Added a `voluntary` magic search keyword, mirroring `private` — voluntary hospitals grew to 72 tagged entries since the audit (2026-09-10 pass), so the gap was worth closing. Renders as flat cards under a "Voluntary hospitals" heading rather than reusing `private`'s provider-grouping, since only 1 of the 72 voluntary entries has a `provider` field (grouping by it would have bucketed 71 under "undefined").
+  - Added `title` tooltips to the Public and Voluntary sector tabs clarifying "Public" means state-run HSE/HSC bodies specifically (voluntary hospitals have their own tab), rather than changing the visible label text.
+  - Verified in-browser via Playwright: `#/search/voluntary` returns 76 results with a correct "Voluntary hospitals" section and no console errors beyond the pre-existing sandboxed-network CDN failures (Leaflet, unrelated to this change); tab tooltips render correctly on `#/specialty/gynae/voluntary`.
+
 ## 2026-09-07 [Claude]
 - **Crisis category gap fix.** User feedback: `crisis` was helpline/text-only with no physical facilities listed. Added 6 acute inpatient psychiatric unit entries (Mental Health Commission approved centres) covering Louth/Meath (Drogheda, Cross Lanes) and Dublin (Ashlin Centre/Beaumont, Connolly Hospital, St Aloysius/Mater, Jonathan Swift Clinic/St James's, Tallaght). Each entry is explicit that these are **not** walk-in crisis centres — admission is via GP/CMHT referral or assessment through the linked hospital's own ED, per those hospitals' own published psychiatry pages. `data.js`: 591 → 597 entries.
 - Tagged the pre-existing `hse-approved-ahr-clinics` entry `sector: "private"` (its name already said "Private" but the field was missing).
