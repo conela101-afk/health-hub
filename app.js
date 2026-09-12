@@ -298,6 +298,7 @@
         <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
         <a class="pill" href="#/prep">Prep for an appointment</a>
         <a class="pill" href="#/passport">My Patient Passport</a>
+        <a class="pill" href="#/conditions">Search a condition</a>
       `
       : `
         <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
@@ -310,6 +311,8 @@
         <a class="pill" href="#/passport">My Patient Passport</a>
         <a class="pill" href="#/log">My call &amp; referral log</a>
         <a class="pill" href="#/facilities">Find a Facility (regulated centres, HIQA &amp; RQIA)</a>
+        <a class="pill" href="#/conditions">Search a condition (HSE, NHS &amp; charity info)</a>
+        <a class="pill" href="#/medicines">Search medicine leaflets</a>
         <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
       `;
     app.innerHTML = `
@@ -1138,6 +1141,151 @@ ${name}`;
     });
   }
 
+  // "Search a condition" link-out directory — CONDITIONS in
+  // data/conditions.js, kept separate from FACILITIES and the specialty
+  // ENTRIES: this maps a condition name to who explains it (HSE, NHS,
+  // charities), not to a local service that treats it. See that file's
+  // header for why most entries carry no condition-specific link yet and
+  // what a future session needs (real network access) to safely extend
+  // the seed list.
+  const CONDITION_LIST_CAP = 60;
+
+  function conditionRowHtml(c){
+    const accent = accentForId(c.category);
+    return `<a class="row" href="#/conditions/${c.id}">
+      <span class="cat-icon tag-${accent}">${iconSvg(PIN_ICON, 18)}</span>
+      <span class="row-body">
+        <h2>${c.name}</h2>
+        <span class="n">${c.category}</span>
+      </span>
+      <span class="arrow">›</span>
+    </a>`;
+  }
+
+  function renderConditions(){
+    const list = typeof CONDITIONS !== "undefined" ? CONDITIONS : [];
+
+    function draw(query){
+      const q = (query || "").trim().toLowerCase();
+      const filtered = q
+        ? list.filter(c => `${c.name} ${c.category} ${(c.keywords || []).join(" ")}`.toLowerCase().includes(q))
+        : list;
+      const shown = filtered.slice(0, CONDITION_LIST_CAP);
+      const listEl = document.getElementById("condition-results");
+      const countEl = document.getElementById("condition-result-count");
+      if (countEl){
+        countEl.textContent = filtered.length > shown.length
+          ? `Showing ${shown.length} of ${filtered.length} — refine your search to narrow further`
+          : `${filtered.length} condition${filtered.length === 1 ? "" : "s"}`;
+      }
+      if (listEl) listEl.innerHTML = shown.map(conditionRowHtml).join("") || `<p class="callout">No matches. Try a different name or abbreviation (e.g. "COPD", "MND", "AFib").</p>`;
+    }
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Search a condition</h1>
+        <p class="count" id="condition-result-count">${list.length} conditions</p>
+      </div>
+
+      <div class="callout">
+        This links out to official and charity patient-information pages — HSE.ie, NHS.uk, nidirect, and disease charities — it doesn't give medical advice or triage symptoms itself. Looking for a medicine's leaflet instead? <a href="#/medicines">Search medicine leaflets</a>.
+      </div>
+
+      <div class="search-field search-field-inline">
+        <input type="search" id="condition-filter" placeholder="Search by condition name or abbreviation…" autocomplete="off">
+      </div>
+      <div class="simple-list" id="condition-results"></div>
+    `;
+
+    draw("");
+    const filterInput = document.getElementById("condition-filter");
+    let debounce;
+    filterInput.addEventListener("input", () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => draw(filterInput.value), 150);
+    });
+  }
+
+  function renderConditionDetail(id){
+    const list = typeof CONDITIONS !== "undefined" ? CONDITIONS : [];
+    const c = list.find(x => x.id === id);
+    if (!c){ app.innerHTML = `<div class="empty-state">Not found.</div>`; return; }
+
+    const ownLinks = (c.links || []).map(l =>
+      `<li><a href="${l.url}" target="_blank" rel="noopener">${l.org} (${l.scope}) ↗</a></li>`
+    ).join("");
+
+    const officialLinks = typeof CONDITION_OFFICIAL_LINKS !== "undefined" ? [
+      CONDITION_OFFICIAL_LINKS.hse,
+      CONDITION_OFFICIAL_LINKS.nidirect,
+      CONDITION_OFFICIAL_LINKS.nhsSearch(c.name)
+    ] : [];
+    const officialLinksHtml = officialLinks.map(l =>
+      `<li><a href="${l.url}" target="_blank" rel="noopener">${l.org} ↗</a> — ${l.note}</li>`
+    ).join("");
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/conditions">‹ Search a condition</a>
+        <h1>${c.name}</h1>
+        <p class="count">${c.category}</p>
+      </div>
+      <div class="detail-card">
+        ${ownLinks ? `<p class="detail-section-title">Verified links for this condition</p><ul class="resource-list">${ownLinks}</ul>` : ""}
+        <p class="detail-section-title">Official directories (search or browse from here)</p>
+        <ul class="resource-list">${officialLinksHtml}</ul>
+        <p class="checked-note">These are signposting links, not medical advice. If a link looks out of date, use "Let us know" in the footer.</p>
+      </div>
+    `;
+  }
+
+  // Medication patient-information-leaflet search — MEDICINE_SEARCH_TARGETS
+  // in data/conditions.js. This is a live, user-typed query against
+  // regulator databases (HPRA, emc, MHRA) rather than a stored per-drug
+  // link, so it needs no per-item URL verification the way condition
+  // deep-links do — only the query-string patterns themselves, which are
+  // confirmed in the source research doc.
+  function renderMedicines(){
+    const targets = typeof MEDICINE_SEARCH_TARGETS !== "undefined" ? MEDICINE_SEARCH_TARGETS : [];
+
+    function draw(query){
+      const q = (query || "").trim();
+      const listEl = document.getElementById("medicine-targets");
+      if (!listEl) return;
+      listEl.innerHTML = targets.map(t => `
+        <li>
+          <a href="${t.url(q)}" target="_blank" rel="noopener" class="${q ? "" : "disabled-link"}"${q ? "" : ' aria-disabled="true" tabindex="-1"'}>${t.org} (${t.scope}) ↗</a> — ${t.note}
+        </li>
+      `).join("");
+    }
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Search medicine leaflets</h1>
+        <p class="count">Regulator-approved patient information leaflets, ROI &amp; UK/NI</p>
+      </div>
+
+      <div class="callout">
+        Type a medicine or active-ingredient name, then open it on whichever regulator database fits — HPRA/medicines.ie for the Republic, emc/MHRA for the UK &amp; NI. These leaflets are for the medicine itself, not a diagnosis.
+      </div>
+
+      <div class="search-field search-field-inline">
+        <input type="search" id="medicine-query" placeholder="e.g. paracetamol…" autocomplete="off">
+      </div>
+      <ul class="resource-list" id="medicine-targets"></ul>
+    `;
+
+    draw("");
+    const input = document.getElementById("medicine-query");
+    let debounce;
+    input.addEventListener("input", () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => draw(input.value), 150);
+    });
+  }
+
   // Print-only mode: hides site chrome and everything in the current page
   // except the one element marked .print-target, so "Print / Save PDF"
   // buttons produce a clean letter/checklist rather than the whole app
@@ -1631,6 +1779,9 @@ ${name}`;
     else if (parts[0] === "out-of-hours") renderOutOfHours();
     else if (parts[0] === "facilities" && !parts[1]) renderFacilities();
     else if (parts[0] === "facilities" && parts[1]) renderFacilityList(parts[1]);
+    else if (parts[0] === "conditions" && !parts[1]) renderConditions();
+    else if (parts[0] === "conditions" && parts[1]) renderConditionDetail(parts[1]);
+    else if (parts[0] === "medicines") renderMedicines();
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
