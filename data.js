@@ -4065,6 +4065,21 @@ const ENTRIES = [
     contact: { web: "sh24.org.uk" },
     checked: "4 Sep 2026"
   },
+  {
+    id: "guide-clinic-stjames",
+    name: "GUIDe Clinic, St James's Hospital — Sexual Health & Infectious Diseases",
+    specialty: ["sexualhealth"],
+    county: ["dublin"],
+    blurb: "Ireland's largest sexual health and infectious disease clinic, caring for over 3,900 people living with HIV and running 8,500+ outpatient appointments a year.",
+    details: [
+      "Located in Hospital 5, St James's Hospital, Dublin 8.",
+      "Some walk-in services for asymptomatic screening/PrEP and HIV PEP; online booking also available — confirm current walk-in and PEP status before publishing, as this changes with demand.",
+      "Mater Hospital is the National Isolation Unit for High Consequence Infectious Diseases (HCID) — a separate, narrower pathway from GUIDe."
+    ],
+    referral: "Walk-in for some services (verify current status); GP or self-referral for others.",
+    contact: { phone: "St James's Hospital switchboard — verify GUIDe direct line", extra: "Hospital 5, St James's Hospital, Dublin 8." },
+    checked: "13 Sep 2026"
+  },
 
   // ---- Pelvic Health Physiotherapy ----
   {
