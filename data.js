@@ -6039,6 +6039,20 @@ const ENTRIES = [
     referral: "GP, self-referral, or social-work referral (service-dependent).",
     contact: {},
   },
+  {
+    id: "nrh-dun-laoghaire",
+    name: "National Rehabilitation Hospital, Dún Laoghaire",
+    specialty: ["alliedhealth"],
+    county: ["dublin"],
+    blurb: "Ireland's national tertiary rehabilitation hospital for adults and children, for conditions such as spinal cord injury, acquired brain injury, and complex trauma.",
+    details: [
+      "Referrals accepted from consultants, physicians and GPs via the Central Referrals Office.",
+      "Contact details not independently verified — confirm before publishing."
+    ],
+    referral: "Consultant, physician or GP referral via Central Referrals Office.",
+    contact: { phone: "NRH main switchboard — verify direct number", extra: "Rochestown Avenue, Dún Laoghaire, Co. Dublin." },
+    checked: "13 Sep 2026"
+  },
 
   // ---- General Paediatrics (non-disability) ----
   {
