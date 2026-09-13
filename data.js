@@ -5695,6 +5695,20 @@ const ENTRIES = [
     referral: "",
     contact: {},
   },
+  {
+    id: "aya-cancer-national",
+    name: "National Adolescent & Young Adult (AYA) Cancer Service",
+    specialty: ["oncology"],
+    county: ["dublin", "cork", "galway"],
+    blurb: "National AYA cancer units at St James's Hospital, Cork University Hospital and University Hospital Galway, plus Children's Health Ireland, under the National AYA Cancer Framework 2021–2026.",
+    details: [
+      "Coordinated nationally via the AYA Multidisciplinary Meeting (MDM) — refer via ayamdm@healthmail.ie.",
+      "Contact details for each individual site not independently verified — confirm before publishing."
+    ],
+    referral: "Referral via treating oncology team; national AYA MDM available for complex cases.",
+    contact: { email: "ayamdm@healthmail.ie", extra: "Sites: St James's Hospital (Dublin), Cork University Hospital, University Hospital Galway, plus Children's Health Ireland." },
+    checked: "13 Sep 2026"
+  },
 
   // ---- Stroke ----
   {
