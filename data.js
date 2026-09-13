@@ -3431,6 +3431,20 @@ const ENTRIES = [
       { label: "Coeliac disease — patient.info", url: "https://patient.info/digestive-health/coeliac-disease-leaflet" }
     ]
   },
+  {
+    id: "svuh-liver-pancreas-transplant",
+    name: "St Vincent's University Hospital — National Liver & Pancreas Transplant Unit",
+    specialty: ["gastro"],
+    county: ["dublin"],
+    blurb: "Ireland's sole national centre for adult liver and pancreas (including combined kidney-pancreas) transplantation.",
+    details: [
+      "Adults only — children requiring liver transplant are referred to King's College Hospital, London.",
+      "Contact details and referral-route specifics not independently verified — confirm before publishing."
+    ],
+    referral: "Referral via treating hepatologist/gastroenterologist or consultant, usually following assessment at a regional liver unit.",
+    contact: { phone: "St Vincent's University Hospital main switchboard — verify direct extension", extra: "Ask for the Liver Transplant Unit / National Liver Transplant Programme." },
+    checked: "13 Sep 2026"
+  },
 
   // ---- Chronic Pain Management ----
   {
