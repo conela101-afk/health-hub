@@ -1228,8 +1228,9 @@ ${name}`;
     const c = list.find(x => x.id === id);
     if (!c){ app.innerHTML = `<div class="empty-state">Not found.</div>`; return; }
 
-    const ownLinks = (c.links || []).map(l =>
-      `<li><a href="${l.url}" target="_blank" rel="noopener">${l.org} (${l.scope}) ↗</a></li>`
+    const categoryLinks = (typeof CONDITION_CATEGORY_LINKS !== "undefined" && CONDITION_CATEGORY_LINKS[c.category]) || [];
+    const ownLinks = [...(c.links || []), ...categoryLinks].map(l =>
+      `<li><a href="${l.url}" target="_blank" rel="noopener">${l.org} (${l.scope}) ↗</a>${l.note ? ` — ${l.note}` : ""}</li>`
     ).join("");
 
     const officialLinks = typeof CONDITION_OFFICIAL_LINKS !== "undefined" ? [
