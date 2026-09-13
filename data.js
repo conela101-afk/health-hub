@@ -5695,6 +5695,20 @@ const ENTRIES = [
     referral: "",
     contact: {},
   },
+  {
+    id: "psycho-oncology-nccp",
+    name: "Psycho-Oncology Services (NCCP Model of Care)",
+    specialty: ["oncology"],
+    county: ["dublin"],
+    blurb: "Structured psychological support for cancer patients, delivered by multidisciplinary teams within Ireland's designated cancer centres, under the NCCP Model of Care for Psycho-Oncology (2020).",
+    details: [
+      "Examples of sites with psycho-oncology teams include St Vincent's University Hospital and Beaumont/St Luke's Radiation Oncology Network (SLRON) — full national site list not yet mapped in this entry.",
+      "Access is typically via the treating oncology team rather than direct self-referral — confirm before publishing."
+    ],
+    referral: "Via treating oncology/cancer team.",
+    contact: { extra: "Access via your treating cancer centre's psycho-oncology or psychology service." },
+    checked: "13 Sep 2026"
+  },
 
   // ---- Stroke ----
   {
