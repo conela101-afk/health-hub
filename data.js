@@ -6108,6 +6108,21 @@ const ENTRIES = [
     referral: "GP or ED referral.",
     contact: {},
   },
+  {
+    id: "chi-national-paediatric-tertiary",
+    name: "Children's Health Ireland — National Paediatric Intestinal Failure, Metabolic & Craniofacial Services",
+    specialty: ["paediatrics"],
+    county: ["dublin"],
+    blurb: "National tertiary paediatric services at CHI Crumlin/Temple Street, including intestinal failure and transplant (GHIFT — CHI's largest solid-organ transplant service), inherited metabolic medicine, and the national craniofacial centre.",
+    details: [
+      "GHIFT (Gastrointestinal, Hepatology & Intestinal Failure Transplant service) is the largest solid-organ transplant service within CHI.",
+      "National craniofacial centre based at CHI Temple Street; adult OMFS handled separately at St James's/Cork etc.",
+      "Contact details not independently verified — confirm before publishing."
+    ],
+    referral: "Consultant paediatrician or GP referral, usually following diagnosis at a regional paediatric unit.",
+    contact: { extra: "Children's Health Ireland at Crumlin / Temple Street." },
+    checked: "13 Sep 2026"
+  },
 
   // ---- Weight Management & Bariatric Care ----
   {
