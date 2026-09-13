@@ -3278,6 +3278,20 @@ const ENTRIES = [
     contact: { phone: "028 9018 4015", extra: "UK-wide helpline: 0808 800 5050", email: "helpline@epilepsy.org.uk" },
     checked: "6 Sep 2026"
   },
+  {
+    id: "beaumont-mnd-als",
+    name: "Beaumont Hospital — National ALS/MND Clinic",
+    specialty: ["neurology"],
+    county: ["dublin"],
+    blurb: "HSE-recognised national centre for motor neurone disease (MND/ALS), founded in 1994; GP referral and second opinions accepted.",
+    details: [
+      "Founded by Prof Orla Hardiman in 1994; per Research Motor Neurone (rmn.ie), 'now recognized by the HSE as the National Centre for ALS/MND.'",
+      "Contact details, clinic days and waiting times not independently verified — confirm with Beaumont switchboard before publishing."
+    ],
+    referral: "GP referral accepted; second opinions welcomed.",
+    contact: { phone: "Beaumont Hospital main switchboard — verify direct extension", extra: "Ask for the MND/ALS Clinic / Neurology." },
+    checked: "13 Sep 2026"
+  },
 
   // ---- Gastroenterology & IBD ----
   {
