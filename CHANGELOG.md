@@ -3,6 +3,15 @@
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-09-12 [Claude]
+- **Condition directory follow-up**: incorporated a corrected/expanded second pass of the same source research doc into `data/conditions.js` (PR #27's feature, merged earlier today). Same network-blocked constraint as before, so still nothing guessed — only the doc's own newly-confirmed complete URLs were added:
+  - Added Arthritis Ireland links to `gout` (`/be-active-with-arthritis/` — the doc's corrected slug; its own first-pass pattern of `/conditions/gout/` would have been wrong, confirming it was right not to template Arthritis Ireland's URLs) and `osteoarthritis` (`/conditions/osteoarthritis-oa/`).
+  - Added Crohn's & Colitis Ireland's confirmed diagnosis-explainer page to both `crohns-disease` and `ulcerative-colitis` (same umbrella IBD charity content page for both).
+  - New `CONDITION_CATEGORY_LINKS` mechanism (`data/conditions.js`) for a confirmed URL relevant to a whole category rather than one condition slug — seeded with the Irish Cancer Society's booklets/factsheets index, now shown on all 14 Oncology entries. `app.js`'s `renderConditionDetail` merges these in alongside a condition's own links.
+  - Confirmed `undertheweather.ie` (now retired, redirects to `www2.hse.ie/conditions/common-illnesses/` per the doc) was never referenced anywhere in this repo — nothing to fix there.
+  - Noted in `data/conditions.js`'s header for whoever eventually builds the Stage 3 link-checker flagged in `MASTER-BUILD-PLAN.md`: several genuine, live charity sites return non-200 to automated requests (Cloudflare/SiteGround bot protection), so a checker needs a manual/browser cross-check before flagging those dead.
+  - Verified in-browser via Playwright: `gout`, `osteoarthritis`, `crohns-disease`, and `breast-cancer` detail pages all render the new links correctly alongside the existing universal fallback block, no console errors.
+
+## 2026-09-12 [Claude]
 - Depth-checked the specialties `coverage-gap-tracker.md` had left at "5, therefore adequate" without verifying what those 5 entries actually were — the same blind spot the Cardiology build-out (6 Sep) exposed. Found two genuine gaps and fixed them:
   - **Nephrology**: every existing entry was either NI-specific or a passing mention inside a locator note — no named ROI clinical entry at all despite Beaumont Hospital being the sole national kidney transplant centre. Added Beaumont Hospital Kidney Centre / National Kidney Transplant Service (5 → 6).
   - **Eating Disorders**: every existing entry was youth/CAMHS-specific — adult services were entirely absent. Added St Vincent's University Hospital's adult service (flagging the well-documented "only 3 public inpatient beds nationally" fact rather than glossing over it), Lois Bridges (Ireland's only dedicated private eating-disorder residential/day facility), and tagged the existing St Patrick's Mental Health Services entry with its own Eating Disorders Programme (5 → 8).

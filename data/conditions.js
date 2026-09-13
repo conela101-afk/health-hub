@@ -22,6 +22,34 @@
 // index, nidirect's A-Z, and an NHS.uk site search for the condition name.
 // Before adding a new condition-specific link, verify it live first (site
 // convention, README.md) and add `checked: "D Mon YYYY"`.
+//
+// Updated 12 Sept 2026 from a corrected second pass of the same source
+// research (same provenance/network caveat above still applies — this
+// session also had no outbound network access, so only the doc's own
+// newly-confirmed complete URLs were added, still nothing guessed):
+// - Fixed nothing here directly, but the fix is worth recording: the first
+//   pass's own JSON example already avoided guessing an Arthritis Ireland
+//   gout URL, which was lucky — the doc's own first pass would have
+//   templated it as `/conditions/gout/`, which doesn't exist; the real
+//   page is `/be-active-with-arthritis/`. Added below now that it's
+//   confirmed, as a lesson in why this file doesn't template charity
+//   slugs from a stated pattern.
+// - Added newly-confirmed deep links: Arthritis Ireland (gout,
+//   osteoarthritis), Crohn's & Colitis Ireland (Crohn's, ulcerative
+//   colitis — IBD umbrella charity, same content page for both), and a
+//   new CONDITION_CATEGORY_LINKS mechanism for the Irish Cancer Society's
+//   booklets/factsheets index (one confirmed URL relevant to every
+//   Oncology-category condition, not a per-cancer-type slug).
+// - `undertheweather.ie` is retired (redirects to
+//   `www2.hse.ie/conditions/common-illnesses/`) per the source doc — never
+//   referenced in this file or app.js, so nothing to fix, noted here only
+//   so nobody adds the dead domain later.
+// - Worth remembering for whoever eventually builds the Stage 3 link-
+//   checker this file's header has always pointed toward: several genuine,
+//   currently-live charity sites return non-200 to automated requests
+//   (Cloudflare/SiteGround bot protection) — a checker must cross-check
+//   non-200 results against a manual/browser check before flagging a link
+//   dead, or it will produce false positives on real sites.
 const CONDITIONS = [
   // Cardiology / Cardiovascular
   { id: "heart-attack", name: "Heart attack", category: "Cardiology", keywords: ["MI", "myocardial infarction", "acute coronary syndrome", "ACS"], links: [
@@ -89,10 +117,12 @@ const CONDITIONS = [
     { org: "Versus Arthritis", url: "https://versusarthritis.org/about-arthritis/conditions/rheumatoid-arthritis/", scope: "UK/NI" }
   ] },
   { id: "osteoarthritis", name: "Osteoarthritis", category: "Rheumatology", keywords: ["OA"], links: [
-    { org: "Versus Arthritis", url: "https://versusarthritis.org/about-arthritis/conditions/osteoarthritis/", scope: "UK/NI" }
+    { org: "Versus Arthritis", url: "https://versusarthritis.org/about-arthritis/conditions/osteoarthritis/", scope: "UK/NI" },
+    { org: "Arthritis Ireland", url: "https://www.arthritisireland.ie/conditions/osteoarthritis-oa/", scope: "ROI" }
   ] },
   { id: "gout", name: "Gout", category: "Rheumatology", keywords: ["gouty arthritis"], links: [
     { org: "Versus Arthritis", url: "https://versusarthritis.org/about-arthritis/conditions/gout/", scope: "UK/NI" },
+    { org: "Arthritis Ireland", url: "https://www.arthritisireland.ie/be-active-with-arthritis/", scope: "ROI" },
     { org: "HSE.ie", url: "https://www2.hse.ie/conditions/gout/", scope: "ROI" }
   ] },
   { id: "fibromyalgia", name: "Fibromyalgia", category: "Rheumatology", keywords: [], links: [
@@ -122,8 +152,12 @@ const CONDITIONS = [
   { id: "cluster-headache", name: "Cluster headache", category: "Neurology", keywords: [], links: [] },
 
   // Gastroenterology
-  { id: "crohns-disease", name: "Crohn's disease", category: "Gastroenterology", keywords: ["IBD", "CD"], links: [] },
-  { id: "ulcerative-colitis", name: "Ulcerative colitis", category: "Gastroenterology", keywords: ["IBD", "UC"], links: [] },
+  { id: "crohns-disease", name: "Crohn's disease", category: "Gastroenterology", keywords: ["IBD", "CD"], links: [
+    { org: "Crohn's & Colitis Ireland", url: "https://crohnscolitis.ie/support/diagnosis/explanation/", scope: "ROI" }
+  ] },
+  { id: "ulcerative-colitis", name: "Ulcerative colitis", category: "Gastroenterology", keywords: ["IBD", "UC"], links: [
+    { org: "Crohn's & Colitis Ireland", url: "https://crohnscolitis.ie/support/diagnosis/explanation/", scope: "ROI" }
+  ] },
   { id: "ibs", name: "Irritable bowel syndrome", category: "Gastroenterology", keywords: ["IBS"], links: [] },
   { id: "coeliac-disease", name: "Coeliac disease", category: "Gastroenterology", keywords: [], links: [] },
   { id: "diverticular-disease", name: "Diverticular disease", category: "Gastroenterology", keywords: [], links: [] },
@@ -195,6 +229,20 @@ const CONDITION_OFFICIAL_LINKS = {
   hse: { org: "HSE.ie Health A-Z", url: "https://www2.hse.ie/conditions/", note: "Browse the ROI official index — search or scroll to your condition" },
   nidirect: { org: "nidirect Health Conditions A-Z", url: "https://www.nidirect.gov.uk/services/health-conditions-a-z", note: "Official NI government index" },
   nhsSearch: (name) => ({ org: "NHS.uk", url: `https://www.nhs.uk/search/results?q=${encodeURIComponent(name)}`, note: "NHS.uk site search for this condition" })
+};
+
+// Category-wide Tier 2 charity links — for a confirmed URL that's relevant
+// to every condition in a category rather than one specific slug (e.g. a
+// charity's single index page covering many cancer types by booklet, not
+// a URL per cancer). Rendered on every condition detail page whose
+// `category` has an entry here, in addition to that condition's own
+// `links`. Keep this to genuinely category-wide pages — a charity page
+// that covers only some conditions in a category belongs on those
+// conditions' own `links` instead.
+const CONDITION_CATEGORY_LINKS = {
+  Oncology: [
+    { org: "Irish Cancer Society", url: "https://www.cancer.ie/cancer-types-booklets-and-factsheets", scope: "ROI", note: "Nurse-reviewed booklets and factsheets — find yours by cancer type" }
+  ]
 };
 
 // Medication patient-information-leaflet search — a live user-typed query
