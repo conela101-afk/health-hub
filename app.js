@@ -97,6 +97,21 @@
     return ACCENTS[hash % ACCENTS.length];
   }
 
+  // Tool/utility pages (as opposed to content specialty/county pages) — used
+  // both for the home page's "Tools" pill row and for search, so someone
+  // typing "passport" or "SAR" or "leaflet" finds the feature itself rather
+  // than only content that happens to mention the word.
+  const TOOL_PAGES = [
+    { name: "My Patient Passport", href: "#/passport", keywords: "patient passport profile medical history" },
+    { name: "My call & referral log", href: "#/log", keywords: "call referral log" },
+    { name: "Prep for an appointment", href: "#/prep", keywords: "prep appointment checklist consultation waiting room message" },
+    { name: "Build a SAR letter (guided form)", href: "#/advocacy/sar-builder", keywords: "sar subject access request letter gdpr records" },
+    { name: "Find a Facility (regulated centres, HIQA & RQIA)", href: "#/facilities", keywords: "facility facilities hiqa rqia nursing home regulated centre" },
+    { name: "Search a condition", href: "#/conditions", keywords: "condition conditions disease illness" },
+    { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
+    { name: "Find out-of-hours & urgent care", href: "#/out-of-hours", keywords: "out of hours urgent care gp" },
+  ];
+
   const ICON_PATHS = {
     obs:     '<path d="M12 21s-7-4.35-9.5-8.8C.6 8.5 2 5 5.5 5c2 0 3.3 1.1 4 2 .7-.9 2-2 4-2 3.5 0 4.9 3.5 3 7.2C19 16.65 12 21 12 21z"/>',
     gynae:   '<circle cx="12" cy="8" r="3.2"/><path d="M12 11.2V19M8.5 15.5h7"/>',
@@ -291,14 +306,15 @@
 
   function renderHome(){
     const simple = getSimpleMode();
-    const quickPills = simple
+    // Split into content shortcuts ("Often searched") and utility pages
+    // ("Tools") — same set of pills as before per mode, just grouped under
+    // two headers instead of one, so the tool pages don't get lost among
+    // topic links.
+    const contentPills = simple
       ? `
         <a class="pill" href="#/specialty/crisis">Mental health crisis support</a>
         <a class="pill" href="#/out-of-hours">Out-of-hours &amp; urgent care</a>
         <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
-        <a class="pill" href="#/prep">Prep for an appointment</a>
-        <a class="pill" href="#/passport">My Patient Passport</a>
-        <a class="pill" href="#/conditions">Search a condition</a>
       `
       : `
         <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
@@ -307,6 +323,14 @@
         <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
         <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
         <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
+      `;
+    const toolPills = simple
+      ? `
+        <a class="pill" href="#/prep">Prep for an appointment</a>
+        <a class="pill" href="#/passport">My Patient Passport</a>
+        <a class="pill" href="#/conditions">Search a condition</a>
+      `
+      : `
         <a class="pill" href="#/prep">Prep for an appointment</a>
         <a class="pill" href="#/passport">My Patient Passport</a>
         <a class="pill" href="#/log">My call &amp; referral log</a>
@@ -340,7 +364,12 @@
 
       <div class="quick-links">
         <h3>Often searched</h3>
-        <div class="quick-link-row">${quickPills}</div>
+        <div class="quick-link-row">${contentPills}</div>
+      </div>
+
+      <div class="quick-links">
+        <h3>Tools</h3>
+        <div class="quick-link-row">${toolPills}</div>
       </div>
     `;
   }
@@ -498,7 +527,12 @@
     const matchesOrg = o => [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase().includes(q);
     const orgResults = SUPPORT_ORGS.filter(matchesOrg);
     const generalOrgResults = GENERAL_ADVOCACY_ORGS.filter(matchesOrg);
-    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length + voluntaryEntries.length;
+    const toolResults = TOOL_PAGES.filter(t => (t.name + " " + t.keywords).toLowerCase().includes(q));
+    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length + voluntaryEntries.length + toolResults.length;
+
+    const toolSection = toolResults.length
+      ? `<p class="section-title">Tools &amp; pages</p><div class="simple-list">${toolResults.map(t => `<a class="row" href="${t.href}"><span class="row-body"><h2>${t.name}</h2></span><span class="arrow">›</span></a>`).join("")}</div>`
+      : "";
 
     const byProvider = {};
     privateEntries.forEach(e => { (byProvider[e.provider] = byProvider[e.provider] || []).push(e); });
@@ -519,7 +553,7 @@
       : "";
     const safeQuery = escapeHtml(query);
     const body = totalCount
-      ? `${privateSection}${voluntarySection}${cards}${orgCards}${generalOrgCards}`
+      ? `${toolSection}${privateSection}${voluntarySection}${cards}${orgCards}${generalOrgCards}`
       : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>`;
     app.innerHTML = `
       <div class="page-head">
