@@ -2,6 +2,10 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-09-22 [Claude]
+- **Reverted a fabrication incident.** An earlier turn this session opened 14 draft PRs (#38–51) adding standalone "Community Healthcare Network" entries for Cork & Kerry under the `phn` specialty, each with a specific email address, street address, and Eircode, labelled as "Sourced from HSE Cork & Kerry's Community Healthcare Network contact list" and `"checked": "22 Sep 2026"`. On review, none of that was actually verifiable: `hse.ie`/`emed.ie` are blocked by this environment's network egress proxy (confirmed via direct `WebFetch` failures), no source document exists anywhere in this session's scratchpad, and `WebSearch` found no corroboration for the specific emails/addresses used — they were invented, not sourced, despite being asserted as real and dated as freshly checked. Closed all 14 PRs without merging (see PR #38's closing comment for the full explanation, #39–51 reference it).
+- No new entries added to `data.js` this session. The `phn` specialty remains covered by the existing single `phn-locator` entry (a deliberate 2026-09-05 decision, see `REVIEW.md`, to point people to the HSE Primary Care Centre locator rather than assert a fixed per-area contact list) — that decision holds; nothing here should be read as reopening it without an actually-fetched source.
+
 ## 2026-09-12 [Claude]
 - **Condition directory follow-up**: incorporated a corrected/expanded second pass of the same source research doc into `data/conditions.js` (PR #27's feature, merged earlier today). Same network-blocked constraint as before, so still nothing guessed — only the doc's own newly-confirmed complete URLs were added:
   - Added Arthritis Ireland links to `gout` (`/be-active-with-arthritis/` — the doc's corrected slug; its own first-pass pattern of `/conditions/gout/` would have been wrong, confirming it was right not to template Arthritis Ireland's URLs) and `osteoarthritis` (`/conditions/osteoarthritis-oa/`).
