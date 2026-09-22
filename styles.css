@@ -55,7 +55,7 @@ body{
   -webkit-tap-highlight-color:transparent;
 }
 a{ color:inherit; text-decoration:none; }
-button{ font-family:inherit; }
+button{ font-family:inherit; touch-action:manipulation; }
 h1,h2,h3{ font-family:var(--font); }
 
 ::selection{ background:var(--violet-tint); color:var(--violet-deep); }
@@ -129,13 +129,18 @@ h1,h2,h3{ font-family:var(--font); }
 .search-field svg{ flex-shrink:0; color:var(--ink-faint); }
 .search-field input{
   width:100%; border:0; outline:0; background:transparent;
-  font-family:var(--font); font-size:15.5px; color:var(--ink);
+  font-family:var(--font); font-size:16px; color:var(--ink);
 }
 .search-field input::placeholder{ color:var(--ink-faint); }
 .search-field-inline{ margin-bottom:18px; }
 
+/* iOS Safari zooms the page on focus for any text input under 16px —
+   the shared rule above already covers this, these are explicit backups
+   for the three filter/search fields that most commonly get focused. */
+#facility-filter, #condition-filter, #medicine-query{ font-size:16px; }
+
 /* ---------- App shell ---------- */
-.app{ max-width:720px; margin:0 auto; padding:8px 20px 90px; min-height:70vh; }
+.app{ max-width:720px; margin:0 auto; padding:8px 20px calc(90px + env(safe-area-inset-bottom, 0px)); min-height:70vh; }
 
 /* ---------- Bottom tab bar ---------- */
 .tabbar{
@@ -149,6 +154,7 @@ h1,h2,h3{ font-family:var(--font); }
   flex:1; max-width:150px; display:flex; flex-direction:column; align-items:center; gap:3px;
   padding:9px 4px 7px; color:var(--ink-faint);
   transition:color .12s ease;
+  touch-action:manipulation;
 }
 .tab-item span{ font-size:11px; font-weight:600; }
 .tab-item.active{ color:var(--violet-deep); }
@@ -243,8 +249,15 @@ h1,h2,h3{ font-family:var(--font); }
   border-radius:var(--radius-pill); background:var(--surface); color:var(--ink);
   box-shadow:var(--shadow-sm); border:1px solid var(--line);
   transition:background .15s ease, color .15s ease, border-color .15s ease;
+  touch-action:manipulation;
 }
 .pill:active{ background:var(--violet); color:#fff; border-color:var(--violet); }
+
+/* Frequently-tapped tiles/cards/rows — same 300ms-tap-delay fix as buttons
+   and pills above, applied once here instead of per selector. */
+.index-tile, .simple-list .row, .entry-card, .org-card, .rights-card, .hospital-card{
+  touch-action:manipulation;
+}
 
 /* ---------- Section list pages (specialty index / county index) ---------- */
 .page-head{ margin:18px 0 18px; }
@@ -388,7 +401,7 @@ h1,h2,h3{ font-family:var(--font); }
 .prep-label{ display:block; font-size:12.5px; font-weight:700; color:var(--violet-deep); margin:14px 0 6px; }
 .prep-label:first-of-type{ margin-top:0; }
 .prep-input{
-  width:100%; font-family:var(--font); font-size:14.5px; color:var(--ink);
+  width:100%; font-family:var(--font); font-size:16px; color:var(--ink);
   background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius);
   padding:11px 13px; resize:vertical;
 }
