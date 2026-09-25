@@ -2849,7 +2849,9 @@ const ENTRIES = [
     specialty: ["cardiology"],
     county: ["antrim"],
     blurb: "NI's sole cardiac surgery provider (around 1,000 operations a year) and Regional Medical Cardiology Centre, also running the region's congenital heart disease service (antenatal, paediatric, and adult).",
-    details: [],
+    details: [
+      "Children's heart surgery is the exception: NI children's emergency, urgent and new elective heart surgery now goes to CHI at Crumlin, Dublin, under the All-Island Congenital Heart Disease Network. See the separate entry on that network."
+    ],
     referral: "GP or consultant referral.",
     contact: { extra: "Belfast Trust switchboard — ask for Cardiology or Cardiac Surgery." },
     checked: "6 Sep 2026"
@@ -6155,6 +6157,115 @@ const ENTRIES = [
     referral: "GP/Trust referral.",
     contact: {},
     checked: "6 Sep 2026"
+  },  // --- NI structural layer (25 Sep 2026) -----------------------------------
+  // Regional Belfast Trust hubs and cross-border referral flags from the
+  // All-Island specialty coverage audit. The primary sources (belfasttrust.
+  // hscni.net, online.hscni.net, childrenshealthireland.ie, odt.nhs.uk) were
+  // egress-blocked this session, so these facts were cross-checked through
+  // web search results only. Phone numbers and waiting times are left out on
+  // purpose, and there's no `checked` date, until someone fetches the live pages.
+  {
+    id: "rvh-regional-neurosurgery",
+    name: "Royal Victoria Hospital Belfast — Regional Neurosciences Centre (Neurosurgery)",
+    specialty: ["neurology"],
+    county: ["antrim"],
+    blurb: "Northern Ireland's single Regional Neurosciences Centre. It provides neurosurgery and most sub-specialist neurology inpatient care for the whole of NI.",
+    details: [
+      "Suspected brain tumours are referred to the Neuro-Oncology Specialist Surgical Unit at the RVH.",
+      "Neurosurgery is only provided on the RVH site in NI. There's no second neurosurgical unit elsewhere in the region."
+    ],
+    referral: "Consultant or ED referral. Not a GP-direct or self-referral service.",
+    contact: {
+      extra: "Belfast Trust switchboard — ask for Neurosurgery / Regional Neurosciences Centre.",
+      web: "belfasttrust.hscni.net/services/cancer/types/neuro-oncology-brain-tumours/",
+      address: "Royal Victoria Hospital, Grosvenor Road, Belfast"
+    }
+  },
+  {
+    id: "rvh-major-trauma-centre",
+    name: "About Northern Ireland's Major Trauma Centre (Royal Victoria Hospital)",
+    specialty: ["orthopaedics"],
+    county: ["antrim"],
+    blurb: "The RVH in Belfast is NI's Major Trauma Centre, the hub of the Regional Trauma Network. It has a consultant-led major trauma ward and a rooftop helipad for the NI Air Ambulance (HEMS).",
+    details: [
+      "Ambulance crews trained in major trauma triage decide at the scene. If it's safe to do so, severely injured patients bypass the nearest ED and go straight to the RVH. Otherwise they go to the closest Type 1 Emergency Department first.",
+      "All NI Type 1 EDs still treat major trauma in adults and children. The network decides where patients go, not which hospitals may treat them.",
+      "The Regional Trauma Network is managed by the Department of Health's Strategic Planning & Performance Group (SPPG)."
+    ],
+    referral: "Not GP-referred. Patients reach the MTC by emergency ambulance or HEMS triage, or by transfer between hospitals.",
+    contact: { web: "online.hscni.net/partnerships/majortrauma/major-trauma-network-faqs/" }
+  },
+  {
+    id: "bch-kidney-transplant",
+    name: "Belfast City Hospital — Kidney Transplant Programme",
+    specialty: ["nephrology"],
+    county: ["antrim"],
+    blurb: "Northern Ireland's kidney transplant centre, run alongside the Regional Nephrology unit at Belfast City Hospital. Kidney is the only solid-organ transplant surgery done in NI. For other organs, see the entry on transplants referred to Great Britain.",
+    details: [
+      "Adult living-donor kidney removal and adult kidney transplant operations both take place at Belfast City Hospital.",
+      "NI has one of the highest rates of living kidney donors per head of population in the world. The programme puts a potential donor's tests, imaging and consultations into a single hospital visit.",
+      "If you're thinking about being a living donor, Organ Donation NI has plain-language guidance."
+    ],
+    referral: "Referral for transplant assessment comes from your nephrology consultant. Potential living donors can make first contact themselves.",
+    contact: {
+      web: "belfasttrust.hscni.net/service/nephrology/",
+      address: "Belfast City Hospital, Lisburn Road, Belfast BT9 7AB"
+    },
+    resources: [
+      { label: "Living kidney donation — Organ Donation NI", url: "https://www.organdonationni.info/living-donation/living-kidney-donation" }
+    ]
+  },
+  {
+    id: "ni-sexual-health-id",
+    name: "Belfast Trust — Sexual Health, HIV & Infectious Disease Services (RVH)",
+    specialty: ["sexualhealth"],
+    county: ["antrim"],
+    blurb: "The main GUM clinic is at the Royal Victoria Hospital. It is also NI's Regional Centre for HIV care, serving patients from across Northern Ireland.",
+    details: [
+      "The main clinic is on Level 3 of the RVH Outpatients Centre. The Falls Road entrance is the easiest way in.",
+      "There is a second Belfast Trust GUM clinic at Crumlin Road Health Centre, 94–100 Crumlin Road, Belfast BT14 6AR.",
+      "The Infectious Disease Service (Ward 7A, RVH) provides isolation care for conditions such as TB, viral haemorrhagic fever and chickenpox. It's an inpatient service, not a walk-in one.",
+      "The appointment lines and their phone-in hours are on the Belfast Trust sexual health page. They're left out here until they can be checked against the live page."
+    ],
+    referral: "Self-referral by phoning for an appointment. Infectious Disease inpatient care is by consultant referral.",
+    contact: {
+      web: "belfasttrust.hscni.net/service/sexual-health-and-hiv-services/",
+      address: "Outpatients Centre Level 3, Royal Victoria Hospital, Grosvenor Road, Belfast"
+    },
+    resources: [
+      { label: "Visiting a GUM clinic — Sexual Health NI", url: "https://sexualhealthni.info/visiting-gum-clinic/" },
+      { label: "Infectious Disease Service — Belfast Trust", url: "https://belfasttrust.hscni.net/service/infectious-disease-service/" }
+    ]
+  },
+  {
+    id: "ni-paeds-cardiac-crumlin",
+    name: "Cross-border: NI children's heart surgery at CHI Crumlin (All-Island CHD Network)",
+    specialty: ["cardiology", "paediatrics"],
+    county: ["antrim", "dublin"],
+    blurb: "Children from Northern Ireland who need heart surgery or interventional procedures are generally treated at Children's Health Ireland at Crumlin, Dublin, under the All-Island Congenital Heart Disease Network, set up in 2015.",
+    details: [
+      "The network has three levels. CHI Crumlin is the Level 1 centre, where surgery and interventional procedures happen. The Children's Heart Centre at the Royal Belfast Hospital for Sick Children is the Level 2 centre, refurbished in 2019. Level 3 centres are local paediatricians with expertise in cardiology.",
+      "Diagnosis, ongoing management and outpatient care stay in NI. Your child only travels to Dublin for the procedure itself.",
+      "Emergency, urgent and new elective NI surgery moved from Great Britain to Crumlin. Over 60% of NI children needing a cardiac procedure now have it on the island, so some children are still treated in GB.",
+      "Adult congenital heart disease care for NI stays with the RVH cardiology service."
+    ],
+    referral: "Arranged by your child's cardiology team at the Royal Belfast Hospital for Sick Children. This isn't something families refer themselves to.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/all-island-congenital-heart-disease-network/" }
+  },
+  {
+    id: "ni-transplant-gb-referral",
+    name: "Cross-border: NI liver, heart, lung & pancreas transplants happen in Great Britain",
+    specialty: ["nephrology", "gastro", "cardiology", "respiratory"],
+    county: ["antrim"],
+    blurb: "Kidney is the only organ transplanted in Northern Ireland. NI patients who need a liver, heart, lung or pancreas transplant are referred to a centre in Great Britain. Assessment and follow-up are shared with the Belfast team.",
+    details: [
+      "Liver: patients under the Regional Liver Unit at the RVH are assessed, and transplanted, at King's College Hospital, London. The RVH runs a Liver Transplant Coordinator Service for NI patients on this pathway.",
+      "Heart and lung: transplants aren't done in NI. Patients are referred to a GB cardiothoracic transplant centre. The Freeman Hospital, Newcastle, is one that takes UK-wide referrals. Your NI consultant will tell you which centre you're being referred to.",
+      "Pancreas (including combined kidney-pancreas): not done in NI. Ask your nephrology or diabetes consultant which GB centre you'd be referred to.",
+      "Expect to travel and stay in GB for assessment, the operation and early recovery. Ask your coordinator early about travel and accommodation help."
+    ],
+    referral: "Specialist consultant referral only.",
+    contact: { web: "belfasttrust.hscni.net/service/liver-transplant-coordinator-service/" }
   },
 ];
 
