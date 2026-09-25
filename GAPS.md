@@ -60,3 +60,36 @@ Worked the top of the priority list (Down, Londonderry, Meath, plus partial Arma
 | Armagh | 3 | 7 | 1.54 | 3.60 |
 
 Real improvement, but none of these are "closed out" yet the way Leitrim/Longford/Cork North are — they've moved off the absolute floor, not up to Cork-City-level adequacy. **Tyrone is now the only untouched county from the original top-5 list.** Wicklow/Kildare/Wexford/Louth/Mayo (secondary tier) also untouched.
+
+## Progress update: 25 Sep 2026 (recount against live `data.js`)
+
+**Correction to the 6 Sep note above:** Tyrone is *not* "the only untouched
+county" any more. A fresh count of `data.js` (490 entries, counting every
+entry whose `county` array includes the county) shows it has moved off the
+3-entry floor, and the secondary tier has shifted too:
+
+| County | Entries (5 Sep) | Entries (25 Sep) | Rate (25 Sep) | Where the change came from |
+|---|---|---|---|---|
+| Down | 3 | 8 | 1.45 | 6 Sep geo push |
+| Londonderry | 3 | 7 | 2.78 | 6 Sep geo push |
+| Meath | 3 | 5 | 2.26 | 6 Sep geo push + Drogheda psychiatry (7 Sep) |
+| Armagh | 3 | 7 | 3.60 | 6 Sep geo push (side effect) |
+| Tyrone | 3 | 4 | 2.12 | Western/Southern-cross entries tagged to Tyrone: Western Trust maternity, SWAH gynae, SWAH orthopaedics, NI CAMHS |
+| Wicklow | 3 | 5 | 3.21 | Side effect only (NMH, Jigsaw, Purple House, ASI tagged across counties) |
+| Kildare | 6 | 8 | 3.23 | Side effect only (UPMC Kildare, Cuan Mhuire network) |
+| Wexford | 4 | 4 | 2.44 | Unchanged |
+| Louth | 4 | 5 | 3.58 | Side effect only (Drogheda psychiatry) |
+| Mayo | 4 | 4 | 2.90 | Unchanged |
+
+Note: a planning note put Tyrone at 5 entries; the actual count in `data.js`
+on 25 Sep is 4. Recount before quoting a figure — don't copy this one forward.
+
+Tyrone's gain is all cross-county Western/regional entries. It still has
+**no Tyrone-specific service** (nothing based in Omagh, Dungannon, Cookstown or
+Strabane), so it remains on the priority list. It's just no longer untouched.
+
+The secondary tier (Wicklow/Kildare/Wexford/Louth/Mayo) has had **no
+dedicated research pass yet**. Where counts went up, it was because
+multi-county or Dublin-hospital entries also listed these counties. Wexford
+and Mayo haven't moved at all. Next step is still a proper local-services pass
+on these five, starting with Wexford and Mayo.
