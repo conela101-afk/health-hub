@@ -205,6 +205,17 @@
       .replace(/>/g, "&gt;");
   }
 
+  // Turns a date input's ISO value ("2026-09-12") into "12 September 2026"
+  // for letter/checklist text. Anything that isn't a plain ISO date (e.g. a
+  // free-text value saved before these fields became type="date") is
+  // returned unchanged.
+  function formatDateNice(iso){
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+    if (!m) return iso || "";
+    const d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+    return d.toLocaleDateString("en-IE", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+  }
+
   // Finds bare domain mentions inside free text ("check cuidiu.ie for...")
   // and turns them into real links, since most of the site's prose bullets
   // mention a website by name rather than storing it as a separate field.
@@ -791,15 +802,15 @@
       : "Article 15 of the UK GDPR and the Data Protection Act 2018";
 
     const name = val("sarName") || "[Your name]";
-    const dob = val("sarDob") || "[Your date of birth]";
+    const dob = formatDateNice(val("sarDob")) || "[Your date of birth]";
     const address = val("sarAddress") || "[Your address]";
     const contact = val("sarContact");
     const chartNumber = val("sarChartNumber");
     const facility = val("sarFacility") || "[Hospital / practice / clinic name]";
     const department = val("sarDepartment");
     const allRecords = document.getElementById("sarAllRecords").checked;
-    const startDate = val("sarStartDate");
-    const endDate = val("sarEndDate");
+    const startDate = formatDateNice(val("sarStartDate"));
+    const endDate = formatDateNice(val("sarEndDate"));
     const format = document.getElementById("sarFormat").value;
 
     const recordsList = SAR_RECORD_TYPES
@@ -808,7 +819,7 @@
 
     const dateScope = allRecords
       ? "all records held by your facility"
-      : `records covering the period from ${startDate || "[start date]"} to ${endDate || "[end date]"}`;
+      : `records covering the period from ${startDate || "[start date]"} to ${endDate || "the present"}`;
 
     return `[${name}]
 [${address}]
@@ -881,7 +892,7 @@ ${name}`;
         <input type="text" id="sarName" class="prep-input" placeholder="e.g. Mary Murphy">
 
         <label class="prep-label" for="sarDob">Date of birth</label>
-        <input type="text" id="sarDob" class="prep-input" placeholder="e.g. 4 May 1985">
+        <input type="date" id="sarDob" class="prep-input">
 
         <label class="prep-label" for="sarAddress">Address</label>
         <textarea id="sarAddress" class="prep-input" rows="2" placeholder="Your current address"></textarea>
@@ -904,9 +915,9 @@ ${name}`;
         </label>
         <div id="sarDateRange" hidden>
           <label class="prep-label" for="sarStartDate">From</label>
-          <input type="text" id="sarStartDate" class="prep-input" placeholder="e.g. January 2019">
-          <label class="prep-label" for="sarEndDate">To</label>
-          <input type="text" id="sarEndDate" class="prep-input" placeholder="e.g. present">
+          <input type="date" id="sarStartDate" class="prep-input">
+          <label class="prep-label" for="sarEndDate">To (leave blank for "the present")</label>
+          <input type="date" id="sarEndDate" class="prep-input">
         </div>
 
         <span class="prep-label">Records to request</span>
@@ -1389,7 +1400,7 @@ ${name}`;
         </label>
 
         <label class="prep-label" for="apptDate">Appointment date</label>
-        <input type="text" id="apptDate" class="prep-input" placeholder="e.g. 12 Sept 2026" value="${v("apptDate")}">
+        <input type="date" id="apptDate" class="prep-input" value="${v("apptDate")}">
 
         <label class="prep-label" for="apptClinician">Doctor / specialty</label>
         <input type="text" id="apptClinician" class="prep-input" placeholder="e.g. Dr Smith / Cardiology" value="${v("apptClinician")}">
@@ -1480,7 +1491,7 @@ ${name}`;
     document.getElementById("prepGenerate").addEventListener("click", () => {
       const v2 = currentApptValues();
       const header = [];
-      if (v2.apptDate) header.push(`Appointment: ${v2.apptDate}`);
+      if (v2.apptDate) header.push(`Appointment: ${formatDateNice(v2.apptDate)}`);
       if (v2.apptClinician) header.push(`With: ${v2.apptClinician}`);
       if (v2.apptClinic) header.push(`At: ${v2.apptClinic}`);
       const sections = [];
