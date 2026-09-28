@@ -199,6 +199,7 @@ window.HH_TOOLS = (function(){
     { id: "schemes", name: "Schemes and cards selector", blurb: "Cross-border treatment schemes, medical cards and GP visit cards: which official pages apply to you." },
     { id: "waiting", name: "While you wait", blurb: "Validation letters, \"suspended\" and \"planned procedure\" explained, how to ask about your status, and where the official figures are." },
     { id: "discharge", name: "Discharge passport", blurb: "A printable page for medicines, appointments, contacts and questions to ask before you leave hospital." },
+    { id: "aon", name: "Assessment of Need explainer", blurb: "Your rights and the statutory timeline under the Disability Act 2005 (Republic of Ireland)." },
   ];
 
   function renderIndex(app){
@@ -997,6 +998,38 @@ window.HH_TOOLS = (function(){
   }
 
   // ======================================================================
+  // Tool 6 (optional): Assessment of Need explainer — #/tools/aon
+  // ======================================================================
+
+  function renderAon(app){
+    app.innerHTML = `
+      ${headHtml("Assessment of Need explainer", "Your statutory rights under the Disability Act 2005 (Republic of Ireland)")}
+      <div class="guide-list">
+        ${moduleHtml("Your rights", factListHtml(["aon-right", "aon-not-required"]))}
+        ${moduleHtml("Statutory timeline", factListHtml(["aon-ack", "aon-start", "aon-complete"]))}
+        ${moduleHtml("If the timeline isn't met", factListHtml(["aon-complaint", "aon-appeal"]))}
+        ${moduleHtml("Proposed changes", factListHtml(["aon-bill"]))}
+      </div>
+      <div class="prep-card">
+        <h2>Work out the statutory dates</h2>
+        ${multiDateHtml("aonApp", "Date the HSE received your completed application")}
+      </div>
+      <div class="prep-card">
+        <h2>Complaint time limit</h2>
+        ${multiDateHtml("aonCmp", "Date the cause of the complaint arose (for example, the date the 6 months ran out)")}
+      </div>
+      <div class="callout">This page explains the statutory process only. It doesn't assess needs or say whether someone has a disability, and it doesn't predict how long your own assessment will take.</div>
+      ${footHtml()}
+    `;
+    wireMultiDate("aonApp", [
+      { fact: "aon-ack", label: "Acknowledgement due" },
+      { fact: "aon-start", label: "Assessment should have started by" },
+      { fact: "aon-complete", label: "Assessment report due by" },
+    ]);
+    wireMultiDate("aonCmp", [{ fact: "aon-complaint", label: "Complain no later than" }]);
+  }
+
+  // ======================================================================
 
   const RENDERERS = {
     "": renderIndex,
@@ -1005,6 +1038,7 @@ window.HH_TOOLS = (function(){
     schemes: renderSchemes,
     waiting: renderWaiting,
     discharge: renderDischarge,
+    aon: renderAon,
   };
 
   return {

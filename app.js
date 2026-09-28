@@ -115,6 +115,7 @@
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
     { name: "While you wait (waiting lists)", href: "#/tools/waiting", keywords: "waiting list waiting lists ntpf validation letter suspended planned procedure status target" },
     { name: "Discharge passport", href: "#/tools/discharge", keywords: "discharge hospital leaving going home medicines appointments questions passport" },
+    { name: "Assessment of Need explainer", href: "#/tools/aon", keywords: "aon assessment of need disability act 2005 child disability complaint appeals" },
     { name: "Schemes and cards selector", href: "#/tools/schemes", keywords: "scheme schemes cross border directive treatment abroad tas niphs northern ireland planned healthcare medical card gp visit card reimbursement" },
   ];
 
