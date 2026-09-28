@@ -12,6 +12,53 @@ process itself, not individual entries.
 - [ ] Spot-check the HSE Primary Care Centre locator link still resolves
 - [ ] Scan for other "known gap" language that's aged into "actually resolved now" (the NI MBU line is a good example — it went from gap to confirmed in under a year)
 
+## Guided tools verification (quarterly + post-Budget)
+
+The guided tools (`#/tools`) take their facts from `TOOL_FACTS` in `data.js`.
+Each fact has `last_verified`, `volatility` and `verify`. Open items are
+listed in `GAPS.md` → "Guided tools: open verify items".
+
+### Every quarter (Jan, Apr, Jul, Oct)
+
+- [ ] Open every `source_url` in `TOOL_FACTS` in a real browser (curl from the
+      build sandbox is egress-blocked, so it doesn't count). Note dead or
+      redirected links.
+- [ ] Re-read every `volatility: "high"` fact against its page:
+      `roi-ysys-backup`, `sc-niphs-temporary`, `sc-ni-wlrs`, `sc-cards-printing`,
+      `sc-card-limits`, `wy-ni-latest`, `wy-roi-latest`, `aon-bill`.
+- [ ] Replace `wy-ni-latest` with the newest DoH NI quarterly release (new
+      date in the text, new `source_url`, new `last_verified`). Never move the
+      numbers into UI text.
+- [ ] Check whether NIPHS is still running, and whether the NI Waiting List
+      Reimbursement Scheme is still open to new applicants.
+- [ ] Check the Disability (Amendment) Bill 2026's stage on oireachtas.ie. If
+      enacted, rewrite `aon-bill` and review every `aon-*` fact.
+- [ ] Try to close at least the medium-volatility `verify: true` items in
+      `GAPS.md`.
+- [ ] Bump `last_verified` only on facts actually re-read that day.
+
+### After each Budget (usually October) and each HSE/DoH scheme change
+
+- [ ] Medical card / GP visit card: re-read `sc-card-under70`,
+      `sc-card-over70` and `sc-gpvc-auto` (who gets a GP visit card without a
+      means test changes in Budgets). Check the HSE "how much you can earn"
+      link still resolves. Income limits stay out of the site.
+- [ ] Re-check `SCHEME_LINKS` scheme cards on the Advocacy tab too, for the
+      same reason.
+- [ ] NIPHS / Cross-Border Directive / TAS: re-read `sc-*` facts.
+- [ ] Log what changed in `CHANGELOG.md`.
+
+### 2026-09-28: guided tools first build
+
+- 81 facts written, 21 `verify: true`. All 49 source URLs returned `000` to
+  curl (egress-blocked). All were cross-checked as appearing in live web-search
+  results. See `GAPS.md` for what that does and doesn't prove.
+- Search cross-check corrections applied before handoff: Carer's Benefit
+  added to GP visit card auto-eligibility; NTPF data link moved to
+  `/waiting-list-data/`; the NI Waiting List Reimbursement Scheme added
+  (brief only mentioned the closed 2022 scheme); the Ombudsman clinical-
+  judgement exclusion downgraded to `verify: true`.
+
 ## Log
 
 ### 2026-09-05
