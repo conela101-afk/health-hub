@@ -982,6 +982,8 @@ ${name}`;
     const mapEl = document.getElementById("ooh-map");
     if (!mapEl) return;
     const map = L.map("ooh-map", { scrollWheelZoom: false }).setView([53.35, -7.8], 6.3);
+    // Tiles are third-party (OpenStreetMap) — only fetched once the user
+    // opts in via the "Show map" button in renderOutOfHours(), never on page load.
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
       maxZoom: 18,
@@ -993,6 +995,26 @@ ${name}`;
           .bindPopup(`<strong>${service.name}</strong><br>${site.town}<br><a href="tel:${service.phone.replace(/[^\d+]/g, "")}">${service.phone}</a>`);
       });
     });
+  }
+
+  function oohMapPlaceholderHtml(){
+    return `
+      <div class="ooh-map-placeholder" id="oohMapPlaceholder">
+        <button type="button" id="oohMapLoadBtn" class="ooh-map-load-btn">Show map (loads tiles from OpenStreetMap)</button>
+        <p class="ooh-map-notice">Loading the map contacts OpenStreetMap's tile server, which sees your IP address and the area you're viewing. Nothing else on this site does this.</p>
+      </div>
+    `;
+  }
+
+  function wireOohMapLoadButton(){
+    const btn = document.getElementById("oohMapLoadBtn");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const placeholder = document.getElementById("oohMapPlaceholder");
+      if (!placeholder) return;
+      placeholder.outerHTML = '<div id="ooh-map" class="ooh-map"></div>';
+      initOohMap();
+    }, { once: true });
   }
 
   function renderOutOfHours(){
@@ -1008,7 +1030,7 @@ ${name}`;
       </div>
 
       <p class="section-title">Map of treatment centres</p>
-      <div id="ooh-map" class="ooh-map"></div>
+      ${oohMapPlaceholderHtml()}
       <p class="ooh-source">Pins are approximate town-centre locations, not exact buildings — always phone first, these are appointment-only.</p>
 
       <p class="section-title">Republic of Ireland: GP out-of-hours co-ops</p>
@@ -1025,7 +1047,7 @@ ${name}`;
       <p class="section-title">Injury units</p>
       <p class="callout">For a broken bone, sprain, or wound that isn't life-threatening, a Local Injury Unit (LIU) can often see you faster than an Emergency Department — but not every hospital has one, and they don't treat every kind of injury. Use the HSE finder above to check your nearest.</p>
     `;
-    initOohMap();
+    wireOohMapLoadButton();
   }
 
   // "Find a Facility" — regulated centres from HIQA (ROI) and RQIA (NI),
