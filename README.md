@@ -78,16 +78,24 @@ This v1 was compiled from public HSE and voluntary-sector websites. Phone number
 
 ```
 index.html      — page shell, loads everything else
-styles.css      — all styling (design tokens at the top)
+styles.css      — all styling (design tokens at the top), self-hosted @font-face rules
 app.js          — hash-based router + rendering (no framework, no build step)
 data.js         — all service listings, specialties, and counties — edit this to update content
 manifest.json   — PWA metadata (name, icons, colours)
 sw.js           — service worker, network-first with offline fallback
 icons/          — app icons for home-screen install
+assets/fonts/   — self-hosted Plus Jakarta Sans & Fraunces woff2 files, plus their OFL licences
+vendor/leaflet/ — self-hosted Leaflet 1.9.4 (library only — map tiles are click-to-load, see below)
+scripts/check-third-party.sh — fails the build if a new external request sneaks into HTML/CSS/JS
 ```
+
+## Third-party requests
+
+This site makes none on page load. Fonts (Plus Jakarta Sans, Fraunces) and the Leaflet map library are vendored into the repo and served from the same origin as everything else — see `assets/fonts/` and `vendor/leaflet/`. The Content-Security-Policy in `index.html` only allows `'self'` for scripts, styles, and fonts.
+
+The one deliberate exception: the out-of-hours map (`#/out-of-hours`) starts as a static placeholder and only contacts OpenStreetMap's tile server once a visitor taps "Show map" — see the notice on that page. `img-src` in the CSP allows that one tile host for this reason. Run `scripts/check-third-party.sh` after any change that touches `<script src>`, `<link href>`, `url()`, `@import`, or `fetch()` — it fails on anything outside this list.
 
 ## Known limitations of this v1
 
-- Google Fonts are loaded from a CDN — the first visit needs an internet connection to look right; after that, the service worker caches the app shell (not the fonts) for offline use.
 - No analytics, accounts, or backend — by design, for privacy and simplicity.
 - Region-specific service listings are still deepest for Cork; the data structure already supports any county/region and expanding coverage nationally is the active priority, not a "someday" item.
