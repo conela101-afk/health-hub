@@ -5,15 +5,9 @@
 
 ---
 
-## 0. Coordination note — Grok is also live on the repo
+## 0. Coordination note (historical)
 
-Two AI assistants editing the same codebase concurrently is the biggest near-term risk to this plan, not a content gap. Before either tool touches `data.js`:
-
-- **Pick a lane per session.** Use Claude for content research, structured markdown, and planning (as you already do); use Grok for its specific small changes; don't let both edit `data.js` in the same window.
-- **Git as the source of truth.** Commit Grok's changes before starting a Claude Cowork session (and vice versa), so each tool always branches from the current real state rather than a stale mental model.
-- **One shared `CHANGELOG.md` entry per session**, tool-tagged (`[Grok]` / `[Claude]`), so six months from now you can tell which tool made which change if something needs debugging.
-
-These rules are now written down in `AI_RULES.md` — read that file first at the start of any session, not just this note.
+*This section originally described a two-AI-assistant coordination model. As of 28 Sep 2026, Claude Code is the sole implementer across all layers of this repo (content, data, JS, HTML, CSS) — see `AI_RULES.md`, which now covers the content and session rules that matter.*
 
 ---
 
