@@ -1,37 +1,37 @@
-# AI Assistant Coordination Rules — health-hub repo
+# AI Assistant Rules — health-hub repo
 
-This repo is sometimes edited by more than one AI assistant (currently Claude, Grok). These rules exist so two tools never work from a stale or conflicting view of the codebase. Any AI assistant working in this repo should read this file first.
+Claude Code is the sole implementer of this repo — content, data, JS logic, HTML, and CSS. Any AI assistant session working in this repo should read this file first.
 
 ## Before starting any session
-1. `git pull` / check `git log -5` — confirm you're starting from the current real state, not a remembered one.
-2. Check the "Recent AI sessions" log below for the last entry. If another tool made changes since you last worked here, read what changed before editing.
 
-## During a session
-3. Stay inside the lane agreed for this session (see message from the user at session start — e.g. "content merge in data.js" vs "small UI tweak"). Don't touch files outside that lane without asking.
-4. One tool edits `data.js` at a time. If the user says another tool is currently active elsewhere in the repo, hold off on `data.js` changes until they confirm it's clear.
+1. `git pull` / check `git log -5` — confirm you're starting from the current real state, not a remembered one.
+2. Check the "Recent AI sessions" log below for the last entry, so you know what changed most recently.
+
+## Content rules (all layers)
+
+- **Official sources only.** Every factual claim (phone numbers, addresses, eligibility, waiting times, opening dates) must trace back to an official HSE, HSC/NI, government, or the named organisation's own published source — not third-party aggregators or unverified web copy.
+- **`checked` / `last_verified` field required.** Every `data.js` entry carries a last-verified date so staleness is visible and auditable.
+- **`source_url` required.** Every entry that makes a factual claim links to the specific official page it was verified against, not just a domain's homepage.
+- **No analytics, no tracking, no ads.** The site collects nothing about visitors and sends nothing to a server. See the CSP in `index.html` and the privacy note in the footer, which this rule must stay consistent with.
+- **Administrative/advocacy scope only.** This is a directory and advocacy toolkit — signposting, contact details, entitlement schemes, letter templates, rights information. No clinical triage, symptom-checking, or medical advice of any kind.
 
 ## After a session
-5. Add one entry to `CHANGELOG.md` (create if missing), tagged with the tool name:
+
+3. Add one entry to `CHANGELOG.md` (create if missing):
    ```
    ## 2026-09-06 [Claude]
    - Merged MBU consolidated entry, PHN locator pattern
    - Added GAPS.md, REVIEW.md
    ```
-6. Commit with a clear message before ending the session — don't leave uncommitted changes for the next tool to accidentally overwrite or build on top of blindly.
-
-## Ownership by content type (adjust as needed)
-| Area | Primary tool |
-|---|---|
-| Specialty/content data in `data.js` | Claude |
-| Small UI/CSS tweaks | Grok |
-| New features / architecture changes | Whichever tool started it — flag in CHANGELOG before the other tool touches related files |
+4. Commit with a clear message before ending the session — don't leave uncommitted changes for the next session to accidentally overwrite or build on top of blindly. Route `data.js` changes through a PR, not a direct push to `main`.
 
 ---
 
 ## Recent AI sessions
-*(newest first — both tools append here)*
+*(newest first)*
 
-- 2026-09-28 [Claude] — Guided tools: complaints navigator, records-request builder, schemes & cards selector, "while you wait", discharge passport, AON explainer (`#/tools`). New `tools.js` (logic) + `TOOL_FACTS` etc. in `data.js`. No CSS changes. Official sites were egress-blocked, so facts were cross-checked via search only; 21 `verify: true` items are open in `GAPS.md`. Grok: the footer now discloses Google Fonts + cdnjs; removing them is in your lane. See `CHANGELOG.md`.
+- 2026-09-28 [Claude] — Removed the Grok/multi-AI lane-split coordination model; Claude Code is now the sole implementer across all layers. Removed every third-party network request (Google Fonts, cdnjs/Leaflet, OSM map tiles) — this closes out the gap the same-day guided-tools session flagged below ("removing them is in your lane"). See `CHANGELOG.md` for the full breakdown.
+- 2026-09-28 [Claude] — Guided tools: complaints navigator, records-request builder, schemes & cards selector, "while you wait", discharge passport, AON explainer (`#/tools`). New `tools.js` (logic) + `TOOL_FACTS` etc. in `data.js`. No CSS changes. Official sites were egress-blocked, so facts were cross-checked via search only; 21 `verify: true` items are open in `GAPS.md`. See `CHANGELOG.md`.
 - 2026-09-25 [Claude] — Date inputs for SAR/appointment fields, GAPS.md recount (Tyrone at 4, not "untouched"), and 6 NI structural/cross-border entries (`data.js` 490 → 496). Primary NI/CHI sources were egress-blocked, so the new entries have no `checked` date, phones or waiting times. They need a live-fetch verification pass before those fields go in. See `CHANGELOG.md`.
 - 2026-09-22 [Claude] — Rebuilt PR #37 (Grok's iOS-zoom/search/pills/safe-area fix) after finding its branch had truncated `app.js` to `LOAD_FROM_LOCAL` and gutted `styles.css`/`CHANGELOG.md` — the real content only existed in Grok's own local environment and was never pushed. Restored real files from `main`, reimplemented the described change, verified with `node --check` + an in-browser Playwright pass, merged. Also caught that the truncated `CHANGELOG.md` had ridden along into that merge (wiping this repo's history back to 2026-09-06) and restored it — see `CHANGELOG.md`. Second time Grok's push channel has silently truncated a large file while describing the change as delivered (first was 2026-09-06, see `CHANGELOG.md`'s incident entry there) — worth checking file size after any Grok push before trusting the diff.
 - 2026-09-22 [Claude] — Closed 14 draft PRs (#38–51) that had proposed Cork & Kerry "Community Healthcare Network" `phn` entries with fabricated contact details (invented emails/addresses/Eircodes, asserted as sourced from HSE and freshly "checked" when no such source was actually fetched — `hse.ie` is egress-blocked in this environment). No `data.js` changes merged. See `CHANGELOG.md` for the full incident note. Flag for any tool working here: verify a source was *actually* fetched (not just plausible) before trusting a `"checked"` date or a "sourced from X" claim in an entry you didn't write yourself this session.

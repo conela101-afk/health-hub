@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v9";
+const CACHE_NAME = "pocket-guide-v10";
 const ASSETS = [
   "./",
   "./index.html",
@@ -10,7 +10,20 @@ const ASSETS = [
   "./data/conditions.js",
   "./manifest.json",
   "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  "./icons/icon-512.png",
+  "./assets/fonts/plusjakartasans-400.woff2",
+  "./assets/fonts/plusjakartasans-500.woff2",
+  "./assets/fonts/plusjakartasans-600.woff2",
+  "./assets/fonts/plusjakartasans-700.woff2",
+  "./assets/fonts/fraunces-600-normal.woff2",
+  "./assets/fonts/fraunces-600-italic.woff2",
+  "./vendor/leaflet/leaflet.js",
+  "./vendor/leaflet/leaflet.css",
+  "./vendor/leaflet/images/marker-icon.png",
+  "./vendor/leaflet/images/marker-icon-2x.png",
+  "./vendor/leaflet/images/marker-shadow.png",
+  "./vendor/leaflet/images/layers.png",
+  "./vendor/leaflet/images/layers-2x.png"
 ];
 
 self.addEventListener("install", (event) => {
