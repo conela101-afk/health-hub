@@ -52,12 +52,15 @@ re-tag.
 
 ## Open follow-ups (not done in this pass)
 
-- Search currently only has a `private` magic keyword (groups private
-  results into their own section). No equivalent `voluntary` keyword exists
-  — low priority given only 4 voluntary entries currently, but flagging for
-  consistency if that category grows.
-- UI copy: "Public" tab label may still read ambiguously to a user unsure
-  whether it means "state-run" vs "publicly funded" (the AHR clinic entry is
-  a good example of that ambiguity — privately run, publicly funded/approved).
-  Worth a one-line clarifying label or tooltip in a future UX pass, not
-  blocking.
+- ~~Search currently only has a `private` magic keyword...~~ **Resolved
+  2026-09-12**: added an equivalent `voluntary` magic keyword. Voluntary
+  hospitals grew to 72 tagged entries in the meantime (a separate pass, see
+  `CHANGELOG.md` 2026-09-10), so this was worth doing rather than deferring
+  further. Since 71 of those 72 entries have no shared `provider` field
+  (unlike private entries, which are mostly provider-grouped), voluntary
+  search results render as flat cards under a "Voluntary hospitals" heading
+  instead of reusing the private path's provider-grouping.
+- ~~UI copy: "Public" tab label may still read ambiguously...~~ **Resolved
+  2026-09-12**: added a `title` tooltip to the Public tab ("State-run
+  HSE/HSC bodies — voluntary hospitals have their own tab") and to the
+  Voluntary tab, rather than changing the visible label text.

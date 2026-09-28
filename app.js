@@ -97,6 +97,28 @@
     return ACCENTS[hash % ACCENTS.length];
   }
 
+  // Tool/utility pages (as opposed to content specialty/county pages) — used
+  // both for the home page's "Tools" pill row and for search, so someone
+  // typing "passport" or "SAR" or "leaflet" finds the feature itself rather
+  // than only content that happens to mention the word.
+  const TOOL_PAGES = [
+    { name: "My Patient Passport", href: "#/passport", keywords: "patient passport profile medical history" },
+    { name: "My call & referral log", href: "#/log", keywords: "call referral log" },
+    { name: "Prep for an appointment", href: "#/prep", keywords: "prep appointment checklist consultation waiting room message" },
+    { name: "Build a SAR letter (guided form)", href: "#/advocacy/sar-builder", keywords: "sar subject access request letter gdpr records" },
+    { name: "Find a Facility (regulated centres, HIQA & RQIA)", href: "#/facilities", keywords: "facility facilities hiqa rqia nursing home regulated centre" },
+    { name: "Search a condition", href: "#/conditions", keywords: "condition conditions disease illness" },
+    { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
+    { name: "Find out-of-hours & urgent care", href: "#/out-of-hours", keywords: "out of hours urgent care gp" },
+    { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
+    { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
+    { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
+    { name: "While you wait (waiting lists)", href: "#/tools/waiting", keywords: "waiting list waiting lists ntpf validation letter suspended planned procedure status target" },
+    { name: "Discharge passport", href: "#/tools/discharge", keywords: "discharge hospital leaving going home medicines appointments questions passport" },
+    { name: "Assessment of Need explainer", href: "#/tools/aon", keywords: "aon assessment of need disability act 2005 child disability complaint appeals" },
+    { name: "Schemes and cards selector", href: "#/tools/schemes", keywords: "scheme schemes cross border directive treatment abroad tas niphs northern ireland planned healthcare medical card gp visit card reimbursement" },
+  ];
+
   const ICON_PATHS = {
     obs:     '<path d="M12 21s-7-4.35-9.5-8.8C.6 8.5 2 5 5.5 5c2 0 3.3 1.1 4 2 .7-.9 2-2 4-2 3.5 0 4.9 3.5 3 7.2C19 16.65 12 21 12 21z"/>',
     gynae:   '<circle cx="12" cy="8" r="3.2"/><path d="M12 11.2V19M8.5 15.5h7"/>',
@@ -188,6 +210,17 @@
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
+  }
+
+  // Turns a date input's ISO value ("2026-09-12") into "12 September 2026"
+  // for letter/checklist text. Anything that isn't a plain ISO date (e.g. a
+  // free-text value saved before these fields became type="date") is
+  // returned unchanged.
+  function formatDateNice(iso){
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+    if (!m) return iso || "";
+    const d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+    return d.toLocaleDateString("en-IE", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
   }
 
   // Finds bare domain mentions inside free text ("check cuidiu.ie for...")
@@ -291,13 +324,15 @@
 
   function renderHome(){
     const simple = getSimpleMode();
-    const quickPills = simple
+    // Split into content shortcuts ("Often searched") and utility pages
+    // ("Tools") — same set of pills as before per mode, just grouped under
+    // two headers instead of one, so the tool pages don't get lost among
+    // topic links.
+    const contentPills = simple
       ? `
         <a class="pill" href="#/specialty/crisis">Mental health crisis support</a>
         <a class="pill" href="#/out-of-hours">Out-of-hours &amp; urgent care</a>
         <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
-        <a class="pill" href="#/prep">Prep for an appointment</a>
-        <a class="pill" href="#/passport">My Patient Passport</a>
       `
       : `
         <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
@@ -306,11 +341,23 @@
         <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
         <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
         <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
+      `;
+    const toolPills = simple
+      ? `
+        <a class="pill" href="#/prep">Prep for an appointment</a>
+        <a class="pill" href="#/passport">My Patient Passport</a>
+        <a class="pill" href="#/conditions">Search a condition</a>
+        <a class="pill" href="#/tools">Guided tools</a>
+      `
+      : `
         <a class="pill" href="#/prep">Prep for an appointment</a>
         <a class="pill" href="#/passport">My Patient Passport</a>
         <a class="pill" href="#/log">My call &amp; referral log</a>
         <a class="pill" href="#/facilities">Find a Facility (regulated centres, HIQA &amp; RQIA)</a>
+        <a class="pill" href="#/conditions">Search a condition (HSE, NHS &amp; charity info)</a>
+        <a class="pill" href="#/medicines">Search medicine leaflets</a>
         <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
+        <a class="pill" href="#/tools">Guided tools (complaints, records, schemes, waiting lists, discharge)</a>
       `;
     app.innerHTML = `
       <div class="hero hero-top">
@@ -337,7 +384,12 @@
 
       <div class="quick-links">
         <h3>Often searched</h3>
-        <div class="quick-link-row">${quickPills}</div>
+        <div class="quick-link-row">${contentPills}</div>
+      </div>
+
+      <div class="quick-links">
+        <h3>Tools</h3>
+        <div class="quick-link-row">${toolPills}</div>
       </div>
     `;
   }
@@ -404,15 +456,16 @@
 
   const SECTOR_FILTERS = [
     { id: "", label: "All" },
-    { id: "public", label: "Public" },
+    { id: "public", label: "Public", title: "State-run HSE/HSC bodies (voluntary hospitals like St Vincent's and the Mater have their own tab)" },
     { id: "private", label: "Private" },
-    { id: "voluntary", label: "Voluntary" },
+    { id: "voluntary", label: "Voluntary", title: "Legally independent, HSE/HSC-funded voluntary hospitals (e.g. St Vincent's, the Mater)" },
   ];
 
   function sectorFilterHtml(id, active){
     const options = SECTOR_FILTERS.map(f => {
       const href = f.id ? `#/specialty/${id}/${f.id}` : `#/specialty/${id}`;
-      return `<a class="segment${f.id === active ? " active" : ""}" href="${href}">${f.label}</a>`;
+      const titleAttr = f.title ? ` title="${f.title}"` : "";
+      return `<a class="segment${f.id === active ? " active" : ""}" href="${href}"${titleAttr}>${f.label}</a>`;
     }).join("");
     return `<div class="segmented">${options}</div>`;
   }
@@ -466,7 +519,8 @@
     const q = query.toLowerCase();
     const terms = q.split(/\s+/).filter(Boolean);
     const isPrivateQuery = terms.includes("private");
-    const otherTerms = terms.filter(t => t !== "private");
+    const isVoluntaryQuery = terms.includes("voluntary");
+    const otherTerms = terms.filter(t => t !== "private" && t !== "voluntary");
 
     let privateEntries = [];
     if (isPrivateQuery){
@@ -477,18 +531,37 @@
         );
       }
     }
+    let voluntaryEntries = [];
+    if (isVoluntaryQuery){
+      voluntaryEntries = ENTRIES.filter(e => sectorOf(e) === "voluntary");
+      if (otherTerms.length){
+        voluntaryEntries = voluntaryEntries.filter(e =>
+          otherTerms.every(t => entryHay(e).includes(t) || (e.provider || "").toLowerCase().includes(t))
+        );
+      }
+    }
     const privateIds = new Set(privateEntries.map(e => e.id));
+    const voluntaryIds = new Set(voluntaryEntries.map(e => e.id));
 
-    const results = ENTRIES.filter(e => !privateIds.has(e.id) && entryHay(e).includes(q));
+    const results = ENTRIES.filter(e => !privateIds.has(e.id) && !voluntaryIds.has(e.id) && entryHay(e).includes(q));
     const matchesOrg = o => [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase().includes(q);
     const orgResults = SUPPORT_ORGS.filter(matchesOrg);
     const generalOrgResults = GENERAL_ADVOCACY_ORGS.filter(matchesOrg);
-    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length;
+    const toolResults = TOOL_PAGES.filter(t => (t.name + " " + t.keywords).toLowerCase().includes(q));
+    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length + voluntaryEntries.length + toolResults.length;
+
+    const toolSection = toolResults.length
+      ? `<p class="section-title">Tools &amp; pages</p><div class="simple-list">${toolResults.map(t => `<a class="row" href="${t.href}"><span class="row-body"><h2>${t.name}</h2></span><span class="arrow">›</span></a>`).join("")}</div>`
+      : "";
 
     const byProvider = {};
     privateEntries.forEach(e => { (byProvider[e.provider] = byProvider[e.provider] || []).push(e); });
     const privateSection = privateEntries.length
       ? `<p class="section-title">Private hospitals &amp; clinics</p>${Object.keys(byProvider).sort().map(p => providerGroupCardHtml(p, byProvider[p])).join("")}`
+      : "";
+
+    const voluntarySection = voluntaryEntries.length
+      ? `<p class="section-title">Voluntary hospitals</p>${voluntaryEntries.map(entryCardHtml).join("")}`
       : "";
 
     const cards = results.length ? results.map(entryCardHtml).join("") : "";
@@ -500,7 +573,7 @@
       : "";
     const safeQuery = escapeHtml(query);
     const body = totalCount
-      ? `${privateSection}${cards}${orgCards}${generalOrgCards}`
+      ? `${toolSection}${privateSection}${voluntarySection}${cards}${orgCards}${generalOrgCards}`
       : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>`;
     app.innerHTML = `
       <div class="page-head">
@@ -738,15 +811,15 @@
       : "Article 15 of the UK GDPR and the Data Protection Act 2018";
 
     const name = val("sarName") || "[Your name]";
-    const dob = val("sarDob") || "[Your date of birth]";
+    const dob = formatDateNice(val("sarDob")) || "[Your date of birth]";
     const address = val("sarAddress") || "[Your address]";
     const contact = val("sarContact");
     const chartNumber = val("sarChartNumber");
     const facility = val("sarFacility") || "[Hospital / practice / clinic name]";
     const department = val("sarDepartment");
     const allRecords = document.getElementById("sarAllRecords").checked;
-    const startDate = val("sarStartDate");
-    const endDate = val("sarEndDate");
+    const startDate = formatDateNice(val("sarStartDate"));
+    const endDate = formatDateNice(val("sarEndDate"));
     const format = document.getElementById("sarFormat").value;
 
     const recordsList = SAR_RECORD_TYPES
@@ -755,7 +828,7 @@
 
     const dateScope = allRecords
       ? "all records held by your facility"
-      : `records covering the period from ${startDate || "[start date]"} to ${endDate || "[end date]"}`;
+      : `records covering the period from ${startDate || "[start date]"} to ${endDate || "the present"}`;
 
     return `[${name}]
 [${address}]
@@ -828,7 +901,7 @@ ${name}`;
         <input type="text" id="sarName" class="prep-input" placeholder="e.g. Mary Murphy">
 
         <label class="prep-label" for="sarDob">Date of birth</label>
-        <input type="text" id="sarDob" class="prep-input" placeholder="e.g. 4 May 1985">
+        <input type="date" id="sarDob" class="prep-input">
 
         <label class="prep-label" for="sarAddress">Address</label>
         <textarea id="sarAddress" class="prep-input" rows="2" placeholder="Your current address"></textarea>
@@ -851,9 +924,9 @@ ${name}`;
         </label>
         <div id="sarDateRange" hidden>
           <label class="prep-label" for="sarStartDate">From</label>
-          <input type="text" id="sarStartDate" class="prep-input" placeholder="e.g. January 2019">
-          <label class="prep-label" for="sarEndDate">To</label>
-          <input type="text" id="sarEndDate" class="prep-input" placeholder="e.g. present">
+          <input type="date" id="sarStartDate" class="prep-input">
+          <label class="prep-label" for="sarEndDate">To (leave blank for "the present")</label>
+          <input type="date" id="sarEndDate" class="prep-input">
         </div>
 
         <span class="prep-label">Records to request</span>
@@ -1160,6 +1233,152 @@ ${name}`;
     });
   }
 
+  // "Search a condition" link-out directory — CONDITIONS in
+  // data/conditions.js, kept separate from FACILITIES and the specialty
+  // ENTRIES: this maps a condition name to who explains it (HSE, NHS,
+  // charities), not to a local service that treats it. See that file's
+  // header for why most entries carry no condition-specific link yet and
+  // what a future session needs (real network access) to safely extend
+  // the seed list.
+  const CONDITION_LIST_CAP = 60;
+
+  function conditionRowHtml(c){
+    const accent = accentForId(c.category);
+    return `<a class="row" href="#/conditions/${c.id}">
+      <span class="cat-icon tag-${accent}">${iconSvg(PIN_ICON, 18)}</span>
+      <span class="row-body">
+        <h2>${c.name}</h2>
+        <span class="n">${c.category}</span>
+      </span>
+      <span class="arrow">›</span>
+    </a>`;
+  }
+
+  function renderConditions(){
+    const list = typeof CONDITIONS !== "undefined" ? CONDITIONS : [];
+
+    function draw(query){
+      const q = (query || "").trim().toLowerCase();
+      const filtered = q
+        ? list.filter(c => `${c.name} ${c.category} ${(c.keywords || []).join(" ")}`.toLowerCase().includes(q))
+        : list;
+      const shown = filtered.slice(0, CONDITION_LIST_CAP);
+      const listEl = document.getElementById("condition-results");
+      const countEl = document.getElementById("condition-result-count");
+      if (countEl){
+        countEl.textContent = filtered.length > shown.length
+          ? `Showing ${shown.length} of ${filtered.length} — refine your search to narrow further`
+          : `${filtered.length} condition${filtered.length === 1 ? "" : "s"}`;
+      }
+      if (listEl) listEl.innerHTML = shown.map(conditionRowHtml).join("") || `<p class="callout">No matches. Try a different name or abbreviation (e.g. "COPD", "MND", "AFib").</p>`;
+    }
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Search a condition</h1>
+        <p class="count" id="condition-result-count">${list.length} conditions</p>
+      </div>
+
+      <div class="callout">
+        This links out to official and charity patient-information pages — HSE.ie, NHS.uk, nidirect, and disease charities — it doesn't give medical advice or triage symptoms itself. Looking for a medicine's leaflet instead? <a href="#/medicines">Search medicine leaflets</a>.
+      </div>
+
+      <div class="search-field search-field-inline">
+        <input type="search" id="condition-filter" placeholder="Search by condition name or abbreviation…" autocomplete="off">
+      </div>
+      <div class="simple-list" id="condition-results"></div>
+    `;
+
+    draw("");
+    const filterInput = document.getElementById("condition-filter");
+    let debounce;
+    filterInput.addEventListener("input", () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => draw(filterInput.value), 150);
+    });
+  }
+
+  function renderConditionDetail(id){
+    const list = typeof CONDITIONS !== "undefined" ? CONDITIONS : [];
+    const c = list.find(x => x.id === id);
+    if (!c){ app.innerHTML = `<div class="empty-state">Not found.</div>`; return; }
+
+    const categoryLinks = (typeof CONDITION_CATEGORY_LINKS !== "undefined" && CONDITION_CATEGORY_LINKS[c.category]) || [];
+    const ownLinks = [...(c.links || []), ...categoryLinks].map(l =>
+      `<li><a href="${l.url}" target="_blank" rel="noopener">${l.org} (${l.scope}) ↗</a>${l.note ? ` — ${l.note}` : ""}</li>`
+    ).join("");
+
+    const officialLinks = typeof CONDITION_OFFICIAL_LINKS !== "undefined" ? [
+      CONDITION_OFFICIAL_LINKS.hse,
+      CONDITION_OFFICIAL_LINKS.nidirect,
+      CONDITION_OFFICIAL_LINKS.nhsSearch(c.name)
+    ] : [];
+    const officialLinksHtml = officialLinks.map(l =>
+      `<li><a href="${l.url}" target="_blank" rel="noopener">${l.org} ↗</a> — ${l.note}</li>`
+    ).join("");
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/conditions">‹ Search a condition</a>
+        <h1>${c.name}</h1>
+        <p class="count">${c.category}</p>
+      </div>
+      <div class="detail-card">
+        ${ownLinks ? `<p class="detail-section-title">Verified links for this condition</p><ul class="resource-list">${ownLinks}</ul>` : ""}
+        <p class="detail-section-title">Official directories (search or browse from here)</p>
+        <ul class="resource-list">${officialLinksHtml}</ul>
+        <p class="checked-note">These are signposting links, not medical advice. If a link looks out of date, use "Let us know" in the footer.</p>
+      </div>
+    `;
+  }
+
+  // Medication patient-information-leaflet search — MEDICINE_SEARCH_TARGETS
+  // in data/conditions.js. This is a live, user-typed query against
+  // regulator databases (HPRA, emc, MHRA) rather than a stored per-drug
+  // link, so it needs no per-item URL verification the way condition
+  // deep-links do — only the query-string patterns themselves, which are
+  // confirmed in the source research doc.
+  function renderMedicines(){
+    const targets = typeof MEDICINE_SEARCH_TARGETS !== "undefined" ? MEDICINE_SEARCH_TARGETS : [];
+
+    function draw(query){
+      const q = (query || "").trim();
+      const listEl = document.getElementById("medicine-targets");
+      if (!listEl) return;
+      listEl.innerHTML = targets.map(t => `
+        <li>
+          <a href="${t.url(q)}" target="_blank" rel="noopener" class="${q ? "" : "disabled-link"}"${q ? "" : ' aria-disabled="true" tabindex="-1"'}>${t.org} (${t.scope}) ↗</a> — ${t.note}
+        </li>
+      `).join("");
+    }
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Search medicine leaflets</h1>
+        <p class="count">Regulator-approved patient information leaflets, ROI &amp; UK/NI</p>
+      </div>
+
+      <div class="callout">
+        Type a medicine or active-ingredient name, then open it on whichever regulator database fits — HPRA/medicines.ie for the Republic, emc/MHRA for the UK &amp; NI. These leaflets are for the medicine itself, not a diagnosis.
+      </div>
+
+      <div class="search-field search-field-inline">
+        <input type="search" id="medicine-query" placeholder="e.g. paracetamol…" autocomplete="off">
+      </div>
+      <ul class="resource-list" id="medicine-targets"></ul>
+    `;
+
+    draw("");
+    const input = document.getElementById("medicine-query");
+    let debounce;
+    input.addEventListener("input", () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => draw(input.value), 150);
+    });
+  }
+
   // Print-only mode: hides site chrome and everything in the current page
   // except the one element marked .print-target, so "Print / Save PDF"
   // buttons produce a clean letter/checklist rather than the whole app
@@ -1212,7 +1431,7 @@ ${name}`;
         </label>
 
         <label class="prep-label" for="apptDate">Appointment date</label>
-        <input type="text" id="apptDate" class="prep-input" placeholder="e.g. 12 Sept 2026" value="${v("apptDate")}">
+        <input type="date" id="apptDate" class="prep-input" value="${v("apptDate")}">
 
         <label class="prep-label" for="apptClinician">Doctor / specialty</label>
         <input type="text" id="apptClinician" class="prep-input" placeholder="e.g. Dr Smith / Cardiology" value="${v("apptClinician")}">
@@ -1303,7 +1522,7 @@ ${name}`;
     document.getElementById("prepGenerate").addEventListener("click", () => {
       const v2 = currentApptValues();
       const header = [];
-      if (v2.apptDate) header.push(`Appointment: ${v2.apptDate}`);
+      if (v2.apptDate) header.push(`Appointment: ${formatDateNice(v2.apptDate)}`);
       if (v2.apptClinician) header.push(`With: ${v2.apptClinician}`);
       if (v2.apptClinic) header.push(`At: ${v2.apptClinic}`);
       const sections = [];
@@ -1653,9 +1872,13 @@ ${name}`;
     else if (parts[0] === "out-of-hours") renderOutOfHours();
     else if (parts[0] === "facilities" && !parts[1]) renderFacilities();
     else if (parts[0] === "facilities" && parts[1]) renderFacilityList(parts[1]);
+    else if (parts[0] === "conditions" && !parts[1]) renderConditions();
+    else if (parts[0] === "conditions" && parts[1]) renderConditionDetail(parts[1]);
+    else if (parts[0] === "medicines") renderMedicines();
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
+    else if (parts[0] === "tools" && window.HH_TOOLS) window.HH_TOOLS.render(parts[1] || "", app, { escapeHtml, printOnly, readStore, writeStore, clearStore });
     else renderHome();
 
     announceRouteChange();

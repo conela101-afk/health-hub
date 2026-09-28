@@ -60,3 +60,93 @@ Worked the top of the priority list (Down, Londonderry, Meath, plus partial Arma
 | Armagh | 3 | 7 | 1.54 | 3.60 |
 
 Real improvement, but none of these are "closed out" yet the way Leitrim/Longford/Cork North are — they've moved off the absolute floor, not up to Cork-City-level adequacy. **Tyrone is now the only untouched county from the original top-5 list.** Wicklow/Kildare/Wexford/Louth/Mayo (secondary tier) also untouched.
+
+## Progress update: 25 Sep 2026 (recount against live `data.js`)
+
+**Correction to the 6 Sep note above:** Tyrone is *not* "the only untouched
+county" any more. A fresh count of `data.js` (490 entries, counting every
+entry whose `county` array includes the county) shows it has moved off the
+3-entry floor, and the secondary tier has shifted too:
+
+| County | Entries (5 Sep) | Entries (25 Sep) | Rate (25 Sep) | Where the change came from |
+|---|---|---|---|---|
+| Down | 3 | 8 | 1.45 | 6 Sep geo push |
+| Londonderry | 3 | 7 | 2.78 | 6 Sep geo push |
+| Meath | 3 | 5 | 2.26 | 6 Sep geo push + Drogheda psychiatry (7 Sep) |
+| Armagh | 3 | 7 | 3.60 | 6 Sep geo push (side effect) |
+| Tyrone | 3 | 4 | 2.12 | Western/Southern-cross entries tagged to Tyrone: Western Trust maternity, SWAH gynae, SWAH orthopaedics, NI CAMHS |
+| Wicklow | 3 | 5 | 3.21 | Side effect only (NMH, Jigsaw, Purple House, ASI tagged across counties) |
+| Kildare | 6 | 8 | 3.23 | Side effect only (UPMC Kildare, Cuan Mhuire network) |
+| Wexford | 4 | 4 | 2.44 | Unchanged |
+| Louth | 4 | 5 | 3.58 | Side effect only (Drogheda psychiatry) |
+| Mayo | 4 | 4 | 2.90 | Unchanged |
+
+Note: a planning note put Tyrone at 5 entries; the actual count in `data.js`
+on 25 Sep is 4. Recount before quoting a figure — don't copy this one forward.
+
+Tyrone's gain is all cross-county Western/regional entries. It still has
+**no Tyrone-specific service** (nothing based in Omagh, Dungannon, Cookstown or
+Strabane), so it remains on the priority list. It's just no longer untouched.
+
+The secondary tier (Wicklow/Kildare/Wexford/Louth/Mayo) has had **no
+dedicated research pass yet**. Where counts went up, it was because
+multi-county or Dublin-hospital entries also listed these counties. Wexford
+and Mayo haven't moved at all. Next step is still a proper local-services pass
+on these five, starting with Wexford and Mayo.
+
+## Guided tools: open verify items (28 Sep 2026)
+
+The guided tools (`#/tools/...`, logic in `tools.js`, facts in `data.js` →
+`TOOL_FACTS`) show a "Check the official page before relying on this" label
+on every fact marked `verify: true`. These are the open ones. Close one only
+after reading the live official page in a real browser. Then set
+`verify: false`, update `last_verified`, and remove its row here.
+
+**How the facts were checked, and why it matters.** Every official domain
+was egress-blocked in the build environment, for both curl (all 49 new URLs
+returned `000`) and direct page fetch. Each URL was instead confirmed to
+appear in live web-search results for that organisation, and the fact
+wording was checked against those result summaries. That's weaker than
+reading the page. A real-browser pass over all 49 URLs is the first job for
+the next session with normal network access. The list is in `REVIEW.md` →
+"Guided tools verification".
+
+| Fact id | Jur. | Volatility | Why it's open | Source to check |
+|---|---|---|---|---|
+| `roi-ysys-stage2-ack` | ROI | medium | Stage 2 acknowledgement time: sources don't agree | https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/ |
+| `roi-ysys-stage3-deadline` | ROI | medium | "30 days" vs "30 working days" to request Stage 3 | https://www.patientadvocacyservice.ie/faq/explaining-your-service-your-say-the-hse-complaints-process/ |
+| `roi-ysys-stage3-skip` | ROI | medium | Whether Stage 3 can be skipped before the Ombudsman | https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/ |
+| `roi-ombudsman-clinical` | ROI | medium | The brief said "the Ombudsman doesn't review clinical judgement". That exclusion is long-standing, but reform has been pursued (Patient Safety Act 2023 era), and we couldn't confirm whether it has changed or been commenced | https://ombudsman.ie/en/organisation-information/44555-other-amendments-to-the-ombudsman-act/ |
+| `roi-private-ombudsman` | ROI | medium | Ombudsman remit over private providers (e.g. private nursing homes) | https://ombudsman.ie/en/collection/72275-your-questions/ |
+| `roi-ysys-backup` | ROI | high | Reports that the HSE online form is unavailable or slow; YSYS 1800 424 555 and HSE Live 1800 700 700 numbers | https://www2.hse.ie/complaints-feedback/your-service-your-say/ |
+| `ni-independent` | NI | medium | Whether NIPSO covers independent providers depends on funding | https://www.nipso.org.uk/faqs |
+| `rr-roi-extensions` | ROI | medium | Extension periods for FOI vs GDPR | https://www.citizensinformation.ie/en/health/legal-matters-and-health/access-to-medical-records/ |
+| `rr-roi-private` | ROI | medium | Private-provider timelines | same |
+| `rr-roi-voluntary` | ROI | medium | Which voluntary hospitals take FOI | same |
+| `rr-ni-deceased` | NI | low | Access to Health Records (NI) Order 1993: who can apply | https://www.health-ni.gov.uk/articles/access-health-records-northern-ireland-order-1993 |
+| `rr-ni-child` | NI | medium | Parent SARs for a child's records | https://nidirect.gov.uk/articles/accessing-medical-or-health-and-social-care-records |
+| `sc-niphs-temporary` | ROI | high | NIPHS is temporary: end date and claim caps | https://www2.hse.ie/services/schemes-allowances/niphs/how-much-you-can-claim/ |
+| `sc-ni-roi-scheme-closed` | NI | low | RoI Reimbursement Scheme closed 21 Sep 2022. Only a secondary source (Border People / Irish News) was found | https://borderpeople.info/a-z/cross-border-healthcare-directive-eu-replacement-schemes.html |
+| `sc-ni-wlrs` | NI | high | **Not in the brief.** NI Waiting List Reimbursement Scheme (opened 2 June 2025, extended to the EU 15 Sep 2025, prior approval). Added because leaving it out would imply NI residents have no scheme. Funding and status change | https://online.hscni.net/our-work/travelfortreatment/wl-reimbursement/ |
+| `sc-cards-printing` | ROI | high | HSE pause on printing plastic cards after the 2026 cyberattack on its printing provider | https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/medical-card/ |
+| `wy-removed` | ROI | medium | What to do if removed after validation | https://www.ntpf.ie/information-for-patients-and-public/information-for-patients-and-public-faqs/ |
+| `wy-planned` | ROI | low | Plain-language definition of "planned procedure" not found verbatim | https://www.ntpf.ie/app/uploads/2024/10/NTPF-IDPP-Full-Online-Version-Final.pdf |
+| `wy-ask-status-ni` | NI | low | How to ask your status in NI (booking centres vary by Trust) | https://www.health-ni.gov.uk/articles/outpatient-waiting-times |
+| `wy-roi-latest` | ROI | high | ROI counts deliberately not copied. Check the August 2026 NTPF release directly | https://www.ntpf.ie/waiting-list-data/ |
+| `aon-bill` | ROI | high | Disability (Amendment) Bill 2026 was at Dáil second stage on 28 Sep 2026. Not law | https://www.oireachtas.ie/en/bills/bill/2026/88/ |
+
+### Also open (not facts, but gaps in what the tools cover)
+
+- **Third-party requests still in the page.** `styles.css` line 1 imports
+  Google Fonts, and `index.html` loads Leaflet from cdnjs. Both break the
+  "no third-party requests / no web fonts / no CDNs" rule the guided tools
+  were built under. They're styling and map code (Grok's lane / existing
+  feature), so they're disclosed in the footer privacy notice for now rather
+  than removed. Removing them would let that part of the notice go.
+- **Print CSS** doesn't know about `.guide-list` / `.checked-note`.
+  `tools.js` works around this by hiding non-letter blocks while printing.
+  A one-line CSS rule would be cleaner (Grok's lane).
+- **Public holidays** aren't skipped by the working-day date helper. The UI
+  says so on every date output.
+- **NI complaints letter for NIPSO** isn't generated. NIPSO has its own
+  online form, which the navigator links to.

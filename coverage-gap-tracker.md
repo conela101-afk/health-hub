@@ -85,6 +85,16 @@ All of the build plan's Tier 3 thin-category list (`MASTER-BUILD-PLAN.md` §2 Ph
 
 Still at exactly 5 (🟡/🟢 borderline, not re-verified this pass, and per the correction above, "5" alone shouldn't be trusted without checking what's actually in those 5): Genetics, Eating Disorders, Crisis, Nephrology, Allergy & Immunology, Older Persons.
 
+**Follow-up depth-check, 12 Sep 2026:** went through each of the above per the lesson learned from Cardiology, rather than trusting the count.
+- **Nephrology** 🟢 5 → 6 — genuine gap found and fixed: every entry was NI-specific or a passing mention; added Beaumont Hospital Kidney Centre / National Kidney Transplant Service (the actual national referral centre).
+- **Eating Disorders** 🟢 5 → 8 — genuine gap found and fixed: every entry was youth/CAMHS-only; added St Vincent's adult service, Lois Bridges (private), and tagged St Patrick's existing entry with its Eating Disorders Programme.
+- **Genetics** 🟢 5 → 6 — genuine gap found and fixed: zero NI coverage; added the NI Regional Genetics Service.
+- **Older Persons** 🟢 6 → 8 — genuine gap found and fixed: dementia/memory well covered, general geriatric medicine wasn't; added St James's MedEl and Beaumont Geriatric Medicine.
+- **Allergy & Immunology** 🟢 5 — checked and left alone: already has adult, paediatric, and NI clinical entries plus an honest note about the real absence of an adult-allergy charity. This one's actual — the count wasn't hiding anything.
+- **Crisis** 🟢 12 — not re-checked this pass; already substantially rebuilt (6 named inpatient units) in the 6-9 Sep session, after this tracker's last count.
+
+See `CHANGELOG.md` (12 Sep 2026) for full detail and sourcing.
+
 Specialties flagged by the review as high-traffic even though not thinnest:
 
 | Specialty | Total services | Status | Notes |
