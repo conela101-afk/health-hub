@@ -110,6 +110,10 @@
     { name: "Search a condition", href: "#/conditions", keywords: "condition conditions disease illness" },
     { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
     { name: "Find out-of-hours & urgent care", href: "#/out-of-hours", keywords: "out of hours urgent care gp" },
+    { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
+    { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
+    { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
+    { name: "Schemes and cards selector", href: "#/tools/schemes", keywords: "scheme schemes cross border directive treatment abroad tas niphs northern ireland planned healthcare medical card gp visit card reimbursement" },
   ];
 
   const ICON_PATHS = {
@@ -340,6 +344,7 @@
         <a class="pill" href="#/prep">Prep for an appointment</a>
         <a class="pill" href="#/passport">My Patient Passport</a>
         <a class="pill" href="#/conditions">Search a condition</a>
+        <a class="pill" href="#/tools">Guided tools</a>
       `
       : `
         <a class="pill" href="#/prep">Prep for an appointment</a>
@@ -349,6 +354,7 @@
         <a class="pill" href="#/conditions">Search a condition (HSE, NHS &amp; charity info)</a>
         <a class="pill" href="#/medicines">Search medicine leaflets</a>
         <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
+        <a class="pill" href="#/tools">Guided tools (complaints, records, schemes)</a>
       `;
     app.innerHTML = `
       <div class="hero hero-top">
@@ -1847,6 +1853,7 @@ ${name}`;
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
+    else if (parts[0] === "tools" && window.HH_TOOLS) window.HH_TOOLS.render(parts[1] || "", app, { escapeHtml, printOnly, readStore, writeStore, clearStore });
     else renderHome();
 
     announceRouteChange();

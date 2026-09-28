@@ -1,9 +1,10 @@
-const CACHE_NAME = "pocket-guide-v8";
+const CACHE_NAME = "pocket-guide-v9";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
+  "./tools.js",
   "./data.js",
   "./data/facilities.js",
   "./data/conditions.js",
