@@ -703,7 +703,7 @@ window.HH_TOOLS = (function(){
       <div class="prep-card">
         <h2>Age of the person applying</h2>
         ${radiosHtml("scAge", [{ id: "under8", label: "Under 8" }, { id: "8to69", label: "8 to 69" }, { id: "70plus", label: "70 or over" }], null)}
-        <h2>Do they get Carer's Allowance?</h2>
+        <h2>Do they get Carer's Allowance or Carer's Benefit?</h2>
         ${radiosHtml("scCarer", [{ id: "yes", label: "Yes" }, { id: "no", label: "No, or not sure" }], null)}
       </div>
       <div id="scCardResult" hidden></div>
