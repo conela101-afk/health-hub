@@ -8026,3 +8026,452 @@ const OUT_OF_HOURS_NI = [
     { town: "South & East Belfast (approx.)", lat: 54.5825, lng: -5.9350 },
   ]},
 ];
+
+// ===========================================================================
+// GUIDED TOOLS: fact store (complaints navigator, records-request builder,
+// schemes & cards selector, "while you wait", discharge passport, AON)
+// ===========================================================================
+// Rendered by tools.js. Every fact uses this schema:
+//   { id, text, jurisdiction: "ROI"|"NI"|"both", source_url, source_name,
+//     last_verified: "YYYY-MM-DD", volatility: "low"|"medium"|"high",
+//     verify: true|false }
+// Optional extra field: calc: { amount, unit: "working_days"|"calendar_days"|
+//   "months" } — used only by the tools' date helper to show an approximate
+//   date. It never feeds anything except that display.
+//
+// verify:true means sources disagree, the fact is changing, or we could not
+// confirm it. The UI shows "Check the official page before relying on this"
+// next to every verify:true fact, and must never present one as settled.
+//
+// HOW THESE WERE CHECKED (28 Sep 2026), stated plainly: every official
+// domain below (hse.ie, www2.hse.ie, citizensinformation.ie, ombudsman.ie,
+// nidirect.gov.uk, nipso.org.uk, hiqa.ie, rqia.org.uk, pcc-ni.net, oco.ie,
+// patientadvocacyservice.ie, health-ni.gov.uk, ntpf.ie) was blocked by this
+// build environment's egress proxy, for both curl and direct page fetch. Each
+// source_url was instead confirmed to appear in live web-search results for
+// that organisation, and each fact's wording was cross-checked against the
+// search result summaries. That is weaker than reading the page. Facts the
+// search results did not corroborate are marked verify:true. See GAPS.md
+// ("Guided tools: open verify items") for the list to re-check with a real
+// browser.
+//
+// Fact lines are deliberately written one per line starting with "{ id:"
+// so the CI entry counter (which counts lines starting with `id: "`) keeps
+// counting directory ENTRIES only.
+
+const TOOL_FACTS_LAST_VERIFIED = "2026-09-28";
+
+const TOOL_FACTS = [
+  // ---------- Complaints navigator: ROI (HSE Your Service Your Say) ----------
+  { id: "roi-ysys-overview", text: "HSE complaints go through \"Your Service Your Say\" (YSYS), which has four stages.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-ysys-stage1", text: "Stage 1: raise it with the staff member or their manager at the point of service. The aim is to resolve it within 48 hours.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 2, unit: "calendar_days" } },
+  { id: "roi-ysys-stage2", text: "Stage 2: a formal complaint to a complaints officer, who investigates. The target is 30 working days, and they should tell you if it will take longer.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 30, unit: "working_days" } },
+  { id: "roi-ysys-stage2-ack", text: "How quickly a Stage 2 complaint must be acknowledged. Sources we found don't agree, so ask the complaints officer.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "roi-ysys-stage3", text: "Stage 3: an internal review by a review officer who wasn't involved in your complaint. They look at how Stage 2 was handled and its recommendations. The target is 20 working days.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 20, unit: "working_days" } },
+  { id: "roi-ysys-stage3-deadline", text: "Deadline to ask for a Stage 3 review: sources differ between \"30 days\" and \"30 working days\" from the Stage 2 response. To be safe, count 30 calendar days from the date of that response.", jurisdiction: "ROI", source_url: "https://www.patientadvocacyservice.ie/faq/explaining-your-service-your-say-the-hse-complaints-process/", source_name: "Patient Advocacy Service: Explaining Your Service Your Say", last_verified: "2026-09-28", volatility: "medium", verify: true, calc: { amount: 30, unit: "calendar_days" } },
+  { id: "roi-ysys-stage3-skip", text: "Whether you can skip Stage 3 and go straight to the Ombudsman. Sources are unclear, so ask the complaints officer or the Ombudsman's office before you skip it.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/", source_name: "Ombudsman: Before making a complaint", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "roi-ysys-stage4", text: "Stage 4: an external review by the Office of the Ombudsman, or the Ombudsman for Children if the person affected is under 18.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-time-limit", text: "Complain within 12 months of the event, or of when you became aware of it. A complaints officer can extend this in special circumstances.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-system/making-a-complaint-about-the-health-service-executive/", source_name: "Citizens Information: Making a complaint about a health service", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 12, unit: "months" } },
+  { id: "roi-ombudsman-first", text: "You must complain to the service provider and use its complaints process before the Ombudsman will look at it.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/", source_name: "Ombudsman: Before making a complaint", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-ombudsman-limit", text: "Complain to the Ombudsman within 12 months of the action or decision. The Ombudsman may still help after that if there is a good reason for the delay.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/", source_name: "Ombudsman: Before making a complaint", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 12, unit: "months" } },
+  { id: "roi-ombudsman-clinical", text: "The Ombudsman has historically been unable to examine actions taken solely in the exercise of clinical judgement. There have been moves to change this in law, so check the Ombudsman's current remit before you rely on either position.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/organisation-information/44555-other-amendments-to-the-ombudsman-act/", source_name: "Ombudsman: Amendments to the Ombudsman Act", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "roi-ombudsman-agencies", text: "The Ombudsman can examine complaints about the HSE and about agencies delivering health and social services on the HSE's behalf.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/", source_name: "Ombudsman: Before making a complaint", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-oco", text: "Ombudsman for Children: free and independent. A child, or an adult on their behalf, can complain about a public body, including health services. Freephone 1800 20 20 40.", jurisdiction: "ROI", source_url: "https://www.oco.ie/complaints/make-a-complaint/", source_name: "Ombudsman for Children: Make a complaint", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-voluntary-private", text: "Voluntary and private providers aren't covered by YSYS. Complain to them directly, using their own complaints process.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-system/making-a-complaint-about-the-health-service-executive/", source_name: "Citizens Information: Making a complaint about a health service", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-private-ombudsman", text: "Whether the Ombudsman can examine a complaint about a private provider, such as a private nursing home, depends on the provider and the complaint. Check with the Ombudsman's office.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/collection/72275-your-questions/", source_name: "Ombudsman: Your questions", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "roi-pas", text: "Patient Advocacy Service: free, independent and confidential support to make a complaint about a public acute hospital, or a public or private nursing home. Phone 0818 293003.", jurisdiction: "ROI", source_url: "https://www.patientadvocacyservice.ie/", source_name: "Patient Advocacy Service", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-hiqa", text: "HIQA takes concerns about health and social care services, but can't investigate individual complaints. Email concerns@hiqa.ie or phone 021 240 9646.", jurisdiction: "ROI", source_url: "https://www.hiqa.ie/get-touch/report-concern-or-give-feedback", source_name: "HIQA: Report a concern or give feedback", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-ysys-backup", text: "The HSE online feedback form has been reported as unavailable or slow to respond. As a backup, phone Your Service Your Say on 1800 424 555 or HSE Live on 1800 700 700, or send your complaint by post. Keep a copy.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say/", source_name: "HSE: Give feedback through Your Service Your Say", last_verified: "2026-09-28", volatility: "high", verify: true },
+
+  // ---------- Complaints navigator: NI (HSC complaints procedure) ----------
+  { id: "ni-local-resolution", text: "Start with local resolution. Complain to the service directly, or to the HSC Trust's complaints team.", jurisdiction: "NI", source_url: "https://www.nidirect.gov.uk/articles/how-complain-or-raise-concerns-about-health-services", source_name: "nidirect: How to complain or raise concerns about health services", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "ni-ack", text: "A Trust should acknowledge your complaint within 2 to 3 working days.", jurisdiction: "NI", source_url: "https://belfasttrust.hscni.net/contact-us/compliments-and-complaints/making-a-complaint/", source_name: "Belfast Trust: Making a complaint", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 3, unit: "working_days" } },
+  { id: "ni-response-trust", text: "Full response for hospital, community or social care complaints: 20 working days. You should be told if it will take longer.", jurisdiction: "NI", source_url: "https://belfasttrust.hscni.net/contact-us/compliments-and-complaints/making-a-complaint/", source_name: "Belfast Trust: Making a complaint", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 20, unit: "working_days" } },
+  { id: "ni-response-fps", text: "Complaints made directly to a GP, dentist, pharmacist or optician: a full response within 10 working days.", jurisdiction: "NI", source_url: "https://www.health-ni.gov.uk/articles/complaints-procedures", source_name: "Department of Health NI: Complaints procedures", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 10, unit: "working_days" } },
+  { id: "ni-time-limit", text: "Complain within six months of becoming aware of the problem, and normally no later than 12 months after the event. Later complaints may be accepted for good reason, such as bereavement or ill health.", jurisdiction: "NI", source_url: "https://www.nidirect.gov.uk/articles/how-complain-or-raise-concerns-about-health-services", source_name: "nidirect: How to complain or raise concerns about health services", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 6, unit: "months" } },
+  { id: "ni-nipso", text: "If you're unhappy with the final response, you can go to the Northern Ireland Public Services Ombudsman (NIPSO). It's free. Freephone 0800 34 34 24.", jurisdiction: "NI", source_url: "https://www.nipso.org.uk/make-complaint", source_name: "NIPSO: Make a complaint", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "ni-nipso-limit", text: "NIPSO generally expects complaints within six months of the provider's letter saying its complaints process is finished.", jurisdiction: "NI", source_url: "https://www.nipso.org.uk/make-complaint/how-make-complaint", source_name: "NIPSO: How to make a complaint", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 6, unit: "months" } },
+  { id: "ni-pcc", text: "Patient and Client Council: free, confidential help to make a complaint. They can help write letters and come to meetings with you. Freephone 0800 917 0222.", jurisdiction: "NI", source_url: "https://pcc-ni.net/pcc-support/", source_name: "Patient and Client Council: PCC Support", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "ni-rqia", text: "RQIA, the regulator, takes concerns about regulated health and social care services. Tell the service first if you can. Phone 028 9536 1990.", jurisdiction: "NI", source_url: "https://www.rqia.org.uk/contact/raise-a-concern-about-health-and-social-care-service/", source_name: "RQIA: Raise a concern", last_verified: "2026-09-28", volatility: "low", verify: false },
+
+  // ---------- Records-request builder ----------
+  { id: "rr-roi-foi-free", text: "An FOI request to the HSE for your own personal records is free.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/yourhealthservice/info/foi/", source_name: "HSE: Freedom of Information", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "rr-roi-foi-ack", text: "FOI: the HSE acknowledges your request within 10 working days.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/yourhealthservice/info/foi/", source_name: "HSE: Freedom of Information", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 10, unit: "working_days" } },
+  { id: "rr-roi-foi-decision", text: "FOI: a decision is due within 20 working days of receiving your request.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/yourhealthservice/info/foi/", source_name: "HSE: Freedom of Information", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 20, unit: "working_days" } },
+  { id: "rr-roi-sar-decision", text: "SAR (data protection / GDPR): a response is due within one month of receiving your request.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/gdpr/requesting-information-from-the-hse/", source_name: "HSE: Requesting information from the HSE", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 1, unit: "months" } },
+  { id: "rr-roi-default-sar", text: "If you don't say which route you're using, the HSE treats your request as a SAR.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/gdpr/requesting-information-from-the-hse/", source_name: "HSE: Requesting information from the HSE", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "rr-roi-where", text: "Send your request to the hospital or service that holds the records, and include a copy of photo ID.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/legal-matters-and-health/access-to-medical-records/", source_name: "Citizens Information: Access to medical records", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "rr-roi-gp-foi", text: "Medical card holders can use FOI for records their GP holds. Private patients can't; they use a SAR to the GP practice instead.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/legal-matters-and-health/access-to-medical-records/", source_name: "Citizens Information: Access to medical records", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "rr-roi-foi-sensitive", text: "The HSE recommends FOI for psychiatric records, and for records of a child or a deceased person.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/yourhealthservice/info/foi/", source_name: "HSE: Freedom of Information", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "rr-roi-extensions", text: "Extensions: both routes allow the deadline to be extended in some cases, such as a complex or very large request. The rules differ between FOI and GDPR. You should be told in writing, and why.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/legal-matters-and-health/access-to-medical-records/", source_name: "Citizens Information: Access to medical records", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "rr-roi-private", text: "Private hospitals and clinics aren't covered by FOI. Use a SAR. Their internal timelines vary, but the GDPR one-month limit still applies.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/legal-matters-and-health/access-to-medical-records/", source_name: "Citizens Information: Access to medical records", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "rr-ni-sar", text: "In Northern Ireland, you ask for your own records with a subject access request under UK GDPR, sent to the Trust, GP practice or other provider that holds them. A response is normally due within one month.", jurisdiction: "NI", source_url: "https://nidirect.gov.uk/articles/accessing-medical-or-health-and-social-care-records", source_name: "nidirect: Accessing medical or health and social care records", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 1, unit: "months" } },
+  { id: "rr-ni-deceased", text: "A deceased person's records in Northern Ireland come under the Access to Health Records (NI) Order 1993, not GDPR. Only a personal representative, or someone with a claim arising from the death, can apply. Being next of kin on its own isn't enough.", jurisdiction: "NI", source_url: "https://www.health-ni.gov.uk/articles/access-health-records-northern-ireland-order-1993", source_name: "Department of Health NI: Access to Health Records (NI) Order 1993", last_verified: "2026-09-28", volatility: "low", verify: true },
+
+  // ---------- Schemes & cards selector: cross-border ----------
+  { id: "sc-directive-uk", text: "The EU Cross-Border Healthcare Directive no longer covers care in the UK, including Northern Ireland, since Brexit. It still covers other EU/EEA countries.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/eu-healthcare/cross-border-directive/", source_name: "Citizens Information: Cross-Border Healthcare Directive", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "sc-directive-how", text: "Under the Cross-Border Directive, you pay for care in another EU/EEA country first, then claim back from the HSE. You get up to what the same care would cost in the Irish public system. It only covers care you're entitled to publicly in Ireland.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/eu-healthcare/cross-border-directive/", source_name: "Citizens Information: Cross-Border Healthcare Directive", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "sc-niphs", text: "Northern Ireland Planned Healthcare Scheme (NIPHS): a temporary scheme for Republic of Ireland residents getting care in Northern Ireland. You pay the provider upfront, then claim from the HSE. It only covers healthcare you'd be entitled to as a public patient in Ireland, and not travel or accommodation.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/services/schemes-allowances/niphs/", source_name: "HSE: Northern Ireland Planned Healthcare Scheme", last_verified: "2026-09-28", volatility: "medium", verify: false },
+  { id: "sc-niphs-referral", text: "NIPHS: your referral must come from a GP, or from a consultant you saw as a public patient.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/services/schemes-allowances/niphs/getting-healthcare-ni/", source_name: "HSE: Get healthcare in Northern Ireland with the NIPHS", last_verified: "2026-09-28", volatility: "medium", verify: false },
+  { id: "sc-niphs-temporary", text: "NIPHS is a temporary scheme. Its end date and how much you can claim can change, so check the HSE page for the current position before you book anything.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/services/schemes-allowances/niphs/how-much-you-can-claim/", source_name: "HSE: NIPHS: How much you can claim", last_verified: "2026-09-28", volatility: "high", verify: true },
+  { id: "sc-tas", text: "Treatment Abroad Scheme (TAS): for public treatment in another EU/EEA country, Switzerland or the UK that isn't available in Ireland, or not within the medically usual time. Only a public hospital consultant can refer you, not a GP. It's approved in advance and uses form E112 or S2.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/services/schemes-allowances/treatment-abroad-scheme/", source_name: "HSE: Treatment Abroad Scheme", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "sc-tas-vs-directive", text: "Care that's eligible under the Treatment Abroad Scheme can't be refunded under the Cross-Border Directive. If your consultant thinks TAS applies, ask about TAS first.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/eu-healthcare/cross-border-directive/", source_name: "Citizens Information: Cross-Border Healthcare Directive", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "sc-roi-options", text: "The HSE has a page listing the options while you're on a hospital waiting list, including these schemes.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/services/schemes-allowances/options-while-on-a-waiting-list/", source_name: "HSE: Options available while on a hospital waiting list", last_verified: "2026-09-28", volatility: "medium", verify: false },
+  { id: "sc-ni-roi-scheme-closed", text: "The Department of Health NI's \"Republic of Ireland Reimbursement Scheme\" closed to new applicants in September 2022.", jurisdiction: "NI", source_url: "https://borderpeople.info/a-z/cross-border-healthcare-directive-eu-replacement-schemes.html", source_name: "Border People: Cross-Border Healthcare Directive & replacement schemes", last_verified: "2026-09-28", volatility: "low", verify: true },
+  { id: "sc-ni-wlrs", text: "Northern Ireland residents: the Department of Health NI runs a Waiting List Reimbursement Scheme for some treatment received in the Republic of Ireland or elsewhere in the EU. You must get approval before treatment. Eligibility and funding have changed since it opened, so read the official scheme page before doing anything.", jurisdiction: "NI", source_url: "https://online.hscni.net/our-work/travelfortreatment/wl-reimbursement/", source_name: "DoH / HSCNI: Waiting List Reimbursement Scheme", last_verified: "2026-09-28", volatility: "high", verify: true },
+
+  // ---------- Schemes & cards selector: medical & GP visit cards ----------
+  { id: "sc-card-under70", text: "Under 70: the medical card and GP visit card means test looks at your household's net income (after tax, PRSI and USC), and deducts allowable expenses like rent or mortgage, childcare and travel to work.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/medical-card-means-test-under-70s/", source_name: "Citizens Information: Under 70s means test", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "sc-card-over70", text: "70 and over: the medical card means test uses gross income (before tax), with separate limits.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/medical-card-means-test-over-70s/", source_name: "Citizens Information: Over 70s means test", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "sc-card-limits", text: "Income limits and allowances change, often in the Budget. We don't show them here. Use the HSE's own page and online check instead.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/services/schemes-allowances/medical-cards/applying/how-much-you-can-earn/", source_name: "HSE: How much you can earn and still qualify for a medical card", last_verified: "2026-09-28", volatility: "high", verify: false },
+  { id: "sc-gpvc-auto", text: "GP visit cards without a means test: all children under 8, everyone aged 70 and over, and people getting Carer's Allowance. You still need to apply or register.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/gp-visit-cards/", source_name: "Citizens Information: GP visit cards", last_verified: "2026-09-28", volatility: "medium", verify: false },
+  { id: "sc-cards-printing", text: "The HSE temporarily paused printing some plastic cards, including medical, GP visit, DPS, LTI and EHIC cards, after a cyberattack on an external printing provider in 2026. Your eligibility isn't affected. You get a letter confirming eligibility, which you can use as proof.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/medical-card/", source_name: "Citizens Information: Medical cards", last_verified: "2026-09-28", volatility: "high", verify: true },
+];
+
+// Extra NI fact used by the complaints navigator (kept apart from the block
+// above only so the brief's fact list stays easy to compare against).
+TOOL_FACTS.push(
+  { id: "ni-independent", text: "Private and independent providers have their own complaints process, so complain to them directly first. Whether NIPSO can then look at it can depend on whether the care was HSC-funded. Check with NIPSO.", jurisdiction: "NI", source_url: "https://www.nipso.org.uk/faqs", source_name: "NIPSO: Frequently asked questions", last_verified: "2026-09-28", volatility: "medium", verify: true }
+);
+
+// Strings every guided-tool page shows. Kept here so wording changes are a
+// content edit, not a code edit.
+const TOOL_UI_TEXT = {
+  disclaimer: "Information, not clinical or legal advice.",
+  verifyLabel: "Check the official page before relying on this",
+  privacy: "Everything you type stays in this browser tab. Nothing is sent anywhere. Where a page offers \"Save on this device\", that is off until you tick it, and Clear removes it again.",
+  howChecked: "Facts last checked 28 Sep 2026. Our build environment couldn't open the official sites directly, so each fact was cross-checked against search results for that organisation's page. Always follow the source link before you act.",
+  neutrality: "Private clinics and hospitals advertise these schemes. This tool is neutral: it has no commercial links, earns nothing from any provider, and only links to official scheme pages.",
+  dateApprox: "Approximate. Working days here skip weekends but not public holidays, so the real date may be a day or more later. Count from the date on the letter or email, and check with the organisation.",
+};
+
+// ---------- Complaints navigator: wizard structure ----------
+// services -> stages -> outcome. Each outcome names the body to contact and
+// the next step, lists fact ids to show (main + "also useful"), an optional
+// date helper (deadline: fact id + what date to count from), and which
+// letter template to offer (null = no generated letter for that step).
+const COMPLAINT_NAV = {
+  ROI: {
+    label: "Republic of Ireland",
+    services: [
+      { id: "hse", label: "HSE hospital or HSE-run service (including community, mental health and disability services run by the HSE)" },
+      { id: "voluntary", label: "Voluntary hospital or HSE-funded organisation (for example a voluntary hospital or a charity running a service for the HSE)" },
+      { id: "private", label: "Private hospital, clinic or nursing home" },
+    ],
+    stages: {
+      hse: [
+        { id: "none", label: "I haven't complained yet",
+          body: "Staff or the manager at the service (Stage 1), then the complaints officer (Stage 2)",
+          next: "Raise it with the staff or manager at the service first. If that doesn't fix it, or it's too serious for that, make a formal written complaint to the complaints officer (Stage 2).",
+          facts: ["roi-ysys-overview", "roi-ysys-stage1", "roi-ysys-stage2", "roi-time-limit", "roi-ysys-backup"], also: ["roi-pas", "roi-hiqa"],
+          deadline: { fact: "roi-time-limit", from: "Date of the event, or the date you became aware of it" }, letter: "roi-stage2" },
+        { id: "stage1", label: "I raised it at the service (Stage 1) and it wasn't resolved",
+          body: "The service's complaints officer (Stage 2)",
+          next: "Make a formal written complaint to the complaints officer. Say what you've already tried and what you want to happen.",
+          facts: ["roi-ysys-stage2", "roi-ysys-stage2-ack", "roi-time-limit", "roi-ysys-backup"], also: ["roi-pas", "roi-hiqa"],
+          deadline: { fact: "roi-time-limit", from: "Date of the event, or the date you became aware of it" }, letter: "roi-stage2" },
+        { id: "stage2-waiting", label: "I made a formal (Stage 2) complaint and haven't had a response",
+          body: "The complaints officer handling your complaint",
+          next: "Contact the complaints officer, quote your reference, and ask for an update and a date for the response. The \"Chasing an overdue complaint\" template on the Letter templates page covers this.",
+          facts: ["roi-ysys-stage2", "roi-ysys-stage2-ack"], also: ["roi-pas"],
+          deadline: { fact: "roi-ysys-stage2", from: "Date your formal complaint was received" }, letter: null, link: { href: "#/advocacy/templates", label: "Letter templates (chasing an overdue complaint)" } },
+        { id: "stage2", label: "I've had a Stage 2 response and I'm not satisfied",
+          body: "A review officer (Stage 3 internal review)",
+          next: "Ask in writing for an internal review of the Stage 2 decision. Say which findings or recommendations you disagree with, and why.",
+          facts: ["roi-ysys-stage3", "roi-ysys-stage3-deadline", "roi-ysys-stage3-skip"], also: ["roi-pas"],
+          deadline: { fact: "roi-ysys-stage3-deadline", from: "Date of the Stage 2 response" }, letter: "roi-stage3" },
+        { id: "stage3", label: "I've had a Stage 3 review and I'm still not satisfied",
+          body: "The Office of the Ombudsman (or the Ombudsman for Children if the person affected is under 18). This is Stage 4.",
+          next: "Refer your complaint to the Ombudsman. Include copies of your complaint and the HSE's responses.",
+          facts: ["roi-ysys-stage4", "roi-ombudsman-first", "roi-ombudsman-limit", "roi-ombudsman-clinical"], also: ["roi-oco", "roi-pas"],
+          deadline: { fact: "roi-ombudsman-limit", from: "Date of the final HSE response" }, letter: "roi-ombudsman" },
+      ],
+      voluntary: [
+        { id: "none", label: "I haven't complained yet, or I'm still going through their process",
+          body: "The organisation's own complaints process (not YSYS)",
+          next: "Ask the organisation for its complaints policy and follow it. Complain in writing and keep copies.",
+          facts: ["roi-voluntary-private", "roi-time-limit"], also: ["roi-pas", "roi-hiqa"],
+          deadline: { fact: "roi-time-limit", from: "Date of the event, or the date you became aware of it" }, letter: "roi-stage2" },
+        { id: "final", label: "I've had their final response and I'm not satisfied",
+          body: "The Office of the Ombudsman (or the Ombudsman for Children if under 18)",
+          next: "Check that the organisation's own process is finished, then refer your complaint to the Ombudsman.",
+          facts: ["roi-ombudsman-agencies", "roi-ombudsman-first", "roi-ombudsman-limit", "roi-ombudsman-clinical"], also: ["roi-oco", "roi-pas"],
+          deadline: { fact: "roi-ombudsman-limit", from: "Date of the organisation's final response" }, letter: "roi-ombudsman" },
+      ],
+      private: [
+        { id: "none", label: "I haven't complained yet, or I'm still going through their process",
+          body: "The provider's own complaints process",
+          next: "Ask the provider for its complaints policy and complain in writing. For a nursing home, the Patient Advocacy Service can help. To raise a concern about standards or safety (not a personal complaint), contact HIQA.",
+          facts: ["roi-voluntary-private", "roi-private-ombudsman"], also: ["roi-pas", "roi-hiqa"],
+          deadline: null, letter: "roi-stage2" },
+        { id: "final", label: "I've had their final response and I'm not satisfied",
+          body: "Depends on the provider. Check whether the Ombudsman can examine it",
+          next: "Contact the Ombudsman's office to ask whether it can examine your complaint. For standards or safety concerns, tell HIQA.",
+          facts: ["roi-private-ombudsman", "roi-ombudsman-limit"], also: ["roi-hiqa", "roi-pas"],
+          deadline: null, letter: null },
+      ],
+    },
+  },
+  NI: {
+    label: "Northern Ireland",
+    services: [
+      { id: "trust", label: "Hospital, community or social care service (HSC Trust)" },
+      { id: "fps", label: "GP, dentist, pharmacist or optician" },
+      { id: "independent", label: "Private or independent provider (for example a private clinic or care home)" },
+    ],
+    stages: {
+      trust: [
+        { id: "none", label: "I haven't complained yet",
+          body: "The service directly, or the Trust's complaints team (local resolution)",
+          next: "Complain to the service or the Trust's complaints team, in writing if you can. Say what happened, what you've tried, and what you want to happen.",
+          facts: ["ni-local-resolution", "ni-ack", "ni-response-trust", "ni-time-limit"], also: ["ni-pcc", "ni-rqia"],
+          deadline: { fact: "ni-time-limit", from: "Date you became aware of the problem" }, letter: "ni-trust" },
+        { id: "waiting", label: "I complained and I'm still waiting for a full response",
+          body: "The Trust's complaints team",
+          next: "Contact the complaints team, quote your reference, and ask when you'll get the full response. They should tell you if it's taking longer than 20 working days.",
+          facts: ["ni-ack", "ni-response-trust"], also: ["ni-pcc"],
+          deadline: { fact: "ni-response-trust", from: "Date your complaint was received" }, letter: null },
+        { id: "final", label: "I've had the Trust's final response and I'm not satisfied",
+          body: "The Northern Ireland Public Services Ombudsman (NIPSO)",
+          next: "Bring your complaint to NIPSO. It has an online form, or you can phone, email or write.",
+          facts: ["ni-nipso", "ni-nipso-limit"], also: ["ni-pcc"],
+          deadline: { fact: "ni-nipso-limit", from: "Date of the final response letter" }, letter: null, link: { href: "https://www.nipso.org.uk/make-complaint", label: "NIPSO: Make a complaint", external: true } },
+      ],
+      fps: [
+        { id: "none", label: "I haven't complained yet",
+          body: "The practice or pharmacy itself (local resolution)",
+          next: "Complain to the practice or pharmacy directly. Ask for its complaints procedure. The Patient and Client Council can help if you'd rather not do this alone.",
+          facts: ["ni-local-resolution", "ni-response-fps", "ni-time-limit"], also: ["ni-pcc"],
+          deadline: { fact: "ni-time-limit", from: "Date you became aware of the problem" }, letter: "ni-trust" },
+        { id: "waiting", label: "I complained and I'm still waiting for a response",
+          body: "The practice or pharmacy",
+          next: "Contact the practice and ask when you'll get a response.",
+          facts: ["ni-response-fps"], also: ["ni-pcc"],
+          deadline: { fact: "ni-response-fps", from: "Date your complaint was received" }, letter: null },
+        { id: "final", label: "I've had their final response and I'm not satisfied",
+          body: "The Northern Ireland Public Services Ombudsman (NIPSO)",
+          next: "Bring your complaint to NIPSO.",
+          facts: ["ni-nipso", "ni-nipso-limit"], also: ["ni-pcc"],
+          deadline: { fact: "ni-nipso-limit", from: "Date of the final response" }, letter: null, link: { href: "https://www.nipso.org.uk/make-complaint", label: "NIPSO: Make a complaint", external: true } },
+      ],
+      independent: [
+        { id: "none", label: "I haven't complained yet, or I'm still going through their process",
+          body: "The provider's own complaints process",
+          next: "Complain to the provider directly and ask for its complaints procedure. For a concern about standards or safety at a regulated service, you can also contact RQIA.",
+          facts: ["ni-independent", "ni-time-limit"], also: ["ni-rqia", "ni-pcc"],
+          deadline: { fact: "ni-time-limit", from: "Date you became aware of the problem" }, letter: "ni-trust" },
+        { id: "final", label: "I've had their final response and I'm not satisfied",
+          body: "Depends on the provider. Check with NIPSO",
+          next: "Ask NIPSO whether it can look at your complaint. For a concern about standards or safety, contact RQIA.",
+          facts: ["ni-independent", "ni-nipso"], also: ["ni-rqia", "ni-pcc"],
+          deadline: null, letter: null },
+      ],
+    },
+  },
+};
+
+// ---------- Letter templates for generated letters ----------
+// {{token}} placeholders are filled by tools.js from the form. An empty
+// field becomes a [bracketed prompt] so the person can see what's missing.
+// Letters state facts and requests only. They don't allege negligence or
+// make legal claims.
+const TOOL_LETTERS = {
+  "roi-stage2": {
+    title: "Formal complaint (Stage 2)",
+    body: `{{name}}
+{{contact}}
+
+{{today}}
+
+The Complaints Officer
+{{service}}
+
+Re: Formal complaint{{refLine}}
+
+Dear Complaints Officer,
+
+I am making a formal complaint about {{service}}{{processLine}}.
+
+What happened
+{{what}}
+Date(s): {{dates}}
+
+What I have already tried
+{{tried}}
+
+What I would like to happen
+{{outcome}}
+
+Please acknowledge this complaint and tell me who is dealing with it and when I can expect a response.
+
+Yours sincerely,
+
+{{name}}`,
+  },
+  "roi-stage3": {
+    title: "Request for an internal review (Stage 3)",
+    body: `{{name}}
+{{contact}}
+
+{{today}}
+
+The Complaints Officer
+{{service}}
+
+Re: Request for internal review (Stage 3, Your Service Your Say){{refLine}}
+
+Dear Complaints Officer,
+
+I received the Stage 2 response to my complaint on {{responseDate}}. I am not satisfied with it, and I am asking for an internal review by a review officer under Stage 3 of Your Service Your Say.
+
+My original complaint
+{{what}}
+Date(s): {{dates}}
+
+What I have already tried
+{{tried}}
+
+Why I am asking for a review, and what I would like to happen
+{{outcome}}
+
+Please acknowledge this request and confirm who the review officer will be.
+
+Yours sincerely,
+
+{{name}}`,
+  },
+  "roi-ombudsman": {
+    title: "Referral to the Ombudsman",
+    body: `{{name}}
+{{contact}}
+
+{{today}}
+
+Office of the Ombudsman
+(or the Ombudsman for Children's Office if the person affected is under 18)
+
+Re: Complaint about {{service}}{{refLine}}
+
+Dear Sir or Madam,
+
+I am asking the Ombudsman to examine my complaint about {{service}}. I have been through the provider's complaints process and received its final response on {{responseDate}}.
+
+What happened
+{{what}}
+Date(s): {{dates}}
+
+What I have already tried
+{{tried}}
+
+What I would like to happen
+{{outcome}}
+
+I enclose copies of my complaint and the responses I received.
+
+Yours faithfully,
+
+{{name}}`,
+  },
+  "ni-trust": {
+    title: "Complaint (Northern Ireland local resolution)",
+    body: `{{name}}
+{{contact}}
+
+{{today}}
+
+Complaints Team / Practice Manager
+{{service}}
+
+Re: Complaint{{refLine}}
+
+Dear Sir or Madam,
+
+I wish to make a complaint under the Health and Social Care complaints procedure about {{service}}.
+
+What happened
+{{what}}
+Date(s): {{dates}}
+
+What I have already tried
+{{tried}}
+
+What I would like to happen
+{{outcome}}
+
+Please acknowledge this complaint and tell me who is dealing with it and when I can expect a full response.
+
+Yours sincerely,
+
+{{name}}`,
+  },
+  "rr-foi-roi": {
+    title: "FOI request for personal records (Republic of Ireland)",
+    body: `{{name}}
+{{address}}
+Date of birth: {{dob}}
+{{contact}}
+
+{{today}}
+
+The FOI Officer
+{{service}}
+
+Re: Request under the Freedom of Information Act 2014
+
+Dear FOI Officer,
+
+I am making a request under the Freedom of Information Act 2014 for copies of my personal records held by {{service}}.
+
+Records requested
+{{records}}
+Period: {{period}}
+Hospital / chart number (if known): {{chartNumber}}
+
+{{forWhom}}
+
+I enclose a copy of my photo ID. I would like the records {{format}}.
+
+Please acknowledge this request.
+
+Yours sincerely,
+
+{{name}}`,
+  },
+  "rr-sar": {
+    title: "Subject access request (GDPR / UK GDPR)",
+    body: `{{name}}
+{{address}}
+Date of birth: {{dob}}
+{{contact}}
+
+{{today}}
+
+The Data Protection Officer
+{{service}}
+
+Re: Subject access request under {{gdprRef}}
+
+Dear Data Protection Officer,
+
+I am making a subject access request under {{gdprRef}} for a copy of the personal data you hold about me.
+
+Records requested
+{{records}}
+Period: {{period}}
+Hospital / chart number (if known): {{chartNumber}}
+
+I enclose a copy of my photo ID. I would like the records {{format}}.
+
+Please acknowledge this request.
+
+Yours faithfully,
+
+{{name}}`,
+  },
+};
+
+// Extra records-builder facts referenced by tools.js's route suggestions.
+TOOL_FACTS.push(
+  { id: "rr-roi-voluntary", text: "Most large HSE-funded voluntary hospitals also take FOI requests, through their own FOI office. Check the hospital's FOI page, or the hospital list on this site's Advocacy tab.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/legal-matters-and-health/access-to-medical-records/", source_name: "Citizens Information: Access to medical records", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "rr-ni-child", text: "A parent can usually make a subject access request for a young child's records. An older child who understands the request may need to make it, or agree to it, themselves. The provider decides, so ask it.", jurisdiction: "NI", source_url: "https://nidirect.gov.uk/articles/accessing-medical-or-health-and-social-care-records", source_name: "nidirect: Accessing medical or health and social care records", last_verified: "2026-09-28", volatility: "medium", verify: true }
+);
