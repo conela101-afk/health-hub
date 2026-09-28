@@ -26,6 +26,7 @@ jobs:
         run: |
           set -e
           node --check app.js
+          node --check tools.js
           node --check data.js
           node --check data/facilities.js
           node --check data/conditions.js
