@@ -227,7 +227,8 @@ window.HH_TOOLS = (function(){
     { id: "contact", label: "Your address, phone or email", type: "textarea", ph: "[Your address / phone / email]" },
     { id: "service", label: "Service, hospital or practice (and department)", type: "text", ph: "[Service name and department]" },
     { id: "ref", label: "Complaint reference number (if you have one)", type: "text", ph: "" },
-    { id: "dates", label: "Date(s) of what happened", type: "text", ph: "[Date(s)]" },
+    { id: "dates", label: "Date it happened (or the first date, if it went on over several days)", type: "date", ph: "[Date(s)]" },
+    { id: "datesTo", label: "Last date (only if it happened over more than one day)", type: "date", ph: "" },
     { id: "responseDate", label: "Date of the last response you received (if any)", type: "date", ph: "[date of response]" },
     { id: "what", label: "What happened (facts, in order)", type: "textarea", ph: "[Describe what happened, in order, sticking to facts]" },
     { id: "tried", label: "What you've already tried", type: "textarea", ph: "[Who you spoke to or wrote to, and when]" },
@@ -344,6 +345,10 @@ window.HH_TOOLS = (function(){
       const v = {};
       CN_FIELDS.forEach(f => { v[f.id] = (document.getElementById("cn-" + f.id).value || "").trim(); });
       v.responseDate = letterDate(v.responseDate);
+      // "dates" is now a calendar input plus an optional end date; join them
+      // back into the single {{dates}} value the letter templates expect.
+      const first = letterDate(v.dates), last = letterDate(v.datesTo);
+      v.dates = first && last && last !== first ? first + " to " + last : first;
       v.refLine = v.ref ? ` (your reference: ${v.ref})` : "";
       v.processLine = (state.j === "ROI" && state.service === "hse") ? ", under the HSE's Your Service Your Say process (Stage 2)" : "";
       v.today = todayNice();

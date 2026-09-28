@@ -223,6 +223,15 @@
     return d.toLocaleDateString("en-IE", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
   }
 
+  // "14:30" (from <input type="time">) -> "2:30pm". Anything else is
+  // returned trimmed and unchanged.
+  function timeNice(v){
+    const m = /^(\d{1,2}):(\d{2})$/.exec((v || "").trim());
+    if (!m) return (v || "").trim();
+    const h = Number(m[1]);
+    return (h % 12 || 12) + ":" + m[2] + (h < 12 ? "am" : "pm");
+  }
+
   // Finds bare domain mentions inside free text ("check cuidiu.ie for...")
   // and turns them into real links, since most of the site's prose bullets
   // mention a website by name rather than storing it as a separate field.
@@ -1050,6 +1059,49 @@ ${name}`;
     `;
   }
 
+  // ---------- Lazy-loaded assets ----------
+  // The big, single-purpose files (Find a Facility data, condition/medicine
+  // links, Leaflet) are fetched only when the person opens the page that
+  // needs them, instead of on every visit. Same-origin script injection is
+  // allowed by the CSP (script-src 'self'), and sw.js precaches these files
+  // so they still work offline.
+  const assetPromises = {};
+  const assetLoaded = new Set();
+
+  function loadAsset(src){
+    if (assetPromises[src]) return assetPromises[src];
+    assetPromises[src] = new Promise((resolve, reject) => {
+      const isCss = /\.css$/.test(src);
+      const el = document.createElement(isCss ? "link" : "script");
+      if (isCss){ el.rel = "stylesheet"; el.href = src; } else { el.src = src; }
+      el.onload = () => { assetLoaded.add(src); resolve(); };
+      el.onerror = () => {
+        delete assetPromises[src];
+        el.remove();
+        reject(new Error("Could not load " + src));
+      };
+      document.head.appendChild(el);
+    });
+    return assetPromises[src];
+  }
+
+  // Runs render() straight away if every file is already loaded; otherwise
+  // shows a short loading line, loads them, then renders (unless the person
+  // has navigated elsewhere in the meantime).
+  function withAssets(srcs, render){
+    if (srcs.every(s => assetLoaded.has(s))){ render(); return; }
+    const hash = location.hash;
+    app.innerHTML = `<div class="empty-state" role="status">Loading…</div>`;
+    Promise.all(srcs.map(loadAsset)).then(() => {
+      if (location.hash !== hash) return;
+      render();
+      announceRouteChange();
+    }).catch(() => {
+      if (location.hash !== hash) return;
+      app.innerHTML = `<div class="empty-state">Couldn't load this section. Check your connection and try again.</div>`;
+    });
+  }
+
   function initOohMap(){
     if (typeof L === "undefined") return;
     const mapEl = document.getElementById("ooh-map");
@@ -1084,10 +1136,22 @@ ${name}`;
     if (!btn) return;
     btn.addEventListener("click", () => {
       const placeholder = document.getElementById("oohMapPlaceholder");
-      if (!placeholder) return;
-      placeholder.outerHTML = '<div id="ooh-map" class="ooh-map"></div>';
-      initOohMap();
-    }, { once: true });
+      if (!placeholder || btn.disabled) return;
+      btn.disabled = true;
+      btn.textContent = "Loading map…";
+      Promise.all([
+        loadAsset("vendor/leaflet/leaflet.css"),
+        loadAsset("vendor/leaflet/leaflet.js"),
+      ]).then(() => {
+        const ph = document.getElementById("oohMapPlaceholder");
+        if (!ph) return;
+        ph.outerHTML = '<div id="ooh-map" class="ooh-map"></div>';
+        initOohMap();
+      }).catch(() => {
+        btn.disabled = false;
+        btn.textContent = "Couldn't load the map — tap to try again";
+      });
+    });
   }
 
   function renderOutOfHours(){
@@ -1464,7 +1528,7 @@ ${name}`;
         <p class="remit">If a crowded or noisy waiting room is difficult for you, this drafts a message asking reception to let you wait elsewhere and text you when it's your turn. Whether they can accommodate it is up to the service — this only drafts the ask. Nothing on this card is saved.</p>
 
         <label class="prep-label" for="waitTime">Appointment time</label>
-        <input type="text" id="waitTime" class="prep-input" placeholder="e.g. 2:30pm">
+        <input type="time" id="waitTime" class="prep-input">
 
         <label class="prep-label" for="waitClinician">Clinician or department</label>
         <input type="text" id="waitClinician" class="prep-input" placeholder="e.g. Dr Smith / Outpatients">
@@ -1473,7 +1537,7 @@ ${name}`;
         <input type="text" id="waitLocation" class="prep-input" placeholder="e.g. the car park, outside the entrance">
 
         <label class="prep-label" for="waitPhone">Your phone number</label>
-        <input type="text" id="waitPhone" class="prep-input" placeholder="e.g. 087 123 4567">
+        <input type="tel" inputmode="tel" autocomplete="tel" id="waitPhone" class="prep-input" placeholder="e.g. 087 123 4567">
 
         <button type="button" class="copy-btn" id="waitGenerate">Build my message</button>
         <pre class="template-text" id="waitOutput" hidden></pre>
@@ -1541,7 +1605,7 @@ ${name}`;
     document.getElementById("prepPrint").addEventListener("click", () => printOnly("prepOutput"));
 
     document.getElementById("waitGenerate").addEventListener("click", () => {
-      const time = document.getElementById("waitTime").value.trim() || "[time]";
+      const time = timeNice(document.getElementById("waitTime").value) || "[time]";
       const clinician = document.getElementById("waitClinician").value.trim() || "[clinician / department]";
       const loc = document.getElementById("waitLocation").value.trim() || "[nearby location]";
       const phone = document.getElementById("waitPhone").value.trim() || "[phone number]";
@@ -1870,11 +1934,11 @@ ${name}`;
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
-    else if (parts[0] === "facilities" && !parts[1]) renderFacilities();
-    else if (parts[0] === "facilities" && parts[1]) renderFacilityList(parts[1]);
-    else if (parts[0] === "conditions" && !parts[1]) renderConditions();
-    else if (parts[0] === "conditions" && parts[1]) renderConditionDetail(parts[1]);
-    else if (parts[0] === "medicines") renderMedicines();
+    else if (parts[0] === "facilities" && !parts[1]) withAssets(["data/facilities.js"], renderFacilities);
+    else if (parts[0] === "facilities" && parts[1]) withAssets(["data/facilities.js"], () => renderFacilityList(parts[1]));
+    else if (parts[0] === "conditions" && !parts[1]) withAssets(["data/conditions.js"], renderConditions);
+    else if (parts[0] === "conditions" && parts[1]) withAssets(["data/conditions.js"], () => renderConditionDetail(parts[1]));
+    else if (parts[0] === "medicines") withAssets(["data/conditions.js"], renderMedicines);
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
@@ -1890,6 +1954,15 @@ ${name}`;
   // which fired a split second later and ran route() a second time on
   // every load — harmless for rendering, but it broke the "only move focus
   // on the second-and-later navigation" check in announceRouteChange.)
+  // Tapping anywhere in a date/time field opens the native calendar/clock
+  // (not just the small icon), so nobody has to type into the segments.
+  document.addEventListener("click", (e) => {
+    const el = e.target;
+    if (el instanceof HTMLInputElement && (el.type === "date" || el.type === "time") && typeof el.showPicker === "function"){
+      try { el.showPicker(); } catch (_) { /* already open or not allowed */ }
+    }
+  });
+
   window.addEventListener("hashchange", route);
   route();
 
