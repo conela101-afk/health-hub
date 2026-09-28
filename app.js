@@ -113,6 +113,8 @@
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
     { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
+    { name: "While you wait (waiting lists)", href: "#/tools/waiting", keywords: "waiting list waiting lists ntpf validation letter suspended planned procedure status target" },
+    { name: "Discharge passport", href: "#/tools/discharge", keywords: "discharge hospital leaving going home medicines appointments questions passport" },
     { name: "Schemes and cards selector", href: "#/tools/schemes", keywords: "scheme schemes cross border directive treatment abroad tas niphs northern ireland planned healthcare medical card gp visit card reimbursement" },
   ];
 
@@ -354,7 +356,7 @@
         <a class="pill" href="#/conditions">Search a condition (HSE, NHS &amp; charity info)</a>
         <a class="pill" href="#/medicines">Search medicine leaflets</a>
         <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
-        <a class="pill" href="#/tools">Guided tools (complaints, records, schemes)</a>
+        <a class="pill" href="#/tools">Guided tools (complaints, records, schemes, waiting lists, discharge)</a>
       `;
     app.innerHTML = `
       <div class="hero hero-top">

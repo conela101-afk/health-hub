@@ -52,7 +52,8 @@ window.HH_TOOLS = (function(){
   function factLiHtml(id){
     const f = fact(id);
     if (!f) return "";
-    return `<li>${esc(f.text)}${verifyTagHtml(f)}<br><a href="${esc(f.source_url)}" target="_blank" rel="noopener">${esc(f.source_name)} ↗</a></li>`;
+    const often = f.volatility === "high" ? ` <span class="tag tag-sand">Changes often (checked ${esc(f.last_verified)})</span>` : "";
+    return `<li>${esc(f.text)}${verifyTagHtml(f)}${often}<br><a href="${esc(f.source_url)}" target="_blank" rel="noopener">${esc(f.source_name)} ↗</a></li>`;
   }
 
   function factListHtml(ids){
@@ -196,6 +197,8 @@ window.HH_TOOLS = (function(){
     { id: "complaints", name: "Complaints navigator", blurb: "Find the right body, stage and time limit for a health complaint, then build a letter." },
     { id: "records", name: "Records-request builder", blurb: "Choose between FOI and a subject access request, build the letter, and track the deadline." },
     { id: "schemes", name: "Schemes and cards selector", blurb: "Cross-border treatment schemes, medical cards and GP visit cards: which official pages apply to you." },
+    { id: "waiting", name: "While you wait", blurb: "Validation letters, \"suspended\" and \"planned procedure\" explained, how to ask about your status, and where the official figures are." },
+    { id: "discharge", name: "Discharge passport", blurb: "A printable page for medicines, appointments, contacts and questions to ask before you leave hospital." },
   ];
 
   function renderIndex(app){
@@ -743,12 +746,265 @@ window.HH_TOOLS = (function(){
   }
 
   // ======================================================================
+  // Shared: a date helper for several fact periods from one start date.
+  // ======================================================================
+
+  function multiDateHtml(idPrefix, label){
+    return `
+      <label class="prep-label" for="${idPrefix}Date">${esc(label)}</label>
+      <input type="date" id="${idPrefix}Date" class="prep-input">
+      <ul class="detail-list" id="${idPrefix}Out" aria-live="polite"></ul>
+      <p class="save-note">${esc(TOOL_UI_TEXT.dateApprox)}</p>
+    `;
+  }
+
+  function wireMultiDate(idPrefix, rows){
+    const input = document.getElementById(idPrefix + "Date");
+    input.addEventListener("input", () => {
+      const start = parseIso(input.value);
+      document.getElementById(idPrefix + "Out").innerHTML = start ? rows.map(r => {
+        const f = fact(r.fact);
+        if (!f || !f.calc) return "";
+        return `<li><strong>${esc(r.label)}:</strong> about ${esc(niceDate(addPeriod(start, f.calc)))} (${esc(periodLabel(f.calc))})${verifyTagHtml(f)}</li>`;
+      }).join("") : "";
+    });
+  }
+
+  // ======================================================================
+  // Tool 4: "While you wait" — #/tools/waiting
+  // ======================================================================
+
+  const WY_FIELDS = [
+    { id: "name", label: "Your name", type: "text", ph: "[Your name]" },
+    { id: "address", label: "Your address", type: "textarea", ph: "[Your address]" },
+    { id: "dob", label: "Date of birth", type: "date", ph: "[Date of birth]" },
+    { id: "contact", label: "Phone or email (optional)", type: "text", ph: "" },
+    { id: "ref", label: "Hospital / chart number (if known)", type: "text", ph: "" },
+    { id: "consultant", label: "Consultant or specialty", type: "text", ph: "[Consultant name / specialty]" },
+    { id: "hospital", label: "Hospital", type: "text", ph: "[Hospital]" },
+    { id: "referred", label: "Date you were referred (approximate is fine)", type: "date", ph: "[date of referral]" },
+  ];
+
+  function renderWaiting(app){
+    let j = null;
+    app.innerHTML = `
+      ${headHtml("While you wait", "Waiting-list terms, how to ask about your status, and where the official figures are")}
+      <div class="prep-card">
+        <h2>Where is the hospital?</h2>
+        ${radiosHtml("wyJ", [{ id: "ROI", label: "Republic of Ireland" }, { id: "NI", label: "Northern Ireland" }], null)}
+      </div>
+      <div id="wyBody" hidden></div>
+      <div class="prep-card" id="wyValidation" hidden>
+        <h2>Got a validation letter?</h2>
+        ${multiDateHtml("wyVal", "Date on the validation letter")}
+      </div>
+      <div class="prep-card" id="wyLetter" hidden>
+        <h2>Optional: letter asking about your status</h2>
+        <p class="save-note">Nothing typed here is saved.</p>
+        ${WY_FIELDS.map(f => `
+          <label class="prep-label" for="wy-${f.id}">${esc(f.label)}</label>
+          ${f.type === "textarea" ? `<textarea id="wy-${f.id}" class="prep-input" rows="2"></textarea>` : `<input type="${f.type}" id="wy-${f.id}" class="prep-input">`}
+        `).join("")}
+        <pre class="template-text" id="wyOutput"></pre>
+        ${letterButtonsHtml("wyOutput")}
+      </div>
+      ${footHtml()}
+    `;
+
+    function draw(){
+      const roi = j === "ROI";
+      const body = document.getElementById("wyBody");
+      body.innerHTML = `<div class="guide-list">
+        ${roi ? moduleHtml("Words you might see", factListHtml(["wy-validation", "wy-validation-noreply", "wy-removed", "wy-suspended", "wy-suspension-rules", "wy-planned"])) : ""}
+        ${moduleHtml("Asking about your status", factListHtml([roi ? "wy-ask-status-roi" : "wy-ask-status-ni"]))}
+        ${moduleHtml("Targets and official figures", factListHtml(roi ? ["wy-roi-targets", "wy-roi-latest", "wy-ntpf-data"] : ["wy-ni-target", "wy-ni-latest", "wy-ni-data"]))}
+        ${moduleHtml("Other options while waiting", `<p>Some people look at cross-border or treatment-abroad schemes. The Schemes selector lists the official pages without recommending any provider.</p>
+          <div class="quick-link-row callout-pill-row"><a class="pill" href="#/tools/schemes">Schemes and cards selector</a></div>`)}
+      </div>`;
+      body.hidden = false;
+      document.getElementById("wyValidation").hidden = !roi;
+      document.getElementById("wyLetter").hidden = false;
+      refreshLetter();
+    }
+
+    function refreshLetter(){
+      const v = {};
+      WY_FIELDS.forEach(f => { v[f.id] = (document.getElementById("wy-" + f.id).value || "").trim(); });
+      v.dob = letterDate(v.dob);
+      v.referred = letterDate(v.referred);
+      v.refLine = v.ref ? ` (hospital number: ${v.ref})` : "";
+      v.today = todayNice();
+      const ph = {};
+      WY_FIELDS.forEach(f => { ph[f.id] = f.ph; });
+      ph.refLine = "";
+      document.getElementById("wyOutput").textContent = fillLetter("wy-status", v, ph);
+    }
+
+    WY_FIELDS.forEach(f => document.getElementById("wy-" + f.id).addEventListener("input", refreshLetter));
+    wireMultiDate("wyVal", [{ fact: "wy-validation-noreply", label: "14 days from the letter date" }]);
+    onRadio(app, "wyJ", v => { j = v; draw(); });
+    wirePrint(app);
+  }
+
+  // ======================================================================
+  // Tool 5: Discharge passport — #/tools/discharge
+  // Printable, device-only, prompts only. The person types every answer;
+  // nothing is suggested, inferred or autocompleted.
+  // ======================================================================
+
+  const DP_KEY = "hh-discharge-passport";
+  const DP_SAVE_KEY = "hh-discharge-passport-save-on";
+
+  const DP_SECTIONS = [
+    { id: "meds", title: "Medications", cols: [
+      { id: "name", label: "Medicine" }, { id: "how", label: "How and when to take it (as the team told you)" }, { id: "change", label: "New, changed or stopped?" } ] },
+    { id: "appts", title: "Appointments and follow-up", cols: [
+      { id: "what", label: "What" }, { id: "when", label: "When" }, { id: "where", label: "Where" } ] },
+    { id: "contacts", title: "Contacts", cols: [
+      { id: "who", label: "Who (ward, team, GP, public health nurse…)" }, { id: "number", label: "Phone / hours" } ] },
+  ];
+
+  function emptyPassport(){
+    return {
+      meds: [{}], appts: [{}], contacts: [{}],
+      questions: DISCHARGE_PROMPTS.map(q => ({ q, a: "" })),
+      extraQ: "", notes: "",
+    };
+  }
+
+  function normalisePassport(p){
+    const base = emptyPassport();
+    if (!p || typeof p !== "object") return base;
+    DP_SECTIONS.forEach(s => { base[s.id] = Array.isArray(p[s.id]) && p[s.id].length ? p[s.id].map(r => (r && typeof r === "object") ? r : {}) : [{}]; });
+    if (Array.isArray(p.questions)) base.questions = p.questions.filter(x => x && typeof x.q === "string").map(x => ({ q: x.q, a: String(x.a || "") }));
+    base.extraQ = String(p.extraQ || "");
+    base.notes = String(p.notes || "");
+    return base;
+  }
+
+  function passportText(p){
+    const out = ["MY DISCHARGE PASSPORT", `Printed ${todayNice()}`, ""];
+    DP_SECTIONS.forEach(s => {
+      const rows = p[s.id].filter(r => s.cols.some(c => (r[c.id] || "").trim()));
+      out.push(s.title.toUpperCase());
+      if (!rows.length) out.push("  (none written)");
+      rows.forEach(r => out.push("  - " + s.cols.map(c => (r[c.id] || "").trim()).filter(Boolean).join(" | ")));
+      out.push("");
+    });
+    out.push("QUESTIONS TO ASK BEFORE I GO HOME");
+    p.questions.forEach(x => { out.push("  Q: " + x.q); out.push("  A: " + (x.a.trim() || "________________________________")); });
+    if (p.extraQ.trim()) { out.push("  My own questions:"); p.extraQ.trim().split("\n").forEach(l => out.push("    " + l)); }
+    out.push("");
+    if (p.notes.trim()){ out.push("NOTES"); out.push(p.notes.trim()); out.push(""); }
+    out.push("Written by me from what the team told me. It's not a medical record.");
+    return out.join("\n");
+  }
+
+  function renderDischarge(app){
+    const isSaving = u.readStore(DP_SAVE_KEY) === true;
+    let p = normalisePassport(isSaving ? u.readStore(DP_KEY) : null);
+
+    function sectionHtml(s){
+      return `
+        <div class="prep-card">
+          <h2>${esc(s.title)}</h2>
+          ${p[s.id].map((r, i) => `
+            <div class="log-entry">
+              ${s.cols.map(c => `
+                <label class="prep-label" for="dp-${s.id}-${i}-${c.id}">${esc(c.label)}</label>
+                <input type="text" class="prep-input" id="dp-${s.id}-${i}-${c.id}" data-sec="${s.id}" data-row="${i}" data-col="${c.id}" value="${esc(r[c.id] || "")}">
+              `).join("")}
+            </div>`).join("")}
+          <button type="button" class="copy-btn" data-add="${s.id}">Add another</button>
+        </div>`;
+    }
+
+    function draw(){
+      app.innerHTML = `
+        ${headHtml("Discharge passport", "Write down what the team tells you before you leave hospital, then print or copy it")}
+        <div class="callout">This page only prompts you with questions to ask. It never suggests answers or medical content. Write down what the team tells you, in your own words.</div>
+        <div class="prep-card">
+          ${saveToggleHtml("dp", u.readStore(DP_SAVE_KEY) === true, "Clear saved passport from this device")}
+          <p class="save-note">If you tick this, the passport is stored in plain text in this browser, and anyone who can unlock this device can read it.</p>
+        </div>
+        ${DP_SECTIONS.map(sectionHtml).join("")}
+        <div class="prep-card">
+          <h2>Questions to ask before you go home</h2>
+          <ul class="detail-list">${factLiHtml("dp-nies")}</ul>
+          ${p.questions.map((x, i) => `
+            <label class="prep-label" for="dp-q-${i}">${esc(x.q)}</label>
+            <textarea id="dp-q-${i}" class="prep-input" rows="2" data-q="${i}">${esc(x.a)}</textarea>
+          `).join("")}
+          <label class="prep-label" for="dp-extraQ">My own questions</label>
+          <textarea id="dp-extraQ" class="prep-input" rows="3">${esc(p.extraQ)}</textarea>
+          <label class="prep-label" for="dp-notes">Other notes</label>
+          <textarea id="dp-notes" class="prep-input" rows="3">${esc(p.notes)}</textarea>
+        </div>
+        <div class="prep-card">
+          <h2>Your printable passport</h2>
+          <pre class="template-text" id="dpOutput"></pre>
+          <button type="button" class="copy-btn" data-copy-target="dpOutput">Copy passport text</button>
+          <button type="button" class="copy-btn" data-print-target="dpOutput">Print / save PDF</button>
+        </div>
+        ${footHtml()}
+      `;
+      wire();
+      refresh();
+    }
+
+    function persist(){
+      const t = document.getElementById("dpToggle");
+      if (t && t.checked) u.writeStore(DP_KEY, p);
+    }
+
+    function refresh(){
+      document.getElementById("dpOutput").textContent = passportText(p);
+    }
+
+    function wire(){
+      app.querySelectorAll("input[data-sec]").forEach(el => el.addEventListener("input", () => {
+        p[el.dataset.sec][Number(el.dataset.row)][el.dataset.col] = el.value;
+        persist(); refresh();
+      }));
+      app.querySelectorAll("textarea[data-q]").forEach(el => el.addEventListener("input", () => {
+        p.questions[Number(el.dataset.q)].a = el.value;
+        persist(); refresh();
+      }));
+      document.getElementById("dp-extraQ").addEventListener("input", e => { p.extraQ = e.target.value; persist(); refresh(); });
+      document.getElementById("dp-notes").addEventListener("input", e => { p.notes = e.target.value; persist(); refresh(); });
+      app.querySelectorAll("[data-add]").forEach(btn => btn.addEventListener("click", () => {
+        p[btn.dataset.add].push({});
+        persist();
+        const y = window.scrollY;
+        draw();
+        window.scrollTo(0, y);
+      }));
+      document.getElementById("dpToggle").addEventListener("change", e => {
+        const clearBtn = document.getElementById("dpClear");
+        if (e.target.checked){ u.writeStore(DP_SAVE_KEY, true); u.writeStore(DP_KEY, p); clearBtn.hidden = false; }
+        else { u.writeStore(DP_SAVE_KEY, false); u.clearStore(DP_KEY); clearBtn.hidden = true; }
+      });
+      document.getElementById("dpClear").addEventListener("click", () => {
+        u.clearStore(DP_KEY);
+        u.writeStore(DP_SAVE_KEY, false);
+        p = emptyPassport();
+        draw();
+      });
+      wirePrint(app);
+    }
+
+    draw();
+  }
+
+  // ======================================================================
 
   const RENDERERS = {
     "": renderIndex,
     complaints: renderComplaints,
     records: renderRecords,
     schemes: renderSchemes,
+    waiting: renderWaiting,
+    discharge: renderDischarge,
   };
 
   return {

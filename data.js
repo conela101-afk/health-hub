@@ -8475,3 +8475,71 @@ TOOL_FACTS.push(
   { id: "rr-roi-voluntary", text: "Most large HSE-funded voluntary hospitals also take FOI requests, through their own FOI office. Check the hospital's FOI page, or the hospital list on this site's Advocacy tab.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/legal-matters-and-health/access-to-medical-records/", source_name: "Citizens Information: Access to medical records", last_verified: "2026-09-28", volatility: "medium", verify: true },
   { id: "rr-ni-child", text: "A parent can usually make a subject access request for a young child's records. An older child who understands the request may need to make it, or agree to it, themselves. The provider decides, so ask it.", jurisdiction: "NI", source_url: "https://nidirect.gov.uk/articles/accessing-medical-or-health-and-social-care-records", source_name: "nidirect: Accessing medical or health and social care records", last_verified: "2026-09-28", volatility: "medium", verify: true }
 );
+
+// ---------- "While you wait" toolkit ----------
+// Counts and percentages are volatility:"high". The UI shows them only as
+// dated fact objects, never in running text.
+TOOL_FACTS.push(
+  { id: "wy-validation", text: "Validation letters: the NTPF, working for public hospitals, may write, text or phone to check you still need to be on a waiting list. Reply by the date given, using the prepaid envelope or online at waitinglist.ie.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/validation-letter-or-phone-call/", source_name: "NTPF: Validation letter or phone call", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "wy-validation-noreply", text: "If you don't reply within 14 days, you're sent a reminder. If you don't reply to the reminder, you may be taken off the list. You and your GP are then told in writing.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/information-for-patients-and-public/information-for-patients-and-public-faqs/", source_name: "NTPF: FAQs for patients and public", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 14, unit: "calendar_days" } },
+  { id: "wy-removed", text: "If you've been taken off a list and you still need care, contact the hospital that holds the list as soon as you can, and ask how to be put back on it. Keep a copy of your validation reply if you sent one.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/information-for-patients-and-public/information-for-patients-and-public-faqs/", source_name: "NTPF: FAQs for patients and public", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "wy-suspended", text: "\"Suspended\" means you're temporarily not ready to go ahead for clinical, personal or social reasons, or you're being treated through an insourcing or outsourcing initiative. Suspended patients are reported separately from the main waiting list figures.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/news_and_events/ntpf-publishes-march-2026-national-public-hospital-waiting-list-data/", source_name: "NTPF: March 2026 waiting list data release", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "wy-suspension-rules", text: "Under the national inpatient, day case and planned procedure protocol, a suspension should have a start and end date. It should last between two weeks and three months, and normally happen only once.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/app/uploads/2024/10/NTPF-IDPP-Full-Online-Version-Final.pdf", source_name: "NTPF: National IDPP Waiting List Management Protocol", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "wy-planned", text: "\"Planned procedure\" is a separate list for care that has to happen at a set time for clinical reasons, such as a repeat test. It isn't counted as waiting in the same way as the main lists. Ask the hospital which list you're on.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/app/uploads/2024/10/NTPF-IDPP-Full-Online-Version-Final.pdf", source_name: "NTPF: National IDPP Waiting List Management Protocol", last_verified: "2026-09-28", volatility: "low", verify: true },
+  { id: "wy-ask-status-roi", text: "To ask about your status, contact the hospital's waiting list or appointments office, or the consultant's secretary. Ask which list you're on (outpatient, inpatient/day case or planned procedure), whether you're active or suspended, and the date you were added.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/information-for-patients-and-public/information-for-patients-and-public-faqs/", source_name: "NTPF: FAQs for patients and public", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "wy-ask-status-ni", text: "In Northern Ireland, contact the Trust's booking centre or the consultant's secretary. Ask whether your referral has been received and triaged, its urgency category, and the date you were added.", jurisdiction: "NI", source_url: "https://www.health-ni.gov.uk/articles/outpatient-waiting-times", source_name: "Department of Health NI: Outpatient waiting times", last_verified: "2026-09-28", volatility: "low", verify: true },
+  { id: "wy-roi-targets", text: "Sláintecare maximum waiting time targets: 10 weeks for an outpatient appointment, and 12 weeks for an inpatient or day case procedure. These are targets, not a legal right to be seen by those dates.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/news_and_events/ntpf-publishes-march-2026-national-public-hospital-waiting-list-data/", source_name: "NTPF: waiting list data releases", last_verified: "2026-09-28", volatility: "medium", verify: false },
+  { id: "wy-ni-target", text: "Northern Ireland draft outpatient target: 50% of patients waiting no longer than 9 weeks for a first outpatient appointment, and no one waiting longer than 52 weeks. It's a target, not a legal right.", jurisdiction: "NI", source_url: "https://www.health-ni.gov.uk/news/publication-quarterly-northern-ireland-outpatient-inpatient-and-day-case-and-diagnostic-waiting-times-statistics-position-30-june-2026", source_name: "Department of Health NI: waiting times statistics, 30 June 2026", last_verified: "2026-09-28", volatility: "medium", verify: false },
+  { id: "wy-ni-latest", text: "At 30 June 2026, 504,537 people were waiting for a first consultant-led outpatient appointment in Northern Ireland. The median wait was 59.1 weeks, and 85.2% had waited more than 9 weeks.", jurisdiction: "NI", source_url: "https://www.health-ni.gov.uk/news/publication-quarterly-northern-ireland-outpatient-inpatient-and-day-case-and-diagnostic-waiting-times-statistics-position-30-june-2026", source_name: "Department of Health NI: waiting times statistics, 30 June 2026", last_verified: "2026-09-28", volatility: "high", verify: false },
+  { id: "wy-roi-latest", text: "Latest Republic of Ireland figures: we haven't copied them here. Check the NTPF's most recent monthly release (August 2026 data at the time of writing) directly.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/news_and_events/", source_name: "NTPF: News and data releases", last_verified: "2026-09-28", volatility: "high", verify: true },
+  { id: "wy-ntpf-data", text: "The NTPF publishes national public hospital waiting list data every month, by hospital and specialty.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/news_and_events/", source_name: "NTPF: News and data releases", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "wy-ni-data", text: "The Department of Health NI publishes outpatient, inpatient/day case and diagnostic waiting time statistics every quarter.", jurisdiction: "NI", source_url: "https://www.health-ni.gov.uk/topics/hospital-waiting-times-statistics", source_name: "Department of Health NI: Hospital waiting times statistics", last_verified: "2026-09-28", volatility: "low", verify: false }
+);
+
+// ---------- Discharge passport ----------
+TOOL_FACTS.push(
+  { id: "dp-nies", text: "In the 2024 National Inpatient Experience Survey, the lowest-scoring question was whether staff told patients about danger signals to watch for after going home. That's why it's the first question below.", jurisdiction: "ROI", source_url: "https://www.hiqa.ie/sites/default/files/2024-12/National-Inpatient-Experience-Survey-Report-2024.pdf", source_name: "HIQA / HSE / DoH: National Inpatient Experience Survey 2024 report", last_verified: "2026-09-28", volatility: "low", verify: false }
+);
+
+// Prompts only. They're questions for the person to ask the team, never
+// answers or clinical content.
+const DISCHARGE_PROMPTS = [
+  "What danger signs should I watch for at home, and who do I call?",
+  "Which of my medicines are new, changed or stopped, and why?",
+  "Who do I contact with questions after I leave, and when are they available?",
+  "When and how will I hear about follow-up appointments or test results?",
+  "Has a discharge summary been sent to my GP, and can I have a copy?",
+  "Is there anything I should check with the team before driving, working or other usual activities?",
+  "What support or equipment has been arranged for home, and who do I contact about it?",
+];
+
+// ---------- Letter: asking about waiting-list status ----------
+TOOL_LETTERS["wy-status"] = {
+  title: "Asking about your waiting-list status",
+  body: `{{name}}
+{{address}}
+Date of birth: {{dob}}
+{{contact}}
+
+{{today}}
+
+Waiting List Office / Secretary to {{consultant}}
+{{hospital}}
+
+Re: Waiting list status{{refLine}}
+
+Dear Sir or Madam,
+
+I was referred to {{consultant}} at {{hospital}} on or around {{referred}}. Please could you confirm:
+
+  - that my referral has been received and I am on the waiting list
+  - which list I am on (outpatient, inpatient/day case, or planned procedure) and whether my status is active or suspended
+  - the date I was added to the list, and my urgency category if one has been assigned
+  - whether I need to do anything, such as reply to a validation letter
+
+Please send any correspondence to the address above.
+
+Yours faithfully,
+
+{{name}}`,
+};
