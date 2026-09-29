@@ -830,10 +830,10 @@
       ? "all records held by your facility"
       : `records covering the period from ${startDate || "[start date]"} to ${endDate || "the present"}`;
 
-    return `[${name}]
-[${address}]
-[Date of birth: ${dob}]
-${contact ? `[${contact}]\n` : ""}
+    return `${name}
+${address}
+Date of birth: ${dob}
+${contact ? `${contact}\n` : ""}
 [Date]
 
 The Data Protection Officer

@@ -2,6 +2,10 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-09-29 [Claude]
+- **Fixed doubled brackets in the SAR builder preview** (`app.js`, `generateSarLetter`). The empty-state fallbacks (`[Your name]`, `[Your address]`, `[Your date of birth]`) already carry brackets, and the letter header wrapped every value in a second pair, giving `[[Your name]]` and `[Date of birth: [Your date of birth]]`. It also bracketed real values once filled (`[Jane Smith]`). The header now prints values unwrapped, with the "Date of birth:" label outside any brackets. Placeholders keep their single pair; the contact line is unbracketed too. One code path serves both jurisdictions (ROI and NI differ only in the statute text), so the NI variant is covered. `LETTER_TEMPLATES` in `data.js` and `tools.js` letters use plain single-bracket placeholders and were not affected. Service worker cache `v10` -> `v11`.
+- Not yet browser-tested after the fix; from source only.
+
 ## 2026-09-28 [Claude]
 - **Removed the Grok/multi-AI lane-split coordination model.** Claude Code is now the sole implementer of this repo — content, data, JS, HTML, and CSS. `AI_RULES.md` rewritten around content rules (official-source-only, `checked`/`last_verified`, `source_url`, no analytics, administrative-only scope) instead of a two-tool lane table. `MASTER-BUILD-PLAN.md`'s coordination section marked historical. `SECTOR_AUDIT.md` and this file's own past entries keep their existing Grok mentions as-is — dated historical record, not standing rules.
 - **Removed every third-party network request**, so the "no analytics/trackers" claim in `index.html`'s footer is actually true on page load, not just true of first-party tracking:
