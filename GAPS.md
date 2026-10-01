@@ -94,6 +94,62 @@ multi-county or Dublin-hospital entries also listed these counties. Wexford
 and Mayo haven't moved at all. Next step is still a proper local-services pass
 on these five, starting with Wexford and Mayo.
 
+## County coverage matrix, ROI (1 Oct 2026, audit round 1, PR D)
+
+Generated from `data.js` (496 entries) by `node scripts/county-matrix.js`. An entry counts for a
+county if its `county` array includes it. Cork combines `cork-city`, `cork-north` and `cork-west`.
+Recount before quoting a figure.
+
+| County | All | Child disab. | Adult disab. | PHN | CAMHS | Allied | Dental | Adult MH |
+|---|---|---|---|---|---|---|---|---|
+| Carlow | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Cavan | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Clare | 12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Cork | 68 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Donegal | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Dublin | 129 | 0 | 0 | 0 | 1 | 0 | 0 | 7 |
+| Galway | 28 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Kerry | 8 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| Kildare | 8 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Kilkenny | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Laois | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Leitrim | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Limerick | 23 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Longford | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Louth | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
+| Mayo | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Meath | 5 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
+| Monaghan | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Offaly | 4 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| Roscommon | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Sligo | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Tipperary | 10 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| Waterford | 15 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| Westmeath | 6 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Wexford | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Wicklow | 5 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+
+**Confirmed from this count**
+- Every children's disability, PHN, allied health and dental entry in the ROI is tagged `national`
+  (child disability 4, PHN 2, allied health 7). No county has a local entry in any of these
+  categories, so the matrix shows 0 for all 26. Locator entries are the design (see 2026-09-05
+  PHN decision), but the 2026 audit's CDNT entries (`hse-cdnt-finder`, `cho7-cdnts`,
+  `southeast-cdnts`, `horizons-cdnt-cork`) are not in `data.js` yet.
+- CAMHS has 1 multi-county entry (Dublin, Kerry, Offaly, Tipperary, Waterford, Wicklow) and nothing
+  local elsewhere.
+- Lowest totals: Longford 2, Laois 3, Leitrim 3, Roscommon 3, Carlow 4, Cavan 4, Mayo 4, Monaghan 4,
+  Offaly 4, Wexford 4. Dublin (129) and Cork (68) hold most local entries.
+- Cork split: `cork-city` 57, `cork-north` 1, `cork-west` 13. West Cork has no children's disability,
+  PHN or CDNT entry; the 13 are mostly general or hospital-based.
+
+**Possible gaps (not confirmed)**
+- Low counts in small counties can be proportionate (see the 5 Sep review). Rate per 100k was not recomputed.
+- The brief's "baseline each county from the HSE CDNT finder and primary care centre finder" step
+  was **not done**. hse.ie is egress-blocked in this environment, so per-county CDNT and primary care
+  centre counts are unknown. Do it with a real browser.
+- Prioritise West Cork and rural counties as the brief says. Tag by county and treat CHO / Health
+  Region labels as `verify before publishing`; the HSE moved to Health Regions in 2024 and labels differ by source.
+
 ## Guided tools: open verify items (28 Sep 2026)
 
 The guided tools (`#/tools/...`, logic in `tools.js`, facts in `data.js` →

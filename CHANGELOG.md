@@ -2,6 +2,9 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-10-01 [Claude] (county matrix, PR D)
+- Added the ROI 26-county matrix to `GAPS.md` and `scripts/county-matrix.js`. Main finding: all child-disability, PHN, allied health and dental entries are `national`-tagged, so no county has a local one. The HSE-finder baseline was not done (hse.ie is egress-blocked here). `SECTOR_AUDIT.md` notes for `ngs-columcilles` and `hse-ahr`.
+
 ## 2026-10-01 [Claude] (static pages)
 - Added `#/about/screening` (BowelScreen 57-71, BreastCheck 50-69, CervicalCheck 25-65, with a last-checked note) and `#/about/waiting-lists` (links to the NTPF, HSE performance reports and DoH NI publishers; no figures). 7 new `TOOL_FACTS`, all `verify: true`, search cross-check only. Both pages are in the app search. Stacked on `claude/aon-toolkit` (reuses its `renderPage` hook and the v12 cache bump).
 
