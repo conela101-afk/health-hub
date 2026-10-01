@@ -2,6 +2,9 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-10-01 [Claude] (Phase A entries, PR B)
+- Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+
 ## 2026-09-29 [Claude]
 - **Fixed doubled brackets in the SAR builder preview** (`app.js`, `generateSarLetter`). The empty-state fallbacks (`[Your name]`, `[Your address]`, `[Your date of birth]`) already carry brackets, and the letter header wrapped every value in a second pair, giving `[[Your name]]` and `[Date of birth: [Your date of birth]]`. It also bracketed real values once filled (`[Jane Smith]`). The header now prints values unwrapped, with the "Date of birth:" label outside any brackets. Placeholders keep their single pair; the contact line is unbracketed too. One code path serves both jurisdictions (ROI and NI differ only in the statute text), so the NI variant is covered. `LETTER_TEMPLATES` in `data.js` and `tools.js` letters use plain single-bracket placeholders and were not affected. Service worker cache `v10` -> `v11`.
 - Not yet browser-tested after the fix; from source only.

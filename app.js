@@ -612,6 +612,12 @@
       ? `<p class="checked-note">Checked ${escapeHtml(e.checked)}</p>`
       : "";
 
+    // Entries flagged verify: true have not been checked against the live
+    // official page yet. Say so, and link the source.
+    const verifyHtml = e.verify
+      ? `<p class="checked-note">Not yet checked against the official page, so contact details may be missing or out of date.${e.source_url ? ` <a href="${e.source_url}" target="_blank" rel="noopener">Official source ↗</a>` : ""}</p>`
+      : "";
+
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#" data-action="back">‹ Back</a>
@@ -625,6 +631,7 @@
         ${e.referral ? `<div class="referral-note"><strong>How to get in:</strong> ${linkifyText(e.referral)}</div>` : ""}
         ${resourcesHtml}
         ${checkedHtml}
+        ${verifyHtml}
       </div>
     `;
   }

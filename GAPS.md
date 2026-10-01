@@ -94,6 +94,34 @@ multi-county or Dublin-hospital entries also listed these counties. Wexford
 and Mayo haven't moved at all. Next step is still a proper local-services pass
 on these five, starting with Wexford and Mayo.
 
+## Phase A entries: pending browser check (1 Oct 2026, audit round 1, PR B)
+
+21 entries added and `breastcheck` updated in `data.js` (496 to 517 entries), all `verify: true`.
+They were rebuilt from search results, not opened in a browser, and carry **no phone numbers or
+emails on purpose**. The entry page shows "Not yet checked against the official page" and the source
+link while `verify` is set. To close one: open `source_url`, copy contact details and referral
+rules from the page, add `checked: "D Mon YYYY"`, delete `verify` and `source_url` stays.
+
+Mapping decisions: the brief's proposed `cdnt` category was folded into the existing
+`childdisability`; `dca` also uses it. Perinatal mental health uses the existing `mh` ("Perinatal &
+Maternal Mental Health"), eating disorders `eating`, menopause `menopause`, endometriosis `endo`,
+audiology `ent`, bariatric `weightmanagement`, school dental `dental`. New ids: `rare-disease`,
+`screening` (also tagged `cancer` on bowel, breast and cervical). `gender-health` is not added
+yet because its only entry is withheld below. County tags are inferred from the blurbs
+(`cho7-cdnts`: Dublin, Kildare, Wicklow; `southeast-cdnts`: five counties; `horizons-cdnt-cork`: `cork-city` only, so
+check whether it should include `cork-west`/`cork-north`).
+
+**Withheld: `ngs-columcilles`** (National Gender Service, St Columcille's). Its only source is
+`https://nationalgenderserviceireland.com/referral-form/`, which is not an official `.ie` site.
+Add it, with a new `gender-health` specialty, once an hse.ie page confirms the referral rules. Draft:
+name "National Gender Service (adult), St Columcille's Hospital", county `dublin`, blurb "Adult
+specialist service. Referral by a registered doctor, usually the GP."
+
+Check before merge: `breastcheck` blurb now says 50 to 69 and its old `checked: 4 Sep 2026` was
+removed because the content changed. Its `source_url` is a HSE news page, not the programme page.
+`hse-aon-complaints` repeats the "generally within 3 months" claim, `hse-ahr` age and cycle limits,
+`hse-spmhs` hub list and the "11 teams" / "12 teams" counts for CHO7 and South East are all volatile.
+
 ## Guided tools: open verify items (28 Sep 2026)
 
 The guided tools (`#/tools/...`, logic in `tools.js`, facts in `data.js` →
