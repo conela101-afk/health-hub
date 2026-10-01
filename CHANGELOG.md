@@ -7,6 +7,7 @@ Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 - **`#/rights/disability-children`**: CDNT vs AON, EPSEN, SENO/SNA, DCA to medical card to Carer's Support Grant, with links out and no rates.
 - 12 new `TOOL_FACTS` (all `verify: true`) and `aon-bill` rewritten. See `GAPS.md`.
 - `scripts/test-aon-dates.js` (month-ends, leap years, missing report date, bad dates), run in CI. Service worker cache v11 to v12. No new files to precache.
+- Follow-up: Bill banner now "before the Dáil, not yet law" (no stage date); the Circuit Court (s.22) ladder step was replaced with a non-committal "court routes, information only" step pending a read of the Act; calculator gained an optional "review date stated in your report" field and a 12-month outer limit.
 - **Not done / blocked:** official sites (hse.ie, oireachtas.ie, citizensinformation.ie) are egress-blocked here, so no URL was curl-checked and the Bill stage was not confirmed on oireachtas.ie. Facts rest on search results only.
 
 ## 2026-09-29 [Claude]

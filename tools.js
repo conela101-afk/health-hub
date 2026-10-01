@@ -1011,7 +1011,7 @@ window.HH_TOOLS = (function(){
   // Pure date maths, exported for tests. Inputs are "YYYY-MM-DD" strings.
   // Calendar months clamp to the last day of a shorter month (31 Aug + 6
   // months = 28/29 Feb), not roll over into the next one.
-  function aonDates(received, report, aware){
+  function aonDates(received, report, aware, reviewStated){
     const rec = parseIso(received);
     const rep = parseIso(report);
     const awr = parseIso(aware);
@@ -1026,9 +1026,14 @@ window.HH_TOOLS = (function(){
     } else if (rec){
       rows.push({ id: "statement", label: "Service Statement: latest, if the report arrives on time (about 7 months from application)", date: addPeriod(addPeriod(rec, fact("aon-complete").calc), fact("aon-service-statement").calc), fact: "aon-service-statement", estimate: true });
     }
+    if (rep){
+      rows.push({ id: "review", label: "Review: outer limit, 12 months after the report date (your report states the actual date)", date: addPeriod(rep, fact("aon-review").calc), fact: "aon-review" });
+    }
     if (awr){
       rows.push({ id: "complaint", label: "Complaint window closes (3 months from becoming aware)", date: addPeriod(awr, fact("aon-complaint").calc), fact: "aon-complaint" });
     }
+    const rv = parseIso(reviewStated);
+    if (rv) rows.push({ id: "reviewStated", label: "Review date stated in your report", date: rv, fact: "aon-review" });
     return rows;
   }
 
@@ -1062,7 +1067,7 @@ window.HH_TOOLS = (function(){
     { step: "1", title: "Assessment Officer / Liaison Officer", body: "Write to them first, using the templates above. Ask for the dates the HSE has on file.", facts: ["aon-hse-dates", "aon-private-report"] },
     { step: "2", title: "HSE Disability Complaints Officer (section 14)", body: "Use the official HSE complaint form. Time limit: see the calculator.", facts: ["aon-s14-form", "aon-complaint"] },
     { step: "3", title: "Disability Appeals Officer (section 18)", body: "If you're unhappy with the Complaints Officer's outcome.", facts: ["aon-appeals-officer"] },
-    { step: "4", title: "Circuit Court (section 22): information only", body: "This is a legal step. Get independent advice first.", facts: ["aon-s22", "aon-legal-aid"] },
+    { step: "4", title: "Court routes: information only", body: "These are legal steps. Get independent advice first.", facts: ["aon-s22", "aon-legal-aid"] },
     { step: "Also", title: "Ombudsman for Children and Your Service Your Say", body: "These run alongside the ladder. The Ombudsman for Children can look at complaints about public bodies on behalf of a child. Your Service Your Say is the HSE's general feedback and complaints route.", facts: ["roi-oco", "roi-ysys-overview"] },
   ];
 
@@ -1119,6 +1124,8 @@ window.HH_TOOLS = (function(){
         <input type="date" id="aonRec" class="prep-input" value="${sv("received")}">
         <label class="prep-label" for="aonRep">Date of the assessment report (optional)</label>
         <input type="date" id="aonRep" class="prep-input" value="${sv("report")}">
+        <label class="prep-label" for="aonRev">Review date stated in your report (optional)</label>
+        <input type="date" id="aonRev" class="prep-input" value="${sv("review")}">
         <label class="prep-label" for="aonAware">Date you became aware of the cause of a complaint (optional)</label>
         <input type="date" id="aonAware" class="prep-input" value="${sv("aware")}">
         <ul class="detail-list" id="aonOut" aria-live="polite"></ul>
@@ -1155,10 +1162,10 @@ window.HH_TOOLS = (function(){
     `;
 
     const $ = id => document.getElementById(id);
-    const dateIds = { received: "aonRec", report: "aonRep", aware: "aonAware" };
+    const dateIds = { received: "aonRec", report: "aonRep", review: "aonRev", aware: "aonAware" };
 
     function drawDates(){
-      const rows = aonDates($("aonRec").value, $("aonRep").value, $("aonAware").value);
+      const rows = aonDates($("aonRec").value, $("aonRep").value, $("aonAware").value, $("aonRev").value);
       $("aonOut").innerHTML = rows.map(r => `<li><strong>${esc(r.label)}:</strong> about ${esc(niceDate(r.date))}${r.estimate ? " (estimate)" : ""}${verifyTagHtml(fact(r.fact))}</li>`).join("");
     }
     function persist(){
