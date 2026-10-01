@@ -8537,6 +8537,19 @@ TOOL_FACTS.push(
   { id: "aon-dca-chain", text: "Domiciliary Care Allowance (DCA) is a monthly payment to the carer of a child under 16 with a severe disability. A child getting DCA gets a medical card without a means test, and DCA can open access to the Carer's Support Grant. Rates change, so we don't show them. Check the official page.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/children-s-health/caring-for-a-child-with-a-disability/", source_name: "Citizens Information: Caring for a child with a disability", last_verified: "2026-10-01", volatility: "high", verify: true }
 );
 
+// ---------- Static pages: #/about/screening and #/about/waiting-lists ----------
+// Ages and eligibility are volatile. Each carries a last-checked date and
+// verify: true until read on the official page.
+TOOL_FACTS.push(
+  { id: "scr-bowel", text: "BowelScreen: free home test kit for people aged 57 to 71.", jurisdiction: "ROI", source_url: "https://www.screeningservice.ie/bowelscreen", source_name: "National Screening Service: BowelScreen", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "scr-breast", text: "BreastCheck: free mammograms for women aged 50 to 69.", jurisdiction: "ROI", source_url: "https://www.screeningservice.ie/breastcheck", source_name: "National Screening Service: BreastCheck", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "scr-cervical", text: "CervicalCheck: free cervical screening for women and people with a cervix aged 25 to 65.", jurisdiction: "ROI", source_url: "https://www.screeningservice.ie/cervicalcheck", source_name: "National Screening Service: CervicalCheck", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "scr-register", text: "Check you are on the register for each programme through the National Screening Service, so you receive invitations.", jurisdiction: "ROI", source_url: "https://www.screeningservice.ie/", source_name: "National Screening Service", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "wl-ntpf", text: "The NTPF publishes hospital inpatient, day-case and outpatient waiting list data. We don't copy the figures here because they change every month.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/waiting-list-data/", source_name: "NTPF: Waiting list data", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "wl-hse-perf", text: "The HSE publishes performance reports, which include Assessment of Need, Children's Disability Network Team and primary care waiting data. Find the latest report on the HSE publications page.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/publications/performancereports/", source_name: "HSE: Performance reports", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "wl-ni", text: "For Northern Ireland, the Department of Health publishes quarterly waiting time statistics.", jurisdiction: "NI", source_url: "https://www.health-ni.gov.uk/articles/outpatient-waiting-times", source_name: "Department of Health NI: Outpatient waiting times", last_verified: "2026-10-01", volatility: "high", verify: true }
+);
+
 // ---------- Letters: Assessment of Need (AON) ----------
 // Wording asks for information and records facts. It does not say that anything
 // is unlawful and gives no legal or clinical advice.

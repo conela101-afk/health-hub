@@ -1242,6 +1242,44 @@ window.HH_TOOLS = (function(){
     `;
   }
 
+
+  // ======================================================================
+  // Static pages — #/about/screening, #/about/waiting-lists
+  // ======================================================================
+
+  function renderAbout(name, app, utils){
+    u = utils;
+    const pages = {
+      screening: {
+        title: "National cancer screening programmes",
+        sub: "Republic of Ireland. Who is invited, and where to check. Information only.",
+        facts: ["scr-bowel", "scr-breast", "scr-cervical", "scr-register"],
+        note: "Ages and eligibility can change. This page was last checked on 1 Oct 2026 against search results, not the live official pages. Check the programme page before relying on an age band. Screening is for people without symptoms. If you have symptoms, contact your GP.",
+      },
+      "waiting-lists": {
+        title: "Where waiting list data is published",
+        sub: "We link to the publishers and don't copy figures, which change every month.",
+        facts: ["wl-ntpf", "wl-hse-perf", "wl-ni"],
+        note: "For what to do while you wait, use the <a href=\"#/tools/waiting\">While you wait</a> tool. For children's disability waits, see the <a href=\"#/tools/aon\">Assessment of Need toolkit</a>.",
+        noteIsHtml: true,
+      },
+    };
+    const p = pages[name];
+    if (!p) return false;
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>${esc(p.title)}</h1>
+        <p class="count">${esc(p.sub)}</p>
+      </div>
+      <div class="callout"><strong>${esc(TOOL_UI_TEXT.disclaimer)}</strong></div>
+      <div class="guide-list">${moduleHtml("Official sources", factListHtml(p.facts))}</div>
+      <div class="callout">${p.noteIsHtml ? p.note : esc(p.note)}</div>
+      ${footHtml()}
+    `;
+    return true;
+  }
+
   // ======================================================================
 
   const RENDERERS = {
@@ -1267,6 +1305,7 @@ window.HH_TOOLS = (function(){
       RENDERERS[id] = fn;
       if (meta) TOOL_LIST.push(Object.assign({ id }, meta));
     },
+    renderAbout,
     renderPage(name, app, utils){
       if (name === "disability-children"){ renderRightsDisabilityChildren(app, utils); return true; }
       return false;

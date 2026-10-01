@@ -2,6 +2,9 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-10-01 [Claude] (static pages)
+- Added `#/about/screening` (BowelScreen 57-71, BreastCheck 50-69, CervicalCheck 25-65, with a last-checked note) and `#/about/waiting-lists` (links to the NTPF, HSE performance reports and DoH NI publishers; no figures). 7 new `TOOL_FACTS`, all `verify: true`, search cross-check only. Both pages are in the app search. Stacked on `claude/aon-toolkit` (reuses its `renderPage` hook and the v12 cache bump).
+
 ## 2026-10-01 [Claude]
 - **AON toolkit (`#/tools/aon`)**: extended the existing explainer rather than adding a second route. Deadline calculator (acknowledgement +14 days, start +3 months, report +6 months, Service Statement +1 month after the report date or about 7 months overall if no report date, complaint window 3 months), calendar-month arithmetic that clamps month-ends, opt-in "Save on this device". Five letter templates (acknowledgement, overdue chaser, delay reason, s.14 cover note, Service Statement non-delivery), FOI/SAR via the existing records builder, escalation ladder, evidence checklist (links to `#/log`), glossary, "not legal advice" notice signposting the Legal Aid Board, Citizens Information and the OCO. No eligibility prediction, no "this breaches the law" wording, no rates.
 - **`#/rights/disability-children`**: CDNT vs AON, EPSEN, SENO/SNA, DCA to medical card to Carer's Support Grant, with links out and no rates.
