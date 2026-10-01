@@ -2,6 +2,13 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-10-01 [Claude]
+- **AON toolkit (`#/tools/aon`)**: extended the existing explainer rather than adding a second route. Deadline calculator (acknowledgement +14 days, start +3 months, report +6 months, Service Statement +1 month after the report date or about 7 months overall if no report date, complaint window 3 months), calendar-month arithmetic that clamps month-ends, opt-in "Save on this device". Five letter templates (acknowledgement, overdue chaser, delay reason, s.14 cover note, Service Statement non-delivery), FOI/SAR via the existing records builder, escalation ladder, evidence checklist (links to `#/log`), glossary, "not legal advice" notice signposting the Legal Aid Board, Citizens Information and the OCO. No eligibility prediction, no "this breaches the law" wording, no rates.
+- **`#/rights/disability-children`**: CDNT vs AON, EPSEN, SENO/SNA, DCA to medical card to Carer's Support Grant, with links out and no rates.
+- 12 new `TOOL_FACTS` (all `verify: true`) and `aon-bill` rewritten. See `GAPS.md`.
+- `scripts/test-aon-dates.js` (month-ends, leap years, missing report date, bad dates), run in CI. Service worker cache v11 to v12. No new files to precache.
+- **Not done / blocked:** official sites (hse.ie, oireachtas.ie, citizensinformation.ie) are egress-blocked here, so no URL was curl-checked and the Bill stage was not confirmed on oireachtas.ie. Facts rest on search results only.
+
 ## 2026-09-29 [Claude]
 - **Fixed doubled brackets in the SAR builder preview** (`app.js`, `generateSarLetter`). The empty-state fallbacks (`[Your name]`, `[Your address]`, `[Your date of birth]`) already carry brackets, and the letter header wrapped every value in a second pair, giving `[[Your name]]` and `[Date of birth: [Your date of birth]]`. It also bracketed real values once filled (`[Jane Smith]`). The header now prints values unwrapped, with the "Date of birth:" label outside any brackets. Placeholders keep their single pair; the contact line is unbracketed too. One code path serves both jurisdictions (ROI and NI differ only in the statute text), so the NI variant is covered. `LETTER_TEMPLATES` in `data.js` and `tools.js` letters use plain single-bracket placeholders and were not affected. Service worker cache `v10` -> `v11`.
 - Not yet browser-tested after the fix; from source only.

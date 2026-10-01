@@ -133,7 +133,12 @@ the next session with normal network access. The list is in `REVIEW.md` →
 | `wy-planned` | ROI | low | Plain-language definition of "planned procedure" not found verbatim | https://www.ntpf.ie/app/uploads/2024/10/NTPF-IDPP-Full-Online-Version-Final.pdf |
 | `wy-ask-status-ni` | NI | low | How to ask your status in NI (booking centres vary by Trust) | https://www.health-ni.gov.uk/articles/outpatient-waiting-times |
 | `wy-roi-latest` | ROI | high | ROI counts deliberately not copied. Check the August 2026 NTPF release directly | https://www.ntpf.ie/waiting-list-data/ |
-| `aon-bill` | ROI | high | Disability (Amendment) Bill 2026 was at Dáil second stage on 28 Sep 2026. Not law | https://www.oireachtas.ie/en/bills/bill/2026/88/ |
+| `aon-bill` | ROI | high | Brief (1 Oct 2026): introduced 18 Sept 2026. A search summary also reported Second Stage debate on 23 Sept; the earlier note here said 28 Sep. oireachtas.ie was egress-blocked, so the stage is NOT confirmed. Re-read before merge | https://www.oireachtas.ie/en/bills/bill/2026/88/ |
+| `aon-service-statement` | ROI | medium | "Report date + 1 month (7 months overall)" comes from the brief. Confirm against the Act and HSE AON procedure | https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/ |
+| `aon-review` | ROI | medium | Brief says "no later than 1 year". What it counts from is unknown, so the calculator shows no review date | https://www.hse.ie/eng/services/list/4/disability/disability-assessment/ |
+| `aon-appeals-officer` | ROI | high | s.18 reference and Disability Appeals Officer contact details and time limit not confirmed | https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/ |
+| `aon-s22` | ROI | medium | Circuit Court enforcement under s.22 comes from the brief. A search summary only mentioned appeal on a point of law to the High Court. Read the Act text and rewrite if the brief is wrong | https://revisedacts.lawreform.ie/eli/2005/act/14/revised/en/html |
+| `aon-s14-form`, `aon-hse-dates`, `aon-private-report`, `aon-legal-aid`, `aon-cdnt-finder`, `aon-seno`, `aon-dca-chain` | ROI | medium/high | Added 1 Oct 2026 from search cross-check only. `aon-dca-chain` mentions the Carer's Support Grant and medical card link, and rates are deliberately not shown | see each fact's `source_url` |
 
 ### Also open (not facts, but gaps in what the tools cover)
 

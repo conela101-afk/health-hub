@@ -30,6 +30,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-01 [Claude] — Audit round 1, PR A: AON toolkit and `#/rights/disability-children`. Pre-flight found PRs #43/#45/#49 were closed unmerged (fabricated CHN data, see 2026-09-22), so there was nothing to rebase on, and the 23-row Phase A audit report isn't in the repo. See `CHANGELOG.md`.
 - 2026-09-28 [Claude] — Removed the Grok/multi-AI lane-split coordination model; Claude Code is now the sole implementer across all layers. Removed every third-party network request (Google Fonts, cdnjs/Leaflet, OSM map tiles) — this closes out the gap the same-day guided-tools session flagged below ("removing them is in your lane"). See `CHANGELOG.md` for the full breakdown.
 - 2026-09-28 [Claude] — Guided tools: complaints navigator, records-request builder, schemes & cards selector, "while you wait", discharge passport, AON explainer (`#/tools`). New `tools.js` (logic) + `TOOL_FACTS` etc. in `data.js`. No CSS changes. Official sites were egress-blocked, so facts were cross-checked via search only; 21 `verify: true` items are open in `GAPS.md`. See `CHANGELOG.md`.
 - 2026-09-25 [Claude] — Date inputs for SAR/appointment fields, GAPS.md recount (Tyrone at 4, not "untouched"), and 6 NI structural/cross-border entries (`data.js` 490 → 496). Primary NI/CHI sources were egress-blocked, so the new entries have no `checked` date, phones or waiting times. They need a live-fetch verification pass before those fields go in. See `CHANGELOG.md`.
