@@ -100,7 +100,7 @@ on these five, starting with Wexford and Mayo.
 They were rebuilt from search results, not opened in a browser, and carry **no phone numbers or
 emails on purpose**. The entry page shows "Not yet checked against the official page" and the source
 link while `verify` is set. To close one: open `source_url`, copy contact details and referral
-rules from the page, add `checked: "D Mon YYYY"`, delete `verify` and `source_url` stays.
+rules from the page, add `checked: "D Mon YYYY"`, delete `verify` (keep `source_url`).
 
 Mapping decisions: the brief's proposed `cdnt` category was folded into the existing
 `childdisability`; `dca` also uses it. Perinatal mental health uses the existing `mh` ("Perinatal &
