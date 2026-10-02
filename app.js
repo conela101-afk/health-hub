@@ -499,7 +499,7 @@
           <option value="">All of ${escapeHtml(label)}</option>
           ${countyAreas.map(x => `<option value="${x.id}"${x.id === activeArea ? " selected" : ""}>${escapeHtml(x.label)}</option>`).join("")}
         </select>
-        <p class="save-note">Areas are only a way to browse this list. They are not HSE boundaries, so check your address with the service. Entries that cover the whole county appear under "All of ${escapeHtml(label)}" only.</p>
+        <p class="save-note">Areas are only a way to browse this list. They show where a service is based, not who it serves, and they are not HSE boundaries, so check your address with the service. Regional and county-wide services have no area and appear under "All of ${escapeHtml(label)}" only.</p>
       </div>` : "";
     const filterHtml = kind === "specialty" ? sectorFilterHtml(id, activeSector) : areaHtml;
     const cards = results.length
