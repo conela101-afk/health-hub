@@ -23,7 +23,7 @@ const SOURCE_DOMAINS = [
   "hiqa.ie", "mhcirl.ie", "dataprotection.ie", "oco.ie", "ombudsman.ie", "oic.ie",
   "medicalcouncil.ie", "nmbi.ie", "coru.ie", "thepsi.ie", "dentalcouncil.ie",
   "legalaidboard.ie", "flac.ie", "nidirect.gov.uk", "health-ni.gov.uk", "hscni.net", "nipso.org.uk",
-  "screeningservice.ie", "ntpf.ie", "ncse.ie", "stjames.ie", "stvincents.ie", "mater.ie", "nohc.ie",
+  "screeningservice.ie", "ntpf.ie", "ncse.ie", "stjames.ie", "nrh.ie", "stvincents.ie", "mater.ie", "nohc.ie",
   "cho7cdnt.ie", "southeastcdnt.ie",
 ];
 const hostAllowed = host => SOURCE_DOMAINS.some(d => host === d || host.endsWith("." + d));
