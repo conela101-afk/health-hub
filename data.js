@@ -5426,14 +5426,17 @@ const ENTRIES = [
     name: "Jigsaw — National Centre for Youth Mental Health",
     specialty: ["camhs", "eating"],
     county: ["dublin", "kerry", "offaly", "tipperary", "wicklow", "waterford"],
-    blurb: "Free, self-referral mental health support for ages 12-25, no diagnosis or GP letter needed — 18 locations nationwide.",
+    blurb: "Free mental health support for ages 12-25, no diagnosis or GP letter needed — 18 locations nationwide. If you are under 18, an adult has to consent for you to attend.",
     details: [
+      "Jigsaw says that if you are under 18 an adult must consent for you to attend, and a parent or guardian comes to the first session. Its Live Chat does not require parental consent. Source: Jigsaw's own Accessing Jigsaw page (read in search results only, so check it).",
       "Named sites include Dublin City (44 Essex St East, Temple Bar D02 YR92, and Summerhill D01 TY46), Dublin South West (St John's House, High St, Tallaght D24), North Fingal (Swords K67 Y6K7), Kerry (Tralee), Offaly (Tullamore), Tipperary (Thurles), Wicklow (Bray), and Waterford (opened 31 August 2026).",
       "Per Jigsaw's 2025 Annual Report, referrals rose 23% to 11,064 in 2025 — the highest in its history — with a further 33% rise in Q1 2026 (to 3,909), which Jigsaw says signals an accelerating trend in youth mental health need.",
     ],
-    referral: "Self-referral via jigsaw.ie/go.",
+    referral: "Self-referral via jigsaw.ie/go (under 18s need an adult's consent).",
     contact: { phone: "1800 544 729", web: "jigsaw.ie/go" },
-    checked: "6 Sep 2026"
+    checked: "6 Sep 2026",
+    source_url: "https://jigsaw.ie/accessing-jigsaw",
+    urlStatus: "search-result"
   },
   {
     id: "ni-camhs",
@@ -6678,6 +6681,30 @@ const ENTRIES = [
     blurb: "Raise a concern about an adult who may be at risk of abuse. Regional HSE safeguarding teams give advice, or speak to the manager of the HSE-run or HSE-funded service involved.",
     contact: { web: "www2.hse.ie/complaints-feedback/report-a-concern-about-a-vulnerable-adult/" },
     source_url: "https://www2.hse.ie/complaints-feedback/report-a-concern-about-a-vulnerable-adult/",
+    urlStatus: "search-result",
+    verify: true
+  },
+
+  // Pass 5, children, family and counselling (2 Oct 2026). Search results only, no contacts.
+  {
+    id: "ncs-cipc",
+    name: "Counselling in Primary Care (CIPC)",
+    specialty: ["adultmh"],
+    county: ["national"],
+    blurb: "Free short-term counselling, up to 8 sessions, for adults aged 18 and over with a medical card. Your GP refers you, then you opt in by phone within 2 weeks of the referral.",
+    contact: { web: "www2.hse.ie/mental-health/services-support/ncs/cipc/" },
+    source_url: "https://www2.hse.ie/mental-health/services-support/ncs/cipc/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ncs-trauma",
+    name: "National Counselling Service: childhood abuse, mother and baby homes, Stardust",
+    specialty: ["adultmh"],
+    county: ["national"],
+    blurb: "Free counselling for adults who experienced childhood abuse, people who lived in mother and baby homes, and families affected by the Stardust fire. You don't need a medical card.",
+    contact: { web: "www2.hse.ie/mental-health/services-support/ncs/about/" },
+    source_url: "https://www2.hse.ie/mental-health/services-support/ncs/about/",
     urlStatus: "search-result",
     verify: true
   },
