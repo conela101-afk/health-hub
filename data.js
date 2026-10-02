@@ -6694,6 +6694,74 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
+
+  // Pass 5 replacement, medical (2 Oct 2026). Search results only, no contacts. The National Coagulation Centre already has an entry and is not repeated.
+  {
+    id: "stroke-esd",
+    name: "Stroke Early Supported Discharge",
+    specialty: ["stroke"],
+    county: ["national"],
+    blurb: "Specialist stroke therapy at home after hospital, available at some acute stroke sites rather than nationally. Your hospital stroke team assesses whether it suits you. Support usually runs for up to eight weeks.",
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/stroke/resources/hse-early-supported-discharge-for-stroke-report.pdf" },
+    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/stroke/resources/hse-early-supported-discharge-for-stroke-report.pdf",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ms-unit-sjh",
+    name: "Multiple Sclerosis Unit, St James's Hospital",
+    specialty: ["neurology"],
+    county: ["national"],
+    blurb: "Consultant-led MS service with an MS nurse specialist, physiotherapist and occupational therapist. GP referral for an existing or suspected diagnosis, by post or Healthlink.",
+    contact: { web: "www.stjames.ie/services/med/neurology/multiplesclerosisunit/" },
+    source_url: "https://www.stjames.ie/services/med/neurology/multiplesclerosisunit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cgm-managed-access",
+    name: "HSE CGM Managed Access Programme",
+    specialty: ["diabetes"],
+    county: ["national"],
+    blurb: "Continuous glucose monitoring for type 1 diabetes through specialist diabetes teams, under an HSE managed access programme. Ask your diabetes team whether you are eligible.",
+    contact: { web: "www.hiqa.ie/sites/default/files/2023-09/T1D-Report-September-2023.pdf" },
+    source_url: "https://www.hiqa.ie/sites/default/files/2023-09/T1D-Report-September-2023.pdf",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cardiac-rehab-moc",
+    name: "Integrated Cardiac Rehabilitation",
+    specialty: ["cardiology"],
+    county: ["national"],
+    blurb: "Cardiac rehabilitation after a heart attack, heart surgery or with heart failure. The HSE model of care says people in hospital with heart failure should all be offered a programme. Ask your hospital team.",
+    contact: { web: "www.hse.ie/eng/services/publications/model-of-care-for-integrated-cardiac-rehabilitation.pdf" },
+    source_url: "https://www.hse.ie/eng/services/publications/model-of-care-for-integrated-cardiac-rehabilitation.pdf",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "sickle-cell-sjh",
+    name: "Adult Sickle Cell and Thalassaemia Service, St James's Hospital",
+    specialty: ["haematology"],
+    county: ["national"],
+    blurb: "Adults are referred by their GP or consultant, or through a transition clinic.",
+    contact: { web: "www.stjames.ie/services/hope/sicklecellandthalassaemia/" },
+    source_url: "https://www.stjames.ie/services/hope/sicklecellandthalassaemia/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "sarcoma-national",
+    name: "National Sarcoma Service",
+    specialty: ["oncology"],
+    county: ["national"],
+    blurb: "St Vincent's University Hospital runs the designated national sarcoma multidisciplinary team, and Cappagh (National Orthopaedic Hospital) is the national referral centre for primary bone and soft tissue tumours. Clinicians refer, through Healthlink.",
+    contact: { web: "www.stvincents.ie/32365-2/" },
+    source_url: "https://www.stvincents.ie/32365-2/",
+    urlStatus: "search-result",
+    verify: true
+  },
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate
