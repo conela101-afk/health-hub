@@ -4,6 +4,8 @@ Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-10-01 [Claude] (Phase A entries, PR B)
 - Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+## 2026-10-02 [Claude] (Pass 5 replacement: corrections)
+- Bill 88 text now says: First Stage 18 Sep 2026; a Second Stage debate on 23 Sep 2026 is reported by a non-official source only; Second Stage not confirmed ended; Committee Stage not reached; not law. The AON completion fact cites S.I. 263/2007 Reg. 10 as made ("save for in exceptional circumstances", written reasons before the 3 months expire) and says it is not a no-exceptions deadline. Both stay `verify: true`; the S.I. text was not opened by us.
 ## 2026-10-02 [Claude] (Pass 3 rows)
 - Added 11 entries (neuro-rehabilitation, spinal cord injury, sleep, NIPHS, memory assessment, Work-Able) with 4 new specialties; all `verify: true`, search-result only, no contacts. Updated the Home Support Providers Act entry in place. Skipped duplicates (HSE helpline, home STI kit) and withheld two rows with non-official sources (adult ADHD, Living Well with Chronic Pain).
 
