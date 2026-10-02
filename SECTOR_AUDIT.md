@@ -64,3 +64,10 @@ re-tag.
   2026-09-12**: added a `title` tooltip to the Public tab ("State-run
   HSE/HSC bodies — voluntary hospitals have their own tab") and to the
   Voluntary tab, rather than changing the visible label text.
+
+## Audit round 1 follow-up (1 Oct 2026)
+
+Not done in this round: the brief's new `sector`-related checks. Note for the pending Phase A
+entries: `ngs-columcilles` is a `.com` source and must stay flagged until an hse.ie page confirms;
+`hse-ahr` should be tagged `public` and checked against the existing `hse-approved-ahr-clinics`
+(private) entry so the two are not confused.
