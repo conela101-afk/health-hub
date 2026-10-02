@@ -241,11 +241,19 @@
 
   function specialtyLabel(id){ return (SPECIALTIES.find(s => s.id === id) || {}).label || id; }
   function countyLabel(id){ return (COUNTIES.find(c => c.id === id) || {}).label || id; }
+  // Optional sub-county area (see AREAS in data.js). Navigation only, not HSE boundaries.
+  function areaLabel(id){
+    for (const k of Object.keys(AREAS)){ const hit = AREAS[k].find(x => x.id === id); if (hit) return hit.label; }
+    return id;
+  }
+  // Cork used to be three county ids; old links still work.
+  const LEGACY_COUNTY = { "cork-city": ["cork", "cork-city"], "cork-north": ["cork", "north-cork"], "cork-west": ["cork", "west-cork"] };
 
   function tagsHtml(entry){
     const specTags = entry.specialty.map(s => `<span class="tag tag-${accentForId(s)}">${specialtyLabel(s)}</span>`).join("");
     const countyTags = entry.county.map(c => `<span class="tag tag-${accentForId(c)}">${countyLabel(c)}</span>`).join("");
-    return `<div class="tag-row">${specTags}${countyTags}</div>`;
+    const areaTag = entry.area ? `<span class="tag tag-${accentForId(entry.county[0])}">${areaLabel(entry.area)}</span>` : "";
+    return `<div class="tag-row">${specTags}${countyTags}${areaTag}</div>`;
   }
 
   function entryCardHtml(entry){
@@ -471,15 +479,29 @@
   }
 
   function renderList(kind, id, sector){
+    // For counties the third URL part is an optional area (#/county/cork/west-cork).
+    let areaParam = kind === "county" ? sector : "";
+    if (kind === "county" && LEGACY_COUNTY[id]){ [id, areaParam] = LEGACY_COUNTY[id]; }
+    const countyAreas = kind === "county" ? (AREAS[id] || []) : [];
+    const activeArea = countyAreas.some(x => x.id === areaParam) ? areaParam : "";
     const label = kind === "specialty" ? specialtyLabel(id) : countyLabel(id);
-    const allResults = ENTRIES.filter(e => kind === "specialty" ? e.specialty.includes(id) : e.county.includes(id));
+    const allResults = ENTRIES.filter(e => kind === "specialty" ? e.specialty.includes(id) : e.county.includes(id) && (!activeArea || e.area === activeArea));
     const validSectors = ["public", "private", "voluntary"];
     const activeSector = kind === "specialty" && validSectors.includes(sector) ? sector : "";
     const results = activeSector
       ? allResults.filter(e => sectorOf(e) === activeSector)
       : allResults;
     const backHref = kind === "specialty" ? "#/specialty" : "#/county";
-    const filterHtml = kind === "specialty" ? sectorFilterHtml(id, activeSector) : "";
+    const areaHtml = countyAreas.length ? `
+      <div class="area-filter">
+        <label class="prep-label" for="areaSelect">Area</label>
+        <select id="areaSelect" class="prep-input">
+          <option value="">All of ${escapeHtml(label)}</option>
+          ${countyAreas.map(x => `<option value="${x.id}"${x.id === activeArea ? " selected" : ""}>${escapeHtml(x.label)}</option>`).join("")}
+        </select>
+        <p class="save-note">Areas are only a way to browse this list. They are not HSE boundaries, so check your address with the service. Entries that cover the whole county appear under "All of ${escapeHtml(label)}" only.</p>
+      </div>` : "";
+    const filterHtml = kind === "specialty" ? sectorFilterHtml(id, activeSector) : areaHtml;
     const cards = results.length
       ? results.map(entryCardHtml).join("")
       : `<div class="empty-state">Nothing listed here yet.</div>`;
@@ -492,10 +514,14 @@
       ${filterHtml}
       ${cards}
     `;
+    const areaSelect = document.getElementById("areaSelect");
+    if (areaSelect) areaSelect.addEventListener("change", () => {
+      location.hash = `#/county/${id}${areaSelect.value ? "/" + areaSelect.value : ""}`;
+    });
   }
 
   function entryHay(e){
-    return [e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel)]
+    return [e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel), e.area ? areaLabel(e.area) : ""]
       .join(" ").toLowerCase();
   }
 
@@ -1864,7 +1890,7 @@ ${name}`;
     else if (parts[0] === "specialty" && !parts[1]) renderSpecialtyIndex();
     else if (parts[0] === "specialty" && parts[1]) renderList("specialty", parts[1], parts[2]);
     else if (parts[0] === "county" && !parts[1]) renderCountyIndex();
-    else if (parts[0] === "county" && parts[1]) renderList("county", parts[1]);
+    else if (parts[0] === "county" && parts[1]) renderList("county", parts[1], parts[2]);
     else if (parts[0] === "search" && parts[1]) renderSearch(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
