@@ -6615,7 +6615,7 @@ const ENTRIES = [
     source_url: "https://www.citizensinformation.ie/en/social-welfare/carers/carers-support-grant/",
     urlStatus: "search-result",
     verify: true
-  }
+  },
 
   // Pass 5, rights and regulators (2 Oct 2026). Search results only, no contacts. HIQA concerns, Ombudsman, OCO, Medical Council and NMBI already have rights cards, so they are not repeated here.
   {
