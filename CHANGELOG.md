@@ -4,6 +4,9 @@ Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-10-01 [Claude] (Phase A entries, PR B)
 - Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+## 2026-10-02 [Claude] (Pass 3 rows)
+- Added 11 entries (neuro-rehabilitation, spinal cord injury, sleep, NIPHS, memory assessment, Work-Able) with 4 new specialties; all `verify: true`, search-result only, no contacts. Updated the Home Support Providers Act entry in place. Skipped duplicates (HSE helpline, home STI kit) and withheld two rows with non-official sources (adult ADHD, Living Well with Chronic Pain).
+
 ## 2026-10-02 [Claude] (Pass 4 rows)
 - Added 4 entries (home support providers Act, community ophthalmic scheme, NCCP designated centres, Carer's Support Grant with a new `carers` specialty), updated 2 in place (autism protocol, audiology) plus the PAS scope text, and added 2 FOI facts to the records tool. Skipped duplicates (YSYS, PAS, FOI) and withheld the ME/CFS row (press source). GP card and DPS held until after Budget 2027. All flagged `verify` with `urlStatus: "search-result"`.
 
