@@ -71,3 +71,16 @@ Not done in this round: the brief's new `sector`-related checks. Note for the pe
 entries: `ngs-columcilles` is a `.com` source and must stay flagged until an hse.ie page confirms;
 `hse-ahr` should be tagged `public` and checked against the existing `hse-approved-ahr-clinics`
 (private) entry so the two are not confused.
+
+## Pass 5 follow-up (2 Oct 2026)
+
+`data.js` now has 537 entries: 431 public (default, untagged), 34 private, 72 voluntary; 44 carry `verify: true`.
+The `sector` field has only public, private and voluntary, so the Pass 5 intent labels were not added
+as new values. Where they would apply: statutory regulator or ombudsman (`hiqa-disability-residential`,
+`dpc-subject-access`, `mhc-tribunals`, `coru-complaint`), legislation (`mha-2026-info`), public
+(`hse-adult-safeguarding`, `ncs-cipc`, `ncs-trauma`, `hse-home-support-apply`, `hse-quit`,
+`t1d-technology`, `stroke-esd`, both Carer's Allowance rows). They stay untagged, so they show under
+Public. LauraLynn and Jigsaw are existing voluntary-sector organisations; check their `sector` tag if they should
+appear under the Voluntary tab. Sections A and B of the Pass 5 report (MS, Parkinson's/DBS, headache,
+urology, thyroid, sarcoma, ILD, sickle cell, diabetic foot and others) are unverified, so they carry
+to Pass 6 as possible gaps, not confirmed absences.

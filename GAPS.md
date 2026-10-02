@@ -195,6 +195,60 @@ rule differently. `north-cork` and `south-cork` are empty until local rows exist
 - Treat CHO / Health Region labels as `verify before publishing`; the HSE moved to Health Regions in
   2024 and labels differ by source.
 
+## Pass 5 gap table: rights, regulators, children, older people, medical (2 Oct 2026)
+
+From the Pass 5 report. "Opened (Pass 5)" is as reported by Pass 5; Claude Code could not open any of these pages, so the repo marks every row `urlStatus: "search-result"` until a person opens it. "Confirmed gap" means an official source shows a pathway Health Hub lacked. It is not a confirmed absence anywhere else.
+
+| Rank | Area | Status | Opened? | In `data.js` | Source |
+|---|---|---|---|---|---|
+| 1 | HIQA concerns | Confirmed gap | Opened (Pass 5) | Already has a rights card; not repeated | https://www.hiqa.ie/get-touch/report-concern-or-give-feedback |
+| 2 | HIQA disability residential | Confirmed gap | Search-result only | Added `hiqa-disability-residential` | https://www.hiqa.ie/areas-we-work/disability-services |
+| 3 | GDPR subject access (DPC) | Confirmed gap | Opened (Pass 5) | Added `dpc-subject-access` | https://www.dataprotection.ie/en/faqs/access-and-rectification/how-long-does-organisation-have-respond-my-access-request |
+| 4 | Mental Health Commission | Confirmed gap | Search-result only | Added `mhc-tribunals` | https://www.citizensinformation.ie/en/health/health-services/mental-health/mental-health-commission/ |
+| 5 | Mental Health Act 2026 (enacted, not commenced) | Confirmed gap (info row) | Search-result only | Added `mha-2026-info` | https://www.irishstatutebook.ie/eli/2026/act/11/enacted/en/print |
+| 6 | HSE adult safeguarding | Confirmed gap | Opened (Pass 5) | Added `hse-adult-safeguarding` | https://www2.hse.ie/complaints-feedback/report-a-concern-about-a-vulnerable-adult/ |
+| 7 | Ombudsman for Children | Confirmed gap | Search-result only | Already has a rights card; not repeated | https://www.oco.ie/complaints/ |
+| 8 | Ombudsman (adults) | Confirmed gap | Search-result only | Already has a rights card; not repeated | https://ombudsman.ie/en/publication/14774-information-factsheets/ |
+| 9 | Medical Council | Confirmed gap | Search-result only | Already has a rights card; not repeated | https://www.medicalcouncil.ie/public-information/making-a-complaint-/complaints-faq/ |
+| 10 | NMBI | Confirmed gap | Search-result only | Already has a rights card; not repeated | https://www.nmbi.ie/Complaints/Making-a-Complaint |
+| 11 | CORU | Confirmed gap | Search-result only | Added `coru-complaint` | https://coru.ie/public-protection/fitness-to-practise/how-to-make-a-complaint-service-user-member-of-the-public-/ |
+| 12 | PSI / Dental Council | Possible gap | Search-result only | Not added: not confirmed on the regulators' own sites | https://www.citizensinformation.ie/en/consumer/how-to-complain/complain-about-medical-professionals/ |
+| 13 | CAMHS referral | Confirmed gap | Search-result only | Existing `HSE CAMHS` entry kept; no new row | https://www.hse.ie/eng/services/list/4/mental-health-services/camhs/operational-guideline/ |
+| 14 | CIPC / National Counselling Service | Confirmed gap | Search-result only | Added `ncs-cipc`, `ncs-trauma` | https://www2.hse.ie/mental-health/services-support/ncs/cipc/ |
+| 15 | LauraLynn / children's palliative | Confirmed gap | Opened (Pass 5) | Existing `LauraLynn` entry kept; no new row | https://www.lauralynn.ie/referral-process |
+| 16 | HSE Home Support | Confirmed gap | Search-result only | Added `hse-home-support-apply` | https://www2.hse.ie/services/home-support-service/how-to-apply/ |
+| 17 | Carer's Allowance | Confirmed gap | Search-result only | Added `carers-allowance-roi`, `carers-allowance-ni` | https://www.citizensinformation.ie/en/social-welfare/carers/carers-allowance/ |
+| 18 | Haemophilia (National Coagulation Centre) | Confirmed gap | Search-result only | Existing entry kept; no new row | https://www.stjames.ie/services/hope/nationalcoagulationcentre/ |
+| 19 | Diabetes technology | Confirmed gap | Search-result only | Added `t1d-technology` | https://www2.hse.ie/conditions/type-1-diabetes/diabetes-technology/ |
+| 20 | Stroke early supported discharge | Confirmed gap | Search-result only | Added `stroke-esd` | https://www.hse.ie/eng/about/who/cspd/ncps/stroke/resources/ |
+| 21 | QUIT | Confirmed gap | Search-result only | Added `hse-quit` (under Addiction) | https://www2.hse.ie/living-well/quit-smoking/sign-up/ |
+| 22 | Cardiac rehab / heart failure | Possible gap (model of care only) | Search-result only | Not added: no service page | https://www.hse.ie/eng/services/publications/model-of-care-for-integrated-cardiac-rehabilitation.pdf |
+| 23 | Interpreters | Possible gap | Search-result only | Not added | HSE National SOP 2024 (HSE translation hub PDF) |
+| 24 | Lymphoedema | Possible gap (non-cancer pathway weak) | Search-result only | Not added | https://www.hse.ie/eng/services/list/2/primarycare/lymphoedema/lymphodema-model-of-care.pdf |
+| 25 | Falls / bone health | Possible gap (AFFINITY project ended) | Search-result only | Not added | https://www.hse.ie/eng/services/list/4/olderpeople/falls-prevention-and-bone-health/ |
+| 26 | Jigsaw | Confirmed gap | Search-result only | Existing entry updated in place: under 18s need an adult's consent; Live Chat does not | https://jigsaw.ie/ |
+| 27 | Legal Aid Board medical negligence (info only) | Possible gap | Search-result only | Not added | https://www.legalaidboard.ie/our-legal-aid-service/how-we-can-help-you/medical-negligence/ |
+| 28 | Geriatric day hospitals | Pathway absent (no national public listing found) | n/a | Not added | none found |
+| 29 | Rheumatology / dermatology national clinical programmes | Possible gap; dermatology unverified | Search-result only | Not added | https://www.hse.ie/eng/about/who/cspd/ncps/rheumatology/contact/ |
+| 30 | MS, Parkinson's/DBS, headache, continence/urogynae, urology, thyroid, diabetic foot, structured education, sickle cell, sarcoma, ILD/bronchiectasis/pulmonary rehab, bereavement, crisis routes, respite, FLAC | Unverified: carry to Pass 6 | n/a | Not added | n/a |
+
+**Not data.js rows:** the Pass 5 `rights-*` and `safeguarding` specialties became one `rights` specialty, `county` is `["national"]` (the repo's convention) instead of the 26 ROI ids so county counts aren't inflated, and `sector` is left at the default (`public`) because the schema has only public, private and voluntary.
+
+**Official v press figures.** Official: S.I. 263/2007 timelines; the DPC one month plus two months; "up to 8" CIPC sessions; ESD capped at 8 weeks. Press only, not used: about 19,000 CIPC referrals a year and 240 locations; MHC enforcement counts; "67 approved centres" and 53.7% medicines compliance (a commercial blog).
+
+**Unverified baseline carried to Pass 6, to be checked first:** MND/Beaumont, St Vincent's liver and pancreas transplant, Mater heart/lung transplant and pulmonary hypertension, GUIDe, NRH, AYA units, All-Island CHD Network dates and NI transplant routes. Treat every phone or fax number in the Pass 1 to 4 baseline as unverified.
+
+**Human browser checklist (Pass 5)**
+- [ ] Live Bill 88 page: has Second Stage concluded, and is a Committee Stage date set?
+- [ ] S.I. 601/2023: copy the substituted Reg. 24 wording. Revised S.I. 263/2007 on the Law Reform Commission site (check Regs 6, 9, 10, 19 and the S.I. 704/2021 change to Reg. 5).
+- [ ] All hse.ie and www2.hse.ie URLs above, plus the HSE interpreting SOP 2024 PDF.
+- [ ] MHC site: is there a commencement order for the Mental Health Act 2026, and do tribunals still run under the 2001 Act?
+- [ ] Jigsaw consent age and centre list. PSI and Dental Council complaint pages. EUR-Lex GDPR Art. 12(3).
+- [ ] After 6 Oct 2026: Carer's Allowance rates and means test, CIPC eligibility, CGM for type 2 diabetes, Home Support statutory scheme funding, AON/CDNT resourcing, NCS capacity. No Budget 2027 changes are stated anywhere in the repo.
+- [ ] Carer's Allowance age wording: the entry says the carer must be 18 or over and the person cared for 16 or over (Citizens Information, MyWelfare). Check against the live page.
+
+**Corrections to earlier passes:** the Mental Health Bill 2024 is now the Mental Health Act 2026 (no earlier wording to correct was found in the repo). Bill 88 text no longer implies Second Stage has concluded. S.I. 601/2023 substituted Reg. 24 (complaint within 3 months from the cause arising; written extension request; HSE decides within 5 working days): the AON complaint fact and the calculator label were updated. No haemophilia.ie fax number is in the repo.
+
 ## Guided tools: open verify items (28 Sep 2026)
 
 The guided tools (`#/tools/...`, logic in `tools.js`, facts in `data.js` →

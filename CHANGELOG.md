@@ -4,6 +4,12 @@ Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-10-01 [Claude] (Phase A entries, PR B)
 - Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+## 2026-10-02 [Claude] (Pass 5)
+- **Rights and regulators layer, plus 14 rows.** Six rights rows under a new `rights` specialty (HIQA disability residential, DPC access timelines, MHC tribunals, Mental Health Act 2026 info, CORU, HSE adult safeguarding), CIPC and NCS, Home Support, Carer's Allowance (ROI and NI), QUIT, type 1 diabetes technology, stroke ESD. All `verify: true`, `urlStatus: "search-result"`, no contacts. Jigsaw updated in place (under 18s need an adult's consent). Skipped rows that already exist (HIQA concerns, Ombudsman, OCO, Medical Council, NMBI, NCC, LauraLynn, CAMHS).
+- **Legal text:** AON facts now cite S.I. 263/2007 Regs 6, 9, 10, 19; Reg. 24 as substituted by S.I. 601/2023 (3 months from the cause arising, written extension request, decision within 5 working days); Reg. 5 order of processing (S.I. 704/2021); Bill 88 text says Second Stage has not been shown to have ended.
+- **Validator:** `urlStatus` also allows `human-verified` and `broken`; `verify: false` needs `human-verified`; `source_url` must be on an official-domain allow-list; `verify: true` blurbs and details may not hold a phone, email or Eircode or clinical-instruction wording. 30 rule tests.
+- Mental Health Act 2026 was signed 7 May 2026 and is not commenced. Gap table and human checklist in `GAPS.md`. Sections A and B of the report are unverified and carried to Pass 6.
+
 ## 2026-10-02 [Claude] (Pass 4 rows)
 - Added 4 entries (home support providers Act, community ophthalmic scheme, NCCP designated centres, Carer's Support Grant with a new `carers` specialty), updated 2 in place (autism protocol, audiology) plus the PAS scope text, and added 2 FOI facts to the records tool. Skipped duplicates (YSYS, PAS, FOI) and withheld the ME/CFS row (press source). GP card and DPS held until after Budget 2027. All flagged `verify` with `urlStatus: "search-result"`.
 
