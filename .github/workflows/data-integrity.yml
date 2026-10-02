@@ -35,6 +35,11 @@ jobs:
       - name: AON deadline calculator edge-case tests
         run: node scripts/test-aon-dates.js
 
+      - name: Validate data.js entries (counties, areas, verify rules)
+        run: |
+          node scripts/test-validate-data.js
+          node scripts/validate-data.js
+
       - name: Guard against data.js being wiped or truncated
         run: |
           set -e
