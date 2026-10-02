@@ -6708,6 +6708,52 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
+
+  // Pass 5, older people, carers and QUIT (2 Oct 2026). Search results only, no contacts.
+  {
+    id: "hse-home-support-apply",
+    name: "HSE Home Support: how to apply",
+    specialty: ["olderpersons"],
+    county: ["national"],
+    blurb: "Apply on the HSE form to your local Home Support Office. If you are in hospital, ask the discharge planner. Home support is mainly for older people.",
+    contact: { web: "www2.hse.ie/services/home-support-service/how-to-apply/" },
+    source_url: "https://www2.hse.ie/services/home-support-service/how-to-apply/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "carers-allowance-roi",
+    name: "Carer's Allowance (Republic of Ireland)",
+    specialty: ["carers"],
+    county: ["national"],
+    blurb: "Means-tested payment from the Department of Social Protection for a carer providing full-time care to someone who needs it. The carer must be 18 or over and the person cared for 16 or over. Rates and the means test change in the Budget, so check Citizens Information.",
+    contact: { web: "www.citizensinformation.ie/en/social-welfare/carers/carers-allowance/" },
+    source_url: "https://www.citizensinformation.ie/en/social-welfare/carers/carers-allowance/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "carers-allowance-ni",
+    name: "Carer's Allowance (Northern Ireland)",
+    specialty: ["carers"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "A separate Northern Ireland scheme with its own rules. Apply through nidirect.",
+    contact: { web: "www.nidirect.gov.uk/services/apply-carers-allowance-online" },
+    source_url: "https://www.nidirect.gov.uk/services/apply-carers-allowance-online",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-quit",
+    name: "HSE QUIT: stop smoking support",
+    specialty: ["addiction"],
+    county: ["national"],
+    blurb: "Free stop-smoking support and quit plans for anyone living in Ireland, from the HSE Quit Team or the HSE Health App. Stop-smoking advisors can provide free nicotine replacement therapy.",
+    contact: { web: "www2.hse.ie/living-well/quit-smoking/sign-up/" },
+    source_url: "https://www2.hse.ie/living-well/quit-smoking/sign-up/",
+    urlStatus: "search-result",
+    verify: true
+  },
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate
