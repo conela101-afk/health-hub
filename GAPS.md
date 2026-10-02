@@ -94,11 +94,11 @@ multi-county or Dublin-hospital entries also listed these counties. Wexford
 and Mayo haven't moved at all. Next step is still a proper local-services pass
 on these five, starting with Wexford and Mayo.
 
-## County coverage matrix, ROI (1 Oct 2026, audit round 1, PR D)
+## County coverage matrix, ROI (1 Oct 2026, updated 2 Oct 2026)
 
-Generated from `data.js` (496 entries) by `node scripts/county-matrix.js`. An entry counts for a
-county if its `county` array includes it. Cork combines `cork-city`, `cork-north` and `cork-west`.
-Recount before quoting a figure.
+Generated from `data.js` by `node scripts/county-matrix.js` (add `--areas` for the sub-county rows).
+An entry counts for a county if its `county` array includes it, and an entry's optional `area` counts
+toward the county total. Cork is one county (`cork`) with sub-areas. Recount before quoting a figure.
 
 | County | All | Child disab. | Adult disab. | PHN | CAMHS | Allied | Dental | Adult MH |
 |---|---|---|---|---|---|---|---|---|
@@ -129,26 +129,41 @@ Recount before quoting a figure.
 | Wexford | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | Wicklow | 5 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
 
+Areas within Cork (navigation only, not HSE boundaries):
+
+| County | All | Child disab. | Adult disab. | PHN | CAMHS | Allied | Dental | Adult MH |
+|---|---|---|---|---|---|---|---|---|
+| West Cork | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| East Cork | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| North Cork | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Cork City | 55 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| South Cork | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| No area (whole county) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+Reconciliation: areas + no area = 68; Cork county total = 68. OK
+
+Sub-county coverage: Cork has an `area` field; other counties may follow. `area` is for navigation
+only, not an HSE boundary. The 66 Cork entries that had a single old `cork-city`, `cork-west` or
+`cork-north` tag kept it as an `area`, so the Cork City count (55) may include county-wide entries
+that were tagged to the city. The two entries that listed several Cork ids have no area.
+
 **Confirmed from this count**
 - Every children's disability, PHN, allied health and dental entry in the ROI is tagged `national`
   (child disability 4, PHN 2, allied health 7). No county has a local entry in any of these
   categories, so the matrix shows 0 for all 26. Locator entries are the design (see 2026-09-05
-  PHN decision), but the 2026 audit's CDNT entries (`hse-cdnt-finder`, `cho7-cdnts`,
-  `southeast-cdnts`, `horizons-cdnt-cork`) are not in `data.js` yet.
+  PHN decision).
 - CAMHS has 1 multi-county entry (Dublin, Kerry, Offaly, Tipperary, Waterford, Wicklow) and nothing
   local elsewhere.
 - Lowest totals: Longford 2, Laois 3, Leitrim 3, Roscommon 3, Carlow 4, Cavan 4, Mayo 4, Monaghan 4,
   Offaly 4, Wexford 4. Dublin (129) and Cork (68) hold most local entries.
-- Cork split: `cork-city` 57, `cork-north` 1, `cork-west` 13. West Cork has no children's disability,
-  PHN or CDNT entry; the 13 are mostly general or hospital-based.
 
 **Possible gaps (not confirmed)**
 - Low counts in small counties can be proportionate (see the 5 Sep review). Rate per 100k was not recomputed.
-- The brief's "baseline each county from the HSE CDNT finder and primary care centre finder" step
-  was **not done**. hse.ie is egress-blocked in this environment, so per-county CDNT and primary care
-  centre counts are unknown. Do it with a real browser.
-- Prioritise West Cork and rural counties as the brief says. Tag by county and treat CHO / Health
-  Region labels as `verify before publishing`; the HSE moved to Health Regions in 2024 and labels differ by source.
+- The step "baseline each county from the HSE CDNT finder and primary care centre finder" was **not
+  done**. hse.ie is egress-blocked in this environment, so per-county CDNT and primary care centre
+  counts are unknown. Do it with a real browser, for every county.
+- Treat CHO / Health Region labels as `verify before publishing`; the HSE moved to Health Regions in
+  2024 and labels differ by source.
 
 ## Guided tools: open verify items (28 Sep 2026)
 

@@ -2,6 +2,9 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-10-02 [Claude] (matrix follow-up)
+- County matrix: Cork is one county, `--areas` prints Cork per area with a reconciliation line (areas + no area = county total). Removed the West Cork priority wording from `GAPS.md`; replaced with a neutral sub-county line. The 5 Sep 2026 population-based review sections are left as history.
+
 ## 2026-10-01 [Claude] (county matrix, PR D)
 - Added the ROI 26-county matrix to `GAPS.md` and `scripts/county-matrix.js`. Main finding: all child-disability, PHN, allied health and dental entries are `national`-tagged, so no county has a local one. The HSE-finder baseline was not done (hse.ie is egress-blocked here). `SECTOR_AUDIT.md` notes for `ngs-columcilles` and `hse-ahr`.
 
