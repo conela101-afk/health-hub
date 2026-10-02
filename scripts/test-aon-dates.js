@@ -37,9 +37,14 @@ eq("invalid date -> no rows", String(aonDates("2026-02-30x", "", "").length), "0
 eq("Dec year rollover", get(aonDates("2026-12-15", "", ""), "start"), "2027-03-15");
 eq("rollover date rejected", String(aonDates("2026-02-30", "", "").length), "0");
 r = aonDates("", "2026-02-28", "", "2026-12-01");
-eq("review outer limit 28 Feb +12m", get(r, "review"), "2027-02-28");
 eq("stated review date shown as entered", get(r, "reviewStated"), "2026-12-01");
-eq("no review row without report date", String(get(aonDates("2026-01-31", "", ""), "review")), "null");
-r = aonDates("", "2024-02-29", "");
-eq("review from leap day clamps to 28 Feb", get(r, "review"), "2025-02-28");
+eq("no calculated review row (the report states it)", String(get(aonDates("", "2026-02-28", ""), "review")), "null");
+const F = id => ctx.TOOL_FACTS.find(f => f.id === id).text;
+eq("s.19 mediation in court-routes fact", String(/mediation \(section 19\)/.test(F("aon-s22"))), "true");
+eq("s.20 High Court, point of law only", String(/High Court on a point of law only \(section 20\)/.test(F("aon-s22"))), "true");
+eq("s.22 Circuit Court enforcement", String(/Circuit Court to enforce \(section 22\)/.test(F("aon-s22"))), "true");
+eq("no one-year review claim in review facts", String(/one year|1 year|12 months/i.test(F("aon-review"))), "false");
+eq("s.9(7) is a limit on repeat applications, not a review right", String(/not a right to a review/.test(F("aon-repeat-12m"))), "true");
+eq("s.9(5) start period cited", String(/section 9\(5\)/.test(F("aon-start"))), "true");
+eq("Bill banner wording", String(/Second Stage on 23 Sep 2026/.test(F("aon-bill")) && /NOT law yet/.test(F("aon-bill"))), "true");
 process.exit(fails ? 1 : 0);

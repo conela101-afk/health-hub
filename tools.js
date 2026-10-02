@@ -1019,15 +1019,12 @@ window.HH_TOOLS = (function(){
     if (rec){
       rows.push({ id: "ack", label: "Acknowledgement due", date: addPeriod(rec, fact("aon-ack").calc), fact: "aon-ack" });
       rows.push({ id: "start", label: "Assessment should have started by", date: addPeriod(rec, fact("aon-start").calc), fact: "aon-start" });
-      rows.push({ id: "complete", label: "Assessment report due by", date: addPeriod(rec, fact("aon-complete").calc), fact: "aon-complete" });
+      rows.push({ id: "complete", label: "Assessment report due by (period set in regulations, see note)", date: addPeriod(rec, fact("aon-complete").calc), fact: "aon-complete" });
     }
     if (rep){
       rows.push({ id: "statement", label: "Service Statement due (1 month after your report date)", date: addPeriod(rep, fact("aon-service-statement").calc), fact: "aon-service-statement" });
     } else if (rec){
       rows.push({ id: "statement", label: "Service Statement: latest, if the report arrives on time (about 7 months from application)", date: addPeriod(addPeriod(rec, fact("aon-complete").calc), fact("aon-service-statement").calc), fact: "aon-service-statement", estimate: true });
-    }
-    if (rep){
-      rows.push({ id: "review", label: "Review: outer limit, 12 months after the report date (your report states the actual date)", date: addPeriod(rep, fact("aon-review").calc), fact: "aon-review" });
     }
     if (awr){
       rows.push({ id: "complaint", label: "Complaint window closes (3 months from becoming aware)", date: addPeriod(awr, fact("aon-complaint").calc), fact: "aon-complaint" });
@@ -1067,7 +1064,7 @@ window.HH_TOOLS = (function(){
     { step: "1", title: "Assessment Officer / Liaison Officer", body: "Write to them first, using the templates above. Ask for the dates the HSE has on file.", facts: ["aon-hse-dates", "aon-private-report"] },
     { step: "2", title: "HSE Disability Complaints Officer (section 14)", body: "Use the official HSE complaint form. Time limit: see the calculator.", facts: ["aon-s14-form", "aon-complaint"] },
     { step: "3", title: "Disability Appeals Officer (section 18)", body: "If you're unhappy with the Complaints Officer's outcome.", facts: ["aon-appeals-officer"] },
-    { step: "4", title: "Court routes: information only", body: "These are legal steps. Get independent advice first.", facts: ["aon-s22", "aon-legal-aid"] },
+    { step: "4", title: "Mediation, High Court and Circuit Court: information only", body: "These are legal steps. Get independent advice first.", facts: ["aon-s22", "aon-legal-aid"] },
     { step: "Also", title: "Ombudsman for Children and Your Service Your Say", body: "These run alongside the ladder. The Ombudsman for Children can look at complaints about public bodies on behalf of a child. Your Service Your Say is the HSE's general feedback and complaints route.", facts: ["roi-oco", "roi-ysys-overview"] },
   ];
 
@@ -1113,7 +1110,7 @@ window.HH_TOOLS = (function(){
 
       <div class="guide-list">
         ${moduleHtml("Your rights", factListHtml(["aon-right", "aon-not-required"]))}
-        ${moduleHtml("Statutory timeline", factListHtml(["aon-ack", "aon-start", "aon-complete", "aon-service-statement", "aon-review"]))}
+        ${moduleHtml("Statutory timeline", factListHtml(["aon-ack", "aon-start", "aon-complete", "aon-service-statement", "aon-review", "aon-repeat-12m"]))}
       </div>
 
       <div class="prep-card">
