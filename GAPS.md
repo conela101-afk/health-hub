@@ -195,6 +195,60 @@ rule differently. `north-cork` and `south-cork` are empty until local rows exist
 - Treat CHO / Health Region labels as `verify before publishing`; the HSE moved to Health Regions in
   2024 and labels differ by source.
 
+## Pass 5 replacement report (2 Oct 2026)
+
+Replaces the withdrawn first Pass 5. Everything here is search-result only in the repo (`urlStatus: "search-result"`, `verify: true`), because Claude Code could not open any page. The report's "opened" marks are not carried over. Every URL is unchecked until a person opens it. No contacts, no rates, no Budget 2027 content.
+
+| # | Area | Status | Evidence | In `data.js` |
+|---|---|---|---|---|
+| 1 | Bill 88 of 2026 (AON) | Unverified past Second Stage | First Stage 18 Sep 2026 on the official page (search result only). A 23 Sep Second Stage debate is non-official. No Committee Stage evidence. | Text corrected in `aon-bill`; re-check after 6 Oct |
+| 2 | S.I. 263/2007 timeframes | Reported opened (as made) | Reg 9 start within 3 months; Reg 10 complete within a further 3 months "save for in exceptional circumstances", with prior written reasons; Reg 6 14 days; Reg 19 one month; Reg 24 three months as made | `aon-complete` updated; all `verify: true`; check for amendments |
+| 3 | ILD | Pathway absent (official) | Only a non-official Irish Thoracic Society note | Not added |
+| 4 | Patient interpreting | Confirmed gap | No HSE page found | Not added |
+| 5 | Diabetic foot; continence and urogynaecology; urology; thyroid and endocrine | Possible gap (unverified) | Not researched or not found | Not added |
+| 6 | Falls and bone health; geriatric day hospitals; respite | Possible gap (unverified) | Not found | Not added |
+| 7 | Bereavement; crisis routes | Possible gap (unverified) | Not researched | Not added |
+| 8 | Lymphoedema | Possible gap | Model of care exists; 2019 press says rollout incomplete | Not added |
+| 9 | Stroke ESD | Confirmed (partial coverage) | HSE NCP Stroke report; Mater page | Added `stroke-esd` |
+| 10 | MS (St James's) | Confirmed | stjames.ie | Added `ms-unit-sjh` |
+| 11 | Parkinson's/DBS; headache | Possible gap | Mater and St James's list services; no national HSE page | Not added |
+| 12 | Diabetes CGM | Confirmed (adult pumps: no guideline) | HIQA 2023 HTA; NCG 17 copy is on a non-HSE host | Added `cgm-managed-access`; find the gov.ie or HSE copy of NCG 17 |
+| 13 | Cardiac rehab and heart failure | Confirmed | HSE models of care | Added `cardiac-rehab-moc`. Automatic referral at discharge is a press claim, not used |
+| 14 | Pulmonary rehab | Confirmed (programme level) | NCP Respiratory page | Not added |
+| 15 | Haemophilia (NCC) | Confirmed | stjames.ie | Existing entry kept |
+| 16 | Sickle cell (adult) | Confirmed | stjames.ie | Added `sickle-cell-sjh`. The 280-patient figure is a trade-paper figure, not used |
+| 17 | Sarcoma | Confirmed | SVUH and Cappagh pages | Added `sarcoma-national` |
+| 18 | Rheumatology and dermatology NCPs | Confirmed (programme level) | NCP pages | Not added; no biologics page |
+| 19 | CAMHS | Confirmed; community oversight is a possible gap | HSE pages | Existing entry kept |
+| 20 | Jigsaw | Confirmed (charity source) | jigsaw.ie | Existing entry kept; tagged voluntary |
+| 21 | CIPC and National Counselling Service | Confirmed | HSE pages | Added `cipc`. CIPC referral and delay figures are press figures, not used |
+| 22 | LauraLynn | Confirmed (charity source only) | lauralynn.ie | Existing entry kept; tagged voluntary; find an HSE children's palliative page |
+| 23 | QUIT | Confirmed | HSE pages | Added `hse-quit` |
+| 24 | Home Support | Confirmed | HSE application page | Added `home-support-apply` |
+| 25 | Carer's Allowance | Confirmed; figures conflict | Citizens Information | Added `carers-allowance` with no rates or means-test figures |
+| 26 | HIQA concerns | Confirmed | hiqa.ie | Already has a rights card; not repeated |
+| 27 | MHC tribunals and approved centres | Confirmed | mhcirl.ie FAQ | Added `mhc-tribunals` |
+| 28 | Professional regulators (Medical Council, NMBI, CORU, Dental Council, PSI) | Confirmed | Regulator pages | Medical Council and NMBI already have rights cards; CORU, Dental Council and PSI not added |
+| 29 | DPC access timelines | Confirmed (DPC page; GDPR text not opened) | dataprotection.ie | Added `dpc-access` |
+| 30 | HSE adult safeguarding | Confirmed; no primary legislation (press) | Citizens Information | Added `hse-safeguarding` |
+| 31 | OCO | Confirmed | Citizens Information | Already has a rights card; not repeated |
+| 32 | Legal Aid Board; FLAC | LAB confirmed; FLAC unverified | legalaidboard.ie | Not added; thresholds change |
+
+**Press-only figures, not used in `data.js`:** CIPC about 19,000 referrals a year and 240 locations (Irish Examiner); 4,772 facing CIPC delays (Irish Medical Times); adult sickle cell about 280 patients (Medical Independent); automatic cardiac-rehab referral at discharge (imt.ie); no primary adult safeguarding legislation (Medical Independent); West Cork lymphoedema waiting list (2019 local press).
+
+**Not carried into the repo (unverified):** the Safeguarding Policy Framework of 9 Dec 2025 and the Criminal Law (Adult Safeguarding) Bill 2026 (Bill 44 of 2026), which came from an enrichment pass nobody opened; the Carer's Allowance disregard figures, which conflict across sources; Legal Aid Board thresholds.
+
+**Mapping choices:** one `rights` specialty for the regulator rows, `county: ["national"]` rather than 26 county ids, no `sector` for regulator rows, `stroke` and `neurology`, `adultmh`, `addiction`, `olderpersons`, `carers`, `oncology` and so on reused. Naming: the General Scheme was "Disability (Amendment) Bill 2025"; the initiated Bill is "2026". The three non-HSE hosts the report flagged (lauralynn.ie, jigsaw.ie, diabetes.ie) are not on the source allow-list and need a person's approval before any `source_url` uses them.
+
+**Human browser checklist (Pass 5 replacement)**
+- [ ] Open every `source_url` above. Then clear `verify` and add `checked`.
+- [ ] Bill 88 page: stage after 6 Oct (First Stage 18 Sep; Second Stage debate and any Committee Stage).
+- [ ] S.I. 263/2007: confirm Regs 6, 9, 10, 19 and 24 against the revised text, and check for amendments.
+- [ ] Find HSE pages for ILD, interpreting, diabetic foot, continence and urogynaecology, falls and bone health, geriatric day hospitals, respite, bereavement and crisis routes.
+- [ ] Find the gov.ie or HSE copy of NCG 17 and an HSE children's palliative care page.
+- [ ] Copy HIQA, NMBI and Medical Council contacts only from pages you have opened.
+- [ ] After 6 Oct 2026: Carer's Allowance, Legal Aid Board thresholds, Home Support, CIPC capacity and CGM funding.
+
 ## Guided tools: open verify items (28 Sep 2026)
 
 The guided tools (`#/tools/...`, logic in `tools.js`, facts in `data.js` →
