@@ -62,6 +62,7 @@ const SPECIALTIES = [
   { id: "rare-disease",    label: "Rare Diseases" },
   { id: "respiratory",     label: "Respiratory Medicine & CF" },
   { id: "rheumatology",    label: "Rheumatology & Autoimmune" },
+  { id: "rights",          label: "Rights, Regulators & Complaints" },
   { id: "screening",       label: "Screening (Bowel, Breast, Cervical)" },
   { id: "sexualhealth",    label: "Sexual Health & STI Testing" },
   { id: "stroke",          label: "Stroke" },
@@ -6612,6 +6613,74 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   }
+
+  // Pass 5, rights and regulators (2 Oct 2026). Search results only, no contacts. HIQA concerns, Ombudsman, OCO, Medical Council and NMBI already have rights cards, so they are not repeated here.
+  {
+    id: "hiqa-disability-residential",
+    name: "HIQA: disability residential centres",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "The Chief Inspector of Social Services registers and inspects designated centres for people with disabilities, with compliance-notice powers.",
+    contact: { web: "www.hiqa.ie/areas-we-work/disability-services" },
+    source_url: "https://www.hiqa.ie/areas-we-work/disability-services",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "dpc-subject-access",
+    name: "Data Protection Commission: access request timelines",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "Organisations must respond to an access request within one month. They may extend by up to two further months if they tell you why before the first month ends. You don't need the DPC's permission for them to do so.",
+    contact: { web: "www.dataprotection.ie/en/faqs/access-and-rectification/how-long-does-organisation-have-respond-my-access-request" },
+    source_url: "https://www.dataprotection.ie/en/faqs/access-and-rectification/how-long-does-organisation-have-respond-my-access-request",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "mhc-tribunals",
+    name: "Mental Health Commission: tribunals and approved centres",
+    specialty: ["rights", "adultmh"],
+    county: ["national"],
+    blurb: "The Mental Health Commission arranges tribunals that review involuntary detention under the Mental Health Act 2001, and keeps the register of approved centres. This applies until the Mental Health Act 2026 is commenced.",
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/mental-health/mental-health-commission/" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/mental-health/mental-health-commission/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "mha-2026-info",
+    name: "Mental Health Act 2026 (not yet commenced)",
+    specialty: ["rights", "adultmh"],
+    county: ["national"],
+    blurb: "Signed into law on 7 May 2026 but not commenced. When commenced it will bring in Mental Health Review Boards, give 16 and 17 year olds a right to consent to or refuse treatment, and bring community CAMHS under Mental Health Commission regulation. Until then the 2001 Act applies.",
+    contact: { web: "www.irishstatutebook.ie/eli/2026/act/11/enacted/en/print" },
+    source_url: "https://www.irishstatutebook.ie/eli/2026/act/11/enacted/en/print",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "coru-complaint",
+    name: "CORU: complain about a health and social care professional",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "CORU registers professions such as physiotherapists, occupational therapists and social workers. It has a Fitness to Practise complaint form. Its role is not to resolve individual complaints.",
+    contact: { web: "coru.ie/public-protection/fitness-to-practise/how-to-make-a-complaint-service-user-member-of-the-public-/" },
+    source_url: "https://coru.ie/public-protection/fitness-to-practise/how-to-make-a-complaint-service-user-member-of-the-public-/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-adult-safeguarding",
+    name: "HSE Safeguarding and Protection Teams",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "Raise a concern about an adult who may be at risk of abuse. Regional HSE safeguarding teams give advice, or speak to the manager of the HSE-run or HSE-funded service involved.",
+    contact: { web: "www2.hse.ie/complaints-feedback/report-a-concern-about-a-vulnerable-adult/" },
+    source_url: "https://www2.hse.ie/complaints-feedback/report-a-concern-about-a-vulnerable-adult/",
+    urlStatus: "search-result",
+    verify: true
+  },
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate
