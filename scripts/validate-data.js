@@ -1,11 +1,40 @@
 // Validates ENTRIES in data.js. Run: node scripts/validate-data.js
 // Exports validate() so scripts/test-validate-data.js can test the rules.
 //
+// Pass 5 additions: urlStatus also allows "human-verified" and "broken"; verify: false needs
+// urlStatus "human-verified"; verify: true entries may not put a phone, email or Eircode in
+// the blurb or details, and may not use clinical-instruction wording; any source_url must be on
+// the allow-list of official domains below.
+//
 // Rules: unique ids; county ids come from COUNTIES (26 counties + NI + national);
 // specialty ids from SPECIALTIES; optional `area` must exist in AREAS and belong
 // to one of the entry's counties; `urlStatus` is "opened" or "search-result";
 // a `verify: true` entry needs a source_url and may not carry a phone, email or
 // address unless a human opened the page (urlStatus: "opened").
+const URL_STATUSES = ["opened", "search-result", "human-verified", "broken"];
+
+// Official source domains. A host matches if it equals a domain or is a subdomain of it,
+// so hse.ie also covers www2.hse.ie and www2.healthservice.hse.ie. Add hospital or
+// organisation domains here deliberately, one at a time.
+const SOURCE_DOMAINS = [
+  "hse.ie", "gov.ie", "citizensinformation.ie", "irishstatutebook.ie", "oireachtas.ie", "lawreform.ie",
+  "hiqa.ie", "mhcirl.ie", "dataprotection.ie", "oco.ie", "ombudsman.ie", "oic.ie",
+  "medicalcouncil.ie", "nmbi.ie", "coru.ie", "thepsi.ie", "dentalcouncil.ie",
+  "legalaidboard.ie", "flac.ie", "nidirect.gov.uk", "health-ni.gov.uk", "hscni.net", "nipso.org.uk",
+  "screeningservice.ie", "ntpf.ie", "ncse.ie", "lauralynn.ie", "jigsaw.ie", "stjames.ie",
+  "cho7cdnt.ie", "southeastcdnt.ie",
+];
+const hostAllowed = host => SOURCE_DOMAINS.some(d => host === d || host.endsWith("." + d));
+
+// Contact-like text that must not appear in a verify: true entry's blurb or details.
+const CONTACT_PATTERNS = [
+  [/@/, "an email address"],
+  [/(?:\+?353|\b0\d{1,2})[ -]?\d{3}[ -]?\d{3,4}\b/, "a phone number"],
+  [/\b1[58]00[ -]?\d{3}[ -]?\d{3}\b/, "a freephone number"],
+  [/\b[AC-FHKNPRTV-Y]\d{2} ?[0-9AC-FHKNPRTV-Y]{4}\b/, "an Eircode"],
+];
+const CLINICAL_WORDING = /\b(should take|you should treat|diagnos(e|ing)\b|treat with)\b/i;
+
 function validate({ ENTRIES, COUNTIES, SPECIALTIES, AREAS }){
   const errors = [];
   const counties = new Set(COUNTIES.map(c => c.id));
@@ -27,9 +56,18 @@ function validate({ ENTRIES, COUNTIES, SPECIALTIES, AREAS }){
       if (typeof e.area !== "string" || !areaOwner[e.area]) errors.push(`${where}: unknown area "${e.area}"`);
       else if (!(e.county || []).includes(areaOwner[e.area])) errors.push(`${where}: area "${e.area}" belongs to county "${areaOwner[e.area]}", which the entry doesn't list`);
     }
-    if (e.urlStatus !== undefined && !["opened", "search-result"].includes(e.urlStatus)) errors.push(`${where}: urlStatus must be "opened" or "search-result"`);
+    if (e.urlStatus !== undefined && !URL_STATUSES.includes(e.urlStatus)) errors.push(`${where}: urlStatus must be one of ${URL_STATUSES.join(", ")}`);
+    if (e.verify === false && e.urlStatus !== "human-verified") errors.push(`${where}: verify: false needs urlStatus "human-verified"`);
+    if (e.source_url !== undefined){
+      let host = "";
+      try { host = new URL(e.source_url).hostname; } catch (err) { errors.push(`${where}: source_url is not a valid URL`); }
+      if (host && !hostAllowed(host)) errors.push(`${where}: source_url host "${host}" is not on the official-domain allow-list`);
+    }
     if (e.verify === true){
       if (!e.source_url) errors.push(`${where}: verify: true needs a source_url`);
+      const text = [e.blurb].concat(e.details || []).join(" ");
+      CONTACT_PATTERNS.forEach(([re, what]) => { if (re.test(text)) errors.push(`${where}: blurb or details contains ${what}`); });
+      if (CLINICAL_WORDING.test(text)) errors.push(`${where}: clinical-instruction wording in blurb or details`);
       const c = e.contact || {};
       if ((c.phone || c.email || c.address) && e.urlStatus !== "opened") errors.push(`${where}: phone, email or address on an entry whose source page has not been opened (urlStatus)`);
     }
@@ -37,7 +75,7 @@ function validate({ ENTRIES, COUNTIES, SPECIALTIES, AREAS }){
   return errors;
 }
 
-module.exports = { validate };
+module.exports = { validate, SOURCE_DOMAINS };
 
 if (require.main === module){
   const fs = require("fs"), vm = require("vm");
