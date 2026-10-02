@@ -4,6 +4,11 @@ Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-10-01 [Claude] (Phase A entries, PR B)
 - Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+## 2026-10-02 [Claude] (Pass 5 replacement: rows and docs)
+- 13 entries across three PRs: rights (MHC tribunals, DPC access timelines, HSE safeguarding; new `rights` specialty), CIPC, QUIT, Home Support application, Carer's Allowance (no figures), stroke ESD, MS unit, CGM managed access, cardiac rehab, adult sickle cell, sarcoma. All `verify: true`, search-result only, no contacts. LauraLynn and Jigsaw tagged `voluntary`.
+- Validator: `urlStatus` is `opened`, `search-result` or `unverified`; an entry with a `urlStatus` and no `checked` date must be `verify: true`; `source_url` must be on an official-domain allow-list (charity hosts need approval); `verify: true` blurbs can't hold a phone, email or Eircode or clinical-instruction wording; no field may mention "Budget 2027". 34 rule tests.
+- `GAPS.md`: replacement gap table and human checklist.
+
 ## 2026-10-02 [Claude] (Pass 5 replacement: corrections)
 - Bill 88 text now says: First Stage 18 Sep 2026; a Second Stage debate on 23 Sep 2026 is reported by a non-official source only; Second Stage not confirmed ended; Committee Stage not reached; not law. The AON completion fact cites S.I. 263/2007 Reg. 10 as made ("save for in exceptional circumstances", written reasons before the 3 months expire) and says it is not a no-exceptions deadline. Both stay `verify: true`; the S.I. text was not opened by us.
 ## 2026-10-02 [Claude] (Pass 3 rows)

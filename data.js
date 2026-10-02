@@ -5219,6 +5219,7 @@ const ENTRIES = [
     name: "LauraLynn",
     specialty: ["palliative", "parenting"],
     county: ["dublin"],
+    sector: "voluntary",
     blurb: "Ireland's only children's hospice.",
     details: ["Make-A-Wish Ireland is a separate charity that also supports children with life-threatening conditions."],
     referral: "Referral via your child's medical team.",
@@ -5430,6 +5431,7 @@ const ENTRIES = [
     name: "Jigsaw — National Centre for Youth Mental Health",
     specialty: ["camhs", "eating"],
     county: ["dublin", "kerry", "offaly", "tipperary", "wicklow", "waterford"],
+    sector: "voluntary",
     blurb: "Free, self-referral mental health support for ages 12-25, no diagnosis or GP letter needed — 18 locations nationwide.",
     details: [
       "Named sites include Dublin City (44 Essex St East, Temple Bar D02 YR92, and Summerhill D01 TY46), Dublin South West (St John's House, High St, Tallaght D24), North Fingal (Swords K67 Y6K7), Kerry (Tralee), Offaly (Tullamore), Tipperary (Thurles), Wicklow (Bray), and Waterford (opened 31 August 2026).",
