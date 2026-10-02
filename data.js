@@ -6648,6 +6648,52 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
+
+  // Pass 5 replacement, children, older people and carers (2 Oct 2026). Search results only, no contacts. CAMHS, Jigsaw and LauraLynn already have entries and are not repeated.
+  {
+    id: "cipc",
+    name: "Counselling in Primary Care (CIPC)",
+    specialty: ["adultmh"],
+    county: ["national"],
+    blurb: "Up to 8 free counselling sessions for adults aged 18 and over with a medical card. Your GP refers you, then you phone your local CIPC office within 2 weeks of the referral to confirm. The National Counselling Service also covers adults who experienced childhood abuse or neglect, former mother and baby home residents, and families affected by the Stardust inquest, without needing a medical card.",
+    contact: { web: "www2.hse.ie/mental-health/services-support/ncs/cipc/" },
+    source_url: "https://www2.hse.ie/mental-health/services-support/ncs/cipc/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-quit",
+    name: "HSE QUIT: stop smoking support",
+    specialty: ["addiction"],
+    county: ["national"],
+    blurb: "Free stop-smoking support, with a Quit Plan and free nicotine replacement through stop smoking advisors. You don't need a GP referral.",
+    contact: { web: "www2.hse.ie/take-back-control/" },
+    source_url: "https://www2.hse.ie/take-back-control/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "home-support-apply",
+    name: "Apply for HSE Home Support",
+    specialty: ["olderpersons"],
+    county: ["national"],
+    blurb: "Complete form HSS001 and send it to your local Home Support Office. A care needs assessment follows. If you are in hospital, ask the discharge planner. The applicant signs the declaration and consent section. A decision supporter can complete the other part.",
+    contact: { web: "www.hse.ie/eng/home-support-services/apply-for-home-supports-services/" },
+    source_url: "https://www.hse.ie/eng/home-support-services/apply-for-home-supports-services/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "carers-allowance",
+    name: "Carer's Allowance",
+    specialty: ["carers"],
+    county: ["national"],
+    blurb: "Means-tested payment from the Department of Social Protection for a carer giving full-time care, at least 35 hours a week over 5 to 7 days. Limits on work or study, age and residence apply. Rates and the means-test figures change and conflict between official pages, so none is shown here. Check Citizens Information.",
+    contact: { web: "live.citizensinformation.ie/en/social-welfare/social-welfare-payments/carers/carers-allowance/" },
+    source_url: "https://live.citizensinformation.ie/en/social-welfare/social-welfare-payments/carers/carers-allowance/",
+    urlStatus: "search-result",
+    verify: true
+  },
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate
