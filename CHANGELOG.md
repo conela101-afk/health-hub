@@ -3,6 +3,7 @@
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-10-02 [Claude] (matrix follow-up)
+- `area` now means physical base. Cork City dropped from 55 to 2 entries (regional services have no area); West Cork stays at 10. Narrowed the rule to "no single-county targeting" in `AI_RULES.md`.
 - County matrix: Cork is one county, `--areas` prints Cork per area with a reconciliation line (areas + no area = county total). Removed the West Cork priority wording from `GAPS.md`; replaced with a neutral sub-county line. The 5 Sep 2026 population-based review sections are left as history.
 
 ## 2026-10-01 [Claude] (county matrix, PR D)

@@ -133,19 +133,21 @@ Areas within Cork (navigation only, not HSE boundaries):
 
 | County | All | Child disab. | Adult disab. | PHN | CAMHS | Allied | Dental | Adult MH |
 |---|---|---|---|---|---|---|---|---|
-| West Cork | 11 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| West Cork | 10 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | East Cork | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | North Cork | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| Cork City | 55 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Cork City | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | South Cork | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| No area (whole county) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| No area (whole county) | 56 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 Reconciliation: areas + no area = 68; Cork county total = 68. OK
 
-Sub-county coverage: Cork has an `area` field; other counties may follow. `area` is for navigation
-only, not an HSE boundary. The 66 Cork entries that had a single old `cork-city`, `cork-west` or
-`cork-north` tag kept it as an `area`, so the Cork City count (55) may include county-wide entries
-that were tagged to the city. The two entries that listed several Cork ids have no area.
+Sub-county coverage: Cork has an `area` field; other counties may follow. `area` means where a
+service is physically based, not who it serves, and is not an HSE boundary. Regional and county-wide
+services (CUH, CUMH, Mercy, SIVUH, private hospital groups, networks) carry no area, so most Cork
+entries sit under "No area". Two city-based community charities (`cork-arc-house`,
+`cork-cancer-care-centre`) are tagged `cork-city` as a judgement call. Change them if you read the
+rule differently. `north-cork` and `south-cork` are empty until local rows exist.
 
 **Confirmed from this count**
 - Every children's disability, PHN, allied health and dental entry in the ROI is tagged `national`
