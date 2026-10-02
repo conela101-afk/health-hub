@@ -88,7 +88,8 @@ window.HH_TOOLS = (function(){
     const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
     if (!m) return null;
     const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
-    return isNaN(d.getTime()) ? null : d;
+    // Reject rollovers such as 2026-02-30, which Date would turn into 2 March.
+    return isNaN(d.getTime()) || d.getMonth() !== Number(m[2]) - 1 ? null : d;
   }
 
   function niceDate(d){
@@ -199,7 +200,7 @@ window.HH_TOOLS = (function(){
     { id: "schemes", name: "Schemes and cards selector", blurb: "Cross-border treatment schemes, medical cards and GP visit cards: which official pages apply to you." },
     { id: "waiting", name: "While you wait", blurb: "Validation letters, \"suspended\" and \"planned procedure\" explained, how to ask about your status, and where the official figures are." },
     { id: "discharge", name: "Discharge passport", blurb: "A printable page for medicines, appointments, contacts and questions to ask before you leave hospital." },
-    { id: "aon", name: "Assessment of Need explainer", blurb: "Your rights and the statutory timeline under the Disability Act 2005 (Republic of Ireland)." },
+    { id: "aon", name: "Assessment of Need toolkit", blurb: "Deadline calculator, letter templates and escalation ladder for children's Assessment of Need (Republic of Ireland)." },
   ];
 
   function renderIndex(app){
@@ -998,35 +999,289 @@ window.HH_TOOLS = (function(){
   }
 
   // ======================================================================
-  // Tool 6 (optional): Assessment of Need explainer — #/tools/aon
+  // Tool 6: Assessment of Need (AON) toolkit — #/tools/aon
+  // Deadline calculator, letter templates, escalation ladder, evidence
+  // checklist and glossary. Administrative only: no eligibility prediction,
+  // no statements that anyone has breached the law, no clinical content.
   // ======================================================================
 
+  const AON_KEY = "hh-aon-calc";
+  const AON_SAVE_KEY = "hh-aon-calc-save-on";
+
+  // Pure date maths, exported for tests. Inputs are "YYYY-MM-DD" strings.
+  // Calendar months clamp to the last day of a shorter month (31 Aug + 6
+  // months = 28/29 Feb), not roll over into the next one.
+  function aonDates(received, report, aware, reviewStated){
+    const rec = parseIso(received);
+    const rep = parseIso(report);
+    const awr = parseIso(aware);
+    const rows = [];
+    if (rec){
+      rows.push({ id: "ack", label: "Acknowledgement due", date: addPeriod(rec, fact("aon-ack").calc), fact: "aon-ack" });
+      rows.push({ id: "start", label: "Assessment should have started by", date: addPeriod(rec, fact("aon-start").calc), fact: "aon-start" });
+      rows.push({ id: "complete", label: "Assessment report due by (period set in regulations, see note)", date: addPeriod(rec, fact("aon-complete").calc), fact: "aon-complete" });
+    }
+    if (rep){
+      rows.push({ id: "statement", label: "Service Statement due (1 month after your report date)", date: addPeriod(rep, fact("aon-service-statement").calc), fact: "aon-service-statement" });
+    } else if (rec){
+      rows.push({ id: "statement", label: "Service Statement: latest, if the report arrives on time (about 7 months from application)", date: addPeriod(addPeriod(rec, fact("aon-complete").calc), fact("aon-service-statement").calc), fact: "aon-service-statement", estimate: true });
+    }
+    if (awr){
+      rows.push({ id: "complaint", label: "Complaint window closes (3 months from becoming aware)", date: addPeriod(awr, fact("aon-complaint").calc), fact: "aon-complaint" });
+    }
+    const rv = parseIso(reviewStated);
+    if (rv) rows.push({ id: "reviewStated", label: "Review date stated in your report", date: rv, fact: "aon-review" });
+    return rows;
+  }
+
+  const AON_LETTERS = [
+    { id: "aon-ack", label: "Acknowledgement and start-date request" },
+    { id: "aon-chaser", label: "Overdue chaser" },
+    { id: "aon-delay", label: "Ask the reason for the delay" },
+    { id: "aon-s14", label: "Cover note for the official section 14 complaint form" },
+    { id: "aon-service", label: "Services in the Service Statement not delivered" },
+  ];
+
+  const AON_FIELDS = [
+    { id: "name", label: "Your name", type: "text", ph: "[Your name]" },
+    { id: "address", label: "Your address", type: "textarea", ph: "[Your address]" },
+    { id: "contact", label: "Phone or email (optional)", type: "text", ph: "" },
+    { id: "childName", label: "Child's name", type: "text", ph: "[Child's name]" },
+    { id: "childDob", label: "Child's date of birth", type: "date", ph: "[Date of birth]" },
+    { id: "hseArea", label: "HSE area or office (optional)", type: "text", ph: "" },
+    { id: "ref", label: "HSE reference number (optional)", type: "text", ph: "" },
+    { id: "received", label: "Date the HSE received the application", type: "date", ph: "[date received]" },
+    { id: "missing", label: "Overdue chaser: what you haven't received", type: "text", ph: "[an acknowledgement / a start date / the assessment report]" },
+    { id: "delayStage", label: "Delay letter: what hasn't happened yet", type: "text", ph: "[started / been completed]" },
+    { id: "delayAction", label: "Delay letter: next step you're asking about", type: "text", ph: "[start / complete the assessment]" },
+    { id: "summary", label: "Section 14 note: one or two lines on what went wrong", type: "textarea", ph: "[short summary; details go on the form]" },
+    { id: "statementDate", label: "Service Statement letter: date of the statement", type: "date", ph: "[date of Service Statement]" },
+    { id: "services", label: "Service Statement letter: services listed", type: "textarea", ph: "[services listed in the statement]" },
+    { id: "notDelivered", label: "Service Statement letter: what hasn't started", type: "text", ph: "[the listed services / the following services]" },
+  ];
+
+  const AON_LADDER = [
+    { step: "1", title: "Assessment Officer / Liaison Officer", body: "Write to them first, using the templates above. Ask for the dates the HSE has on file.", facts: ["aon-hse-dates", "aon-private-report"] },
+    { step: "2", title: "HSE Disability Complaints Officer (section 14)", body: "Use the official HSE complaint form. Time limit: see the calculator.", facts: ["aon-s14-form", "aon-complaint"] },
+    { step: "3", title: "Disability Appeals Officer (section 18)", body: "If you're unhappy with the Complaints Officer's outcome.", facts: ["aon-appeals-officer"] },
+    { step: "4", title: "Mediation, High Court and Circuit Court: information only", body: "These are legal steps. Get independent advice first.", facts: ["aon-s22", "aon-legal-aid"] },
+    { step: "Also", title: "Ombudsman for Children and Your Service Your Say", body: "These run alongside the ladder. The Ombudsman for Children can look at complaints about public bodies on behalf of a child. Your Service Your Say is the HSE's general feedback and complaints route.", facts: ["roi-oco", "roi-ysys-overview"] },
+  ];
+
+  const AON_GLOSSARY = [
+    ["AON", "Assessment of Need: a statutory assessment under Part 2 of the Disability Act 2005."],
+    ["Assessment Officer", "The HSE officer who arranges the AON and receives the application."],
+    ["Liaison Officer", "The HSE contact for the Service Statement and for services listed in it."],
+    ["Service Statement", "A written statement of the health services the HSE says it will provide after an assessment."],
+    ["CDNT", "Children's Disability Network Team: HSE or funded teams of therapists and other staff working with children with complex needs."],
+    ["PDS", "Progressing Disability Services: the national programme that set up CDNTs."],
+    ["SENO", "Special Educational Needs Organiser, employed by the National Council for Special Education (NCSE)."],
+    ["NEPS", "National Educational Psychological Service: the Department of Education's psychology service for schools."],
+    ["EPSEN", "Education for Persons with Special Educational Needs Act 2004. Only parts of it have been commenced."],
+    ["DCA", "Domiciliary Care Allowance: a social welfare payment to carers of some children with a severe disability."],
+    ["Substantial restriction", "A term in the Disability Act 2005 definition of disability. Whether it applies is for the HSE's assessment, not this site."],
+  ];
+
+  const AON_EVIDENCE = [
+    "Copy of the application and proof of the date the HSE received it (postage receipt, email, delivery confirmation)",
+    "Every letter, email and text from the HSE, with dates",
+    "A call and referral log: who you spoke to, the date, and what was said or promised (use \"My call & referral log\")",
+    "Any acknowledgement or reference number",
+    "Reports you already hold, and the dates you gave them to the HSE",
+    "Dates the assessment was expected to start and finish",
+  ];
+
+  function aonSavedHtml(isSaving){
+    return `
+      ${saveToggleHtml("aonSave", isSaving, "Clear saved dates from this device")}
+    `;
+  }
+
   function renderAon(app){
+    const isSaving = u.readStore(AON_SAVE_KEY) === true;
+    const saved = (isSaving && u.readStore(AON_KEY)) || {};
+    const sv = k => esc(saved && typeof saved[k] === "string" ? saved[k] : "");
+
     app.innerHTML = `
-      ${headHtml("Assessment of Need explainer", "Your statutory rights under the Disability Act 2005 (Republic of Ireland)")}
+      ${headHtml("Assessment of Need toolkit", "Deadlines, letters and where to escalate under the Disability Act 2005 (Republic of Ireland)")}
+      <div class="callout"><strong>${esc(fact("aon-bill").text)}</strong>${verifyTagHtml(fact("aon-bill"))}<br><a href="${esc(fact("aon-bill").source_url)}" target="_blank" rel="noopener">${esc(fact("aon-bill").source_name)} ↗</a></div>
+      <div class="callout"><strong>Not legal advice.</strong> This toolkit explains the process and helps you keep records. It can't say whether you qualify, whether anyone has acted unlawfully, or what will happen in your case. For legal advice, contact the <a href="https://www.legalaidboard.ie/" target="_blank" rel="noopener">Legal Aid Board</a>, <a href="https://www.citizensinformation.ie/" target="_blank" rel="noopener">Citizens Information</a> or the <a href="https://www.oco.ie/" target="_blank" rel="noopener">Ombudsman for Children's Office</a>.</div>
+      <p><a href="#/rights/disability-children">Read: children's disability services explained (CDNT, AON, schools, payments)</a></p>
+
       <div class="guide-list">
         ${moduleHtml("Your rights", factListHtml(["aon-right", "aon-not-required"]))}
-        ${moduleHtml("Statutory timeline", factListHtml(["aon-ack", "aon-start", "aon-complete"]))}
-        ${moduleHtml("If the timeline isn't met", factListHtml(["aon-complaint", "aon-appeal"]))}
-        ${moduleHtml("Proposed changes", factListHtml(["aon-bill"]))}
+        ${moduleHtml("Statutory timeline", factListHtml(["aon-ack", "aon-start", "aon-complete", "aon-service-statement", "aon-review", "aon-repeat-12m"]))}
       </div>
+
       <div class="prep-card">
-        <h2>Work out the statutory dates</h2>
-        ${multiDateHtml("aonApp", "Date the HSE received your completed application")}
+        <h2>Deadline calculator</h2>
+        <p class="save-note">Calendar-month arithmetic. ${esc(fact("aon-hse-dates").text)} By default nothing is kept when you leave the page. Tick "Save on this device" to keep these dates; they're then stored in plain text in this browser.</p>
+        ${aonSavedHtml(isSaving)}
+        <label class="prep-label" for="aonRec">Date the HSE received your completed application</label>
+        <input type="date" id="aonRec" class="prep-input" value="${sv("received")}">
+        <label class="prep-label" for="aonRep">Date of the assessment report (optional)</label>
+        <input type="date" id="aonRep" class="prep-input" value="${sv("report")}">
+        <label class="prep-label" for="aonRev">Review date stated in your report (optional)</label>
+        <input type="date" id="aonRev" class="prep-input" value="${sv("review")}">
+        <label class="prep-label" for="aonAware">Date you became aware of the cause of a complaint (optional)</label>
+        <input type="date" id="aonAware" class="prep-input" value="${sv("aware")}">
+        <ul class="detail-list" id="aonOut" aria-live="polite"></ul>
+        <p class="save-note">${esc(TOOL_UI_TEXT.dateApprox)} Calendar days and months here include weekends and holidays.</p>
+        <p class="save-note">${esc(fact("aon-review").text)}</p>
       </div>
+
       <div class="prep-card">
-        <h2>Complaint time limit</h2>
-        ${multiDateHtml("aonCmp", "Date the cause of the complaint arose (for example, the date the 6 months ran out)")}
+        <h2>Letter templates</h2>
+        <p class="save-note">Nothing typed here is saved. For the section 14 complaint, ${esc(fact("aon-s14-form").text)}</p>
+        <label class="prep-label" for="aonLetter">Template</label>
+        <select id="aonLetter" class="prep-input">${AON_LETTERS.map(l => `<option value="${l.id}">${esc(l.label)}</option>`).join("")}</select>
+        ${AON_FIELDS.map(f => `
+          <label class="prep-label" for="aon-${f.id}">${esc(f.label)}</label>
+          ${f.type === "textarea"
+            ? `<textarea id="aon-${f.id}" class="prep-input" rows="2"></textarea>`
+            : `<input type="${f.type}" id="aon-${f.id}" class="prep-input">`}
+        `).join("")}
+        <pre class="template-text" id="aonOutput"></pre>
+        ${letterButtonsHtml("aonOutput")}
+        <p class="save-note">For your child's HSE file, use the <a href="#/tools/records">records-request builder</a> (FOI or subject access request).</p>
       </div>
-      <div class="callout">This page explains the statutory process only. It doesn't assess needs or say whether someone has a disability, and it doesn't predict how long your own assessment will take.</div>
+
+      <div class="guide-list">
+        ${moduleHtml("Where to escalate", AON_LADDER.map(r => `
+          <h3>${esc(r.step)}. ${esc(r.title)}</h3>
+          <p>${esc(r.body)}</p>
+          ${factListHtml(r.facts)}`).join(""))}
+        ${moduleHtml("Evidence checklist", `<ul class="detail-list">${AON_EVIDENCE.map(e => `<li>${esc(e)}</li>`).join("")}</ul><p><a href="#/log">Open the call &amp; referral log</a></p>`)}
+        ${moduleHtml("Glossary", `<dl class="detail-list">${AON_GLOSSARY.map(g => `<dt><strong>${esc(g[0])}</strong></dt><dd>${esc(g[1])}</dd>`).join("")}</dl>`)}
+      </div>
+      <div class="callout">This page explains the statutory process only. It doesn't assess needs, say whether someone has a disability, predict how long an assessment will take, or say that any organisation has broken the law.</div>
       ${footHtml()}
     `;
-    wireMultiDate("aonApp", [
-      { fact: "aon-ack", label: "Acknowledgement due" },
-      { fact: "aon-start", label: "Assessment should have started by" },
-      { fact: "aon-complete", label: "Assessment report due by" },
-    ]);
-    wireMultiDate("aonCmp", [{ fact: "aon-complaint", label: "Complain no later than" }]);
+
+    const $ = id => document.getElementById(id);
+    const dateIds = { received: "aonRec", report: "aonRep", review: "aonRev", aware: "aonAware" };
+
+    function drawDates(){
+      const rows = aonDates($("aonRec").value, $("aonRep").value, $("aonAware").value, $("aonRev").value);
+      $("aonOut").innerHTML = rows.map(r => `<li><strong>${esc(r.label)}:</strong> about ${esc(niceDate(r.date))}${r.estimate ? " (estimate)" : ""}${verifyTagHtml(fact(r.fact))}</li>`).join("");
+    }
+    function persist(){
+      if (!$("aonSaveToggle").checked) return;
+      const o = {};
+      Object.keys(dateIds).forEach(k => { o[k] = $(dateIds[k]).value; });
+      u.writeStore(AON_KEY, o);
+    }
+    Object.keys(dateIds).forEach(k => {
+      $(dateIds[k]).addEventListener("input", () => { drawDates(); persist(); });
+    });
+    $("aonSaveToggle").addEventListener("change", e => {
+      if (e.target.checked){ u.writeStore(AON_SAVE_KEY, true); $("aonSaveClear").hidden = false; persist(); }
+      else { u.writeStore(AON_SAVE_KEY, false); u.clearStore(AON_KEY); $("aonSaveClear").hidden = true; }
+    });
+    $("aonSaveClear").addEventListener("click", () => {
+      u.clearStore(AON_KEY);
+      u.writeStore(AON_SAVE_KEY, false);
+      $("aonSaveToggle").checked = false;
+      $("aonSaveClear").hidden = true;
+      Object.keys(dateIds).forEach(k => { $(dateIds[k]).value = ""; });
+      drawDates();
+    });
+    drawDates();
+
+    function drawLetter(){
+      const v = {};
+      const ph = {};
+      AON_FIELDS.forEach(f => {
+        const raw = $("aon-" + f.id).value.trim();
+        v[f.id] = f.type === "date" ? letterDate(raw) : raw;
+        ph[f.id] = f.ph;
+      });
+      // Pre-fill the received date from the calculator if the letter field is empty.
+      if (!v.received && $("aonRec").value) v.received = letterDate($("aonRec").value);
+      v.today = todayNice();
+      v.refLine = v.ref ? ` (HSE reference: ${v.ref})` : "";
+      ph.refLine = "";
+      ph.today = todayNice();
+      ph.hseArea = "[HSE area / office]";
+      $("aonOutput").textContent = fillLetter($("aonLetter").value, v, ph).trim();
+    }
+    app.querySelectorAll("[id^='aon-']").forEach(el => el.addEventListener("input", drawLetter));
+    $("aonLetter").addEventListener("change", drawLetter);
+    $("aonRec").addEventListener("input", drawLetter);
+    drawLetter();
+    wirePrint(app);
+  }
+
+  // ======================================================================
+  // Rights explainer — #/rights/disability-children
+  // ======================================================================
+
+  function renderRightsDisabilityChildren(app, utils){
+    u = utils;
+    const link = id => { const f = fact(id); return f ? `<a href="${esc(f.source_url)}" target="_blank" rel="noopener">${esc(f.source_name)} ↗</a>` : ""; };
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/advocacy">‹ Know your rights</a>
+        <h1>Children's disability services: how the pieces fit</h1>
+        <p class="count">Republic of Ireland. Information, not legal or clinical advice.</p>
+      </div>
+      <div class="callout"><strong>${esc(fact("aon-bill").text)}</strong>${verifyTagHtml(fact("aon-bill"))}</div>
+      <div class="guide-list">
+        ${moduleHtml("CDNT and AON are different things", `
+          <p>A Children's Disability Network Team (CDNT) is a service: therapists and other staff who work with children with complex needs, found by home address. An Assessment of Need (AON) is a separate statutory process under the Disability Act 2005 that produces an assessment report and a Service Statement.</p>
+          <p>${esc(fact("aon-not-required").text)}</p>
+          <ul class="detail-list"><li>${link("aon-cdnt-finder")}</li></ul>
+          <p><a href="#/tools/aon">Open the Assessment of Need toolkit</a></p>`)}
+        ${moduleHtml("Education: EPSEN, SENO and NEPS", `
+          <p>The Education for Persons with Special Educational Needs Act 2004 (EPSEN) has been commenced only in part. School supports are decided through the education system, not the HSE.</p>
+          <ul class="detail-list"><li>${esc(fact("aon-seno").text)}<br>${link("aon-seno")}</li></ul>
+          <p>The Special Needs Assistant (SNA) scheme is allocated through the school and the National Council for Special Education. Ask the school principal or your child's SENO how an application is made.</p>`)}
+        ${moduleHtml("Payments and cards", `
+          <p>${esc(fact("aon-dca-chain").text)}</p>
+          <ul class="detail-list"><li>${link("aon-dca-chain")}</li><li><a href="https://www.gov.ie/" target="_blank" rel="noopener">gov.ie ↗</a>: current rates and rules</li></ul>
+          <p>For medical cards, see the <a href="#/tools/schemes">schemes and cards selector</a>.</p>`)}
+        ${moduleHtml("If something goes wrong", `<p>See the escalation ladder on the <a href="#/tools/aon">Assessment of Need toolkit</a>. Free, independent information: <a href="https://www.citizensinformation.ie/" target="_blank" rel="noopener">Citizens Information ↗</a>, <a href="https://www.legalaidboard.ie/" target="_blank" rel="noopener">Legal Aid Board ↗</a>, <a href="https://www.oco.ie/" target="_blank" rel="noopener">Ombudsman for Children ↗</a>.</p>`)}
+      </div>
+      ${footHtml()}
+    `;
+  }
+
+
+  // ======================================================================
+  // Static pages — #/about/screening, #/about/waiting-lists
+  // ======================================================================
+
+  function renderAbout(name, app, utils){
+    u = utils;
+    const pages = {
+      screening: {
+        title: "National cancer screening programmes",
+        sub: "Republic of Ireland. Who is invited, and where to check. Information only.",
+        facts: ["scr-bowel", "scr-breast", "scr-cervical", "scr-register"],
+        note: "Ages and eligibility can change. This page was last checked on 1 Oct 2026 against search results, not the live official pages. Check the programme page before relying on an age band. Screening is for people without symptoms. If you have symptoms, contact your GP.",
+      },
+      "waiting-lists": {
+        title: "Where waiting list data is published",
+        sub: "We link to the publishers and don't copy figures, which change every month.",
+        facts: ["wl-ntpf", "wl-hse-perf", "wl-ni"],
+        note: "For what to do while you wait, use the <a href=\"#/tools/waiting\">While you wait</a> tool. For children's disability waits, see the <a href=\"#/tools/aon\">Assessment of Need toolkit</a>.",
+        noteIsHtml: true,
+      },
+    };
+    const p = pages[name];
+    if (!p) return false;
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>${esc(p.title)}</h1>
+        <p class="count">${esc(p.sub)}</p>
+      </div>
+      <div class="callout"><strong>${esc(TOOL_UI_TEXT.disclaimer)}</strong></div>
+      <div class="guide-list">${moduleHtml("Official sources", factListHtml(p.facts))}</div>
+      <div class="callout">${p.noteIsHtml ? p.note : esc(p.note)}</div>
+      ${footHtml()}
+    `;
+    return true;
   }
 
   // ======================================================================
@@ -1054,6 +1309,11 @@ window.HH_TOOLS = (function(){
       RENDERERS[id] = fn;
       if (meta) TOOL_LIST.push(Object.assign({ id }, meta));
     },
-    _internal: { addPeriod, parseIso, recommendRoute, crossBorderFacts, cardFacts, fact, fillLetter },
+    renderAbout,
+    renderPage(name, app, utils){
+      if (name === "disability-children"){ renderRightsDisabilityChildren(app, utils); return true; }
+      return false;
+    },
+    _internal: { aonDates, addPeriod, parseIso, recommendRoute, crossBorderFacts, cardFacts, fact, fillLetter },
   };
 })();

@@ -115,7 +115,10 @@
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
     { name: "While you wait (waiting lists)", href: "#/tools/waiting", keywords: "waiting list waiting lists ntpf validation letter suspended planned procedure status target" },
     { name: "Discharge passport", href: "#/tools/discharge", keywords: "discharge hospital leaving going home medicines appointments questions passport" },
-    { name: "Assessment of Need explainer", href: "#/tools/aon", keywords: "aon assessment of need disability act 2005 child disability complaint appeals" },
+    { name: "Assessment of Need toolkit", href: "#/tools/aon", keywords: "aon assessment of need disability act 2005 child disability complaint appeals cdnt service statement deadline calculator" },
+    { name: "National cancer screening programmes", href: "#/about/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear mammogram bowel cervical breast national screening service" },
+    { name: "Where waiting list data is published", href: "#/about/waiting-lists", keywords: "waiting lists data ntpf aon cdnt primary care statistics figures" },
+    { name: "Children's disability services explained", href: "#/rights/disability-children", keywords: "cdnt aon epsen seno sna dca domiciliary care allowance carer's support grant medical card children disability rights" },
     { name: "Schemes and cards selector", href: "#/tools/schemes", keywords: "scheme schemes cross border directive treatment abroad tas niphs northern ireland planned healthcare medical card gp visit card reimbursement" },
   ];
 
@@ -1904,6 +1907,8 @@ ${name}`;
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
+    else if (parts[0] === "about" && parts[1] && window.HH_TOOLS && window.HH_TOOLS.renderAbout(parts[1], app, { escapeHtml, printOnly, readStore, writeStore, clearStore })) { /* rendered */ }
+    else if (parts[0] === "rights" && parts[1] && window.HH_TOOLS && window.HH_TOOLS.renderPage(parts[1], app, { escapeHtml, printOnly, readStore, writeStore, clearStore })) { /* rendered */ }
     else if (parts[0] === "tools" && window.HH_TOOLS) window.HH_TOOLS.render(parts[1] || "", app, { escapeHtml, printOnly, readStore, writeStore, clearStore });
     else renderHome();
 
