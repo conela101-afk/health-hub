@@ -47,4 +47,5 @@ expect("dates, counts and form codes are fine", [V({ blurb: "Form HSS001. Up to 
 expect("clinical wording fails", [V({ blurb: "You should take this medicine" })], "clinical-instruction");
 expect("Budget 2027 anywhere fails", [V({ blurb: "Rates change in Budget 2027" })], "Budget 2027");
 expect("contact patterns not applied to unverified-free old entries", [e({ blurb: "Call 021 240 9646" })]);
+expect("hospital domain ok (nrh.ie, National Rehabilitation Hospital)", [V({ source_url: "https://www.nrh.ie/rehabilitation-services/x/" })]);
 process.exit(fails ? 1 : 0);
