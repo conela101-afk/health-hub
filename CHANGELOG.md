@@ -2,6 +2,12 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-10-02 [Claude] (area schema)
+- **Optional `area` field** (sub-county, navigation only). `AREAS` in `data.js`; only Cork has areas: West, East, North, Cork City and South Cork. `south-cork` is awaiting a human decision. Areas are not HSE boundaries and the county page says so.
+- **Cork is now one county** (`cork`). The three old ids `cork-city`, `cork-north`, `cork-west` were removed from `COUNTIES`. 68 entries migrated. `area` means where a service is physically based, not who it serves, so regional and county-wide services (CUH, CUMH, Mercy, SIVUH, Bon Secours, Mater Private, SATU, networks) were left without an area. Kept: 10 West Cork community services and 2 Cork City community charities. Old links (`#/county/cork-city` etc.) redirect to the county plus area. The county page has an "Area" dropdown, shown only for counties that define areas.
+- **New optional `urlStatus`** (`opened` or `search-result`). `scripts/validate-data.js` fails the build on: an unknown county or specialty, an unknown `area`, an `area` that doesn't belong to one of the entry's counties, a `verify: true` entry with no `source_url`, and a `verify: true` entry that has a phone, email or address without `urlStatus: "opened"`. `scripts/test-validate-data.js` covers the rules (15 checks). Both run in CI.
+- Field names follow the existing schema (`county` is an array of ids, `source_url`, `checked`), not the brief's draft names. `cdnt` maps to the existing `childdisability`.
+
 ## 2026-09-29 [Claude]
 - **Fixed doubled brackets in the SAR builder preview** (`app.js`, `generateSarLetter`). The empty-state fallbacks (`[Your name]`, `[Your address]`, `[Your date of birth]`) already carry brackets, and the letter header wrapped every value in a second pair, giving `[[Your name]]` and `[Date of birth: [Your date of birth]]`. It also bracketed real values once filled (`[Jane Smith]`). The header now prints values unwrapped, with the "Date of birth:" label outside any brackets. Placeholders keep their single pair; the contact line is unbracketed too. One code path serves both jurisdictions (ROI and NI differ only in the statute text), so the NI variant is covered. `LETTER_TEMPLATES` in `data.js` and `tools.js` letters use plain single-bracket placeholders and were not affected. Service worker cache `v10` -> `v11`.
 - Not yet browser-tested after the fix; from source only.
