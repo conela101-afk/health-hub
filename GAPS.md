@@ -108,8 +108,9 @@ Maternal Mental Health"), eating disorders `eating`, menopause `menopause`, endo
 audiology `ent`, bariatric `weightmanagement`, school dental `dental`. New ids: `rare-disease`,
 `screening` (also tagged `cancer` on bowel, breast and cervical). `gender-health` is not added
 yet because its only entry is withheld below. County tags are inferred from the blurbs
-(`cho7-cdnts`: Dublin, Kildare, Wicklow; `southeast-cdnts`: five counties; `cdnt-cork-overview`: `cork-city` only, so
-check whether it should include `cork-west`/`cork-north`).
+(`cho7-cdnts`: Dublin, Kildare, Wicklow; `southeast-cdnts`: five counties; `cdnt-cork-overview` (formerly
+`horizons-cdnt-cork`): whole county, no `area`). That row no longer names Horizons or any lead agency.
+Sources conflict (Horizons v COPE Foundation), so none is stated until an official page is opened.
 
 **Withheld: `ngs-columcilles`** (National Gender Service, St Columcille's). Its only source is
 `https://nationalgenderserviceireland.com/referral-form/`, which is not an official `.ie` site.
