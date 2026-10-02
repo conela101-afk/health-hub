@@ -58,8 +58,10 @@ const SPECIALTIES = [
   { id: "mh",              label: "Perinatal & Maternal Mental Health" },
   { id: "loss",            label: "Pregnancy & Baby Loss" },
   { id: "phn",             label: "Public Health Nursing" },
+  { id: "rare-disease",    label: "Rare Diseases" },
   { id: "respiratory",     label: "Respiratory Medicine & CF" },
   { id: "rheumatology",    label: "Rheumatology & Autoimmune" },
+  { id: "screening",       label: "Screening (Bowel, Breast, Cervical)" },
   { id: "sexualhealth",    label: "Sexual Health & STI Testing" },
   { id: "stroke",          label: "Stroke" },
   { id: "urology",         label: "Urology" },
@@ -1258,13 +1260,15 @@ const ENTRIES = [
   {
     id: "breastcheck",
     name: "BreastCheck — National Breast Screening Programme",
-    specialty: ["cancer"],
+    specialty: ["cancer", "screening"],
     county: ["national"],
-    blurb: "Free breast screening (mammogram) for eligible women, run by the National Screening Service.",
+    blurb: "Free mammograms for women aged 50 to 69, every 2 years, run by the National Screening Service.",
     details: ["Screening reminders are also visible in the HSE Health App."],
     referral: "Automatic invitation by eligible age band, or self-register if not yet invited.",
     contact: { web: "breastcheck.ie" },
-    checked: "4 Sep 2026"
+    source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/breastcheck-age-range-explained/",
+    urlStatus: "search-result",
+    verify: true
   },
 
   // Crisis, neurodiversity, parenting, and infertility — added Sep 2026 in
@@ -6319,6 +6323,242 @@ const ENTRIES = [
     blurb: "Children with complex disability needs in the Cobh and Glanmire area (and nearby). Catchment not fully confirmed; check the HSE CDNT finder.",
     contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
     source_url: "https://www2.hse.ie/services/childrens-disabilities/",
+    urlStatus: "search-result",
+    verify: true
+  },
+
+  // Audit round 1, Phase A (1 Oct 2026). Rebuilt from search results, NOT checked
+  // in a browser. No phone numbers or emails on purpose: copy contacts from the
+  // live official page, then remove verify and add `checked`. ngs-columcilles is
+  // deliberately not here (non-.ie source), see GAPS.md.
+  {
+    id: "hse-cdnt-finder",
+    name: "Find your Children's Disability Network Team (CDNT)",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "HSE search tool for your local CDNT by address. Families can refer directly; an Assessment of Need is a separate, parallel statutory right.",
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-aon-officer",
+    name: "Assessment of Need: apply to your local Assessment Officer",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "Apply in writing on the HSE application form to the Assessment Officer for your area. Find your officer on the HSE page.",
+    contact: { web: "www2.hse.ie/services/disability/applying-for-an-assessment-of-need/assessment-of-need-officer/" },
+    source_url: "https://www2.hse.ie/services/disability/applying-for-an-assessment-of-need/assessment-of-need-officer/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-aon-complaints",
+    name: "Assessment of Need complaints (Disability Act s.14)",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "Complaints about AON timing, findings or Service Statements go to the HSE Disability Complaints Officer, generally within 3 months. Contact details: see the Citizens Information page.",
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "odao-appeals",
+    name: "Disability Appeals Officer",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "Appeals after a HSE Complaints Officer report, or where a recommendation is not implemented.",
+    contact: { web: "www.gov.ie/en/department-of-children-disability-and-equality/publications/disability-appeals-officer/" },
+    source_url: "https://www.gov.ie/en/department-of-children-disability-and-equality/publications/disability-appeals-officer/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cho7-cdnts",
+    name: "CHO7 Children's Disability Network Teams",
+    specialty: ["childdisability"],
+    county: ["dublin", "kildare", "wicklow"],
+    blurb: "11 teams covering Dublin South/South West, Kildare and West Wicklow. Team and contact details on the CHO7 site.",
+    contact: { web: "www.cho7cdnt.ie/teams/pages/" },
+    source_url: "https://www.cho7cdnt.ie/teams/pages/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "southeast-cdnts",
+    name: "South East Children's Disability Network Teams",
+    specialty: ["childdisability"],
+    county: ["carlow", "kilkenny", "tipperary", "waterford", "wexford"],
+    blurb: "12 teams across Carlow, Kilkenny, South Tipperary, Waterford and Wexford.",
+    contact: { web: "www.southeastcdnt.ie/about/who-we-are/" },
+    source_url: "https://www.southeastcdnt.ie/about/who-we-are/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cdnt-cork-overview",
+    name: "Cork Children's Disability Network Teams (CDNT 4 to 14)",
+    specialty: ["childdisability"],
+    county: ["cork"],
+    blurb: "HSE parliamentary replies list 11 Cork teams, numbered CDNT 4 to 14. Use the HSE CDNT finder to confirm which team covers your address.",
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-spmhs",
+    name: "Specialist Perinatal Mental Health Services",
+    specialty: ["mh"],
+    county: ["national"],
+    blurb: "Specialist hub teams in the larger maternity units plus perinatal mental health midwives in all units. Hub list and access limits change; check the HSE page.",
+    contact: { web: "www.hse.ie/eng/services/list/4/mental-health-services/specialist-perinatal-mental-health/" },
+    source_url: "https://www.hse.ie/eng/services/list/4/mental-health-services/specialist-perinatal-mental-health/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "umhl-spmhs",
+    name: "Perinatal Mental Health Service, University Maternity Hospital Limerick",
+    specialty: ["mh"],
+    county: ["limerick"],
+    blurb: "GP or consultant referral. Contact details on the HSE hospital page.",
+    contact: { web: "www2.hse.ie/services/hospitals/university-maternity-hospital-limerick/departments-services/perinatal-mental-health-service-268/" },
+    source_url: "https://www2.hse.ie/services/hospitals/university-maternity-hospital-limerick/departments-services/perinatal-mental-health-service-268/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-ahr",
+    name: "Publicly funded IVF / ICSI / IUI (AHR)",
+    specialty: ["fertility"],
+    county: ["national"],
+    blurb: "GP or consultant refers you to a regional fertility hub; no self-referral. Eligibility criteria apply, including age and cycle limits. Check the HSE page for current rules.",
+    contact: { web: "www2.hse.ie/pregnancy-birth/trying-for-a-baby/your-fertility/getting-ivf-icsi-iui-hse/" },
+    source_url: "https://www2.hse.ie/pregnancy-birth/trying-for-a-baby/your-fertility/getting-ivf-icsi-iui-hse/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cumh-endometriosis",
+    name: "Supra-regional endometriosis centre, Cork University Maternity Hospital",
+    specialty: ["endo"],
+    county: ["cork"],
+    blurb: "Specialist centre for complex endometriosis. One of two supra-regional centres (the other is Tallaght). Referral via GP or consultant.",
+    contact: { web: "irelandsouthwid.cumh.hse.ie/women-s-health/endometriosis/" },
+    source_url: "https://irelandsouthwid.cumh.hse.ie/women-s-health/endometriosis/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-complex-menopause",
+    name: "Complex menopause clinics",
+    specialty: ["menopause"],
+    county: ["national"],
+    blurb: "Specialist clinics for complex cases, referral by GP or consultant. Most women are managed in primary care.",
+    contact: { web: "www2.hse.ie/conditions/menopause/menopause-treatment/" },
+    source_url: "https://www2.hse.ie/conditions/menopause/menopause-treatment/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cumh-complex-menopause",
+    name: "Complex Menopause Clinic, CUMH (Lee Clinic)",
+    specialty: ["menopause"],
+    county: ["cork", "kerry", "tipperary", "waterford"],
+    blurb: "Serves Cork, Kerry, South Tipperary and Waterford. Referral by GP, consultant or advanced nurse practitioner.",
+    contact: { web: "irelandsouthwid.cumh.hse.ie/women-s-health/menopause/complex-menopause-clinic/" },
+    source_url: "https://irelandsouthwid.cumh.hse.ie/women-s-health/menopause/complex-menopause-clinic/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ncp-eating-disorders",
+    name: "HSE National Clinical Programme for Eating Disorders",
+    specialty: ["eating"],
+    county: ["national"],
+    blurb: "Community eating disorder teams for adults and children. Team locations and numbers vary and are still expanding.",
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/mental-health/eating-disorders/" },
+    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/mental-health/eating-disorders/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "nrdo",
+    name: "National Rare Diseases Office",
+    specialty: ["rare-disease"],
+    county: ["dublin"],
+    blurb: "Information and signposting for rare conditions; runs Orphanet Ireland. Contact details on the HSE page.",
+    contact: { web: "www.hse.ie/eng/services/list/5/rarediseases/patientsfamilies.html" },
+    source_url: "https://www.hse.ie/eng/services/list/5/rarediseases/patientsfamilies.html",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "nhivrc-cochlear",
+    name: "National Cochlear Implant Programme, Beaumont Hospital",
+    specialty: ["ent"],
+    county: ["dublin"],
+    blurb: "Referral via GP, public health nurse, audiologist or ENT. Waiting times vary and are not shown here.",
+    contact: { web: "www2.hse.ie/services/audiology/hearing-aids-implants/cochlear-implants/" },
+    source_url: "https://www2.hse.ie/services/audiology/hearing-aids-implants/cochlear-implants/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ncp-obesity-moc",
+    name: "Public bariatric surgery pathway (Obesity Model of Care)",
+    specialty: ["weightmanagement"],
+    county: ["national"],
+    blurb: "GP referral into the specialist obesity pathway; surgery is limited to a small number of centres. Check current centres and criteria with the HSE.",
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/obesity/model-of-care/obesity-model-of-care-highlights.pdf" },
+    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/obesity/model-of-care/obesity-model-of-care-highlights.pdf",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "bowelscreen",
+    name: "BowelScreen",
+    specialty: ["cancer", "screening"],
+    county: ["national"],
+    blurb: "Free home test, every 2 years. Age range has been expanding: check the HSE page for current ages.",
+    contact: { web: "www2.healthservice.hse.ie/organisation/nss/news/explained-bowelscreen-age-range-expansion/" },
+    source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/explained-bowelscreen-age-range-expansion/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cervicalcheck",
+    name: "CervicalCheck",
+    specialty: ["cancer", "screening"],
+    county: ["national"],
+    blurb: "Free cervical screening (HPV test) for ages 25 to 65. Intervals depend on age and results.",
+    contact: { web: "www2.healthservice.hse.ie/organisation/nss/news/cervicalcheck-age-range-explained/" },
+    source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/cervicalcheck-age-range-explained/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-child-dental",
+    name: "HSE school dental and orthodontic services",
+    specialty: ["dental"],
+    county: ["national"],
+    blurb: "School dental checks and emergency care for children. Orthodontic referral is for severe cases only. Class coverage varies by area.",
+    contact: { web: "www2.hse.ie/conditions/orthodontic-treatment-and-braces/" },
+    source_url: "https://www2.hse.ie/conditions/orthodontic-treatment-and-braces/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "dca",
+    name: "Domiciliary Care Allowance",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "Monthly payment for a child under 16 with a severe disability. Links to a medical card. Check the current rate on gov.ie or Citizens Information.",
+    contact: { web: "www.citizensinformation.ie/en/social-welfare/disability-and-illness/domiciliary-care-allowance/" },
+    source_url: "https://www.citizensinformation.ie/en/social-welfare/disability-and-illness/domiciliary-care-allowance/",
     urlStatus: "search-result",
     verify: true
   },
