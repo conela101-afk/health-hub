@@ -8106,7 +8106,7 @@ const TOOL_FACTS = [
   { id: "roi-oco", text: "Ombudsman for Children: free and independent. A child, or an adult on their behalf, can complain about a public body, including health services. Freephone 1800 20 20 40.", jurisdiction: "ROI", source_url: "https://www.oco.ie/complaints/make-a-complaint/", source_name: "Ombudsman for Children: Make a complaint", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-voluntary-private", text: "Voluntary and private providers aren't covered by YSYS. Complain to them directly, using their own complaints process.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-system/making-a-complaint-about-the-health-service-executive/", source_name: "Citizens Information: Making a complaint about a health service", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-private-ombudsman", text: "Whether the Ombudsman can examine a complaint about a private provider, such as a private nursing home, depends on the provider and the complaint. Check with the Ombudsman's office.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/collection/72275-your-questions/", source_name: "Ombudsman: Your questions", last_verified: "2026-09-28", volatility: "medium", verify: true },
-  { id: "roi-pas", text: "Patient Advocacy Service: free, independent and confidential support to make a complaint about a public acute hospital, or a public or private nursing home. Phone 0818 293003.", jurisdiction: "ROI", source_url: "https://www.patientadvocacyservice.ie/", source_name: "Patient Advocacy Service", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-pas", text: "Patient Advocacy Service: free, independent and confidential support to make a complaint about a public acute hospital or a public or private nursing home, and support after a patient safety incident. Phone 0818 293003.", jurisdiction: "ROI", source_url: "https://www.patientadvocacyservice.ie/", source_name: "Patient Advocacy Service", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-hiqa", text: "HIQA takes concerns about health and social care services, but can't investigate individual complaints. Email concerns@hiqa.ie or phone 021 240 9646.", jurisdiction: "ROI", source_url: "https://www.hiqa.ie/get-touch/report-concern-or-give-feedback", source_name: "HIQA: Report a concern or give feedback", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-ysys-backup", text: "The HSE online feedback form has been reported as unavailable or slow to respond. As a backup, phone Your Service Your Say on 1800 424 555 or HSE Live on 1800 700 700, or send your complaint by post. Keep a copy.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say/", source_name: "HSE: Give feedback through Your Service Your Say", last_verified: "2026-09-28", volatility: "high", verify: true },
 
@@ -8546,12 +8546,171 @@ TOOL_FACTS.push(
   { id: "aon-right", text: "Under Part 2 of the Disability Act 2005, you have a right to apply for an Assessment of Need for yourself or your child, if you think there may be a disability.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "aon-not-required", text: "You don't need an Assessment of Need to access HSE disability or health services. It's a separate statutory process, and services can be accessed through referral in the usual way.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "aon-ack", text: "The HSE should acknowledge a completed application within 14 days.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 14, unit: "calendar_days" } },
-  { id: "aon-start", text: "The assessment must start within 3 months of the HSE receiving a completed application.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 3, unit: "months" } },
-  { id: "aon-complete", text: "The assessment must be completed, and the report sent, within a further 3 months. That's the six-month statutory timeline from a completed application.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 6, unit: "months" } },
+  { id: "aon-start", text: "The assessment must start within 3 months of the HSE receiving a completed application (section 9(5)).", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-02", volatility: "low", verify: false, calc: { amount: 3, unit: "months" } },
+  { id: "aon-complete", text: "The period for completing the assessment is set in regulations (S.I. 263/2007 as amended), and we haven't confirmed the current wording. Published guidance gives a further 3 months after the start, which is about 6 months in all from a completed application.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-02", volatility: "medium", verify: true, calc: { amount: 6, unit: "months" } },
   { id: "aon-complaint", text: "If the timeline isn't met, or you're unhappy with the assessment or service statement, you can complain to the HSE Disability Complaints Officer (045 880 400, aon.complaints@hse.ie). Complain as soon as reasonably possible, and no later than 3 months after the cause of the complaint arose.", jurisdiction: "ROI", source_url: "https://hse.ie/eng/about/who/complaints/officers/pccc/assessmentcomplaints.html", source_name: "HSE: Assessment of Need complaints", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 3, unit: "months" } },
   { id: "aon-appeal", text: "If you're unhappy with the complaint outcome, you can appeal to the independent Disability Appeals Officer.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false },
-  { id: "aon-bill", text: "The Disability (Amendment) Bill 2026 would change parts of the AON process, including the closing of applications. It is NOT law yet: it was at Dáil second stage in late September 2026. Until it's enacted, the current Act applies.", jurisdiction: "ROI", source_url: "https://www.oireachtas.ie/en/bills/bill/2026/88/", source_name: "Houses of the Oireachtas: Disability (Amendment) Bill 2026", last_verified: "2026-09-28", volatility: "high", verify: true }
+  { id: "aon-bill", text: "Bill 88 of 2026 (the Disability (Amendment) Bill 2026) was debated at Dáil Second Stage on 23 Sep 2026. It is NOT law yet. It would change parts of the AON process, including the withdrawal and closure of applications and statutory HSE guidelines. Until it is enacted, the current Act applies.", jurisdiction: "ROI", source_url: "https://www.oireachtas.ie/en/bills/bill/2026/88/", source_name: "Houses of the Oireachtas: Disability (Amendment) Bill 2026", last_verified: "2026-10-02", volatility: "high", verify: true },
+  { id: "aon-service-statement", text: "After the assessment report, a Service Statement should follow within 1 month. Counted from a completed application, that is about 7 months overall.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-01", volatility: "medium", verify: true, calc: { amount: 1, unit: "months" } },
+  { id: "aon-review", text: "Your assessment report sets out when the assessment should be reviewed. Use the date stated in your report.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-02", volatility: "medium", verify: true },
+  { id: "aon-repeat-12m", text: "The HSE can refuse a repeat application for a child who was assessed within the previous 12 months (section 9(7)). This limits repeat applications. It is not a right to a review.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-02", volatility: "medium", verify: true },
+  { id: "aon-hse-dates", text: "The HSE may record dates differently from you, for example the date it treats the application as complete. Ask in writing which dates it has on file, and keep your own copy of every letter, email and postage receipt.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/list/4/disability/disability-assessment/", source_name: "HSE: Disability assessment", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "aon-s14-form", text: "To make a complaint to the Disability Complaints Officer under section 14, use the official HSE complaint form. The cover note on this page is a supporting letter only. It does not replace the form.", jurisdiction: "ROI", source_url: "https://hse.ie/eng/about/who/complaints/officers/pccc/assessmentcomplaints.html", source_name: "HSE: Assessment of Need complaints", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "aon-appeals-officer", text: "If you are unhappy with the Complaints Officer's recommendation, you can appeal under section 18 to the Disability Appeals Officer, who is independent of the HSE. Check the current contact details and time limit on the official page.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "aon-s22", text: "Information only. The Disability Act 2005 provides for optional mediation (section 19), an appeal to the High Court on a point of law only (section 20), and an application to the Circuit Court to enforce (section 22). These section numbers come from our review notes and still need checking against the Act. A solicitor or the Legal Aid Board can advise. We can't say whether any of this applies to your case.", jurisdiction: "ROI", source_url: "https://www.irishstatutebook.ie/eli/2005/act/14/enacted/en/html", source_name: "Irish Statute Book: Disability Act 2005", last_verified: "2026-10-02", volatility: "medium", verify: true },
+  { id: "aon-legal-aid", text: "Legal Aid Board: state-funded civil legal aid and advice, subject to eligibility and a waiting list. Citizens Information also gives free, independent information.", jurisdiction: "ROI", source_url: "https://www.legalaidboard.ie/", source_name: "Legal Aid Board", last_verified: "2026-10-01", volatility: "low", verify: true },
+  { id: "aon-private-report", text: "We can't say whether the HSE has to accept a private report. Ask the Assessment Officer in writing how any report you hold will be taken into account.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/list/4/disability/disability-assessment/", source_name: "HSE: Disability assessment", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "aon-cdnt-finder", text: "Children's Disability Network Teams (CDNTs) are found by home address. The HSE has a finder.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/services/childrens-disabilities/", source_name: "HSE: Find your local children's disability network team", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "aon-seno", text: "Special Educational Needs Organisers (SENOs) work for the National Council for Special Education (NCSE). Each school has an assigned SENO. Education supports are separate from HSE health services.", jurisdiction: "ROI", source_url: "https://www.ncse.ie/parents/support-network/seno/", source_name: "NCSE: SENO", last_verified: "2026-10-01", volatility: "low", verify: true },
+  { id: "aon-dca-chain", text: "Domiciliary Care Allowance (DCA) is a monthly payment to the carer of a child under 16 with a severe disability. A child getting DCA gets a medical card without a means test, and DCA can open access to the Carer's Support Grant. Rates change, so we don't show them. Check the official page.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/children-s-health/caring-for-a-child-with-a-disability/", source_name: "Citizens Information: Caring for a child with a disability", last_verified: "2026-10-01", volatility: "high", verify: true }
 );
+
+// ---------- Letters: Assessment of Need (AON) ----------
+// Wording asks for information and records facts. It does not say that anything
+// is unlawful and gives no legal or clinical advice.
+TOOL_LETTERS["aon-ack"] = {
+  title: "Ask for acknowledgement and a start date",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Assessment Officer / Assessment of Need team
+Health Service Executive
+{{hseArea}}
+
+Re: Assessment of Need application for {{childName}}{{refLine}}
+
+Dear Assessment Officer,
+
+I applied for an Assessment of Need under the Disability Act 2005 for {{childName}} (date of birth {{childDob}}). My records show that the HSE received the application on {{received}}.
+
+I have not yet received a written acknowledgement. Please confirm in writing:
+1. the date the HSE has recorded as receiving the application;
+2. whether the HSE regards the application as complete and, if so, from what date;
+3. the name and contact details of the Assessment Officer; and
+4. the date the assessment is expected to start.
+
+Yours sincerely,
+{{name}}`
+};
+
+TOOL_LETTERS["aon-chaser"] = {
+  title: "Overdue chaser",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Assessment Officer / Assessment of Need team
+Health Service Executive
+{{hseArea}}
+
+Re: Assessment of Need for {{childName}}{{refLine}}
+
+Dear Assessment Officer,
+
+I wrote to or applied to the HSE for an Assessment of Need for {{childName}} (date of birth {{childDob}}). The HSE received the application on {{received}}.
+
+I understand the Disability Act 2005 and its regulations set time periods for the assessment to start and be completed. I have not had {{missing}}.
+
+Please reply in writing within 10 working days to tell me:
+1. the current status of the assessment;
+2. the dates the HSE has recorded for this application; and
+3. when I can expect the next step.
+
+I am keeping a record of my contact with the HSE.
+
+Yours sincerely,
+{{name}}`
+};
+
+TOOL_LETTERS["aon-delay"] = {
+  title: "Ask the reason for the delay",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Assessment Officer / Assessment of Need team
+Health Service Executive
+{{hseArea}}
+
+Re: Assessment of Need for {{childName}}{{refLine}}
+
+Dear Assessment Officer,
+
+The HSE received the Assessment of Need application for {{childName}} on {{received}}. The assessment has not {{delayStage}}.
+
+Please tell me in writing:
+1. the reason for the delay;
+2. whether the HSE has told the Assessment Officer or the family of any extension, and on what basis; and
+3. the date by which the HSE now expects to {{delayAction}}.
+
+If the delay is due to waiting for information from me, please say exactly what is needed.
+
+Yours sincerely,
+{{name}}`
+};
+
+TOOL_LETTERS["aon-s14"] = {
+  title: "Cover note for the official section 14 complaint form",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Disability Complaints Officer
+Health Service Executive
+
+Re: Complaint about the Assessment of Need process for {{childName}}{{refLine}}
+
+Dear Complaints Officer,
+
+I enclose the completed official HSE complaint form under section 14 of the Disability Act 2005 for {{childName}} (date of birth {{childDob}}).
+
+Brief summary (full details are on the form):
+- The HSE received the application on {{received}}.
+- {{summary}}
+
+Enclosed: copies of the correspondence I hold (listed on the form). Please acknowledge receipt in writing.
+
+Yours sincerely,
+{{name}}`
+};
+
+TOOL_LETTERS["aon-service"] = {
+  title: "Services in the Service Statement not delivered",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Liaison Officer / Assessment of Need team
+Health Service Executive
+{{hseArea}}
+
+Re: Service Statement for {{childName}}{{refLine}}
+
+Dear Liaison Officer,
+
+A Service Statement for {{childName}} (date of birth {{childDob}}) was issued on {{statementDate}}. It lists: {{services}}.
+
+I have not yet received {{notDelivered}}.
+
+Please tell me in writing:
+1. the date each listed service is expected to start;
+2. the reason for any delay; and
+3. who I should contact about it.
+
+Yours sincerely,
+{{name}}`
+};
 
 // ---------- Letter: asking about waiting-list status ----------
 TOOL_LETTERS["wy-status"] = {
