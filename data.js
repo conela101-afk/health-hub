@@ -6754,6 +6754,30 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
+
+  // Pass 5, medical (2 Oct 2026). Search results only, no contacts. National Coagulation Centre already has an entry, so it is not repeated.
+  {
+    id: "t1d-technology",
+    name: "Type 1 diabetes technology: pumps and sensors",
+    specialty: ["diabetes"],
+    county: ["national"],
+    blurb: "Insulin pumps are available through some HSE diabetes services and are free where available. Supplies are covered under the Long-Term Illness scheme. Ask your diabetes team what your service offers.",
+    contact: { web: "www2.hse.ie/conditions/type-1-diabetes/diabetes-technology/" },
+    source_url: "https://www2.hse.ie/conditions/type-1-diabetes/diabetes-technology/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "stroke-esd",
+    name: "Stroke Early Supported Discharge",
+    specialty: ["stroke"],
+    county: ["national"],
+    blurb: "Referral is made by the acute stroke team. Home-based rehabilitation for people with mild to moderate stroke, capped at 8 weeks.",
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/stroke/resources/" },
+    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/stroke/resources/",
+    urlStatus: "search-result",
+    verify: true
+  },
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate
