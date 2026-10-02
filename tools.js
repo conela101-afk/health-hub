@@ -1027,7 +1027,7 @@ window.HH_TOOLS = (function(){
       rows.push({ id: "statement", label: "Service Statement: latest, if the report arrives on time (about 7 months from application)", date: addPeriod(addPeriod(rec, fact("aon-complete").calc), fact("aon-service-statement").calc), fact: "aon-service-statement", estimate: true });
     }
     if (awr){
-      rows.push({ id: "complaint", label: "Complaint window closes (3 months from becoming aware)", date: addPeriod(awr, fact("aon-complaint").calc), fact: "aon-complaint" });
+      rows.push({ id: "complaint", label: "Complaint window closes (3 months from the cause arising; you can ask in writing for an extension)", date: addPeriod(awr, fact("aon-complaint").calc), fact: "aon-complaint" });
     }
     const rv = parseIso(reviewStated);
     if (rv) rows.push({ id: "reviewStated", label: "Review date stated in your report", date: rv, fact: "aon-review" });
@@ -1110,7 +1110,7 @@ window.HH_TOOLS = (function(){
 
       <div class="guide-list">
         ${moduleHtml("Your rights", factListHtml(["aon-right", "aon-not-required"]))}
-        ${moduleHtml("Statutory timeline", factListHtml(["aon-ack", "aon-start", "aon-complete", "aon-service-statement", "aon-review", "aon-repeat-12m"]))}
+        ${moduleHtml("Statutory timeline", factListHtml(["aon-ack", "aon-start", "aon-complete", "aon-service-statement", "aon-review", "aon-repeat-12m", "aon-processing-order"]))}
       </div>
 
       <div class="prep-card">
@@ -1123,7 +1123,7 @@ window.HH_TOOLS = (function(){
         <input type="date" id="aonRep" class="prep-input" value="${sv("report")}">
         <label class="prep-label" for="aonRev">Review date stated in your report (optional)</label>
         <input type="date" id="aonRev" class="prep-input" value="${sv("review")}">
-        <label class="prep-label" for="aonAware">Date you became aware of the cause of a complaint (optional)</label>
+        <label class="prep-label" for="aonAware">Date the cause of the complaint arose (optional)</label>
         <input type="date" id="aonAware" class="prep-input" value="${sv("aware")}">
         <ul class="detail-list" id="aonOut" aria-live="polite"></ul>
         <p class="save-note">${esc(TOOL_UI_TEXT.dateApprox)} Calendar days and months here include weekends and holidays.</p>

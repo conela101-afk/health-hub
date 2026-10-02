@@ -46,5 +46,9 @@ eq("s.22 Circuit Court enforcement", String(/Circuit Court to enforce \(section 
 eq("no one-year review claim in review facts", String(/one year|1 year|12 months/i.test(F("aon-review"))), "false");
 eq("s.9(7) is a limit on repeat applications, not a review right", String(/not a right to a review/.test(F("aon-repeat-12m"))), "true");
 eq("s.9(5) start period cited", String(/section 9\(5\)/.test(F("aon-start"))), "true");
-eq("Bill banner wording", String(/Second Stage on 23 Sep 2026/.test(F("aon-bill")) && /NOT law yet/.test(F("aon-bill"))), "true");
+eq("Bill text: First Stage 18 Sep, debate reported 23 Sep, not law, Committee Stage not reached", String(/First Stage on 18 Sep 2026/.test(F("aon-bill")) && /Second Stage debate was reported on 23 Sep 2026/.test(F("aon-bill")) && /NOT law yet/.test(F("aon-bill")) && /Committee Stage/.test(F("aon-bill"))), "true");
+eq("Reg. 6 acknowledgement", String(/Reg\. 6/.test(F("aon-ack"))), "true");
+eq("Reg. 10 completion wording with exceptional circumstances", String(/Reg\. 10/.test(F("aon-complete")) && /save for in exceptional circumstances/.test(F("aon-complete"))), "true");
+eq("Reg. 19 service statement", String(/Reg\. 19/.test(F("aon-service-statement"))), "true");
+eq("Reg. 24 substituted by S.I. 601/2023: from the cause arising, extension, 5 working days", String(/S\.I\. 601\/2023/.test(F("aon-complaint")) && /from that cause arising/.test(F("aon-complaint")) && /extension of the 3 months/.test(F("aon-complaint")) && /5 working days/.test(F("aon-complaint"))), "true");
 process.exit(fails ? 1 : 0);
