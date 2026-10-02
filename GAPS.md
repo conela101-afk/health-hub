@@ -249,6 +249,32 @@ From the Pass 5 report. "Opened (Pass 5)" is as reported by Pass 5; Claude Code 
 
 **Corrections to earlier passes:** the Mental Health Bill 2024 is now the Mental Health Act 2026 (no earlier wording to correct was found in the repo). Bill 88 text no longer implies Second Stage has concluded. S.I. 601/2023 substituted Reg. 24 (complaint within 3 months from the cause arising; written extension request; HSE decides within 5 working days): the AON complaint fact and the calculator label were updated. No haemophilia.ie fax number is in the repo.
 
+## Pass 3 rows (2 Oct 2026)
+
+Mapped from the clean Pass 3 file. All search-result only in the repo (`urlStatus: "search-result"`): the file's "opened" means Claude fetched the page during Pass 3, which isn't a person opening it, so none is marked opened. No contacts.
+
+**Added (11):** `mcrn-neurorehab-referral`, `cnrt-south-west` (Cork and Kerry, no Cork `area` because it is regional), `nrh-scsc`, `mater-nsiu`, `ni-musgrave-sciu`, `sjh-narcolepsy`, `hse-osa-cpap-dps`, `ni-belfast-sleep`, `niphs`, `hse-mass`, `hse-work-able`. New specialties: `neurorehabilitation`, `spinal-injury`, `sleep-medicine`, `treatment-abroad`. File ids mapped to existing specialties: dementia and older-persons-rights to `olderpersons`, sexual-health to `sexualhealth`, chronic-pain to `pain`, adhd-adult to `neurodiversity`. `sector` values `public-ni`, `scheme` and `rights` don't exist in the schema, so rows are untagged (public). `nrh.ie` was added to the source-domain allow-list.
+
+**Updated in place:** `status-home-support-providers-act`. The signing date and Act number now say "confirm on the Irish Statute Book", because the file says the date came from a law-firm source only (Pass 4 had said "1 July 2026, Act 17 of 2026").
+
+**Skipped, already in the repo:** `hse-drugs-alcohol-helpline` (existing `hse-addiction-helpline`, with its own contacts and checked date), `hse-home-sti-test` (existing `sh24-roi`, free kits for 17 and over), `home-support-act-2026` (merged into the update above).
+
+**Withheld, non-official source (same rule as `ngs-columcilles`):**
+- `ncp-adult-adhd`: only found on a charity mirror of the HSE model of care (adult.adhdirl.ie). Draft: specialty `neurodiversity`, county `national`, blurb "For moderate to severe ADHD in adults. Ask your GP to refer you to your local adult community mental health team, which screens and refers on to the ADHD clinic team. Coverage and referral arrangements vary by area." Add when an HSE NCP ADHD in Adults page is found. No team counts or waiting times.
+- `hse-living-well-pain`: only on chronicpain.ie. Draft: specialty `pain`, county `national`, blurb "Free six-week self-management programme run with Chronic Pain Ireland. There is no published national HSE model of care for chronic pain, so pathways vary." Add when the HSE Living Well page is found.
+
+**Not publishable:** home NIV, ILD/bronchiectasis centres, ME/CFS (possible gaps).
+
+**Cork CDNT rows:** the old West Cork, Carrigaline/Kinsale/Bandon and West Central Cork City rows stay out. They carried contacts and the related PRs were closed over fabricated contacts. There is an unresolved West Cork email discrepancy (HSE find-a-service page against the HSE team page and CoAction). Rows go in via the HSE CDNT finder only, after a person opens it.
+
+**Human browser checklist (Pass 3):**
+- [ ] Open every `source_url`, then set `urlStatus: "human-verified"` and clear `verify`.
+- [ ] Find official HSE pages to replace the two non-official sources (adult ADHD, Living Well with Chronic Pain).
+- [ ] Confirm the Home Support Providers Act signing date and Act number on irishstatutebook.ie.
+- [ ] Confirm the NIPHS "Before you go" wording on prior notification.
+- [ ] Check the HSE neuro-rehab referrers page for which MCRNs are live, and whether the Cork and Kerry team's route is current.
+- [ ] Check Work-Able Solutions is still running (pilot).
+
 ## Guided tools: open verify items (28 Sep 2026)
 
 The guided tools (`#/tools/...`, logic in `tools.js`, facts in `data.js` →

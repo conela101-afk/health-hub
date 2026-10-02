@@ -43,4 +43,5 @@ expect("Eircode in verify blurb fails", [V({ blurb: "Based at D02 YR92" })], "Ei
 expect("dates and counts in blurb are fine", [V({ blurb: "Enacted 7 May 2026 (Act 11 of 2026). Up to 8 sessions, ages 12 to 25." })]);
 expect("clinical wording fails", [V({ blurb: "You should take this medicine" })], "clinical-instruction");
 expect("contact patterns not applied to unverified entries", [e({ blurb: "Call 021 240 9646" })]);
+expect("nrh.ie allowed (National Rehabilitation Hospital)", [e({ source_url: "https://www.nrh.ie/rehabilitation-services/spinal-cord-system-of-care/" })]);
 process.exit(fails ? 1 : 0);

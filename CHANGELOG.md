@@ -4,6 +4,9 @@ Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-10-01 [Claude] (Phase A entries, PR B)
 - Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+## 2026-10-02 [Claude] (Pass 3 rows)
+- Added 11 entries (neuro-rehabilitation, spinal cord injury, sleep, NIPHS, memory assessment, Work-Able) with 4 new specialties; all `verify: true`, search-result only, no contacts. Updated the Home Support Providers Act entry in place. Skipped duplicates (HSE helpline, home STI kit) and withheld two rows with non-official sources (adult ADHD, Living Well with Chronic Pain). `nrh.ie` added to the source allow-list.
+
 ## 2026-10-02 [Claude] (Pass 5)
 - **Rights and regulators layer, plus 14 rows.** Six rights rows under a new `rights` specialty (HIQA disability residential, DPC access timelines, MHC tribunals, Mental Health Act 2026 info, CORU, HSE adult safeguarding), CIPC and NCS, Home Support, Carer's Allowance (ROI and NI), QUIT, type 1 diabetes technology, stroke ESD. All `verify: true`, `urlStatus: "search-result"`, no contacts. Jigsaw updated in place (under 18s need an adult's consent). Skipped rows that already exist (HIQA concerns, Ombudsman, OCO, Medical Council, NMBI, NCC, LauraLynn, CAMHS).
 - **Legal text:** AON facts now cite S.I. 263/2007 Regs 6, 9, 10, 19; Reg. 24 as substituted by S.I. 601/2023 (3 months from the cause arising, written extension request, decision within 5 working days); Reg. 5 order of processing (S.I. 704/2021); Bill 88 text says Second Stage has not been shown to have ended.
