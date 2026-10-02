@@ -2,6 +2,9 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-10-02 [Claude] (Cork CDNTs)
+- Added Cork CDNT 6 and CDNT 7 (`area: "east-cork"`), `verify: true`, `urlStatus: "search-result"`, no contacts and no lead agency. `GAPS.md` records that Cork has 11 CDNTs (4 to 14) per HSE parliamentary replies, and the human checks outstanding.
+
 ## 2026-10-02 [Claude] (area schema)
 - **Optional `area` field** (sub-county, navigation only). `AREAS` in `data.js`; only Cork has areas: West, East, North, Cork City and South Cork. `south-cork` is awaiting a human decision. Areas are not HSE boundaries and the county page says so.
 - **Cork is now one county** (`cork`). The three old ids `cork-city`, `cork-north`, `cork-west` were removed from `COUNTIES`. 68 entries migrated: 66 with a single old Cork id kept it as `area` (`cork-city`, `west-cork`, `north-cork`), and 2 that listed several Cork ids got no area. Old links (`#/county/cork-city` etc.) redirect to the county plus area. The county page has an "Area" dropdown, shown only for counties that define areas.
