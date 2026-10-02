@@ -6294,6 +6294,34 @@ const ENTRIES = [
     referral: "Specialist consultant referral only.",
     contact: { web: "belfasttrust.hscni.net/service/liver-transplant-coordinator-service/" }
   },
+
+  // Cork CDNTs 6 and 7 (1 Oct 2026). Source: HSE parliamentary-question replies
+  // (PQ 18815/25 and PQ 6858/23), seen in search results only. No contact details
+  // and no lead agency: sources conflict. Catchments and `area` need a human check.
+  {
+    id: "cdnt-cork-6-east-central",
+    name: "East Central Cork Children's Disability Network Team (CDNT 6)",
+    specialty: ["childdisability"],
+    county: ["cork"],
+    area: "east-cork",
+    blurb: "Children with complex disability needs in the Midleton and Youghal area. Check your address on the HSE CDNT finder.",
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cdnt-cork-7-east-cork-city",
+    name: "East Cork City Children's Disability Network Team (CDNT 7)",
+    specialty: ["childdisability"],
+    county: ["cork"],
+    area: "east-cork",
+    blurb: "Children with complex disability needs in the Cobh and Glanmire area (and nearby). Catchment not fully confirmed; check the HSE CDNT finder.",
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/",
+    urlStatus: "search-result",
+    verify: true
+  },
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate
