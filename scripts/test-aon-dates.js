@@ -46,5 +46,8 @@ eq("s.22 Circuit Court enforcement", String(/Circuit Court to enforce \(section 
 eq("no one-year review claim in review facts", String(/one year|1 year|12 months/i.test(F("aon-review"))), "false");
 eq("s.9(7) is a limit on repeat applications, not a review right", String(/not a right to a review/.test(F("aon-repeat-12m"))), "true");
 eq("s.9(5) start period cited", String(/section 9\(5\)/.test(F("aon-start"))), "true");
-eq("Bill banner wording", String(/Second Stage on 23 Sep 2026/.test(F("aon-bill")) && /NOT law yet/.test(F("aon-bill"))), "true");
+eq("Bill text: First Stage 18 Sep, debate reported by a non-official source, not law, Committee Stage not reached", String(/First Stage on 18 Sep 2026/.test(F("aon-bill")) && /non-official source only/.test(F("aon-bill")) && /NOT law yet/.test(F("aon-bill")) && /Committee Stage/.test(F("aon-bill"))), "true");
+eq("Bill text does not say Second Stage concluded", String(/Second Stage (concluded|completed|ended)/.test(F("aon-bill"))), "false");
+eq("Reg. 10 completion wording with exceptional circumstances and written reasons", String(/Reg\. 10/.test(F("aon-complete")) && /save for in exceptional circumstances/.test(F("aon-complete")) && /written reasons/.test(F("aon-complete"))), "true");
+eq("completion is not described as a deadline with no exceptions", String(/no exceptions/i.test(F("aon-complete")) && !/not a fixed deadline with no exceptions/.test(F("aon-complete"))), "false");
 process.exit(fails ? 1 : 0);
