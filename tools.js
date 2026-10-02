@@ -407,8 +407,8 @@ window.HH_TOOLS = (function(){
     if (a.where === "gp-private") return { route: "sar", facts: ["rr-roi-gp-foi"].concat(base), note: "Private GP patients can't use FOI for GP-held records. Use a SAR to the practice." };
     const sensitive = a.whose === "child" || a.whose === "deceased" || a.type === "psych";
     const extra = a.where === "voluntary" ? ["rr-roi-voluntary"] : [];
-    if (foiPossible && sensitive) return { route: "foi", facts: ["rr-roi-foi-sensitive", "rr-roi-foi-free", "rr-roi-foi-ack", "rr-roi-foi-decision"].concat(extra, base), note: "The HSE recommends FOI for this kind of record." };
-    return { route: "either", facts: ["rr-roi-foi-free", "rr-roi-foi-ack", "rr-roi-foi-decision", "rr-roi-sar-decision"].concat(a.where === "gp-mc" ? ["rr-roi-gp-foi"] : [], extra, base, ["rr-roi-extensions"]), note: "Either route can work for your own records. Pick one and say which in your letter. If you don't, the HSE treats it as a SAR." };
+    if (foiPossible && sensitive) return { route: "foi", facts: ["rr-roi-foi-sensitive", "rr-roi-foi-free", "rr-roi-foi-ack", "rr-roi-foi-decision", "rr-roi-foi-extension", "rr-roi-foi-review"].concat(extra, base), note: "The HSE recommends FOI for this kind of record." };
+    return { route: "either", facts: ["rr-roi-foi-free", "rr-roi-foi-ack", "rr-roi-foi-decision", "rr-roi-foi-extension", "rr-roi-foi-review", "rr-roi-sar-decision"].concat(a.where === "gp-mc" ? ["rr-roi-gp-foi"] : [], extra, base, ["rr-roi-extensions"]), note: "Either route can work for your own records. Pick one and say which in your letter. If you don't, the HSE treats it as a SAR." };
   }
 
   const RR_FIELDS = [

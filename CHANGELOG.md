@@ -4,6 +4,9 @@ Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-10-01 [Claude] (Phase A entries, PR B)
 - Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+## 2026-10-02 [Claude] (Pass 4 rows)
+- Added 4 entries (home support providers Act, community ophthalmic scheme, NCCP designated centres, Carer's Support Grant with a new `carers` specialty), updated 2 in place (autism protocol, audiology) plus the PAS scope text, and added 2 FOI facts to the records tool. Skipped duplicates (YSYS, PAS, FOI) and withheld the ME/CFS row (press source). GP card and DPS held until after Budget 2027. All flagged `verify` with `urlStatus: "search-result"`.
+
 ## 2026-10-02 [Claude] (area schema)
 - **Optional `area` field** (sub-county, navigation only). `AREAS` in `data.js`; only Cork has areas: West, East, North, Cork City and South Cork. `south-cork` is awaiting a human decision. Areas are not HSE boundaries and the county page says so.
 - **Cork is now one county** (`cork`). The three old ids `cork-city`, `cork-north`, `cork-west` were removed from `COUNTIES`. 68 entries migrated. `area` means where a service is physically based, not who it serves, so regional and county-wide services (CUH, CUMH, Mercy, SIVUH, Bon Secours, Mater Private, SATU, networks) were left without an area. Kept: 10 West Cork community services and 2 Cork City community charities. Old links (`#/county/cork-city` etc.) redirect to the county plus area. The county page has an "Area" dropdown, shown only for counties that define areas.
