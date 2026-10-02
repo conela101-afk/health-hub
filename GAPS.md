@@ -162,7 +162,14 @@ the next session with normal network access. The list is in `REVIEW.md` →
 | `wy-planned` | ROI | low | Plain-language definition of "planned procedure" not found verbatim | https://www.ntpf.ie/app/uploads/2024/10/NTPF-IDPP-Full-Online-Version-Final.pdf |
 | `wy-ask-status-ni` | NI | low | How to ask your status in NI (booking centres vary by Trust) | https://www.health-ni.gov.uk/articles/outpatient-waiting-times |
 | `wy-roi-latest` | ROI | high | ROI counts deliberately not copied. Check the August 2026 NTPF release directly | https://www.ntpf.ie/waiting-list-data/ |
-| `aon-bill` | ROI | high | Disability (Amendment) Bill 2026 was at Dáil second stage on 28 Sep 2026. Not law | https://www.oireachtas.ie/en/bills/bill/2026/88/ |
+| `aon-bill` | ROI | high | Banner now: Bill 88 of 2026 debated at Dáil Second Stage 23 Sep 2026, not law (wording from the Pass 4 brief). Sources earlier disagreed on dates and the Oireachtas tracker lags. Re-read before merge | https://www.oireachtas.ie/en/bills/bill/2026/88/ |
+| `aon-service-statement` | ROI | medium | "Report date + 1 month (7 months overall)" comes from the brief. Confirm against the Act and HSE AON procedure | https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/ |
+| `aon-review` | ROI | medium | Pass 4: no one-year review rule. The review period is set in each assessment report, so the calculator only has an optional field for the date stated in the report | https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/ |
+| `aon-repeat-12m` | ROI | medium | s.9(7): HSE may refuse a repeat child application within 12 months. A limit, not an entitlement. Section number from the Pass 4 brief | same |
+| `aon-complete` | ROI | medium | Completion period is in regulations (S.I. 263/2007 as amended), not yet opened. "6 months in all" is from guidance. s.9(5) start period (3 months) cited | same |
+| `aon-appeals-officer` | ROI | high | s.18 reference and Disability Appeals Officer contact details and time limit not confirmed | https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/ |
+| `aon-s22` | ROI | high | Pass 4: mediation s.19 (optional), High Court appeal on a point of law only s.20, Circuit Court enforcement s.22. Section numbers come from the brief and were not read by us (statute sites blocked). Confirm on irishstatutebook.ie | https://www.irishstatutebook.ie/eli/2005/act/14/enacted/en/html |
+| `aon-s14-form`, `aon-hse-dates`, `aon-private-report`, `aon-legal-aid`, `aon-cdnt-finder`, `aon-seno`, `aon-dca-chain` | ROI | medium/high | Added 1 Oct 2026 from search cross-check only. `aon-dca-chain` mentions the Carer's Support Grant and medical card link, and rates are deliberately not shown | see each fact's `source_url` |
 
 ### Also open (not facts, but gaps in what the tools cover)
 
@@ -196,3 +203,23 @@ Mapped from the Pass 4 file into the repo schema. All search-result only, `verif
 - `hse-audiology` still says it does not supply hearing aids to everyone, next to the new "free hearing aids for adult medical-card holders". Check both against the HSE page.
 
 **On hold until after the 6 Oct 2026 Budget:** GP visit card (8 to 69) and Drugs Payment Scheme rows. Values in the Pass 4 file came from search results only. Update the existing `sc-card-*` / `sc-gpvc-auto` facts and DPS content in place after re-checking gov.ie. No figures are in the repo.
+## Cork CDNTs (2 Oct 2026)
+
+HSE parliamentary-question replies (PQ 18815/25, PQ 6858/23, search results only, PDFs not opened)
+list **11 Cork teams, CDNT 4 to 14**, and 14 across Cork and Kerry. 4 North West Cork, 5 North East
+Cork, 6 East Central Cork (Midleton, Youghal), 7 East Cork City (Cobh, Glanmire), 8 Central Cork,
+9 North Cork City and Blarney, 10 West Cork, 11 South East Cork City, 12 West Central Cork,
+13 Carrigaline, Kinsale and Bandon, 14 South Cork City. Rows added so far: CDNT 6 and 7 (both
+`area: "east-cork"`), plus the county-wide `cdnt-cork-overview` in the Phase A PR.
+
+Human checks before merge:
+- [ ] Open both PQ PDFs: confirm the numbering and the CDNT 6 and 7 catchments.
+- [ ] Open the HSE CDNT finder for Midleton, Youghal, Cobh and Glanmire: record team names only.
+- [ ] CDNT 7: if the catchment is mostly Cork City, change `area` to `cork-city`.
+- [ ] Decide whether `south-cork` stays in `AREAS`. Labels are navigation only, not HSE boundaries.
+- [ ] CDNT 6 lead agency: one job listing names COPE Foundation, an earlier note named Horizons. Not stated anywhere until an official page is opened.
+
+Not in the repo: the Pass 3 draft rows `cdnt-west-cork`, `cdnt-carrigaline-kinsale-bandon` and
+`cdnt-west-central-cork-city` (with phone numbers, emails and addresses) were never added to `data.js`,
+and no "ten Cork teams" wording exists. If they come back, they must follow the same rules: no contacts
+until `urlStatus: "opened"`, `area` per catchment (CDNT 10 `west-cork`, 13 `south-cork` to confirm).
