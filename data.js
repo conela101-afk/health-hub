@@ -63,6 +63,7 @@ const SPECIALTIES = [
   { id: "rare-disease",    label: "Rare Diseases" },
   { id: "respiratory",     label: "Respiratory Medicine & CF" },
   { id: "rheumatology",    label: "Rheumatology & Autoimmune" },
+  { id: "rights",          label: "Rights, Regulators & Complaints" },
   { id: "screening",       label: "Screening (Bowel, Breast, Cervical)" },
   { id: "sexualhealth",    label: "Sexual Health & STI Testing" },
   { id: "sleep-medicine",  label: "Sleep Medicine" },
@@ -6736,6 +6737,41 @@ const ENTRIES = [
     blurb: "HSE occupational therapy pilot helping people with chronic pain stay in or return to work. For people in paid work or receiving illness benefit. Referrals come from primary care centres and hospitals. Pilot status: check it is still running. There is no published national HSE model of care for chronic pain, so pathways vary.",
     contact: { web: "about.hse.ie/news/hse-pilot-programme-supports-people-chronic-pain-to-stay-in-work/" },
     source_url: "https://about.hse.ie/news/hse-pilot-programme-supports-people-chronic-pain-to-stay-in-work/",
+    urlStatus: "search-result",
+    verify: true
+  },
+
+  // Pass 5 replacement, rights and regulators (2 Oct 2026). Search results only, no contacts. HIQA concerns and the Medical Council already have rights cards, so they are not repeated.
+  {
+    id: "mhc-tribunals",
+    name: "Mental Health Tribunals",
+    specialty: ["rights", "adultmh"],
+    county: ["national"],
+    blurb: "Independent review of involuntary detention within 21 days. The Mental Health Commission does not investigate complaints. It directs people to the HSE complaints routes.",
+    contact: { web: "www.mhcirl.ie/faq" },
+    source_url: "https://www.mhcirl.ie/faq",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "dpc-access",
+    name: "Data access request timelines",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "An organisation must respond to an access request without undue delay and within one month. It can extend that by up to two further months and must give its reasons within the first month.",
+    contact: { web: "www.dataprotection.ie/en/individuals/exercising-your-rights/how-long-will-it-take" },
+    source_url: "https://www.dataprotection.ie/en/individuals/exercising-your-rights/how-long-will-it-take",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-safeguarding",
+    name: "HSE Safeguarding and Protection Teams",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "Report a concern about an adult who may be at risk of abuse, through the HSE online Adult Safeguarding Portal or your local safeguarding team. Teams operate in every HSE region.",
+    contact: { web: "www.citizensinformation.ie/en/birth-family-relationships/problems-in-marriages-and-other-relationships/adult-abuse-and-safeguarding/" },
+    source_url: "https://www.citizensinformation.ie/en/birth-family-relationships/problems-in-marriages-and-other-relationships/adult-abuse-and-safeguarding/",
     urlStatus: "search-result",
     verify: true
   },
