@@ -21,6 +21,7 @@ const SPECIALTIES = [
   { id: "feeding",         label: "Breastfeeding & Infant Feeding" },
   { id: "oncology",        label: "Cancer Care (General & Adult Oncology)" },
   { id: "cardiology",      label: "Cardiology" },
+  { id: "carers",          label: "Carers & Carer Supports" },
   { id: "camhs",           label: "Child & Adolescent Mental Health (CAMHS)" },
   { id: "childdisability", label: "Children's Disability Services & Early Intervention" },
   { id: "pain",            label: "Chronic Pain Management" },
@@ -1526,13 +1527,15 @@ const ENTRIES = [
     blurb: "Ireland's first standardised HSE-wide autism assessment approach, effective from 25 March 2026 — the first to explicitly include adults, who can self-refer. Genuinely new, but real-world adult access is expected to lag well behind children's in the early rollout.",
     details: [
       "Uses a tiered model — clear presentation, unclear presentation, and continuing presentation — matching more intensive assessment to less straightforward cases.",
-      "Applies across HSE services and Section 38/39-funded providers, and can involve private providers.",
+      "Runs alongside, not instead of, an Assessment of Need for children. Applies across HSE services and Section 38/39-funded providers, and can involve private providers.",
       "Rollout began July 2026 with children prioritised first — treat this as a development worth watching rather than a fast route to adult assessment right now. Worth re-checking status with your local HSE service every few months.",
       "11 new 'in-reach' teams (psychologist, occupational therapist, speech & language therapist) are being recruited nationally to support delivery.",
     ],
     referral: "Self-refer once the protocol is operating in your area — ask your GP or local HSE disability/mental health service for current status.",
     contact: { web: "hse.ie" },
-    checked: "5 Sep 2026",
+    source_url: "https://www2.healthservice.hse.ie/organisation/national-pppgs/hse-national-protocol-for-autism-assessment-and-intervention-pathways/",
+    urlStatus: "search-result",
+    verify: true
   },
   {
     id: "adult-autism-ni",
@@ -4556,14 +4559,16 @@ const ENTRIES = [
     name: "HSE Audiology Service",
     specialty: ["ent"],
     county: ["national"],
-    blurb: "Free audiology assessment for medical-card holders, under-18s, and third-level students, via GP or ENT-consultant referral.",
+    blurb: "Free for children under 18 and third-level students; adults with a medical card can get free hearing aids. Newborn hearing screening refers directly.",
     details: [
       "Community audiology centres exist in most counties (examples include Carlow, Cavan/Cootehill, Clare, Cork/St Finbarr's, Donegal, Galway, Kerry, Kildare, Laois, Limerick, Louth, Mayo, Offaly, Roscommon, and Sligo/Leitrim) — this isn't an exhaustive list, check the HSE's own audiology page for your nearest.",
       "HSE audiology does not supply hearing aids directly to everyone — ask about the hearing-aid pathway when referred.",
     ],
-    referral: "GP or ENT-consultant referral.",
+    referral: "GP, public health nurse, paediatrician, ENT or speech and language therapist referral.",
     contact: { web: "hse.ie" },
-    checked: "4 Sep 2026"
+    source_url: "https://www2.hse.ie/services/audiology/services-supports/using-the-hse-audiology-service/",
+    urlStatus: "search-result",
+    verify: true
   },
   {
     id: "chime-deafhear",
@@ -6562,6 +6567,51 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
+  // Audit round 1, Pass 4 rows (2 Oct 2026). Search results only, no contacts.
+  {
+    id: "status-home-support-providers-act",
+    name: "Health (Amendment) (Home Support Providers) Act 2026",
+    specialty: ["olderpersons"],
+    county: ["national"],
+    blurb: "Signed 1 July 2026 (Act 17 of 2026). Creates HIQA registration and inspection of home support providers. It regulates providers and does not create a personal right to home support. Commencement not confirmed.",
+    contact: { web: "www.oireachtas.ie/en/bills/bill/2025/84/" },
+    source_url: "https://www.oireachtas.ie/en/bills/bill/2025/84/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "optical-coss",
+    name: "Community Ophthalmic Services Scheme (medical card)",
+    specialty: ["ophthalmology"],
+    county: ["national"],
+    blurb: "Medical card holders over 16: free eye exam and glasses from an approved range. Children referred from child health or school checks are treated free until 16. Treatment Benefit (PRSI) may cover others. Check current rules on Citizens Information.",
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/sight-tests-and-eye-health/" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/sight-tests-and-eye-health/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cancer-designated-centres",
+    name: "NCCP designated cancer centres",
+    specialty: ["oncology"],
+    county: ["national"],
+    blurb: "Eight designated centres: Beaumont, Mater, St Vincent's, St James's, Cork University Hospital, University Hospital Waterford, University Hospital Galway (satellite Letterkenny) and University Hospital Limerick. GP refers to rapid access clinics.",
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/cancer-services/cancer-services/" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/cancer-services/cancer-services/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "carers-support-grant",
+    name: "Carer's Support Grant",
+    specialty: ["carers"],
+    county: ["national"],
+    blurb: "Annual payment per person cared for; automatic for people on Carer's Allowance, Carer's Benefit or Domiciliary Care Allowance; not means-tested. Amount and payment date change; see Citizens Information.",
+    contact: { web: "www.citizensinformation.ie/en/social-welfare/carers/carers-support-grant/" },
+    source_url: "https://www.citizensinformation.ie/en/social-welfare/carers/carers-support-grant/",
+    urlStatus: "search-result",
+    verify: true
+  }
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate
@@ -7021,7 +7071,7 @@ const RIGHTS_BODIES = [
     step: 3,
     name: "Patient Advocacy Service",
     role: "Free, independent, confidential support making a complaint.",
-    detail: "Funded by the Department of Health. Supports complaints about HSE public acute hospitals and HSE-run nursing homes, and support after a patient-safety incident. Can help you write and lodge a complaint at any stage — worth contacting before you write anything formal, not just when you're stuck.",
+    detail: "Funded by the Department of Health. Supports complaints about public acute hospitals and public or private nursing homes, and support after a patient-safety incident. Can help you write and lodge a complaint at any stage — worth contacting before you write anything formal, not just when you're stuck.",
     contact: { phone: "0818 293 003", web: "patientadvocacyservice.ie" },
   },
   {
@@ -7850,7 +7900,7 @@ const SUPPORT_ORGS = [
     id: "pas-org",
     name: "Patient Advocacy Service",
     remit: "Free, independent, confidential support with HSE complaints.",
-    offer: "Step-by-step help making a complaint about a public acute hospital, or after a patient-safety incident.",
+    offer: "Step-by-step help making a complaint about a public acute hospital or a public or private nursing home, or after a patient-safety incident.",
     tags: ["complaints", "all conditions"],
     contact: { web: "patientadvocacyservice.ie" },
   },

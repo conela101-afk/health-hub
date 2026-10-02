@@ -259,6 +259,22 @@ the next session with normal network access. The list is in `REVIEW.md` →
 - **NI complaints letter for NIPSO** isn't generated. NIPSO has its own
   online form, which the navigator links to.
 
+## Pass 4 rows (2 Oct 2026)
+
+Mapped from the Pass 4 file into the repo schema. All search-result only, `verify: true`, no contacts.
+
+**Added** (4): `status-home-support-providers-act` (older persons; "Act 17 of 2026" and the 1 July signing are from the file, commencement unconfirmed), `optical-coss` (ophthalmology), `cancer-designated-centres` (oncology), `carers-support-grant` (new specialty `carers`; no amount shown).
+**Updated in place** (no duplicates): `hse-autism-protocol-adult` (added "runs alongside, not instead of, AON", flagged; its old `checked` date was removed), `hse-audiology` (blurb and referral per the file, flagged), the `pas` rights card and `pas-org` (scope now public acute hospitals, public or private nursing homes, patient safety incidents). Two FOI facts added to `TOOL_FACTS` and the records tool (`rr-roi-foi-extension`, `rr-roi-foi-review`); the 2-week, 4-week and 20 and 30 working-day periods were already there.
+**Skipped as already present:** `rights-ysys` (the YSYS rights card already gives 5 working days, 30 working days with 20-day updates and 20-day review), `rights-pas` (merged into the existing PAS rows above), `rights-foi` (existing FOI facts).
+**Skipped, no AON overlap:** none of the rows duplicated #58.
+**Withheld:** `gap-mecfs`. Its only source is an Irish Times article, not an official page, so it fails the official-sources rule. Re-add once the HSE parliamentary-question reply is found on hse.ie. Draft: specialty `longcovid`, county `national`, blurb "The HSE has said ME/CFS services are not sufficient and a national clinical guideline is in development. No national pathway currently exists. Information only."
+
+**To reconcile before merge**
+- The YSYS rights card says a complaints officer makes contact within 5 working days. `roi-ysys-stage2-ack` is still open because sources disagree on the Stage 2 acknowledgement time.
+- `hse-autism-protocol-adult` says adults can self-refer; the Pass 4 row says ask your GP. Kept the older wording and flagged it.
+- `hse-audiology` still says it does not supply hearing aids to everyone, next to the new "free hearing aids for adult medical-card holders". Check both against the HSE page.
+
+**On hold until after the 6 Oct 2026 Budget:** GP visit card (8 to 69) and Drugs Payment Scheme rows. Values in the Pass 4 file came from search results only. Update the existing `sc-card-*` / `sc-gpvc-auto` facts and DPS content in place after re-checking gov.ie. No figures are in the repo.
 ## Cork CDNTs (2 Oct 2026)
 
 HSE parliamentary-question replies (PQ 18815/25, PQ 6858/23, search results only, PDFs not opened)

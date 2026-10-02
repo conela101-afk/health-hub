@@ -4,6 +4,9 @@ Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-10-01 [Claude] (Phase A entries, PR B)
 - Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+## 2026-10-02 [Claude] (Pass 4 rows)
+- Added 4 entries (home support providers Act, community ophthalmic scheme, NCCP designated centres, Carer's Support Grant with a new `carers` specialty), updated 2 in place (autism protocol, audiology) plus the PAS scope text, and added 2 FOI facts to the records tool. Skipped duplicates (YSYS, PAS, FOI) and withheld the ME/CFS row (press source). GP card and DPS held until after Budget 2027. All flagged `verify` with `urlStatus: "search-result"`.
+
 ## 2026-10-02 [Claude] (matrix follow-up)
 - `area` now means physical base. Cork City dropped from 55 to 2 entries (regional services have no area); West Cork stays at 10. Narrowed the rule to "no single-county targeting" in `AI_RULES.md`.
 - County matrix: Cork is one county, `--areas` prints Cork per area with a reconciliation line (areas + no area = county total). Removed the West Cork priority wording from `GAPS.md`; replaced with a neutral sub-county line. The 5 Sep 2026 population-based review sections are left as history.
