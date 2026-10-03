@@ -374,3 +374,14 @@ Not in the repo: the Pass 3 draft rows `cdnt-west-cork`, `cdnt-carrigaline-kinsa
 `cdnt-west-central-cork-city` (with phone numbers, emails and addresses) were never added to `data.js`,
 and no "ten Cork teams" wording exists. If they come back, they must follow the same rules: no contacts
 until `urlStatus: "opened"`, `area` per catchment (CDNT 10 `west-cork`, 13 `south-cork` to confirm).
+
+## Vaccine matrix: open checks (3 Oct 2026)
+
+All 11 rows in `data/vaccines.js` need a live-page check by a person before the `verify` flag comes off.
+
+- ROI PPV23: HSE public page was due for review on 20 Sep 2026 and doesn't describe the pharmacy limits; the rules come from circular NCO-15-2026. Confirm the page has been updated.
+- NI pneumococcal: confirm with the PHA whether PCV20 has replaced PPV23 (Green Book June 2025 expected it).
+- NI shingles: nidirect page conflicts with PHA cohorts; PHA treated as primary.
+- NI COVID-19 autumn 2026 cohorts: confirm on nidirect (UKHSA blog is not on the allow-list).
+- Not added, secondary sources only: ROI infant RSV 2026/27 (nirsevimab) windows, flu campaign launch date, HIQA shingles price and budget figures. Add once an HSE or HIQA page is opened.
+- Not started: MMR, HPV, Hepatitis B and travel vaccines; the medicines-cost schemes (medical card charge, DPS, LTI, GP visit card, ED charge) as the next Tier 1 build.
