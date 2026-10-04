@@ -150,3 +150,11 @@ the next session with normal network access. The list is in `REVIEW.md` →
   says so on every date output.
 - **NI complaints letter for NIPSO** isn't generated. NIPSO has its own
   online form, which the navigator links to.
+
+## Pass 6 follow-ups (4 Oct 2026)
+
+Unverified, not researched (do not treat as absent pathways): continence/urogynae, urology, thyroid/endocrine, falls and geriatric day hospitals, bereavement/crisis, rheumatology biologics, stroke inpatient rehab, insulin pumps, DAFNE/X-PERT, LauraLynn, Jigsaw, and the NI stroke/MS/Parkinson's/diabetes/cardiac rehab/counselling layer.
+
+Possible gaps, source was search-result only: HSE interpreter access (staff SOP exists, no patient-facing page found), Beaumont ILD and bronchiectasis, headache pathway beyond the Mater, Mental Health Commission inspector role for community CAMHS, NI short breaks, BSO Regional Interpreting Service.
+
+Browser checks needed: HSE Diabetic Foot MOC PDF, NCG17 copy on hse.ie, Mater neurology phone lines, Bill 88 stage (Second Stage scheduled 23 Sep 2026, completion unverified; `aon-bill` fact stays `verify: true`), Carer's Allowance rates after Budget 2027 on 6 Oct.

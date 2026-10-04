@@ -5776,9 +5776,12 @@ const ENTRIES = [
     specialty: ["adultdisability"],
     county: ["national"],
     blurb: "Temporary carer relief for families/carers of adults with a disability.",
-    details: [],
+    details: [
+      "Your public health nurse or GP can arrange an assessment. Respite may be run by the HSE or by a voluntary organisation, and what is available depends on your area.",
+      "For a child with a Children's Disability Network Team, ask the team's key worker or social worker.",
+    ],
     referral: "Contact your local health centre or Public Health Nurse for assessment.",
-    contact: {},
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/respite-care/" },
   },
   {
     id: "hse-personal-assistance",
@@ -5997,9 +6000,35 @@ const ENTRIES = [
     details: [
       "Under the HSE Model of Care for the Diabetic Foot (2021), people with diabetes and a medical card get one free diabetic foot screening a year, with risk-stratified follow-up (community/hospital podiatry, or a hospital Multidisciplinary Diabetic Foot Team for active foot disease).",
       "The national footcare screening programme is still becoming established, per Diabetes Ireland.",
+      "The model has five levels: self-management, general practice screening, community Foot Protection Teams for moderate and high risk, hospital Multidisciplinary Foot Teams for active foot disease, and inpatient care. Ask your GP which level your feet are at.",
     ],
     referral: "PHN/GP referral; some services accept direct contact.",
-    contact: {},
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/diabetes/moc/diabetic-foot-model-of-care-2021.pdf" },
+  },
+  {
+    id: "ncg17-adult-t1d",
+    name: "About the national guideline for adults with type 1 diabetes",
+    specialty: ["diabetes"],
+    county: ["national"],
+    blurb: "National Clinical Guideline No. 17 (version 2, May 2024) sets out the standard of care adults with type 1 diabetes should expect, including specialist review and structured education.",
+    details: [
+      "It is a Department of Health guideline, not a service you can refer yourself to. It is useful to quote when you ask your team what you should be offered.",
+      "The full report and its economic annexes are published on gov.ie.",
+    ],
+    referral: "Not a service. Ask your GP or diabetes team about specialist review and structured education.",
+    contact: { web: "www.gov.ie/en/department-of-health/collections/type-1-diabetes-mellitus-in-adults-version-2/" },
+  },
+  {
+    id: "mater-neurology-dbs-headache",
+    name: "Mater Hospital Neurology (deep brain stimulation, headache)",
+    specialty: ["neurology"],
+    county: ["dublin"],
+    blurb: "Neurology service at the Mater that lists deep brain stimulation and headache care among its clinics.",
+    details: [
+      "The Mater says neurology waits can be long, so ask your referrer what to expect.",
+    ],
+    referral: "GP or consultant referral through Central Referrals or Healthlink.",
+    contact: { web: "www.mater.ie/services/neurology/" },
   },
   {
     id: "hse-ot-primary-care",
@@ -7479,6 +7508,15 @@ const SCHEME_LINKS = [
     ],
   },
   {
+    id: "ni-carers-allowance",
+    name: "Carer's Allowance (Northern Ireland)",
+    jurisdiction: "ni",
+    blurb: "A Department for Communities payment for carers aged 16 or over who care at least 35 hours a week for someone getting a qualifying disability benefit. Check the current rate and earnings limit on nidirect, as they change each April.",
+    links: [
+      { label: "Who qualifies & how to claim — nidirect", url: "https://www.nidirect.gov.uk/articles/carers-allowance" },
+    ],
+  },
+  {
     id: "ni-care-home-fees",
     name: "Paying for care home fees",
     jurisdiction: "ni",
@@ -7751,6 +7789,14 @@ const SUPPORT_ORGS = [
 // within the health system. This is a curated index, not a duplicate of
 // these orgs' own services — verify current details on their own sites.
 const GENERAL_ADVOCACY_ORGS = [
+  {
+    id: "flac",
+    name: "FLAC (Free Legal Advice Centres)",
+    remit: "Independent charity giving free basic legal information. It is not the Legal Aid Board.",
+    offer: "Short phone advice appointments with a volunteer lawyer, booked through a Citizens Information Centre. They are for once-off queries, not ongoing or complex cases.",
+    tags: ["legal information", "rights"],
+    contact: { web: "flac.ie/help/advice" },
+  },
   {
     id: "sage-advocacy",
     name: "Sage Advocacy",

@@ -64,3 +64,7 @@ re-tag.
   2026-09-12**: added a `title` tooltip to the Public tab ("State-run
   HSE/HSC bodies — voluntary hospitals have their own tab") and to the
   Voluntary tab, rather than changing the visible label text.
+
+## Pass 6 note (4 Oct 2026)
+
+FLAC is an NGO and is sourced from its own site (flac.ie). Medical Independent, Irish Health Pro and Limerick Leader items from Pass 6 are corroboration only and are not cited in any entry.

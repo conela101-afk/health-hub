@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-04 [Claude]
+- **Pass 6 all-island audit, applied.** The handoff's draft rows didn't match the `data.js` schema and most already existed, so only genuine gaps were added: `ncg17-adult-t1d` and `mater-neurology-dbs-headache` (ENTRIES, web link only, no phones, no `checked` date), FLAC in `GENERAL_ADVOCACY_ORGS`, and `ni-carers-allowance` in `SCHEME_LINKS`. Enriched `hse-podiatry-diabetic-foot` (five-level model, source link) and `hse-disability-respite` (PHN/GP route, CDNT key worker, source link).
+- **Not added, on purpose:** NI complaints/NIPSO and subject access (already in `TOOL_FACTS`/`RIGHTS_BODIES_NI`), Beaumont ILD (search-result only; St Vincent's ILD already listed), MHC inspector, BSO interpreting.
+- No currency figures were added anywhere. No `data.js` text contained the old Carer's Allowance disregard figures, so no correction was needed.
+- `data.js` entries: 615 to 619.
+
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-09-28 [Claude]
