@@ -1268,8 +1268,8 @@ const ENTRIES = [
     name: "BreastCheck — National Breast Screening Programme",
     specialty: ["cancer", "screening"],
     county: ["national"],
-    blurb: "Free mammograms for women aged 50 to 69, every 2 years, run by the National Screening Service.",
-    details: ["Screening reminders are also visible in the HSE Health App."],
+    blurb: "Free mammograms for women aged 50 to 69, run by the National Screening Service.",
+    details: ["Invited about every 2 years (sometimes up to 3).", "Screening reminders are also visible in the HSE Health App."],
     referral: "Automatic invitation by eligible age band, or self-register if not yet invited.",
     contact: { web: "breastcheck.ie" },
     source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/breastcheck-age-range-explained/",
@@ -5819,9 +5819,12 @@ const ENTRIES = [
     specialty: ["adultdisability"],
     county: ["national"],
     blurb: "Temporary carer relief for families/carers of adults with a disability.",
-    details: [],
+    details: [
+      "Your public health nurse or GP can arrange an assessment. Respite may be run by the HSE or by a voluntary organisation, and what is available depends on your area.",
+      "For a child with a Children's Disability Network Team, ask the team's key worker or social worker.",
+    ],
     referral: "Contact your local health centre or Public Health Nurse for assessment.",
-    contact: {},
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/respite-care/" },
   },
   {
     id: "hse-personal-assistance",
@@ -6040,9 +6043,35 @@ const ENTRIES = [
     details: [
       "Under the HSE Model of Care for the Diabetic Foot (2021), people with diabetes and a medical card get one free diabetic foot screening a year, with risk-stratified follow-up (community/hospital podiatry, or a hospital Multidisciplinary Diabetic Foot Team for active foot disease).",
       "The national footcare screening programme is still becoming established, per Diabetes Ireland.",
+      "The model has five levels: self-management, general practice screening, community Foot Protection Teams for moderate and high risk, hospital Multidisciplinary Foot Teams for active foot disease, and inpatient care. Ask your GP which level your feet are at.",
     ],
     referral: "PHN/GP referral; some services accept direct contact.",
-    contact: {},
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/diabetes/moc/diabetic-foot-model-of-care-2021.pdf" },
+  },
+  {
+    id: "ncg17-adult-t1d",
+    name: "About the national guideline for adults with type 1 diabetes",
+    specialty: ["diabetes"],
+    county: ["national"],
+    blurb: "National Clinical Guideline No. 17 (version 2, May 2024) sets out the standard of care adults with type 1 diabetes should expect, including specialist review and structured education.",
+    details: [
+      "It is a Department of Health guideline, not a service you can refer yourself to. It is useful to quote when you ask your team what you should be offered.",
+      "The full report and its economic annexes are published on gov.ie.",
+    ],
+    referral: "Not a service. Ask your GP or diabetes team about specialist review and structured education.",
+    contact: { web: "www.gov.ie/en/department-of-health/collections/type-1-diabetes-mellitus-in-adults-version-2/" },
+  },
+  {
+    id: "mater-neurology-dbs-headache",
+    name: "Mater Hospital Neurology (deep brain stimulation, headache)",
+    specialty: ["neurology"],
+    county: ["dublin"],
+    blurb: "Neurology service at the Mater that lists deep brain stimulation and headache care among its clinics.",
+    details: [
+      "The Mater says neurology waits can be long, so ask your referrer what to expect.",
+    ],
+    referral: "GP or consultant referral through Central Referrals or Healthlink.",
+    contact: { web: "www.mater.ie/services/neurology/" },
   },
   {
     id: "hse-ot-primary-care",
@@ -7962,9 +7991,14 @@ const SCHEME_LINKS = [
     name: "Drugs Payment Scheme",
     jurisdiction: "roi",
     blurb: "Caps what you and your family pay for approved prescribed drugs and medicines per month. Also the route to free HRT — you need DPS registration first.",
+    prep: [
+      "If you're prescribed a High Tech medicine (the high-cost hospital-started drugs dispensed through a nominated community pharmacy), it counts towards your DPS monthly limit along with your other medicines. The HSE's pharmacist handbook says DPS card holders pay the copayment \"towards the total cost of all their medication (High Tech and regular medicines)\". Medical card holders get High Tech items free; Long-Term Illness Scheme holders get them free only if authorised for their listed condition.",
+      "The HSE's patient pages for the scheme don't mention High Tech, so if a pharmacy charges you differently, you can show them section 2.7 of the handbook linked below. It's written for pharmacists, so ask the pharmacy to check with the HSE's Primary Care Reimbursement Service (PCRS) if there's a mismatch.",
+    ],
     links: [
       { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/drugs-and-medicines/drugs-payment-scheme/" },
       { label: "Apply online", url: "https://www.mydps.ie/" },
+      { label: "High Tech medicines and the DPS — PCRS pharmacist handbook, section 2.7 (PDF)", url: "https://assets.hse.ie/media/documents/PCRS_handbook_for_Pharmacists.pdf" },
     ],
   },
   {
@@ -8100,6 +8134,15 @@ const SCHEME_LINKS = [
     blurb: "A not-means-tested benefit for a child under 16 with care needs and/or mobility difficulties well beyond what's normal for their age, made up of a care component and a mobility component. Apply via the DLA1 child form through the Department for Communities' Disability and Carers Service.",
     links: [
       { label: "How it works & how to apply — nidirect", url: "https://www.nidirect.gov.uk/articles/disability-living-allowance-children" },
+    ],
+  },
+  {
+    id: "ni-carers-allowance",
+    name: "Carer's Allowance (Northern Ireland)",
+    jurisdiction: "ni",
+    blurb: "A Department for Communities payment for carers aged 16 or over who care at least 35 hours a week for someone getting a qualifying disability benefit. Check the current rate and earnings limit on nidirect, as they change each April.",
+    links: [
+      { label: "Who qualifies & how to claim — nidirect", url: "https://www.nidirect.gov.uk/articles/carers-allowance" },
     ],
   },
   {
@@ -8375,6 +8418,14 @@ const SUPPORT_ORGS = [
 // within the health system. This is a curated index, not a duplicate of
 // these orgs' own services — verify current details on their own sites.
 const GENERAL_ADVOCACY_ORGS = [
+  {
+    id: "flac",
+    name: "FLAC (Free Legal Advice Centres)",
+    remit: "Independent charity giving free basic legal information. It is not the Legal Aid Board.",
+    offer: "Short phone advice appointments with a volunteer lawyer, booked through a Citizens Information Centre. They are for once-off queries, not ongoing or complex cases.",
+    tags: ["legal information", "rights"],
+    contact: { web: "flac.ie/help/advice" },
+  },
   {
     id: "sage-advocacy",
     name: "Sage Advocacy",

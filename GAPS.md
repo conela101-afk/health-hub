@@ -354,6 +354,7 @@ Mapped from the Pass 4 file into the repo schema. All search-result only, `verif
 - `hse-audiology` still says it does not supply hearing aids to everyone, next to the new "free hearing aids for adult medical-card holders". Check both against the HSE page.
 
 **On hold until after the 6 Oct 2026 Budget:** GP visit card (8 to 69) and Drugs Payment Scheme rows. Values in the Pass 4 file came from search results only. Update the existing `sc-card-*` / `sc-gpvc-auto` facts and DPS content in place after re-checking gov.ie. No figures are in the repo.
+
 ## Cork CDNTs (2 Oct 2026)
 
 HSE parliamentary-question replies (PQ 18815/25, PQ 6858/23, search results only, PDFs not opened)
@@ -374,3 +375,11 @@ Not in the repo: the Pass 3 draft rows `cdnt-west-cork`, `cdnt-carrigaline-kinsa
 `cdnt-west-central-cork-city` (with phone numbers, emails and addresses) were never added to `data.js`,
 and no "ten Cork teams" wording exists. If they come back, they must follow the same rules: no contacts
 until `urlStatus: "opened"`, `area` per catchment (CDNT 10 `west-cork`, 13 `south-cork` to confirm).
+
+## Pass 6 follow-ups (4 Oct 2026)
+
+Unverified, not researched (do not treat as absent pathways): continence/urogynae, urology, thyroid/endocrine, falls and geriatric day hospitals, bereavement/crisis, rheumatology biologics, stroke inpatient rehab, insulin pumps, DAFNE/X-PERT, LauraLynn, Jigsaw, and the NI stroke/MS/Parkinson's/diabetes/cardiac rehab/counselling layer.
+
+Possible gaps, source was search-result only: HSE interpreter access (staff SOP exists, no patient-facing page found), Beaumont ILD and bronchiectasis, headache pathway beyond the Mater, Mental Health Commission inspector role for community CAMHS, NI short breaks, BSO Regional Interpreting Service.
+
+Browser checks needed: HSE Diabetic Foot MOC PDF, NCG17 copy on hse.ie, Mater neurology phone lines, Bill 88 stage (Second Stage scheduled 23 Sep 2026, completion unverified; `aon-bill` fact stays `verify: true`), Carer's Allowance rates after Budget 2027 on 6 Oct.

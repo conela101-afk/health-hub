@@ -75,3 +75,7 @@ entries: `ngs-columcilles` is a `.com` source and must stay flagged until an hse
 ## Pass 5 replacement follow-up (2 Oct 2026)
 
 `lauralynn` and `jigsaw-camhs`, HSE-funded charities, are now tagged `voluntary`, so they appear under the Voluntary tab. The regulator rows (`mhc-tribunals`, `dpc-access`, `hse-safeguarding`) stay untagged, so they show under Public. The schema has no "regulator" sector.
+
+## Pass 6 note (4 Oct 2026)
+
+FLAC is an NGO and is sourced from its own site (flac.ie). Medical Independent, Irish Health Pro and Limerick Leader items from Pass 6 are corroboration only and are not cited in any entry.
