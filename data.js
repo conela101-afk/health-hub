@@ -1237,7 +1237,7 @@ const ENTRIES = [
     specialty: ["cancer"],
     county: ["national"],
     blurb: "Free breast screening (mammogram) for eligible women, run by the National Screening Service.",
-    details: ["Screening reminders are also visible in the HSE Health App."],
+    details: ["For women aged 50–69, invited about every 2 years (sometimes up to 3).", "Screening reminders are also visible in the HSE Health App."],
     referral: "Automatic invitation by eligible age band, or self-register if not yet invited.",
     contact: { web: "breastcheck.ie" },
     checked: "4 Sep 2026"
@@ -7367,9 +7367,14 @@ const SCHEME_LINKS = [
     name: "Drugs Payment Scheme",
     jurisdiction: "roi",
     blurb: "Caps what you and your family pay for approved prescribed drugs and medicines per month. Also the route to free HRT — you need DPS registration first.",
+    prep: [
+      "If you're prescribed a High Tech medicine (the high-cost hospital-started drugs dispensed through a nominated community pharmacy), it counts towards your DPS monthly limit along with your other medicines. The HSE's pharmacist handbook says DPS card holders pay the copayment \"towards the total cost of all their medication (High Tech and regular medicines)\". Medical card holders get High Tech items free; Long-Term Illness Scheme holders get them free only if authorised for their listed condition.",
+      "The HSE's patient pages for the scheme don't mention High Tech, so if a pharmacy charges you differently, you can show them section 2.7 of the handbook linked below. It's written for pharmacists, so ask the pharmacy to check with the HSE's Primary Care Reimbursement Service (PCRS) if there's a mismatch.",
+    ],
     links: [
       { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/drugs-and-medicines/drugs-payment-scheme/" },
       { label: "Apply online", url: "https://www.mydps.ie/" },
+      { label: "High Tech medicines and the DPS — PCRS pharmacist handbook, section 2.7 (PDF)", url: "https://assets.hse.ie/media/documents/PCRS_handbook_for_Pharmacists.pdf" },
     ],
   },
   {
