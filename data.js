@@ -21,6 +21,7 @@ const SPECIALTIES = [
   { id: "feeding",         label: "Breastfeeding & Infant Feeding" },
   { id: "oncology",        label: "Cancer Care (General & Adult Oncology)" },
   { id: "cardiology",      label: "Cardiology" },
+  { id: "carers",          label: "Carers & Carer Supports" },
   { id: "camhs",           label: "Child & Adolescent Mental Health (CAMHS)" },
   { id: "childdisability", label: "Children's Disability Services & Early Intervention" },
   { id: "pain",            label: "Chronic Pain Management" },
@@ -47,6 +48,7 @@ const SPECIALTIES = [
   { id: "crisis",          label: "Mental Health Crisis Support" },
   { id: "adultmh",         label: "Mental Health Services (General Adult)" },
   { id: "nephrology",      label: "Nephrology & Kidney" },
+  { id: "neurorehabilitation", label: "Neuro-Rehabilitation" },
   { id: "neurodiversity",  label: "Neurodiversity (Autism, ADHD)" },
   { id: "neurology",       label: "Neurology & Migraine" },
   { id: "olderpersons",    label: "Older Persons & Geriatric Medicine" },
@@ -58,10 +60,16 @@ const SPECIALTIES = [
   { id: "mh",              label: "Perinatal & Maternal Mental Health" },
   { id: "loss",            label: "Pregnancy & Baby Loss" },
   { id: "phn",             label: "Public Health Nursing" },
+  { id: "rare-disease",    label: "Rare Diseases" },
   { id: "respiratory",     label: "Respiratory Medicine & CF" },
   { id: "rheumatology",    label: "Rheumatology & Autoimmune" },
+  { id: "rights",          label: "Rights, Regulators & Complaints" },
+  { id: "screening",       label: "Screening (Bowel, Breast, Cervical)" },
   { id: "sexualhealth",    label: "Sexual Health & STI Testing" },
+  { id: "sleep-medicine",  label: "Sleep Medicine" },
+  { id: "spinal-injury",   label: "Spinal Cord Injury" },
   { id: "stroke",          label: "Stroke" },
+  { id: "treatment-abroad", label: "Cross-Border & Treatment Abroad Schemes" },
   { id: "urology",         label: "Urology" },
   { id: "vascular",        label: "Vascular" },
   { id: "weightmanagement", label: "Weight Management & Bariatric Care" },
@@ -78,9 +86,7 @@ const COUNTIES = [
   { id: "carlow",     label: "Carlow" },
   { id: "cavan",      label: "Cavan" },
   { id: "clare",      label: "Clare" },
-  { id: "cork-city",  label: "Cork (City)" },
-  { id: "cork-north", label: "Cork (North)" },
-  { id: "cork-west",  label: "Cork (West)" },
+  { id: "cork",       label: "Cork" },
   { id: "donegal",    label: "Donegal" },
   { id: "dublin",     label: "Dublin" },
   { id: "galway",     label: "Galway" },
@@ -112,13 +118,30 @@ const COUNTIES = [
   { id: "national",   label: "National" },
 ];
 
+// Optional sub-county areas, for navigation only. They are NOT HSE boundaries
+// (CHO / Health Region / CDNT catchments differ). `county` stays the canonical
+// county id; an entry's optional `area` must belong to one of its counties.
+// `area` means where the service is physically based, not who it serves.
+// Regional or county-wide services (e.g. CUH, CUMH, private hospital groups,
+// national bodies) carry NO area. Only Cork has areas for now. Entries with no
+// `area` show under "All of Cork".
+const AREAS = {
+  cork: [
+    { id: "west-cork",  label: "West Cork" },
+    { id: "east-cork",  label: "East Cork" },
+    { id: "north-cork", label: "North Cork" },
+    { id: "cork-city",  label: "Cork City" },
+    { id: "south-cork", label: "South Cork" },
+  ],
+};
+
 // Each entry: id, name, specialty[], county[], blurb, details[], referral, contact{phone,email,web,address}
 const ENTRIES = [
   {
     id: "cumh-antenatal",
     name: "CUMH Antenatal & Maternity Care",
     specialty: ["obs"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Booking, antenatal care, labour & birth, postnatal care.",
     details: [
       "Public care: refer via GP as soon as pregnancy is confirmed.",
@@ -133,7 +156,7 @@ const ENTRIES = [
     id: "cumh-epu",
     name: "Early Pregnancy Unit (EPU)",
     specialty: ["obs", "gynae", "loss"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Bleeding or pain in early pregnancy, suspected miscarriage.",
     details: [
       "Located at Kinsale Road Clinic. Mon–Fri, 08:00–13:00.",
@@ -151,7 +174,7 @@ const ENTRIES = [
     id: "cumh-loss",
     name: "Pregnancy Loss / Bereavement Team",
     specialty: ["obs", "loss"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Led by Prof. Keelin O'Donoghue with Clinical Midwife Specialists in Bereavement & Loss.",
     details: ["Contact via CUMH main reception; ask specifically for the Bereavement & Loss team."],
     referral: "Ask for this team by name via CUMH.",
@@ -162,7 +185,7 @@ const ENTRIES = [
     id: "cumh-birth-reflections",
     name: "Birth Reflections Service",
     specialty: ["obs", "mh"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "A midwife-led listening service for processing a difficult or traumatic birth.",
     details: ["Self-referral or via your GP/PHN — ask CUMH switchboard to connect you."],
     referral: "Self-referral possible.",
@@ -173,7 +196,7 @@ const ENTRIES = [
     id: "cumh-social-work",
     name: "Maternity & Neonatal Social Work",
     specialty: ["obs"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Free practical and emotional support service.",
     details: ["Referral by your medical team."],
     referral: "Via medical team.",
@@ -184,7 +207,7 @@ const ENTRIES = [
     id: "cumh-ambulatory-gynae",
     name: "Ambulatory Gynaecology Clinic",
     specialty: ["gynae"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Minor gynaecological procedures, Ward 4 South, CUMH.",
     details: ["GP referral required."],
     referral: "GP referral.",
@@ -194,7 +217,7 @@ const ENTRIES = [
     id: "cumh-endo",
     name: "Endometriosis Service",
     specialty: ["gynae"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Part of CUMH Women's Health services.",
     details: ["GP referral. Ask specifically to be referred for suspected endometriosis, not just 'pelvic pain' — this affects triage."],
     referral: "GP referral (name the suspected condition).",
@@ -205,7 +228,7 @@ const ENTRIES = [
     id: "cumh-urogynae",
     name: "Urogynaecology",
     specialty: ["gynae", "urology"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Prolapse, incontinence, pelvic floor issues.",
     details: ["GP referral."],
     referral: "GP referral.",
@@ -216,7 +239,7 @@ const ENTRIES = [
     id: "cumh-gynae-onc",
     name: "Gynae-Oncology & Rapid Access Suspected Ovarian Cancer",
     specialty: ["gynae", "cancer"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Suspected or confirmed gynaecological cancers.",
     details: ["GP referral — if you suspect cancer, ask your GP to state this explicitly on the referral so it's triaged on the rapid access pathway."],
     referral: "GP referral, flagged as rapid access.",
@@ -227,7 +250,7 @@ const ENTRIES = [
     id: "cumh-colposcopy",
     name: "Colposcopy",
     specialty: ["gynae"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Follow-up after an abnormal CervicalCheck smear result.",
     details: ["Referral is automatic through CervicalCheck once a result requires it."],
     referral: "Automatic via CervicalCheck.",
@@ -238,7 +261,7 @@ const ENTRIES = [
     id: "cumh-menopause",
     name: "Complex Menopause Clinic",
     specialty: ["gynae"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "For menopause symptoms not managed at GP level.",
     details: ["GP referral."],
     referral: "GP referral.",
@@ -249,7 +272,7 @@ const ENTRIES = [
     id: "cumh-fertility",
     name: "Fertility Hub",
     specialty: ["gynae"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Initial public fertility investigations.",
     details: ["GP referral."],
     referral: "GP referral.",
@@ -260,7 +283,7 @@ const ENTRIES = [
     id: "cumh-pmb",
     name: "Postmenopausal Bleeding Clinic",
     specialty: ["gynae"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Rapid-access pathway for postmenopausal bleeding.",
     details: ["GP referral, flagged as postmenopausal bleeding for correct triage."],
     referral: "GP referral (rapid access).",
@@ -271,7 +294,7 @@ const ENTRIES = [
     id: "cumh-physio",
     name: "Women's Health Physiotherapy",
     specialty: ["obs", "gynae"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Pelvic floor, postnatal, and pregnancy-related physiotherapy.",
     details: ["Referral via GP, PHN, or your antenatal/postnatal team."],
     referral: "GP, PHN, or maternity team.",
@@ -282,7 +305,7 @@ const ENTRIES = [
     id: "cuh-urology",
     name: "CUH Urology Department",
     specialty: ["urology"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Cancer and non-cancer urological conditions — recurrent UTIs, incontinence, bladder pain, stones.",
     details: [
       "GP referral to CUH Urology outpatients.",
@@ -296,7 +319,7 @@ const ENTRIES = [
     id: "cumh-pmht",
     name: "CUMH Specialist Perinatal Mental Health Team (PMHT)",
     specialty: ["mh"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Moderate–severe mental health difficulties in pregnancy or up to 1 year postpartum.",
     details: [
       "Covers severe depression, psychosis, bipolar disorder, perinatal OCD, and similar.",
@@ -310,7 +333,7 @@ const ENTRIES = [
     id: "pnd-ireland",
     name: "Postnatal Depression Ireland",
     specialty: ["mh"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Cork-based charity: coffee mornings, peer support, friendship for women with PND.",
     details: [],
     referral: "Self-referral.",
@@ -343,7 +366,7 @@ const ENTRIES = [
     id: "cuidiu-cork-bf",
     name: "Cuidiú Cork Breastfeeding Support",
     specialty: ["feeding"],
-    county: ["cork-city", "cork-west"],
+    county: ["cork"],
     blurb: "Free peer counsellor support by phone, 7 days a week.",
     details: [
       "Coffee-morning groups across Cork: City–Ballyphehane, Midleton, Kinsale, Glanmire, and others — check cuidiucork.ie for current dates/venues.",
@@ -357,7 +380,7 @@ const ENTRIES = [
     id: "svc-cork",
     name: "Sexual Violence Centre Cork",
     specialty: ["dsv"],
-    county: ["cork-city", "cork-north", "cork-west"],
+    county: ["cork"],
     blurb: "24-hour on-call service. Free, confidential counselling and SATU/court accompaniment.",
     details: ["Formerly known as Cork Rape Crisis Service.", "Open to anyone over 14, regardless of when the assault occurred."],
     referral: "Self-referral, no cost.",
@@ -367,7 +390,8 @@ const ENTRIES = [
     id: "west-cork-beacon",
     name: "West Cork Beacon",
     specialty: ["dsv"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Free, confidential, trauma-informed support for women experiencing domestic abuse, and anyone experiencing sexual violence.",
     details: [],
     referral: "Self-referral, no cost.",
@@ -389,7 +413,7 @@ const ENTRIES = [
     id: "satu",
     name: "Sexual Assault Treatment Unit (SATU)",
     specialty: ["dsv"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Free specialist care for anyone over 14 recently sexually assaulted — medical, forensic (optional), and follow-up.",
     details: ["Accessed via SVC Cork accompaniment, GP, ED, or self-referral."],
     referral: "Self-referral, GP, ED, or via SVC Cork.",
@@ -400,7 +424,8 @@ const ENTRIES = [
     id: "skibb-frc",
     name: "Skibbereen Community & Family Resource Centre",
     specialty: ["hub"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Community hub and family resource centre.",
     details: [],
     referral: "Drop in or contact directly.",
@@ -410,7 +435,8 @@ const ENTRIES = [
     id: "bantry-cfc",
     name: "Bantry Child & Family Centre",
     specialty: ["hub"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Community hub and family resource centre.",
     details: [],
     referral: "Drop in or contact directly.",
@@ -421,7 +447,8 @@ const ENTRIES = [
     id: "clon-frc",
     name: "Clonakilty Family Resource Centre",
     specialty: ["hub"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Community hub and family resource centre.",
     details: [],
     referral: "Drop in or contact directly.",
@@ -432,7 +459,8 @@ const ENTRIES = [
     id: "dunmanway-frc",
     name: "Dunmanway Family Resource Centre",
     specialty: ["hub"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Community hub and family resource centre.",
     details: [],
     referral: "Drop in or contact directly.",
@@ -443,7 +471,8 @@ const ENTRIES = [
     id: "haven-castletownbere",
     name: "Haven Family & Community Resource Centre",
     specialty: ["hub"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Community hub and family resource centre, Castletownbere.",
     details: [],
     referral: "Drop in or contact directly.",
@@ -454,7 +483,8 @@ const ENTRIES = [
     id: "co-action",
     name: "Co-Action West Cork",
     specialty: ["hub"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Disability and family support services across West Cork.",
     details: ["Serves Bantry, Castletownbere, Clonakilty, and Dunmanway."],
     referral: "Contact directly.",
@@ -465,7 +495,8 @@ const ENTRIES = [
     id: "cork-arc-westcork",
     name: "Cork ARC Cancer Support House (West Cork)",
     specialty: ["hub"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Cancer support services, including for gynaecological cancers.",
     details: [],
     referral: "Self-referral.",
@@ -476,7 +507,8 @@ const ENTRIES = [
     id: "wellbeing-network-wc",
     name: "The Wellbeing Network West Cork",
     specialty: ["hub"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Directory of local classes and groups by catchment area.",
     details: ["Covers Beara, Bantry, Clonakilty, Dunmanway/Drimoleague, Mizen, Rosscarbery, Skibbereen."],
     referral: "Browse directly.",
@@ -491,7 +523,7 @@ const ENTRIES = [
     id: "cumh-endo-centre",
     name: "CUMH Endometriosis & Pelvic Pain Centre (Lee Clinic)",
     specialty: ["endo", "gynae"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "One of two supra-regional centres in the country for complex (Stage 4) endometriosis care.",
     details: [
       "Opened April 2025 as part of the National Endometriosis Framework.",
@@ -591,7 +623,7 @@ const ENTRIES = [
     id: "cumh-menopause-clinic",
     name: "CUMH Complex Menopause Clinic",
     specialty: ["menopause"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "One of six HSE specialist complex-menopause clinics nationally, one per maternity network.",
     details: [
       "For complex cases with comorbidities — most menopause care is still managed by your GP.",
@@ -666,7 +698,7 @@ const ENTRIES = [
     id: "the-menopause-hub",
     name: "The Menopause Hub (private)",
     specialty: ["menopause"],
-    county: ["dublin", "cork-city"],
+    county: ["dublin", "cork"],
     sector: "private",
     provider: "The Menopause Hub",
     blurb: "Private menopause clinic — an option if you can pay and don't want to wait for a public complex-menopause clinic referral.",
@@ -688,7 +720,7 @@ const ENTRIES = [
     id: "bons-gynae-network",
     name: "Bon Secours Gynaecology (private)",
     specialty: ["gynae", "endo", "menopause"],
-    county: ["cork-city", "dublin", "galway", "limerick", "kerry", "cavan"],
+    county: ["cork", "dublin", "galway", "limerick", "kerry", "cavan"],
     sector: "private",
     provider: "Bon Secours Health System",
     blurb: "Private consultant gynaecology and urogynaecology across six Bon Secours locations.",
@@ -709,7 +741,7 @@ const ENTRIES = [
     id: "bons-menopause-cork",
     name: "Bon Secours Menopause Care, Cork",
     specialty: ["menopause"],
-    county: ["cork-city"],
+    county: ["cork"],
     sector: "private",
     provider: "Bon Secours Health System",
     blurb: "Private menopause clinic for women with added complexity, including during chemotherapy.",
@@ -726,7 +758,7 @@ const ENTRIES = [
     id: "bons-breast-cork",
     name: "Bon Secours Specialist Breast Care Centre, Cork",
     specialty: ["cancer"],
-    county: ["cork-city"],
+    county: ["cork"],
     sector: "private",
     provider: "Bon Secours Health System",
     blurb: "Rapid-access triple assessment clinic for symptomatic breast problems.",
@@ -763,7 +795,7 @@ const ENTRIES = [
     id: "bons-pelvic-health",
     name: "Bon Secours Pelvic Health Services & Clinic",
     specialty: ["pelvicphysio", "urology", "gynae"],
-    county: ["cork-city", "dublin", "galway", "kerry"],
+    county: ["cork", "dublin", "galway", "kerry"],
     sector: "private",
     provider: "Bon Secours Health System",
     blurb: "Assessment and management of pelvic floor disorders and urinary incontinence.",
@@ -799,7 +831,7 @@ const ENTRIES = [
     id: "bons-dexa",
     name: "Bon Secours Osteoporosis Screening (DEXA)",
     specialty: ["bonehealth"],
-    county: ["cork-city", "dublin", "galway", "limerick", "kerry"],
+    county: ["cork", "dublin", "galway", "limerick", "kerry"],
     sector: "private",
     provider: "Bon Secours Health System",
     blurb: "DEXA bone density scanning at five Bon Secours hospitals.",
@@ -816,7 +848,7 @@ const ENTRIES = [
     id: "materprivate-womens-centre-cork",
     name: "Centre for Women's Health, Mater Private Cork",
     specialty: ["gynae", "urology", "menopause", "contraception", "sexualhealth"],
-    county: ["cork-city"],
+    county: ["cork"],
     sector: "private",
     provider: "Mater Private Network",
     blurb: "Hospital-based private women's health centre — gynaecology, urogynaecology, menopause and contraception under one roof.",
@@ -835,7 +867,7 @@ const ENTRIES = [
     id: "materprivate-menopause-cork",
     name: "Menopause Clinic, Mater Private Cork",
     specialty: ["menopause"],
-    county: ["cork-city"],
+    county: ["cork"],
     sector: "private",
     provider: "Mater Private Network",
     blurb: "Weekly consultant-led clinic for routine and complex menopause care.",
@@ -1081,7 +1113,7 @@ const ENTRIES = [
     id: "cork-fertility-hub",
     name: "Cork Regional Fertility Hub",
     specialty: ["fertility"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "One of six Regional Fertility Hubs offering publicly funded assisted human reproduction (AHR) pathways. Also home to the National Advanced AHR Centre, Ireland's first public AHR centre.",
     details: [
       "Publicly funded AHR available since September 2023: GP → hub → HSE-approved private clinic.",
@@ -1234,13 +1266,15 @@ const ENTRIES = [
   {
     id: "breastcheck",
     name: "BreastCheck — National Breast Screening Programme",
-    specialty: ["cancer"],
+    specialty: ["cancer", "screening"],
     county: ["national"],
-    blurb: "Free breast screening (mammogram) for eligible women, run by the National Screening Service.",
-    details: ["For women aged 50–69, invited about every 2 years (sometimes up to 3).", "Screening reminders are also visible in the HSE Health App."],
+    blurb: "Free mammograms for women aged 50 to 69, run by the National Screening Service.",
+    details: ["Invited about every 2 years (sometimes up to 3).", "Screening reminders are also visible in the HSE Health App."],
     referral: "Automatic invitation by eligible age band, or self-register if not yet invited.",
     contact: { web: "breastcheck.ie" },
-    checked: "4 Sep 2026"
+    source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/breastcheck-age-range-explained/",
+    urlStatus: "search-result",
+    verify: true
   },
 
   // Crisis, neurodiversity, parenting, and infertility — added Sep 2026 in
@@ -1498,13 +1532,15 @@ const ENTRIES = [
     blurb: "Ireland's first standardised HSE-wide autism assessment approach, effective from 25 March 2026 — the first to explicitly include adults, who can self-refer. Genuinely new, but real-world adult access is expected to lag well behind children's in the early rollout.",
     details: [
       "Uses a tiered model — clear presentation, unclear presentation, and continuing presentation — matching more intensive assessment to less straightforward cases.",
-      "Applies across HSE services and Section 38/39-funded providers, and can involve private providers.",
+      "Runs alongside, not instead of, an Assessment of Need for children. Applies across HSE services and Section 38/39-funded providers, and can involve private providers.",
       "Rollout began July 2026 with children prioritised first — treat this as a development worth watching rather than a fast route to adult assessment right now. Worth re-checking status with your local HSE service every few months.",
       "11 new 'in-reach' teams (psychologist, occupational therapist, speech & language therapist) are being recruited nationally to support delivery.",
     ],
     referral: "Self-refer once the protocol is operating in your area — ask your GP or local HSE disability/mental health service for current status.",
     contact: { web: "hse.ie" },
-    checked: "5 Sep 2026",
+    source_url: "https://www2.healthservice.hse.ie/organisation/national-pppgs/hse-national-protocol-for-autism-assessment-and-intervention-pathways/",
+    urlStatus: "search-result",
+    verify: true
   },
   {
     id: "adult-autism-ni",
@@ -2299,7 +2335,8 @@ const ENTRIES = [
     id: "rcc-westcork",
     name: "West Cork Beacon (Bantry)",
     specialty: ["dsv"],
-    county: ["cork-west"],
+    county: ["cork"],
+    area: "west-cork",
     blurb: "Free, confidential counselling after rape or sexual abuse.",
     details: [],
     referral: "Self-referral.",
@@ -2324,7 +2361,7 @@ const ENTRIES = [
     name: "Cork SATU (South Infirmary Victoria University Hospital)",
     sector: "voluntary",
     specialty: ["dsv"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Sexual Assault Treatment Unit — forensic and medical care after a recent sexual assault.",
     details: ["Weekdays 8am–4:30pm: 021 492 6297.", "Out-of-hours: 021 492 6100."],
     referral: "Via An Garda Síochána or direct self-referral.",
@@ -2470,7 +2507,8 @@ const ENTRIES = [
     id: "cork-arc-house",
     name: "Cork ARC Cancer Support House",
     specialty: ["cancer"],
-    county: ["cork-city"],
+    county: ["cork"],
+    area: "cork-city",
     blurb: "Free cancer support services, including for gynaecological cancers.",
     details: [],
     referral: "Self-referral.",
@@ -2481,7 +2519,8 @@ const ENTRIES = [
     id: "cork-cancer-care-centre",
     name: "The Cork Cancer Care Centre",
     specialty: ["cancer"],
-    county: ["cork-city"],
+    county: ["cork"],
+    area: "cork-city",
     blurb: "Free cancer support services.",
     details: [],
     referral: "Self-referral.",
@@ -2887,7 +2926,7 @@ const ENTRIES = [
     id: "cuh-cardiology-comprehensive",
     name: "Cork University Hospital — Cardiology & Cardiothoracic Surgery",
     specialty: ["cardiology"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI and cardiothoracic surgery, providing a regional acute service to Cork/Kerry and a tertiary referral service across the southern region (population 1m+).",
     details: [],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
@@ -2943,7 +2982,7 @@ const ENTRIES = [
     id: "bons-cork-cardiology",
     name: "Bon Secours Hospital Cork — Cardiology",
     specialty: ["cardiology"],
-    county: ["cork-city"],
+    county: ["cork"],
     sector: "private",
     provider: "Bon Secours Health System",
     blurb: "Private cardiology service including an Urgent & Express Cardiac Care Clinic (a GP fast-track for urgent heart/vascular assessment), electrophysiology for heart rhythm disorders, and tilt table testing for unexplained fainting/dizziness and suspected POTS (postural orthostatic tachycardia syndrome).",
@@ -2956,7 +2995,7 @@ const ENTRIES = [
     id: "materprivate-heart-vascular",
     name: "Mater Private Network Heart & Vascular",
     specialty: ["cardiology"],
-    county: ["dublin", "cork-city"],
+    county: ["dublin", "cork"],
     sector: "private",
     provider: "Mater Private Network",
     blurb: "Private cardiology across Dublin and Cork campuses — TAVI (run jointly with the adjacent public Mater hospital since 2008), electrophysiology/ablation for arrhythmias, and tilt table testing for unexplained fainting/dizziness and suspected POTS (postural orthostatic tachycardia syndrome).",
@@ -3018,7 +3057,7 @@ const ENTRIES = [
     id: "cuh-rheumatology",
     name: "Cork University Hospital Rheumatology",
     specialty: ["rheumatology"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Public rheumatology department.",
     details: [],
     referral: "GP referral.",
@@ -3030,7 +3069,7 @@ const ENTRIES = [
     name: "South Infirmary-Victoria Hospital Rheumatology",
     sector: "voluntary",
     specialty: ["rheumatology"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Public rheumatology department.",
     details: [],
     referral: "GP referral.",
@@ -3356,7 +3395,7 @@ const ENTRIES = [
     id: "cuh-gastro",
     name: "Cork University Hospital Gastroenterology",
     specialty: ["gastro"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Public gastroenterology/hepatology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
@@ -3368,7 +3407,7 @@ const ENTRIES = [
     name: "Mercy University Hospital, Cork — Gastroenterology",
     sector: "voluntary",
     specialty: ["gastro"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Public gastroenterology department.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
@@ -3573,7 +3612,7 @@ const ENTRIES = [
     id: "cuh-pain",
     name: "Cork University Hospital Pain Service",
     specialty: ["pain"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Public chronic pain management service.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
@@ -3585,7 +3624,7 @@ const ENTRIES = [
     name: "Mercy University Hospital, Cork — Pain Service",
     sector: "voluntary",
     specialty: ["pain"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Listed as a public pain service by the Irish Pain Society — not independently re-confirmed.",
     details: [],
     referral: "GP referral, usually via Healthlink.",
@@ -3703,7 +3742,7 @@ const ENTRIES = [
     id: "longcovid-cork",
     name: "Cork University Hospital Long Covid Clinic",
     specialty: ["longcovid"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "One of six HSE Long Covid clinics nationally, run by Dr Katie McFaul (patients also seen by Dr Arthur Jackson).",
     details: [],
     referral: "GP referral.",
@@ -3892,7 +3931,7 @@ const ENTRIES = [
     name: "STI Clinic — South Infirmary Victoria University Hospital, Cork",
     sector: "voluntary",
     specialty: ["sexualhealth"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Free, HSE-operated STI/GUM clinic. PrEP available.",
     details: ["Mon–Fri 9am–4pm."],
     referral: "Self-referral.",
@@ -4073,7 +4112,7 @@ const ENTRIES = [
     id: "cuh-pelvic-physio",
     name: "Cork University Hospital Pelvic Health Physiotherapy",
     specialty: ["pelvicphysio"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Named public pelvic-health physiotherapy service — but only accepts referrals from CUH Urology & Colorectal, not directly from GPs.",
     details: [],
     referral: "Referral only from CUH Urology or Colorectal — ask your consultant to refer you if relevant.",
@@ -4189,7 +4228,7 @@ const ENTRIES = [
     id: "cuh-vascular",
     name: "Cork University Hospital Vascular Service",
     specialty: ["vascular"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Tertiary vascular centre for the South, with a hybrid theatre.",
     details: [],
     referral: "GP referral.",
@@ -4374,7 +4413,7 @@ const ENTRIES = [
     id: "cuh-dermatology",
     name: "Cork University Hospital Dermatology",
     specialty: ["dermatology"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Regional dermatology centre for the South, based in the Victoria Wing.",
     details: [],
     referral: "GP referral by letter; appointments sent directly once triaged by the consultant.",
@@ -4525,14 +4564,16 @@ const ENTRIES = [
     name: "HSE Audiology Service",
     specialty: ["ent"],
     county: ["national"],
-    blurb: "Free audiology assessment for medical-card holders, under-18s, and third-level students, via GP or ENT-consultant referral.",
+    blurb: "Free for children under 18 and third-level students; adults with a medical card can get free hearing aids. Newborn hearing screening refers directly.",
     details: [
       "Community audiology centres exist in most counties (examples include Carlow, Cavan/Cootehill, Clare, Cork/St Finbarr's, Donegal, Galway, Kerry, Kildare, Laois, Limerick, Louth, Mayo, Offaly, Roscommon, and Sligo/Leitrim) — this isn't an exhaustive list, check the HSE's own audiology page for your nearest.",
       "HSE audiology does not supply hearing aids directly to everyone — ask about the hearing-aid pathway when referred.",
     ],
-    referral: "GP or ENT-consultant referral.",
+    referral: "GP, public health nurse, paediatrician, ENT or speech and language therapist referral.",
     contact: { web: "hse.ie" },
-    checked: "4 Sep 2026"
+    source_url: "https://www2.hse.ie/services/audiology/services-supports/using-the-hse-audiology-service/",
+    urlStatus: "search-result",
+    verify: true
   },
   {
     id: "chime-deafhear",
@@ -4745,7 +4786,7 @@ const ENTRIES = [
     id: "cuh-haematology",
     name: "Cork University Hospital Haematology",
     specialty: ["haematology"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Regional haematology service for the South, covering both blood cancers and non-malignant blood disorders.",
     details: ["Out of hours (5pm-8am weekdays, all weekend/bank holidays), the hospital switchboard can page the on-call Haematology Registrar."],
     referral: "GP referral.",
@@ -4913,7 +4954,7 @@ const ENTRIES = [
     id: "national-major-trauma-centres",
     name: "About Ireland's Major Trauma Centres",
     specialty: ["orthopaedics"],
-    county: ["dublin", "cork-city"],
+    county: ["dublin", "cork"],
     blurb: "Major Trauma Centres at the Mater Hospital (Central Trauma Network, Dublin) and Cork University Hospital (South Trauma Network) receive high-severity trauma via ambulance diversion, not routine referral. Operational since April 2023.",
     details: [
       "St Vincent's University Hospital and Tallaght University Hospital are designated Trauma Units for the Dublin area, working alongside the Mater as the Major Trauma Centre.",
@@ -5178,6 +5219,7 @@ const ENTRIES = [
     name: "LauraLynn",
     specialty: ["palliative", "parenting"],
     county: ["dublin"],
+    sector: "voluntary",
     blurb: "Ireland's only children's hospice.",
     details: ["Make-A-Wish Ireland is a separate charity that also supports children with life-threatening conditions."],
     referral: "Referral via your child's medical team.",
@@ -5282,7 +5324,7 @@ const ENTRIES = [
     id: "cuh-orchid-prostate",
     name: "Cork University Hospital Orchid Centre — Rapid Access Prostate Clinic",
     specialty: ["mens-health"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "One of 8 NCCP-designated Rapid Access Prostate Clinics; the Orchid Centre also runs rapid access for breast, lung, and colorectal cancer.",
     details: ["Additional prostate assessment is also available at Mercy University Hospital, Cork."],
     referral: "GP referral (Healthlink).",
@@ -5322,7 +5364,7 @@ const ENTRIES = [
     id: "private-prostate-rac",
     name: "Private Rapid Access Prostate Clinics",
     specialty: ["mens-health"],
-    county: ["dublin", "cork-city"],
+    county: ["dublin", "cork"],
     sector: "private",
     blurb: "A faster-access option if you can pay and don't want to wait for a public referral.",
     details: ["Mater Private Network, Eccles St, Dublin 7.", "Bon Secours Cork also runs a prostate assessment service."],
@@ -5389,6 +5431,7 @@ const ENTRIES = [
     name: "Jigsaw — National Centre for Youth Mental Health",
     specialty: ["camhs", "eating"],
     county: ["dublin", "kerry", "offaly", "tipperary", "wicklow", "waterford"],
+    sector: "voluntary",
     blurb: "Free, self-referral mental health support for ages 12-25, no diagnosis or GP letter needed — 18 locations nationwide.",
     details: [
       "Named sites include Dublin City (44 Essex St East, Temple Bar D02 YR92, and Summerhill D01 TY46), Dublin South West (St John's House, High St, Tallaght D24), North Fingal (Swords K67 Y6K7), Kerry (Tralee), Offaly (Tullamore), Tipperary (Thurles), Wicklow (Bray), and Waterford (opened 31 August 2026).",
@@ -5493,7 +5536,7 @@ const ENTRIES = [
     id: "asi-memory-clinics",
     name: "ASI-linked memory clinics (named examples)",
     specialty: ["olderpersons"],
-    county: ["dublin", "carlow", "cork-city"],
+    county: ["dublin", "carlow", "cork"],
     blurb: "A sample of referral-based memory clinics — check alzheimer.ie for others closer to you.",
     details: [
       "Carew House, St Vincent's University Hospital, Elm Park, Dublin 4.",
@@ -5508,7 +5551,7 @@ const ENTRIES = [
     id: "asi-day-care",
     name: "ASI day-care centres (named examples)",
     specialty: ["olderpersons"],
-    county: ["cork-city", "westmeath", "limerick", "wicklow"],
+    county: ["cork", "westmeath", "limerick", "wicklow"],
     blurb: "A sample of ASI day-care centres — nationwide network searchable by county at alzheimer.ie.",
     details: [
       "Teach Mhuire, Old Youghal Rd, Cork.",
@@ -5577,7 +5620,7 @@ const ENTRIES = [
     id: "cuh-cancer-centre",
     name: "Cork University Hospital Cancer Centre",
     specialty: ["oncology"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "One of 8 NCCP-designated adult cancer centres — also runs a pancreatic surgery satellite service.",
     details: ["The Orchid Centre covers rapid access for breast, lung, prostate, and colorectal cancer."],
     referral: "GP referral to the relevant rapid-access clinic or MDT.",
@@ -5714,7 +5757,7 @@ const ENTRIES = [
     id: "cuh-thrombectomy",
     name: "Cork University Hospital Stroke & Thrombectomy Service",
     specialty: ["stroke"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "One of Ireland's 2 comprehensive/endovascular thrombectomy (EVT) centres, operating 24/7.",
     details: ["In an emergency, call 999/112 — use the FAST test (Face, Arms, Speech, Time)."],
     referral: "Emergency (999/112); TIA clinic via GP referral.",
@@ -5939,7 +5982,7 @@ const ENTRIES = [
     id: "cuan-mhuire-network",
     name: "Cuan Mhuire (residential treatment)",
     specialty: ["addiction"],
-    county: ["kildare", "galway", "limerick", "cork-west", "down"],
+    county: ["kildare", "galway", "limerick", "cork", "down"],
     sector: "voluntary",
     provider: "Cuan Mhuire",
     blurb: "Ireland's largest voluntary residential addiction treatment provider — 12-week programmes for alcohol/gambling, 20-week for drugs, across five centres including one in Northern Ireland.",
@@ -6090,7 +6133,7 @@ const ENTRIES = [
     id: "cuh-paediatrics",
     name: "Cork University Hospital Paediatric Assessment Unit",
     specialty: ["paediatrics"],
-    county: ["cork-city"],
+    county: ["cork"],
     blurb: "Rapid-access assessment for children under 16, based in the Seahorse Day Ward — strictly by GP referral.",
     details: ["GP referral line (for GPs only): 087 410 8074."],
     referral: "GP referral only.",
@@ -6295,6 +6338,587 @@ const ENTRIES = [
     ],
     referral: "Specialist consultant referral only.",
     contact: { web: "belfasttrust.hscni.net/service/liver-transplant-coordinator-service/" }
+  },
+
+  // Cork CDNTs 6 and 7 (1 Oct 2026). Source: HSE parliamentary-question replies
+  // (PQ 18815/25 and PQ 6858/23), seen in search results only. No contact details
+  // and no lead agency: sources conflict. Catchments and `area` need a human check.
+  {
+    id: "cdnt-cork-6-east-central",
+    name: "East Central Cork Children's Disability Network Team (CDNT 6)",
+    specialty: ["childdisability"],
+    county: ["cork"],
+    area: "east-cork",
+    blurb: "Children with complex disability needs in the Midleton and Youghal area. Check your address on the HSE CDNT finder.",
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cdnt-cork-7-east-cork-city",
+    name: "East Cork City Children's Disability Network Team (CDNT 7)",
+    specialty: ["childdisability"],
+    county: ["cork"],
+    area: "east-cork",
+    blurb: "Children with complex disability needs in the Cobh and Glanmire area (and nearby). Catchment not fully confirmed; check the HSE CDNT finder.",
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/",
+    urlStatus: "search-result",
+    verify: true
+  },
+
+  // Audit round 1, Phase A (1 Oct 2026). Rebuilt from search results, NOT checked
+  // in a browser. No phone numbers or emails on purpose: copy contacts from the
+  // live official page, then remove verify and add `checked`. ngs-columcilles is
+  // deliberately not here (non-.ie source), see GAPS.md.
+  {
+    id: "hse-cdnt-finder",
+    name: "Find your Children's Disability Network Team (CDNT)",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "HSE search tool for your local CDNT by address. Families can refer directly; an Assessment of Need is a separate, parallel statutory right.",
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-aon-officer",
+    name: "Assessment of Need: apply to your local Assessment Officer",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "Apply in writing on the HSE application form to the Assessment Officer for your area. Find your officer on the HSE page.",
+    contact: { web: "www2.hse.ie/services/disability/applying-for-an-assessment-of-need/assessment-of-need-officer/" },
+    source_url: "https://www2.hse.ie/services/disability/applying-for-an-assessment-of-need/assessment-of-need-officer/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-aon-complaints",
+    name: "Assessment of Need complaints (Disability Act s.14)",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "Complaints about AON timing, findings or Service Statements go to the HSE Disability Complaints Officer, generally within 3 months. Contact details: see the Citizens Information page.",
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "odao-appeals",
+    name: "Disability Appeals Officer",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "Appeals after a HSE Complaints Officer report, or where a recommendation is not implemented.",
+    contact: { web: "www.gov.ie/en/department-of-children-disability-and-equality/publications/disability-appeals-officer/" },
+    source_url: "https://www.gov.ie/en/department-of-children-disability-and-equality/publications/disability-appeals-officer/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cho7-cdnts",
+    name: "CHO7 Children's Disability Network Teams",
+    specialty: ["childdisability"],
+    county: ["dublin", "kildare", "wicklow"],
+    blurb: "11 teams covering Dublin South/South West, Kildare and West Wicklow. Team and contact details on the CHO7 site.",
+    contact: { web: "www.cho7cdnt.ie/teams/pages/" },
+    source_url: "https://www.cho7cdnt.ie/teams/pages/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "southeast-cdnts",
+    name: "South East Children's Disability Network Teams",
+    specialty: ["childdisability"],
+    county: ["carlow", "kilkenny", "tipperary", "waterford", "wexford"],
+    blurb: "12 teams across Carlow, Kilkenny, South Tipperary, Waterford and Wexford.",
+    contact: { web: "www.southeastcdnt.ie/about/who-we-are/" },
+    source_url: "https://www.southeastcdnt.ie/about/who-we-are/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cdnt-cork-overview",
+    name: "Cork Children's Disability Network Teams (CDNT 4 to 14)",
+    specialty: ["childdisability"],
+    county: ["cork"],
+    blurb: "HSE parliamentary replies list 11 Cork teams, numbered CDNT 4 to 14. Use the HSE CDNT finder to confirm which team covers your address.",
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-spmhs",
+    name: "Specialist Perinatal Mental Health Services",
+    specialty: ["mh"],
+    county: ["national"],
+    blurb: "Specialist hub teams in the larger maternity units plus perinatal mental health midwives in all units. Hub list and access limits change; check the HSE page.",
+    contact: { web: "www.hse.ie/eng/services/list/4/mental-health-services/specialist-perinatal-mental-health/" },
+    source_url: "https://www.hse.ie/eng/services/list/4/mental-health-services/specialist-perinatal-mental-health/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "umhl-spmhs",
+    name: "Perinatal Mental Health Service, University Maternity Hospital Limerick",
+    specialty: ["mh"],
+    county: ["limerick"],
+    blurb: "GP or consultant referral. Contact details on the HSE hospital page.",
+    contact: { web: "www2.hse.ie/services/hospitals/university-maternity-hospital-limerick/departments-services/perinatal-mental-health-service-268/" },
+    source_url: "https://www2.hse.ie/services/hospitals/university-maternity-hospital-limerick/departments-services/perinatal-mental-health-service-268/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-ahr",
+    name: "Publicly funded IVF / ICSI / IUI (AHR)",
+    specialty: ["fertility"],
+    county: ["national"],
+    blurb: "GP or consultant refers you to a regional fertility hub; no self-referral. Eligibility criteria apply, including age and cycle limits. Check the HSE page for current rules.",
+    contact: { web: "www2.hse.ie/pregnancy-birth/trying-for-a-baby/your-fertility/getting-ivf-icsi-iui-hse/" },
+    source_url: "https://www2.hse.ie/pregnancy-birth/trying-for-a-baby/your-fertility/getting-ivf-icsi-iui-hse/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cumh-endometriosis",
+    name: "Supra-regional endometriosis centre, Cork University Maternity Hospital",
+    specialty: ["endo"],
+    county: ["cork"],
+    blurb: "Specialist centre for complex endometriosis. One of two supra-regional centres (the other is Tallaght). Referral via GP or consultant.",
+    contact: { web: "irelandsouthwid.cumh.hse.ie/women-s-health/endometriosis/" },
+    source_url: "https://irelandsouthwid.cumh.hse.ie/women-s-health/endometriosis/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-complex-menopause",
+    name: "Complex menopause clinics",
+    specialty: ["menopause"],
+    county: ["national"],
+    blurb: "Specialist clinics for complex cases, referral by GP or consultant. Most women are managed in primary care.",
+    contact: { web: "www2.hse.ie/conditions/menopause/menopause-treatment/" },
+    source_url: "https://www2.hse.ie/conditions/menopause/menopause-treatment/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cumh-complex-menopause",
+    name: "Complex Menopause Clinic, CUMH (Lee Clinic)",
+    specialty: ["menopause"],
+    county: ["cork", "kerry", "tipperary", "waterford"],
+    blurb: "Serves Cork, Kerry, South Tipperary and Waterford. Referral by GP, consultant or advanced nurse practitioner.",
+    contact: { web: "irelandsouthwid.cumh.hse.ie/women-s-health/menopause/complex-menopause-clinic/" },
+    source_url: "https://irelandsouthwid.cumh.hse.ie/women-s-health/menopause/complex-menopause-clinic/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ncp-eating-disorders",
+    name: "HSE National Clinical Programme for Eating Disorders",
+    specialty: ["eating"],
+    county: ["national"],
+    blurb: "Community eating disorder teams for adults and children. Team locations and numbers vary and are still expanding.",
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/mental-health/eating-disorders/" },
+    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/mental-health/eating-disorders/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "nrdo",
+    name: "National Rare Diseases Office",
+    specialty: ["rare-disease"],
+    county: ["dublin"],
+    blurb: "Information and signposting for rare conditions; runs Orphanet Ireland. Contact details on the HSE page.",
+    contact: { web: "www.hse.ie/eng/services/list/5/rarediseases/patientsfamilies.html" },
+    source_url: "https://www.hse.ie/eng/services/list/5/rarediseases/patientsfamilies.html",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "nhivrc-cochlear",
+    name: "National Cochlear Implant Programme, Beaumont Hospital",
+    specialty: ["ent"],
+    county: ["dublin"],
+    blurb: "Referral via GP, public health nurse, audiologist or ENT. Waiting times vary and are not shown here.",
+    contact: { web: "www2.hse.ie/services/audiology/hearing-aids-implants/cochlear-implants/" },
+    source_url: "https://www2.hse.ie/services/audiology/hearing-aids-implants/cochlear-implants/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ncp-obesity-moc",
+    name: "Public bariatric surgery pathway (Obesity Model of Care)",
+    specialty: ["weightmanagement"],
+    county: ["national"],
+    blurb: "GP referral into the specialist obesity pathway; surgery is limited to a small number of centres. Check current centres and criteria with the HSE.",
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/obesity/model-of-care/obesity-model-of-care-highlights.pdf" },
+    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/obesity/model-of-care/obesity-model-of-care-highlights.pdf",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "bowelscreen",
+    name: "BowelScreen",
+    specialty: ["cancer", "screening"],
+    county: ["national"],
+    blurb: "Free home test, every 2 years. Age range has been expanding: check the HSE page for current ages.",
+    contact: { web: "www2.healthservice.hse.ie/organisation/nss/news/explained-bowelscreen-age-range-expansion/" },
+    source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/explained-bowelscreen-age-range-expansion/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cervicalcheck",
+    name: "CervicalCheck",
+    specialty: ["cancer", "screening"],
+    county: ["national"],
+    blurb: "Free cervical screening (HPV test) for ages 25 to 65. Intervals depend on age and results.",
+    contact: { web: "www2.healthservice.hse.ie/organisation/nss/news/cervicalcheck-age-range-explained/" },
+    source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/cervicalcheck-age-range-explained/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-child-dental",
+    name: "HSE school dental and orthodontic services",
+    specialty: ["dental"],
+    county: ["national"],
+    blurb: "School dental checks and emergency care for children. Orthodontic referral is for severe cases only. Class coverage varies by area.",
+    contact: { web: "www2.hse.ie/conditions/orthodontic-treatment-and-braces/" },
+    source_url: "https://www2.hse.ie/conditions/orthodontic-treatment-and-braces/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "dca",
+    name: "Domiciliary Care Allowance",
+    specialty: ["childdisability"],
+    county: ["national"],
+    blurb: "Monthly payment for a child under 16 with a severe disability. Links to a medical card. Check the current rate on gov.ie or Citizens Information.",
+    contact: { web: "www.citizensinformation.ie/en/social-welfare/disability-and-illness/domiciliary-care-allowance/" },
+    source_url: "https://www.citizensinformation.ie/en/social-welfare/disability-and-illness/domiciliary-care-allowance/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  // Audit round 1, Pass 4 rows (2 Oct 2026). Search results only, no contacts.
+  {
+    id: "status-home-support-providers-act",
+    name: "Health (Amendment) (Home Support Providers) Act 2026",
+    specialty: ["olderpersons"],
+    county: ["national"],
+    blurb: "Signed into law in 2026; the signing date and Act number come from secondary sources, so confirm them on the Irish Statute Book. Creates HIQA registration and inspection of home support providers. It regulates providers and does not create a personal right to home support. Commencement not confirmed.",
+    contact: { web: "www.oireachtas.ie/en/bills/bill/2025/84/" },
+    source_url: "https://www.oireachtas.ie/en/bills/bill/2025/84/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "optical-coss",
+    name: "Community Ophthalmic Services Scheme (medical card)",
+    specialty: ["ophthalmology"],
+    county: ["national"],
+    blurb: "Medical card holders over 16: free eye exam and glasses from an approved range. Children referred from child health or school checks are treated free until 16. Treatment Benefit (PRSI) may cover others. Check current rules on Citizens Information.",
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/sight-tests-and-eye-health/" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/dental-aural-and-optical-services/sight-tests-and-eye-health/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cancer-designated-centres",
+    name: "NCCP designated cancer centres",
+    specialty: ["oncology"],
+    county: ["national"],
+    blurb: "Eight designated centres: Beaumont, Mater, St Vincent's, St James's, Cork University Hospital, University Hospital Waterford, University Hospital Galway (satellite Letterkenny) and University Hospital Limerick. GP refers to rapid access clinics.",
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/cancer-services/cancer-services/" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/cancer-services/cancer-services/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "carers-support-grant",
+    name: "Carer's Support Grant",
+    specialty: ["carers"],
+    county: ["national"],
+    blurb: "Annual payment per person cared for; automatic for people on Carer's Allowance, Carer's Benefit or Domiciliary Care Allowance; not means-tested. Amount and payment date change; see Citizens Information.",
+    contact: { web: "www.citizensinformation.ie/en/social-welfare/carers/carers-support-grant/" },
+    source_url: "https://www.citizensinformation.ie/en/social-welfare/carers/carers-support-grant/",
+    urlStatus: "search-result",
+    verify: true
+  },
+
+  // Pass 3 rows (2 Oct 2026). Search results only, no contacts. Neuro-rehab, spinal, sleep, NIPHS, dementia, chronic pain.
+  {
+    id: "mcrn-neurorehab-referral",
+    name: "Neuro-Rehabilitation Networks (MCRN): referral by a professional",
+    specialty: ["neurorehabilitation"],
+    county: ["national"],
+    blurb: "HSE regional neuro-rehabilitation networks for adults (18+) with a confirmed neurological diagnosis. There is no self-referral: a healthcare professional sends a Rehabilitation Prescription. The networks are being rolled out region by region, so check what is live in your area.",
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/rehabilitation-medicine/neuro-rehabilitation-for-referrers/" },
+    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/rehabilitation-medicine/neuro-rehabilitation-for-referrers/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cnrt-south-west",
+    name: "Community Neuro-Rehabilitation Team: HSE South West (Cork and Kerry)",
+    specialty: ["neurorehabilitation"],
+    county: ["cork", "kerry"],
+    blurb: "Short, intensive community neuro-rehabilitation. Professional referral only. Check the HSE page for the current referral route.",
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/rehabilitation-medicine/neuro-rehabilitation-for-referrers/" },
+    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/rehabilitation-medicine/neuro-rehabilitation-for-referrers/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "nrh-scsc",
+    name: "National Spinal Cord Injury Service: NRH Spinal Cord System of Care",
+    specialty: ["spinal-injury"],
+    county: ["dublin"],
+    blurb: "National service run between the Mater (acute) and the National Rehabilitation Hospital (rehabilitation). Non-traumatic spinal cord injury is admitted to NRH on referral from the hospital consultant or GP.",
+    contact: { web: "www.nrh.ie/rehabilitation-services/spinal-cord-system-of-care/" },
+    source_url: "https://www.nrh.ie/rehabilitation-services/spinal-cord-system-of-care/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "mater-nsiu",
+    name: "National Spinal Injuries Unit: Mater Misericordiae University Hospital",
+    specialty: ["spinal-injury"],
+    county: ["dublin"],
+    blurb: "National acute unit for traumatic spinal injury. Hospital-to-hospital referral through the national Spinal Portal. Not a self-referral service.",
+    contact: { web: "www.hiqa.ie/areas-we-work/health-information/data-collections/national-spinal-injuries-unit" },
+    source_url: "https://www.hiqa.ie/areas-we-work/health-information/data-collections/national-spinal-injuries-unit",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-musgrave-sciu",
+    name: "Spinal Cord Injuries Unit: Musgrave Park Hospital (Belfast Trust)",
+    specialty: ["spinal-injury"],
+    county: ["antrim"],
+    blurb: "Northern Ireland inpatient spinal cord injury rehabilitation. Referral by an acute hospital consultant.",
+    contact: { web: "belfasttrust.hscni.net/service/spinal-cord-injuries-unit/" },
+    source_url: "https://belfasttrust.hscni.net/service/spinal-cord-injuries-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "sjh-narcolepsy",
+    name: "Narcolepsy and Sleep Disorders Service: St James's Hospital",
+    specialty: ["sleep-medicine"],
+    county: ["dublin"],
+    blurb: "National centre for narcolepsy, including cases linked to the Pandemrix vaccine. Referral by GP or consultant through the Neurology Department.",
+    contact: { web: "www.stjames.ie/services/med/neurology/" },
+    source_url: "https://www.stjames.ie/services/med/neurology/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-osa-cpap-dps",
+    name: "Sleep apnoea: CPAP rental under the Drugs Payment Scheme",
+    specialty: ["sleep-medicine"],
+    county: ["national"],
+    blurb: "HSE says the Drugs Payment Scheme can help with the cost of renting a CPAP machine. Diagnosis starts with a GP referral to a hospital sleep service. Support for medical card holders was not confirmed from an official source.",
+    contact: { web: "www2.hse.ie/conditions/obstructive-sleep-apnoea/treatment/" },
+    source_url: "https://www2.hse.ie/conditions/obstructive-sleep-apnoea/treatment/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-belfast-sleep",
+    name: "Sleep Service: Mater Hospital Belfast (Belfast Trust)",
+    specialty: ["sleep-medicine"],
+    county: ["antrim"],
+    blurb: "Diagnosis and CPAP for sleep-disordered breathing in Northern Ireland. GP or consultant referral.",
+    contact: { web: "belfasttrust.hscni.net/service/sleep-service/" },
+    source_url: "https://belfasttrust.hscni.net/service/sleep-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "niphs",
+    name: "Northern Ireland Planned Healthcare Scheme (NIPHS)",
+    specialty: ["treatment-abroad"],
+    county: ["national"],
+    blurb: "Temporary HSE scheme: you pay a private provider in Northern Ireland for care that is available publicly in Ireland, then claim back. Prior notification is optional for inpatient and day-case care. It cannot be used for public healthcare in Northern Ireland. This is a different scheme from the EU Cross-Border Directive, which can require prior authorisation.",
+    contact: { web: "www2.hse.ie/services/schemes-allowances/niphs/before-you-go/" },
+    source_url: "https://www2.hse.ie/services/schemes-allowances/niphs/before-you-go/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-mass",
+    name: "Memory Assessment and Support Services (MASS)",
+    specialty: ["olderpersons"],
+    county: ["national"],
+    blurb: "Level 2 of the HSE Dementia Model of Care: multidisciplinary memory assessment plus post-diagnostic support. Referral by GP or hospital services. Sites are expanding, so check your area. The Regional Specialist Memory Clinics are a separate, smaller tier.",
+    contact: { web: "www.hse.ie/eng/dementia-pathways/services-and-support/memory-assessment-services-and-clinics/memory-assessment-support-services-mass-/" },
+    source_url: "https://www.hse.ie/eng/dementia-pathways/services-and-support/memory-assessment-services-and-clinics/memory-assessment-support-services-mass-/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-work-able",
+    name: "Work-Able Solutions: HSE occupational therapy pilot for chronic pain and work",
+    specialty: ["pain"],
+    county: ["national"],
+    blurb: "HSE occupational therapy pilot helping people with chronic pain stay in or return to work. For people in paid work or receiving illness benefit. Referrals come from primary care centres and hospitals. Pilot status: check it is still running. There is no published national HSE model of care for chronic pain, so pathways vary.",
+    contact: { web: "about.hse.ie/news/hse-pilot-programme-supports-people-chronic-pain-to-stay-in-work/" },
+    source_url: "https://about.hse.ie/news/hse-pilot-programme-supports-people-chronic-pain-to-stay-in-work/",
+    urlStatus: "search-result",
+    verify: true
+  },
+
+  // Pass 5 replacement, rights and regulators (2 Oct 2026). Search results only, no contacts. HIQA concerns and the Medical Council already have rights cards, so they are not repeated.
+  {
+    id: "mhc-tribunals",
+    name: "Mental Health Tribunals",
+    specialty: ["rights", "adultmh"],
+    county: ["national"],
+    blurb: "Independent review of involuntary detention within 21 days. The Mental Health Commission does not investigate complaints. It directs people to the HSE complaints routes.",
+    contact: { web: "www.mhcirl.ie/faq" },
+    source_url: "https://www.mhcirl.ie/faq",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "dpc-access",
+    name: "Data access request timelines",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "An organisation must respond to an access request without undue delay and within one month. It can extend that by up to two further months and must give its reasons within the first month.",
+    contact: { web: "www.dataprotection.ie/en/individuals/exercising-your-rights/how-long-will-it-take" },
+    source_url: "https://www.dataprotection.ie/en/individuals/exercising-your-rights/how-long-will-it-take",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-safeguarding",
+    name: "HSE Safeguarding and Protection Teams",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "Report a concern about an adult who may be at risk of abuse, through the HSE online Adult Safeguarding Portal or your local safeguarding team. Teams operate in every HSE region.",
+    contact: { web: "www.citizensinformation.ie/en/birth-family-relationships/problems-in-marriages-and-other-relationships/adult-abuse-and-safeguarding/" },
+    source_url: "https://www.citizensinformation.ie/en/birth-family-relationships/problems-in-marriages-and-other-relationships/adult-abuse-and-safeguarding/",
+    urlStatus: "search-result",
+    verify: true
+  },
+
+  // Pass 5 replacement, children, older people and carers (2 Oct 2026). Search results only, no contacts. CAMHS, Jigsaw and LauraLynn already have entries and are not repeated.
+  {
+    id: "cipc",
+    name: "Counselling in Primary Care (CIPC)",
+    specialty: ["adultmh"],
+    county: ["national"],
+    blurb: "Up to 8 free counselling sessions for adults aged 18 and over with a medical card. Your GP refers you, then you phone your local CIPC office within 2 weeks of the referral to confirm. The National Counselling Service also covers adults who experienced childhood abuse or neglect, former mother and baby home residents, and families affected by the Stardust inquest, without needing a medical card.",
+    contact: { web: "www2.hse.ie/mental-health/services-support/ncs/cipc/" },
+    source_url: "https://www2.hse.ie/mental-health/services-support/ncs/cipc/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "hse-quit",
+    name: "HSE QUIT: stop smoking support",
+    specialty: ["addiction"],
+    county: ["national"],
+    blurb: "Free stop-smoking support, with a Quit Plan and free nicotine replacement through stop smoking advisors. You don't need a GP referral.",
+    contact: { web: "www2.hse.ie/take-back-control/" },
+    source_url: "https://www2.hse.ie/take-back-control/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "home-support-apply",
+    name: "Apply for HSE Home Support",
+    specialty: ["olderpersons"],
+    county: ["national"],
+    blurb: "Complete form HSS001 and send it to your local Home Support Office. A care needs assessment follows. If you are in hospital, ask the discharge planner. The applicant signs the declaration and consent section. A decision supporter can complete the other part.",
+    contact: { web: "www.hse.ie/eng/home-support-services/apply-for-home-supports-services/" },
+    source_url: "https://www.hse.ie/eng/home-support-services/apply-for-home-supports-services/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "carers-allowance",
+    name: "Carer's Allowance",
+    specialty: ["carers"],
+    county: ["national"],
+    blurb: "Means-tested payment from the Department of Social Protection for a carer giving full-time care, at least 35 hours a week over 5 to 7 days. Limits on work or study, age and residence apply. Rates and the means-test figures change and conflict between official pages, so none is shown here. Check Citizens Information.",
+    contact: { web: "live.citizensinformation.ie/en/social-welfare/social-welfare-payments/carers/carers-allowance/" },
+    source_url: "https://live.citizensinformation.ie/en/social-welfare/social-welfare-payments/carers/carers-allowance/",
+    urlStatus: "search-result",
+    verify: true
+  },
+
+  // Pass 5 replacement, medical (2 Oct 2026). Search results only, no contacts. The National Coagulation Centre already has an entry and is not repeated.
+  {
+    id: "stroke-esd",
+    name: "Stroke Early Supported Discharge",
+    specialty: ["stroke"],
+    county: ["national"],
+    blurb: "Specialist stroke therapy at home after hospital, available at some acute stroke sites rather than nationally. Your hospital stroke team assesses whether it suits you. Support usually runs for up to eight weeks.",
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/stroke/resources/hse-early-supported-discharge-for-stroke-report.pdf" },
+    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/stroke/resources/hse-early-supported-discharge-for-stroke-report.pdf",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ms-unit-sjh",
+    name: "Multiple Sclerosis Unit, St James's Hospital",
+    specialty: ["neurology"],
+    county: ["national"],
+    blurb: "Consultant-led MS service with an MS nurse specialist, physiotherapist and occupational therapist. GP referral for an existing or suspected diagnosis, by post or Healthlink.",
+    contact: { web: "www.stjames.ie/services/med/neurology/multiplesclerosisunit/" },
+    source_url: "https://www.stjames.ie/services/med/neurology/multiplesclerosisunit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cgm-managed-access",
+    name: "HSE CGM Managed Access Programme",
+    specialty: ["diabetes"],
+    county: ["national"],
+    blurb: "Continuous glucose monitoring for type 1 diabetes through specialist diabetes teams, under an HSE managed access programme. Ask your diabetes team whether you are eligible.",
+    contact: { web: "www.hiqa.ie/sites/default/files/2023-09/T1D-Report-September-2023.pdf" },
+    source_url: "https://www.hiqa.ie/sites/default/files/2023-09/T1D-Report-September-2023.pdf",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "cardiac-rehab-moc",
+    name: "Integrated Cardiac Rehabilitation",
+    specialty: ["cardiology"],
+    county: ["national"],
+    blurb: "Cardiac rehabilitation after a heart attack, heart surgery or with heart failure. The HSE model of care says people in hospital with heart failure should all be offered a programme. Ask your hospital team.",
+    contact: { web: "www.hse.ie/eng/services/publications/model-of-care-for-integrated-cardiac-rehabilitation.pdf" },
+    source_url: "https://www.hse.ie/eng/services/publications/model-of-care-for-integrated-cardiac-rehabilitation.pdf",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "sickle-cell-sjh",
+    name: "Adult Sickle Cell and Thalassaemia Service, St James's Hospital",
+    specialty: ["haematology"],
+    county: ["national"],
+    blurb: "Adults are referred by their GP or consultant, or through a transition clinic.",
+    contact: { web: "www.stjames.ie/services/hope/sicklecellandthalassaemia/" },
+    source_url: "https://www.stjames.ie/services/hope/sicklecellandthalassaemia/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "sarcoma-national",
+    name: "National Sarcoma Service",
+    specialty: ["oncology"],
+    county: ["national"],
+    blurb: "St Vincent's University Hospital runs the designated national sarcoma multidisciplinary team, and Cappagh (National Orthopaedic Hospital) is the national referral centre for primary bone and soft tissue tumours. Clinicians refer, through Healthlink.",
+    contact: { web: "www.stvincents.ie/32365-2/" },
+    source_url: "https://www.stvincents.ie/32365-2/",
+    urlStatus: "search-result",
+    verify: true
   },
 ];
 
@@ -6755,7 +7379,7 @@ const RIGHTS_BODIES = [
     step: 3,
     name: "Patient Advocacy Service",
     role: "Free, independent, confidential support making a complaint.",
-    detail: "Funded by the Department of Health. Supports complaints about HSE public acute hospitals and HSE-run nursing homes, and support after a patient-safety incident. Can help you write and lodge a complaint at any stage — worth contacting before you write anything formal, not just when you're stuck.",
+    detail: "Funded by the Department of Health. Supports complaints about public acute hospitals and public or private nursing homes, and support after a patient-safety incident. Can help you write and lodge a complaint at any stage — worth contacting before you write anything formal, not just when you're stuck.",
     contact: { phone: "0818 293 003", web: "patientadvocacyservice.ie" },
   },
   {
@@ -7598,7 +8222,7 @@ const SUPPORT_ORGS = [
     id: "pas-org",
     name: "Patient Advocacy Service",
     remit: "Free, independent, confidential support with HSE complaints.",
-    offer: "Step-by-step help making a complaint about a public acute hospital, or after a patient-safety incident.",
+    offer: "Step-by-step help making a complaint about a public acute hospital or a public or private nursing home, or after a patient-safety incident.",
     tags: ["complaints", "all conditions"],
     contact: { web: "patientadvocacyservice.ie" },
   },
@@ -8130,7 +8754,7 @@ const TOOL_FACTS = [
   { id: "roi-oco", text: "Ombudsman for Children: free and independent. A child, or an adult on their behalf, can complain about a public body, including health services. Freephone 1800 20 20 40.", jurisdiction: "ROI", source_url: "https://www.oco.ie/complaints/make-a-complaint/", source_name: "Ombudsman for Children: Make a complaint", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-voluntary-private", text: "Voluntary and private providers aren't covered by YSYS. Complain to them directly, using their own complaints process.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-system/making-a-complaint-about-the-health-service-executive/", source_name: "Citizens Information: Making a complaint about a health service", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-private-ombudsman", text: "Whether the Ombudsman can examine a complaint about a private provider, such as a private nursing home, depends on the provider and the complaint. Check with the Ombudsman's office.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/collection/72275-your-questions/", source_name: "Ombudsman: Your questions", last_verified: "2026-09-28", volatility: "medium", verify: true },
-  { id: "roi-pas", text: "Patient Advocacy Service: free, independent and confidential support to make a complaint about a public acute hospital, or a public or private nursing home. Phone 0818 293003.", jurisdiction: "ROI", source_url: "https://www.patientadvocacyservice.ie/", source_name: "Patient Advocacy Service", last_verified: "2026-09-28", volatility: "low", verify: false },
+  { id: "roi-pas", text: "Patient Advocacy Service: free, independent and confidential support to make a complaint about a public acute hospital or a public or private nursing home, and support after a patient safety incident. Phone 0818 293003.", jurisdiction: "ROI", source_url: "https://www.patientadvocacyservice.ie/", source_name: "Patient Advocacy Service", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-hiqa", text: "HIQA takes concerns about health and social care services, but can't investigate individual complaints. Email concerns@hiqa.ie or phone 021 240 9646.", jurisdiction: "ROI", source_url: "https://www.hiqa.ie/get-touch/report-concern-or-give-feedback", source_name: "HIQA: Report a concern or give feedback", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-ysys-backup", text: "The HSE online feedback form has been reported as unavailable or slow to respond. As a backup, phone Your Service Your Say on 1800 424 555 or HSE Live on 1800 700 700, or send your complaint by post. Keep a copy.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say/", source_name: "HSE: Give feedback through Your Service Your Say", last_verified: "2026-09-28", volatility: "high", verify: true },
 
@@ -8570,12 +9194,184 @@ TOOL_FACTS.push(
   { id: "aon-right", text: "Under Part 2 of the Disability Act 2005, you have a right to apply for an Assessment of Need for yourself or your child, if you think there may be a disability.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "aon-not-required", text: "You don't need an Assessment of Need to access HSE disability or health services. It's a separate statutory process, and services can be accessed through referral in the usual way.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "aon-ack", text: "The HSE should acknowledge a completed application within 14 days.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 14, unit: "calendar_days" } },
-  { id: "aon-start", text: "The assessment must start within 3 months of the HSE receiving a completed application.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 3, unit: "months" } },
-  { id: "aon-complete", text: "The assessment must be completed, and the report sent, within a further 3 months. That's the six-month statutory timeline from a completed application.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 6, unit: "months" } },
+  { id: "aon-start", text: "The assessment must start within 3 months of the HSE receiving a completed application (section 9(5)).", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-02", volatility: "low", verify: false, calc: { amount: 3, unit: "months" } },
+  { id: "aon-complete", text: "Under S.I. 263/2007 (Reg. 10, as made) the HSE must complete the assessment and send the report within a further 3 months from when the assessment started, \"save for in exceptional circumstances\", when it must be done \"without undue delay\". The HSE must give written reasons and a timeframe before the 3 months have expired. From a completed application that is about 6 months in all, and it is not a fixed deadline with no exceptions. This is the as-made text, so check for amendments.", jurisdiction: "ROI", source_url: "https://www.irishstatutebook.ie/eli/2007/si/263/made/en/print", source_name: "S.I. 263/2007 (as made)", last_verified: "2026-10-02", volatility: "medium", verify: true, calc: { amount: 6, unit: "months" } },
   { id: "aon-complaint", text: "If the timeline isn't met, or you're unhappy with the assessment or service statement, you can complain to the HSE Disability Complaints Officer (045 880 400, aon.complaints@hse.ie). Complain as soon as reasonably possible, and no later than 3 months after the cause of the complaint arose.", jurisdiction: "ROI", source_url: "https://hse.ie/eng/about/who/complaints/officers/pccc/assessmentcomplaints.html", source_name: "HSE: Assessment of Need complaints", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 3, unit: "months" } },
   { id: "aon-appeal", text: "If you're unhappy with the complaint outcome, you can appeal to the independent Disability Appeals Officer.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-09-28", volatility: "low", verify: false },
-  { id: "aon-bill", text: "The Disability (Amendment) Bill 2026 would change parts of the AON process, including the closing of applications. It is NOT law yet: it was at Dáil second stage in late September 2026. Until it's enacted, the current Act applies.", jurisdiction: "ROI", source_url: "https://www.oireachtas.ie/en/bills/bill/2026/88/", source_name: "Houses of the Oireachtas: Disability (Amendment) Bill 2026", last_verified: "2026-09-28", volatility: "high", verify: true }
+  { id: "aon-bill", text: "Bill 88 of 2026 (the Disability (Amendment) Bill 2026) had First Stage on 18 Sep 2026. A Second Stage debate on 23 Sep 2026 is reported by a non-official source only. We haven't confirmed that Second Stage has ended, and Committee Stage has not been reached on the evidence we have. It is NOT law yet. Until it is enacted, the current Act applies.", jurisdiction: "ROI", source_url: "https://www.oireachtas.ie/en/bills/bill/2026/88/", source_name: "Houses of the Oireachtas: Disability (Amendment) Bill 2026", last_verified: "2026-10-02", volatility: "high", verify: true },
+  { id: "aon-service-statement", text: "After the assessment report, a Service Statement should follow within 1 month. Counted from a completed application, that is about 7 months overall.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-01", volatility: "medium", verify: true, calc: { amount: 1, unit: "months" } },
+  { id: "aon-review", text: "Your assessment report sets out when the assessment should be reviewed. Use the date stated in your report.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-02", volatility: "medium", verify: true },
+  { id: "aon-repeat-12m", text: "The HSE can refuse a repeat application for a child who was assessed within the previous 12 months (section 9(7)). This limits repeat applications. It is not a right to a review.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-02", volatility: "medium", verify: true },
+  { id: "aon-hse-dates", text: "The HSE may record dates differently from you, for example the date it treats the application as complete. Ask in writing which dates it has on file, and keep your own copy of every letter, email and postage receipt.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/list/4/disability/disability-assessment/", source_name: "HSE: Disability assessment", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "aon-s14-form", text: "To make a complaint to the Disability Complaints Officer under section 14, use the official HSE complaint form. The cover note on this page is a supporting letter only. It does not replace the form.", jurisdiction: "ROI", source_url: "https://hse.ie/eng/about/who/complaints/officers/pccc/assessmentcomplaints.html", source_name: "HSE: Assessment of Need complaints", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "aon-appeals-officer", text: "If you are unhappy with the Complaints Officer's recommendation, you can appeal under section 18 to the Disability Appeals Officer, who is independent of the HSE. Check the current contact details and time limit on the official page.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/", source_name: "Citizens Information: Assessment of need", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "aon-s22", text: "Information only. The Disability Act 2005 provides for optional mediation (section 19), an appeal to the High Court on a point of law only (section 20), and an application to the Circuit Court to enforce (section 22). These section numbers come from our review notes and still need checking against the Act. A solicitor or the Legal Aid Board can advise. We can't say whether any of this applies to your case.", jurisdiction: "ROI", source_url: "https://www.irishstatutebook.ie/eli/2005/act/14/enacted/en/html", source_name: "Irish Statute Book: Disability Act 2005", last_verified: "2026-10-02", volatility: "medium", verify: true },
+  { id: "aon-legal-aid", text: "Legal Aid Board: state-funded civil legal aid and advice, subject to eligibility and a waiting list. Citizens Information also gives free, independent information.", jurisdiction: "ROI", source_url: "https://www.legalaidboard.ie/", source_name: "Legal Aid Board", last_verified: "2026-10-01", volatility: "low", verify: true },
+  { id: "aon-private-report", text: "We can't say whether the HSE has to accept a private report. Ask the Assessment Officer in writing how any report you hold will be taken into account.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/list/4/disability/disability-assessment/", source_name: "HSE: Disability assessment", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "aon-cdnt-finder", text: "Children's Disability Network Teams (CDNTs) are found by home address. The HSE has a finder.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/services/childrens-disabilities/", source_name: "HSE: Find your local children's disability network team", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "aon-seno", text: "Special Educational Needs Organisers (SENOs) work for the National Council for Special Education (NCSE). Each school has an assigned SENO. Education supports are separate from HSE health services.", jurisdiction: "ROI", source_url: "https://www.ncse.ie/parents/support-network/seno/", source_name: "NCSE: SENO", last_verified: "2026-10-01", volatility: "low", verify: true },
+  { id: "aon-dca-chain", text: "Domiciliary Care Allowance (DCA) is a monthly payment to the carer of a child under 16 with a severe disability. A child getting DCA gets a medical card without a means test, and DCA can open access to the Carer's Support Grant. Rates change, so we don't show them. Check the official page.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-services/children-s-health/caring-for-a-child-with-a-disability/", source_name: "Citizens Information: Caring for a child with a disability", last_verified: "2026-10-01", volatility: "high", verify: true }
 );
+
+// ---------- Static pages: #/about/screening and #/about/waiting-lists ----------
+// Ages and eligibility are volatile. Each carries a last-checked date and
+// verify: true until read on the official page.
+TOOL_FACTS.push(
+  { id: "scr-bowel", text: "BowelScreen: free home test kit for people aged 57 to 71.", jurisdiction: "ROI", source_url: "https://www.screeningservice.ie/bowelscreen", source_name: "National Screening Service: BowelScreen", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "scr-breast", text: "BreastCheck: free mammograms for women aged 50 to 69.", jurisdiction: "ROI", source_url: "https://www.screeningservice.ie/breastcheck", source_name: "National Screening Service: BreastCheck", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "scr-cervical", text: "CervicalCheck: free cervical screening for women and people with a cervix aged 25 to 65.", jurisdiction: "ROI", source_url: "https://www.screeningservice.ie/cervicalcheck", source_name: "National Screening Service: CervicalCheck", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "scr-register", text: "Check you are on the register for each programme through the National Screening Service, so you receive invitations.", jurisdiction: "ROI", source_url: "https://www.screeningservice.ie/", source_name: "National Screening Service", last_verified: "2026-10-01", volatility: "medium", verify: true },
+  { id: "wl-ntpf", text: "The NTPF publishes hospital inpatient, day-case and outpatient waiting list data. We don't copy the figures here because they change every month.", jurisdiction: "ROI", source_url: "https://www.ntpf.ie/waiting-list-data/", source_name: "NTPF: Waiting list data", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "wl-hse-perf", text: "The HSE publishes performance reports, which include Assessment of Need, Children's Disability Network Team and primary care waiting data. Find the latest report on the HSE publications page.", jurisdiction: "ROI", source_url: "https://www.hse.ie/eng/services/publications/performancereports/", source_name: "HSE: Performance reports", last_verified: "2026-10-01", volatility: "high", verify: true },
+  { id: "wl-ni", text: "For Northern Ireland, the Department of Health publishes quarterly waiting time statistics.", jurisdiction: "NI", source_url: "https://www.health-ni.gov.uk/articles/outpatient-waiting-times", source_name: "Department of Health NI: Outpatient waiting times", last_verified: "2026-10-01", volatility: "high", verify: true }
+);
+
+// ---------- Letters: Assessment of Need (AON) ----------
+// Wording asks for information and records facts. It does not say that anything
+// is unlawful and gives no legal or clinical advice.
+TOOL_LETTERS["aon-ack"] = {
+  title: "Ask for acknowledgement and a start date",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Assessment Officer / Assessment of Need team
+Health Service Executive
+{{hseArea}}
+
+Re: Assessment of Need application for {{childName}}{{refLine}}
+
+Dear Assessment Officer,
+
+I applied for an Assessment of Need under the Disability Act 2005 for {{childName}} (date of birth {{childDob}}). My records show that the HSE received the application on {{received}}.
+
+I have not yet received a written acknowledgement. Please confirm in writing:
+1. the date the HSE has recorded as receiving the application;
+2. whether the HSE regards the application as complete and, if so, from what date;
+3. the name and contact details of the Assessment Officer; and
+4. the date the assessment is expected to start.
+
+Yours sincerely,
+{{name}}`
+};
+
+TOOL_LETTERS["aon-chaser"] = {
+  title: "Overdue chaser",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Assessment Officer / Assessment of Need team
+Health Service Executive
+{{hseArea}}
+
+Re: Assessment of Need for {{childName}}{{refLine}}
+
+Dear Assessment Officer,
+
+I wrote to or applied to the HSE for an Assessment of Need for {{childName}} (date of birth {{childDob}}). The HSE received the application on {{received}}.
+
+I understand the Disability Act 2005 and its regulations set time periods for the assessment to start and be completed. I have not had {{missing}}.
+
+Please reply in writing within 10 working days to tell me:
+1. the current status of the assessment;
+2. the dates the HSE has recorded for this application; and
+3. when I can expect the next step.
+
+I am keeping a record of my contact with the HSE.
+
+Yours sincerely,
+{{name}}`
+};
+
+TOOL_LETTERS["aon-delay"] = {
+  title: "Ask the reason for the delay",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Assessment Officer / Assessment of Need team
+Health Service Executive
+{{hseArea}}
+
+Re: Assessment of Need for {{childName}}{{refLine}}
+
+Dear Assessment Officer,
+
+The HSE received the Assessment of Need application for {{childName}} on {{received}}. The assessment has not {{delayStage}}.
+
+Please tell me in writing:
+1. the reason for the delay;
+2. whether the HSE has told the Assessment Officer or the family of any extension, and on what basis; and
+3. the date by which the HSE now expects to {{delayAction}}.
+
+If the delay is due to waiting for information from me, please say exactly what is needed.
+
+Yours sincerely,
+{{name}}`
+};
+
+TOOL_LETTERS["aon-s14"] = {
+  title: "Cover note for the official section 14 complaint form",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Disability Complaints Officer
+Health Service Executive
+
+Re: Complaint about the Assessment of Need process for {{childName}}{{refLine}}
+
+Dear Complaints Officer,
+
+I enclose the completed official HSE complaint form under section 14 of the Disability Act 2005 for {{childName}} (date of birth {{childDob}}).
+
+Brief summary (full details are on the form):
+- The HSE received the application on {{received}}.
+- {{summary}}
+
+Enclosed: copies of the correspondence I hold (listed on the form). Please acknowledge receipt in writing.
+
+Yours sincerely,
+{{name}}`
+};
+
+TOOL_LETTERS["aon-service"] = {
+  title: "Services in the Service Statement not delivered",
+  body: `{{name}}
+{{address}}
+{{contact}}
+
+{{today}}
+
+The Liaison Officer / Assessment of Need team
+Health Service Executive
+{{hseArea}}
+
+Re: Service Statement for {{childName}}{{refLine}}
+
+Dear Liaison Officer,
+
+A Service Statement for {{childName}} (date of birth {{childDob}}) was issued on {{statementDate}}. It lists: {{services}}.
+
+I have not yet received {{notDelivered}}.
+
+Please tell me in writing:
+1. the date each listed service is expected to start;
+2. the reason for any delay; and
+3. who I should contact about it.
+
+Yours sincerely,
+{{name}}`
+};
 
 // ---------- Letter: asking about waiting-list status ----------
 TOOL_LETTERS["wy-status"] = {

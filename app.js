@@ -115,7 +115,10 @@
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
     { name: "While you wait (waiting lists)", href: "#/tools/waiting", keywords: "waiting list waiting lists ntpf validation letter suspended planned procedure status target" },
     { name: "Discharge passport", href: "#/tools/discharge", keywords: "discharge hospital leaving going home medicines appointments questions passport" },
-    { name: "Assessment of Need explainer", href: "#/tools/aon", keywords: "aon assessment of need disability act 2005 child disability complaint appeals" },
+    { name: "Assessment of Need toolkit", href: "#/tools/aon", keywords: "aon assessment of need disability act 2005 child disability complaint appeals cdnt service statement deadline calculator" },
+    { name: "National cancer screening programmes", href: "#/about/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear mammogram bowel cervical breast national screening service" },
+    { name: "Where waiting list data is published", href: "#/about/waiting-lists", keywords: "waiting lists data ntpf aon cdnt primary care statistics figures" },
+    { name: "Children's disability services explained", href: "#/rights/disability-children", keywords: "cdnt aon epsen seno sna dca domiciliary care allowance carer's support grant medical card children disability rights" },
     { name: "Schemes and cards selector", href: "#/tools/schemes", keywords: "scheme schemes cross border directive treatment abroad tas niphs northern ireland planned healthcare medical card gp visit card reimbursement" },
   ];
 
@@ -241,11 +244,19 @@
 
   function specialtyLabel(id){ return (SPECIALTIES.find(s => s.id === id) || {}).label || id; }
   function countyLabel(id){ return (COUNTIES.find(c => c.id === id) || {}).label || id; }
+  // Optional sub-county area (see AREAS in data.js). Navigation only, not HSE boundaries.
+  function areaLabel(id){
+    for (const k of Object.keys(AREAS)){ const hit = AREAS[k].find(x => x.id === id); if (hit) return hit.label; }
+    return id;
+  }
+  // Cork used to be three county ids; old links still work.
+  const LEGACY_COUNTY = { "cork-city": ["cork", "cork-city"], "cork-north": ["cork", "north-cork"], "cork-west": ["cork", "west-cork"] };
 
   function tagsHtml(entry){
     const specTags = entry.specialty.map(s => `<span class="tag tag-${accentForId(s)}">${specialtyLabel(s)}</span>`).join("");
     const countyTags = entry.county.map(c => `<span class="tag tag-${accentForId(c)}">${countyLabel(c)}</span>`).join("");
-    return `<div class="tag-row">${specTags}${countyTags}</div>`;
+    const areaTag = entry.area ? `<span class="tag tag-${accentForId(entry.county[0])}">${areaLabel(entry.area)}</span>` : "";
+    return `<div class="tag-row">${specTags}${countyTags}${areaTag}</div>`;
   }
 
   function entryCardHtml(entry){
@@ -471,15 +482,29 @@
   }
 
   function renderList(kind, id, sector){
+    // For counties the third URL part is an optional area (#/county/cork/west-cork).
+    let areaParam = kind === "county" ? sector : "";
+    if (kind === "county" && LEGACY_COUNTY[id]){ [id, areaParam] = LEGACY_COUNTY[id]; }
+    const countyAreas = kind === "county" ? (AREAS[id] || []) : [];
+    const activeArea = countyAreas.some(x => x.id === areaParam) ? areaParam : "";
     const label = kind === "specialty" ? specialtyLabel(id) : countyLabel(id);
-    const allResults = ENTRIES.filter(e => kind === "specialty" ? e.specialty.includes(id) : e.county.includes(id));
+    const allResults = ENTRIES.filter(e => kind === "specialty" ? e.specialty.includes(id) : e.county.includes(id) && (!activeArea || e.area === activeArea));
     const validSectors = ["public", "private", "voluntary"];
     const activeSector = kind === "specialty" && validSectors.includes(sector) ? sector : "";
     const results = activeSector
       ? allResults.filter(e => sectorOf(e) === activeSector)
       : allResults;
     const backHref = kind === "specialty" ? "#/specialty" : "#/county";
-    const filterHtml = kind === "specialty" ? sectorFilterHtml(id, activeSector) : "";
+    const areaHtml = countyAreas.length ? `
+      <div class="area-filter">
+        <label class="prep-label" for="areaSelect">Area</label>
+        <select id="areaSelect" class="prep-input">
+          <option value="">All of ${escapeHtml(label)}</option>
+          ${countyAreas.map(x => `<option value="${x.id}"${x.id === activeArea ? " selected" : ""}>${escapeHtml(x.label)}</option>`).join("")}
+        </select>
+        <p class="save-note">Areas are only a way to browse this list. They show where a service is based, not who it serves, and they are not HSE boundaries, so check your address with the service. Regional and county-wide services have no area and appear under "All of ${escapeHtml(label)}" only.</p>
+      </div>` : "";
+    const filterHtml = kind === "specialty" ? sectorFilterHtml(id, activeSector) : areaHtml;
     const cards = results.length
       ? results.map(entryCardHtml).join("")
       : `<div class="empty-state">Nothing listed here yet.</div>`;
@@ -492,10 +517,14 @@
       ${filterHtml}
       ${cards}
     `;
+    const areaSelect = document.getElementById("areaSelect");
+    if (areaSelect) areaSelect.addEventListener("change", () => {
+      location.hash = `#/county/${id}${areaSelect.value ? "/" + areaSelect.value : ""}`;
+    });
   }
 
   function entryHay(e){
-    return [e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel)]
+    return [e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel), e.area ? areaLabel(e.area) : ""]
       .join(" ").toLowerCase();
   }
 
@@ -612,6 +641,12 @@
       ? `<p class="checked-note">Checked ${escapeHtml(e.checked)}</p>`
       : "";
 
+    // Entries flagged verify: true have not been checked against the live
+    // official page yet. Say so, and link the source.
+    const verifyHtml = e.verify
+      ? `<p class="checked-note">Not yet checked against the official page, so contact details may be missing or out of date.${e.source_url ? ` <a href="${e.source_url}" target="_blank" rel="noopener">Official source ↗</a>` : ""}</p>`
+      : "";
+
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#" data-action="back">‹ Back</a>
@@ -625,6 +660,7 @@
         ${e.referral ? `<div class="referral-note"><strong>How to get in:</strong> ${linkifyText(e.referral)}</div>` : ""}
         ${resourcesHtml}
         ${checkedHtml}
+        ${verifyHtml}
       </div>
     `;
   }
@@ -830,10 +866,10 @@
       ? "all records held by your facility"
       : `records covering the period from ${startDate || "[start date]"} to ${endDate || "the present"}`;
 
-    return `[${name}]
-[${address}]
-[Date of birth: ${dob}]
-${contact ? `[${contact}]\n` : ""}
+    return `${name}
+${address}
+Date of birth: ${dob}
+${contact ? `${contact}\n` : ""}
 [Date]
 
 The Data Protection Officer
@@ -1864,7 +1900,7 @@ ${name}`;
     else if (parts[0] === "specialty" && !parts[1]) renderSpecialtyIndex();
     else if (parts[0] === "specialty" && parts[1]) renderList("specialty", parts[1], parts[2]);
     else if (parts[0] === "county" && !parts[1]) renderCountyIndex();
-    else if (parts[0] === "county" && parts[1]) renderList("county", parts[1]);
+    else if (parts[0] === "county" && parts[1]) renderList("county", parts[1], parts[2]);
     else if (parts[0] === "search" && parts[1]) renderSearch(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
@@ -1878,6 +1914,8 @@ ${name}`;
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
+    else if (parts[0] === "about" && parts[1] && window.HH_TOOLS && window.HH_TOOLS.renderAbout(parts[1], app, { escapeHtml, printOnly, readStore, writeStore, clearStore })) { /* rendered */ }
+    else if (parts[0] === "rights" && parts[1] && window.HH_TOOLS && window.HH_TOOLS.renderPage(parts[1], app, { escapeHtml, printOnly, readStore, writeStore, clearStore })) { /* rendered */ }
     else if (parts[0] === "tools" && window.HH_TOOLS) window.HH_TOOLS.render(parts[1] || "", app, { escapeHtml, printOnly, readStore, writeStore, clearStore });
     else renderHome();
 

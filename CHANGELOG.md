@@ -13,6 +13,51 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-10-01 [Claude] (Phase A entries, PR B)
+- Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+## 2026-10-02 [Claude] (Pass 5 replacement: rows and docs)
+- 13 entries across three PRs: rights (MHC tribunals, DPC access timelines, HSE safeguarding; new `rights` specialty), CIPC, QUIT, Home Support application, Carer's Allowance (no figures), stroke ESD, MS unit, CGM managed access, cardiac rehab, adult sickle cell, sarcoma. All `verify: true`, search-result only, no contacts. LauraLynn and Jigsaw tagged `voluntary`.
+- Validator: `urlStatus` is `opened`, `search-result` or `unverified`; an entry with a `urlStatus` and no `checked` date must be `verify: true`; `source_url` must be on an official-domain allow-list (charity hosts need approval); `verify: true` blurbs can't hold a phone, email or Eircode or clinical-instruction wording; no field may mention "Budget 2027". 34 rule tests.
+- `GAPS.md`: replacement gap table and human checklist.
+
+## 2026-10-02 [Claude] (Pass 5 replacement: corrections)
+- Bill 88 text now says: First Stage 18 Sep 2026; a Second Stage debate on 23 Sep 2026 is reported by a non-official source only; Second Stage not confirmed ended; Committee Stage not reached; not law. The AON completion fact cites S.I. 263/2007 Reg. 10 as made ("save for in exceptional circumstances", written reasons before the 3 months expire) and says it is not a no-exceptions deadline. Both stay `verify: true`; the S.I. text was not opened by us.
+## 2026-10-02 [Claude] (Pass 3 rows)
+- Added 11 entries (neuro-rehabilitation, spinal cord injury, sleep, NIPHS, memory assessment, Work-Able) with 4 new specialties; all `verify: true`, search-result only, no contacts. Updated the Home Support Providers Act entry in place. Skipped duplicates (HSE helpline, home STI kit) and withheld two rows with non-official sources (adult ADHD, Living Well with Chronic Pain).
+
+## 2026-10-02 [Claude] (Pass 4 rows)
+- Added 4 entries (home support providers Act, community ophthalmic scheme, NCCP designated centres, Carer's Support Grant with a new `carers` specialty), updated 2 in place (autism protocol, audiology) plus the PAS scope text, and added 2 FOI facts to the records tool. Skipped duplicates (YSYS, PAS, FOI) and withheld the ME/CFS row (press source). GP card and DPS held until after Budget 2027. All flagged `verify` with `urlStatus: "search-result"`.
+
+## 2026-10-02 [Claude] (matrix follow-up)
+- `area` now means physical base. Cork City dropped from 55 to 2 entries (regional services have no area); West Cork stays at 10. Narrowed the rule to "no single-county targeting" in `AI_RULES.md`.
+- County matrix: Cork is one county, `--areas` prints Cork per area with a reconciliation line (areas + no area = county total). Removed the West Cork priority wording from `GAPS.md`; replaced with a neutral sub-county line. The 5 Sep 2026 population-based review sections are left as history.
+
+## 2026-10-01 [Claude] (county matrix, PR D)
+- Added the ROI 26-county matrix to `GAPS.md` and `scripts/county-matrix.js`. Main finding: all child-disability, PHN, allied health and dental entries are `national`-tagged, so no county has a local one. The HSE-finder baseline was not done (hse.ie is egress-blocked here). `SECTOR_AUDIT.md` notes for `ngs-columcilles` and `hse-ahr`.
+## 2026-10-02 [Claude] (Cork CDNTs)
+- Added Cork CDNT 6 and CDNT 7 (`area: "east-cork"`), `verify: true`, `urlStatus: "search-result"`, no contacts and no lead agency. `GAPS.md` records that Cork has 11 CDNTs (4 to 14) per HSE parliamentary replies, and the human checks outstanding.
+
+## 2026-10-01 [Claude] (static pages)
+- Added `#/about/screening` (BowelScreen 57-71, BreastCheck 50-69, CervicalCheck 25-65, with a last-checked note) and `#/about/waiting-lists` (links to the NTPF, HSE performance reports and DoH NI publishers; no figures). 7 new `TOOL_FACTS`, all `verify: true`, search cross-check only. Both pages are in the app search. Stacked on `claude/aon-toolkit` (reuses its `renderPage` hook and the v12 cache bump).
+
+## 2026-10-01 [Claude]
+- **AON toolkit (`#/tools/aon`)**: extended the existing explainer rather than adding a second route. Deadline calculator (acknowledgement +14 days, start +3 months, report +6 months, Service Statement +1 month after the report date or about 7 months overall if no report date, complaint window 3 months), calendar-month arithmetic that clamps month-ends, opt-in "Save on this device". Five letter templates (acknowledgement, overdue chaser, delay reason, s.14 cover note, Service Statement non-delivery), FOI/SAR via the existing records builder, escalation ladder, evidence checklist (links to `#/log`), glossary, "not legal advice" notice signposting the Legal Aid Board, Citizens Information and the OCO. No eligibility prediction, no "this breaches the law" wording, no rates.
+- **`#/rights/disability-children`**: CDNT vs AON, EPSEN, SENO/SNA, DCA to medical card to Carer's Support Grant, with links out and no rates.
+- 12 new `TOOL_FACTS` (all `verify: true`) and `aon-bill` rewritten. See `GAPS.md`.
+- `scripts/test-aon-dates.js` (month-ends, leap years, missing report date, bad dates), run in CI. Service worker cache v11 to v12. No new files to precache.
+- Follow-up: Bill banner now "before the Dáil, not yet law" (no stage date); the Circuit Court (s.22) ladder step was replaced with a non-committal "court routes, information only" step pending a read of the Act; calculator gained an optional "review date stated in your report" field and a 12-month outer limit.
+- Pass 4 fixes: ladder now says optional mediation (s.19), High Court appeal on a point of law only (s.20), Circuit Court enforcement (s.22); all one-year-review wording removed (the review period is in each report) and a s.9(7) repeat-application note added; s.9(5) cited for the 3-month start and the completion period flagged as set in regulations (S.I. 263/2007, not opened); Bill banner reads "debated at Dáil Second Stage 23 Sep 2026. Not law."; Patient Advocacy Service scope now includes patient safety incidents. Copy is covered by new tests. Section numbers are from the brief, unverified by us.
+- **Not done / blocked:** official sites (hse.ie, oireachtas.ie, citizensinformation.ie) are egress-blocked here, so no URL was curl-checked and the Bill stage was not confirmed on oireachtas.ie. Facts rest on search results only.
+## 2026-10-02 [Claude] (area schema)
+- **Optional `area` field** (sub-county, navigation only). `AREAS` in `data.js`; only Cork has areas: West, East, North, Cork City and South Cork. `south-cork` is awaiting a human decision. Areas are not HSE boundaries and the county page says so.
+- **Cork is now one county** (`cork`). The three old ids `cork-city`, `cork-north`, `cork-west` were removed from `COUNTIES`. 68 entries migrated. `area` means where a service is physically based, not who it serves, so regional and county-wide services (CUH, CUMH, Mercy, SIVUH, Bon Secours, Mater Private, SATU, networks) were left without an area. Kept: 10 West Cork community services and 2 Cork City community charities. Old links (`#/county/cork-city` etc.) redirect to the county plus area. The county page has an "Area" dropdown, shown only for counties that define areas.
+- **New optional `urlStatus`** (`opened` or `search-result`). `scripts/validate-data.js` fails the build on: an unknown county or specialty, an unknown `area`, an `area` that doesn't belong to one of the entry's counties, a `verify: true` entry with no `source_url`, and a `verify: true` entry that has a phone, email or address without `urlStatus: "opened"`. `scripts/test-validate-data.js` covers the rules (15 checks). Both run in CI.
+- Field names follow the existing schema (`county` is an array of ids, `source_url`, `checked`), not the brief's draft names. `cdnt` maps to the existing `childdisability`.
+
+## 2026-09-29 [Claude]
+- **Fixed doubled brackets in the SAR builder preview** (`app.js`, `generateSarLetter`). The empty-state fallbacks (`[Your name]`, `[Your address]`, `[Your date of birth]`) already carry brackets, and the letter header wrapped every value in a second pair, giving `[[Your name]]` and `[Date of birth: [Your date of birth]]`. It also bracketed real values once filled (`[Jane Smith]`). The header now prints values unwrapped, with the "Date of birth:" label outside any brackets. Placeholders keep their single pair; the contact line is unbracketed too. One code path serves both jurisdictions (ROI and NI differ only in the statute text), so the NI variant is covered. `LETTER_TEMPLATES` in `data.js` and `tools.js` letters use plain single-bracket placeholders and were not affected. Service worker cache `v10` -> `v11`.
+- Not yet browser-tested after the fix; from source only.
+
 ## 2026-09-28 [Claude]
 - **Removed the Grok/multi-AI lane-split coordination model.** Claude Code is now the sole implementer of this repo — content, data, JS, HTML, and CSS. `AI_RULES.md` rewritten around content rules (official-source-only, `checked`/`last_verified`, `source_url`, no analytics, administrative-only scope) instead of a two-tool lane table. `MASTER-BUILD-PLAN.md`'s coordination section marked historical. `SECTOR_AUDIT.md` and this file's own past entries keep their existing Grok mentions as-is — dated historical record, not standing rules.
 - **Removed every third-party network request**, so the "no analytics/trackers" claim in `index.html`'s footer is actually true on page load, not just true of first-party tracking:
