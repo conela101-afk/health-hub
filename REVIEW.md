@@ -102,3 +102,22 @@ User supplied a `private_jci_enrichment.csv` (25 rows) covering JCI-accredited p
 - **Two discrepancies flagged rather than silently resolved:** Galway Clinic's switchboard is recorded as 091 785 000 in `data.js` but 091 785 800 in the enrichment CSV — noted in the entry itself, not resolved (no live fetch available to check which is current). Kingsbridge Sligo's JCI status is listed "unknown" in the enrichment CSV but the hospital's own site describes it as JCI-accredited — flagged in the entry rather than asserted either way.
 - Respected "unknown" JCI status honestly: Kingsbridge (Belfast, already listed), UPMC Kildare, and UPMC Sports Surgery Clinic got no JCI claim added, since the source data doesn't support one. St Patrick's and St John of God likewise note JCI status as unconfirmed rather than silently added or omitted.
 - `data.js`: 456 → 462 entries. Verified in-browser via Playwright that all 6 new entries render.
+
+### 2026-10-06 / 07: tertiary gaps
+
+Search-result only; egress to hse.ie, beaumont.ie and nidirect was blocked. Human browser checklist:
+
+- [ ] Cardiac items 1a, 1b, 1c, 1e (open the 2025 National Review PDF; then clear `verify` and add `checked` on the four comprehensive-centre entries).
+- [ ] Mater: 24/7 primary PCI and EP/ablation. St James's: Keith Shaw Unit "national referral centre" wording.
+- [ ] `bons-cork-cardiology`: Urgent & Express fee cap and criteria; tilt-table testing (Cork not on the HSE page).
+- [ ] Beaumont MND clinic wording (row withheld pending host approval).
+- [ ] GUIDe Clinic: booking, PrEP/PEP arrangements, walk-in (existing `gum-guide-stjames`).
+- [ ] `gum-guide-stjames` (existing entry, not edited): its phone was checked by web search before the current rules, not copied from a page a person opened. "HSE-operated" and `sector: "voluntary"` are unverified.
+- [ ] `ni-regional-genetics` (existing entry, not edited): its phone, email and address were checked by web search before the current rules. The regional clinic list and "single service" wording are unverified.
+- [ ] SVUH liver transplant page; pancreas programme mention.
+- [ ] NRH referral page: acknowledgement and review timelines.
+- [ ] HSE psycho-oncology page and per-centre teams.
+- [ ] CHI genetics page (row withheld).
+- [ ] Belfast Trust liver coordinator page and Freeman route (`ni-transplant-gb-referral`).
+- [ ] Galway Clinic phone.
+- [ ] Open the five new `source_url`s.

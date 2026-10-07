@@ -383,3 +383,21 @@ Unverified, not researched (do not treat as absent pathways): continence/urogyna
 Possible gaps, source was search-result only: HSE interpreter access (staff SOP exists, no patient-facing page found), Beaumont ILD and bronchiectasis, headache pathway beyond the Mater, Mental Health Commission inspector role for community CAMHS, NI short breaks, BSO Regional Interpreting Service.
 
 Browser checks needed: HSE Diabetic Foot MOC PDF, NCG17 copy on hse.ie, Mater neurology phone lines, Bill 88 stage (Second Stage scheduled 23 Sep 2026, completion unverified; `aon-bill` fact stays `verify: true`), Carer's Allowance rates after Budget 2027 on 6 Oct.
+
+## Tertiary gaps (6 Oct 2026)
+
+Added 12 rows: `roi-svuh-liver-transplant`, `roi-nrh-rehab`, `roi-nccp-aya-network`, `ni-belfast-tya-cancer`, `roi-nccp-psycho-oncology`, `roi-beaumont-mnd-clinic`, `roi-chi-ghift`, `roi-chi-ncimd`, `roi-chi-craniofacial`, `roi-chi-clinical-genetics`, `roi-bons-cork-heart-lung`, `roi-bons-cork-radiotherapy`. All `verify: true`, `urlStatus: "search-result"`, web link only, no contacts. Every URL is unchecked until a person opens it. `beaumont.ie`, `childrenshealthireland.ie` and `bonsecours.ie` were added to the validator's `SOURCE_DOMAINS` on 7 Oct 2026 (hospitals' own sites, approved by the owner).
+
+**Row-specific notes:** the MND row is named "Motor Neurone Disease (MND) Clinic, Beaumont Hospital" (no "National" or "HSE national centre" wording; no clinic days). GHIFT does not say where paediatric liver transplant happens. NCIMD outreach (Cork, Limerick, Ballinasloe) and the Bon Secours Varian Edge mention are flagged unconfirmed. Bon Secours rows are `sector: private`; heart & lung is Cork-only, launched 2024, no TAVI claim. "Only SRS/SBRT in Munster" is withheld. The radiotherapy URL is the page search returned (`/cork-departments/radiotherapy`), not `/services/radiation-therapy`.
+
+**Withheld, with the condition to un-withhold:**
+
+| id | Why withheld | Un-withhold when |
+|---|---|---|
+| `roi-sjh-guide-clinic` | Duplicate of existing `gum-guide-stjames` | Not needed. Optionally add the online-booking, PrEP/PEP text and a pointer to `sh24-roi` to the existing entry once the page is opened |
+| `ni-regional-genetics-bch` | Duplicate of existing `ni-regional-genetics` (Belfast City Hospital) | Not needed |
+| `ngs-columcilles`, `ncp-adult-adhd`, `hse-living-well-pain`, `gap-mecfs` | Non-official or no source (unchanged) | An official HSE page is found |
+
+**Correction to the 6 Oct audit gap table:** it wrongly listed the GUIDe clinic and NI genetics (Belfast City Hospital) as missing. Both already exist (`gum-guide-stjames`, `ni-regional-genetics`), so no rows were added. Their contacts and some wording are unverified; see the `REVIEW.md` browser checklist.
+
+Also left out: pancreas programme mention (SVUH), National AYA MDM, SVUH psycho-oncology per-centre claim, any NCH opening date, any row from the private-hospital matrix doc.
