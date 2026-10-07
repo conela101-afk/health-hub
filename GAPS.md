@@ -353,6 +353,8 @@ Mapped from the Pass 4 file into the repo schema. All search-result only, `verif
 - `hse-autism-protocol-adult` says adults can self-refer; the Pass 4 row says ask your GP. Kept the older wording and flagged it.
 - `hse-audiology` still says it does not supply hearing aids to everyone, next to the new "free hearing aids for adult medical-card holders". Check both against the HSE page.
 
+**Update 7 Oct 2026:** neither the gov.ie health release nor the Citizens Information Budget 2027 page mentions the GP visit card, DPS or the AON bill stage, so these stay on hold pending a re-read of gov.ie Your guide to Budget 2027.
+
 **On hold until after the 6 Oct 2026 Budget:** GP visit card (8 to 69) and Drugs Payment Scheme rows. Values in the Pass 4 file came from search results only. Update the existing `sc-card-*` / `sc-gpvc-auto` facts and DPS content in place after re-checking gov.ie. No figures are in the repo.
 
 ## Cork CDNTs (2 Oct 2026)

@@ -121,6 +121,10 @@ Search-result only; egress to hse.ie, beaumont.ie and nidirect was blocked. Huma
 - [ ] Restore or replace the HSE psycho-oncology `source_url` when HSE pages return (NCCP site down 7 Oct 2026; the old hse.ie psycho-oncology URLs return "Page not found"). `roi-nccp-psycho-oncology` stays `search-result`, `verify: true`, old URL.
 - [ ] CUH psycho-oncology page (cannot be opened while CUH is on maintenance).
 - [x] CHI genetics page: opened 7 Oct 2026. Page lists both CHI at Crumlin and Temple Street, so the row is renamed. `verify` cleared and `checked: 7 Oct 2026` set.
-- [ ] Belfast Trust liver coordinator page and Freeman route (`ni-transplant-gb-referral`).
-- [ ] Galway Clinic phone check: 091 785 000 (in `data.js`) vs 091 785 800 (enrichment CSV).
+- [x] Belfast Trust liver coordinator page: opened 7 Oct 2026. Adults only; pre- and post-transplant care at the RVH, surgery at King's College Hospital, London; the RVH with King's is described as the only hospital in NI running a liver transplant service. `ni-transplant-gb-referral` liver part sourced and `checked: 7 Oct 2026`. The SVUH wording (King's as a training link and second-opinion arrangement) is a different official page and is not merged with this.
+- [ ] Heart and lung to Freeman (`ni-transplant-gb-referral`): the Belfast Trust cardiac surgery page (opened 7 Oct 2026) says it does all surgical procedures apart from transplants but does not name Freeman. Stays `verify: true`. Pancreas and kidney-pancreas: no wording found, unverified.
+- [x] Galway Clinic phone: confirmed 7 Oct 2026. `blackrockhealth.com/locations` lists Galway as +353 91 785 000, so 091 785 000 stands. The 800 variant in the enrichment CSV is most likely the Limerick Clinic's 1800 784 000 from the same page. `galway-clinic-gynae` `checked` updated.
+- [x] `galwayclinic.com` now redirects (301) to `blackrockhealth.com`. Owner approved `blackrockhealth.com` for the allow-list 7 Oct 2026; `galway-clinic-gynae` web field updated and `source_url` set to the locations page.
+- [ ] Re-read gov.ie Your guide to Budget 2027 for GP visit card, DPS and AON.
+- [ ] Budget 2027 items still marked as announced only: re-check start dates once the Finance Bill and social welfare legislation pass (Free Contraception Scheme to age 37, 1.8 million home-support hours, new CAMHS ADHD pathway, four new Jigsaw services, 500 extra NHSS places, Carer's Allowance disregard from July 2027, €10 weekly rate rises from January 2027, €500 cost of disability payment date).
 - [ ] Open the five new `source_url`s.
