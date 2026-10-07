@@ -532,9 +532,15 @@
     });
   }
 
+  // Normalised once per entry (see search.js) so typing a query never re-normalises 500+ entries.
+  const hayCache = new Map();
   function entryHay(e){
-    return [e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel), e.area ? areaLabel(e.area) : ""]
-      .join(" ").toLowerCase();
+    let h = hayCache.get(e.id);
+    if (h === undefined){
+      h = HHSearch.normalise([e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel), e.area ? areaLabel(e.area) : ""].join(" "));
+      hayCache.set(e.id, h);
+    }
+    return h;
   }
 
   function providerGroupCardHtml(provider, entries){
@@ -553,25 +559,23 @@
     `;
   }
 
-  // The whole query, plus any aliases from SEARCH_ALIASES in data.js (see the note there).
-  function searchVariants(q){
-    return [q].concat(SEARCH_ALIASES[q.trim()] || []);
-  }
-
+  // Matching lives in search.js (shared with scripts/search-audit.js); aliases and the US/UK
+  // spelling map are in data.js.
   function renderSearch(query){
-    const q = query.toLowerCase();
-    const variants = searchVariants(q);
-    const terms = q.split(/\s+/).filter(Boolean);
+    const p = HHSearch.prepare(query);
+    const match = HHSearch.matcher(p);
+    const terms = p.terms;
     const isPrivateQuery = terms.includes("private");
     const isVoluntaryQuery = terms.includes("voluntary");
     const otherTerms = terms.filter(t => t !== "private" && t !== "voluntary");
+    const providerHay = e => HHSearch.normalise(e.provider || "");
 
     let privateEntries = [];
     if (isPrivateQuery){
       privateEntries = ENTRIES.filter(e => sectorOf(e) === "private");
       if (otherTerms.length){
         privateEntries = privateEntries.filter(e =>
-          otherTerms.every(t => entryHay(e).includes(t) || (e.provider || "").toLowerCase().includes(t))
+          otherTerms.every(t => entryHay(e).includes(t) || providerHay(e).includes(t))
         );
       }
     }
@@ -580,19 +584,23 @@
       voluntaryEntries = ENTRIES.filter(e => sectorOf(e) === "voluntary");
       if (otherTerms.length){
         voluntaryEntries = voluntaryEntries.filter(e =>
-          otherTerms.every(t => entryHay(e).includes(t) || (e.provider || "").toLowerCase().includes(t))
+          otherTerms.every(t => entryHay(e).includes(t) || providerHay(e).includes(t))
         );
       }
     }
     const privateIds = new Set(privateEntries.map(e => e.id));
     const voluntaryIds = new Set(voluntaryEntries.map(e => e.id));
 
-    const results = ENTRIES.filter(e => !privateIds.has(e.id) && !voluntaryIds.has(e.id) && variants.some(v => entryHay(e).includes(v)));
-    const matchesOrg = o => { const hay = [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase(); return variants.some(v => hay.includes(v)); };
+    const results = ENTRIES.filter(e => !privateIds.has(e.id) && !voluntaryIds.has(e.id) && match(entryHay(e)));
+    const matchesOrg = o => match(HHSearch.normalise([o.name, o.remit, o.offer, ...(o.tags||[])].join(" ")));
     const orgResults = SUPPORT_ORGS.filter(matchesOrg);
     const generalOrgResults = GENERAL_ADVOCACY_ORGS.filter(matchesOrg);
-    const toolResults = TOOL_PAGES.filter(t => (t.name + " " + t.keywords).toLowerCase().includes(q));
-    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length + voluntaryEntries.length + toolResults.length;
+    const toolResults = TOOL_PAGES.filter(t => match(HHSearch.normalise(t.name + " " + t.keywords)));
+    // Conditions load on demand (data/conditions.js); until then search runs without them.
+    const conditionResults = (typeof CONDITIONS !== "undefined")
+      ? CONDITIONS.filter(c => match(HHSearch.normalise(`${c.name} ${c.category} ${(c.keywords||[]).join(" ")}`))).slice(0, 20)
+      : [];
+    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length + voluntaryEntries.length + toolResults.length + conditionResults.length;
 
     const toolSection = toolResults.length
       ? `<p class="section-title">Tools &amp; pages</p><div class="simple-list">${toolResults.map(t => `<a class="row" href="${t.href}"><span class="row-body"><h2>${t.name}</h2></span><span class="arrow">›</span></a>`).join("")}</div>`
@@ -615,19 +623,38 @@
     const generalOrgCards = generalOrgResults.length
       ? `<p class="section-title">General advocacy &amp; support</p><div class="org-grid">${generalOrgResults.map(orgCardHtml).join("")}</div>`
       : "";
+    const conditionSection = conditionResults.length
+      ? `<p class="section-title">Conditions</p><div class="simple-list">${conditionResults.map(conditionRowHtml).join("")}</div>`
+      : "";
+    // Facilities are not indexed here; one row hands the query on to the regulated-facilities search.
+    const facilityRow = p.q
+      ? `<p class="section-title">Regulated facilities</p><div class="simple-list"><a class="row" href="#/facilities"><span class="row-body"><h2>Search regulated facilities for "${escapeHtml(query)}"</h2></span><span class="arrow">›</span></a></div>`
+      : "";
     const safeQuery = escapeHtml(query);
+    const also = HHSearch.alsoSearched(p);
+    const alsoLine = also ? `<p class="count">Also searched: ${escapeHtml(also)}</p>` : "";
     const body = totalCount
-      ? `${toolSection}${privateSection}${voluntarySection}${cards}${orgCards}${generalOrgCards}`
-      : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>`;
+      ? `${toolSection}${privateSection}${voluntarySection}${cards}${conditionSection}${orgCards}${generalOrgCards}${facilityRow}`
+      : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>${facilityRow}`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
         <h1>Search: "${safeQuery}"</h1>
         <p class="count">${totalCount} result${totalCount === 1 ? "" : "s"}</p>
+        ${alsoLine}
       </div>
       ${body}
     `;
     searchInput.value = query;
+  }
+
+  // Search runs at once, then re-runs with conditions included when data/conditions.js has loaded.
+  // If that file can't load (offline before first cache), search still works without conditions.
+  function renderSearchRoute(query){
+    renderSearch(query);
+    if (typeof CONDITIONS !== "undefined") return;
+    const hash = location.hash;
+    loadAsset("data/conditions.js").then(() => { if (location.hash === hash) renderSearch(query); }).catch(() => {});
   }
 
   function renderEntry(id){
@@ -1304,8 +1331,9 @@ ${name}`;
 
     function draw(query){
       const q = (query || "").trim().toLowerCase();
+      const match = HHSearch.matcher(HHSearch.prepare(q));
       const filtered = q
-        ? items.filter(f => `${f.name} ${f.county_or_trust} ${f.address} ${f.provider}`.toLowerCase().includes(q))
+        ? items.filter(f => match(HHSearch.normalise(`${f.name} ${f.county_or_trust} ${f.address} ${f.provider}`)))
         : items;
       const shown = filtered.slice(0, FACILITY_LIST_CAP);
       const listEl = document.getElementById("facility-results");
@@ -1365,8 +1393,9 @@ ${name}`;
 
     function draw(query){
       const q = (query || "").trim().toLowerCase();
+      const match = HHSearch.matcher(HHSearch.prepare(q));
       const filtered = q
-        ? list.filter(c => `${c.name} ${c.category} ${(c.keywords || []).join(" ")}`.toLowerCase().includes(q))
+        ? list.filter(c => match(HHSearch.normalise(`${c.name} ${c.category} ${(c.keywords || []).join(" ")}`)))
         : list;
       const shown = filtered.slice(0, CONDITION_LIST_CAP);
       const listEl = document.getElementById("condition-results");
@@ -1971,7 +2000,7 @@ ${name}`;
     else if (parts[0] === "specialty" && parts[1]) renderList("specialty", parts[1], parts[2]);
     else if (parts[0] === "county" && !parts[1]) renderCountyIndex();
     else if (parts[0] === "county" && parts[1]) renderList("county", parts[1], parts[2]);
-    else if (parts[0] === "search" && parts[1]) renderSearch(decodeURIComponent(parts.slice(1).join("/")));
+    else if (parts[0] === "search" && parts[1]) renderSearchRoute(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");

@@ -413,7 +413,19 @@ Research items only. No entries written; each needs official sources and Elaine'
 1. **Fathers and non-birthing partners:** perinatal mental health support, and parental and paternity leave and benefit rights (Citizens Information, gov.ie, nidirect).
 2. **Adoptive and foster parents:** post-placement support, adoption leave and benefit, and the statutory bodies (Adoption Authority of Ireland, Tusla, HSC Trust adoption services). Tusla and AAI are not on the source-domain allow-list. **Elaine approved both on 7 Oct 2026: `tusla.ie` is now on the allow-list, and `aai.gov.ie` was already covered by `gov.ie`.**
 3. **Same-sex couples and fertility:** public AHR eligibility and the legal position on parentage and surrogacy, from HSE and gov.ie only, as administrative information and never as legal claims.
-4. **Search aliases (done 7 Oct 2026):** `SEARCH_ALIASES` in `data.js` maps a whole query (dad, father, adoption, foster, LGBTQ+ parents, same-sex parents, trans and non-binary parent, chestfeeding, motherhood) to terms that already appear in entries, mostly the "New & Expectant Parents" specialty label. It routes people to existing pages and adds no claims. Adoption, foster and same-sex-parent searches still lead only to generic parenting entries until the content gaps above are filled.
+4. **Search aliases (done 7 Oct 2026):** see the search section below. Adoption, foster and same-sex-parent searches still lead only to generic parenting entries until the content gaps above are filled.
 5. **Discoverability after the relabel:** covered by the `motherhood` alias.
 6. **Duplicate resolved (7 Oct 2026):** `nurture-pnd` was merged into `nurture`, which now carries both the `parenting` and `mh` specialties and wording taken from nurturehealth.ie. The id `nurture-pnd` no longer exists, so any bookmark to that entry will not resolve.
 7. **Not reviewed:** `Cork-Womens-Health-Pocket-Guide.docx` (separate asset, not part of the PWA).
+
+## Search: content gaps the audit exposed (7 Oct 2026)
+
+Queries that still return nothing after the matching fix, so the content is missing, not search. Listed in `scripts/search-audit-known-gaps.txt`; the audit fails if any other query returns nothing. Research only: no entries until sourced and approved.
+
+- **Interpreter access** (already in Pass 6; this confirms demand).
+- **Second opinion:** rights and routes, likely a toolkit page via HSE and Citizens Information.
+- **Long-term illness scheme:** `long term illness` returns nothing; `LTI` may exist under a different phrase.
+- **HSE Live** as a findable item (the number appears only inside the complaints tool facts).
+- **NI 111** and similar: verify first, do not add from memory.
+- **US spellings with no content to land on:** `anesthesia`, `esophagus`. Left as they are.
+- **Irish-language queries** (10 tried, `scripts/search-audit-queries-ga.txt`): 1 returns anything, the other 9 return nothing. Content was not translated. Whether to add Irish aliases or content is a decision for Elaine.
