@@ -6920,6 +6920,78 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
+  {
+    id: "roi-svuh-liver-transplant",
+    name: "National Liver Transplant Programme, St Vincent's University Hospital",
+    sector: "voluntary",
+    specialty: ["gastro"],
+    county: ["dublin"],
+    blurb: "National liver transplant programme at St Vincent's University Hospital, Dublin, running since 1993. Referral for assessment comes from a clinician.",
+    referral: "Clinician referral only.",
+    contact: { web: "www.stvincents.ie/departments/national-liver-transplant-programme/" },
+    source_url: "https://www.stvincents.ie/departments/national-liver-transplant-programme/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-nrh-rehab",
+    name: "National Rehabilitation Hospital: referral process",
+    specialty: ["neurorehabilitation"],
+    county: ["dublin"],
+    blurb: "Specialist inpatient and outpatient rehabilitation for acquired brain injury (including stroke and other neurological conditions), spinal cord injury and limb absence. Referrals come from acute hospitals, GPs and community agencies through the NRH Central Referrals Office.",
+    details: [
+      "Only complete referrals can be processed. The NRH publishes acknowledgement and review timelines for referrers; these have not been confirmed here, so check the referral page.",
+      "For spinal cord injury see also the National Spinal Cord Injury Service entry (nrh-scsc)."
+    ],
+    referral: "Referral from an acute hospital, GP or community agency to the Central Referrals Office.",
+    contact: { web: "www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/" },
+    source_url: "https://www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-nccp-aya-network",
+    name: "National AYA Cancer Network (NCCP)",
+    specialty: ["oncology"],
+    county: ["dublin", "cork", "galway"],
+    blurb: "HSE National Cancer Control Programme network for adolescents and young adults (ages 16 to 24) with cancer. Hub-and-spoke model with designated centres at St James's, Cork University Hospital, University Hospital Galway and CHI.",
+    details: [
+      "Ask your cancer team whether you can be linked with your nearest AYA centre.",
+      "The Northern Ireland teenage and young adult service covers ages 14 to 24; see the Belfast Trust entry."
+    ],
+    referral: "Through your cancer team.",
+    contact: { web: "www.hse.ie/eng/services/list/5/cancer/about/nccp-children-adolescent-young-adult-caya-cancer-programme/the-nccp-children-adolescent-and-young-adult-caya-cancer-programme.html" },
+    source_url: "https://www.hse.ie/eng/services/list/5/cancer/about/nccp-children-adolescent-young-adult-caya-cancer-programme/the-nccp-children-adolescent-and-young-adult-caya-cancer-programme.html",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-belfast-tya-cancer",
+    name: "Teenage & Young Adult Cancer Service, Belfast Trust",
+    specialty: ["oncology"],
+    county: ["antrim"],
+    blurb: "Support service for young people aged 14 to 24 with a cancer diagnosis, with staff at the Royal Belfast Hospital for Sick Children and the Belfast City Hospital Cancer Centre.",
+    details: [
+      "The age range differs from the Republic of Ireland's AYA network (16 to 24)."
+    ],
+    referral: "Ask your cancer team.",
+    contact: { web: "belfasttrust.hscni.net/services/cancer/support-services/teenage-and-young-adult-service/" },
+    source_url: "https://belfasttrust.hscni.net/services/cancer/support-services/teenage-and-young-adult-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-nccp-psycho-oncology",
+    name: "Psycho-oncology (NCCP Model of Care)",
+    specialty: ["oncology"],
+    county: ["national"],
+    blurb: "Psychological and psychosocial support for people with cancer, their carers and families, delivered by psycho-oncology teams in the main cancer treatment centres under the NCCP Model of Care. Ask your cancer team.",
+    referral: "Ask your cancer team.",
+    contact: { web: "www.hse.ie/eng/services/list/5/cancer/profinfo/psycho-oncology-programme/" },
+    source_url: "https://www.hse.ie/eng/services/list/5/cancer/profinfo/psycho-oncology-programme/",
+    urlStatus: "search-result",
+    verify: true
+  },
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate

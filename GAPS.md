@@ -383,3 +383,22 @@ Unverified, not researched (do not treat as absent pathways): continence/urogyna
 Possible gaps, source was search-result only: HSE interpreter access (staff SOP exists, no patient-facing page found), Beaumont ILD and bronchiectasis, headache pathway beyond the Mater, Mental Health Commission inspector role for community CAMHS, NI short breaks, BSO Regional Interpreting Service.
 
 Browser checks needed: HSE Diabetic Foot MOC PDF, NCG17 copy on hse.ie, Mater neurology phone lines, Bill 88 stage (Second Stage scheduled 23 Sep 2026, completion unverified; `aon-bill` fact stays `verify: true`), Carer's Allowance rates after Budget 2027 on 6 Oct.
+
+## Tertiary gaps (6 Oct 2026)
+
+Added 5 rows (`roi-svuh-liver-transplant`, `roi-nrh-rehab`, `roi-nccp-aya-network`, `ni-belfast-tya-cancer`, `roi-nccp-psycho-oncology`). All `verify: true`, `urlStatus: "search-result"`, web link only, no contacts. Every URL is unchecked until a person opens it.
+
+**Withheld, with the condition to un-withhold:**
+
+| id | Why withheld | Un-withhold when |
+|---|---|---|
+| `roi-beaumont-mnd-clinic` | `beaumont.ie` not on the validator's `SOURCE_DOMAINS` allow-list | A person approves the host. Source: beaumont.ie neurology page. No "HSE national centre" wording, no clinic days |
+| `roi-chi-ghift`, `roi-chi-ncimd`, `roi-chi-craniofacial`, `roi-chi-clinical-genetics` | `childrenshealthireland.ie` not on the allow-list | Host approved. GHIFT must not say where paediatric liver transplant happens; NCIMD outreach Cork, Limerick, Ballinasloe; no "~2 year" genetics wait |
+| `roi-bons-cork-heart-lung`, `roi-bons-cork-radiotherapy` | `bonsecours.ie` not on the allow-list | Host approved. `sector: private`. No TAVI claim; Varian Edge = `verify`; "only SRS/SBRT in Munster" stays out. The radiotherapy page found by search is `/cork-departments/radiotherapy` |
+| `roi-sjh-guide-clinic` | Duplicate of existing `gum-guide-stjames` | Not needed. Optionally add the online-booking, PrEP/PEP text and a pointer to `sh24-roi` to the existing entry once the page is opened |
+| `ni-regional-genetics-bch` | Duplicate of existing `ni-regional-genetics` (Belfast City Hospital) | Not needed |
+| `ngs-columcilles`, `ncp-adult-adhd`, `hse-living-well-pain`, `gap-mecfs` | Non-official or no source (unchanged) | An official HSE page is found |
+
+Also left out: pancreas programme mention (SVUH), National AYA MDM, SVUH psycho-oncology per-centre claim, any NCH opening date, any row from the private-hospital matrix doc.
+
+**Step 1 follow-up (PR audit-fixes):** the validator rejects `verify: true` on an entry with a phone, email or address unless `urlStatus: "opened"`. The cardiac, Bon Secours Cork cardiology, ILD, pulmonary hypertension and pituitary entries have checked phones, so they were wording-softened but not flagged `verify`. Decision needed: allow contacts on entries with a `checked` date, or drop the phones.
