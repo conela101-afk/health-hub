@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-07 [Claude] — primary-care specialty
+- New specialty id `primary-care`, label "Primary & Urgent Care" (approved 7 Oct 2026), in `SPECIALTIES`. Nothing else reads a hard-coded list, so no other file needed the id.
+- **Added 3 entries (564 to 567 once merged after the parenting PR):** `ni-pharmacy-first`, `roi-injury-units` (directory explainer) and `ni-minor-injury-units` (by trust). All pages opened in the browser that day, web links only, no phones, no triage wording. Dates and unchecked trusts are stated in the entries and in REVIEW.md.
+- Not added: HSE CIT (page gone). No coverage claim is made.
+
 ## 2026-10-07 [Claude] — inclusive parenting language
 - **Labels:** "Parenting & New Motherhood" is now "New & Expectant Parents" (A1, home pill A2); "Perinatal & Maternal Mental Health" is now "Perinatal Mental Health" (A4); the home pill "Breastfeeding support" is now "Infant feeding & breastfeeding support" (A3). Specialty ids, entry ids and hash routes are unchanged.
 - **Entry text:** `mbu-status` blurb no longer says "mothers" (the name "Mother & Baby Unit status" stays, as it is the service name); `nurture` renamed "Nurture — Perinatal Mental Health Counselling" (the old name was our descriptor, and Nurture's own site says women and partners); `friends-of-breastfeeding` kept faithful to the site, which describes its buddy service as for pregnant or breastfeeding women, so it was not generalised.

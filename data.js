@@ -59,6 +59,7 @@ const SPECIALTIES = [
   { id: "pelvicphysio",    label: "Pelvic Health Physiotherapy" },
   { id: "mh",              label: "Perinatal Mental Health" },
   { id: "loss",            label: "Pregnancy & Baby Loss" },
+  { id: "primary-care",    label: "Primary & Urgent Care" },
   { id: "phn",             label: "Public Health Nursing" },
   { id: "rare-disease",    label: "Rare Diseases" },
   { id: "respiratory",     label: "Respiratory Medicine & CF" },
@@ -6394,6 +6395,67 @@ const ENTRIES = [
     source_url: "https://southerntrust.hscni.net/future-of-emergency-general-surgery-2/",
     urlStatus: "opened",
     verify: true
+  },
+  // Primary and urgent care (7 Oct 2026). Pages opened in the browser pane that day. No phone numbers: each page's own contact line is the one to use.
+  {
+    id: "ni-pharmacy-first",
+    name: "Pharmacy First (Northern Ireland)",
+    specialty: ["primary-care"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "Community pharmacies in Northern Ireland offer five Pharmacy First services: everyday health conditions, emergency hormonal contraception, urinary tract infection, sore throat and shingles. You can walk in for a private consultation without an appointment.",
+    details: [
+      "Everyday conditions are offered from every community pharmacy in NI. The page lists acne, athlete's foot, diarrhoea, earwax, haemorrhoids, head lice, mouth ulcers, scabies, threadworms, vaginal thrush and verrucae, among others.",
+      "The morning after pill is free from the majority of pharmacies if you are aged 13 or older. The page has a map of pharmacies that offer it.",
+      "The UTI service is for females aged 16 to 64 in the majority of pharmacies. The sore throat service is for anyone aged 5 and over in participating pharmacies.",
+      "The shingles service (adults 18 and over registered with an NI GP) was listed at 50 pharmacies until 30 September 2026. That date has passed and the page had not been updated on 7 Oct 2026, so check whether it continues.",
+    ],
+    referral: "Walk in to a participating pharmacy. No appointment or GP referral.",
+    contact: { web: "online.hscni.net/our-work/pharmacy-and-medicines-management/community-pharmacy-services/pharmacy-first/" },
+    source_url: "https://online.hscni.net/our-work/pharmacy-and-medicines-management/community-pharmacy-services/pharmacy-first/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "roi-injury-units",
+    name: "About HSE injury units (Republic of Ireland)",
+    specialty: ["primary-care"],
+    county: ["national"],
+    blurb: "The HSE runs injury units that treat injuries that are not life-threatening and unlikely to need a hospital stay. Which units exist, who can attend and when they are open differs by unit, so use the HSE's own directory.",
+    details: [
+      "The HSE directory lists emergency departments, injury units, GP out-of-hours services, early pregnancy assessment units and maternity emergency units, and can be filtered by age.",
+      "Age limits differ by unit. For example, the directory shows Bantry Injury Unit for anyone aged 5 and older, and St Columcille's Injury Unit in Loughlinstown for anyone aged 14 and older.",
+      "The Loughlinstown page says no appointment is needed, and that x-rays, plaster casts and wound care are available. It says a charge applies unless you have a medical card, a medical or GP referral letter, or a referral from an emergency department. Check the page for the unit you plan to use.",
+    ],
+    referral: "Walk-in at the unit listed in the HSE directory. Check the unit's own page for age limits, hours and charges.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "ni-minor-injury-units",
+    name: "About minor injury and urgent care units in Northern Ireland",
+    specialty: ["primary-care"],
+    county: ["antrim", "down", "londonderry", "tyrone"],
+    blurb: "Minor injury units treat injuries that are not critical or life-threatening. Each trust runs its own and the arrangements differ, so check the trust page for the unit and use Phone First where the trust offers it. This entry summarises trust pages read on 7 Oct 2026.",
+    details: [
+      "Northern Trust: minor injuries units at Antrim Area Hospital and Causeway Hospital (patients aged 3 and over) and Mid Ulster Hospital, Magherafelt (aged 5 and over). The units are nurse-led and the page lists injuries they are not suitable for, including older adults with complex medical needs and anyone taking blood-thinning medication.",
+      "South Eastern Trust: its minor injury unit page lists a nurse-led unit at Downe Hospital, weekends by appointment only, booked by phoning first. No other unit is listed on that page.",
+      "Southern Trust: South Tyrone Hospital has a Minor Injuries Unit, covered by the Trust's Phone First service. The page says it cannot treat medical or surgical conditions.",
+      "Western Trust: the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex is a nurse-led minor injuries unit that the Trust describes as operating 24 hours a day.",
+      "Belfast Trust: not checked, so nothing is stated here. The nidirect overview says Phone First runs in the Northern, South Eastern, Southern and Western trusts.",
+    ],
+    referral: "Walk-in or by Phone First, depending on the trust. See the trust page for the unit.",
+    contact: { web: "nidirect.gov.uk/articles/urgent-and-emergency-care-services" },
+    resources: [
+      { label: "Minor Injuries Service — Northern Trust", url: "https://www.northerntrust.hscni.net/service/minor-injuries-service/" },
+      { label: "Minor Injury Unit — South Eastern Trust", url: "https://setrust.hscni.net/service/minor-injury-unit/" },
+      { label: "Out of Hours and Emergency contacts — Southern Trust", url: "https://southerntrust.hscni.net/get-in-touch/out-of-hours-and-emergency-contacts/" },
+      { label: "Emergency Department and Urgent Care Locations — Western Trust", url: "https://westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/emergency-department-and-urgent-care-locations/" }
+    ],
+    source_url: "https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
   },
   {
     id: "bch-kidney-transplant",

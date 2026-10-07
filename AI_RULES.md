@@ -33,6 +33,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-07 [Claude] — Added the `primary-care` specialty ("Primary & Urgent Care") and three entries (NI Pharmacy First, HSE injury units, NI minor injury units); 564 to 567. See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-07 [Claude] — Inclusive parenting language: three labels and four entry texts reworded, parent-neutral wording rule added, content gaps logged in `GAPS.md`. Then, with approval: `SEARCH_ALIASES` for entry search, `nurture-pnd` merged into `nurture` (565 to 564), `tusla.ie` allow-listed. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Plastics, burns, neurosurgery and emergency surgery research checked page by page; 4 entries added (561 to 565), 3 edited, primary-care layer and CUH deferred. See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-07 [Claude] — Addendum decisions: `beaumont-national-neuroscience` and `swah-gynae` set to `verify: true` (separate PR), and the `surgery-trauma` specialty added with four re-tagged entries. Surgery and trauma research queue not started. See `CHANGELOG.md`.
