@@ -3995,9 +3995,16 @@ const ENTRIES = [
     specialty: ["sexualhealth"],
     county: ["dublin"],
     blurb: "Free, HSE-operated STI/GUM clinic.",
-    details: [],
+    details: [
+      "Online booking is available.",
+      "PrEP clinics, with online booking.",
+      "A Young Person's Clinic for ages 20 and under."
+    ],
     referral: "Self-referral.",
-    contact: { phone: "01 416 2315" },
+    contact: { phone: "01 416 2315", web: "guideclinic.ie/sti-clinic" },
+    source_url: "https://guideclinic.ie/sti-clinic",
+    urlStatus: "opened",
+    verify: true,
     checked: "4 Sep 2026"
   },
   {
@@ -6968,7 +6975,7 @@ const ENTRIES = [
     contact: { web: "www.stvincents.ie/departments/national-liver-transplant-programme/" },
     source_url: "https://www.stvincents.ie/departments/national-liver-transplant-programme/",
     urlStatus: "opened",
-    verify: true
+    checked: "7 Oct 2026"
   },
   {
     id: "roi-nrh-rehab",
@@ -6983,7 +6990,7 @@ const ENTRIES = [
     contact: { web: "www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/" },
     source_url: "https://www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/",
     urlStatus: "opened",
-    verify: true
+    checked: "7 Oct 2026"
   },
   {
     id: "roi-nccp-aya-network",
@@ -7094,7 +7101,7 @@ const ENTRIES = [
     contact: { web: "childrenshealthireland.ie/list-of-services/clinical-genetics/" },
     source_url: "https://www.childrenshealthireland.ie/list-of-services/clinical-genetics/",
     urlStatus: "opened",
-    verify: true
+    checked: "7 Oct 2026"
   },
   {
     id: "roi-bons-cork-heart-lung",

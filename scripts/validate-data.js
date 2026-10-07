@@ -27,6 +27,8 @@ const SOURCE_DOMAINS = [
   "cho7cdnt.ie", "southeastcdnt.ie",
   // Hospitals' own sites, approved by the owner 7 Oct 2026 ("the hospital's own .ie site").
   "beaumont.ie", "childrenshealthireland.ie", "bonsecours.ie",
+  // Approved by the owner 7 Oct 2026: the GUIDe clinic's own site (St James's Hospital sexual health clinic).
+  "guideclinic.ie",
 ];
 const hostAllowed = host => SOURCE_DOMAINS.some(d => host === d || host.endsWith("." + d));
 
