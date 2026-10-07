@@ -3,6 +3,7 @@
 ## 2026-10-07 [Claude] — approved hosts and research decisions
 - **Allow-list:** added `familysupportni.gov.uk`, `saolta.ie`, `caredoc.ie` and `kdoc.ie` to `scripts/validate-data.js` (Elaine approved 7 Oct 2026). `bso.hscni.net`, `adoptionandfostercare.hscni.net` and `online.hscni.net` were already covered by `hscni.net`. Tests added for all seven, plus a lookalike-host failure.
 - **Rule** added to `AI_RULES.md`: the validator allow-list is the source of truth for hosts, and unapproved hosts stay withheld.
+- **Specialty `urgent` approved** (not created yet; see REVIEW.md).
 - **Research rows not added:** the results file was not in the folder. Elaine's decisions for it (six-county NI rows, LTI link family, Mayo withholds, un-withholds, row rules) and a duplicate pre-check are recorded in `REVIEW.md`. No entries changed.
 
 ## 2026-10-07 [Claude] — search crisis banner and condition keywords
