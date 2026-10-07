@@ -74,7 +74,24 @@
     return parts.join(", ");
   }
 
-  const api = { normalise: normalise, prepare: prepare, matcher: matcher, alsoSearched: alsoSearched, contains: hit };
+  // Crisis phrases (approved by Elaine, 7 Oct 2026). When one is searched, app.js shows a single
+  // banner linking to the existing Mental Health Crisis Support page. Kept here, in one place, so the
+  // list is easy to review and the audit can test it. "crisis" alone only triggers when it is the
+  // whole query, so "crisis pregnancy" still goes to pregnancy support. Words are matched as whole
+  // words; suicidal, overdosed and self harming are inflections of the approved terms.
+  var CRISIS_WORDS = ["suicide", "suicidal", "overdose", "overdosed"];
+  var CRISIS_PHRASES = ["self harm", "self harming", "selfharm", "want to die", "kill myself", "end my life"];
+  var CRISIS_WHOLE_QUERY = ["crisis", "in crisis", "mental health crisis", "crisis support"];
+
+  function isCrisisQuery(raw) {
+    var q = normalise(raw);
+    if (!q) return false;
+    if (CRISIS_WHOLE_QUERY.indexOf(q) !== -1) return true;
+    var padded = " " + q + " ";
+    return CRISIS_WORDS.concat(CRISIS_PHRASES).some(function (t) { return padded.indexOf(" " + t + " ") !== -1; });
+  }
+
+  const api = { normalise: normalise, prepare: prepare, matcher: matcher, alsoSearched: alsoSearched, contains: hit, isCrisisQuery: isCrisisQuery };
   root.HHSearch = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : this);

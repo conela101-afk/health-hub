@@ -58,7 +58,7 @@ const CONDITIONS = [
     { org: "British Heart Foundation", url: "https://www.bhf.org.uk/informationsupport/conditions/heart-attack", scope: "UK/NI" },
     { org: "NHS", url: "https://www.nhs.uk/conditions/heart-attack/", scope: "UK/NI" }
   ] },
-  { id: "angina", name: "Angina", category: "Cardiology", keywords: [], links: [
+  { id: "angina", name: "Angina", category: "Cardiology", keywords: ["angina pectoris"], links: [
     { org: "British Heart Foundation", url: "https://www.bhf.org.uk/informationsupport/conditions/angina", scope: "UK/NI" }
   ] },
   { id: "atrial-fibrillation", name: "Atrial fibrillation", category: "Cardiology", keywords: ["AF", "AFib"], links: [
@@ -67,20 +67,20 @@ const CONDITIONS = [
   { id: "heart-failure", name: "Heart failure", category: "Cardiology", keywords: ["CHF"], links: [
     { org: "Irish Heart Foundation", url: "https://irishheart.ie/heart-and-stroke-conditions-a-z/heart-failure", scope: "ROI" }
   ] },
-  { id: "heart-valve-disease", name: "Heart valve disease", category: "Cardiology", keywords: [], links: [
+  { id: "heart-valve-disease", name: "Heart valve disease", category: "Cardiology", keywords: ["valve disease", "leaky heart valve"], links: [
     { org: "Irish Heart Foundation", url: "https://irishheart.ie/heart-and-stroke-conditions-a-z/heart-valve-disease/", scope: "ROI" }
   ] },
   { id: "congenital-heart-disease", name: "Congenital heart disease", category: "Cardiology", keywords: ["CHD"], links: [
     { org: "Irish Heart Foundation", url: "https://irishheart.ie/heart-and-stroke-conditions-a-z/congenital-heart-disease-chd/", scope: "ROI" }
   ] },
   { id: "hypertension", name: "Hypertension (high blood pressure)", category: "Cardiology", keywords: ["HTN", "high BP"], links: [] },
-  { id: "cardiomyopathy", name: "Cardiomyopathy", category: "Cardiology", keywords: [], links: [] },
-  { id: "atherosclerosis", name: "Atherosclerosis", category: "Cardiology", keywords: [], links: [] },
+  { id: "cardiomyopathy", name: "Cardiomyopathy", category: "Cardiology", keywords: ["heart muscle disease"], links: [] },
+  { id: "atherosclerosis", name: "Atherosclerosis", category: "Cardiology", keywords: ["hardening of the arteries"], links: [] },
   { id: "dvt", name: "Deep vein thrombosis", category: "Cardiology", keywords: ["DVT"], links: [] },
   { id: "pulmonary-embolism", name: "Pulmonary embolism", category: "Cardiology", keywords: ["PE"], links: [] },
   { id: "peripheral-arterial-disease", name: "Peripheral arterial disease", category: "Cardiology", keywords: ["PAD"], links: [] },
-  { id: "high-cholesterol", name: "High cholesterol", category: "Cardiology", keywords: [], links: [] },
-  { id: "pericarditis", name: "Pericarditis", category: "Cardiology", keywords: [], links: [] },
+  { id: "high-cholesterol", name: "High cholesterol", category: "Cardiology", keywords: ["cholesterol", "hypercholesterolaemia", "lipids"], links: [] },
+  { id: "pericarditis", name: "Pericarditis", category: "Cardiology", keywords: ["pericardial"], links: [] },
   { id: "endocarditis", name: "Endocarditis", category: "Cardiology", keywords: [], links: [] },
 
   // Respiratory
@@ -93,10 +93,10 @@ const CONDITIONS = [
   { id: "cystic-fibrosis", name: "Cystic fibrosis", category: "Respiratory", keywords: ["CF"], links: [] },
   { id: "pulmonary-hypertension", name: "Pulmonary hypertension", category: "Respiratory", keywords: ["PH", "PAH"], links: [] },
   { id: "pulmonary-fibrosis", name: "Pulmonary fibrosis", category: "Respiratory", keywords: ["IPF"], links: [] },
-  { id: "sleep-apnoea", name: "Sleep apnoea", category: "Respiratory", keywords: [], links: [] },
-  { id: "pneumonia", name: "Pneumonia", category: "Respiratory", keywords: [], links: [] },
+  { id: "sleep-apnoea", name: "Sleep apnoea", category: "Respiratory", keywords: ["sleep apnea", "obstructive sleep apnoea", "OSA"], links: [] },
+  { id: "pneumonia", name: "Pneumonia", category: "Respiratory", keywords: ["chest infection"], links: [] },
   { id: "sarcoidosis", name: "Sarcoidosis", category: "Respiratory", keywords: [], links: [] },
-  { id: "alpha-1-antitrypsin-deficiency", name: "Alpha-1 antitrypsin deficiency", category: "Respiratory", keywords: [], links: [] },
+  { id: "alpha-1-antitrypsin-deficiency", name: "Alpha-1 antitrypsin deficiency", category: "Respiratory", keywords: ["alpha 1", "AATD", "A1AT"], links: [] },
   { id: "mesothelioma", name: "Mesothelioma", category: "Respiratory", keywords: [], links: [] },
 
   // Endocrinology
@@ -104,10 +104,10 @@ const CONDITIONS = [
     { org: "Diabetes UK", url: "https://www.diabetes.org.uk/about-diabetes/type-1-diabetes", scope: "UK/NI" }
   ] },
   { id: "type-2-diabetes", name: "Type 2 diabetes", category: "Endocrinology", keywords: ["T2DM"], links: [] },
-  { id: "gestational-diabetes", name: "Gestational diabetes", category: "Endocrinology", keywords: [], links: [] },
-  { id: "hypothyroidism", name: "Hypothyroidism (underactive thyroid)", category: "Endocrinology", keywords: [], links: [] },
-  { id: "hyperthyroidism", name: "Hyperthyroidism (overactive thyroid)", category: "Endocrinology", keywords: [], links: [] },
-  { id: "addisons-disease", name: "Addison's disease", category: "Endocrinology", keywords: [], links: [] },
+  { id: "gestational-diabetes", name: "Gestational diabetes", category: "Endocrinology", keywords: ["diabetes in pregnancy", "pregnancy diabetes", "GDM"], links: [] },
+  { id: "hypothyroidism", name: "Hypothyroidism (underactive thyroid)", category: "Endocrinology", keywords: ["underactive thyroid", "low thyroid", "thyroid"], links: [] },
+  { id: "hyperthyroidism", name: "Hyperthyroidism (overactive thyroid)", category: "Endocrinology", keywords: ["overactive thyroid", "thyroid"], links: [] },
+  { id: "addisons-disease", name: "Addison's disease", category: "Endocrinology", keywords: ["adrenal insufficiency"], links: [] },
   { id: "cushings-syndrome", name: "Cushing's syndrome", category: "Endocrinology", keywords: [], links: [] },
   { id: "acromegaly", name: "Acromegaly", category: "Endocrinology", keywords: [], links: [] },
   { id: "pcos", name: "Polycystic ovary syndrome", category: "Endocrinology", keywords: ["PCOS"], links: [] },
@@ -125,31 +125,31 @@ const CONDITIONS = [
     { org: "Arthritis Ireland", url: "https://www.arthritisireland.ie/be-active-with-arthritis/", scope: "ROI" },
     { org: "HSE.ie", url: "https://www2.hse.ie/conditions/gout/", scope: "ROI" }
   ] },
-  { id: "fibromyalgia", name: "Fibromyalgia", category: "Rheumatology", keywords: [], links: [
+  { id: "fibromyalgia", name: "Fibromyalgia", category: "Rheumatology", keywords: ["fibro", "FMS"], links: [
     { org: "Versus Arthritis", url: "https://versusarthritis.org/about-arthritis/conditions/fibromyalgia/", scope: "UK/NI" }
   ] },
   { id: "lupus", name: "Lupus", category: "Rheumatology", keywords: ["SLE"], links: [] },
-  { id: "psoriatic-arthritis", name: "Psoriatic arthritis", category: "Rheumatology", keywords: [], links: [] },
-  { id: "ankylosing-spondylitis", name: "Ankylosing spondylitis", category: "Rheumatology", keywords: [], links: [] },
+  { id: "psoriatic-arthritis", name: "Psoriatic arthritis", category: "Rheumatology", keywords: ["PsA"], links: [] },
+  { id: "ankylosing-spondylitis", name: "Ankylosing spondylitis", category: "Rheumatology", keywords: ["axial spondyloarthritis"], links: [] },
   { id: "polymyalgia-rheumatica", name: "Polymyalgia rheumatica", category: "Rheumatology", keywords: ["PMR"], links: [] },
-  { id: "back-pain", name: "Back pain", category: "Rheumatology", keywords: [], links: [] },
-  { id: "osteoporosis", name: "Osteoporosis", category: "Rheumatology", keywords: [], links: [] },
+  { id: "back-pain", name: "Back pain", category: "Rheumatology", keywords: ["backache", "lower back pain"], links: [] },
+  { id: "osteoporosis", name: "Osteoporosis", category: "Rheumatology", keywords: ["brittle bones", "weak bones"], links: [] },
 
   // Neurology
-  { id: "epilepsy", name: "Epilepsy", category: "Neurology", keywords: [], links: [] },
+  { id: "epilepsy", name: "Epilepsy", category: "Neurology", keywords: ["seizures", "fits"], links: [] },
   { id: "multiple-sclerosis", name: "Multiple sclerosis", category: "Neurology", keywords: ["MS"], links: [] },
   { id: "parkinsons-disease", name: "Parkinson's disease", category: "Neurology", keywords: ["PD"], links: [] },
   { id: "motor-neurone-disease", name: "Motor neurone disease", category: "Neurology", keywords: ["MND", "ALS", "amyotrophic lateral sclerosis", "Lou Gehrig's disease"], links: [
     { org: "IMNDA", url: "https://www.imnda.ie/", scope: "ROI" },
     { org: "MND Association", url: "https://www.mndassociation.org/", scope: "UK/NI" }
   ] },
-  { id: "migraine", name: "Migraine", category: "Neurology", keywords: [], links: [] },
-  { id: "dementia", name: "Dementia / Alzheimer's disease", category: "Neurology", keywords: [], links: [] },
+  { id: "migraine", name: "Migraine", category: "Neurology", keywords: ["migraines"], links: [] },
+  { id: "dementia", name: "Dementia / Alzheimer's disease", category: "Neurology", keywords: ["Alzheimers", "vascular dementia"], links: [] },
   { id: "stroke", name: "Stroke / TIA", category: "Neurology", keywords: ["transient ischaemic attack"], links: [] },
-  { id: "guillain-barre-syndrome", name: "Guillain-Barré syndrome", category: "Neurology", keywords: [], links: [] },
-  { id: "huntingtons-disease", name: "Huntington's disease", category: "Neurology", keywords: [], links: [] },
-  { id: "peripheral-neuropathy", name: "Peripheral neuropathy", category: "Neurology", keywords: [], links: [] },
-  { id: "cluster-headache", name: "Cluster headache", category: "Neurology", keywords: [], links: [] },
+  { id: "guillain-barre-syndrome", name: "Guillain-Barré syndrome", category: "Neurology", keywords: ["GBS"], links: [] },
+  { id: "huntingtons-disease", name: "Huntington's disease", category: "Neurology", keywords: ["Huntingtons chorea"], links: [] },
+  { id: "peripheral-neuropathy", name: "Peripheral neuropathy", category: "Neurology", keywords: ["neuropathy", "nerve damage"], links: [] },
+  { id: "cluster-headache", name: "Cluster headache", category: "Neurology", keywords: ["cluster headaches"], links: [] },
 
   // Gastroenterology
   { id: "crohns-disease", name: "Crohn's disease", category: "Gastroenterology", keywords: ["IBD", "CD"], links: [
@@ -159,63 +159,63 @@ const CONDITIONS = [
     { org: "Crohn's & Colitis Ireland", url: "https://crohnscolitis.ie/support/diagnosis/explanation/", scope: "ROI" }
   ] },
   { id: "ibs", name: "Irritable bowel syndrome", category: "Gastroenterology", keywords: ["IBS"], links: [] },
-  { id: "coeliac-disease", name: "Coeliac disease", category: "Gastroenterology", keywords: [], links: [] },
-  { id: "diverticular-disease", name: "Diverticular disease", category: "Gastroenterology", keywords: [], links: [] },
+  { id: "coeliac-disease", name: "Coeliac disease", category: "Gastroenterology", keywords: ["celiac"], links: [] },
+  { id: "diverticular-disease", name: "Diverticular disease", category: "Gastroenterology", keywords: ["diverticulitis", "diverticulosis"], links: [] },
   { id: "gord", name: "Acid reflux (GORD)", category: "Gastroenterology", keywords: ["GORD", "GERD"], links: [] },
-  { id: "gallstones", name: "Gallstones", category: "Gastroenterology", keywords: [], links: [] },
+  { id: "gallstones", name: "Gallstones", category: "Gastroenterology", keywords: ["gall stones", "gallbladder stones"], links: [] },
   { id: "pancreatitis", name: "Pancreatitis", category: "Gastroenterology", keywords: [], links: [] },
   { id: "liver-disease", name: "Liver disease / cirrhosis", category: "Gastroenterology", keywords: [], links: [] },
 
   // Renal
   { id: "chronic-kidney-disease", name: "Chronic kidney disease", category: "Renal", keywords: ["CKD"], links: [] },
   { id: "acute-kidney-injury", name: "Acute kidney injury", category: "Renal", keywords: ["AKI"], links: [] },
-  { id: "polycystic-kidney-disease", name: "Polycystic kidney disease", category: "Renal", keywords: [], links: [] },
-  { id: "kidney-stones", name: "Kidney stones", category: "Renal", keywords: [], links: [] },
+  { id: "polycystic-kidney-disease", name: "Polycystic kidney disease", category: "Renal", keywords: ["PKD"], links: [] },
+  { id: "kidney-stones", name: "Kidney stones", category: "Renal", keywords: ["kidney stone", "renal stones"], links: [] },
   { id: "glomerulonephritis", name: "Glomerulonephritis", category: "Renal", keywords: [], links: [] },
 
   // Oncology
-  { id: "breast-cancer", name: "Breast cancer", category: "Oncology", keywords: [], links: [] },
-  { id: "lung-cancer", name: "Lung cancer", category: "Oncology", keywords: [], links: [] },
+  { id: "breast-cancer", name: "Breast cancer", category: "Oncology", keywords: ["cancer of the breast"], links: [] },
+  { id: "lung-cancer", name: "Lung cancer", category: "Oncology", keywords: ["cancer of the lung"], links: [] },
   { id: "bowel-cancer", name: "Bowel cancer", category: "Oncology", keywords: ["colorectal cancer"], links: [] },
-  { id: "prostate-cancer", name: "Prostate cancer", category: "Oncology", keywords: [], links: [] },
+  { id: "prostate-cancer", name: "Prostate cancer", category: "Oncology", keywords: ["prostate"], links: [] },
   { id: "skin-cancer", name: "Skin cancer / melanoma", category: "Oncology", keywords: ["melanoma"], links: [] },
-  { id: "leukaemia", name: "Leukaemia", category: "Oncology", keywords: [], links: [] },
-  { id: "lymphoma", name: "Lymphoma", category: "Oncology", keywords: [], links: [] },
-  { id: "myeloma", name: "Myeloma", category: "Oncology", keywords: [], links: [] },
-  { id: "ovarian-cancer", name: "Ovarian cancer", category: "Oncology", keywords: [], links: [] },
-  { id: "cervical-cancer", name: "Cervical cancer", category: "Oncology", keywords: [], links: [] },
-  { id: "pancreatic-cancer", name: "Pancreatic cancer", category: "Oncology", keywords: [], links: [] },
-  { id: "bladder-cancer", name: "Bladder cancer", category: "Oncology", keywords: [], links: [] },
-  { id: "kidney-cancer", name: "Kidney cancer", category: "Oncology", keywords: [], links: [] },
-  { id: "head-and-neck-cancer", name: "Head and neck cancer", category: "Oncology", keywords: [], links: [] },
+  { id: "leukaemia", name: "Leukaemia", category: "Oncology", keywords: ["leukemia", "blood cancer"], links: [] },
+  { id: "lymphoma", name: "Lymphoma", category: "Oncology", keywords: ["Hodgkin lymphoma", "non Hodgkin lymphoma", "blood cancer"], links: [] },
+  { id: "myeloma", name: "Myeloma", category: "Oncology", keywords: ["multiple myeloma", "blood cancer"], links: [] },
+  { id: "ovarian-cancer", name: "Ovarian cancer", category: "Oncology", keywords: ["cancer of the ovary"], links: [] },
+  { id: "cervical-cancer", name: "Cervical cancer", category: "Oncology", keywords: ["cancer of the cervix"], links: [] },
+  { id: "pancreatic-cancer", name: "Pancreatic cancer", category: "Oncology", keywords: ["cancer of the pancreas"], links: [] },
+  { id: "bladder-cancer", name: "Bladder cancer", category: "Oncology", keywords: ["cancer of the bladder"], links: [] },
+  { id: "kidney-cancer", name: "Kidney cancer", category: "Oncology", keywords: ["renal cancer"], links: [] },
+  { id: "head-and-neck-cancer", name: "Head and neck cancer", category: "Oncology", keywords: ["throat cancer", "mouth cancer"], links: [] },
 
   // Mental Health
-  { id: "depression", name: "Depression", category: "Mental Health", keywords: [], links: [] },
+  { id: "depression", name: "Depression", category: "Mental Health", keywords: ["low mood"], links: [] },
   { id: "anxiety", name: "Anxiety / generalised anxiety disorder", category: "Mental Health", keywords: ["GAD"], links: [] },
-  { id: "bipolar-disorder", name: "Bipolar disorder", category: "Mental Health", keywords: [], links: [] },
+  { id: "bipolar-disorder", name: "Bipolar disorder", category: "Mental Health", keywords: ["manic depression"], links: [] },
   { id: "schizophrenia", name: "Schizophrenia", category: "Mental Health", keywords: [], links: [] },
   { id: "ocd", name: "Obsessive-compulsive disorder", category: "Mental Health", keywords: ["OCD"], links: [] },
   { id: "ptsd", name: "Post-traumatic stress disorder", category: "Mental Health", keywords: ["PTSD"], links: [] },
-  { id: "eating-disorders", name: "Eating disorders", category: "Mental Health", keywords: [], links: [] },
+  { id: "eating-disorders", name: "Eating disorders", category: "Mental Health", keywords: ["anorexia", "bulimia", "binge eating"], links: [] },
   { id: "personality-disorders", name: "Personality disorders", category: "Mental Health", keywords: ["BPD"], links: [] },
-  { id: "postnatal-depression", name: "Postnatal depression", category: "Mental Health", keywords: [], links: [] },
+  { id: "postnatal-depression", name: "Postnatal depression", category: "Mental Health", keywords: ["PND", "postpartum depression", "post natal depression"], links: [] },
   { id: "adhd", name: "ADHD", category: "Mental Health", keywords: ["ADHD"], links: [] },
-  { id: "autism", name: "Autism", category: "Mental Health", keywords: [], links: [] },
+  { id: "autism", name: "Autism", category: "Mental Health", keywords: ["ASD", "autism spectrum disorder", "autistic"], links: [] },
 
   // Rare / Genetic
   { id: "muscular-dystrophy", name: "Muscular dystrophy", category: "Rare / Genetic disease", keywords: [], links: [] },
-  { id: "haemophilia", name: "Haemophilia", category: "Rare / Genetic disease", keywords: [], links: [] },
-  { id: "sickle-cell-disease", name: "Sickle cell disease", category: "Rare / Genetic disease", keywords: [], links: [] },
-  { id: "thalassaemia", name: "Thalassaemia", category: "Rare / Genetic disease", keywords: [], links: [] },
+  { id: "haemophilia", name: "Haemophilia", category: "Rare / Genetic disease", keywords: ["hemophilia"], links: [] },
+  { id: "sickle-cell-disease", name: "Sickle cell disease", category: "Rare / Genetic disease", keywords: ["sickle cell anaemia", "sickle cell anemia"], links: [] },
+  { id: "thalassaemia", name: "Thalassaemia", category: "Rare / Genetic disease", keywords: ["thalassemia"], links: [] },
   { id: "phenylketonuria", name: "Phenylketonuria", category: "Rare / Genetic disease", keywords: ["PKU"], links: [] },
 
   // Dermatology
-  { id: "eczema", name: "Eczema", category: "Dermatology", keywords: [], links: [] },
+  { id: "eczema", name: "Eczema", category: "Dermatology", keywords: ["atopic dermatitis", "dermatitis"], links: [] },
   { id: "psoriasis", name: "Psoriasis", category: "Dermatology", keywords: [], links: [] },
 
   // Allergy / Immunology
-  { id: "anaphylaxis", name: "Anaphylaxis", category: "Allergy / Immunology", keywords: [], links: [] },
-  { id: "food-allergy", name: "Food allergy", category: "Allergy / Immunology", keywords: [], links: [] }
+  { id: "anaphylaxis", name: "Anaphylaxis", category: "Allergy / Immunology", keywords: ["severe allergic reaction", "anaphylactic shock"], links: [] },
+  { id: "food-allergy", name: "Food allergy", category: "Allergy / Immunology", keywords: ["food allergies"], links: [] }
 ];
 
 // Static, non-guessed URLs shown on every condition's page regardless of

@@ -34,6 +34,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-07 [Claude] — Search crisis banner (approved wording, search page only, triggers in `search.js`) and 53 condition keyword sets applied from the proposal; cache v14. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Label-gated auto-merge: rule added to this file and set-up checklist in `REVIEW.md`; the workflow file itself could not be pushed (no `workflow` token scope). See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Search v2: shared `search.js`, normalisation, US/UK spellings, short-query and multi-word rules, aliases on all result types, conditions and a facilities row in results, audit script (CI step pending, see REVIEW.md). Crisis link (S6) and conditions keywords (S8) held for approval. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Added the `primary-care` specialty ("Primary & Urgent Care") and three entries (NI Pharmacy First, HSE injury units, NI minor injury units); 564 to 567. See `CHANGELOG.md` and `REVIEW.md`.

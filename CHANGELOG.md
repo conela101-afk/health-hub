@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07 [Claude] — search crisis banner and condition keywords
+- **Crisis banner (search S6, approved by Elaine 7 Oct 2026):** one `role="note"` callout above the results for crisis searches, with the approved wording and a single link to the existing Mental Health Crisis Support page. No phone numbers or other text were added. Triggers live in `search.js` (`isCrisisQuery`): the words suicide, suicidal, overdose, overdosed; the phrases self harm, self harming, selfharm, want to die, kill myself, end my life; and `crisis` only when it is the whole query (also "in crisis", "mental health crisis", "crisis support"). Whole-word matching, so "crisis pregnancy", "die" or "harm" do not trigger it. Suicidal, overdosed and self harming are inflections added to the approved list.
+- **Tests:** `scripts/search-audit.js` now checks that the banner shows for 12 phrasings and does not show for 12 others.
+- **Condition keywords (S8):** applied the lay and alternative names from `CONDITIONS_KEYWORDS_PROPOSAL.md` to 53 conditions with empty `keywords` (13 rows had no alternative name and stay `[]`). Name-level synonyms only, no symptoms and no claims. Spot checks: "chest infection", "fits", "pnd", "celiac" and "blood cancer" now find the right conditions.
+- `sw.js` cache `pocket-guide-v13` to `v14` (`app.js`, `search.js` and `data/conditions.js` changed). No entries added or removed (567). `node --check` on all JS, the date tests, `validate-data.js` and the search audit all pass.
+
 ## 2026-10-07 [Claude] — auto-merge rules
 - Added the "auto-merge is a human decision" rule to `AI_RULES.md` (brief Part 3) and a set-up checklist to `REVIEW.md`.
 - **`automerge.yml` not added:** the push token cannot create or edit workflow files, so Part 2 needs adding by hand via the GitHub web UI (or a token with `workflow` scope). The YAML parses, and the guard was tested against the real history of PRs #84 to #90. Nothing in the repo behaves differently yet.

@@ -145,8 +145,10 @@ Search-result only; egress to hse.ie, beaumont.ie and nidirect was blocked. Huma
   ```
 
   Until then the audit only runs when someone runs `node scripts/search-audit.js`.
-- [ ] **Decision needed (search S6, 7 Oct 2026):** show the existing crisis link (`#/specialty/crisis`) at the top of results for crisis phrases (`suicide`, `self harm`, `overdose`, `want to die`, `kill myself`, `end my life`, `crisis`). Not built. Needs Elaine's approval of placement and label. Until then, `self harm`, `overdose` and `want to die` only route to existing text through aliases.
+- [x] **Search S6 crisis banner: approved by Elaine 7 Oct 2026 and built.** Wording: "If you or someone else is in crisis or in immediate danger, support is available now." with the link "Mental Health Crisis Support ›" to `#/specialty/crisis`, shown above results on the search page only. No phone numbers or extra copy. Triggers are in `search.js` (`CRISIS_WORDS`, `CRISIS_PHRASES`, `CRISIS_WHOLE_QUERY`); "crisis" triggers only as the whole query, so "crisis pregnancy" does not. Please look at it in a browser, including calm mode and a screen reader, before relying on it.
 - [ ] Search aliases to skim (7 Oct 2026): `toddler` (many child entries), `er`/`ed`/`a and e` (psychiatric units that mention an emergency department), `wheelchair` (one OT entry via "seating"), `abortion` (only the existing My Options wording). `CONDITIONS_KEYWORDS_PROPOSAL.md` holds the proposed keywords for the 66 conditions that have none.
 - [ ] Re-read gov.ie Your guide to Budget 2027 for GP visit card, DPS and AON.
 - [ ] Budget 2027 items still marked as announced only: re-check start dates once the Finance Bill and social welfare legislation pass (Free Contraception Scheme to age 37, 1.8 million home-support hours, new CAMHS ADHD pathway, four new Jigsaw services, 500 extra NHSS places, Carer's Allowance disregard from July 2027, €10 weekly rate rises from January 2027, €500 cost of disability payment date).
 - [ ] Open the five new `source_url`s.
+
+- [ ] Condition keywords (S8) applied 7 Oct 2026 from `CONDITIONS_KEYWORDS_PROPOSAL.md`: 53 conditions now have lay or alternative names; 13 stay empty on purpose (no alternative name). Skim the PR diff of `data/conditions.js` and strike any you dislike.
