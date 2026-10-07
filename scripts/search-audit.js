@@ -1,0 +1,23 @@
+// Reference implementation of the PROPOSED search matching (see CLAUDE_CODE_SEARCH_ALIASES.md). Not wired into the app.
+// Usage: node scripts/search-audit.js . scripts/search-audit-queries.txt
+// Known test-harness quirk: the multi-term AND rule must ignore single-character terms (otherwise "a&e" matches almost everything).
+const fs=require('fs'),vm=require('vm');const root=process.argv[2];
+function load(f,names){const src=fs.readFileSync(root+'/'+f,'utf8');const ctx={};vm.createContext(ctx);vm.runInContext(src+'\n;this.__o={'+names.map(n=>n+':typeof '+n+'!=="undefined"?'+n+':undefined').join(',')+'}',ctx);return ctx.__o;}
+const d=load('data.js',['ENTRIES','SPECIALTIES','SUPPORT_ORGS','GENERAL_ADVOCACY_ORGS']);const c=load('data/conditions.js',['CONDITIONS']);
+const app=fs.readFileSync(root+'/app.js','utf8');
+const tools=[...app.matchAll(/\{ name: "([^"]+)", href: "([^"]+)", keywords: "([^"]*)"/g)].map(m=>({name:m[1],keywords:m[3]}));
+const US={pediatric:'paediatric',pediatrician:'paediatrician',gynecology:'gynaecology',gynecologist:'gynaecologist',orthopedic:'orthopaedic',orthopedics:'orthopaedics',anesthesia:'anaesthesia',anesthetic:'anaesthetic',diarrhea:'diarrhoea',esophagus:'oesophagus',counseling:'counselling',counselor:'counsellor',estrogen:'oestrogen',fetal:'foetal',edema:'oedema',behavior:'behaviour',center:'centre',hemorrhage:'haemorrhage',anemia:'anaemia',leukemia:'leukaemia',tumor:'tumour',color:'colour',program:'programme',pap:'smear'};
+const norm=s=>s.toLowerCase().replace(/[‘’'`]/g,'').replace(/&/g,' and ').replace(/[-\/]/g,' ').replace(/[^a-z0-9+ ]/g,' ').replace(/\s+/g,' ').trim().split(' ').map(w=>US[w]||w).join(' ');
+const ALIAS={"emergency room":["emergency department"],"heart doctor":["cardiology"],"rash":["dermatology","skin"],"bones":["orthopaedics","osteoporosis","bone health"],"periods":["gynaecology","endometriosis"],"period pain":["endometriosis","gynaecology"],"cervical check":["cervical","smear"],"panic attacks":["anxiety","mental health"],"self harm":["suicide","crisis"],"overdose":["suicide","crisis","drug"],"want to die":["suicide","crisis"],"dyslexia":["neurodiversity"],"dyspraxia":["neurodiversity"],"toddler":["child"],"abortion":["unplanned pregnancy"],"std":["sti","sexual health"],"insulin":["diabetes"],"blood pressure":["hypertension","cardiology"],"cholesterol":["lipid","cardiology"],"alzheimers":["dementia"],"parkinsons":["parkinson"],"seizure":["epilepsy"],"teeth":["dental","dentist"],"braces":["orthodon","dental"],"long term illness":["long term illness"],"carers allowance":["carer"],"disability allowance":["disability"],"home help":["home support"],"fair deal":["nursing home"],"grief":["bereavement"],"quit smoking":["smoking"],"weight loss":["obesity","weight management"],"speech therapy":["speech and language"],"chiropodist":["podiatr"],"podiatrist":["podiatr"],"wheelchair":["assistive","mobility","seating"],"refugee":["migrant","international protection"],"interpreter":["interpret"],"second opinion":["second opinion"],"111":["out of hours"],"hse live":["hse live"],"same sex":["new and expectant parents","fertility"],"mam":["new and expectant parents"],"er":["emergency department"],"ed":["emergency department"],"a and e":["emergency department"]};
+const wordHit=(h,t,short)=>short?new RegExp('(^| )'+t.replace(/[+]/g,'\\+')).test(h):h.includes(t);
+const lab=id=>(d.SPECIALTIES.find(s=>s.id===id)||{}).label||id;
+const eh=e=>norm([e.name,e.blurb,...(e.details||[]),...e.specialty.map(lab)].join(' '));
+const oh=o=>norm([o.name,o.remit,o.offer,...(o.tags||[])].join(' '));
+const E=d.ENTRIES.map(e=>[e,eh(e)]),O=[...d.SUPPORT_ORGS,...d.GENERAL_ADVOCACY_ORGS].map(o=>[o,oh(o)]),T=tools.map(t=>norm(t.name+' '+t.keywords)),K=c.CONDITIONS.map(x=>norm(`${x.name} ${x.category} ${(x.keywords||[]).join(' ')}`));
+function run(raw){const q=norm(raw);const short=q.length<=3;const terms=q.split(' ');
+ const alias=ALIAS[q]||[];const m=h=>wordHit(h,q,short)||alias.some(a=>h.includes(a))||(terms.length>1&&terms.every(t=>h.includes(t)));
+ return {e:E.filter(([_,h])=>m(h)).length,o:O.filter(([_,h])=>m(h)).length,t:T.filter(m).length,k:K.filter(m).length};}
+const Q=fs.readFileSync(process.argv[3],'utf8').split('\n').map(s=>s.trim()).filter(Boolean);let z=[],noisy=[];
+for(const q of Q){const r=run(q);const tot=r.e+r.o+r.t+r.k;if(!tot)z.push(q);if(r.e>150)noisy.push(q+':'+r.e);}
+console.log('ZERO (entries+orgs+tools+conditions):',z.length,'of',Q.length);console.log(z.join(' | '));console.log('over 150 entry hits:',noisy.join(', ')||'none');
+for(const q of ['er','ed','ms','add','sti','dad','father','pediatric','alzheimers','parkinsons','carers allowance','pap test','counseling']){const r=run(q);console.log(q.padEnd(18),JSON.stringify(r));}

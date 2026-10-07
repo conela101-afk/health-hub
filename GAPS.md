@@ -405,3 +405,15 @@ Added 12 rows: `roi-svuh-liver-transplant`, `roi-nrh-rehab`, `roi-nccp-aya-netwo
 **Correction to the 6 Oct audit gap table:** it wrongly listed the GUIDe clinic and NI genetics (Belfast City Hospital) as missing. Both already exist (`gum-guide-stjames`, `ni-regional-genetics`), so no rows were added. Their contacts and some wording are unverified; see the `REVIEW.md` browser checklist.
 
 Also left out: pancreas programme mention (SVUH), National AYA MDM, SVUH psycho-oncology per-centre claim, any NCH opening date, any row from the private-hospital matrix doc.
+
+## Inclusive parenting: content gaps (7 Oct 2026)
+
+Research items only. No entries written; each needs official sources and Elaine's approval first.
+
+1. **Fathers and non-birthing partners:** perinatal mental health support, and parental and paternity leave and benefit rights (Citizens Information, gov.ie, nidirect).
+2. **Adoptive and foster parents:** post-placement support, adoption leave and benefit, and the statutory bodies (Adoption Authority of Ireland, Tusla, HSC Trust adoption services). Tusla and AAI are not on the source-domain allow-list. **Elaine approved both on 7 Oct 2026: `tusla.ie` is now on the allow-list, and `aai.gov.ie` was already covered by `gov.ie`.**
+3. **Same-sex couples and fertility:** public AHR eligibility and the legal position on parentage and surrogacy, from HSE and gov.ie only, as administrative information and never as legal claims.
+4. **Search aliases (done 7 Oct 2026):** `SEARCH_ALIASES` in `data.js` maps a whole query (dad, father, adoption, foster, LGBTQ+ parents, same-sex parents, trans and non-binary parent, chestfeeding, motherhood) to terms that already appear in entries, mostly the "New & Expectant Parents" specialty label. It routes people to existing pages and adds no claims. Adoption, foster and same-sex-parent searches still lead only to generic parenting entries until the content gaps above are filled.
+5. **Discoverability after the relabel:** covered by the `motherhood` alias.
+6. **Duplicate resolved (7 Oct 2026):** `nurture-pnd` was merged into `nurture`, which now carries both the `parenting` and `mh` specialties and wording taken from nurturehealth.ie. The id `nurture-pnd` no longer exists, so any bookmark to that entry will not resolve.
+7. **Not reviewed:** `Cork-Womens-Health-Pocket-Guide.docx` (separate asset, not part of the PWA).
