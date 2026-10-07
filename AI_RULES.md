@@ -15,6 +15,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - **No analytics, no tracking, no ads.** The site collects nothing about visitors and sends nothing to a server. See the CSP in `index.html` and the privacy note in the footer, which this rule must stay consistent with.
 - **Administrative/advocacy scope only.** This is a directory and advocacy toolkit — signposting, contact details, entitlement schemes, letter templates, rights information. No clinical triage, symptom-checking, or medical advice of any kind.
 - **No single-county targeting.** Don't make one county a priority or target market because of who asked. Ranking counties by coverage per head (see `GAPS.md`) is a legitimate method for a national, all-island tool.
+- **Auto-merge is a human decision.** Claude Code never adds the `automerge` label and never enables auto-merge itself. Elaine labels a PR when she has decided it needs no further review. PRs that set `checked`, set `urlStatus: "opened"`, or clear `verify` are always merged by hand.
 - **Parent-neutral wording.** Parenting, feeding and perinatal wording is parent-neutral by default ("parents", "new parents", "people who give birth"). Use "mother/mum" only where it is an official service or organisation name, or an accurate source statistic. Follow the official source's own phrasing. Do not generalise a factual claim beyond what the source says.
 - **`area` is physical base.** The optional sub-county `area` field means where a service is based, not who it serves. Regional and county-wide services carry no area. Areas are not HSE boundaries.
 
@@ -33,6 +34,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-07 [Claude] — Label-gated auto-merge: rule added to this file and set-up checklist in `REVIEW.md`; the workflow file itself could not be pushed (no `workflow` token scope). See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Search v2: shared `search.js`, normalisation, US/UK spellings, short-query and multi-word rules, aliases on all result types, conditions and a facilities row in results, audit script (CI step pending, see REVIEW.md). Crisis link (S6) and conditions keywords (S8) held for approval. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Added the `primary-care` specialty ("Primary & Urgent Care") and three entries (NI Pharmacy First, HSE injury units, NI minor injury units); 564 to 567. See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-07 [Claude] — Inclusive parenting language: three labels and four entry texts reworded, parent-neutral wording rule added, content gaps logged in `GAPS.md`. Then, with approval: `SEARCH_ALIASES` for entry search, `nurture-pnd` merged into `nurture` (565 to 564), `tusla.ie` allow-listed. See `CHANGELOG.md`.
