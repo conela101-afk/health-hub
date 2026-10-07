@@ -344,10 +344,10 @@ const ENTRIES = [
   {
     id: "nurture",
     name: "Nurture — Perinatal Mental Health Counselling",
-    specialty: ["mh"],
+    specialty: ["parenting", "mh"],
     county: ["national"],
-    blurb: "Affordable, timely counselling for perinatal mental health, birth trauma, fertility issues, grief.",
-    details: ["No-wait-list model in most areas.", "Nurture's own site describes its counselling as for women and partners."],
+    blurb: "Counselling for women and partners around pregnancy, childbirth and postnatal depression, antenatal and postnatal anxiety, pregnancy loss, fertility, and perimenopause and menopause, as described on Nurture's own site.",
+    details: ["No-wait-list model in most areas.", "The site also lists support for post-traumatic stress, sleep, and men and depression."],
     referral: "Self-referral.",
     contact: { web: "nurturehealth.ie" },
     checked: "4 Sep 2026"
@@ -1631,17 +1631,6 @@ const ENTRIES = [
     details: ["Local branches nationwide — check the website for your area."],
     referral: "Self-referral via website.",
     contact: { web: "cuidiu.ie" },
-    checked: "4 Sep 2026"
-  },
-  {
-    id: "nurture-pnd",
-    name: "Nurture",
-    specialty: ["parenting", "mh"],
-    county: ["national"],
-    blurb: "Support and counselling specifically around pregnancy, birth, and postnatal depression.",
-    details: [],
-    referral: "Self-referral via website.",
-    contact: { web: "nurturehealth.ie" },
     checked: "4 Sep 2026"
   },
   {
@@ -9053,6 +9042,33 @@ const OUT_OF_HOURS_NI = [
 // Fact lines are deliberately written one per line starting with "{ id:"
 // so the CI entry counter (which counts lines starting with `id: "`) keeps
 // counting directory ENTRIES only.
+
+// Search aliases: when the whole search query equals a key (lower case), the entry search also
+// matches each listed term. Targets are text that already appears in entries (including specialty
+// labels), so an alias only routes people to existing pages; it never adds a claim. Add a key only
+// when the words people use differ from the wording in the entries.
+const SEARCH_ALIASES = {
+  "dad": ["new & expectant parents"],
+  "dads": ["new & expectant parents"],
+  "father": ["new & expectant parents"],
+  "fathers": ["new & expectant parents"],
+  "new dad": ["new & expectant parents"],
+  "paternity": ["new & expectant parents"],
+  "non-birthing parent": ["new & expectant parents"],
+  "adoption": ["adopt", "foster", "new & expectant parents"],
+  "adopt": ["adoption", "foster", "new & expectant parents"],
+  "adoptive parent": ["adopt", "new & expectant parents"],
+  "foster": ["foster", "adopt", "new & expectant parents"],
+  "foster parent": ["foster", "new & expectant parents"],
+  "lgbtq+ parents": ["new & expectant parents", "fertility"],
+  "lgbtq parents": ["new & expectant parents", "fertility"],
+  "same-sex parents": ["new & expectant parents", "fertility"],
+  "same sex parents": ["new & expectant parents", "fertility"],
+  "trans parent": ["new & expectant parents"],
+  "non-binary parent": ["new & expectant parents"],
+  "chestfeeding": ["breastfeeding", "infant feeding"],
+  "motherhood": ["new & expectant parents", "postnatal", "antenatal"],
+};
 
 const TOOL_FACTS_LAST_VERIFIED = "2026-09-28";
 

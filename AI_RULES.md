@@ -33,7 +33,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
-- 2026-10-07 [Claude] — Inclusive parenting language: three labels and four entry texts reworded, parent-neutral wording rule added, content gaps logged in `GAPS.md`. No entries added or removed. See `CHANGELOG.md`.
+- 2026-10-07 [Claude] — Inclusive parenting language: three labels and four entry texts reworded, parent-neutral wording rule added, content gaps logged in `GAPS.md`. Then, with approval: `SEARCH_ALIASES` for entry search, `nurture-pnd` merged into `nurture` (565 to 564), `tusla.ie` allow-listed. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Plastics, burns, neurosurgery and emergency surgery research checked page by page; 4 entries added (561 to 565), 3 edited, primary-care layer and CUH deferred. See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-07 [Claude] — Addendum decisions: `beaumont-national-neuroscience` and `swah-gynae` set to `verify: true` (separate PR), and the `surgery-trauma` specialty added with four re-tagged entries. Surgery and trauma research queue not started. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Budget 2027 "announced" wording on affected entries, Galway Clinic phone confirmed, Belfast Trust liver route sourced, validator's "Budget 2027" ban removed. `blackrockhealth.com` added to the allow-list (owner approved). See `CHANGELOG.md`.

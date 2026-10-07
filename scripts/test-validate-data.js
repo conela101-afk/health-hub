@@ -48,5 +48,7 @@ expect("clinical wording fails", [V({ blurb: "You should take this medicine" })]
 expect("Budget 2027 wording is allowed now the Budget is announced", [V({ blurb: "Announced in Budget 2027, from July 2027: the disregard rises to 1,150 euro." })]);
 expect("contact patterns not applied to unverified-free old entries", [e({ blurb: "Call 021 240 9646" })]);
 expect("blackrockhealth.com ok (Blackrock Health, approved 7 Oct 2026)", [V({ source_url: "https://www.blackrockhealth.com/locations" })]);
+expect("tusla.ie ok (approved 7 Oct 2026)", [V({ source_url: "https://www.tusla.ie/services/x/" })]);
+expect("aai.gov.ie ok via gov.ie", [V({ source_url: "https://www.aai.gov.ie/en/" })]);
 expect("hospital domain ok (nrh.ie, National Rehabilitation Hospital)", [V({ source_url: "https://www.nrh.ie/rehabilitation-services/x/" })]);
 process.exit(fails ? 1 : 0);
