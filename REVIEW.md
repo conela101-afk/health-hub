@@ -59,6 +59,22 @@ listed in `GAPS.md` → "Guided tools: open verify items".
   (brief only mentioned the closed 2022 scheme); the Ombudsman clinical-
   judgement exclusion downgraded to `verify: true`.
 
+### 2026-10-07: browser check results (audit-fixes)
+
+1. **National Review of Adult Specialist Cardiac Services** (gov.ie, published 8 Apr 2025, last updated 9 Jun 2025; the PDF cover says "2023", so cite the gov.ie date). Text on page 8 (Executive Summary), read via fetch, not opened by a person: Recommendation 3 names four National Comprehensive Cardiac Centres (MMUH, SJH, CUH, GUH) with complex interventional cardiology (PCI, EP, structural heart) alongside a cardiothoracic surgical service; Recommendation 4 keeps 24/7 emergency STEMI-ACS care concentrated in those four. These are recommendations, not a designation. The four entries keep the agreed wording and cite the Review as `source_url`. Elaine opened the PDF later on 7 Oct 2026 and confirmed page 8.
+2. **Mater cardiology page** (opened 7 Oct) supports: national cardiology centre, cath lab, adult congenital heart disease, care for people waiting for a heart transplant, nurse specialist services including TAVI and arrhythmia. It does not state 24/7 primary PCI or name electrophysiology/ablation; both stay flagged.
+3. **`bons-cork-cardiology` tilt table testing:** the hospital confirmed by phone on 7 Oct 2026 that Cork offers it; the official page lists Dublin and Tralee only. Claim kept and noted in the entry. "Suspected POTS" removed. Urgent & Express fee cap and criteria stay unconfirmed, no figure.
+4. **CUH:** the CUH website was on a maintenance page, so its About Us wording is unconfirmed. Re-check.
+
+5. **Mater About page** (https://www.mater.ie/about/about-the-mater/, viewed 7 Oct 2026) states "We are the national centre for" heart surgery, heart and lung transplant, ACHD, pulmonary hypertension, adult ECMO, a high consequence infectious diseases (HCID) isolation unit, advanced heart failure/VAD, inherited metabolic disorders and rare diseases. The HCID isolation unit is confirmed on the Mater's own page, but no directory entry exists for it (`mater-nsiu` is the spinal injuries unit), so none was changed or added. A separate row would need a decision. The page does not state 24/7 primary PCI or electrophysiology/ablation.
+
+Cardiac checklist:
+- [x] 1a National Review wording: closed. Opened by Elaine on 7 Oct 2026, who confirmed Recommendations 3 and 4 on page 8 match the wording used. Entries carry `urlStatus: "opened"`. `verify` stays on the Mater (24/7 primary PCI and EP/ablation unconfirmed on the Mater's own pages), St James's (Keith Shaw Unit wording) and CUH (re-check About Us page); cleared on UHG.
+- [ ] 1b Mater: partly closed. Mater national-centre wording confirmed on the Mater's About page (viewed 7 Oct 2026): heart surgery, heart and lung transplant, ACHD, advanced heart failure/VAD (and pulmonary hypertension on `mater-pulmonary-hypertension`). Still open: 24/7 primary PCI and EP/ablation, neither stated on the Mater's own pages. The 489 emergency cath lab procedures reported for 2025 is not evidence of 24/7 PCI and is not used.
+- [ ] 1c CUH About Us: still open. The CUH site was on a maintenance page on 7 Oct 2026. `cuh-cardiology-comprehensive` stays `verify: true`.
+- [x] 1d closed.
+- [x] 1e closed by phone (tilt table, Cork).
+
 ## Log
 
 ### 2026-09-05
@@ -88,3 +104,29 @@ User supplied a `private_jci_enrichment.csv` (25 rows) covering JCI-accredited p
 - **Two discrepancies flagged rather than silently resolved:** Galway Clinic's switchboard is recorded as 091 785 000 in `data.js` but 091 785 800 in the enrichment CSV — noted in the entry itself, not resolved (no live fetch available to check which is current). Kingsbridge Sligo's JCI status is listed "unknown" in the enrichment CSV but the hospital's own site describes it as JCI-accredited — flagged in the entry rather than asserted either way.
 - Respected "unknown" JCI status honestly: Kingsbridge (Belfast, already listed), UPMC Kildare, and UPMC Sports Surgery Clinic got no JCI claim added, since the source data doesn't support one. St Patrick's and St John of God likewise note JCI status as unconfirmed rather than silently added or omitted.
 - `data.js`: 456 → 462 entries. Verified in-browser via Playwright that all 6 new entries render.
+
+### 2026-10-06 / 07: tertiary gaps
+
+Search-result only; egress to hse.ie, beaumont.ie and nidirect was blocked. Human browser checklist:
+
+- [ ] Cardiac items 1a, 1b, 1c, 1e (open the 2025 National Review PDF; then clear `verify` and add `checked` on the four comprehensive-centre entries).
+- [ ] Mater: 24/7 primary PCI and EP/ablation. St James's: Keith Shaw Unit "national referral centre" wording.
+- [ ] `bons-cork-cardiology`: Urgent & Express fee cap and criteria; tilt-table testing (Cork not on the HSE page).
+- [x] Beaumont MND wording: closed. The Beaumont neurology page (viewed 7 Oct 2026) lists MND as a specialist service within the Department of Neurology, referrals via Healthlink. It describes no separate MND clinic and no national designation, so the row is now "Motor Neurone Disease (MND) service, Beaumont Hospital". No consultant names, clinic days or contacts.
+- [ ] GUIDe Clinic (`gum-guide-stjames`): guideclinic.ie/sti-clinic opened 7 Oct 2026; entry now cites it and lists online booking, PrEP clinics with online booking and the Young Person's Clinic (ages 20 and under). `verify: true` stays and no new `checked` date: the PEP page was not opened (no PEP, walk-in or clinic-day claims). The https form of the source URL is untested; switch to http if it does not load. "HSE-operated" and `sector` are still unverified.
+- [ ] `gum-guide-stjames` (existing entry, not edited): its phone was checked by web search before the current rules, not copied from a page a person opened. "HSE-operated" and `sector: "voluntary"` are unverified.
+- [ ] `ni-regional-genetics` (existing entry, not edited): its phone, email and address were checked by web search before the current rules. The regional clinic list and "single service" wording are unverified.
+- [x] SVUH liver transplant page: opened 7 Oct 2026. National centre, running since 1993, clinician referral form, pancreas programme also at SVUH. King's College appears only as a training link and second-opinion arrangement; not claimed. `verify` cleared and `checked: 7 Oct 2026` set (Elaine's browser pass is the human check).
+- [x] NRH referral page: opened 7 Oct 2026. Adult and paediatric referrals; the 7 and 10 working-day timelines are not on the page and stay out. `verify` cleared and `checked: 7 Oct 2026` set.
+- [ ] Restore or replace the HSE psycho-oncology `source_url` when HSE pages return (NCCP site down 7 Oct 2026; the old hse.ie psycho-oncology URLs return "Page not found"). `roi-nccp-psycho-oncology` stays `search-result`, `verify: true`, old URL.
+- [ ] CUH psycho-oncology page (cannot be opened while CUH is on maintenance).
+- [x] CHI genetics page: opened 7 Oct 2026. Page lists both CHI at Crumlin and Temple Street, so the row is renamed. `verify` cleared and `checked: 7 Oct 2026` set.
+- [x] Belfast Trust liver coordinator page: opened 7 Oct 2026. Adults only; pre- and post-transplant care at the RVH, surgery at King's College Hospital, London; the RVH with King's is described as the only hospital in NI running a liver transplant service. `ni-transplant-gb-referral` liver part sourced and `checked: 7 Oct 2026`. The SVUH wording (King's as a training link and second-opinion arrangement) is a different official page and is not merged with this.
+- [ ] Heart and lung to Freeman (`ni-transplant-gb-referral`): the Belfast Trust cardiac surgery page (opened 7 Oct 2026) says it does all surgical procedures apart from transplants but does not name Freeman. Stays `verify: true`. Pancreas and kidney-pancreas: no wording found, unverified.
+- [ ] `beaumont-national-neuroscience`: set `verify: true`, `checked` removed. The blurb "Ireland's national neurology/neurosurgery centre" (and its stroke and neurosurgery claims) is not on the Beaumont neurology page (read 7 Oct 2026), which lists general neurology, epilepsy, MND, migraine/headache, MS, movement disorders and cognitive decline. Not reworded yet, as instructed. The page does list the entry's email and 01 797 4105 (a consultant secretary line, not a general line). The TBI line "1800 872 862 (1800-TRAUMA)" was removed from `details` because the page doesn't carry it; check it on an official page before restoring.
+- [ ] `swah-gynae`: blurb rewritten to a plain description and `verify: true` set. The Western Trust SWAH page (read 7 Oct 2026) confirms the switchboard 028 6638 2000, the address, and a Women's Health Clinics page listing a Gynae clinic. "Covers Fermanagh and west Tyrone" is not on either page.
+- [x] Galway Clinic phone: confirmed 7 Oct 2026. `blackrockhealth.com/locations` lists Galway as +353 91 785 000, so 091 785 000 stands. The 800 variant in the enrichment CSV is most likely the Limerick Clinic's 1800 784 000 from the same page. `galway-clinic-gynae` `checked` updated.
+- [x] `galwayclinic.com` now redirects (301) to `blackrockhealth.com`. Owner approved `blackrockhealth.com` for the allow-list 7 Oct 2026; `galway-clinic-gynae` web field updated and `source_url` set to the locations page.
+- [ ] Re-read gov.ie Your guide to Budget 2027 for GP visit card, DPS and AON.
+- [ ] Budget 2027 items still marked as announced only: re-check start dates once the Finance Bill and social welfare legislation pass (Free Contraception Scheme to age 37, 1.8 million home-support hours, new CAMHS ADHD pathway, four new Jigsaw services, 500 extra NHSS places, Carer's Allowance disregard from July 2027, €10 weekly rate rises from January 2027, €500 cost of disability payment date).
+- [ ] Open the five new `source_url`s.

@@ -1,11 +1,90 @@
 # Changelog
 
+## 2026-10-07 [Claude] — surgery-trauma specialty (schema)
+- New specialty id `surgery-trauma`, label "Surgery & Trauma" (approved 7 Oct 2026), in `SPECIALTIES` in `data.js`. The validator, `app.js` (icon falls back to the default pin) and the tests read the list dynamically, so nothing else needed the id. `scripts/county-matrix.js` gained a "Surgery & trauma" column.
+- Added `surgery-trauma` as an extra specialty (existing ones kept) on `national-major-trauma-centres`, `rvh-major-trauma-centre`, `rvh-regional-neurosurgery` and `beaumont-national-neuroscience`. This only improves findability; it adds no entries and no coverage.
+- County matrix before and after: every total is unchanged (561 entries, 160 national). The only differences are in the new column: Cork 1, Dublin 2, plus the Cork "no area" row 1. No coverage claim is made.
+- Not added (research queue, nothing sourced yet): plastics and burns, general and emergency surgery pathways, CUH neurosurgery, and the primary-care layer (pharmacy-led services, community intervention teams, local injury units).
+
+## 2026-10-07 [Claude] — audit-fixes additions
+- `beaumont-national-neuroscience`: `verify: true`, `checked` removed, `source_url` set to the Beaumont neurology page (opened). Blurb not reworded. The unsourced 1800-TRAUMA line was removed from `details` (validator rule for `verify` entries); logged in REVIEW.md.
+- `swah-gynae`: internal verification note and the unrelated emergency general surgery reference removed; plain description; `verify: true`; `source_url` is the Western Trust SWAH page (opened), with the Women's Health Clinics page as a resource. No claims about other SWAH services.
+
+## 2026-10-07 [Claude] — Budget 2027 wording and 7 Oct checks
+- **Budget 2027 (announced 6 Oct 2026), wording only.** Sources opened in the browser: Citizens Information Budget 2027 page and the gov.ie Department of Health release. Added "announced" wording, never as live services, to: Free Contraception Scheme and IFPA (eligibility to age 37 from 35, no start date); Apply for HSE Home Support (1.8 million extra hours in 2027); Carer's Allowance (disregard to €1,150 single / €2,300 couple from July 2027, from €1,000 / €2,000; €10 weekly rise from January 2027); Disability Allowance (€10 weekly rise from January 2027, €500 cost of disability lump sum in 2027, payment date to be confirmed); Fair Deal (500 more places); both Jigsaw rows (four new services); HSE CAMHS (new ADHD pathway, 40 clinicians). Current rates and limits are unchanged. No new rows. Shingles programme, cancer follow-up closer to home, rare-disease medicines pilot, home STI testing and the HIV Action Plan had no directly affected existing entry, so nothing was added for them. GP visit card, DPS and AON are not in either source and were left alone.
+- **Galway Clinic phone confirmed** (091 785 000) against blackrockhealth.com/locations; the "try 800" note removed from `galway-clinic-gynae`. `galwayclinic.com` now 301-redirects to blackrockhealth.com. `blackrockhealth.com` added to the allow-list with owner approval; `galway-clinic-gynae` now uses it as web and `source_url` (`urlStatus: "opened"`).
+- **`ni-transplant-gb-referral`:** liver part sourced to the Belfast Trust liver coordinator page (opened 7 Oct) and `checked`; heart/lung to Freeman stays unconfirmed (`verify: true`) because the cardiac surgery page says only "apart from transplants". SVUH and Belfast Trust wording on King's kept separate.
+- **Validator:** removed the rule that banned "Budget 2027" anywhere (it only made sense before the Budget) and flipped its test. All other rules unchanged.
+- Entries: 561 before, 561 after (script count). `data.js` 515,009 to 517,399 bytes.
+
+## 2026-10-07 [Claude]
+- **Tertiary gaps (PR 2):** 12 new `verify: true` search-result entries (liver transplant SVUH, NRH referral, NCCP AYA network, Belfast TYA, psycho-oncology, Beaumont MND clinic, CHI GHIFT/NCIMD/craniofacial/clinical genetics, Bon Secours Cork heart & lung and radiotherapy), no contacts. `beaumont.ie`, `childrenshealthireland.ie` and `bonsecours.ie` added to the validator allow-list. 2 requested rows left out as duplicates of existing entries (`gum-guide-stjames`, `ni-regional-genetics`). See `GAPS.md`.
+- **Audit fixes (PR 1):** cardiac "one of 4 national centres" wording replaced; national-centre wording softened on ILD, PH and pituitary entries; NI transplant narrowed. See PR audit-fixes.
+- **Follow-up (PR #83):** Mater and Beaumont 7 Oct browser checks (Mater national-centre wording, pulmonary hypertension, Beaumont MND renamed a service); CHI genetics renamed to "CHI at Crumlin & Temple Street"; `roi-chi-clinical-genetics`, `roi-svuh-liver-transplant` and `roi-nrh-rehab` set to `urlStatus: "opened"`, `checked: 7 Oct 2026`, `verify` cleared; `gum-guide-stjames` now cites guideclinic.ie (online booking, PrEP, Young Person's Clinic; `verify: true`, no new `checked`); `guideclinic.ie` added to the validator allow-list; psycho-oncology row left as `search-result`. No new entries.
+- `data.js` entries: 549 to 561 (script count; the 597 and 619 figures in older docs are stale).
+
+## 2026-10-06 [Claude]
+- **DPS card:** added a `prep` note that High Tech medicines count towards the DPS monthly limit, plus a link to the PCRS pharmacist handbook (2025, section 2.7). The handbook is pharmacist-facing; HSE patient pages don't mention High Tech. Source URL fetched and read this session.
+- **BreastCheck:** added "about every 2 years (sometimes up to 3)" for ages 50-69.
+- Saved `research-batch1-batch2-2026-10-04.md` (unapplied Batch 1/2 research, with the verification status of each item).
+
+## 2026-10-04 [Claude]
+- **Pass 6 all-island audit, applied.** The handoff's draft rows didn't match the `data.js` schema and most already existed, so only genuine gaps were added: `ncg17-adult-t1d` and `mater-neurology-dbs-headache` (ENTRIES, web link only, no phones, no `checked` date), FLAC in `GENERAL_ADVOCACY_ORGS`, and `ni-carers-allowance` in `SCHEME_LINKS`. Enriched `hse-podiatry-diabetic-foot` (five-level model, source link) and `hse-disability-respite` (PHN/GP route, CDNT key worker, source link).
+- **Not added, on purpose:** NI complaints/NIPSO and subject access (already in `TOOL_FACTS`/`RIGHTS_BODIES_NI`), Beaumont ILD (search-result only; St Vincent's ILD already listed), MHC inspector, BSO interpreting.
+- No currency figures were added anywhere. No `data.js` text contained the old Carer's Allowance disregard figures, so no correction was needed.
+- `data.js` entries: 615 to 619.
+
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
+
+## 2026-10-01 [Claude] (Phase A entries, PR B)
+- Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
+## 2026-10-02 [Claude] (Pass 5 replacement: rows and docs)
+- 13 entries across three PRs: rights (MHC tribunals, DPC access timelines, HSE safeguarding; new `rights` specialty), CIPC, QUIT, Home Support application, Carer's Allowance (no figures), stroke ESD, MS unit, CGM managed access, cardiac rehab, adult sickle cell, sarcoma. All `verify: true`, search-result only, no contacts. LauraLynn and Jigsaw tagged `voluntary`.
+- Validator: `urlStatus` is `opened`, `search-result` or `unverified`; an entry with a `urlStatus` and no `checked` date must be `verify: true`; `source_url` must be on an official-domain allow-list (charity hosts need approval); `verify: true` blurbs can't hold a phone, email or Eircode or clinical-instruction wording; no field may mention "Budget 2027". 34 rule tests.
+- `GAPS.md`: replacement gap table and human checklist.
+
+## 2026-10-02 [Claude] (Pass 5 replacement: corrections)
+- Bill 88 text now says: First Stage 18 Sep 2026; a Second Stage debate on 23 Sep 2026 is reported by a non-official source only; Second Stage not confirmed ended; Committee Stage not reached; not law. The AON completion fact cites S.I. 263/2007 Reg. 10 as made ("save for in exceptional circumstances", written reasons before the 3 months expire) and says it is not a no-exceptions deadline. Both stay `verify: true`; the S.I. text was not opened by us.
+## 2026-10-02 [Claude] (Pass 3 rows)
+- Added 11 entries (neuro-rehabilitation, spinal cord injury, sleep, NIPHS, memory assessment, Work-Able) with 4 new specialties; all `verify: true`, search-result only, no contacts. Updated the Home Support Providers Act entry in place. Skipped duplicates (HSE helpline, home STI kit) and withheld two rows with non-official sources (adult ADHD, Living Well with Chronic Pain).
+
+## 2026-10-02 [Claude] (Pass 4 rows)
+- Added 4 entries (home support providers Act, community ophthalmic scheme, NCCP designated centres, Carer's Support Grant with a new `carers` specialty), updated 2 in place (autism protocol, audiology) plus the PAS scope text, and added 2 FOI facts to the records tool. Skipped duplicates (YSYS, PAS, FOI) and withheld the ME/CFS row (press source). GP card and DPS held until after Budget 2027. All flagged `verify` with `urlStatus: "search-result"`.
+
+## 2026-10-02 [Claude] (matrix follow-up)
+- `area` now means physical base. Cork City dropped from 55 to 2 entries (regional services have no area); West Cork stays at 10. Narrowed the rule to "no single-county targeting" in `AI_RULES.md`.
+- County matrix: Cork is one county, `--areas` prints Cork per area with a reconciliation line (areas + no area = county total). Removed the West Cork priority wording from `GAPS.md`; replaced with a neutral sub-county line. The 5 Sep 2026 population-based review sections are left as history.
+
+## 2026-10-01 [Claude] (county matrix, PR D)
+- Added the ROI 26-county matrix to `GAPS.md` and `scripts/county-matrix.js`. Main finding: all child-disability, PHN, allied health and dental entries are `national`-tagged, so no county has a local one. The HSE-finder baseline was not done (hse.ie is egress-blocked here). `SECTOR_AUDIT.md` notes for `ngs-columcilles` and `hse-ahr`.
+## 2026-10-02 [Claude] (Cork CDNTs)
+- Added Cork CDNT 6 and CDNT 7 (`area: "east-cork"`), `verify: true`, `urlStatus: "search-result"`, no contacts and no lead agency. `GAPS.md` records that Cork has 11 CDNTs (4 to 14) per HSE parliamentary replies, and the human checks outstanding.
+
+## 2026-10-01 [Claude] (static pages)
+- Added `#/about/screening` (BowelScreen 57-71, BreastCheck 50-69, CervicalCheck 25-65, with a last-checked note) and `#/about/waiting-lists` (links to the NTPF, HSE performance reports and DoH NI publishers; no figures). 7 new `TOOL_FACTS`, all `verify: true`, search cross-check only. Both pages are in the app search. Stacked on `claude/aon-toolkit` (reuses its `renderPage` hook and the v12 cache bump).
+
+## 2026-10-01 [Claude]
+- **AON toolkit (`#/tools/aon`)**: extended the existing explainer rather than adding a second route. Deadline calculator (acknowledgement +14 days, start +3 months, report +6 months, Service Statement +1 month after the report date or about 7 months overall if no report date, complaint window 3 months), calendar-month arithmetic that clamps month-ends, opt-in "Save on this device". Five letter templates (acknowledgement, overdue chaser, delay reason, s.14 cover note, Service Statement non-delivery), FOI/SAR via the existing records builder, escalation ladder, evidence checklist (links to `#/log`), glossary, "not legal advice" notice signposting the Legal Aid Board, Citizens Information and the OCO. No eligibility prediction, no "this breaches the law" wording, no rates.
+- **`#/rights/disability-children`**: CDNT vs AON, EPSEN, SENO/SNA, DCA to medical card to Carer's Support Grant, with links out and no rates.
+- 12 new `TOOL_FACTS` (all `verify: true`) and `aon-bill` rewritten. See `GAPS.md`.
+- `scripts/test-aon-dates.js` (month-ends, leap years, missing report date, bad dates), run in CI. Service worker cache v11 to v12. No new files to precache.
+- Follow-up: Bill banner now "before the Dáil, not yet law" (no stage date); the Circuit Court (s.22) ladder step was replaced with a non-committal "court routes, information only" step pending a read of the Act; calculator gained an optional "review date stated in your report" field and a 12-month outer limit.
+- Pass 4 fixes: ladder now says optional mediation (s.19), High Court appeal on a point of law only (s.20), Circuit Court enforcement (s.22); all one-year-review wording removed (the review period is in each report) and a s.9(7) repeat-application note added; s.9(5) cited for the 3-month start and the completion period flagged as set in regulations (S.I. 263/2007, not opened); Bill banner reads "debated at Dáil Second Stage 23 Sep 2026. Not law."; Patient Advocacy Service scope now includes patient safety incidents. Copy is covered by new tests. Section numbers are from the brief, unverified by us.
+- **Not done / blocked:** official sites (hse.ie, oireachtas.ie, citizensinformation.ie) are egress-blocked here, so no URL was curl-checked and the Bill stage was not confirmed on oireachtas.ie. Facts rest on search results only.
+## 2026-10-02 [Claude] (area schema)
+- **Optional `area` field** (sub-county, navigation only). `AREAS` in `data.js`; only Cork has areas: West, East, North, Cork City and South Cork. `south-cork` is awaiting a human decision. Areas are not HSE boundaries and the county page says so.
+- **Cork is now one county** (`cork`). The three old ids `cork-city`, `cork-north`, `cork-west` were removed from `COUNTIES`. 68 entries migrated. `area` means where a service is physically based, not who it serves, so regional and county-wide services (CUH, CUMH, Mercy, SIVUH, Bon Secours, Mater Private, SATU, networks) were left without an area. Kept: 10 West Cork community services and 2 Cork City community charities. Old links (`#/county/cork-city` etc.) redirect to the county plus area. The county page has an "Area" dropdown, shown only for counties that define areas.
+- **New optional `urlStatus`** (`opened` or `search-result`). `scripts/validate-data.js` fails the build on: an unknown county or specialty, an unknown `area`, an `area` that doesn't belong to one of the entry's counties, a `verify: true` entry with no `source_url`, and a `verify: true` entry that has a phone, email or address without `urlStatus: "opened"`. `scripts/test-validate-data.js` covers the rules (15 checks). Both run in CI.
+- Field names follow the existing schema (`county` is an array of ids, `source_url`, `checked`), not the brief's draft names. `cdnt` maps to the existing `childdisability`.
+
+## 2026-09-29 [Claude]
+- **Fixed doubled brackets in the SAR builder preview** (`app.js`, `generateSarLetter`). The empty-state fallbacks (`[Your name]`, `[Your address]`, `[Your date of birth]`) already carry brackets, and the letter header wrapped every value in a second pair, giving `[[Your name]]` and `[Date of birth: [Your date of birth]]`. It also bracketed real values once filled (`[Jane Smith]`). The header now prints values unwrapped, with the "Date of birth:" label outside any brackets. Placeholders keep their single pair; the contact line is unbracketed too. One code path serves both jurisdictions (ROI and NI differ only in the statute text), so the NI variant is covered. `LETTER_TEMPLATES` in `data.js` and `tools.js` letters use plain single-bracket placeholders and were not affected. Service worker cache `v10` -> `v11`.
+- Not yet browser-tested after the fix; from source only.
 
 ## 2026-09-28 [Claude] (perf + input fixes)
 - **Date/time/phone inputs**: the complaint-letter "Date(s) of what happened" free-text field is now a calendar `<input type="date">` plus an optional "Last date" calendar; the two are joined back into the single `{{dates}}` letter value ("12 March 2026 to 15 March 2026", or one date). The waiting-room "Appointment time" is now `type="time"` (formatted back to "2:30pm" in the message) and "Your phone number" is `type="tel"` (numeric keypad). The SAR "Phone or email" field is deliberately left as text because it accepts either. A delegated click handler calls `showPicker()` so tapping anywhere in a date/time field opens the native calendar/clock, not just the icon.
 - **Lazy-loaded assets**: `data/facilities.js` (~2 MB, 260 KB gz), `data/conditions.js` (also holds `MEDICINE_SEARCH_TARGETS`) and Leaflet (JS+CSS, ~46 KB gz) are no longer in `index.html`. New `loadAsset()`/`withAssets()` in `app.js` fetch them on first visit to `#/facilities`, `#/conditions`, `#/medicines`, and on tapping "Show map". Home now loads `styles.css`, `data.js`, `tools.js`, `app.js` only (~310 KB gz saved on first load). Same-origin script injection is allowed by the existing CSP (`script-src 'self'`); no CSP change.
-- **Service worker**: cache `pocket-guide-v10` → `v11`; fetch uses `cache: "no-cache"` instead of `"no-store"`, so files revalidate with ETag and return 304 instead of being re-downloaded every visit. Still network-first, so no stale-content or version-skew risk. The lazy files stay in the precache list, so offline still works once installed.
+- **Service worker**: cache bumped to v11 at the time; superseded by later sessions' bumps (now v13 after this branch's merge with `main`). Fetch switched from `cache: "no-store"` to `"no-cache"`, so files revalidate with ETag and return 304 instead of being re-downloaded every visit. Still network-first, so no stale-content or version-skew risk. The lazy files stay in the precache list, so offline still works once installed.
 - Verified with Playwright: home requests only 4 JS/CSS files; facilities/conditions/medicines/map load on demand (including deep links on a fresh load); waiting-room message and complaint-letter date range render correctly; no console errors. `node --check` passes on `app.js`, `tools.js`, `sw.js`.
 
 ## 2026-09-28 [Claude]

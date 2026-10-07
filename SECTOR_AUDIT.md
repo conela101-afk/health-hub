@@ -64,3 +64,18 @@ re-tag.
   2026-09-12**: added a `title` tooltip to the Public tab ("State-run
   HSE/HSC bodies — voluntary hospitals have their own tab") and to the
   Voluntary tab, rather than changing the visible label text.
+
+## Audit round 1 follow-up (1 Oct 2026)
+
+Not done in this round: the brief's new `sector`-related checks. Note for the pending Phase A
+entries: `ngs-columcilles` is a `.com` source and must stay flagged until an hse.ie page confirms;
+`hse-ahr` should be tagged `public` and checked against the existing `hse-approved-ahr-clinics`
+(private) entry so the two are not confused.
+
+## Pass 5 replacement follow-up (2 Oct 2026)
+
+`lauralynn` and `jigsaw-camhs`, HSE-funded charities, are now tagged `voluntary`, so they appear under the Voluntary tab. The regulator rows (`mhc-tribunals`, `dpc-access`, `hse-safeguarding`) stay untagged, so they show under Public. The schema has no "regulator" sector.
+
+## Pass 6 note (4 Oct 2026)
+
+FLAC is an NGO and is sourced from its own site (flac.ie). Medical Independent, Irish Health Pro and Limerick Leader items from Pass 6 are corroboration only and are not cited in any entry.
