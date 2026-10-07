@@ -203,7 +203,7 @@ Replaces the withdrawn first Pass 5. Everything here is search-result only in th
 |---|---|---|---|---|
 | 1 | Bill 88 of 2026 (AON) | Unverified past Second Stage | First Stage 18 Sep 2026 on the official page (search result only). A 23 Sep Second Stage debate is non-official. No Committee Stage evidence. | Text corrected in `aon-bill`; re-check after 6 Oct |
 | 2 | S.I. 263/2007 timeframes | Reported opened (as made) | Reg 9 start within 3 months; Reg 10 complete within a further 3 months "save for in exceptional circumstances", with prior written reasons; Reg 6 14 days; Reg 19 one month; Reg 24 three months as made | `aon-complete` updated; all `verify: true`; check for amendments |
-| 3 | ILD | Pathway absent (official) | Only a non-official Irish Thoracic Society note | Not added |
+| 3 | ILD | Pathway absent (official) | Only a non-official Irish Thoracic Society note | Two ILD entries already exist (`svuh-ild`, `beaumont-ild-ifpf`); both wording-softened on 7 Oct 2026 and still need a person to open the hospital pages. No national ILD pathway page added |
 | 4 | Patient interpreting | Confirmed gap | No HSE page found | Not added |
 | 5 | Diabetic foot; continence and urogynaecology; urology; thyroid and endocrine | Possible gap (unverified) | Not researched or not found | Not added |
 | 6 | Falls and bone health; geriatric day hospitals; respite | Possible gap (unverified) | Not found | Not added |
