@@ -2903,14 +2903,15 @@ const ENTRIES = [
     county: ["dublin"],
     blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. Cardiac surgery, heart and lung transplant, TAVI, adult congenital heart disease and ventricular assist devices (VAD).",
     details: [
-      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres.",
+      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres.",
       "The Mater's cardiology page (opened 7 Oct 2026) lists a national cardiology centre, cath lab, adult congenital heart disease, care for people waiting for a heart transplant, and nurse specialist services including TAVI and arrhythmia.",
       "Not confirmed on that page: 24/7 primary PCI, and electrophysiology/ablation (not named). Ask the hospital before relying on either.",
       "TAVI has been running here since 2008, in partnership with Mater Private next door."
     ],
     referral: "GP or consultant referral; emergency STEMI (heart attack) cases go directly via ambulance/cath lab activation, not routine referral.",
     contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Cardiology or Cardiothoracic Surgery." },
-    source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
+    source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }],
     urlStatus: "opened",
     verify: true,
     checked: "6 Sep 2026"
@@ -2923,12 +2924,13 @@ const ENTRIES = [
     county: ["dublin"],
     blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. Cardiac surgery on site, 24/7 primary PCI as part of the National ACS Programme, and TAVI.",
     details: [
-      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres.",
+      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres.",
       "The Keith Shaw Unit is described elsewhere as a national referral centre for acquired adult heart disease. That wording was not confirmed on hospital pages we could check."
     ],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Cardiology or the Keith Shaw Unit." },
-    source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
+    source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }],
     urlStatus: "opened",
     verify: true,
     checked: "6 Sep 2026"
@@ -2940,11 +2942,12 @@ const ENTRIES = [
     county: ["cork"],
     blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. 24/7 primary PCI, cardiothoracic surgery and TAVI.",
     details: [
-      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres."
+      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres."
     ],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Cardiology." },
-    source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
+    source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }],
     urlStatus: "opened",
     verify: true,
     checked: "6 Sep 2026"
@@ -2956,11 +2959,12 @@ const ENTRIES = [
     county: ["galway"],
     blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. Cardiothoracic surgery and primary PCI.",
     details: [
-      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres."
+      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres."
     ],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "091 524 222", extra: "Main hospital switchboard — ask for Cardiology." },
-    source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
+    source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }],
     urlStatus: "opened",
     checked: "6 Sep 2026"
   },
