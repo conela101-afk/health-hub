@@ -32,6 +32,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-07 [Claude] — Addendum decisions: `beaumont-national-neuroscience` and `swah-gynae` set to `verify: true` (separate PR), and the `surgery-trauma` specialty added with four re-tagged entries. Surgery and trauma research queue not started. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Budget 2027 "announced" wording on affected entries, Galway Clinic phone confirmed, Belfast Trust liver route sourced, validator's "Budget 2027" ban removed. `blackrockhealth.com` added to the allow-list (owner approved). See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Steps 0 to 2 of the kickoff: audit-fixes PR and tertiary-gaps PR. Hospital hosts added to the validator allow-list with owner approval; two requested rows skipped as duplicates. See `GAPS.md` "Tertiary gaps". Entry count by script is 561, not the 597/619 quoted in older docs. See `CHANGELOG.md`. Follow-up PR #83 applied the 7 Oct browser checks (Mater, Beaumont, CHI genetics, SVUH, NRH, GUIDe) and added `guideclinic.ie` to the allow-list with owner approval.
 - 2026-10-01 [Claude] — Audit round 1, PR A: AON toolkit and `#/rights/disability-children`. Pre-flight found PRs #43/#45/#49 were closed unmerged (fabricated CHN data, see 2026-09-22), so there was nothing to rebase on, and the 23-row Phase A audit report isn't in the repo. See `CHANGELOG.md`.
