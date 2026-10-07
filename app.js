@@ -356,9 +356,9 @@
       `
       : `
         <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
-        <a class="pill" href="#/specialty/parenting">Parenting &amp; new motherhood</a>
+        <a class="pill" href="#/specialty/parenting">New &amp; expectant parents</a>
         <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
-        <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
+        <a class="pill" href="#/specialty/feeding">Infant feeding &amp; breastfeeding support</a>
         <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
         <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
       `;
@@ -553,8 +553,14 @@
     `;
   }
 
+  // The whole query, plus any aliases from SEARCH_ALIASES in data.js (see the note there).
+  function searchVariants(q){
+    return [q].concat(SEARCH_ALIASES[q.trim()] || []);
+  }
+
   function renderSearch(query){
     const q = query.toLowerCase();
+    const variants = searchVariants(q);
     const terms = q.split(/\s+/).filter(Boolean);
     const isPrivateQuery = terms.includes("private");
     const isVoluntaryQuery = terms.includes("voluntary");
@@ -581,8 +587,8 @@
     const privateIds = new Set(privateEntries.map(e => e.id));
     const voluntaryIds = new Set(voluntaryEntries.map(e => e.id));
 
-    const results = ENTRIES.filter(e => !privateIds.has(e.id) && !voluntaryIds.has(e.id) && entryHay(e).includes(q));
-    const matchesOrg = o => [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase().includes(q);
+    const results = ENTRIES.filter(e => !privateIds.has(e.id) && !voluntaryIds.has(e.id) && variants.some(v => entryHay(e).includes(v)));
+    const matchesOrg = o => { const hay = [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase(); return variants.some(v => hay.includes(v)); };
     const orgResults = SUPPORT_ORGS.filter(matchesOrg);
     const generalOrgResults = GENERAL_ADVOCACY_ORGS.filter(matchesOrg);
     const toolResults = TOOL_PAGES.filter(t => (t.name + " " + t.keywords).toLowerCase().includes(q));

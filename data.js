@@ -55,9 +55,9 @@ const SPECIALTIES = [
   { id: "ophthalmology",   label: "Ophthalmology & Eye Care" },
   { id: "orthopaedics",    label: "Orthopaedics" },
   { id: "palliative",      label: "Palliative & End-of-Life Care" },
-  { id: "parenting",       label: "Parenting & New Motherhood" },
+  { id: "parenting",       label: "New & Expectant Parents" },
   { id: "pelvicphysio",    label: "Pelvic Health Physiotherapy" },
-  { id: "mh",              label: "Perinatal & Maternal Mental Health" },
+  { id: "mh",              label: "Perinatal Mental Health" },
   { id: "loss",            label: "Pregnancy & Baby Loss" },
   { id: "phn",             label: "Public Health Nursing" },
   { id: "rare-disease",    label: "Rare Diseases" },
@@ -343,11 +343,11 @@ const ENTRIES = [
   },
   {
     id: "nurture",
-    name: "Nurture — Maternal Mental Health Counselling",
-    specialty: ["mh"],
+    name: "Nurture — Perinatal Mental Health Counselling",
+    specialty: ["parenting", "mh"],
     county: ["national"],
-    blurb: "Affordable, timely counselling for perinatal mental health, birth trauma, fertility issues, grief.",
-    details: ["No-wait-list model in most areas."],
+    blurb: "Counselling for women and partners around pregnancy, childbirth and postnatal depression, antenatal and postnatal anxiety, pregnancy loss, fertility, and perimenopause and menopause, as described on Nurture's own site.",
+    details: ["No-wait-list model in most areas.", "The site also lists support for post-traumatic stress, sleep, and men and depression."],
     referral: "Self-referral.",
     contact: { web: "nurturehealth.ie" },
     checked: "4 Sep 2026"
@@ -1634,17 +1634,6 @@ const ENTRIES = [
     checked: "4 Sep 2026"
   },
   {
-    id: "nurture-pnd",
-    name: "Nurture",
-    specialty: ["parenting", "mh"],
-    county: ["national"],
-    blurb: "Support and counselling specifically around pregnancy, birth, and postnatal depression.",
-    details: [],
-    referral: "Self-referral via website.",
-    contact: { web: "nurturehealth.ie" },
-    checked: "4 Sep 2026"
-  },
-  {
     id: "treoir",
     name: "Treoir",
     specialty: ["parenting"],
@@ -2095,7 +2084,7 @@ const ENTRIES = [
     verify: true
   },
 
-  // ---- Perinatal & Maternal Mental Health: other 5 hub hospitals + NI ----
+  // ---- Perinatal Mental Health: other 5 hub hospitals + NI ----
   {
     id: "nmh-perinatal-mh",
     name: "National Maternity Hospital Specialist Perinatal MH Team",
@@ -2169,7 +2158,7 @@ const ENTRIES = [
     name: "Mother & Baby Unit status (ROI & NI)",
     specialty: ["mh", "obs"],
     county: ["national"],
-    blurb: "No mother & baby psychiatric unit currently operates in either jurisdiction — mothers needing inpatient mental health care are admitted without their baby.",
+    blurb: "No mother & baby psychiatric unit currently operates in either jurisdiction — people who need inpatient mental health care after giving birth are admitted without their baby.",
     details: [
       "Northern Ireland: confirmed — Belfast City Hospital, expected to open 2028/29 (announced 30 April 2026).",
       "Republic of Ireland: funded via Budget 2026 but no opening date yet — planned units at St Vincent's, Dublin (co-located with the new National Maternity Hospital) and a 6-bed unit in Limerick (St Joseph's Hospital campus)."
@@ -2694,7 +2683,7 @@ const ENTRIES = [
     name: "Friends of Breastfeeding",
     specialty: ["feeding", "parenting"],
     county: ["national"],
-    blurb: "Mum2Mum peer-support groups plus a one-to-one \"Breastfeeding Buddy\" scheme pairing you with an experienced mother by text, phone, email, or video call.",
+    blurb: "Mum2Mum peer-support groups plus a one-to-one \"Breastfeeding Buddy\" scheme. The site describes the buddy service as for pregnant or breastfeeding women, and the support as by text, phone, email, or video call.",
     details: [],
     referral: "Self-referral via website.",
     contact: { web: "friendsofbreastfeeding.ie" },
@@ -9053,6 +9042,33 @@ const OUT_OF_HOURS_NI = [
 // Fact lines are deliberately written one per line starting with "{ id:"
 // so the CI entry counter (which counts lines starting with `id: "`) keeps
 // counting directory ENTRIES only.
+
+// Search aliases: when the whole search query equals a key (lower case), the entry search also
+// matches each listed term. Targets are text that already appears in entries (including specialty
+// labels), so an alias only routes people to existing pages; it never adds a claim. Add a key only
+// when the words people use differ from the wording in the entries.
+const SEARCH_ALIASES = {
+  "dad": ["new & expectant parents"],
+  "dads": ["new & expectant parents"],
+  "father": ["new & expectant parents"],
+  "fathers": ["new & expectant parents"],
+  "new dad": ["new & expectant parents"],
+  "paternity": ["new & expectant parents"],
+  "non-birthing parent": ["new & expectant parents"],
+  "adoption": ["adopt", "foster", "new & expectant parents"],
+  "adopt": ["adoption", "foster", "new & expectant parents"],
+  "adoptive parent": ["adopt", "new & expectant parents"],
+  "foster": ["foster", "adopt", "new & expectant parents"],
+  "foster parent": ["foster", "new & expectant parents"],
+  "lgbtq+ parents": ["new & expectant parents", "fertility"],
+  "lgbtq parents": ["new & expectant parents", "fertility"],
+  "same-sex parents": ["new & expectant parents", "fertility"],
+  "same sex parents": ["new & expectant parents", "fertility"],
+  "trans parent": ["new & expectant parents"],
+  "non-binary parent": ["new & expectant parents"],
+  "chestfeeding": ["breastfeeding", "infant feeding"],
+  "motherhood": ["new & expectant parents", "postnatal", "antenatal"],
+};
 
 const TOOL_FACTS_LAST_VERIFIED = "2026-09-28";
 
