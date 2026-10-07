@@ -3309,13 +3309,19 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["neurology", "surgery-trauma"],
     county: ["dublin"],
-    blurb: "Ireland's national neurology/neurosurgery centre — covers epilepsy, stroke, MS, movement disorders, and general neurology alongside neurosurgery.",
-    details: [],
-    referral: "GP referral via Healthlink to the Neurology Department.",
+    blurb: "Beaumont's own pages describe a National Neurosurgical Centre for adult neurosurgery, alongside a Department of Neurology covering general neurology, epilepsy, motor neurone disease, migraine and headache, MS, movement disorders and cognitive decline.",
+    details: [
+      "The neurosurgery page says the service treats adult neurosurgical conditions including traumatic brain injury, brain and spinal tumours, neurovascular conditions, epilepsy, hydrocephalus and spinal conditions, with a 24/7 on-call system for referring clinicians.",
+      "Clinicians referring a traumatic brain injury are asked to use 1800-TRAUMA (1800 872 862).",
+    ],
+    referral: "GP referral via Healthlink to the Neurology Department. Neurosurgery referrals are clinician to clinician via Healthlink.",
     contact: { phone: "01 797 4105", email: "neurologyadmin@beaumont.ie" },
+    resources: [
+      { label: "Neurosurgery — Beaumont Hospital", url: "https://www.beaumont.ie/pages/health-A-Z/neurosurgery" }
+    ],
     source_url: "https://www.beaumont.ie/pages/health-A-Z/neurology",
     urlStatus: "opened",
-    verify: true
+    checked: "7 Oct 2026"
   },
   {
     id: "ms-ireland",
@@ -4996,7 +5002,7 @@ const ENTRIES = [
     county: ["dublin"],
     blurb: "National burns service for patients aged 14+, from across the island of Ireland.",
     details: [
-      "Paediatric major burns (under 14) go to the Plastic Surgery Service at CHI Temple Street, the national centre for paediatric major burns — referrals there must be made by phone to the on-call Plastic Surgery doctor.",
+      "Children with burns are managed by the Plastic and Reconstructive Surgery service at Children's Health Ireland (CHI at Crumlin and CHI at Temple Street). See the CHI plastics entry.",
     ],
     referral: "Referred from Emergency Departments, GP practices, or healthcare centres; direct emergency transfer for major burns.",
     contact: { phone: "01 416 2326" },
@@ -6291,20 +6297,21 @@ const ENTRIES = [
   // purpose, and there's no `checked` date, until someone fetches the live pages.
   {
     id: "rvh-regional-neurosurgery",
-    name: "Royal Victoria Hospital Belfast — Regional Neurosciences Centre (Neurosurgery)",
+    name: "Royal Victoria Hospital Belfast — Regional Neurosciences Centre",
     specialty: ["neurology", "surgery-trauma"],
     county: ["antrim"],
-    blurb: "Northern Ireland's single Regional Neurosciences Centre. It provides neurosurgery and most sub-specialist neurology inpatient care for the whole of NI.",
+    blurb: "The Department of Health NI describes one Regional Neurosciences Centre in Northern Ireland, based at the Royal Victoria Hospital. It provides most sub-specialist neurology services, including specialist inpatient care, for the wider NI population.",
     details: [
-      "Suspected brain tumours are referred to the Neuro-Oncology Specialist Surgical Unit at the RVH.",
-      "Neurosurgery is only provided on the RVH site in NI. There's no second neurosurgical unit elsewhere in the region."
+      "Suspected brain tumours are referred to the Neuro-Oncology Specialist Surgical Unit at the RVH."
     ],
     referral: "Consultant or ED referral. Not a GP-direct or self-referral service.",
     contact: {
-      extra: "Belfast Trust switchboard — ask for Neurosurgery / Regional Neurosciences Centre.",
       web: "belfasttrust.hscni.net/services/cancer/types/neuro-oncology-brain-tumours/",
       address: "Royal Victoria Hospital, Grosvenor Road, Belfast"
-    }
+    },
+    source_url: "https://www.health-ni.gov.uk/articles/review-neurology-services-interim-report",
+    urlStatus: "opened",
+    verify: true
   },
   {
     id: "rvh-major-trauma-centre",
@@ -6319,6 +6326,85 @@ const ENTRIES = [
     ],
     referral: "Not GP-referred. Patients reach the MTC by emergency ambulance or HEMS triage, or by transfer between hospitals.",
     contact: { web: "online.hscni.net/partnerships/majortrauma/major-trauma-network-faqs/" }
+  },
+  // Plastics, burns and emergency surgery (7 Oct 2026). Every page below was opened in the browser pane that day.
+  {
+    id: "ni-regional-burns-rvh",
+    name: "Northern Ireland Regional Burns Service (Royal Victoria Hospital)",
+    specialty: ["surgery-trauma", "orthopaedics"],
+    county: ["antrim"],
+    blurb: "Belfast Trust runs the Northern Ireland Regional Burns Service at the Royal Victoria Hospital: the Norman C. Hughes Regional Burns Unit, a dedicated burns theatre, a daily burns dressing clinic and outpatient burns clinics.",
+    details: [
+      "The unit has 8 beds for adults who need inpatient care. Children with burns are seen and managed on Paul Ward in the Children's Hospital.",
+      "The Burns Dressing Clinic is the point of referral for new burns that can be treated as an outpatient.",
+      "Belfast Trust's page is shared with its plastic surgery service. It lists adult burns care, complex skin cancer, and reconstruction after breast and gynaecological cancer surgery.",
+    ],
+    referral: "Not stated in detail on the page. The Burns Dressing Clinic is the referral point for outpatient burns; ask your GP or the emergency department about a burn.",
+    contact: { web: "belfasttrust.hscni.net/service/regional-burns-service-and-plastic-surgery/" },
+    source_url: "https://belfasttrust.hscni.net/service/regional-burns-service-and-plastic-surgery/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "ulster-regional-plastic-surgery",
+    name: "Ulster Hospital — Regional Plastic Surgery (South Eastern Trust)",
+    specialty: ["surgery-trauma"],
+    county: ["down"],
+    blurb: "The South Eastern Trust's plastic surgery service is described on the Trust's own page as a regional specialty, with a regional Plastic and Oral Maxillofacial Unit on Ward 4C at the Ulster Hospital, Dundonald.",
+    details: [
+      "A Plastics Trauma Clinic at the Ulster Hospital provides urgent assessment and treatment for patients across the region.",
+      "The Ulster Hospital provides elective and 24-hour emergency plastic surgery. Lagan Valley Hospital provides elective day case surgery, and outpatient plastic surgery is also held at other Trust sites.",
+      "Belfast Trust's burns and plastics page is a separate service. See the Northern Ireland Regional Burns Service entry.",
+    ],
+    referral: "Not stated in detail on the page. Ask your GP or consultant.",
+    contact: { web: "setrust.hscni.net/service/surgical-specialties/" },
+    resources: [
+      { label: "Plastics Trauma Clinic — South Eastern Trust", url: "https://setrust.hscni.net/service/surgical-specialties/plastics-trauma-clinic/" }
+    ],
+    source_url: "https://setrust.hscni.net/service/surgical-specialties/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "chi-plastic-reconstructive-surgery",
+    name: "CHI Plastic and Reconstructive Surgery (Crumlin and Temple Street)",
+    specialty: ["surgery-trauma", "paediatrics"],
+    county: ["dublin"],
+    blurb: "Children's Health Ireland describes this service as the national tertiary and quaternary referral centre for paediatric plastic surgery, at CHI at Crumlin and CHI at Temple Street. It includes burns care.",
+    details: [
+      "The page lists cleft lip and palate, craniofacial conditions, congenital hand differences, burns, brachial plexus birth injury, nerve injury, facial palsy, ear reconstruction and vascular anomalies.",
+      "The PATCH clinic at CHI at Crumlin reviews children with an injury or burn. Children are referred by a doctor at the hospital where they first had treatment, and the clinic does not take walk-ins.",
+      "All plastic and reconstructive referrals go through CHI's Central Referrals Office. GPs and secondary-care paediatricians refer via Healthlink.",
+    ],
+    referral: "Doctor referral through the CHI Central Referrals Office. Not a walk-in service.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/plastic-and-reconstructive-aesthetic-surgery/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/plastic-and-reconstructive-aesthetic-surgery/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "ni-emergency-general-surgery-sites",
+    name: "About emergency general surgery in Northern Ireland: which hospital?",
+    specialty: ["surgery-trauma"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry"],
+    blurb: "Emergency general surgery has been moved onto fewer sites in several trusts, so the nearest emergency department is not always where the surgery happens. Trust pages read on 7 Oct 2026 are summarised here and some describe recommendations, not confirmed changes.",
+    details: [
+      "Southern Trust: emergency general surgery moved from Daisy Hill to Craigavon in February 2022. On 28 September 2023 the Trust Board recommended making this permanent. Daisy Hill stays a Type 1 emergency department that assesses medical and surgical patients, with transfer to Craigavon where needed.",
+      "Western Trust: emergency general surgery at South West Acute Hospital was temporarily withdrawn from 18 December 2022, with patient pathways set up with other hospitals. The Trust pages read do not give a current end date.",
+      "Northern Trust: on 22 May 2025 the Board approved a recommendation to centralise emergency general surgery at Antrim Area Hospital, with most elective general surgery at Causeway Hospital. The Trust said this needed Health Minister and Department of Health approval before it could be implemented, and the page read does not say whether that has happened.",
+      "South Eastern Trust: the Trust's surgical specialties page says the Ulster Hospital provides 24-hour emergency surgery in general surgery.",
+      "Belfast Trust: its general surgery page was not checked for emergency sites, so nothing is stated here.",
+    ],
+    referral: "Not a referral service. In an emergency, go to or phone for an emergency department as advised.",
+    contact: { web: "southerntrust.hscni.net/future-of-emergency-general-surgery-2/" },
+    resources: [
+      { label: "Emergency General Surgery at South West Acute Hospital — Western Trust", url: "https://westerntrust.hscni.net/about-the-trust/emergency-general-surgery-south-west-acute-hospital/" },
+      { label: "Board approves recommendation on general surgery — Northern Trust (22 May 2025)", url: "https://www.northerntrust.hscni.net/trust-board-approves-recommendation-on-future-of-general-surgery-service/" },
+      { label: "Surgical specialties — South Eastern Trust", url: "https://setrust.hscni.net/service/surgical-specialties/" }
+    ],
+    source_url: "https://southerntrust.hscni.net/future-of-emergency-general-surgery-2/",
+    urlStatus: "opened",
+    verify: true
   },
   {
     id: "bch-kidney-transplant",
