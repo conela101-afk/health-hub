@@ -2901,13 +2901,15 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["cardiology"],
     county: ["dublin"],
-    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI for heart attacks, electrophysiology/ablation, TAVI and other structural heart procedures, and cardiac surgery. Also the national centre for heart & lung transplantation and ventricular assist devices (VAD).",
+    blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. Cardiac surgery, heart and lung transplant, TAVI, adult congenital heart disease and ventricular assist devices (VAD).",
     details: [
-      "The 4 comprehensive cardiac centres nationally are Mater, St James's, Cork University Hospital, and University Hospital Galway — between them they carry out about 75% of Ireland's primary PCI for heart attacks.",
-      "TAVI has been running here since 2008, in partnership with Mater Private next door.",
+      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway.",
+      "Not confirmed on hospital pages we could check: 24/7 primary PCI and electrophysiology/ablation at the Mater. Ask the hospital before relying on either.",
+      "TAVI has been running here since 2008, in partnership with Mater Private next door."
     ],
     referral: "GP or consultant referral; emergency STEMI (heart attack) cases go directly via ambulance/cath lab activation, not routine referral.",
     contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Cardiology or Cardiothoracic Surgery." },
+    source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
     checked: "6 Sep 2026"
   },
   {
@@ -2916,10 +2918,13 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["cardiology"],
     county: ["dublin"],
-    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI, TAVI, and adult cardiac surgery (coronary artery bypass and valve surgery) at the Keith Shaw Unit, a national referral centre for acquired adult heart disease.",
-    details: [],
+    blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. Cardiac surgery on site, 24/7 primary PCI as part of the National ACS Programme, and TAVI.",
+    details: [
+      "The Keith Shaw Unit is described elsewhere as a national referral centre for acquired adult heart disease. That wording was not confirmed on hospital pages we could check."
+    ],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Cardiology or the Keith Shaw Unit." },
+    source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
     checked: "6 Sep 2026"
   },
   {
@@ -2927,10 +2932,11 @@ const ENTRIES = [
     name: "Cork University Hospital — Cardiology & Cardiothoracic Surgery",
     specialty: ["cardiology"],
     county: ["cork"],
-    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI and cardiothoracic surgery, providing a regional acute service to Cork/Kerry and a tertiary referral service across the southern region (population 1m+).",
+    blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. 24/7 primary PCI, cardiothoracic surgery and TAVI.",
     details: [],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Cardiology." },
+    source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
     checked: "6 Sep 2026"
   },
   {
@@ -2938,10 +2944,11 @@ const ENTRIES = [
     name: "University Hospital Galway — Cardiology",
     specialty: ["cardiology"],
     county: ["galway"],
-    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI for the West/Saolta region.",
-    details: ["Cardiac surgery availability here isn't independently confirmed — the other 3 comprehensive centres (Mater, St James's, CUH) explicitly run cardiac surgery programmes; ask directly if this is what you need."],
+    blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. Cardiothoracic surgery and primary PCI.",
+    details: [],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "091 524 222", extra: "Main hospital switchboard — ask for Cardiology." },
+    source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
     checked: "6 Sep 2026"
   },
   {
@@ -2985,8 +2992,11 @@ const ENTRIES = [
     county: ["cork"],
     sector: "private",
     provider: "Bon Secours Health System",
-    blurb: "Private cardiology service including an Urgent & Express Cardiac Care Clinic (a GP fast-track for urgent heart/vascular assessment), electrophysiology for heart rhythm disorders, and tilt table testing for unexplained fainting/dizziness and suspected POTS (postural orthostatic tachycardia syndrome).",
-    details: ["The Urgent & Express Cardiac Care Clinic is specifically a fast-track route for GPs, not a walk-in service — ask your GP to refer you directly if urgent."],
+    blurb: "Private cardiology service including an Urgent & Express Cardiac Care Clinic (a GP fast-track route for urgent heart assessment), electrophysiology for heart rhythm disorders, and tilt table testing for unexplained fainting or dizziness.",
+    details: [
+      "The Urgent & Express Cardiac Care Clinic is a fast-track route for GPs, not a walk-in service. Ask your GP to refer you directly if urgent. Any fee cap and the referral criteria have not been confirmed here, so ask the hospital.",
+      "Tilt table testing is offered here (confirmed first-hand, not on an official page). The HSE's own tilt table page lists Dublin and Tralee only."
+    ],
     referral: "GP or consultant referral; self-pay or health-insurance-funded.",
     contact: { phone: "1800 203 444", web: "bonsecours.ie/services/urgent-express-cardiac-care-clinic-cork" },
     checked: "6 Sep 2026"
@@ -4525,9 +4535,10 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["respiratory"],
     county: ["dublin"],
-    blurb: "Ireland's only national referral and treatment centre for pulmonary hypertension, established 2003.",
+    blurb: "Pulmonary hypertension referral and treatment unit at the Mater, established 2003.",
     details: [
       "Weekly clinics followed by a multidisciplinary team meeting; works closely with the Mater's adult congenital heart disease group and lung transplant team.",
+      "Its status as Ireland's only national centre has not been confirmed on an official page."
     ],
     referral: "Consultant cardiologist or respiratory physician referral.",
     contact: { phone: "01 803 4420", extra: "01 803 4423", email: "pha@mater.ie", address: "56 Eccles Street, Dublin 7" },
@@ -4539,7 +4550,7 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["respiratory"],
     county: ["dublin"],
-    blurb: "National referral centre for interstitial lung disease and pulmonary fibrosis.",
+    blurb: "Interstitial lung disease (ILD) and pulmonary fibrosis service at St Vincent's University Hospital.",
     details: [],
     referral: "GP e-referral via Healthlink to Respiratory Medicine, specifying ILD evaluation; consultant referral also accepted.",
     contact: { phone: "01 221 4208", address: "Suite 5, Herbert Wing, St Vincent's University Hospital, Elm Park, Dublin 4" },
@@ -4551,7 +4562,7 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["respiratory"],
     county: ["dublin"],
-    blurb: "Regional ILD centre and the designated national centre for familial pulmonary fibrosis, including genetic testing and counselling for families with a history of lung fibrosis.",
+    blurb: "ILD service at Beaumont, including the Irish Familial Pulmonary Fibrosis Centre, with genetic testing and counselling for families with a history of lung fibrosis.",
     details: [],
     referral: "GP referral via Healthlink or the respiratory integrated care hub, specifying ILD evaluation.",
     contact: { phone: "01 809 3058", email: "respiratoryadmin@beaumont.ie" },
@@ -4668,9 +4679,9 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["diabetes"],
     county: ["dublin"],
-    blurb: "National referral centre for pituitary disease, adrenal tumours and complex neuroendocrine conditions, with a weekly pituitary/adrenal/thyroid MDT and joint clinics with neurosurgery.",
+    blurb: "Referral service for pituitary disease, adrenal tumours and complex neuroendocrine conditions, with a weekly pituitary/adrenal/thyroid MDT and joint clinics with neurosurgery.",
     details: [
-      "St James's Hospital's own endocrinology service (checked 10 Sep 2026) covers general/thyroid/reproductive endocrinology and diabetes but does not currently list adrenal or neuroendocrine services on its own site — Beaumont is the confirmed centre for those.",
+      "St James's Hospital's own endocrinology service (checked 10 Sep 2026) covers general/thyroid/reproductive endocrinology and diabetes but does not list adrenal or neuroendocrine services on its own site. Beaumont's status as the national referral centre has not been confirmed on an official page."
     ],
     referral: "GP referral via Healthlink, addressed to the Pituitary/Adrenal MDT; practices without Healthlink can email endocrinologyadmin@beaumont.ie.",
     contact: { phone: "01 809 2811", email: "endocrinologyadmin@beaumont.ie" },
@@ -6121,7 +6132,7 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["paediatrics"],
     county: ["dublin"],
-    blurb: "The tertiary hub for paediatric care: CHI at Crumlin, Temple Street, Tallaght, and Connolly, with the new National Children's Hospital in development.",
+    blurb: "The tertiary hub for paediatric care: CHI at Crumlin, Temple Street, Tallaght, and Connolly, with the new National Children's Hospital in development (check CHI for updates).",
     details: [
       "Community/developmental paediatrics links to Public Health Nurse developmental checks.",
       "Regional (\"model 4R\"), major (\"model 3\"), and local (\"model 2\") hospitals nationwide also run paediatric assessment units and outpatient departments as part of the HSE's National Model of Care for Paediatric Healthcare — see named regional examples below.",
@@ -6329,15 +6340,18 @@ const ENTRIES = [
     name: "Cross-border: NI liver, heart, lung & pancreas transplants happen in Great Britain",
     specialty: ["nephrology", "gastro", "cardiology", "respiratory"],
     county: ["antrim"],
-    blurb: "Kidney is the only organ transplanted in Northern Ireland. NI patients who need a liver, heart, lung or pancreas transplant are referred to a centre in Great Britain. Assessment and follow-up are shared with the Belfast team.",
+    blurb: "Kidney transplants are done in Northern Ireland. For a heart or lung transplant, NI patients are referred to the Freeman Hospital in Newcastle. Liver and pancreas routes are not confirmed here.",
     details: [
-      "Liver: patients under the Regional Liver Unit at the RVH are assessed, and transplanted, at King's College Hospital, London. The RVH runs a Liver Transplant Coordinator Service for NI patients on this pathway.",
-      "Heart and lung: transplants aren't done in NI. Patients are referred to a GB cardiothoracic transplant centre. The Freeman Hospital, Newcastle, is one that takes UK-wide referrals. Your NI consultant will tell you which centre you're being referred to.",
-      "Pancreas (including combined kidney-pancreas): not done in NI. Ask your nephrology or diabetes consultant which GB centre you'd be referred to.",
-      "Expect to travel and stay in GB for assessment, the operation and early recovery. Ask your coordinator early about travel and accommodation help."
+      "Heart and lung: transplants aren't done in NI. The Freeman Hospital, Newcastle, is the only referral route sourced here. Your NI consultant will confirm which centre you're being referred to.",
+      "Liver: Belfast Trust runs a Liver Transplant Coordinator Service for NI patients. Which centre carries out the transplant is not confirmed here, so ask your liver team.",
+      "Pancreas (including combined kidney-pancreas): not confirmed here. Ask your nephrology or diabetes consultant.",
+      "Expect to travel for assessment, the operation and early recovery. Ask your coordinator early about travel and accommodation help."
     ],
     referral: "Specialist consultant referral only.",
-    contact: { web: "belfasttrust.hscni.net/service/liver-transplant-coordinator-service/" }
+    contact: { web: "belfasttrust.hscni.net/service/liver-transplant-coordinator-service/" },
+    source_url: "https://belfasttrust.hscni.net/service/liver-transplant-coordinator-service/",
+    urlStatus: "search-result",
+    verify: true
   },
 
   // Cork CDNTs 6 and 7 (1 Oct 2026). Source: HSE parliamentary-question replies
