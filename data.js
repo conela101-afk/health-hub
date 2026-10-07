@@ -2911,6 +2911,8 @@ const ENTRIES = [
     referral: "GP or consultant referral; emergency STEMI (heart attack) cases go directly via ambulance/cath lab activation, not routine referral.",
     contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Cardiology or Cardiothoracic Surgery." },
     source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
+    urlStatus: "opened",
+    verify: true,
     checked: "6 Sep 2026"
   },
   {
@@ -2927,6 +2929,8 @@ const ENTRIES = [
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Cardiology or the Keith Shaw Unit." },
     source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
+    urlStatus: "opened",
+    verify: true,
     checked: "6 Sep 2026"
   },
   {
@@ -2941,6 +2945,8 @@ const ENTRIES = [
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Cardiology." },
     source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
+    urlStatus: "opened",
+    verify: true,
     checked: "6 Sep 2026"
   },
   {
@@ -2955,6 +2961,7 @@ const ENTRIES = [
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "091 524 222", extra: "Main hospital switchboard — ask for Cardiology." },
     source_url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland",
+    urlStatus: "opened",
     checked: "6 Sep 2026"
   },
   {
