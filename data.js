@@ -1014,7 +1014,9 @@ const ENTRIES = [
       "The switchboard number above matches the Galway Clinic listing on Blackrock Health's locations page, read 7 Oct 2026.",
     ],
     referral: "GP or consultant referral letter required.",
-    contact: { phone: "091 785 000", web: "galwayclinic.com", address: "Doughiska, Galway, H91 HHT0" },
+    contact: { phone: "091 785 000", web: "blackrockhealth.com/locations", address: "Doughiska, Galway, H91 HHT0" },
+    source_url: "https://www.blackrockhealth.com/locations",
+    urlStatus: "opened",
     checked: "7 Oct 2026"
   },
   {

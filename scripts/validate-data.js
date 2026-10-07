@@ -30,6 +30,8 @@ const SOURCE_DOMAINS = [
   "beaumont.ie", "childrenshealthireland.ie", "bonsecours.ie",
   // Approved by the owner 7 Oct 2026: the GUIDe clinic's own site (St James's Hospital sexual health clinic).
   "guideclinic.ie",
+  // Approved by the owner 7 Oct 2026: Blackrock Health, the current owner of the Galway Clinic (galwayclinic.com redirects here).
+  "blackrockhealth.com",
 ];
 const hostAllowed = host => SOURCE_DOMAINS.some(d => host === d || host.endsWith("." + d));
 
