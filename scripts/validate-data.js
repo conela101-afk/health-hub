@@ -32,6 +32,10 @@ const SOURCE_DOMAINS = [
   "guideclinic.ie",
   // Approved by the owner 7 Oct 2026: Tusla (child and family agency). aai.gov.ie (Adoption Authority of Ireland) is already covered by gov.ie.
   "tusla.ie",
+  // Approved by the owner 7 Oct 2026: familysupportni.gov.uk (NI family support), saolta.ie (former Saolta
+  // hospital group site), caredoc.ie and kdoc.ie (GP out-of-hours services). bso.hscni.net,
+  // adoptionandfostercare.hscni.net and online.hscni.net are already covered by hscni.net.
+  "familysupportni.gov.uk", "saolta.ie", "caredoc.ie", "kdoc.ie",
   // Approved by the owner 7 Oct 2026: Blackrock Health, the current owner of the Galway Clinic (galwayclinic.com redirects here).
   "blackrockhealth.com",
 ];
