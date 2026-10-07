@@ -1,0 +1,8 @@
+# Queries that return nothing because the content is missing, not because search is broken (7 Oct 2026).
+# Delete a line when content lands. The audit fails if a query NOT listed here returns nothing.
+anesthesia
+esophagus
+long term illness
+interpreter
+second opinion
+111

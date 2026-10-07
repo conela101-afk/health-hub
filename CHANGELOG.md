@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-07 [Claude] — whole-app search and aliases v2
+- **New `search.js`** (shared by `app.js` and the audit, so the audit tests what people get): one normalise() for query and haystacks (case, apostrophes, fadas, `&`, hyphens, punctuation), a US-to-UK spelling map, word-start matching for queries of 3 characters or fewer, phrase-or-all-words matching for longer ones (one-letter words ignored), and aliases that fire on the exact key or on a 4+ character key inside a longer query. Entry haystacks are normalised once and cached. Added to `index.html` and `sw.js` assets.
+- **Aliases apply to entries, both organisation lists and tool pages.** Conditions are now in global search (loaded on demand, search still works if they cannot load), plus one "Search regulated facilities" row. A line "Also searched: …" shows what a spelling or alias added.
+- **`SEARCH_ALIASES` v2 and `SEARCH_US_UK` in `data.js`:** the brief's table plus the parenting aliases, keys in normalised form. Targets that matched nothing (foster, adopt, lipid, assistive, international protection, and "mobility" for wheelchair, which only found guide dogs) were removed.
+- **`scripts/search-audit.js` is now a regression test** (CI step still to be added by hand, see REVIEW.md: the push token cannot edit workflow files). It fails on an alias target that matches nothing, on a key not in normalised form, on a query returning nothing that is not in `search-audit-known-gaps.txt`, or on a query over 150 entries. The prototype's single-character-term quirk is fixed. Irish-language queries are reported, not enforced.
+- The facilities-type page filter and the conditions page filter also use the shared matcher now (they had their own plain substring match).
+- **Not built, needs Elaine:** the crisis link above results (S6). **Proposed, not applied:** keywords for the 66 conditions with none (`CONDITIONS_KEYWORDS_PROPOSAL.md`, S8).
+- Content gaps and the Irish-language result are in `GAPS.md`. No entries were added or removed.
+
 ## 2026-10-07 [Claude] — primary-care specialty
 - New specialty id `primary-care`, label "Primary & Urgent Care" (approved 7 Oct 2026), in `SPECIALTIES`. Nothing else reads a hard-coded list, so no other file needed the id.
 - **Added 3 entries (564 to 567 once merged after the parenting PR):** `ni-pharmacy-first`, `roi-injury-units` (directory explainer) and `ni-minor-injury-units` (by trust). All pages opened in the browser that day, web links only, no phones, no triage wording. Dates and unchecked trusts are stated in the entries and in REVIEW.md.

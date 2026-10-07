@@ -9105,31 +9105,59 @@ const OUT_OF_HOURS_NI = [
 // so the CI entry counter (which counts lines starting with `id: "`) keeps
 // counting directory ENTRIES only.
 
-// Search aliases: when the whole search query equals a key (lower case), the entry search also
-// matches each listed term. Targets are text that already appears in entries (including specialty
-// labels), so an alias only routes people to existing pages; it never adds a claim. Add a key only
-// when the words people use differ from the wording in the entries.
+// Search tables, used by search.js. Keys are written in normalised form (lower case, no
+// apostrophes or hyphens, "and" for "&"). Alias targets are words that must already appear in
+// entries, support organisations, tool pages or conditions, so an alias only routes people to
+// existing pages and never adds a claim; scripts/search-audit.js fails if a target matches
+// nothing. Add a key only when the words people use differ from the wording in the data.
+const SEARCH_US_UK = {
+  pediatric: "paediatric", pediatrician: "paediatrician", gynecology: "gynaecology",
+  gynecologist: "gynaecologist", orthopedic: "orthopaedic", orthopedics: "orthopaedics",
+  anesthesia: "anaesthesia", anesthetic: "anaesthetic", diarrhea: "diarrhoea",
+  esophagus: "oesophagus", counseling: "counselling", counselor: "counsellor",
+  estrogen: "oestrogen", fetal: "foetal", edema: "oedema", behavior: "behaviour",
+  center: "centre", hemorrhage: "haemorrhage", anemia: "anaemia", leukemia: "leukaemia",
+  tumor: "tumour", program: "programme", pap: "smear",
+};
+
 const SEARCH_ALIASES = {
-  "dad": ["new & expectant parents"],
-  "dads": ["new & expectant parents"],
-  "father": ["new & expectant parents"],
-  "fathers": ["new & expectant parents"],
-  "new dad": ["new & expectant parents"],
-  "paternity": ["new & expectant parents"],
-  "non-birthing parent": ["new & expectant parents"],
-  "adoption": ["adopt", "foster", "new & expectant parents"],
-  "adopt": ["adoption", "foster", "new & expectant parents"],
-  "adoptive parent": ["adopt", "new & expectant parents"],
-  "foster": ["foster", "adopt", "new & expectant parents"],
-  "foster parent": ["foster", "new & expectant parents"],
+  // Parenting (from the 7 Oct 2026 language work)
+  "dad": ["new & expectant parents"], "dads": ["new & expectant parents"],
+  "father": ["new & expectant parents"], "fathers": ["new & expectant parents"],
+  "new dad": ["new & expectant parents"], "paternity": ["new & expectant parents"],
+  "non birthing parent": ["new & expectant parents"],
+  "adoption": ["new & expectant parents"], "adopt": ["new & expectant parents"],
+  "adoptive parent": ["new & expectant parents"], "foster": ["new & expectant parents"],
+  "foster parent": ["new & expectant parents"],
   "lgbtq+ parents": ["new & expectant parents", "fertility"],
   "lgbtq parents": ["new & expectant parents", "fertility"],
-  "same-sex parents": ["new & expectant parents", "fertility"],
   "same sex parents": ["new & expectant parents", "fertility"],
-  "trans parent": ["new & expectant parents"],
-  "non-binary parent": ["new & expectant parents"],
+  "same sex": ["new & expectant parents", "fertility"],
+  "trans parent": ["new & expectant parents"], "non binary parent": ["new & expectant parents"],
   "chestfeeding": ["breastfeeding", "infant feeding"],
   "motherhood": ["new & expectant parents", "postnatal", "antenatal"],
+  // Lay terms and abbreviations
+  "emergency room": ["emergency department"], "er": ["emergency department"],
+  "ed": ["emergency department"], "a and e": ["emergency department"],
+  "heart doctor": ["cardiology"], "rash": ["dermatology", "skin"],
+  "bones": ["orthopaedics", "osteoporosis", "bone health"],
+  "periods": ["gynaecology", "endometriosis"], "period pain": ["endometriosis", "gynaecology"],
+  "cervical check": ["cervical", "smear"], "panic attacks": ["anxiety", "mental health"],
+  "dyslexia": ["neurodiversity"], "dyspraxia": ["neurodiversity"], "toddler": ["child"],
+  "abortion": ["unplanned pregnancy"], "std": ["sti", "sexual health"],
+  "insulin": ["diabetes"], "blood pressure": ["hypertension", "cardiology"],
+  "cholesterol": ["cardiology"], "seizure": ["epilepsy"],
+  "teeth": ["dental", "dentist"], "braces": ["orthodon", "dental"],
+  "carers allowance": ["carer"], "disability allowance": ["disability"],
+  "home help": ["home support"], "fair deal": ["nursing home"], "grief": ["bereavement"],
+  "quit smoking": ["smoking"], "weight loss": ["obesity", "weight management"],
+  "speech therapy": ["speech and language"], "chiropodist": ["podiatr"], "podiatrist": ["podiatr"],
+  "wheelchair": ["seating"],
+  "refugee": ["migrant"],
+  // Crisis wording routes to existing text only. The special crisis link above results is
+  // pending the owner's decision (CLAUDE_CODE_SEARCH_ALIASES.md, S6).
+  "self harm": ["suicide", "crisis"], "overdose": ["suicide", "crisis", "drug"],
+  "want to die": ["suicide", "crisis"],
 };
 
 const TOOL_FACTS_LAST_VERIFIED = "2026-09-28";

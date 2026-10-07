@@ -133,6 +133,16 @@ Search-result only; egress to hse.ie, beaumont.ie and nidirect was blocked. Huma
 - [ ] No ROI emergency general surgery entry: no official page lists which hospitals provide 24/7 EGS, and the HSE Model of Care page is "being updated". Do not infer from ED status.
 - [ ] Not added: HSE CIT page (`hse.ie/eng/services/list/3/cits/`) returns "Page not found" (7 Oct 2026). Re-check for a current CIT page.
 - [ ] Primary & Urgent Care (7 Oct 2026): `ni-pharmacy-first` states the shingles service ran only to 30 Sep 2026 and the SPPG page had not been updated; re-check. `roi-injury-units` is a directory explainer, with no row per unit; Naas (16 and over) and the other age limits in the research were not re-checked, and the injury unit charge is deliberately not quoted. `ni-minor-injury-units`: Belfast Trust not checked; the research says the Bangor unit is closed and the South Eastern Trust is moving to urgent care centres, neither read. The abbreviation "LIU" for local injury unit was not found on an official page and is not used.
+- [ ] **Add the search audit to CI by hand (7 Oct 2026).** The token Claude Code pushes with has no `workflow` scope, so GitHub refused the edit to `.github/workflows/data-integrity.yml`. In that file, add `node --check search.js` after `node --check data.js` in the "Syntax-check JS files" step, and add this step before "Guard against data.js being wiped or truncated":
+
+  ```yaml
+      - name: Search regression (alias targets, zero-result list, noisy queries)
+        run: node scripts/search-audit.js
+  ```
+
+  Until then the audit only runs when someone runs `node scripts/search-audit.js`.
+- [ ] **Decision needed (search S6, 7 Oct 2026):** show the existing crisis link (`#/specialty/crisis`) at the top of results for crisis phrases (`suicide`, `self harm`, `overdose`, `want to die`, `kill myself`, `end my life`, `crisis`). Not built. Needs Elaine's approval of placement and label. Until then, `self harm`, `overdose` and `want to die` only route to existing text through aliases.
+- [ ] Search aliases to skim (7 Oct 2026): `toddler` (many child entries), `er`/`ed`/`a and e` (psychiatric units that mention an emergency department), `wheelchair` (one OT entry via "seating"), `abortion` (only the existing My Options wording). `CONDITIONS_KEYWORDS_PROPOSAL.md` holds the proposed keywords for the 66 conditions that have none.
 - [ ] Re-read gov.ie Your guide to Budget 2027 for GP visit card, DPS and AON.
 - [ ] Budget 2027 items still marked as announced only: re-check start dates once the Finance Bill and social welfare legislation pass (Free Contraception Scheme to age 37, 1.8 million home-support hours, new CAMHS ADHD pathway, four new Jigsaw services, 500 extra NHSS places, Carer's Allowance disregard from July 2027, €10 weekly rate rises from January 2027, €500 cost of disability payment date).
 - [ ] Open the five new `source_url`s.
