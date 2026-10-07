@@ -2083,11 +2083,16 @@ const ENTRIES = [
     name: "South West Acute Hospital Gynaecology (Enniskillen)",
     specialty: ["gynae"],
     county: ["fermanagh", "tyrone"],
-    blurb: "Runs Women's Health Clinics and obstetrics/gynaecology services, unlike emergency general surgery which was suspended at SWAH in 2022 — confirmed still running. Covers all of Fermanagh and west Tyrone.",
+    blurb: "Women's Health Clinics and obstetrics/gynaecology at South West Acute Hospital, Enniskillen. Covers Fermanagh and west Tyrone.",
     details: [],
     referral: "GP referral.",
     contact: { phone: "028 6638 2000", extra: "Main hospital switchboard — ask for Gynaecology.", address: "124 Irvinestown Road, Enniskillen, Co. Fermanagh BT74 6DN" },
-    checked: "4 Sep 2026"
+    resources: [
+      { label: "Women's Health Clinics at South West Acute Hospital — Western Trust", url: "https://westerntrust.hscni.net/hospitals/south-west-acute-hospital/womens-health-clinics-at-south-west-acute-hospitals/" }
+    ],
+    source_url: "https://westerntrust.hscni.net/hospitals/south-west-acute-hospital/",
+    urlStatus: "opened",
+    verify: true
   },
 
   // ---- Perinatal & Maternal Mental Health: other 5 hub hospitals + NI ----
@@ -3305,10 +3310,12 @@ const ENTRIES = [
     specialty: ["neurology", "surgery-trauma"],
     county: ["dublin"],
     blurb: "Ireland's national neurology/neurosurgery centre — covers epilepsy, stroke, MS, movement disorders, and general neurology alongside neurosurgery.",
-    details: ["Dedicated line for traumatic brain injury referrals: 1800 872 862 (1800-TRAUMA)."],
+    details: [],
     referral: "GP referral via Healthlink to the Neurology Department.",
     contact: { phone: "01 797 4105", email: "neurologyadmin@beaumont.ie" },
-    checked: "6 Sep 2026"
+    source_url: "https://www.beaumont.ie/pages/health-A-Z/neurology",
+    urlStatus: "opened",
+    verify: true
   },
   {
     id: "ms-ireland",
