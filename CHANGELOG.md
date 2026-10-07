@@ -5,6 +5,7 @@
 - Added `surgery-trauma` as an extra specialty (existing ones kept) on `national-major-trauma-centres`, `rvh-major-trauma-centre`, `rvh-regional-neurosurgery` and `beaumont-national-neuroscience`. This only improves findability; it adds no entries and no coverage.
 - County matrix before and after: every total is unchanged (561 entries, 160 national). The only differences are in the new column: Cork 1, Dublin 2, plus the Cork "no area" row 1. No coverage claim is made.
 - Not added (research queue, nothing sourced yet): plastics and burns, general and emergency surgery pathways, CUH neurosurgery, and the primary-care layer (pharmacy-led services, community intervention teams, local injury units).
+
 ## 2026-10-07 [Claude] — audit-fixes additions
 - `beaumont-national-neuroscience`: `verify: true`, `checked` removed, `source_url` set to the Beaumont neurology page (opened). Blurb not reworded. The unsourced 1800-TRAUMA line was removed from `details` (validator rule for `verify` entries); logged in REVIEW.md.
 - `swah-gynae`: internal verification note and the unrelated emergency general surgery reference removed; plain description; `verify: true`; `source_url` is the Western Trust SWAH page (opened), with the Women's Health Clinics page as a resource. No claims about other SWAH services.
