@@ -61,13 +61,13 @@ listed in `GAPS.md` → "Guided tools: open verify items".
 
 ### 2026-10-07: browser check results (audit-fixes)
 
-1. **National Review of Adult Specialist Cardiac Services** (gov.ie, published 8 Apr 2025, last updated 9 Jun 2025; the PDF cover says "2023", so cite the gov.ie date). Text on page 8 (Executive Summary), read via fetch, not opened by a person: Recommendation 3 names four National Comprehensive Cardiac Centres (MMUH, SJH, CUH, GUH) with complex interventional cardiology (PCI, EP, structural heart) alongside a cardiothoracic surgical service; Recommendation 4 keeps 24/7 emergency STEMI-ACS care concentrated in those four. These are recommendations, not a designation. The four entries keep the agreed wording and cite the Review as `source_url`. A person opened the PDF later on 7 Oct 2026 and confirmed page 8.
+1. **National Review of Adult Specialist Cardiac Services** (gov.ie, published 8 Apr 2025, last updated 9 Jun 2025; the PDF cover says "2023", so cite the gov.ie date). Text on page 8 (Executive Summary), read via fetch, not opened by a person: Recommendation 3 names four National Comprehensive Cardiac Centres (MMUH, SJH, CUH, GUH) with complex interventional cardiology (PCI, EP, structural heart) alongside a cardiothoracic surgical service; Recommendation 4 keeps 24/7 emergency STEMI-ACS care concentrated in those four. These are recommendations, not a designation. The four entries keep the agreed wording and cite the Review as `source_url`. Elaine opened the PDF later on 7 Oct 2026 and confirmed page 8.
 2. **Mater cardiology page** (opened 7 Oct) supports: national cardiology centre, cath lab, adult congenital heart disease, care for people waiting for a heart transplant, nurse specialist services including TAVI and arrhythmia. It does not state 24/7 primary PCI or name electrophysiology/ablation; both stay flagged.
 3. **`bons-cork-cardiology` tilt table testing:** the hospital confirmed by phone on 7 Oct 2026 that Cork offers it; the official page lists Dublin and Tralee only. Claim kept and noted in the entry. "Suspected POTS" removed. Urgent & Express fee cap and criteria stay unconfirmed, no figure.
 4. **CUH:** the CUH website was on a maintenance page, so its About Us wording is unconfirmed. Re-check.
 
 Cardiac checklist:
-- [x] 1a National Review wording: closed. A person opened the PDF on 7 Oct 2026 and confirmed Recommendations 3 and 4 on page 8 match the wording used. Entries carry `urlStatus: "opened"`. `verify` stays on the Mater (24/7 primary PCI and EP/ablation unconfirmed on the Mater's own pages), St James's (Keith Shaw Unit wording) and CUH (re-check About Us page); cleared on UHG.
+- [x] 1a National Review wording: closed. Opened by Elaine on 7 Oct 2026, who confirmed Recommendations 3 and 4 on page 8 match the wording used. Entries carry `urlStatus: "opened"`. `verify` stays on the Mater (24/7 primary PCI and EP/ablation unconfirmed on the Mater's own pages), St James's (Keith Shaw Unit wording) and CUH (re-check About Us page); cleared on UHG.
 - [ ] 1b Mater: partly done (see 2).
 - [ ] 1c CUH: pending (site down).
 - [x] 1d closed.
