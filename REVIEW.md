@@ -113,13 +113,13 @@ Search-result only; egress to hse.ie, beaumont.ie and nidirect was blocked. Huma
 - [ ] Mater: 24/7 primary PCI and EP/ablation. St James's: Keith Shaw Unit "national referral centre" wording.
 - [ ] `bons-cork-cardiology`: Urgent & Express fee cap and criteria; tilt-table testing (Cork not on the HSE page).
 - [x] Beaumont MND wording: closed. The Beaumont neurology page (viewed 7 Oct 2026) lists MND as a specialist service within the Department of Neurology, referrals via Healthlink. It describes no separate MND clinic and no national designation, so the row is now "Motor Neurone Disease (MND) service, Beaumont Hospital". No consultant names, clinic days or contacts.
-- [ ] GUIDe Clinic: booking, PrEP/PEP arrangements, walk-in (existing `gum-guide-stjames`).
+- [ ] GUIDe Clinic: guideclinic.ie/sti-clinic opened 7 Oct 2026 (online booking, PrEP clinics with online booking, Young Person's Clinic for ages 20 and under); PEP page not opened. Existing `gum-guide-stjames` not edited: `guideclinic.ie` is not on the validator allow-list and the URL given was http.
 - [ ] `gum-guide-stjames` (existing entry, not edited): its phone was checked by web search before the current rules, not copied from a page a person opened. "HSE-operated" and `sector: "voluntary"` are unverified.
 - [ ] `ni-regional-genetics` (existing entry, not edited): its phone, email and address were checked by web search before the current rules. The regional clinic list and "single service" wording are unverified.
-- [ ] SVUH liver transplant page; pancreas programme mention.
-- [ ] NRH referral page: acknowledgement and review timelines.
-- [ ] HSE psycho-oncology page and per-centre teams.
-- [ ] CHI genetics page (row withheld).
+- [x] SVUH liver transplant page: opened 7 Oct 2026. National centre, running since 1993, clinician referral form, pancreas programme also at SVUH. King's College appears only as a training link and second-opinion arrangement; not claimed. `verify` stays (no `checked` date yet).
+- [x] NRH referral page: opened 7 Oct 2026. Adult and paediatric referrals; the 7 and 10 working-day timelines are not on the page and stay out. `verify` stays.
+- [ ] HSE psycho-oncology page and per-centre teams: HSE NCCP site down 7 Oct 2026 and the old hse.ie psycho-oncology URLs return "Page not found". The row's `source_url` is one of those URLs; replace it when HSE restores the site.
+- [x] CHI genetics page: opened 7 Oct 2026. Page lists both CHI at Crumlin and Temple Street, so the row is renamed. `verify` stays.
 - [ ] Belfast Trust liver coordinator page and Freeman route (`ni-transplant-gb-referral`).
 - [ ] Galway Clinic phone.
 - [ ] Open the five new `source_url`s.

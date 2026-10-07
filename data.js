@@ -6960,11 +6960,14 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["gastro"],
     county: ["dublin"],
-    blurb: "National liver transplant programme at St Vincent's University Hospital, Dublin, running since 1993. Referral for assessment comes from a clinician.",
-    referral: "Clinician referral only.",
+    blurb: "National centre serving patients from all over Ireland; programme running at SVUH since 1993. Clinician referral by completed referral form; urgent referrals by phone to the liver registrar on call.",
+    details: [
+      "The National Pancreas Transplant Programme is also based at St Vincent's University Hospital."
+    ],
+    referral: "Clinician referral by completed referral form.",
     contact: { web: "www.stvincents.ie/departments/national-liver-transplant-programme/" },
     source_url: "https://www.stvincents.ie/departments/national-liver-transplant-programme/",
-    urlStatus: "search-result",
+    urlStatus: "opened",
     verify: true
   },
   {
@@ -6972,15 +6975,14 @@ const ENTRIES = [
     name: "National Rehabilitation Hospital: referral process",
     specialty: ["neurorehabilitation"],
     county: ["dublin"],
-    blurb: "Specialist inpatient and outpatient rehabilitation for acquired brain injury (including stroke and other neurological conditions), spinal cord injury and limb absence. Referrals come from acute hospitals, GPs and community agencies through the NRH Central Referrals Office.",
+    blurb: "Specialist inpatient and outpatient rehabilitation for adults and children with acquired brain injury (including stroke and other neurological conditions), spinal cord injury and limb absence. Referrals come from acute hospitals, GPs and community agencies through the NRH Central Referrals Office.",
     details: [
-      "Only complete referrals can be processed. The NRH publishes acknowledgement and review timelines for referrers; these have not been confirmed here, so check the referral page.",
       "For spinal cord injury see also the National Spinal Cord Injury Service entry (nrh-scsc)."
     ],
     referral: "Referral from an acute hospital, GP or community agency to the Central Referrals Office.",
     contact: { web: "www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/" },
     source_url: "https://www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/",
-    urlStatus: "search-result",
+    urlStatus: "opened",
     verify: true
   },
   {
@@ -7019,7 +7021,7 @@ const ENTRIES = [
     name: "Psycho-oncology (NCCP Model of Care)",
     specialty: ["oncology"],
     county: ["national"],
-    blurb: "Psychological and psychosocial support for people with cancer, their carers and families, delivered by psycho-oncology teams in the main cancer treatment centres under the NCCP Model of Care. Ask your cancer team.",
+    blurb: "Psychological and psychosocial support for people with cancer, their carers and families, under the NCCP Psycho-oncology Model of Care. Ask your cancer team.",
     referral: "Ask your cancer team.",
     contact: { web: "www.hse.ie/eng/services/list/5/cancer/profinfo/psycho-oncology-programme/" },
     source_url: "https://www.hse.ie/eng/services/list/5/cancer/profinfo/psycho-oncology-programme/",
@@ -7083,15 +7085,15 @@ const ENTRIES = [
   },
   {
     id: "roi-chi-clinical-genetics",
-    name: "Clinical Genetics, CHI Crumlin",
+    name: "Clinical Genetics, CHI at Crumlin & Temple Street",
     sector: "voluntary",
     specialty: ["genetics"],
     county: ["dublin"],
-    blurb: "Children's clinical genetics service at CHI at Crumlin, for the diagnosis and management of conditions with a known or probable genetic basis.",
+    blurb: "Genetic assessment, counselling and testing for childhood and adult genetic disorders, including hereditary cancer. Appointments are in person, virtual or by phone, depending on the referral reason. A family history questionnaire is only accepted with a GP or consultant referral letter.",
     referral: "GP or consultant referral.",
     contact: { web: "childrenshealthireland.ie/list-of-services/clinical-genetics/" },
     source_url: "https://www.childrenshealthireland.ie/list-of-services/clinical-genetics/",
-    urlStatus: "search-result",
+    urlStatus: "opened",
     verify: true
   },
   {
