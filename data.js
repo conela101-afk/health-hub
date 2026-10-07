@@ -1010,11 +1010,12 @@ const ENTRIES = [
     details: [
       "Blackrock Health's gynaecology service is described as running across its Dublin and Galway clinics jointly.",
       "Number above is the clinic's general switchboard — ask to be directed to gynaecology or a named consultant.",
-      "Historically JCI-accredited as part of the Blackrock Health group — a separately sourced list gave the switchboard as 091 785 800 rather than 091 785 000 listed here; unconfirmed which is current, try the other if one doesn't connect.",
+      "Historically JCI-accredited as part of the Blackrock Health group.",
+      "The switchboard number above matches the Galway Clinic listing on Blackrock Health's locations page, read 7 Oct 2026.",
     ],
     referral: "GP or consultant referral letter required.",
     contact: { phone: "091 785 000", web: "galwayclinic.com", address: "Doughiska, Galway, H91 HHT0" },
-    checked: "6 Sep 2026"
+    checked: "7 Oct 2026"
   },
   {
     id: "hermitage-clinic-gynae",
@@ -1243,13 +1244,16 @@ const ENTRIES = [
     name: "HSE Free Contraception Scheme",
     specialty: ["contraception"],
     county: ["national"],
-    blurb: "Free contraception for women aged 17–35, or any age with a medical card.",
+    blurb: "Free contraception for women aged 17–35, or any age with a medical card. Budget 2027 announced that eligibility will extend to people aged up to 37; no start date has been given yet.",
     details: [
       "Covers consultations, prescriptions, and a range of contraceptive methods.",
       "Emergency contraception is also available without a prescription from participating pharmacies.",
     ],
     referral: "Register with a participating GP or family planning clinic.",
     contact: { web: "hse.ie" },
+    resources: [
+      { label: "Budget 2027 health measures — gov.ie (announced 7 Oct 2026)", url: "https://www.gov.ie/en/department-of-health/press-releases/budget-2027-delivers-291-billion-for-health-services-as-government-continues-investment-in-more-care-closer-to-home/" }
+    ],
     checked: "4 Sep 2026"
   },
   {
@@ -2611,7 +2615,7 @@ const ENTRIES = [
     name: "Irish Family Planning Association (IFPA) Clinics",
     specialty: ["contraception"],
     county: ["dublin"],
-    blurb: "Free Contraception Scheme provider (ages 17–35); also pregnancy counselling.",
+    blurb: "Free Contraception Scheme provider (ages 17–35; Budget 2027 announced an extension to age 37, no start date yet); also pregnancy counselling.",
     details: ["5-7 Cathal Brugha Street, Dublin 1, D01 F9K7 — 01 872 7088.", "The Square Shopping Centre, Tallaght, D24 HK33 — 01 459 7685.", "Pregnancy counselling also at Galway, Limerick, Waterford."],
     referral: "Self-referral.",
     contact: { phone: "01 872 7088" },
@@ -5456,6 +5460,7 @@ const ENTRIES = [
     county: ["national"],
     blurb: "Community multidisciplinary teams for under-18s with moderate-to-severe mental health difficulties that can't be managed in primary care.",
     details: [
+      "Budget 2027 announced a new ADHD pathway in CAMHS, with 40 additional clinicians for it and for CAMHS intellectual disability (MHID) capacity. It is an announcement, not a live service, and no start date has been given.",
       "Referral can come from a GP, paediatrician, consultant, or senior community clinicians (NEPS psychologists, Tusla, Jigsaw, Disability Assessment Officers) — the referrer should liaise with the young person's GP.",
       "Named example: Linn Dara CAMHS, Dublin (CHO7).",
       "Staffing varies widely by area — from 44.8% to 74.7% of the levels recommended in \"A Vision for Change\" across CHOs.",
@@ -5470,7 +5475,7 @@ const ENTRIES = [
     specialty: ["camhs", "eating"],
     county: ["dublin", "kerry", "offaly", "tipperary", "wicklow", "waterford"],
     sector: "voluntary",
-    blurb: "Free, self-referral mental health support for ages 12-25, no diagnosis or GP letter needed — 18 locations nationwide.",
+    blurb: "Free, self-referral mental health support for ages 12-25, no diagnosis or GP letter needed — 18 locations nationwide. Budget 2027 announced four new Jigsaw services across six counties; no locations or dates are given in the sources read.",
     details: [
       "Named sites include Dublin City (44 Essex St East, Temple Bar D02 YR92, and Summerhill D01 TY46), Dublin South West (St John's House, High St, Tallaght D24), North Fingal (Swords K67 Y6K7), Kerry (Tralee), Offaly (Tullamore), Tipperary (Thurles), Wicklow (Bray), and Waterford (opened 31 August 2026).",
       "Per Jigsaw's 2025 Annual Report, referrals rose 23% to 11,064 in 2025 — the highest in its history — with a further 33% rise in Q1 2026 (to 3,909), which Jigsaw says signals an accelerating trend in youth mental health need.",
@@ -6367,17 +6372,18 @@ const ENTRIES = [
     name: "Cross-border: NI liver, heart, lung & pancreas transplants happen in Great Britain",
     specialty: ["nephrology", "gastro", "cardiology", "respiratory"],
     county: ["antrim"],
-    blurb: "Kidney transplants are done in Northern Ireland. For a heart or lung transplant, NI patients are referred to the Freeman Hospital in Newcastle. Liver and pancreas routes are not confirmed here.",
+    blurb: "Kidney transplants are done in Northern Ireland. For adults needing a liver transplant, Belfast Trust provides the care before and after at the Royal Victoria Hospital, and the surgery takes place at King's College Hospital, London. For a heart or lung transplant, NI patients are referred to the Freeman Hospital in Newcastle, but the Belfast Trust pages read don't name Freeman. The pancreas route is not confirmed here.",
     details: [
-      "Heart and lung: transplants aren't done in NI. The Freeman Hospital, Newcastle, is the only referral route sourced here. Your NI consultant will confirm which centre you're being referred to.",
-      "Liver: Belfast Trust runs a Liver Transplant Coordinator Service for NI patients. Which centre carries out the transplant is not confirmed here, so ask your liver team.",
+      "Liver (adults only): Belfast Trust says all NI patients get pre- and post-transplant care at the Royal Victoria Hospital, wherever they live. The surgery itself takes place at King's College Hospital, London. Belfast Trust describes the RVH, working with King's, as the only hospital in Northern Ireland running a liver transplant service. The RVH children's transplant service is separate.",
+      "Heart and lung (still unconfirmed): the Belfast Trust cardiac surgery page says it does all cardiac surgery apart from transplants, but doesn't say where heart or lung transplants happen. Freeman is the only referral route sourced elsewhere, so ask your NI consultant to confirm.",
       "Pancreas (including combined kidney-pancreas): not confirmed here. Ask your nephrology or diabetes consultant.",
       "Expect to travel for assessment, the operation and early recovery. Ask your coordinator early about travel and accommodation help."
     ],
     referral: "Specialist consultant referral only.",
-    contact: { web: "belfasttrust.hscni.net/service/liver-transplant-coordinator-service/" },
-    source_url: "https://belfasttrust.hscni.net/service/liver-transplant-coordinator-service/",
-    urlStatus: "search-result",
+    contact: { web: "belfasttrust.hscni.net/service/regional-liver-unit/liver-transplant-coordinator-service/" },
+    source_url: "https://belfasttrust.hscni.net/service/regional-liver-unit/liver-transplant-coordinator-service/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026",
     verify: true
   },
 
@@ -6876,7 +6882,7 @@ const ENTRIES = [
     name: "Apply for HSE Home Support",
     specialty: ["olderpersons"],
     county: ["national"],
-    blurb: "Complete form HSS001 and send it to your local Home Support Office. A care needs assessment follows. If you are in hospital, ask the discharge planner. The applicant signs the declaration and consent section. A decision supporter can complete the other part.",
+    blurb: "Complete form HSS001 and send it to your local Home Support Office. A care needs assessment follows. If you are in hospital, ask the discharge planner. The applicant signs the declaration and consent section. A decision supporter can complete the other part. Budget 2027 announced an additional 1.8 million home-support hours in 2027; no start date has been given.",
     contact: { web: "www.hse.ie/eng/home-support-services/apply-for-home-supports-services/" },
     source_url: "https://www.hse.ie/eng/home-support-services/apply-for-home-supports-services/",
     urlStatus: "search-result",
@@ -6887,7 +6893,11 @@ const ENTRIES = [
     name: "Carer's Allowance",
     specialty: ["carers"],
     county: ["national"],
-    blurb: "Means-tested payment from the Department of Social Protection for a carer giving full-time care, at least 35 hours a week over 5 to 7 days. Limits on work or study, age and residence apply. Rates and the means-test figures change and conflict between official pages, so none is shown here. Check Citizens Information.",
+    blurb: "Means-tested payment from the Department of Social Protection for a carer giving full-time care, at least 35 hours a week over 5 to 7 days. Limits on work or study, age and residence apply. Rates and the means-test figures change and conflict between official pages, so no current rate or limit is shown here. Check Citizens Information.",
+    details: [
+      "Announced in Budget 2027, from July 2027: the weekly income disregard rises to €1,150 for a single person (from €1,000) and €2,300 for a couple (from €2,000). Current limits stay as they are until then.",
+      "Announced in Budget 2027, from January 2027: the maximum rate of most weekly social welfare payments rises by €10. Budget details can change when the legislation is passed."
+    ],
     contact: { web: "live.citizensinformation.ie/en/social-welfare/social-welfare-payments/carers/carers-allowance/" },
     source_url: "https://live.citizensinformation.ie/en/social-welfare/social-welfare-payments/carers/carers-allowance/",
     urlStatus: "search-result",
@@ -8228,7 +8238,7 @@ const SCHEME_LINKS = [
     id: "fair-deal",
     name: "Fair Deal (Nursing Homes Support Scheme)",
     jurisdiction: "roi",
-    blurb: "Financial support for long-term nursing home care — you contribute a share of your income and assets, the State pays the rest. A four-step process: application, care needs assessment, financial assessment, optional Nursing Home Loan.",
+    blurb: "Financial support for long-term nursing home care — you contribute a share of your income and assets, the State pays the rest. A four-step process: application, care needs assessment, financial assessment, optional Nursing Home Loan. Budget 2027 announced funding for 500 additional people under the scheme; no start date has been given.",
     prep: [
       "Be ready for the form itself: the official NHSS1 application runs to around 34 pages, with roughly a dozen pages of explanatory notes before you even reach the applicant's name — widely reported as one of the most daunting forms in the Irish health system. Read it once through before filling anything in, rather than starting cold.",
       "It covers the care needs assessment and the financial assessment together, so gather both sets of information before you start: medical/functional information for the care needs side, and income/asset documents (bank and investment statements, property valuations, PPS numbers) for the financial side.",
@@ -8372,7 +8382,7 @@ const SCHEME_LINKS = [
     id: "disability-allowance",
     name: "Disability Allowance",
     jurisdiction: "roi",
-    blurb: "A means-tested weekly payment (roughly €244/week) for people aged 16–66 with an injury, disease or disability expected to last at least a year, assessed on substantial restriction to work suitable for your age and experience — not on diagnosis alone.",
+    blurb: "A means-tested weekly payment (roughly €244/week) for people aged 16–66 with an injury, disease or disability expected to last at least a year, assessed on substantial restriction to work suitable for your age and experience — not on diagnosis alone. Announced in Budget 2027: the maximum weekly rate rises by €10 from January 2027, and a €500 cost of disability lump sum is to be paid in 2027 to people getting a long-term disability payment (payment date to be confirmed). Check Citizens Information for who counts as qualifying.",
     prep: [
       "Ask your GP or specialist to complete the medical report section with your functional restrictions clearly described, not just your diagnosis — that's what's actually assessed.",
     ],
@@ -8716,7 +8726,7 @@ const GENERAL_ADVOCACY_ORGS = [
     id: "jigsaw",
     name: "Jigsaw",
     remit: "National Centre for Youth Mental Health, ages 12–25.",
-    offer: "Free 1:1 support online or in person (18 locations), live chat, and a support line for young people and concerned adults.",
+    offer: "Free 1:1 support online or in person (18 locations), live chat, and a support line for young people and concerned adults. Budget 2027 announced four new Jigsaw services; no dates or locations are given.",
     tags: ["mental health", "youth"],
     contact: { web: "jigsaw.ie", phone: "1800 544 729" },
   },
