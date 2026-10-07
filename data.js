@@ -2905,13 +2905,14 @@ const ENTRIES = [
     details: [
       "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres.",
       "The Mater's cardiology page (opened 7 Oct 2026) lists a national cardiology centre, cath lab, adult congenital heart disease, care for people waiting for a heart transplant, and nurse specialist services including TAVI and arrhythmia.",
+      "The Mater describes itself as the national centre for heart surgery, heart and lung transplant, adult congenital heart disease and advanced heart failure and ventricular assist devices (Mater 'About the Mater' page, viewed 7 Oct 2026).",
       "Not confirmed on that page: 24/7 primary PCI, and electrophysiology/ablation (not named). Ask the hospital before relying on either.",
       "TAVI has been running here since 2008, in partnership with Mater Private next door."
     ],
     referral: "GP or consultant referral; emergency STEMI (heart attack) cases go directly via ambulance/cath lab activation, not routine referral.",
     contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Cardiology or Cardiothoracic Surgery." },
     source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
-    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }],
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }, { label: "About the Mater (the Mater's own description of its national centres)", url: "https://www.mater.ie/about/about-the-mater/" }],
     urlStatus: "opened",
     verify: true,
     checked: "6 Sep 2026"
@@ -4552,13 +4553,15 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["respiratory"],
     county: ["dublin"],
-    blurb: "Pulmonary hypertension referral and treatment unit at the Mater, established 2003.",
+    blurb: "National centre for pulmonary hypertension at the Mater, established 2003.",
     details: [
       "Weekly clinics followed by a multidisciplinary team meeting; works closely with the Mater's adult congenital heart disease group and lung transplant team.",
-      "Its status as Ireland's only national centre has not been confirmed on an official page."
+      "The Mater describes itself as the national centre for pulmonary hypertension (Mater 'About the Mater' page, viewed 7 Oct 2026)."
     ],
     referral: "Consultant cardiologist or respiratory physician referral.",
     contact: { phone: "01 803 4420", extra: "01 803 4423", email: "pha@mater.ie", address: "56 Eccles Street, Dublin 7" },
+    source_url: "https://www.mater.ie/about/about-the-mater/",
+    urlStatus: "opened",
     checked: "10 Sep 2026"
   },
   {
@@ -7025,12 +7028,12 @@ const ENTRIES = [
   },
   {
     id: "roi-beaumont-mnd-clinic",
-    name: "Motor Neurone Disease (MND) Clinic, Beaumont Hospital",
+    name: "Motor Neurone Disease (MND) service, Beaumont Hospital",
     sector: "voluntary",
     specialty: ["neurology"],
     county: ["dublin"],
-    blurb: "Beaumont Hospital's specialist multidisciplinary clinic for people living with motor neurone disease (MND/ALS), seen on referral from a GP or neurologist.",
-    referral: "GP or neurologist referral.",
+    blurb: "Specialist care for people with motor neurone disease within Beaumont Hospital's Department of Neurology; referrals via Healthlink.",
+    referral: "Referral via Healthlink to the Department of Neurology.",
     contact: { web: "beaumont.ie/pages/health-A-Z/neurology" },
     source_url: "https://www.beaumont.ie/pages/health-A-Z/neurology",
     urlStatus: "search-result",

@@ -66,10 +66,12 @@ listed in `GAPS.md` → "Guided tools: open verify items".
 3. **`bons-cork-cardiology` tilt table testing:** the hospital confirmed by phone on 7 Oct 2026 that Cork offers it; the official page lists Dublin and Tralee only. Claim kept and noted in the entry. "Suspected POTS" removed. Urgent & Express fee cap and criteria stay unconfirmed, no figure.
 4. **CUH:** the CUH website was on a maintenance page, so its About Us wording is unconfirmed. Re-check.
 
+5. **Mater About page** (https://www.mater.ie/about/about-the-mater/, viewed 7 Oct 2026) states "We are the national centre for" heart surgery, heart and lung transplant, ACHD, pulmonary hypertension, adult ECMO, a high consequence infectious diseases (HCID) isolation unit, advanced heart failure/VAD, inherited metabolic disorders and rare diseases. The HCID isolation unit is confirmed on the Mater's own page, but no directory entry exists for it (`mater-nsiu` is the spinal injuries unit), so none was changed or added. A separate row would need a decision. The page does not state 24/7 primary PCI or electrophysiology/ablation.
+
 Cardiac checklist:
 - [x] 1a National Review wording: closed. Opened by Elaine on 7 Oct 2026, who confirmed Recommendations 3 and 4 on page 8 match the wording used. Entries carry `urlStatus: "opened"`. `verify` stays on the Mater (24/7 primary PCI and EP/ablation unconfirmed on the Mater's own pages), St James's (Keith Shaw Unit wording) and CUH (re-check About Us page); cleared on UHG.
-- [ ] 1b Mater: partly done (see 2).
-- [ ] 1c CUH: pending (site down).
+- [ ] 1b Mater: partly closed. Mater national-centre wording confirmed on the Mater's About page (viewed 7 Oct 2026): heart surgery, heart and lung transplant, ACHD, advanced heart failure/VAD (and pulmonary hypertension on `mater-pulmonary-hypertension`). Still open: 24/7 primary PCI and EP/ablation, neither stated on the Mater's own pages. The 489 emergency cath lab procedures reported for 2025 is not evidence of 24/7 PCI and is not used.
+- [ ] 1c CUH About Us: still open. The CUH site was on a maintenance page on 7 Oct 2026. `cuh-cardiology-comprehensive` stays `verify: true`.
 - [x] 1d closed.
 - [x] 1e closed by phone (tilt table, Cork).
 
@@ -110,7 +112,7 @@ Search-result only; egress to hse.ie, beaumont.ie and nidirect was blocked. Huma
 - [ ] Cardiac items 1a, 1b, 1c, 1e (open the 2025 National Review PDF; then clear `verify` and add `checked` on the four comprehensive-centre entries).
 - [ ] Mater: 24/7 primary PCI and EP/ablation. St James's: Keith Shaw Unit "national referral centre" wording.
 - [ ] `bons-cork-cardiology`: Urgent & Express fee cap and criteria; tilt-table testing (Cork not on the HSE page).
-- [ ] Beaumont MND clinic wording (row withheld pending host approval).
+- [x] Beaumont MND wording: closed. The Beaumont neurology page (viewed 7 Oct 2026) lists MND as a specialist service within the Department of Neurology, referrals via Healthlink. It describes no separate MND clinic and no national designation, so the row is now "Motor Neurone Disease (MND) service, Beaumont Hospital". No consultant names, clinic days or contacts.
 - [ ] GUIDe Clinic: booking, PrEP/PEP arrangements, walk-in (existing `gum-guide-stjames`).
 - [ ] `gum-guide-stjames` (existing entry, not edited): its phone was checked by web search before the current rules, not copied from a page a person opened. "HSE-operated" and `sector: "voluntary"` are unverified.
 - [ ] `ni-regional-genetics` (existing entry, not edited): its phone, email and address were checked by web search before the current rules. The regional clinic list and "single service" wording are unverified.
