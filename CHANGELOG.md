@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-07 [Claude] — primary-care specialty
+- New specialty id `primary-care`, label "Primary & Urgent Care" (approved 7 Oct 2026), in `SPECIALTIES`. Nothing else reads a hard-coded list, so no other file needed the id.
+- **Added 3 entries (565 to 568):** `ni-pharmacy-first`, `roi-injury-units` (directory explainer) and `ni-minor-injury-units` (by trust). All pages opened in the browser that day, web links only, no phones, no triage wording. Dates and unchecked trusts are stated in the entries and in REVIEW.md.
+- Not added: HSE CIT (page gone). No coverage claim is made.
+
 ## 2026-10-07 [Claude] — plastics, burns, neurosurgery and emergency surgery research
 - Checked the supplied research against the official pages, opened in the browser pane. Where a page disagreed with the research, the page won: the CHI plastics page now says "national tertiary and quaternary referral centre", and the Northern Trust and Southern Trust surgery pages are Board recommendations, not settled changes. The Northern Trust URLs in the research return 404 and the HSE CIT page is "Page not found".
 - **Added 4 entries (561 to 565):** `ni-regional-burns-rvh`, `ulster-regional-plastic-surgery` (Ulster Hospital, not the RVH), `chi-plastic-reconstructive-surgery` and `ni-emergency-general-surgery-sites` (NI explainer by trust, `verify: true`). Web links only, no phones.
