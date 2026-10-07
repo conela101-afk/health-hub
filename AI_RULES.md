@@ -15,6 +15,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - **No analytics, no tracking, no ads.** The site collects nothing about visitors and sends nothing to a server. See the CSP in `index.html` and the privacy note in the footer, which this rule must stay consistent with.
 - **Administrative/advocacy scope only.** This is a directory and advocacy toolkit — signposting, contact details, entitlement schemes, letter templates, rights information. No clinical triage, symptom-checking, or medical advice of any kind.
 - **No single-county targeting.** Don't make one county a priority or target market because of who asked. Ranking counties by coverage per head (see `GAPS.md`) is a legitimate method for a national, all-island tool.
+- **Parent-neutral wording.** Parenting, feeding and perinatal wording is parent-neutral by default ("parents", "new parents", "people who give birth"). Use "mother/mum" only where it is an official service or organisation name, or an accurate source statistic. Follow the official source's own phrasing. Do not generalise a factual claim beyond what the source says.
 - **`area` is physical base.** The optional sub-county `area` field means where a service is based, not who it serves. Regional and county-wide services carry no area. Areas are not HSE boundaries.
 
 ## After a session
@@ -32,6 +33,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-07 [Claude] — Inclusive parenting language: three labels and four entry texts reworded, parent-neutral wording rule added, content gaps logged in `GAPS.md`. No entries added or removed. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Plastics, burns, neurosurgery and emergency surgery research checked page by page; 4 entries added (561 to 565), 3 edited, primary-care layer and CUH deferred. See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-07 [Claude] — Addendum decisions: `beaumont-national-neuroscience` and `swah-gynae` set to `verify: true` (separate PR), and the `surgery-trauma` specialty added with four re-tagged entries. Surgery and trauma research queue not started. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Budget 2027 "announced" wording on affected entries, Galway Clinic phone confirmed, Belfast Trust liver route sourced, validator's "Budget 2027" ban removed. `blackrockhealth.com` added to the allow-list (owner approved). See `CHANGELOG.md`.

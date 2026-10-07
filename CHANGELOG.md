@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-07 [Claude] — inclusive parenting language
+- **Labels:** "Parenting & New Motherhood" is now "New & Expectant Parents" (A1, home pill A2); "Perinatal & Maternal Mental Health" is now "Perinatal Mental Health" (A4); the home pill "Breastfeeding support" is now "Infant feeding & breastfeeding support" (A3). Specialty ids, entry ids and hash routes are unchanged.
+- **Entry text:** `mbu-status` blurb no longer says "mothers" (the name "Mother & Baby Unit status" stays, as it is the service name); `nurture` renamed "Nurture — Perinatal Mental Health Counselling" (the old name was our descriptor, and Nurture's own site says women and partners); `friends-of-breastfeeding` kept faithful to the site, which describes its buddy service as for pregnant or breastfeeding women, so it was not generalised.
+- **Checks:** zero live hits for the old strings outside CHANGELOG; entry counts for `parenting`, `feeding`, `mh`, `loss` and `obs` identical before and after by script; `node --check` on `app.js`, `data.js` and `tools.js`; validator and tests pass. Service-worker cache name not bumped: `sw.js` is network-first and recent content changes have not bumped it.
+- **Rule:** parent-neutral wording rule added to `AI_RULES.md` and the README "Keep language general" bullet.
+- **Logged, not built:** content gaps, the search-alias gap (no alias mechanism for entries) and a possible `nurture`/`nurture-pnd` duplicate, all in `GAPS.md`.
+
 ## 2026-10-07 [Claude] — plastics, burns, neurosurgery and emergency surgery research
 - Checked the supplied research against the official pages, opened in the browser pane. Where a page disagreed with the research, the page won: the CHI plastics page now says "national tertiary and quaternary referral centre", and the Northern Trust and Southern Trust surgery pages are Board recommendations, not settled changes. The Northern Trust URLs in the research return 404 and the HSE CIT page is "Page not found".
 - **Added 4 entries (561 to 565):** `ni-regional-burns-rvh`, `ulster-regional-plastic-surgery` (Ulster Hospital, not the RVH), `chi-plastic-reconstructive-surgery` and `ni-emergency-general-surgery-sites` (NI explainer by trust, `verify: true`). Web links only, no phones.

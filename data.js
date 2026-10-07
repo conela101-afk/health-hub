@@ -55,9 +55,9 @@ const SPECIALTIES = [
   { id: "ophthalmology",   label: "Ophthalmology & Eye Care" },
   { id: "orthopaedics",    label: "Orthopaedics" },
   { id: "palliative",      label: "Palliative & End-of-Life Care" },
-  { id: "parenting",       label: "Parenting & New Motherhood" },
+  { id: "parenting",       label: "New & Expectant Parents" },
   { id: "pelvicphysio",    label: "Pelvic Health Physiotherapy" },
-  { id: "mh",              label: "Perinatal & Maternal Mental Health" },
+  { id: "mh",              label: "Perinatal Mental Health" },
   { id: "loss",            label: "Pregnancy & Baby Loss" },
   { id: "phn",             label: "Public Health Nursing" },
   { id: "rare-disease",    label: "Rare Diseases" },
@@ -343,11 +343,11 @@ const ENTRIES = [
   },
   {
     id: "nurture",
-    name: "Nurture — Maternal Mental Health Counselling",
+    name: "Nurture — Perinatal Mental Health Counselling",
     specialty: ["mh"],
     county: ["national"],
     blurb: "Affordable, timely counselling for perinatal mental health, birth trauma, fertility issues, grief.",
-    details: ["No-wait-list model in most areas."],
+    details: ["No-wait-list model in most areas.", "Nurture's own site describes its counselling as for women and partners."],
     referral: "Self-referral.",
     contact: { web: "nurturehealth.ie" },
     checked: "4 Sep 2026"
@@ -2095,7 +2095,7 @@ const ENTRIES = [
     verify: true
   },
 
-  // ---- Perinatal & Maternal Mental Health: other 5 hub hospitals + NI ----
+  // ---- Perinatal Mental Health: other 5 hub hospitals + NI ----
   {
     id: "nmh-perinatal-mh",
     name: "National Maternity Hospital Specialist Perinatal MH Team",
@@ -2169,7 +2169,7 @@ const ENTRIES = [
     name: "Mother & Baby Unit status (ROI & NI)",
     specialty: ["mh", "obs"],
     county: ["national"],
-    blurb: "No mother & baby psychiatric unit currently operates in either jurisdiction — mothers needing inpatient mental health care are admitted without their baby.",
+    blurb: "No mother & baby psychiatric unit currently operates in either jurisdiction — people who need inpatient mental health care after giving birth are admitted without their baby.",
     details: [
       "Northern Ireland: confirmed — Belfast City Hospital, expected to open 2028/29 (announced 30 April 2026).",
       "Republic of Ireland: funded via Budget 2026 but no opening date yet — planned units at St Vincent's, Dublin (co-located with the new National Maternity Hospital) and a 6-bed unit in Limerick (St Joseph's Hospital campus)."
@@ -2694,7 +2694,7 @@ const ENTRIES = [
     name: "Friends of Breastfeeding",
     specialty: ["feeding", "parenting"],
     county: ["national"],
-    blurb: "Mum2Mum peer-support groups plus a one-to-one \"Breastfeeding Buddy\" scheme pairing you with an experienced mother by text, phone, email, or video call.",
+    blurb: "Mum2Mum peer-support groups plus a one-to-one \"Breastfeeding Buddy\" scheme. The site describes the buddy service as for pregnant or breastfeeding women, and the support as by text, phone, email, or video call.",
     details: [],
     referral: "Self-referral via website.",
     contact: { web: "friendsofbreastfeeding.ie" },

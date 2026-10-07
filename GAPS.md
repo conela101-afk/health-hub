@@ -405,3 +405,15 @@ Added 12 rows: `roi-svuh-liver-transplant`, `roi-nrh-rehab`, `roi-nccp-aya-netwo
 **Correction to the 6 Oct audit gap table:** it wrongly listed the GUIDe clinic and NI genetics (Belfast City Hospital) as missing. Both already exist (`gum-guide-stjames`, `ni-regional-genetics`), so no rows were added. Their contacts and some wording are unverified; see the `REVIEW.md` browser checklist.
 
 Also left out: pancreas programme mention (SVUH), National AYA MDM, SVUH psycho-oncology per-centre claim, any NCH opening date, any row from the private-hospital matrix doc.
+
+## Inclusive parenting: content gaps (7 Oct 2026)
+
+Research items only. No entries written; each needs official sources and Elaine's approval first.
+
+1. **Fathers and non-birthing partners:** perinatal mental health support, and parental and paternity leave and benefit rights (Citizens Information, gov.ie, nidirect).
+2. **Adoptive and foster parents:** post-placement support, adoption leave and benefit, and the statutory bodies (Adoption Authority of Ireland, Tusla, HSC Trust adoption services). Tusla and AAI are not on the source-domain allow-list. **Ask Elaine before adding either host.**
+3. **Same-sex couples and fertility:** public AHR eligibility and the legal position on parentage and surrogacy, from HSE and gov.ie only, as administrative information and never as legal claims.
+4. **Search aliases:** entry search matches only an entry's name, blurb, details, specialty label and county (`entryHay` in `app.js`). Only the guided-tool pages have a `keywords` field. There is no alias mechanism for entries, so `dad`, `father`, `partner`, `adoption`, `foster`, `LGBTQ+ parents` and `chestfeeding` will only match if the words appear in entry text. Not built; needs a decision.
+5. **Discoverability after the relabel:** the specialty label "Parenting & New Motherhood" no longer exists, so a search for `motherhood` no longer matches those entries through their label. Entries still match on their own text.
+6. **Possible duplicate (flag only):** `nurture` (specialty `mh`) and `nurture-pnd` (`parenting`, `mh`) both point at nurturehealth.ie. Nurture's site describes counselling for "women & partners" across pregnancy, fertility, childbirth, loss, perimenopause and menopause. Not merged.
+7. **Not reviewed:** `Cork-Womens-Health-Pocket-Guide.docx` (separate asset, not part of the PWA).
