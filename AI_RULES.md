@@ -16,6 +16,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - **Administrative/advocacy scope only.** This is a directory and advocacy toolkit — signposting, contact details, entitlement schemes, letter templates, rights information. No clinical triage, symptom-checking, or medical advice of any kind.
 - **No single-county targeting.** Don't make one county a priority or target market because of who asked. Ranking counties by coverage per head (see `GAPS.md`) is a legitimate method for a national, all-island tool.
 - **Auto-merge is a human decision.** Claude Code never adds the `automerge` label and never enables auto-merge itself. Elaine labels a PR when she has decided it needs no further review. PRs that set `checked`, set `urlStatus: "opened"`, or clear `verify` are always merged by hand.
+- **Approved source hosts.** The allow-list in `scripts/validate-data.js` is the source of truth for `source_url` hosts; a new host needs Elaine's approval and unapproved hosts stay withheld. Approved 7 Oct 2026: `familysupportni.gov.uk`, `bso.hscni.net`, `saolta.ie`, `caredoc.ie`, `kdoc.ie`, `adoptionandfostercare.hscni.net`, `online.hscni.net` (the three `hscni.net` hosts were already covered). Earlier approvals: `tusla.ie`, `guideclinic.ie`, and the hospital hosts listed in the validator.
 - **Parent-neutral wording.** Parenting, feeding and perinatal wording is parent-neutral by default ("parents", "new parents", "people who give birth"). Use "mother/mum" only where it is an official service or organisation name, or an accurate source statistic. Follow the official source's own phrasing. Do not generalise a factual claim beyond what the source says.
 - **`area` is physical base.** The optional sub-county `area` field means where a service is based, not who it serves. Regional and county-wide services carry no area. Areas are not HSE boundaries.
 
@@ -34,6 +35,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-07 [Claude] — Approved seven source hosts (four new to the validator allow-list) and recorded the decisions for the local-services and parenting research rows; the rows themselves wait for the research file. See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-07 [Claude] — Search crisis banner (approved wording, search page only, triggers in `search.js`) and 53 condition keyword sets applied from the proposal; cache v14. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Label-gated auto-merge: rule added to this file and set-up checklist in `REVIEW.md`; the workflow file itself could not be pushed (no `workflow` token scope). See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Search v2: shared `search.js`, normalisation, US/UK spellings, short-query and multi-word rules, aliases on all result types, conditions and a facilities row in results, audit script (CI step pending, see REVIEW.md). Crisis link (S6) and conditions keywords (S8) held for approval. See `CHANGELOG.md`.

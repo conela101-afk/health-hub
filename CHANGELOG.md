@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-07 [Claude] — approved hosts and research decisions
+- **Allow-list:** added `familysupportni.gov.uk`, `saolta.ie`, `caredoc.ie` and `kdoc.ie` to `scripts/validate-data.js` (Elaine approved 7 Oct 2026). `bso.hscni.net`, `adoptionandfostercare.hscni.net` and `online.hscni.net` were already covered by `hscni.net`. Tests added for all seven, plus a lookalike-host failure.
+- **Rule** added to `AI_RULES.md`: the validator allow-list is the source of truth for hosts, and unapproved hosts stay withheld.
+- **Research rows not added:** the results file was not in the folder. Elaine's decisions for it (six-county NI rows, LTI link family, Mayo withholds, un-withholds, row rules) and a duplicate pre-check are recorded in `REVIEW.md`. No entries changed.
+
 ## 2026-10-07 [Claude] — search crisis banner and condition keywords
 - **Crisis banner (search S6, approved by Elaine 7 Oct 2026):** one `role="note"` callout above the results for crisis searches, with the approved wording and a single link to the existing Mental Health Crisis Support page. No phone numbers or other text were added. Triggers live in `search.js` (`isCrisisQuery`): the words suicide, suicidal, overdose, overdosed; the phrases self harm, self harming, selfharm, want to die, kill myself, end my life; and `crisis` only when it is the whole query (also "in crisis", "mental health crisis", "crisis support"). Whole-word matching, so "crisis pregnancy", "die" or "harm" do not trigger it. Suicidal, overdosed and self harming are inflections added to the approved list.
 - **Tests:** `scripts/search-audit.js` now checks that the banner shows for 12 phrasings and does not show for 12 others.
