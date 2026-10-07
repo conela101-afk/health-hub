@@ -398,4 +398,6 @@ Added 12 rows: `roi-svuh-liver-transplant`, `roi-nrh-rehab`, `roi-nccp-aya-netwo
 | `ni-regional-genetics-bch` | Duplicate of existing `ni-regional-genetics` (Belfast City Hospital) | Not needed |
 | `ngs-columcilles`, `ncp-adult-adhd`, `hse-living-well-pain`, `gap-mecfs` | Non-official or no source (unchanged) | An official HSE page is found |
 
+**Correction to the 6 Oct audit gap table:** it wrongly listed the GUIDe clinic and NI genetics (Belfast City Hospital) as missing. Both already exist (`gum-guide-stjames`, `ni-regional-genetics`), so no rows were added. Their contacts and some wording are unverified; see the `REVIEW.md` browser checklist.
+
 Also left out: pancreas programme mention (SVUH), National AYA MDM, SVUH psycho-oncology per-centre claim, any NCH opening date, any row from the private-hospital matrix doc.

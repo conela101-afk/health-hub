@@ -98,6 +98,8 @@ Search-result only; egress to hse.ie, beaumont.ie and nidirect was blocked. Huma
 - [ ] `bons-cork-cardiology`: Urgent & Express fee cap and criteria; tilt-table testing (Cork not on the HSE page).
 - [ ] Beaumont MND clinic wording (row withheld pending host approval).
 - [ ] GUIDe Clinic: booking, PrEP/PEP arrangements, walk-in (existing `gum-guide-stjames`).
+- [ ] `gum-guide-stjames` (existing entry, not edited): its phone was checked by web search before the current rules, not copied from a page a person opened. "HSE-operated" and `sector: "voluntary"` are unverified.
+- [ ] `ni-regional-genetics` (existing entry, not edited): its phone, email and address were checked by web search before the current rules. The regional clinic list and "single service" wording are unverified.
 - [ ] SVUH liver transplant page; pancreas programme mention.
 - [ ] NRH referral page: acknowledgement and review timelines.
 - [ ] HSE psycho-oncology page and per-centre teams.
