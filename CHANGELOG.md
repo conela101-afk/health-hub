@@ -3,6 +3,7 @@
 ## 2026-10-07 [Claude]
 - **Tertiary gaps (PR 2):** 12 new `verify: true` search-result entries (liver transplant SVUH, NRH referral, NCCP AYA network, Belfast TYA, psycho-oncology, Beaumont MND clinic, CHI GHIFT/NCIMD/craniofacial/clinical genetics, Bon Secours Cork heart & lung and radiotherapy), no contacts. `beaumont.ie`, `childrenshealthireland.ie` and `bonsecours.ie` added to the validator allow-list. 2 requested rows left out as duplicates of existing entries (`gum-guide-stjames`, `ni-regional-genetics`). See `GAPS.md`.
 - **Audit fixes (PR 1):** cardiac "one of 4 national centres" wording replaced; national-centre wording softened on ILD, PH and pituitary entries; NI transplant narrowed. See PR audit-fixes.
+- **Follow-up (PR #83):** Mater and Beaumont 7 Oct browser checks (Mater national-centre wording, pulmonary hypertension, Beaumont MND renamed a service); CHI genetics renamed to "CHI at Crumlin & Temple Street"; `roi-chi-clinical-genetics`, `roi-svuh-liver-transplant` and `roi-nrh-rehab` set to `urlStatus: "opened"`, `checked: 7 Oct 2026`, `verify` cleared; `gum-guide-stjames` now cites guideclinic.ie (online booking, PrEP, Young Person's Clinic; `verify: true`, no new `checked`); `guideclinic.ie` added to the validator allow-list; psycho-oncology row left as `search-result`. No new entries.
 - `data.js` entries: 549 to 561 (script count; the 597 and 619 figures in older docs are stale).
 
 ## 2026-10-06 [Claude]

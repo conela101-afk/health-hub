@@ -2905,13 +2905,14 @@ const ENTRIES = [
     details: [
       "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres.",
       "The Mater's cardiology page (opened 7 Oct 2026) lists a national cardiology centre, cath lab, adult congenital heart disease, care for people waiting for a heart transplant, and nurse specialist services including TAVI and arrhythmia.",
+      "The Mater describes itself as the national centre for heart surgery, heart and lung transplant, adult congenital heart disease and advanced heart failure and ventricular assist devices (Mater 'About the Mater' page, viewed 7 Oct 2026).",
       "Not confirmed on that page: 24/7 primary PCI, and electrophysiology/ablation (not named). Ask the hospital before relying on either.",
       "TAVI has been running here since 2008, in partnership with Mater Private next door."
     ],
     referral: "GP or consultant referral; emergency STEMI (heart attack) cases go directly via ambulance/cath lab activation, not routine referral.",
     contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Cardiology or Cardiothoracic Surgery." },
     source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
-    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }],
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }, { label: "About the Mater (the Mater's own description of its national centres)", url: "https://www.mater.ie/about/about-the-mater/" }],
     urlStatus: "opened",
     verify: true,
     checked: "6 Sep 2026"
@@ -3994,9 +3995,16 @@ const ENTRIES = [
     specialty: ["sexualhealth"],
     county: ["dublin"],
     blurb: "Free, HSE-operated STI/GUM clinic.",
-    details: [],
+    details: [
+      "Online booking is available.",
+      "PrEP clinics, with online booking.",
+      "A Young Person's Clinic for ages 20 and under."
+    ],
     referral: "Self-referral.",
-    contact: { phone: "01 416 2315" },
+    contact: { phone: "01 416 2315", web: "guideclinic.ie/sti-clinic" },
+    source_url: "https://guideclinic.ie/sti-clinic",
+    urlStatus: "opened",
+    verify: true,
     checked: "4 Sep 2026"
   },
   {
@@ -4552,13 +4560,15 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["respiratory"],
     county: ["dublin"],
-    blurb: "Pulmonary hypertension referral and treatment unit at the Mater, established 2003.",
+    blurb: "National centre for pulmonary hypertension at the Mater, established 2003.",
     details: [
       "Weekly clinics followed by a multidisciplinary team meeting; works closely with the Mater's adult congenital heart disease group and lung transplant team.",
-      "Its status as Ireland's only national centre has not been confirmed on an official page."
+      "The Mater describes itself as the national centre for pulmonary hypertension (Mater 'About the Mater' page, viewed 7 Oct 2026)."
     ],
     referral: "Consultant cardiologist or respiratory physician referral.",
     contact: { phone: "01 803 4420", extra: "01 803 4423", email: "pha@mater.ie", address: "56 Eccles Street, Dublin 7" },
+    source_url: "https://www.mater.ie/about/about-the-mater/",
+    urlStatus: "opened",
     checked: "10 Sep 2026"
   },
   {
@@ -6957,28 +6967,30 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["gastro"],
     county: ["dublin"],
-    blurb: "National liver transplant programme at St Vincent's University Hospital, Dublin, running since 1993. Referral for assessment comes from a clinician.",
-    referral: "Clinician referral only.",
+    blurb: "National centre serving patients from all over Ireland; programme running at SVUH since 1993. Clinician referral by completed referral form; urgent referrals by phone to the liver registrar on call.",
+    details: [
+      "The National Pancreas Transplant Programme is also based at St Vincent's University Hospital."
+    ],
+    referral: "Clinician referral by completed referral form.",
     contact: { web: "www.stvincents.ie/departments/national-liver-transplant-programme/" },
     source_url: "https://www.stvincents.ie/departments/national-liver-transplant-programme/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
   },
   {
     id: "roi-nrh-rehab",
     name: "National Rehabilitation Hospital: referral process",
     specialty: ["neurorehabilitation"],
     county: ["dublin"],
-    blurb: "Specialist inpatient and outpatient rehabilitation for acquired brain injury (including stroke and other neurological conditions), spinal cord injury and limb absence. Referrals come from acute hospitals, GPs and community agencies through the NRH Central Referrals Office.",
+    blurb: "Specialist inpatient and outpatient rehabilitation for adults and children with acquired brain injury (including stroke and other neurological conditions), spinal cord injury and limb absence. Referrals come from acute hospitals, GPs and community agencies through the NRH Central Referrals Office.",
     details: [
-      "Only complete referrals can be processed. The NRH publishes acknowledgement and review timelines for referrers; these have not been confirmed here, so check the referral page.",
       "For spinal cord injury see also the National Spinal Cord Injury Service entry (nrh-scsc)."
     ],
     referral: "Referral from an acute hospital, GP or community agency to the Central Referrals Office.",
     contact: { web: "www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/" },
     source_url: "https://www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
   },
   {
     id: "roi-nccp-aya-network",
@@ -7016,7 +7028,7 @@ const ENTRIES = [
     name: "Psycho-oncology (NCCP Model of Care)",
     specialty: ["oncology"],
     county: ["national"],
-    blurb: "Psychological and psychosocial support for people with cancer, their carers and families, delivered by psycho-oncology teams in the main cancer treatment centres under the NCCP Model of Care. Ask your cancer team.",
+    blurb: "Psychological and psychosocial support for people with cancer, their carers and families, under the NCCP Psycho-oncology Model of Care. Ask your cancer team.",
     referral: "Ask your cancer team.",
     contact: { web: "www.hse.ie/eng/services/list/5/cancer/profinfo/psycho-oncology-programme/" },
     source_url: "https://www.hse.ie/eng/services/list/5/cancer/profinfo/psycho-oncology-programme/",
@@ -7025,12 +7037,12 @@ const ENTRIES = [
   },
   {
     id: "roi-beaumont-mnd-clinic",
-    name: "Motor Neurone Disease (MND) Clinic, Beaumont Hospital",
+    name: "Motor Neurone Disease (MND) service, Beaumont Hospital",
     sector: "voluntary",
     specialty: ["neurology"],
     county: ["dublin"],
-    blurb: "Beaumont Hospital's specialist multidisciplinary clinic for people living with motor neurone disease (MND/ALS), seen on referral from a GP or neurologist.",
-    referral: "GP or neurologist referral.",
+    blurb: "Specialist care for people with motor neurone disease within Beaumont Hospital's Department of Neurology; referrals via Healthlink.",
+    referral: "Referral via Healthlink to the Department of Neurology.",
     contact: { web: "beaumont.ie/pages/health-A-Z/neurology" },
     source_url: "https://www.beaumont.ie/pages/health-A-Z/neurology",
     urlStatus: "search-result",
@@ -7080,16 +7092,16 @@ const ENTRIES = [
   },
   {
     id: "roi-chi-clinical-genetics",
-    name: "Clinical Genetics, CHI Crumlin",
+    name: "Clinical Genetics, CHI at Crumlin & Temple Street",
     sector: "voluntary",
     specialty: ["genetics"],
     county: ["dublin"],
-    blurb: "Children's clinical genetics service at CHI at Crumlin, for the diagnosis and management of conditions with a known or probable genetic basis.",
+    blurb: "Genetic assessment, counselling and testing for childhood and adult genetic disorders, including hereditary cancer. Appointments are in person, virtual or by phone, depending on the referral reason. A family history questionnaire is only accepted with a GP or consultant referral letter.",
     referral: "GP or consultant referral.",
     contact: { web: "childrenshealthireland.ie/list-of-services/clinical-genetics/" },
     source_url: "https://www.childrenshealthireland.ie/list-of-services/clinical-genetics/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
   },
   {
     id: "roi-bons-cork-heart-lung",
