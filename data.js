@@ -69,6 +69,7 @@ const SPECIALTIES = [
   { id: "sleep-medicine",  label: "Sleep Medicine" },
   { id: "spinal-injury",   label: "Spinal Cord Injury" },
   { id: "stroke",          label: "Stroke" },
+  { id: "surgery-trauma",  label: "Surgery & Trauma" },
   { id: "treatment-abroad", label: "Cross-Border & Treatment Abroad Schemes" },
   { id: "urology",         label: "Urology" },
   { id: "vascular",        label: "Vascular" },
@@ -3301,7 +3302,7 @@ const ENTRIES = [
     id: "beaumont-national-neuroscience",
     name: "Beaumont Hospital National Neuroscience Centre",
     sector: "voluntary",
-    specialty: ["neurology"],
+    specialty: ["neurology", "surgery-trauma"],
     county: ["dublin"],
     blurb: "Ireland's national neurology/neurosurgery centre — covers epilepsy, stroke, MS, movement disorders, and general neurology alongside neurosurgery.",
     details: ["Dedicated line for traumatic brain injury referrals: 1800 872 862 (1800-TRAUMA)."],
@@ -4997,7 +4998,7 @@ const ENTRIES = [
   {
     id: "national-major-trauma-centres",
     name: "About Ireland's Major Trauma Centres",
-    specialty: ["orthopaedics"],
+    specialty: ["orthopaedics", "surgery-trauma"],
     county: ["dublin", "cork"],
     blurb: "Major Trauma Centres at the Mater Hospital (Central Trauma Network, Dublin) and Cork University Hospital (South Trauma Network) receive high-severity trauma via ambulance diversion, not routine referral. Operational since April 2023.",
     details: [
@@ -6284,7 +6285,7 @@ const ENTRIES = [
   {
     id: "rvh-regional-neurosurgery",
     name: "Royal Victoria Hospital Belfast — Regional Neurosciences Centre (Neurosurgery)",
-    specialty: ["neurology"],
+    specialty: ["neurology", "surgery-trauma"],
     county: ["antrim"],
     blurb: "Northern Ireland's single Regional Neurosciences Centre. It provides neurosurgery and most sub-specialist neurology inpatient care for the whole of NI.",
     details: [
@@ -6301,7 +6302,7 @@ const ENTRIES = [
   {
     id: "rvh-major-trauma-centre",
     name: "About Northern Ireland's Major Trauma Centre (Royal Victoria Hospital)",
-    specialty: ["orthopaedics"],
+    specialty: ["orthopaedics", "surgery-trauma"],
     county: ["antrim"],
     blurb: "The RVH in Belfast is NI's Major Trauma Centre, the hub of the Regional Trauma Network. It has a consultant-led major trauma ward and a rooftop helipad for the NI Air Ambulance (HEMS).",
     details: [
