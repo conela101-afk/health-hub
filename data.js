@@ -6992,6 +6992,105 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
+  {
+    id: "roi-beaumont-mnd-clinic",
+    name: "Motor Neurone Disease (MND) Clinic, Beaumont Hospital",
+    sector: "voluntary",
+    specialty: ["neurology"],
+    county: ["dublin"],
+    blurb: "Beaumont Hospital's specialist multidisciplinary clinic for people living with motor neurone disease (MND/ALS), seen on referral from a GP or neurologist.",
+    referral: "GP or neurologist referral.",
+    contact: { web: "beaumont.ie/pages/health-A-Z/neurology" },
+    source_url: "https://www.beaumont.ie/pages/health-A-Z/neurology",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-chi-ghift",
+    name: "GHIFT, CHI Crumlin & Tallaght",
+    sector: "voluntary",
+    specialty: ["gastro", "paediatrics"],
+    county: ["dublin"],
+    blurb: "Children's Health Ireland's department of paediatric gastroenterology, hepatology, intestinal failure and transplant medicine, with services at CHI at Crumlin and CHI at Tallaght.",
+    referral: "GP or consultant referral.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/gastroenterology-and-hepatology/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/gastroenterology-and-hepatology/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-chi-ncimd",
+    name: "National Centre for Inherited Metabolic Disorders, CHI Temple Street",
+    sector: "voluntary",
+    specialty: ["rare-disease", "paediatrics"],
+    county: ["dublin"],
+    blurb: "Referral centre for children with inherited metabolic disorders, based at CHI at Temple Street, with outreach clinics in Cork, Limerick and Ballinasloe.",
+    details: [
+      "The outreach locations have not been confirmed here. Check the CHI metabolic medicine page."
+    ],
+    referral: "GP or consultant referral.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/metabolic-medicine/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/metabolic-medicine/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-chi-craniofacial",
+    name: "National Paediatric Craniofacial Centre, CHI Temple Street",
+    sector: "voluntary",
+    specialty: ["paediatrics"],
+    county: ["dublin"],
+    blurb: "Multidisciplinary craniofacial clinic at CHI at Temple Street for children and young people from birth to 16 with craniofacial conditions.",
+    referral: "GP or consultant referral.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/craniofacial-updated/craniofacial-mdt-clinic/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/craniofacial-updated/craniofacial-mdt-clinic/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-chi-clinical-genetics",
+    name: "Clinical Genetics, CHI Crumlin",
+    sector: "voluntary",
+    specialty: ["genetics"],
+    county: ["dublin"],
+    blurb: "Children's clinical genetics service at CHI at Crumlin, for the diagnosis and management of conditions with a known or probable genetic basis.",
+    referral: "GP or consultant referral.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/clinical-genetics/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/clinical-genetics/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-bons-cork-heart-lung",
+    name: "Heart & Lung Centre, Bon Secours Hospital Cork",
+    sector: "private",
+    provider: "Bon Secours Health System",
+    specialty: ["cardiology"],
+    county: ["cork"],
+    blurb: "Private heart and lung (cardiothoracic) surgery centre at Bon Secours Hospital Cork, launched in 2024. Referral comes from a GP or consultant via Healthlink.",
+    referral: "GP or consultant referral via Healthlink; self-pay or health-insurance-funded.",
+    contact: { web: "bonsecours.ie/services/cardiothoracic-surgery" },
+    source_url: "https://www.bonsecours.ie/services/cardiothoracic-surgery",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-bons-cork-radiotherapy",
+    name: "Radiation Therapy, Bon Secours Hospital Cork (UPMC Hillman)",
+    sector: "private",
+    provider: "Bon Secours Health System",
+    specialty: ["oncology"],
+    county: ["cork"],
+    blurb: "Private radiation therapy at Bon Secours Hospital Cork, in partnership with UPMC Hillman Cancer Centre.",
+    details: [
+      "The hospital's page names a Varian Edge radiotherapy system. That has not been confirmed here."
+    ],
+    referral: "Through your oncology consultant.",
+    contact: { web: "bonsecours.ie/cork-departments/radiotherapy" },
+    source_url: "https://www.bonsecours.ie/cork-departments/radiotherapy",
+    urlStatus: "search-result",
+    verify: true
+  },
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate

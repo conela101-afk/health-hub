@@ -25,6 +25,8 @@ const SOURCE_DOMAINS = [
   "legalaidboard.ie", "flac.ie", "nidirect.gov.uk", "health-ni.gov.uk", "hscni.net", "nipso.org.uk",
   "screeningservice.ie", "ntpf.ie", "ncse.ie", "stjames.ie", "nrh.ie", "stvincents.ie", "mater.ie", "nohc.ie",
   "cho7cdnt.ie", "southeastcdnt.ie",
+  // Hospitals' own sites, approved by the owner 7 Oct 2026 ("the hospital's own .ie site").
+  "beaumont.ie", "childrenshealthireland.ie", "bonsecours.ie",
 ];
 const hostAllowed = host => SOURCE_DOMAINS.some(d => host === d || host.endsWith("." + d));
 
