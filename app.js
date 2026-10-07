@@ -633,6 +633,10 @@
     const safeQuery = escapeHtml(query);
     const also = HHSearch.alsoSearched(p);
     const alsoLine = also ? `<p class="count">Also searched: ${escapeHtml(also)}</p>` : "";
+    // Approved wording (Elaine, 7 Oct 2026). A link to the existing crisis page only: no numbers or extra copy here.
+    const crisisBanner = HHSearch.isCrisisQuery(query)
+      ? `<div class="callout" role="note"><p>If you or someone else is in crisis or in immediate danger, support is available now.</p><p class="callout-pill-row"><a class="pill" href="#/specialty/crisis">Mental Health Crisis Support ›</a></p></div>`
+      : "";
     const body = totalCount
       ? `${toolSection}${privateSection}${voluntarySection}${cards}${conditionSection}${orgCards}${generalOrgCards}${facilityRow}`
       : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>${facilityRow}`;
@@ -643,6 +647,7 @@
         <p class="count">${totalCount} result${totalCount === 1 ? "" : "s"}</p>
         ${alsoLine}
       </div>
+      ${crisisBanner}
       ${body}
     `;
     searchInput.value = query;

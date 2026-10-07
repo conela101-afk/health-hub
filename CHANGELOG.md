@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07 [Claude] — search crisis banner and condition keywords
+- **Crisis banner (search S6, approved by Elaine 7 Oct 2026):** one `role="note"` callout above the results for crisis searches, with the approved wording and a single link to the existing Mental Health Crisis Support page. No phone numbers or other text were added. Triggers live in `search.js` (`isCrisisQuery`): the words suicide, suicidal, overdose, overdosed; the phrases self harm, self harming, selfharm, want to die, kill myself, end my life; and `crisis` only when it is the whole query (also "in crisis", "mental health crisis", "crisis support"). Whole-word matching, so "crisis pregnancy", "die" or "harm" do not trigger it. Suicidal, overdosed and self harming are inflections added to the approved list.
+- **Tests:** `scripts/search-audit.js` now checks that the banner shows for 12 phrasings and does not show for 12 others.
+- **Condition keywords (S8):** applied the lay and alternative names from `CONDITIONS_KEYWORDS_PROPOSAL.md` to 53 conditions with empty `keywords` (13 rows had no alternative name and stay `[]`). Name-level synonyms only, no symptoms and no claims. Spot checks: "chest infection", "fits", "pnd", "celiac" and "blood cancer" now find the right conditions.
+- `sw.js` cache `pocket-guide-v13` to `v14` (`app.js`, `search.js` and `data/conditions.js` changed). No entries added or removed (567). `node --check` on all JS, the date tests, `validate-data.js` and the search audit all pass.
+
 ## 2026-10-07 [Claude] — whole-app search and aliases v2
 - **New `search.js`** (shared by `app.js` and the audit, so the audit tests what people get): one normalise() for query and haystacks (case, apostrophes, fadas, `&`, hyphens, punctuation), a US-to-UK spelling map, word-start matching for queries of 3 characters or fewer, phrase-or-all-words matching for longer ones (one-letter words ignored), and aliases that fire on the exact key or on a 4+ character key inside a longer query. Entry haystacks are normalised once and cached. Added to `index.html` and `sw.js` assets.
 - **Aliases apply to entries, both organisation lists and tool pages.** Conditions are now in global search (loaded on demand, search still works if they cannot load), plus one "Search regulated facilities" row. A line "Also searched: …" shows what a spelling or alias added.

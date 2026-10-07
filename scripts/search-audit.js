@@ -61,6 +61,12 @@ fixed.forEach(q => console.log(`note: "${q}" now returns results; delete it from
 // A few behaviours that must keep working.
 const must = [["pediatric", "e"], ["gynecology", "e"],  ["parkinsons", "e"], ["carers allowance", "e"], ["self harm", "e"], ["a&e", "e"], ["dad", "e"], ["fair deal", "t"]];
 must.concat([["alzheimers", "k"]]).forEach(([q, k]) => { if (!run(q)[k]) fail(`"${q}" should return ${k === "e" ? "entries" : k === "k" ? "a condition" : "tool pages"}`); });
+// Crisis banner (approved wording, 7 Oct 2026): shows for these, and must not show for the others.
+["suicide", "self harm", "self-harm", "Overdose", "want to die", "kill myself", "end my life", "crisis", "Crisis ", "mental health crisis", "suicidal thoughts", "overdose help"]
+  .forEach(q => { if (!S.isCrisisQuery(q)) fail(`crisis banner should show for "${q}"`); });
+["dad", "crisis pregnancy", "er", "ed", "anxiety", "a&e", "drugs", "pregnancy", "counselling", "die", "life", "harm"]
+  .forEach(q => { if (S.isCrisisQuery(q)) fail(`crisis banner should NOT show for "${q}"`); });
+
 if (run("er").e > 150 || run("ms").e > 150) fail("short queries are too noisy");
 
 console.log(`queries: ${queries.length}, zero-result: ${zero.length} (known gaps: ${known.size}), alias keys: ${Object.keys(D.SEARCH_ALIASES).length}`);

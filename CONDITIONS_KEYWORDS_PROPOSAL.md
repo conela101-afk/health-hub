@@ -1,6 +1,6 @@
 # Proposed `keywords` for conditions (7 Oct 2026) — for Elaine to skim
 
-**Status: proposal only. `data/conditions.js` is unchanged.** 66 of 104 conditions have `keywords: []`. Each row proposes lay or alternative names for the **condition name only**: other spellings, abbreviations, and common names for the same thing. No symptoms, causes, treatments or clinical claims. Search already ignores apostrophes, hyphens and case, and maps US spellings (leukemia, hemophilia, celiac, etc.), so those are listed only where the UK spelling is not a simple map. A dash means "the name already covers it".
+**Status: APPLIED 7 Oct 2026 (53 rows; the 13 rows with no alternative name stay empty).** Review the PR diff of `data/conditions.js`. 66 of 104 conditions have `keywords: []`. Each row proposes lay or alternative names for the **condition name only**: other spellings, abbreviations, and common names for the same thing. No symptoms, causes, treatments or clinical claims. Search already ignores apostrophes, hyphens and case, and maps US spellings (leukemia, hemophilia, celiac, etc.), so those are listed only where the UK spelling is not a simple map. A dash means "the name already covers it".
 
 Approve all, strike rows, or edit. Then ask Claude Code to write them into `data/conditions.js`.
 
