@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07 [Claude] — plastics, burns, neurosurgery and emergency surgery research
+- Checked the supplied research against the official pages, opened in the browser pane. Where a page disagreed with the research, the page won: the CHI plastics page now says "national tertiary and quaternary referral centre", and the Northern Trust and Southern Trust surgery pages are Board recommendations, not settled changes. The Northern Trust URLs in the research return 404 and the HSE CIT page is "Page not found".
+- **Added 4 entries (561 to 565):** `ni-regional-burns-rvh`, `ulster-regional-plastic-surgery` (Ulster Hospital, not the RVH), `chi-plastic-reconstructive-surgery` and `ni-emergency-general-surgery-sites` (NI explainer by trust, `verify: true`). Web links only, no phones.
+- **Edited:** `beaumont-national-neuroscience` reworded to Beaumont's own "National Neurosurgical Centre" wording, `verify` cleared, `checked` set. `rvh-regional-neurosurgery` renamed to Regional Neurosciences Centre, reworded to the DoH NI review, `verify: true`. `national-burns-unit-sjh` no longer calls CHI Temple Street "the national centre for paediatric major burns".
+- **Not added:** CUH neurosurgery (site offline), ROI emergency general surgery (no official list), and the primary-care layer (CIT page gone; Pharmacy First, injury units and minor injury units need a specialty decision). Details in REVIEW.md.
+
 ## 2026-10-07 [Claude] — surgery-trauma specialty (schema)
 - New specialty id `surgery-trauma`, label "Surgery & Trauma" (approved 7 Oct 2026), in `SPECIALTIES` in `data.js`. The validator, `app.js` (icon falls back to the default pin) and the tests read the list dynamically, so nothing else needed the id. `scripts/county-matrix.js` gained a "Surgery & trauma" column.
 - Added `surgery-trauma` as an extra specialty (existing ones kept) on `national-major-trauma-centres`, `rvh-major-trauma-centre`, `rvh-regional-neurosurgery` and `beaumont-national-neuroscience`. This only improves findability; it adds no entries and no coverage.
