@@ -2,7 +2,5 @@
 # Delete a line when content lands. The audit fails if a query NOT listed here returns nothing.
 anesthesia
 esophagus
-long term illness
-interpreter
 second opinion
 111

@@ -36,6 +36,7 @@ const SPECIALTIES = [
   { id: "ent",             label: "ENT & Audiology" },
   { id: "fertility",       label: "Fertility & IVF" },
   { id: "gastro",          label: "Gastroenterology & IBD" },
+  { id: "general",         label: "General Information & Access" },
   { id: "paediatrics",     label: "General Paediatrics" },
   { id: "genetics",        label: "Genetics & Hereditary Cancer Risk" },
   { id: "cancer",          label: "Gynaecological & Breast Cancer" },
@@ -72,6 +73,7 @@ const SPECIALTIES = [
   { id: "stroke",          label: "Stroke" },
   { id: "surgery-trauma",  label: "Surgery & Trauma" },
   { id: "treatment-abroad", label: "Cross-Border & Treatment Abroad Schemes" },
+  { id: "urgent",          label: "Urgent Care" },
   { id: "urology",         label: "Urology" },
   { id: "vascular",        label: "Vascular" },
   { id: "weightmanagement", label: "Weight Management & Bariatric Care" },
@@ -6418,7 +6420,7 @@ const ENTRIES = [
   {
     id: "roi-injury-units",
     name: "About HSE injury units (Republic of Ireland)",
-    specialty: ["primary-care"],
+    specialty: ["primary-care", "urgent"],
     county: ["national"],
     blurb: "The HSE runs injury units that treat injuries that are not life-threatening and unlikely to need a hospital stay. Which units exist, who can attend and when they are open differs by unit, so use the HSE's own directory.",
     details: [
@@ -6435,7 +6437,7 @@ const ENTRIES = [
   {
     id: "ni-minor-injury-units",
     name: "About minor injury and urgent care units in Northern Ireland",
-    specialty: ["primary-care"],
+    specialty: ["primary-care", "urgent"],
     county: ["antrim", "down", "londonderry", "tyrone"],
     blurb: "Minor injury units treat injuries that are not critical or life-threatening. Each trust runs its own and the arrangements differ, so check the trust page for the unit and use Phone First where the trust offers it. This entry summarises trust pages read on 7 Oct 2026.",
     details: [
@@ -6671,7 +6673,14 @@ const ENTRIES = [
     specialty: ["fertility"],
     county: ["national"],
     blurb: "GP or consultant refers you to a regional fertility hub; no self-referral. Eligibility criteria apply, including age and cycle limits. Check the HSE page for current rules.",
+    details: [
+      "The HSE page says you are not currently eligible for free IUI, IVF or ICSI through the HSE if you cannot use your own eggs or sperm, are in a same-sex couple, or are single, and that it will update this when those treatments become available. Private treatment is possible but is not free.",
+      "The access criteria on the page cover residency, age, previous treatment, children, number of parents, relationship length, sterilisation, BMI and lifestyle.",
+    ],
     contact: { web: "www2.hse.ie/pregnancy-birth/trying-for-a-baby/your-fertility/getting-ivf-icsi-iui-hse/" },
+    resources: [
+      { label: "HSE assisted human reproduction (AHR) services — Citizens Information", url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/hse-assisted-human-reproduction-ahr-services/" }
+    ],
     source_url: "https://www2.hse.ie/pregnancy-birth/trying-for-a-baby/your-fertility/getting-ivf-icsi-iui-hse/",
     urlStatus: "search-result",
     verify: true
@@ -7288,6 +7297,638 @@ const ENTRIES = [
     referral: "Through your oncology consultant.",
     contact: { web: "bonsecours.ie/cork-departments/radiotherapy" },
     source_url: "https://www.bonsecours.ie/cork-departments/radiotherapy",
+    urlStatus: "search-result",
+    verify: true
+  },
+  // Local services, parenting and search-gap rows (7 Oct 2026). From research/LOCAL-SERVICES-PARENTING-2026-10-07.md and Elaine's decisions.
+  // All unverified: link only, no phones, no checked date. Caredoc, Omagh and Mayo office pages were also read by Claude Code on 7 Oct.
+  {
+    id: "roi-wexford-wexford-general-hospital",
+    name: "Wexford General Hospital",
+    specialty: ["general"],
+    county: ["wexford"],
+    blurb: "The HSE page for Wexford General Hospital in Wexford Town gives its address, visiting times, parking, supports and links to the emergency department and a list of services at the hospital.",
+    details: [
+      "The page lists separate visiting arrangements for the maternity unit, including times for support partners",
+      "The page lists a Patient Advocacy Liaison Service (PALS) / patient liaison and complaints officer",
+      "The page links to a 'Find a service at this hospital' list",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/wexford-general-hospital/" },
+    source_url: "https://www2.hse.ie/services/hospitals/wexford-general-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-wgh-emergency-department",
+    name: "Wexford General Hospital Emergency Department",
+    specialty: ["urgent"],
+    county: ["wexford"],
+    blurb: "The HSE page for the emergency department at Wexford General Hospital says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for all ages",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/wexford-general-hospital-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/wexford-general-hospital-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-wgh-birth-reflection-clinic",
+    name: "Birth reflection clinic at Wexford General Hospital",
+    specialty: ["obs", "mh"],
+    county: ["wexford"],
+    blurb: "The HSE lists a birth reflection clinic based in Wexford General Hospital.",
+    details: [
+      "The page says the service is in Wexford General Hospital",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/wexford-general-hospital/departments-services/birth-reflection-clinic-1/" },
+    source_url: "https://www2.hse.ie/services/hospitals/wexford-general-hospital/departments-services/birth-reflection-clinic-1/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-caredoc-wexford",
+    name: "Caredoc Wexford",
+    specialty: ["urgent"],
+    county: ["wexford"],
+    blurb: "The HSE lists Caredoc Wexford as a GP out-of-hours service for when your GP surgery is closed and you urgently need a GP. It says the service is not for routine care such as repeat prescriptions.",
+    details: [
+      "The page says the GP out-of-hours service is for all ages",
+      "The page says the service is in Wexford Primary Care Centre",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-wexford/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-wexford/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-mayo-university-hospital",
+    name: "Mayo University Hospital",
+    specialty: ["general"],
+    county: ["mayo"],
+    blurb: "The HSE page for Mayo University Hospital in Castlebar gives its address, visiting information, supports and departments.",
+    details: [
+      "The page lists a Patient Advocacy Liaison Service (PALS) at the hospital",
+      "The page lists a chaplaincy service for all patients",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/mayo-university-hospital/" },
+    source_url: "https://www2.hse.ie/services/hospitals/mayo-university-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-muh-emergency-department",
+    name: "Mayo University Hospital Emergency Department",
+    specialty: ["urgent"],
+    county: ["mayo"],
+    blurb: "The HSE page for the emergency department at Mayo University Hospital says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for all ages",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-muh-maternity-emergency",
+    name: "Mayo University Hospital Maternity Emergency Service",
+    specialty: ["obs", "urgent"],
+    county: ["mayo"],
+    blurb: "The HSE page describes the Emergency and Assessment Unit at Mayo University Hospital for signs of labour, complications in pregnancy or after birth, and acute gynaecological emergencies.",
+    details: [
+      "The page lists opening hours as 24 hours, seven days",
+      "The page says you do not need an appointment for the Emergency and Assessment Unit",
+    ],
+    referral: "The page says no appointment is needed.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-maternity-emergency-service/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-maternity-emergency-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-muh-early-pregnancy-unit",
+    name: "Mayo University Hospital Early Pregnancy Assessment Unit",
+    specialty: ["obs", "loss"],
+    county: ["mayo"],
+    blurb: "The HSE lists an Early Pregnancy Assessment Unit at Mayo University Hospital, Castlebar, seen by appointment.",
+    details: [
+      "The page says you need an appointment to visit the unit",
+    ],
+    referral: "The page says you may be referred by a GP or by the Emergency and Assessment Unit.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-early-pregnancy-assessment-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-early-pregnancy-assessment-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-omagh-hospital-primary-care-complex",
+    name: "Omagh Hospital and Primary Care Complex",
+    specialty: ["general"],
+    county: ["tyrone"],
+    blurb: "The Western Trust page for Omagh Hospital and Primary Care Complex, Donaghanie Road, Omagh, lists the services delivered there. It also links to outpatient, women's health and GUM clinic pages.",
+    details: [
+      "The page lists services at this location including an Urgent Care and Treatment Centre, Child Psychotherapy Service, Children's Diabetes Service, Community Dental Services, Bereavement Care and Specialist Palliative Care",
+      "The page describes palliative care and rehabilitation wards",
+      "The page lists GP out-of-hours at this location",
+    ],
+    contact: { web: "westerntrust.hscni.net/hospitals/omagh-hospital/" },
+    source_url: "https://westerntrust.hscni.net/hospitals/omagh-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-omagh-urgent-care-treatment-centre",
+    name: "Urgent Care and Treatment Centre, Omagh Hospital",
+    specialty: ["urgent"],
+    county: ["tyrone"],
+    blurb: "The Western Trust describes the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex as a nurse-led minor injuries unit, open 24 hours with x-ray on site.",
+    details: [
+      "The page lists minor injuries it sees, including minor head injuries without loss of consciousness, wounds, eye injuries, sprains and fractures, bites and stings",
+      "The page says staff get telephone advice from emergency consultants at South West Acute and Altnagelvin hospitals",
+    ],
+    contact: { web: "westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/urgent-care-and-treatment-centre-omagh-hospital/" },
+    source_url: "https://westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/urgent-care-and-treatment-centre-omagh-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-south-tyrone-hospital",
+    name: "South Tyrone Hospital",
+    specialty: ["general"],
+    county: ["tyrone"],
+    blurb: "The Southern Trust page for South Tyrone Hospital, Carland Road, Dungannon, lists the services on the site.",
+    details: [
+      "The page lists outpatient services, day surgery and radiology, including an Ambulatory Paediatric Service",
+      "The page says CAMHS and children's social services teams are based at the hospital",
+      "The page says the Health Visiting Team for the Dungannon area is based at the hospital",
+      "The page lists the Mental Health Support and Recovery Team, Primary Mental Health Care and Psychology Services on site",
+      "The page describes a rehabilitation unit and a day hospital for older people",
+    ],
+    contact: { web: "southerntrust.hscni.net/our-hospitals/south-tyrone-hospital/" },
+    source_url: "https://southerntrust.hscni.net/our-hospitals/south-tyrone-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-south-tyrone-minor-injury-unit",
+    name: "South Tyrone Minor Injury Unit",
+    specialty: ["urgent"],
+    county: ["tyrone"],
+    blurb: "The Southern Trust says people with a minor injury who live close to South Tyrone Minor Injury Unit in Dungannon should phone for an appointment before attending.",
+    details: [
+      "The page asks people to phone before attending",
+    ],
+    referral: "The page says to phone for an appointment before you attend.",
+    contact: { web: "southerntrust.hscni.net/our-hospitals/south-tyrone-hospital/" },
+    source_url: "https://southerntrust.hscni.net/our-hospitals/south-tyrone-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-olol-emergency-department",
+    name: "Our Lady of Lourdes Hospital Drogheda Emergency Department",
+    specialty: ["urgent"],
+    county: ["louth"],
+    blurb: "The HSE page for the emergency department at Our Lady of Lourdes Hospital Drogheda says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for all ages",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/our-lady-of-lourdes-hospital-drogheda-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/our-lady-of-lourdes-hospital-drogheda-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-olol-maternity-emergency",
+    name: "Louth Hospital Maternity Emergency Service at Our Lady of Lourdes Hospital Drogheda",
+    specialty: ["obs", "urgent"],
+    county: ["louth"],
+    blurb: "The HSE lists a maternity emergency service based in Our Lady of Lourdes Hospital, Drogheda.",
+    details: [
+      "The page says the service is in Our Lady of Lourdes Hospital Drogheda",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/our-lady-of-lourdes-hospital-drogheda/departments-services/louth-hospital-maternity-emergency-service/" },
+    source_url: "https://www2.hse.ie/services/hospitals/our-lady-of-lourdes-hospital-drogheda/departments-services/louth-hospital-maternity-emergency-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-olol-early-pregnancy-unit",
+    name: "Louth Hospital Early Pregnancy Assessment Unit",
+    specialty: ["obs", "loss"],
+    county: ["louth"],
+    blurb: "The HSE lists an Early Pregnancy Assessment Unit at Our Lady of Lourdes Hospital, Drogheda.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/louth-hospital-early-pregnancy-assessment-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/louth-hospital-early-pregnancy-assessment-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-olol-parentcraft-breastfeeding",
+    name: "Parentcraft Department Our Lady of Lourdes Hospital Drogheda",
+    specialty: ["feeding", "parenting"],
+    county: ["louth"],
+    blurb: "The HSE says this service offers one-to-one breastfeeding support from a lactation consultant, including antenatal breastfeeding preparation and postnatal support, with phone support also offered.",
+    details: [
+      "The page lists opening hours as Monday to Friday, 8am to 6pm",
+    ],
+    referral: "The page lists GP, PHN, midwife or self-referral.",
+    contact: { web: "www2.hse.ie/services/breastfeeding-support/parentcraft-department-our-lady-of-lourdes-hospital-drogheda/" },
+    source_url: "https://www2.hse.ie/services/breastfeeding-support/parentcraft-department-our-lady-of-lourdes-hospital-drogheda/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-meath-our-ladys-hospital-navan",
+    name: "Our Lady's Hospital Navan",
+    specialty: ["general"],
+    county: ["meath"],
+    blurb: "The HSE page for Our Lady's Hospital, Navan, gives its address, visiting times and departments.",
+    contact: { web: "www2.hse.ie/services/hospitals/our-ladys-hospital-navan/" },
+    source_url: "https://www2.hse.ie/services/hospitals/our-ladys-hospital-navan/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-meath-navan-emergency-department",
+    name: "Our Lady's Hospital Navan Emergency Department",
+    specialty: ["urgent"],
+    county: ["meath"],
+    blurb: "The HSE page for the emergency department at Our Lady's Hospital Navan says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for anyone age 16 and older",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/our-ladys-hospital-navan-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/our-ladys-hospital-navan-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-meath-nedoc-navan",
+    name: "Nedoc Navan",
+    specialty: ["urgent"],
+    county: ["meath"],
+    blurb: "The HSE lists Nedoc Navan, Academy Street, Navan, as a GP out-of-hours service. It says that when you phone, a nurse calls you back and tells you what to do next.",
+    details: [
+      "The page says the nurse may give advice, arrange an out-of-hours GP appointment or house visit, or direct you to an emergency department or injury unit",
+    ],
+    referral: "The page says you phone the service first.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nedoc-navan/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nedoc-navan/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-wicklow-town-primary-care",
+    name: "Wicklow Town Primary Care",
+    specialty: ["primary-care"],
+    county: ["wicklow"],
+    blurb: "The HSE page for Wicklow Town Primary Care, Knockrobin, Wicklow, links to a list of community services provided at the centre, including dental, dietetic and disability services.",
+    details: [
+      "The page lists a car park and a pharmacy as facilities",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-phn-child-health-wicklow-town",
+    name: "Public Health Nursing Child Health at Wicklow Town Primary Care",
+    specialty: ["parenting"],
+    county: ["wicklow"],
+    blurb: "The HSE says public health nurses based at Wicklow Town Primary Care give child health services, such as care after an operation, and coordinate care for children with complex needs.",
+    details: [
+      "The page gives the area covered as Wicklow town and surrounding areas",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/child-health-9/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/child-health-9/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-primary-care-social-work-wicklow-town",
+    name: "Social Work at Wicklow Town Primary Care",
+    specialty: ["primary-care"],
+    county: ["wicklow"],
+    blurb: "The HSE says the Primary Care Social Work Department gives short-term support to people with a significant health concern and a complex social situation. The issues it lists include domestic violence, carer issues, parental support and bereavement.",
+    details: [
+      "The page gives the catchment as South Wicklow",
+      "The page says it is by appointment only",
+    ],
+    referral: "The page says the social worker usually contacts service users by phone first.",
+    contact: { web: "www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/social-work-5/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/social-work-5/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-community-medical-doctors",
+    name: "Community Medical Doctors Service at Wicklow Town Primary Care",
+    specialty: ["parenting"],
+    county: ["wicklow"],
+    blurb: "The HSE says community medical doctors take child health referrals for children up to age 12 in South Wicklow and are part of the school immunisation programme.",
+    details: [
+      "The page gives the catchment as South Wicklow",
+    ],
+    referral: "The page lists public health nurse, self-referral, GP or health and social care professionals.",
+    contact: { web: "www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/community-medical-doctors-service/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/community-medical-doctors-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kildare-naas-general-hospital",
+    name: "Naas General Hospital",
+    specialty: ["general"],
+    county: ["kildare"],
+    blurb: "The HSE page for Naas General Hospital, Craddockstown Road, Naas, gives its address, current visiting restrictions, parking and departments.",
+    details: [
+      "The page lists a chaplaincy service for all patients",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/naas-general-hospital/" },
+    source_url: "https://www2.hse.ie/services/hospitals/naas-general-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kildare-naas-emergency-department",
+    name: "Naas General Hospital Emergency Department",
+    specialty: ["urgent"],
+    county: ["kildare"],
+    blurb: "The HSE page for the emergency department at Naas General Hospital says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for anyone age 16 and older",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/naas-general-hospital-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/naas-general-hospital-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kildare-naas-hospital-injury-unit",
+    name: "Naas Hospital Injury Unit",
+    specialty: ["urgent"],
+    county: ["kildare"],
+    blurb: "The HSE lists Naas Hospital Injury Unit at Vista Primary Care Centre, Ballymore Eustace Road, Naas, for injuries that are not life-threatening and unlikely to need a hospital stay.",
+    details: [
+      "The page says the injury unit is for anyone age 16 and older",
+      "The page says injury units treat injuries less than 6 weeks old",
+    ],
+    referral: "The page says you do not need an appointment.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/naas-hospital-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/naas-hospital-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kildare-kdoc-naas",
+    name: "KDoc Naas",
+    specialty: ["urgent"],
+    county: ["kildare"],
+    blurb: "The HSE lists KDoc (Kildare & West Wicklow Doctors on call) at Vista Primary Care, Naas, as a GP out-of-hours service for all ages.",
+    details: [
+      "The page says it is by appointment only and there is no walk-in service",
+    ],
+    referral: "The page says it is appointment only; phone your GP outside surgery hours for the local service details.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/kdoc-naas/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/kdoc-naas/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-ci-leave-for-parents",
+    name: "Leave for parents (Citizens Information)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Citizens Information gives an overview of the types of statutory leave for parents, including maternity, adoptive, paternity, parental and parent's leave, and links to each. Link only.",
+    contact: { web: "www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/leave-for-parents/" },
+    source_url: "https://www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/leave-for-parents/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-ci-paternity-leave",
+    name: "Paternity leave (Citizens Information)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Citizens Information explains paternity leave and Paternity Benefit, including how it applies after an adoption and after a stillbirth. Link only.",
+    details: [
+      "The page says that for an adopted child the relevant parent is the parent who is not taking adoptive leave",
+    ],
+    contact: { web: "www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/paternity-leave/" },
+    source_url: "https://www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/paternity-leave/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-ci-parental-leave",
+    name: "Parental leave (Citizens Information)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Citizens Information explains unpaid parental leave and says it is different to parent's leave. Link only.",
+    details: [
+      "The page says a 'relevant parent' includes a parent, an adoptive parent or a person acting in loco parentis",
+    ],
+    contact: { web: "www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/parental-leave/" },
+    source_url: "https://www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/parental-leave/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-tusla-post-adoption-services",
+    name: "Post Adoption Services (Tusla)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Tusla says post adoption services aim to support the stability and well-being of adopted children and adoptive families. The page says Tusla funds Barnardos to provide services for children and adults.",
+    details: [
+      "The page lists a national email and telephone helpline advisory service",
+      "The page lists advisory services for adoptive parents, therapeutic services for children, and group and individual support sessions",
+    ],
+    contact: { web: "www.tusla.ie/services/birth-information-and-tracing-and-adoption/post-adoption-services/" },
+    source_url: "https://www.tusla.ie/services/birth-information-and-tracing-and-adoption/post-adoption-services/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-tusla-fostering-supports",
+    name: "Fostering supports (Tusla)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Tusla describes the supports for its foster carers, including visits and phone contact from a fostering link worker, training, and an out-of-hours phone support service with a Tusla social worker for emergencies.",
+    details: [
+      "The page lists support from a public health nurse if caring for a pre-school child",
+      "The page says training is compulsory for foster carers",
+    ],
+    contact: { web: "www.tusla.ie/services/alternative-care/foster-care/fostering-supports/" },
+    source_url: "https://www.tusla.ie/services/alternative-care/foster-care/fostering-supports/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-tusla-adopting-from-foster-care",
+    name: "Adopting a child from foster care (Tusla)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Tusla explains when adoption may be considered for a child in long-term foster care, the teams involved and the key stages of the process. Link only.",
+    details: [
+      "The page names the Adoption Service, Children in Care Service and Fostering Service teams",
+    ],
+    contact: { web: "www.tusla.ie/services/birth-information-and-tracing-and-adoption/what-is-adoption/domestic/adopting-a-child-from-foster-care/" },
+    source_url: "https://www.tusla.ie/services/birth-information-and-tracing-and-adoption/what-is-adoption/domestic/adopting-a-child-from-foster-care/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-becoming-foster-kinship-foster-carer",
+    name: "Becoming a foster or kinship foster carer (nidirect)",
+    specialty: ["parenting"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "nidirect explains how to become a foster or kinship foster carer in Northern Ireland, through a local HSC Trust, HSC NI Adoption and Foster Care, or an independent fostering provider.",
+    details: [
+      "The page says the five HSC Trusts are responsible for the welfare of all looked after children and their fostering services are supported by HSC NI Adoption and Foster Care",
+    ],
+    contact: { web: "www.nidirect.gov.uk/articles/becoming-foster-kinship-foster-carer" },
+    source_url: "https://www.nidirect.gov.uk/articles/becoming-foster-kinship-foster-carer",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-hse-live",
+    name: "HSE Live (Contact the HSE)",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "The HSE 'Contact the HSE' page says HSE Live is the service to contact if you have a general question or are not sure who to contact in the HSE, and gives its hours as 'Monday to Friday, 8am to 8pm; Saturday, 9am to 5pm; Sunday and bank holidays, closed'. The page says not to call HSE Live if someone is seriously ill, injured or at risk of dying, and directs people to 112 or 999 if someone needs immediate medical help.",
+    details: [
+      "The page says you cannot contact HSE Live by email",
+      "The page lists phone and social media direct messages as ways to contact HSE Live",
+    ],
+    contact: { web: "www2.hse.ie/contact/" },
+    source_url: "https://www2.hse.ie/contact/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-regional-interpreting-service-patients",
+    name: "Regional Interpreting Service: Information for Patients (BSO)",
+    specialty: ["general"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "The Business Services Organisation page (modified 22 Apr 2026) says '24/7 interpreting support is available free of charge for all Patients who do not speak English proficiently', both face to face and by telephone. It asks patients to tell their health practitioner or receptionist if they need an interpreter.",
+    details: [
+      "The page says telephone interpreting is provided by a separate contracted service",
+    ],
+    referral: "The page says to let your health practitioner or receptionist know you need an interpreter for your appointment.",
+    contact: { web: "bso.hscni.net/directorates/operations/regional-interpreting-service/information-for-patients/" },
+    source_url: "https://bso.hscni.net/directorates/operations/regional-interpreting-service/information-for-patients/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-long-term-illness-scheme",
+    name: "Long-Term Illness Scheme",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "The HSE Long-Term Illness Scheme 'About' page (last reviewed 19 Dec 2025, next review due 19 Dec 2028) says the scheme lets you get some drugs, medicines and approved appliances free from your pharmacy for 16 listed conditions, from acute leukaemia to thalidomide-related conditions. It says the scheme is different to a medical card and has no means test.",
+    details: [
+      "The page lists the conditions covered, including 'Diabetes mellitus (Gestational diabetes not included)', epilepsy, cystic fibrosis, multiple sclerosis and mental illness in people under 16",
+      "The page says you must be ordinarily resident in the Republic of Ireland",
+      "The page says a successful applicant gets a Long-Term Illness Scheme card",
+    ],
+    referral: "The HSE apply page says a GP or consultant medical report must be included with the application.",
+    contact: { web: "www2.hse.ie/services/schemes-allowances/lti/about/" },
+    source_url: "https://www2.hse.ie/services/schemes-allowances/lti/about/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-local-health-office",
+    name: "Mayo Local Health Office",
+    specialty: ["primary-care"],
+    county: ["mayo"],
+    blurb: "The HSE lists the Mayo Local Health Office at County Clinic, Westport Road, Castlebar, under HSE West and North West. It describes Local Health Offices as the entry point to community health and personal social services.",
+    details: [
+      "The page names GP services, public health nursing and home help among the services provided through Local Health Offices and Primary Care Centres",
+    ],
+    contact: { web: "www2.hse.ie/services/local-health-office/" },
+    source_url: "https://www2.hse.ie/services/local-health-office/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-caredoc-gorey",
+    name: "Caredoc Gorey",
+    specialty: ["urgent"],
+    county: ["wexford"],
+    blurb: "The HSE lists Caredoc Gorey as a GP out-of-hours service for when your GP surgery is closed and you urgently need a GP. It says the service is not for routine care such as repeat prescriptions.",
+    details: [
+      "The page says the service is for all ages",
+      "The page gives the location as Gorey District Hospital, Gorey, Co. Wexford",
+      "The page says it is by appointment only, with no walk-in service",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-gorey/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-gorey/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-caredoc-wicklow",
+    name: "Caredoc Wicklow",
+    specialty: ["urgent"],
+    county: ["wicklow"],
+    blurb: "The HSE lists Caredoc Wicklow as a GP out-of-hours service for when your GP surgery is closed and you urgently need a GP. It says the service is not for routine care such as repeat prescriptions.",
+    details: [
+      "The page says the service is for all ages",
+      "The page gives the location as Wicklow Town Primary Care, Knockrobin, Wicklow",
+      "The page says it is by appointment only, with no walk-in service",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-wicklow/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-wicklow/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-caredoc-arklow",
+    name: "Caredoc Arklow",
+    specialty: ["urgent"],
+    county: ["wicklow"],
+    blurb: "The HSE lists Caredoc Arklow as a GP out-of-hours service for when your GP surgery is closed and you urgently need a GP. It says the service is not for routine care such as repeat prescriptions.",
+    details: [
+      "The page says the service is for all ages",
+      "The page gives the location as Arklow Primary Care Centre, Castlepark, Arklow, Co. Wicklow",
+      "The page says it is by appointment only, with no walk-in service",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-arklow/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-arklow/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-omagh-womens-health-gum-clinics",
+    name: "Women's Health and GUM Clinics, Omagh Hospital",
+    specialty: ["sexualhealth", "contraception"],
+    county: ["tyrone"],
+    blurb: "The Western Trust lists women's health and GUM clinics at Omagh Hospital and Primary Care Complex, including family planning, GUM and gynaecology clinics.",
+    details: [
+      "The page also lists antenatal and postnatal clinics, continence, smear and nurse-led pessary clinics, and urodynamics",
+    ],
+    contact: { web: "westerntrust.hscni.net/hospitals/omagh-hospital/womens-health-and-gum-clinics-omagh-hospital/" },
+    source_url: "https://westerntrust.hscni.net/hospitals/omagh-hospital/womens-health-and-gum-clinics-omagh-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-western-trust-health-visiting",
+    name: "Health Visiting (Western Trust)",
+    specialty: ["parenting"],
+    county: ["londonderry", "fermanagh", "tyrone"],
+    blurb: "The Western Trust says its health visiting teams offer a family-centred service from pregnancy until a child goes to school. Every GP practice has a named health visitor.",
+    details: [
+      "The page lists play and development, nutrition, breastfeeding, weaning, sleep, immunisations and keeping a child safe among the topics",
+      "The page says to ask your GP for your health visitor's contact details if you do not have them",
+    ],
+    contact: { web: "westerntrust.hscni.net/service/health-visiting/" },
+    source_url: "https://westerntrust.hscni.net/service/health-visiting/",
     urlStatus: "search-result",
     verify: true
   },

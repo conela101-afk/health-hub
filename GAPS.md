@@ -422,10 +422,21 @@ Research items only. No entries written; each needs official sources and Elaine'
 
 Queries that still return nothing after the matching fix, so the content is missing, not search. Listed in `scripts/search-audit-known-gaps.txt`; the audit fails if any other query returns nothing. Research only: no entries until sourced and approved.
 
-- **Interpreter access** (already in Pass 6; this confirms demand).
+- **Interpreter access:** NI row added 7 Oct 2026 (BSO Regional Interpreting Service, unverified). Still no patient-facing HSE page for ROI.
 - **Second opinion:** rights and routes, likely a toolkit page via HSE and Citizens Information.
-- **Long-term illness scheme:** `long term illness` returns nothing; `LTI` may exist under a different phrase.
-- **HSE Live** as a findable item (the number appears only inside the complaints tool facts).
+- **Long-term illness scheme:** link-only row added 7 Oct 2026 (unverified).
+- **HSE Live:** row added 7 Oct 2026 (unverified).
 - **NI 111** and similar: verify first, do not add from memory.
 - **US spellings with no content to land on:** `anesthesia`, `esophagus`. Left as they are.
 - **Irish-language queries** (10 tried, `scripts/search-audit-queries-ga.txt`): 1 returns anything, the other 9 return nothing. Content was not translated. Whether to add Irish aliases or content is a decision for Elaine.
+
+## Local services and parenting research pass (7 Oct 2026)
+
+Applied from `research/LOCAL-SERVICES-PARENTING-2026-10-07.md` with Elaine's decisions. Still not covered:
+
+- **Community services** (CDNT, CAMHS, PHN outside Wicklow, dental, older persons, addiction, DSGBV) in every priority county. The research ran out of budget before a community-healthcare pass, so this is "not searched", not "does not exist".
+- **Down and Londonderry:** not attempted. **Louth County Hospital (Dundalk)** and **GP out-of-hours for Mayo and Louth:** no page found.
+- **Part B:** no HSE page on supporting a partner's perinatal mental health; no AAI page and no Citizens Information adoptive leave page read; no gov.ie or Citizens Information page on parentage or surrogacy (any future row link-only); nothing found for trans or non-binary parents.
+- **Second opinion** and **NHS 111 in NI:** not found on official pages (nidirect does not mention 111).
+- **Omagh health visiting on familysupportni.gov.uk:** the specific listing was not found. A Western Trust-wide health visiting row went in instead.
+- **Mayo mental health:** withheld until a current www2.hse.ie page names Mayo teams.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-07 [Claude] — local services and parenting rows
+- **Added 43 entries (567 to 610)** from the research report and Elaine's decisions: 5 hospital information pages, 5 emergency departments, injury unit, minor injury and urgent care rows (Naas, Omagh, South Tyrone), GP out-of-hours (Caredoc Wexford, Gorey, Wicklow and Arklow; Nedoc Navan; KDoc Naas), maternity emergency, early pregnancy and parentcraft rows (Mayo, Louth, Wexford), Wicklow primary care, Mayo Local Health Office, Omagh women's health and GUM clinics, Western Trust health visiting, Tusla and Citizens Information parenting, leave, adoption and fostering rows, NI fostering, HSE Live, Long-Term Illness Scheme (link only, `/lti/` URLs) and NI regional interpreting. NI-wide rows list the six counties.
+- All rows `verify: true`, `urlStatus: "search-result"`, no `checked`, no phones. County rows rose in Wexford, Mayo, Louth, Meath, Wicklow and Kildare (county matrix before and after, no coverage claim).
+- **New specialties (approved):** `urgent` "Urgent Care" and `general` "General Information & Access". Two earlier urgent-care explainers also carry `urgent`.
+- **Edited `hse-ahr`** (HSE eligibility statement from the page, Citizens Information link). **Skipped as duplicates:** the IVF row and the nidirect urgent care row. **Withheld:** Mayo mental health and others, per Elaine.
+- Search audit: `long term illness` and `interpreter` now return results and were removed from the known gaps.
+
 ## 2026-10-07 [Claude] — approved hosts and research decisions
 - **Allow-list:** added `familysupportni.gov.uk`, `saolta.ie`, `caredoc.ie` and `kdoc.ie` to `scripts/validate-data.js` (Elaine approved 7 Oct 2026). `bso.hscni.net`, `adoptionandfostercare.hscni.net` and `online.hscni.net` were already covered by `hscni.net`. Tests added for all seven, plus a lookalike-host failure.
 - **Rule** added to `AI_RULES.md`: the validator allow-list is the source of truth for hosts, and unapproved hosts stay withheld.

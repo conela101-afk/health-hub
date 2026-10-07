@@ -35,6 +35,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-07 [Claude] — Applied the local-services and parenting research: 43 unverified rows (567 to 610), specialties `urgent` and `general` added, `hse-ahr` enriched, duplicates and withheld rows logged. See `CHANGELOG.md`, `REVIEW.md` and `research/`.
 - 2026-10-07 [Claude] — Approved seven source hosts (four new to the validator allow-list) and recorded the decisions for the local-services and parenting research rows; the rows themselves wait for the research file. See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-07 [Claude] — Search crisis banner (approved wording, search page only, triggers in `search.js`) and 53 condition keyword sets applied from the proposal; cache v14. See `CHANGELOG.md`.
 - 2026-10-07 [Claude] — Label-gated auto-merge: rule added to this file and set-up checklist in `REVIEW.md`; the workflow file itself could not be pushed (no `workflow` token scope). See `CHANGELOG.md`.
