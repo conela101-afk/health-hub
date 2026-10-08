@@ -273,7 +273,7 @@
 
   function entryCardHtml(entry){
     return `<a class="entry-card" href="#/entry/${entry.id}">
-      <h3>${entry.name}</h3>
+      <h2>${entry.name}</h2>
       <p class="blurb">${entry.blurb}</p>
       ${tagsHtml(entry)}
     </a>`;
@@ -2175,6 +2175,22 @@ ${name}`;
   // calls — on the very first page load, the browser/screen reader already
   // announces the document title and starts at the top naturally, so moving
   // focus there too would skip that initial announcement and the skip-link.
+  // New-tab cue (WCAG 3.2.5 / G201): every link that opens in a new tab gets
+  // hidden text saying so, added after render. A MutationObserver on the
+  // whole page covers the footer and links that guided tools and map popups
+  // add later.
+  function markNewTabLinks(){
+    document.querySelectorAll('a[target="_blank"]:not([data-nt])').forEach(a => {
+      a.setAttribute("data-nt", "1");
+      const cue = document.createElement("span");
+      cue.className = "sr-only";
+      cue.textContent = " (opens in a new tab)";
+      a.appendChild(cue);
+    });
+  }
+  new MutationObserver(markNewTabLinks).observe(document.body, { childList: true, subtree: true });
+  markNewTabLinks();
+
   let hasRoutedOnce = false;
   const BASE_TITLE = document.title;
   function announceRouteChange(){
