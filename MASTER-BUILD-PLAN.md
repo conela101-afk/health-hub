@@ -110,7 +110,7 @@ A new research doc (`Health_Hub_Condition_Directory__All-Island_Source_Verificat
 | Incident / symptom log | **Not built** | `#/log` records calls and referrals only |
 
 **Still open outside Phases A to F:**
-- Accessibility: first automated and keyboard audit run 8 Oct 2026 (`ACCESSIBILITY_AUDIT.md`); findings 1 to 5 fixed. Still open: findings 6 to 9, screen reader testing (VoiceOver, NVDA, TalkBack), Safari and touch devices. Then publish `accessibility-statement.md`.
+- Accessibility: first automated and keyboard audit run 8 Oct 2026 (`ACCESSIBILITY_AUDIT.md`); findings 1 to 6 and 9 fixed. Still open: findings 7 and 8 (heading order, new-tab link cues), screen reader testing (VoiceOver, NVDA, TalkBack), Safari and touch devices. Then publish `accessibility-statement.md`.
 - HealthHub MCP OAuth layer (spec drafted, Code session not run).
 - Conditions deep links (about 91) and Tier 2 charity layer; needs network access.
 - NI equivalents: scheme and complaint depth is thinner than ROI. Link-only, nidirect and HSC sources.

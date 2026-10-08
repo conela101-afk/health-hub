@@ -35,7 +35,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
-- 2026-10-08 [Claude] — Accessibility audit (`ACCESSIBILITY_AUDIT.md`) and fixes 1 to 5: 320px top-bar reflow, colour contrast, keyboard-focusable letter previews, per-route page titles. Findings 6 to 9 and screen reader testing still open. See `CHANGELOG.md`.
+- 2026-10-08 [Claude] — Accessibility audit (`ACCESSIBILITY_AUDIT.md`) and fixes 1 to 6 and 9: 320px top-bar reflow, colour contrast, keyboard-focusable letter previews, per-route page titles, 24px target sizes, explicit focus ring. Findings 7 and 8 and screen reader testing still open. See `CHANGELOG.md`.
 - 2026-10-08 [Claude] — Applied Elaine's Sligo, Louth and Family Support Hub Omagh confirmations (707 entries) and added Treatment Benefit to the cost schemes. Corrected the earlier claim that the Sligo row was not added. See `CHANGELOG.md`.
 - 2026-10-08 [Claude] — Local-services pass 2: 96 unverified rows (610 to 706), out-of-hours block fixed and its 15 phone numbers removed under the opened-page rule, decisions applied (Daisy Hill, Louth, Sligo untouched). See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-08 [Claude] — Medicines-cost schemes (`data/costs.js`, `#/costs`, `scripts/validate-costs.js`); vaccine matrix PR #80 merged. All rows `verify: true`; Budget 2027 figures unchecked. Pass 2 of the local-services research was not merged: its files are not in the repo. See `CHANGELOG.md` and `GAPS.md`.
