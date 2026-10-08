@@ -105,6 +105,14 @@ h1,h2,h3{ font-family:var(--font); }
 }
 .skip-link:focus{ top:12px; }
 #app:focus{ outline:none; }
+/* One explicit keyboard focus ring everywhere (WCAG 2.4.7), instead of relying
+   on each browser's default. Search fields show their ring on the container. */
+:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }
+.search-field input:focus-visible{ outline:0; }
+.prep-input:focus-visible{ outline:2px solid var(--violet-deep); outline-offset:1px; }
+/* Minimum 24px targets (WCAG 2.5.8) for native checkboxes and radios. */
+input[type="checkbox"], input[type="radio"]{ min-width:24px; min-height:24px; }
+select{ min-height:24px; }
 
 /* ---------- Topbar ---------- */
 .topbar{
@@ -115,7 +123,6 @@ h1,h2,h3{ font-family:var(--font); }
 .topbar-inner{
   max-width:720px; margin:0 auto;
   display:flex; align-items:center; justify-content:space-between;
-  flex-wrap:wrap; gap:8px 10px;
   padding:16px 20px 10px;
 }
 .brand{ display:flex; align-items:baseline; gap:8px; }
@@ -124,12 +131,12 @@ h1,h2,h3{ font-family:var(--font); }
 }
 .brand-text{ font-weight:700; font-size:15.5px; letter-spacing:-0.01em; color:var(--ink); }
 
-.topbar-actions{ display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end; gap:6px; margin-left:auto; }
+.topbar-actions{ display:flex; align-items:center; gap:6px; }
 /* Narrow phones (320px): keep Exit and the other buttons on screen by letting
    the top bar wrap and tightening padding, rather than scrolling sideways. */
 @media (max-width:360px){
-  .topbar-inner{ padding-left:12px; padding-right:12px; }
-  .topbar-actions{ gap:4px; }
+  .topbar-inner{ padding-left:12px; padding-right:12px; flex-wrap:wrap; gap:8px 10px; }
+  .topbar-actions{ gap:4px; flex-wrap:wrap; justify-content:flex-end; margin-left:auto; }
   .crisis-quicklink, .quick-exit-btn, .simple-mode-btn{ padding:7px 9px; }
 }
 .crisis-quicklink{
@@ -168,7 +175,7 @@ h1,h2,h3{ font-family:var(--font); }
 }
 .search-field svg{ flex-shrink:0; color:var(--ink-faint); }
 .search-field input{
-  width:100%; border:0; outline:0; background:transparent;
+  width:100%; min-height:24px; border:0; outline:0; background:transparent;
   font-family:var(--font); font-size:16px; color:var(--ink);
 }
 .search-field input::placeholder{ color:var(--ink-faint); }
@@ -234,9 +241,9 @@ h1,h2,h3{ font-family:var(--font); }
 }
 .crisis-contact .cc-name{ font-size:11.5px; font-weight:600; color:var(--ink-soft); }
 .crisis-contact .cc-value{ font-size:13.5px; font-weight:700; color:var(--coral-deep); }
-.crisis-more{ font-size:12.5px; font-weight:600; color:var(--violet-deep); display:inline-block; }
+.crisis-more{ font-size:12.5px; font-weight:600; color:var(--violet-deep); display:inline-flex; align-items:center; min-height:24px; }
 .urgent-banner-body p{ margin-bottom:8px; }
-.urgent-more{ font-size:12.5px; font-weight:600; color:var(--sage-deep); display:inline-block; }
+.urgent-more{ font-size:12.5px; font-weight:600; color:var(--sage-deep); display:inline-flex; align-items:center; min-height:24px; }
 
 /* ---------- Out-of-hours page ---------- */
 .ooh-list{ display:flex; flex-direction:column; gap:8px; margin:12px 0 18px; }
@@ -314,7 +321,7 @@ h1,h2,h3{ font-family:var(--font); }
 .page-head{ margin:18px 0 18px; }
 .back-link{
   font-size:13.5px; color:var(--violet-deep); font-weight:600;
-  display:inline-flex; align-items:center; gap:4px; margin-bottom:16px;
+  display:inline-flex; align-items:center; gap:4px; margin-bottom:16px; min-height:24px;
 }
 .page-head h1{ font-family:var(--font-display); font-size:26px; font-weight:600; margin:0 0 6px; letter-spacing:-0.005em; }
 .page-head .count{ font-size:13px; color:var(--ink-soft); }
