@@ -460,6 +460,16 @@ Every row in `data/costs.js` needs a live-page check by a person before `verify`
 - NI help with health costs: Department of Health NI (5 Nov 2025) says UC recipients are passported automatically from 1 Dec 2025; the BSO page says otherwise. Confirm which is current.
 - Not started: Treatment Benefit, High Tech Drugs, Fair Deal, Home Support, hardship routes, aids and appliances, Dental Treatment Services, Community Ophthalmic Services, Med1 tax relief, and the cross-border schemes (CBD, NIPHS, the NI reimbursement scheme).
 
+## Screening matrix: open checks (8 Oct 2026)
+
+All 9 rows in `data/screening.js` were read from pages opened on 8 Oct 2026 and wait for sign-off by Elaine before `verify` comes off.
+
+- **ROI intervals not on the HSE pages:** BowelScreen, CervicalCheck and Diabetic RetinaScreen pages give an age band but no number of years ("appropriate intervals" for two of them). The public programme sites (`bowelscreen.ie`, `cervicalcheck.ie`, `breastcheck.ie`, `diabeticretinascreen.ie`) probably do, but they are not on the host allow-list. Add them only with Elaine's approval.
+- **NI AAA repeat interval** is not in the "who is invited" section; the rest of the page was not read in full. NI breast: the nidirect URL is `breast-screening-overview` (the shorter URL redirects).
+- **NI pages say "women"** for breast and cervical screening; the ROI CervicalCheck page says "women and people with a cervix". The NI wording is copied as it is; a trans or non-binary person's eligibility in NI is not stated on the pages read.
+- **Not built:** NI antenatal infectious disease screening and newborn screening (listed on nidirect), the ROI newborn bloodspot and hearing programmes, and lung screening. No ROI AAA programme was found, but absence was not confirmed, so the matrix says nothing about it.
+- **Tools:** `scr-register` still cites `screeningservice.ie`, which now redirects to the National Screening Service home page, and its "check you are on the register" wording was not re-read.
+
 ## Cross-border rows: open checks (8 Oct 2026)
 
 All five source pages were opened in the built-in browser pane on 8 Oct 2026 (Claude, with Elaine watching). `verify` stays `true` on every row until Elaine clears it.
