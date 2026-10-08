@@ -31,6 +31,7 @@ jobs:
           node --check data/facilities.js
           node --check data/conditions.js
           node --check data/vaccines.js
+          node --check data/costs.js
           node --check sw.js
 
       - name: AON deadline calculator edge-case tests
@@ -83,3 +84,6 @@ jobs:
 
       - name: Validate vaccine coverage rows
         run: node scripts/validate-vaccines.js
+
+      - name: Validate cost scheme rows
+        run: node scripts/validate-costs.js

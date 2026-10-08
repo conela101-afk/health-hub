@@ -111,6 +111,7 @@
     { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
     { name: "Find out-of-hours & urgent care", href: "#/out-of-hours", keywords: "out of hours urgent care gp" },
     { name: "Vaccines: what's covered where", href: "#/vaccines", keywords: "vaccine vaccines vaccination flu covid shingles shingrix pneumococcal ppv23 rsv free cost pharmacy gp immunosuppressed" },
+    { name: "What you pay: medicines and GP costs", href: "#/costs", keywords: "cost costs pay prescription charge medical card drugs payment scheme dps long term illness lti gp visit card hospital charge ed free prescriptions hc1 hrt contraception" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
     { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
@@ -379,6 +380,7 @@
         <a class="pill" href="#/conditions">Search a condition (HSE, NHS &amp; charity info)</a>
         <a class="pill" href="#/medicines">Search medicine leaflets</a>
         <a class="pill" href="#/vaccines">Vaccines: what's covered where</a>
+        <a class="pill" href="#/costs">What you pay: medicines &amp; GP costs</a>
         <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
         <a class="pill" href="#/tools">Guided tools (complaints, records, schemes, waiting lists, discharge)</a>
       `;
@@ -1396,6 +1398,58 @@ ${name}`;
     </a>`;
   }
 
+  // ---- What you pay: medicines and primary-care costs (data/costs.js) ----
+  const COST_KIND_LABELS = { medicines: "Medicines", gp: "GP", hospital: "Hospital", other: "Other" };
+
+  function costRowHtml(c){
+    const rows = typeof COSTS !== "undefined" ? COSTS : [];
+    const other = c.compare && rows.find(x => x.id === c.compare);
+    return `
+      <div class="callout callout-spaced" id="${escapeHtml(c.id)}">
+        <strong>${escapeHtml(c.scheme)}</strong>
+        <div class="tag-row"><span class="tag tag-violet">${escapeHtml(c.jurisdiction === "ROI" ? "Republic of Ireland" : "Northern Ireland")}</span><span class="tag tag-sand">${escapeHtml(COST_KIND_LABELS[c.kind] || c.kind)}</span></div>
+        <p><strong>Who:</strong> ${escapeHtml(c.who)}</p>
+        <p><strong>Covers:</strong> ${escapeHtml(c.covers)}</p>
+        <p><strong>You pay:</strong> ${escapeHtml(c.cost)}</p>
+        ${c.not_covered_note ? `<p>${escapeHtml(c.not_covered_note)}</p>` : ""}
+        ${c.how_to_apply ? `<p><strong>How to apply:</strong> ${escapeHtml(c.how_to_apply)}</p>` : ""}
+        ${c.route_note ? `<p>${escapeHtml(c.route_note)}</p>` : ""}
+        ${c.conflict_note ? `<p class="source-note">Sources disagree: ${escapeHtml(c.conflict_note)}</p>` : ""}
+        ${other ? `<p><a href="#/costs/${escapeHtml(other.id)}">See also: ${escapeHtml(other.scheme)}</a></p>` : ""}
+        <span class="source-note">Source: <a href="${escapeHtml(c.source_url)}" target="_blank" rel="noopener">${escapeHtml(c.source_name)} ↗</a>. Checked against search results on ${escapeHtml(c.last_verified)}, not the live page.${c.volatile ? ` Changes often: ${escapeHtml(c.volatile_reason)}` : ""}</span>
+      </div>`;
+  }
+
+  function renderCosts(){
+    const rows = typeof COSTS !== "undefined" ? COSTS : [];
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>What you pay: medicines and GP costs</h1>
+        <p class="count">Republic of Ireland and Northern Ireland, ${rows.length} schemes. Information only.</p>
+      </div>
+      <div class="callout">
+        <strong>Which scheme caps your costs.</strong> Medicines costs usually come down to three routes in the Republic of Ireland: a medical card, the Drugs Payment Scheme, or the Long-Term Illness Scheme (which covers only a fixed list of conditions). Income limits are not shown here; follow the link to the official page. Amounts can change at each Budget, and Budget 2027 has not yet been checked against these figures.
+      </div>
+      <div class="search-field search-field-inline">
+        <select id="cost-region" aria-label="Filter by region"><option value="">Both regions</option><option value="ROI">Republic of Ireland</option><option value="NI">Northern Ireland</option></select>
+        <select id="cost-kind" aria-label="Filter by type"><option value="">All types</option>${Object.keys(COST_KIND_LABELS).map(k => `<option value="${k}">${COST_KIND_LABELS[k]}</option>`).join("")}</select>
+      </div>
+      <div id="cost-results"></div>
+    `;
+    const draw = () => {
+      const r = document.getElementById("cost-region").value, k = document.getElementById("cost-kind").value;
+      const shown = rows.filter(c => (!r || c.jurisdiction === r) && (!k || c.kind === k));
+      document.getElementById("cost-results").innerHTML = shown.map(costRowHtml).join("") || `<p class="callout">No matches.</p>`;
+    };
+    document.getElementById("cost-region").addEventListener("change", draw);
+    document.getElementById("cost-kind").addEventListener("change", draw);
+    draw();
+    const target = location.hash.split("/")[2];
+    const el = target && document.getElementById(target);
+    if (el) el.scrollIntoView();
+  }
+
   // ---- Vaccines: what's covered where (data/vaccines.js) ----
   const VACCINE_SETTING_LABELS = { gp: "GP", pharmacy: "Pharmacy", hospital: "Hospital", private: "Private" };
 
@@ -2076,6 +2130,7 @@ ${name}`;
     else if (parts[0] === "conditions" && parts[1]) withAssets(["data/conditions.js"], () => renderConditionDetail(parts[1]));
     else if (parts[0] === "medicines") withAssets(["data/conditions.js"], renderMedicines);
     else if (parts[0] === "vaccines") withAssets(["data/vaccines.js"], renderVaccines);
+    else if (parts[0] === "costs") withAssets(["data/costs.js"], renderCosts);
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
