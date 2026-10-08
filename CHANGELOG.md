@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-08 [Claude] (housekeeping)
+- Merged #99 (Budget 2027 check, NI reimbursement corrections, cache v20) then #100 (screening matrix, cache v21), each only after `validate` passed and the local checks passed (`node --check` on all JS, `validate-data.js`, `validate-costs.js`, `validate-screening.js`, `validate-vaccines.js`, `search-audit.js`, `test-validate-data.js`). On main afterwards: 707 entries (counted by script), 16 cost rows, 9 screening rows, cache v21. No `verify` flag was cleared on any cost or screening row.
+- CI: `node --check data/screening.js` and `node scripts/validate-screening.js` added to `data-integrity.yml` next to the costs steps.
+- Not done: the 7 remote `mcp/add-*` branches for closed PRs #30 to #36 could not be deleted (the git proxy returned HTTP 403 on the delete push). Elaine's local `claude/a11y-fixes-oct26` is not in this environment (never pushed), so its rebase and the cache bump to v22 are hers. See the session report for the commands.
+
 ## 2026-10-08 [Claude] (screening matrix, Tier 2)
 - **New layer `data/screening.js` and page `#/screening`** ("Screening: who is invited"): 9 programmes, 4 ROI (BowelScreen 57 to 71, BreastCheck 50 to 69 every 2 to 3 years, CervicalCheck 25 to 65, Diabetic RetinaScreen 12 and over) and 5 NI (bowel 60 to 74 every two years, breast 50 to 70 every three years, cervical 25 to 64 every three or five years, AAA men at 65, diabetic eye 12 and over). Every figure is copied from a page opened in a browser on 8 Oct 2026 (HSE National Screening Service pages on `www2.healthservice.hse.ie`, and nidirect). Where a page gives no interval (ROI bowel, cervical, retinal and NI AAA, diabetic eye) the row says so. `verify: true` and an `opened` date on every row; no phone numbers or emails (the validator rejects them).
 - Region and type filters, deep links (`#/screening/<id>`), compare links between jurisdictions, a home pill and a search entry. `scripts/validate-screening.js` added (official hosts, no contact details, compare must cross jurisdictions). Six queries added to `scripts/search-audit-queries.txt`.
