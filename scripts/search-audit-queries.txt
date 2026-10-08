@@ -163,3 +163,9 @@ trans
 gender
 transgender
 lgbt
+screening
+bowel screening
+mammogram
+aaa screening
+retinascreen
+diabetic eye screening

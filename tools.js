@@ -1263,7 +1263,8 @@ window.HH_TOOLS = (function(){
         title: "National cancer screening programmes",
         sub: "Republic of Ireland. Who is invited, and where to check. Information only.",
         facts: ["scr-bowel", "scr-breast", "scr-cervical", "scr-register"],
-        note: "Ages and eligibility can change. This page was last checked on 1 Oct 2026 against search results, not the live official pages. Check the programme page before relying on an age band. Screening is for people without symptoms. If you have symptoms, contact your GP.",
+        noteIsHtml: true,
+        note: "Ages and eligibility can change. The three age bands were read on the HSE programme pages on 8 Oct 2026 and are waiting for sign-off. Check the programme page before relying on an age band. For Northern Ireland and the eye programme, see <a href=\"#/screening\">Screening: who is invited</a>. Screening is for people without symptoms. If you have symptoms, contact your GP.",
       },
       "waiting-lists": {
         title: "Where waiting list data is published",

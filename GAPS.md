@@ -370,7 +370,7 @@ Human checks before merge:
 - [ ] Open both PQ PDFs: confirm the numbering and the CDNT 6 and 7 catchments.
 - [ ] Open the HSE CDNT finder for Midleton, Youghal, Cobh and Glanmire: record team names only.
 - [ ] CDNT 7: if the catchment is mostly Cork City, change `area` to `cork-city`.
-- [ ] Decide whether `south-cork` stays in `AREAS`. Labels are navigation only, not HSE boundaries.
+- [x] `south-cork` stays in `AREAS` (decided 8 Oct 2026). Labels are navigation only, not HSE boundaries.
 - [ ] CDNT 6 lead agency: one job listing names COPE Foundation, an earlier note named Horizons. Not stated anywhere until an official page is opened.
 
 Not in the repo: the Pass 3 draft rows `cdnt-west-cork`, `cdnt-carrigaline-kinsale-bandon` and
@@ -428,7 +428,7 @@ Queries that still return nothing after the matching fix, so the content is miss
 - **HSE Live:** row added 7 Oct 2026 (unverified).
 - **NI 111** and similar: verify first, do not add from memory.
 - **US spellings with no content to land on:** `anesthesia`, `esophagus`. Left as they are.
-- **Irish-language queries** (10 tried, `scripts/search-audit-queries-ga.txt`): 1 returns anything, the other 9 return nothing. Content was not translated. Whether to add Irish aliases or content is a decision for Elaine.
+- **Irish-language queries** (22 tried, `scripts/search-audit-queries-ga.txt`): decided 8 Oct 2026: add aliases. 26 Irish keys in `SEARCH_ALIASES` route to existing English text; all 22 queries now return results. No Irish content was written. **Still open:** a fluent Irish speaker should review the wording, and extending the crisis banner in `search.js` (`isCrisisQuery`) to Irish terms such as "féinmharú" needs Elaine's approval (for now it only routes to the existing suicide/crisis results).
 
 ## Local services and parenting research pass (7 Oct 2026)
 
@@ -454,8 +454,28 @@ All 11 rows in `data/vaccines.js` need a live-page check by a person before the 
 
 ## Cost schemes: open checks (8 Oct 2026)
 
-All 10 rows in `data/costs.js` need a live-page check by a person before `verify` comes off.
+Every row in `data/costs.js` needs a live-page check by a person before `verify` comes off. The five cross-border rows were opened on 8 Oct 2026 (`opened` field) and are waiting for sign-off.
 
-- **Budget 2027 (6 Oct 2026):** check the prescription charge and monthly cap, the DPS cap, the ED charge and the GP visit card limits against the Budget measures. Every money figure is flagged volatile for this reason.
+- **Budget 2027 (6 Oct 2026), checked 8 Oct 2026 against two pages:** the Department of Health press release of 7 Oct 2026 on gov.ie and the Health section of Citizens Information's Budget 2027 summary (edited 8 Oct). Neither lists a change to the prescription charge or monthly cap, the DPS cap, the ED charge, GP visit card limits or Treatment Benefit. The only cost-scheme change listed is free contraception extended from age 35 to 37 (no start date given), now on the contraception row. That is absence from a summary, not confirmation: the full Budget documents, the Finance Bill and the HSE scheme pages have not been read, so every money figure stays volatile with an updated note. Re-check when the HSE pages and the Finance Bill update.
 - NI help with health costs: Department of Health NI (5 Nov 2025) says UC recipients are passported automatically from 1 Dec 2025; the BSO page says otherwise. Confirm which is current.
 - Not started: Treatment Benefit, High Tech Drugs, Fair Deal, Home Support, hardship routes, aids and appliances, Dental Treatment Services, Community Ophthalmic Services, Med1 tax relief, and the cross-border schemes (CBD, NIPHS, the NI reimbursement scheme).
+
+## Screening matrix: open checks (8 Oct 2026)
+
+All 9 rows in `data/screening.js` were read from pages opened on 8 Oct 2026 and wait for sign-off by Elaine before `verify` comes off.
+
+- **ROI intervals (resolved 8 Oct 2026):** BowelScreen (every 2 years after a normal result), CervicalCheck (every 3 years at 25 to 29, every 5 years at 30 to 65, more often for some) and Diabetic RetinaScreen (yearly for most, every 2 years after two clear screens) were copied from HSE pages opened in a browser. `bowelscreen.ie`, `cervicalcheck.ie` and `diabeticretinascreen.ie` redirect to `hse.ie`, so no new host was needed and the allow-lists are unchanged. BreastCheck is still "every 2 to 3 years". Still `verify: true`.
+- **NI AAA repeat interval** is not in the "who is invited" section; the rest of the page was not read in full. NI breast: the nidirect URL is `breast-screening-overview` (the shorter URL redirects).
+- **NI pages say "women"** for breast and cervical screening; the ROI CervicalCheck page says "women and people with a cervix". The NI wording is copied as it is; a trans or non-binary person's eligibility in NI is not stated on the pages read.
+- **Not built:** NI antenatal infectious disease screening and newborn screening (listed on nidirect), the ROI newborn bloodspot and hearing programmes, and lung screening. No ROI AAA programme was found, but absence was not confirmed, so the matrix says nothing about it.
+- **Tools:** `scr-register` still cites `screeningservice.ie`, which now redirects to the National Screening Service home page, and its "check you are on the register" wording was not re-read.
+
+## Cross-border rows: open checks (8 Oct 2026)
+
+All five source pages were opened in the built-in browser pane on 8 Oct 2026 (Claude, with Elaine watching). `verify` stays `true` on every row until Elaine clears it.
+
+- **Republic of Ireland Reimbursement Scheme (NI): resolved towards "not shown open".** The Department of Health NI page is a press release dated 16 June 2021: a temporary measure for 12 months, applications from 1 July 2021, run by the Health and Social Care Board. It does not say the scheme is open now. The Department's current Waiting List Reimbursement page calls that scheme the previous one. The September 2022 closure date comes only from Border People and is not stated on any official page read. `ni-roi-reimbursement` and `sc-ni-roi-scheme-closed` now say this; the selector fact's source is the Department page, not Border People. Elaine to confirm with the Department of Health NI if she wants a definite answer.
+- **Waiting List Reimbursement Scheme: row and fact corrected.** The page says the scheme launched on 2 June 2025, needs more than 52 weeks on an HSC waiting list, and applications go to the Department of Health's National Contact Point team (not the BSO, as the row said). Reimbursement is the lower of actual cost and the HSC NI average cost; the patient pays the provider. The page has a template placeholder ("<insert number and link>") and says the EU route started "from 15th September" with no year; neither is copied into the site.
+- **NIPHS:** the HSE page says prior notification is optional for inpatient and day-case care. It does not mention overnight stays or prior authorisation. The other source in the conflict note is still unresolved.
+- **Cross-Border Directive:** page matches the row. **Treatment Abroad Scheme:** page matches the row, but it carries a "content is currently being reviewed" notice, and it does not say in as many words that the HSE pays the overseas provider directly (the row says so; the E112/S2 mechanism implies it). The row's line that the Directive cannot refund care that qualifies for TAS was not on the pages read.
+- Not built: S2/EHIC/GHIC, and the All-Island Congenital Heart Disease Network.

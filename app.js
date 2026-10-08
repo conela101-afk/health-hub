@@ -111,7 +111,8 @@
     { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
     { name: "Find out-of-hours & urgent care", href: "#/out-of-hours", keywords: "out of hours urgent care gp" },
     { name: "Vaccines: what's covered where", href: "#/vaccines", keywords: "vaccine vaccines vaccination flu covid shingles shingrix pneumococcal ppv23 rsv free cost pharmacy gp immunosuppressed" },
-    { name: "What you pay: medicines and GP costs", href: "#/costs", keywords: "cost costs pay prescription charge medical card drugs payment scheme dps long term illness lti gp visit card hospital charge ed free prescriptions hc1 hrt contraception" },
+    { name: "What you pay: medicines, GP and cross-border costs", href: "#/costs", keywords: "cross border cross-border directive niphs treatment abroad tas reimbursement waiting list cost costs pay prescription charge medical card drugs payment scheme dps long term illness lti gp visit card hospital charge ed free prescriptions hc1 hrt contraception" },
+    { name: "Screening: who is invited", href: "#/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear test mammogram fit test bowel breast cervical aneurysm aaa diabetic eye retinascreen retinopathy invited age" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
     { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
@@ -370,6 +371,7 @@
         <a class="pill" href="#/passport">My Patient Passport</a>
         <a class="pill" href="#/conditions">Search a condition</a>
         <a class="pill" href="#/vaccines">Vaccines: what's covered</a>
+        <a class="pill" href="#/screening">Screening: who is invited</a>
         <a class="pill" href="#/tools">Guided tools</a>
       `
       : `
@@ -380,7 +382,8 @@
         <a class="pill" href="#/conditions">Search a condition (HSE, NHS &amp; charity info)</a>
         <a class="pill" href="#/medicines">Search medicine leaflets</a>
         <a class="pill" href="#/vaccines">Vaccines: what's covered where</a>
-        <a class="pill" href="#/costs">What you pay: medicines &amp; GP costs</a>
+        <a class="pill" href="#/costs">What you pay: medicines, GP &amp; cross-border</a>
+        <a class="pill" href="#/screening">Screening: who is invited</a>
         <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
         <a class="pill" href="#/tools">Guided tools (complaints, records, schemes, waiting lists, discharge)</a>
       `;
@@ -1399,7 +1402,7 @@ ${name}`;
   }
 
   // ---- What you pay: medicines and primary-care costs (data/costs.js) ----
-  const COST_KIND_LABELS = { medicines: "Medicines", gp: "GP", hospital: "Hospital", other: "Other" };
+  const COST_KIND_LABELS = { medicines: "Medicines", gp: "GP", hospital: "Hospital", crossborder: "Cross-border", other: "Other" };
 
   function costRowHtml(c){
     const rows = typeof COSTS !== "undefined" ? COSTS : [];
@@ -1416,7 +1419,7 @@ ${name}`;
         ${c.route_note ? `<p>${escapeHtml(c.route_note)}</p>` : ""}
         ${c.conflict_note ? `<p class="source-note">Sources disagree: ${escapeHtml(c.conflict_note)}</p>` : ""}
         ${other ? `<p><a href="#/costs/${escapeHtml(other.id)}">See also: ${escapeHtml(other.scheme)}</a></p>` : ""}
-        <span class="source-note">Source: <a href="${escapeHtml(c.source_url)}" target="_blank" rel="noopener">${escapeHtml(c.source_name)} ↗</a>. Checked against search results on ${escapeHtml(c.last_verified)}, not the live page.${c.volatile ? ` Changes often: ${escapeHtml(c.volatile_reason)}` : ""}</span>
+        <span class="source-note">Source: <a href="${escapeHtml(c.source_url)}" target="_blank" rel="noopener">${escapeHtml(c.source_name)} ↗</a>. ${c.opened ? `Page opened in a browser on ${escapeHtml(c.opened)}; not yet signed off.` : `Checked against search results on ${escapeHtml(c.last_verified)}, not the live page.`}${c.volatile ? ` Changes often: ${escapeHtml(c.volatile_reason)}` : ""}</span>
       </div>`;
   }
 
@@ -1425,11 +1428,11 @@ ${name}`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
-        <h1>What you pay: medicines and GP costs</h1>
+        <h1>What you pay: medicines, GP and cross-border costs</h1>
         <p class="count">Republic of Ireland and Northern Ireland, ${rows.length} schemes. Information only.</p>
       </div>
       <div class="callout">
-        <strong>Which scheme caps your costs.</strong> Medicines costs usually come down to three routes in the Republic of Ireland: a medical card, the Drugs Payment Scheme, or the Long-Term Illness Scheme (which covers only a fixed list of conditions). Income limits are not shown here; follow the link to the official page. Amounts can change at each Budget, and Budget 2027 has not yet been checked against these figures.
+        <strong>Which scheme caps your costs.</strong> Medicines costs usually come down to three routes in the Republic of Ireland: a medical card, the Drugs Payment Scheme, or the Long-Term Illness Scheme (which covers only a fixed list of conditions). Income limits are not shown here; follow the link to the official page. Amounts can change at each Budget. The Budget 2027 health summaries read on 8 October 2026 list no change to these amounts, apart from free contraception extending to age 37, but the full Budget documents have not been read.
       </div>
       <div class="search-field search-field-inline">
         <select id="cost-region" aria-label="Filter by region"><option value="">Both regions</option><option value="ROI">Republic of Ireland</option><option value="NI">Northern Ireland</option></select>
@@ -1501,6 +1504,57 @@ ${name}`;
     };
     document.getElementById("vaccine-filter").addEventListener("change", draw);
     document.getElementById("vaccine-region").addEventListener("change", draw);
+    draw();
+    const target = location.hash.split("/")[2];
+    const el = target && document.getElementById(target);
+    if (el) el.scrollIntoView();
+  }
+
+  // ---- Screening: who is invited (data/screening.js) ----
+  function screeningRowHtml(r){
+    const labels = typeof SCREENING_KIND_LABELS !== "undefined" ? SCREENING_KIND_LABELS : {};
+    const rows = typeof SCREENING !== "undefined" ? SCREENING : [];
+    const other = r.compare && rows.find(x => x.id === r.compare);
+    return `
+      <div class="callout callout-spaced" id="${escapeHtml(r.id)}">
+        <strong>${escapeHtml(r.programme)}</strong>
+        <div class="tag-row"><span class="tag tag-violet">${escapeHtml(r.jurisdiction === "ROI" ? "Republic of Ireland" : "Northern Ireland")}</span><span class="tag tag-sand">${escapeHtml(labels[r.kind] || r.kind)}</span></div>
+        <p><strong>Who:</strong> ${escapeHtml(r.who)}</p>
+        <p><strong>How often:</strong> ${escapeHtml(r.interval)}</p>
+        <p><strong>How it works:</strong> ${escapeHtml(r.how_invited)}</p>
+        ${r.cost ? `<p><strong>You pay:</strong> ${escapeHtml(r.cost)}</p>` : ""}
+        ${r.if_outside ? `<p>${escapeHtml(r.if_outside)}</p>` : ""}
+        ${r.note ? `<p>${escapeHtml(r.note)}</p>` : ""}
+        ${other ? `<p><a href="#/screening/${escapeHtml(other.id)}">Compare: ${escapeHtml(other.programme)}, ${escapeHtml(other.jurisdiction)}</a></p>` : ""}
+        <span class="source-note">Source: <a href="${escapeHtml(r.source_url)}" target="_blank" rel="noopener">${escapeHtml(r.source_name)} ↗</a>. Page opened in a browser on ${escapeHtml(r.opened)}; not yet signed off.${r.volatile ? ` Changes sometimes: ${escapeHtml(r.volatile_reason)}` : ""}</span>
+      </div>`;
+  }
+
+  function renderScreening(){
+    const rows = typeof SCREENING !== "undefined" ? SCREENING : [];
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Screening: who is invited</h1>
+        <p class="count">Republic of Ireland and Northern Ireland, ${rows.length} programmes. Information only.</p>
+      </div>
+      <div class="callout">
+        <strong>Ages and intervals differ north and south.</strong> Screening is for people without symptoms. If you have symptoms, or are worried, contact your GP rather than waiting for an invitation. Each row links to the official programme page. For the Republic of Ireland programmes' short summary, see <a href="#/about/screening">National cancer screening programmes</a>.
+      </div>
+      <div class="search-field search-field-inline">
+        <select id="screening-region" aria-label="Filter by region"><option value="">Both regions</option><option value="ROI">Republic of Ireland</option><option value="NI">Northern Ireland</option></select>
+        <select id="screening-kind" aria-label="Filter by type"><option value="">All types</option>${Object.keys(typeof SCREENING_KIND_LABELS !== "undefined" ? SCREENING_KIND_LABELS : {}).map(k => `<option value="${k}">${escapeHtml(SCREENING_KIND_LABELS[k])}</option>`).join("")}</select>
+      </div>
+      <div id="screening-results"></div>
+      <div class="callout callout-spaced">Screening programmes change their age ranges from time to time. Check the linked official page before relying on an age or interval.</div>
+    `;
+    const draw = () => {
+      const r = document.getElementById("screening-region").value, k = document.getElementById("screening-kind").value;
+      const shown = rows.filter(x => (!r || x.jurisdiction === r) && (!k || x.kind === k));
+      document.getElementById("screening-results").innerHTML = shown.map(screeningRowHtml).join("") || `<p class="callout">No matches.</p>`;
+    };
+    document.getElementById("screening-region").addEventListener("change", draw);
+    document.getElementById("screening-kind").addEventListener("change", draw);
     draw();
     const target = location.hash.split("/")[2];
     const el = target && document.getElementById(target);
@@ -2152,6 +2206,7 @@ ${name}`;
     else if (parts[0] === "medicines") withAssets(["data/conditions.js"], renderMedicines);
     else if (parts[0] === "vaccines") withAssets(["data/vaccines.js"], renderVaccines);
     else if (parts[0] === "costs") withAssets(["data/costs.js"], renderCosts);
+    else if (parts[0] === "screening") withAssets(["data/screening.js"], renderScreening);
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
