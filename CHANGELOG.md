@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-08 [Claude] (children's disability referral wording)
+- Reworded "refer directly via your GP or public health nurse, or as a parent yourself" in the advocacy guide `cdnt-parallel-track` to follow the HSE referral page: no diagnosis or Assessment of Need needed; speak to your GP or PHN first; parents and guardians can also refer using the Children's Services Referral Form and age-band Additional Information Form with signed parental consent; local teams may route differently. Same wording aligned in `hse-cdnt-referral` and `hse-cdnt-finder`. No phone, email, fee or waiting-time figures added. Source: HSE only (www2.hse.ie/babies-children/disabilities/services/getting-a-referral/), page not opened by a person in a browser, so `verify: true` kept, no `checked`. Entry count unchanged.
+
 ## 2026-10-08 [Claude] (accessibility audit and fixes 1 to 9)
 - **Audit:** first run of the accessibility checklist, saved as `ACCESSIBILITY_AUDIT.md` (axe-core on 30 routes in default and Calm mode at 390px and 1280px, plus scripted keyboard, focus, target-size and 320px reflow checks). Not a full audit: no screen reader, Safari or touch-device testing.
 - **Fix 1 (reflow):** top bar now wraps and tightens at 360px and below, so Exit and the other buttons stay on screen at 320px (the page scrolled sideways on every route before). Rechecked: 0 of 20 routes overflow at 320px.
