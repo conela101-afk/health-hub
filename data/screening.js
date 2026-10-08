@@ -5,7 +5,7 @@
 // Every row is verify: true until Elaine signs it off. The source page for each row was
 // opened in a browser on 2026-10-08 (the `opened` field); ages, intervals and invitation
 // rules are copied from that page and nothing else. Where a page does not give a figure
-// (for example the ROI bowel and cervical intervals) the row says so and links out.
+// (for example the NI AAA and diabetic eye intervals) the row says so and links out.
 // No phone numbers or email addresses are stored: use the linked page.
 // Screening is for people without symptoms; the page-level note says to contact a GP.
 //
@@ -22,12 +22,12 @@ const SCREENING_KIND_LABELS = { cancer: "Cancer screening", eye: "Eye screening"
 const SCREENING = [
   // ---------- Republic of Ireland (National Screening Service, HSE) ----------
   { id: "roi-bowelscreen", programme: "BowelScreen", jurisdiction: "ROI", kind: "cancer",
-    who: "People aged 57 to 71 who do not have symptoms.",
-    interval: "The page says \"at appropriate intervals\" and gives no number of years.",
-    how_invited: "A free home test kit (a faecal immunochemical, or FIT, test) that checks for blood in poo.",
+    who: "Anyone aged 57 to 71 who does not have symptoms of bowel cancer.",
+    interval: "If your result is normal, you get your next home test kit in the post 2 years later.",
+    how_invited: "A free home test kit that checks a poo sample for tiny traces of blood. You contact the programme to order your first kit, even without a letter.",
     cost: "Free.",
     compare: "ni-bowel", volatile: true, volatile_reason: SCREENING_AGE_NOTE,
-    source_url: "https://www2.healthservice.hse.ie/organisation/bowelscreen/", source_name: "HSE National Screening Service: BowelScreen" },
+    source_url: "https://www2.hse.ie/conditions/bowel-screening/about/who-for/", source_name: "HSE: What bowel screening is and who it is for" },
 
   { id: "roi-breastcheck", programme: "BreastCheck", jurisdiction: "ROI", kind: "cancer",
     who: "Women aged 50 to 69 who have no symptoms.",
@@ -38,21 +38,20 @@ const SCREENING = [
     source_url: "https://www2.healthservice.hse.ie/organisation/breastcheck/", source_name: "HSE National Screening Service: BreastCheck" },
 
   { id: "roi-cervicalcheck", programme: "CervicalCheck", jurisdiction: "ROI", kind: "cancer",
-    who: "Women and people with a cervix aged 25 to 65.",
-    interval: "The page does not give an interval.",
-    how_invited: "Screening is done at registered GP practices and clinics (over 4,000 GPs and practice nurses are listed), which must be registered with the Medical Council or the Nursing and Midwifery Board of Ireland.",
+    who: "Women and anyone aged 25 to 65 with a cervix.",
+    interval: "Every 3 years for ages 25 to 29 and every 5 years for ages 30 to 65. Some people need screening more often, for example every year with persistent HPV, after a colposcopy or after treatment for abnormal cells.",
+    how_invited: "Book with a GP or clinic registered with CervicalCheck. You do not have to be a patient there. You can check when you are next due on the cervical screening register.",
     cost: "Free.",
-    note: "The page says cervical screening is not a test for cancer; it checks a person's risk of developing cervical cancer.",
     compare: "ni-cervical", volatile: true, volatile_reason: SCREENING_AGE_NOTE,
-    source_url: "https://www2.healthservice.hse.ie/organisation/cervicalcheck/", source_name: "HSE National Screening Service: CervicalCheck" },
+    source_url: "https://www2.hse.ie/conditions/cervical-screening/appointment/next-how-often/", source_name: "HSE: Check when you next need cervical screening and how often" },
 
   { id: "roi-diabetic-retinascreen", programme: "Diabetic RetinaScreen", jurisdiction: "ROI", kind: "eye",
-    who: "People aged 12 or older with type 1 or type 2 diabetes who are at risk of retinopathy.",
-    interval: "The page says \"at appropriate intervals\" and gives no number of years.",
-    how_invited: "Eye screening through the national programme, with longer or group appointments and information in braille and international languages available.",
+    who: "People aged 12 or older with type 1 or type 2 diabetes.",
+    interval: "For most people, once a year. With no retinopathy in your last 2 screenings, the next is in 2 years.",
+    how_invited: "You register with a form signed by your GP, or ask your GP, practice nurse, dietitian or eye doctor to register you. You are then sent an invitation to a local screening centre.",
     cost: "Free.",
     compare: "ni-diabetic-eye", volatile: true, volatile_reason: SCREENING_AGE_NOTE,
-    source_url: "https://www2.healthservice.hse.ie/organisation/diabetic-retinascreen/", source_name: "HSE National Screening Service: Diabetic RetinaScreen" },
+    source_url: "https://www2.hse.ie/conditions/diabetic-retina-screening/about/", source_name: "HSE: About Diabetic RetinaScreen" },
 
   // ---------- Northern Ireland (nidirect) ----------
   { id: "ni-bowel", programme: "Bowel cancer screening", jurisdiction: "NI", kind: "cancer",

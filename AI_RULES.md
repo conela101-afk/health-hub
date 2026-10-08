@@ -35,6 +35,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-08 [Claude] — Decisions: ROI screening intervals filled from opened HSE pages (no new hosts needed), 26 Irish-language search aliases (wording awaits an Irish speaker), `south-cork` kept. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-08 [Claude] — Housekeeping: merged #99 and #100 after checks, added the screening steps to `data-integrity.yml`. Remote branch deletion was refused (403) and the local a11y branch is not reachable from here. See `CHANGELOG.md`.
 - 2026-10-08 [Claude] — Screening matrix (Tier 2): `data/screening.js`, `#/screening`, `scripts/validate-screening.js`; 9 programmes from pages opened in a browser, all `verify: true`; existing `scr-*` tool facts repointed to the HSE pages. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-08 [Claude] — Budget 2027 check against two official summaries (one cost change: free contraception to age 37) and a browser-pane read of the five cross-border pages; NI Republic of Ireland Reimbursement Scheme no longer shown as open, Waiting List scheme row corrected. `verify` left on. See `CHANGELOG.md` and `GAPS.md`.

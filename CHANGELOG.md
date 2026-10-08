@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-08 [Claude] (decisions: ROI intervals, Irish aliases)
+- **Decisions recorded (Elaine, 8 Oct):** NI Republic of Ireland Reimbursement Scheme row left as "not shown open"; approved the public programme sites; Irish-language aliases approved; `south-cork` stays in `AREAS`.
+- **ROI screening intervals filled** in `data/screening.js` from HSE pages opened in a browser: BowelScreen every 2 years after a normal result; CervicalCheck every 3 years (25 to 29) and 5 years (30 to 65); Diabetic RetinaScreen yearly for most, 2 years after two clear screens. `who`, `how_invited` and `source_url` for those three rows now come from the same pages. The three programme domains redirect to `hse.ie`, so no host was added. All rows still `verify: true`.
+- **Irish aliases:** 26 keys added to `SEARCH_ALIASES` (`data.js`), routing to existing English text only; 12 queries added to `search-audit-queries-ga.txt` (22 of 22 return results). Not done: crisis-banner triggers for Irish terms (needs approval); wording needs a fluent Irish speaker.
+- `sw.js` cache `pocket-guide-v21` to `v22`. `GAPS.md` updated.
+
 ## 2026-10-08 [Claude] (housekeeping)
 - Merged #99 (Budget 2027 check, NI reimbursement corrections, cache v20) then #100 (screening matrix, cache v21), each only after `validate` passed and the local checks passed (`node --check` on all JS, `validate-data.js`, `validate-costs.js`, `validate-screening.js`, `validate-vaccines.js`, `search-audit.js`, `test-validate-data.js`). On main afterwards: 707 entries (counted by script), 16 cost rows, 9 screening rows, cache v21. No `verify` flag was cleared on any cost or screening row.
 - CI: `node --check data/screening.js` and `node scripts/validate-screening.js` added to `data-integrity.yml` next to the costs steps.
