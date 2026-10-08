@@ -1593,7 +1593,7 @@ const ENTRIES = [
       "An infant referred in their first year of life with a diagnosed condition linked to complex needs is accepted onto a CDNT automatically.",
       "Which CDNT covers you is based on home address, not diagnosis or county boundaries as such — use the HSE's own local-CDNT finder rather than a name or number written down elsewhere, including this app, since teams and contacts change often.",
     ],
-    referral: "Parents/guardians can refer directly, or via a GP, public health nurse, or other professional — using the Children's Services Referral Form plus an age-banded Additional Information Form, with signed parental consent.",
+    referral: "Speak to your GP or public health nurse first to help choose the right service. Parents and guardians can also refer, using the HSE Children's Services Referral Form and the age-band Additional Information Form, with signed parental consent. Local teams may route referrals differently, so ask your local team how they handle it.",
     contact: { web: "hse.ie" },
   },
   {
@@ -6573,7 +6573,7 @@ const ENTRIES = [
     name: "Find your Children's Disability Network Team (CDNT)",
     specialty: ["childdisability"],
     county: ["national"],
-    blurb: "HSE search tool for your local CDNT by address. Families can refer directly; an Assessment of Need is a separate, parallel statutory right.",
+    blurb: "HSE search tool for your local CDNT by address. Parents and guardians can refer (ask your local team how they handle referrals); an Assessment of Need is a separate, parallel statutory right.",
     contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
     source_url: "https://www2.hse.ie/services/childrens-disabilities/",
     urlStatus: "search-result",
@@ -9387,7 +9387,7 @@ const ADVOCACY_GUIDE = [
     title: "Getting early intervention for a child (ROI & NI)",
     tips: [
       "Do these in parallel, not one after another: refer to services, apply for the statutory assessment, and apply for the relevant child disability benefit — don't wait for one to conclude before starting the next.",
-      "Republic of Ireland: you don't need a diagnosis or a completed Assessment of Need to refer a child to a CDNT or Primary Care — refer directly via your GP or public health nurse, or as a parent yourself.",
+      "Republic of Ireland: you don't need a diagnosis or a completed Assessment of Need to refer a child to a CDNT or Primary Care. Speak to your GP or public health nurse first to help choose the right service. Parents and guardians can also refer, using the HSE Children's Services Referral Form and the age-band Additional Information Form, with signed parental consent. Local teams may route referrals differently, so ask your local team how they handle it.",
       "Republic of Ireland: the Assessment of Need has a statutory 6-month deadline under the Disability Act 2005. If it's missed, that's grounds for a formal complaint under the Act itself — a separate route from HSE 'Your Service Your Say'.",
       "Northern Ireland: the Child Development Clinic / community paediatrics route is professional-referral only — ask your GP or health visitor to make it, in writing, and keep a copy.",
       "Northern Ireland: the Education Authority's statutory SEN assessment runs on a 26-week timeline with a right of appeal to SENDIST — you can pursue it without waiting on a health diagnosis first.",

@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-08 [Claude] (children's disability referral wording)
+- Reworded "refer directly via your GP or public health nurse, or as a parent yourself" in the advocacy guide `cdnt-parallel-track` to follow the HSE referral page: no diagnosis or Assessment of Need needed; speak to your GP or PHN first; parents and guardians can also refer using the Children's Services Referral Form and age-band Additional Information Form with signed parental consent; local teams may route differently. Same wording aligned in `hse-cdnt-referral` and `hse-cdnt-finder`. No phone, email, fee or waiting-time figures added. Source: HSE only (www2.hse.ie/babies-children/disabilities/services/getting-a-referral/), page not opened by a person in a browser, so `verify: true` kept, no `checked`. Entry count unchanged.
+
+## 2026-10-08 [Claude] (accessibility audit and fixes 1 to 9)
+- **Audit:** first run of the accessibility checklist, saved as `ACCESSIBILITY_AUDIT.md` (axe-core on 30 routes in default and Calm mode at 390px and 1280px, plus scripted keyboard, focus, target-size and 320px reflow checks). Not a full audit: no screen reader, Safari or touch-device testing.
+- **Fix 1 (reflow):** top bar now wraps and tightens at 360px and below, so Exit and the other buttons stay on screen at 320px (the page scrolled sideways on every route before). Rechecked: 0 of 20 routes overflow at 320px.
+- **Fixes 2 and 3 (contrast):** `--ink-soft` `#736F7C` to `#67636F` (about 5.2:1 on the lavender button background, 4.95:1 on the tint). Filled violet buttons carrying white text (active Calm mode, active segment tabs, map load button, `.pill:active`) now use `--violet-deep` (5.86:1). Rechecked with axe: no colour-contrast failures on any route, default or Calm.
+- **Fix 4 (keyboard):** every `pre.template-text` (11 in `app.js` and `tools.js`) is now focusable with `role="region"` and an accessible name, so keyboard users can scroll letter previews.
+- **Fix 5 (page titles):** `document.title` is set on each route change to the page heading plus "Health Hub"; home keeps "Health Hub — Ireland & NI".
+- **Fix 6 (target size, WCAG 2.2 AA 2.5.8):** minimum 24px for checkboxes, radios, selects, the search input, Back links and the crisis/urgent "more" links. Rechecked: no interactive element under 24px on any of 20 routes. Many controls are still under the 44px recommendation (Calm mode already uses 44px).
+- **Fix 7 (heading order):** entry-card titles are now `h2` (were `h3`) in `entryCardHtml`, with the CSS selector updated; looks identical. Rechecked: axe reports no violations of any kind on 30 routes, default and Calm, at 390px and 1280px.
+- **Fix 8 (new-tab cue):** hidden "(opens in a new tab)" text is added to every `a[target="_blank"]` on the page, including the footer, by `markNewTabLinks()` and a `MutationObserver`. Checked on 9 routes: every new-tab link is cued once, none twice.
+- **Fix 9 (focus ring):** one explicit `:focus-visible` outline (3px `--violet-deep`) instead of browser defaults; search fields keep their container ring.
+- `sw.js` cache `pocket-guide-v18` to `v21` (three bumps on one branch). No entries added or removed (707, unchanged). `node --check` on all JS, validator, tests and search audit pass.
+- **Not changed:** `accessibility-statement.md` stays a draft; see the audit for what it can honestly say.
 ## 2026-10-08 [Claude] (decisions: ROI intervals, Irish aliases)
 - **Decisions recorded (Elaine, 8 Oct):** NI Republic of Ireland Reimbursement Scheme row left as "not shown open"; approved the public programme sites; Irish-language aliases approved; `south-cork` stays in `AREAS`.
 - **ROI screening intervals filled** in `data/screening.js` from HSE pages opened in a browser: BowelScreen every 2 years after a normal result; CervicalCheck every 3 years (25 to 29) and 5 years (30 to 65); Diabetic RetinaScreen yearly for most, 2 years after two clear screens. `who`, `how_invited` and `source_url` for those three rows now come from the same pages. The three programme domains redirect to `hse.ie`, so no host was added. All rows still `verify: true`.
