@@ -100,6 +100,17 @@ const COSTS = [
     volatile: true, volatile_reason: "The age band has been widened before.",
     source_url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/contraception/", source_name: "Citizens Information: Contraception" },
 
+  { id: "roi-treatment-benefit", scheme: "Treatment Benefit (PRSI)", jurisdiction: "ROI", kind: "other",
+    who: "People with enough PRSI contributions in classes A, E, H, P or S (the 2024 contribution year governs 2026 claims), and their dependent spouse or partner.",
+    covers: "Dental and optical services, and hearing aids, from providers on the scheme's panel.",
+    cost: "Partial cover. Hearing aids: up to €500 per aid or €1,000 a pair, once every 4 years, with repairs up to €100. The provider claims from the scheme.",
+    cap_amount: 500, currency: "EUR", cap_period: "4 years", cap_unit: "person",
+    not_covered_note: "Dental and optical benefit levels are not stored here; check the official page.",
+    how_to_apply: "Ask a participating dentist, optician or audiologist; they make the claim.",
+    route_note: "Separate from the HSE medical card dental and optical services.",
+    volatile: true, volatile_reason: "Budget 2026 changed this scheme. " + BUDGET_NOTE,
+    source_url: "https://www.gov.ie/en/department-of-social-protection/services/treatment-benefit-scheme/", source_name: "gov.ie: Treatment Benefit Scheme" },
+
   // ---------- Northern Ireland ----------
   { id: "ni-free-prescriptions", scheme: "Free prescriptions", jurisdiction: "NI", kind: "medicines",
     who: "Everyone, automatically. There is no eligibility test.",

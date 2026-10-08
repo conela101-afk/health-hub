@@ -8906,7 +8906,7 @@ const ENTRIES = [
     name: "Nedoc Drogheda (out of hours)",
     specialty: ["urgent"],
     county: ["louth"],
-    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor. The base town for Louth is not yet confirmed.",
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
     details: [
       "Base as stated on the HSE listing: Cottage Hospital, Scarlet Street, Drogheda",
     ],
@@ -9262,6 +9262,19 @@ const ENTRIES = [
     ],
     contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/ddoc-swords/" },
     source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/ddoc-swords/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  // Confirmed by Elaine 8 Oct 2026: Family Support Hub Omagh URL supplied.
+  {
+    id: "ni-tyrone-family-support-hub-omagh",
+    name: "Family Support Hub Omagh (Western Outcomes Area)",
+    specialty: ["hub"],
+    county: ["tyrone"],
+    sector: "voluntary",
+    blurb: "Family Support NI lists the Family Support Hub Omagh in the Western Outcomes Area. It is run by Action for Children, a voluntary organisation, not by the Western Trust. Link only: the listing page was not opened, so no details are stated here.",
+    contact: { web: "familysupportni.gov.uk/Service/2646/family-support/family-support-hub-omagh--western-outcomes-area" },
+    source_url: "https://www.familysupportni.gov.uk/Service/2646/family-support/family-support-hub-omagh--western-outcomes-area",
     urlStatus: "search-result",
     verify: true
   },
@@ -10970,7 +10983,7 @@ const OUT_OF_HOURS_ROI = [
     { town: "Naas", lat: 53.2158, lng: -6.6669 },
     { town: "Celbridge", lat: 53.3389, lng: -6.5453 },
   ]},
-  { name: "Caredoc", counties: "Carlow, Kilkenny, Wexford, Waterford, South Tipperary, South Wicklow", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
+  { name: "Caredoc", counties: "Carlow, Kilkenny, Wexford, Waterford, South Tipperary, South Wicklow, Sligo", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Arklow", lat: 52.7936, lng: -6.1508 },
     { town: "Carlow", lat: 52.8365, lng: -6.9341 },
     { town: "Cashel", lat: 52.5192, lng: -7.8908 },
@@ -10980,6 +10993,7 @@ const OUT_OF_HOURS_ROI = [
     { town: "Gorey", lat: 52.6742, lng: -6.2953 },
     { town: "Kilkenny", lat: 52.6541, lng: -7.2448 },
     { town: "New Ross", lat: 52.3958, lng: -6.9469 },
+    { town: "Sligo", lat: 54.2697, lng: -8.4694 },
     { town: "Tipperary Town", lat: 52.4747, lng: -8.1611 },
     { town: "Waterford", lat: 52.2593, lng: -7.1101 },
     { town: "Wexford", lat: 52.3369, lng: -6.4633 },
@@ -11022,7 +11036,7 @@ const OUT_OF_HOURS_ROI = [
     { town: "Letterkenny (approx.)", lat: 54.9503, lng: -7.7339 },
     { town: "Carrick-on-Shannon", lat: 53.9453, lng: -8.0972 },
   ]},
-  { name: "NEDOC", counties: "Meath, Louth (excl. Dundalk), Cavan, Monaghan", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
+  { name: "NEDOC", counties: "Meath, Louth, Cavan, Monaghan", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Cavan", lat: 53.9908, lng: -7.3606 },
     { town: "Castleblayney", lat: 54.1236, lng: -6.7317 },
     { town: "Drogheda", lat: 53.7178, lng: -6.3478 },
