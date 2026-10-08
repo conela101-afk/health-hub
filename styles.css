@@ -37,7 +37,7 @@
   --surface: #FFFFFF;
   --surface-2: #F4F0FB;
   --ink: #2A2830;
-  --ink-soft: #736F7C;
+  --ink-soft: #67636F;
   /* --ink-faint, and every "-deep" accent below, were darkened from their
      original values to clear WCAG AA's 4.5:1 text-contrast threshold —
      the originals ranged 2.3:1-4.3:1 against the tints/backgrounds they're
@@ -115,6 +115,7 @@ h1,h2,h3{ font-family:var(--font); }
 .topbar-inner{
   max-width:720px; margin:0 auto;
   display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:8px 10px;
   padding:16px 20px 10px;
 }
 .brand{ display:flex; align-items:baseline; gap:8px; }
@@ -123,7 +124,14 @@ h1,h2,h3{ font-family:var(--font); }
 }
 .brand-text{ font-weight:700; font-size:15.5px; letter-spacing:-0.01em; color:var(--ink); }
 
-.topbar-actions{ display:flex; align-items:center; gap:6px; }
+.topbar-actions{ display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end; gap:6px; margin-left:auto; }
+/* Narrow phones (320px): keep Exit and the other buttons on screen by letting
+   the top bar wrap and tightening padding, rather than scrolling sideways. */
+@media (max-width:360px){
+  .topbar-inner{ padding-left:12px; padding-right:12px; }
+  .topbar-actions{ gap:4px; }
+  .crisis-quicklink, .quick-exit-btn, .simple-mode-btn{ padding:7px 9px; }
+}
 .crisis-quicklink{
   font-size:11.5px; font-weight:700; color:var(--coral-deep);
   background:var(--coral-tint); border-radius:var(--radius-pill);
@@ -141,7 +149,7 @@ h1,h2,h3{ font-family:var(--font); }
   padding:7px 12px; cursor:pointer; white-space:nowrap;
 }
 .simple-mode-btn:hover, .simple-mode-btn:focus{ color:var(--ink); background:var(--line); }
-.simple-mode-btn[aria-pressed="true"]{ background:var(--violet); color:#fff; }
+.simple-mode-btn[aria-pressed="true"]{ background:var(--violet-deep); color:#fff; }
 .search-toggle{ display:none; }
 
 .search-bar{
@@ -249,7 +257,7 @@ h1,h2,h3{ font-family:var(--font); }
 }
 .ooh-map-load-btn{
   font-family:var(--font); font-size:13.5px; font-weight:600; padding:10px 18px;
-  border-radius:var(--radius-pill); background:var(--violet); color:#fff; border:none;
+  border-radius:var(--radius-pill); background:var(--violet-deep); color:#fff; border:none;
 }
 .ooh-map-notice{ font-size:12px; color:var(--ink-soft); max-width:36em; margin:0; }
 
@@ -294,7 +302,7 @@ h1,h2,h3{ font-family:var(--font); }
   transition:background .15s ease, color .15s ease, border-color .15s ease;
   touch-action:manipulation;
 }
-.pill:active{ background:var(--violet); color:#fff; border-color:var(--violet); }
+.pill:active{ background:var(--violet-deep); color:#fff; border-color:var(--violet-deep); }
 
 /* Frequently-tapped tiles/cards/rows — same 300ms-tap-delay fix as buttons
    and pills above, applied once here instead of per selector. */
@@ -542,7 +550,7 @@ h1,h2,h3{ font-family:var(--font); }
   background:var(--surface); padding:9px 15px; border-radius:var(--radius-pill);
   box-shadow:var(--shadow-sm); white-space:nowrap;
 }
-.segment.active{ background:var(--violet); color:#fff; box-shadow:none; }
+.segment.active{ background:var(--violet-deep); color:#fff; box-shadow:none; }
 
 .callout{
   background:var(--violet-tint); border-radius:var(--radius);
