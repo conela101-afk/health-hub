@@ -1,15 +1,17 @@
 # Changelog
 
-## 2026-10-08 [Claude] (accessibility audit and fixes 1 to 6 and 9)
+## 2026-10-08 [Claude] (accessibility audit and fixes 1 to 9)
 - **Audit:** first run of the accessibility checklist, saved as `ACCESSIBILITY_AUDIT.md` (axe-core on 30 routes in default and Calm mode at 390px and 1280px, plus scripted keyboard, focus, target-size and 320px reflow checks). Not a full audit: no screen reader, Safari or touch-device testing.
 - **Fix 1 (reflow):** top bar now wraps and tightens at 360px and below, so Exit and the other buttons stay on screen at 320px (the page scrolled sideways on every route before). Rechecked: 0 of 20 routes overflow at 320px.
 - **Fixes 2 and 3 (contrast):** `--ink-soft` `#736F7C` to `#67636F` (about 5.2:1 on the lavender button background, 4.95:1 on the tint). Filled violet buttons carrying white text (active Calm mode, active segment tabs, map load button, `.pill:active`) now use `--violet-deep` (5.86:1). Rechecked with axe: no colour-contrast failures on any route, default or Calm.
 - **Fix 4 (keyboard):** every `pre.template-text` (11 in `app.js` and `tools.js`) is now focusable with `role="region"` and an accessible name, so keyboard users can scroll letter previews.
 - **Fix 5 (page titles):** `document.title` is set on each route change to the page heading plus "Health Hub"; home keeps "Health Hub — Ireland & NI".
 - **Fix 6 (target size, WCAG 2.2 AA 2.5.8):** minimum 24px for checkboxes, radios, selects, the search input, Back links and the crisis/urgent "more" links. Rechecked: no interactive element under 24px on any of 20 routes. Many controls are still under the 44px recommendation (Calm mode already uses 44px).
+- **Fix 7 (heading order):** entry-card titles are now `h2` (were `h3`) in `entryCardHtml`, with the CSS selector updated; looks identical. Rechecked: axe reports no violations of any kind on 30 routes, default and Calm, at 390px and 1280px.
+- **Fix 8 (new-tab cue):** hidden "(opens in a new tab)" text is added to every `a[target="_blank"]` on the page, including the footer, by `markNewTabLinks()` and a `MutationObserver`. Checked on 9 routes: every new-tab link is cued once, none twice.
 - **Fix 9 (focus ring):** one explicit `:focus-visible` outline (3px `--violet-deep`) instead of browser defaults; search fields keep their container ring.
-- `sw.js` cache `pocket-guide-v18` to `v20` (two bumps on one branch). No entries added or removed (707, unchanged). `node --check` on all JS, validator, tests and search audit pass.
-- **Not changed:** findings 7 and 8 in the audit (heading order on specialty and county pages, new-tab link cues). `accessibility-statement.md` stays a draft; see the audit for what it can honestly say.
+- `sw.js` cache `pocket-guide-v18` to `v21` (three bumps on one branch). No entries added or removed (707, unchanged). `node --check` on all JS, validator, tests and search audit pass.
+- **Not changed:** `accessibility-statement.md` stays a draft; see the audit for what it can honestly say.
 
 ## 2026-10-08 [Claude] (pass 2 confirmations, Treatment Benefit)
 - Elaine's confirmations: Sligo's out-of-hours base is Caredoc (Sligo added to the Caredoc row and map); Louth is Nedoc with its base at Drogheda ("excl. Dundalk" dropped from the NEDOC row). Added `ni-tyrone-family-support-hub-omagh` (link only, `sector: "voluntary"`, specialty `hub`; the page is egress-blocked, so it was not opened). 706 to 707 entries by script.
