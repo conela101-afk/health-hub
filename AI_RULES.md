@@ -35,6 +35,8 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-08 [Claude] — Budget 2027 check against two official summaries (one cost change: free contraception to age 37) and a browser-pane read of the five cross-border pages; NI Republic of Ireland Reimbursement Scheme no longer shown as open, Waiting List scheme row corrected. `verify` left on. See `CHANGELOG.md` and `GAPS.md`.
+
 - 2026-10-08 [Claude] — Cross-border scheme rows added to the cost page (5 rows, two source conflicts shown on the rows); reviewed the seven stale 13 Sep PRs (all superseded). See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-08 [Claude] — Applied Elaine's Sligo, Louth and Family Support Hub Omagh confirmations (707 entries) and added Treatment Benefit to the cost schemes. Corrected the earlier claim that the Sligo row was not added. See `CHANGELOG.md`.
 - 2026-10-08 [Claude] — Local-services pass 2: 96 unverified rows (610 to 706), out-of-hours block fixed and its 15 phone numbers removed under the opened-page rule, decisions applied (Daisy Hill, Louth, Sligo untouched). See `CHANGELOG.md` and `REVIEW.md`.
