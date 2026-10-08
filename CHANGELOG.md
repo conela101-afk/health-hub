@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-08 [Claude] (local services pass 2)
+- Added 96 `data.js` entries (610 to 706, counted by script; ids unique) from `research/LOCAL-SERVICES-GAPS-2026-10-07.md` and Elaine's decisions: Wexford, Mayo, Tyrone, Louth, Down and Londonderry rows, 56 HSE GP out-of-hours bases, and the parenting, adoption and fertility pointers. All `verify: true`, `urlStatus: "search-result"`, no `checked`, link only. `urgent` applied to the urgent-care rows.
+- Decisions applied: Daisy Hill ED added in Down and `down` added to the Southern Trust Phone First row; Louth Nedoc Drogheda added unverified and the Dundalk exclusion flagged in `REVIEW.md`; Sligo left alone. Family Support Hub Omagh approved but not added (no URL in the report); Rosewood withheld.
+- De-duplicated against `data.js` first: 5 candidates skipped (Caredoc Wexford and Gorey, Mayo Rape Crisis, Omagh SRH, Long-Term Illness). Row names say "(out of hours)" not "GP out of hours" to keep the `gp` search under its limit.
+- Out-of-hours block: Shannondoc now lists Tipperary. All 15 phone numbers removed because none came from an opened page; rows now link to the HSE or nidirect finder, and `app.js` handles a row with no phone. Removed numbers are in `REVIEW.md`. Cache bumped to v17.
+
 ## 2026-10-08 [Claude] (medicines-cost schemes)
 - New `data/costs.js` layer (10 rows) and lazy-loaded `#/costs` page ("What you pay"), with region and type filters. ROI: medical card prescription charge, Drugs Payment Scheme, Long-Term Illness Scheme, GP visit card, medical card (no thresholds), public hospital and ED charges, free HRT, free contraception. NI: free prescriptions, help with health costs (HC1/HC2/HC3). Added to search and the home pills.
 - `scripts/validate-costs.js` (official hosts, EUR for ROI and GBP for NI, money figures must be flagged volatile, compare links) runs in the data-integrity workflow. Cache bumped.

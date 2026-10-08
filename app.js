@@ -1133,7 +1133,7 @@ ${name}`;
           <div class="ooh-name">${o.name}</div>
           <div class="ooh-counties">${o.counties}${o.note ? ` — ${o.note}` : ""}</div>
         </div>
-        <div class="ooh-phone">${contactLinkHtml("phone", o.phone)}</div>
+        <div class="ooh-phone">${o.phone ? contactLinkHtml("phone", o.phone) : `<a href="${o.finder}" target="_blank" rel="noopener">Find the number ↗</a>`}</div>
       </div>
     `;
   }
@@ -1196,7 +1196,7 @@ ${name}`;
     [...OUT_OF_HOURS_ROI, ...OUT_OF_HOURS_NI].forEach(service => {
       (service.sites || []).forEach(site => {
         L.marker([site.lat, site.lng]).addTo(map)
-          .bindPopup(`<strong>${service.name}</strong><br>${site.town}<br><a href="tel:${service.phone.replace(/[^\d+]/g, "")}">${service.phone}</a>`);
+          .bindPopup(`<strong>${service.name}</strong><br>${site.town}${service.phone ? `<br><a href="tel:${service.phone.replace(/[^\d+]/g, "")}">${service.phone}</a>` : `<br><a href="${service.finder}" target="_blank" rel="noopener">Find the number</a>`}`);
       });
     });
   }

@@ -7932,6 +7932,1339 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
+  // Local services pass 2 (8 Oct 2026): 96 unverified rows from research/LOCAL-SERVICES-GAPS-2026-10-07.md. Link only; see REVIEW.md.
+  {
+    id: "roi-wexford-cdnt-wexford",
+    name: "Wexford Children's Disability Network Team",
+    specialty: ["childdisability"],
+    county: ["wexford"],
+    blurb: "The HSE page describes a children's disability network team for children and young people aged 0 to 18 with complex needs associated with their disability who live in Wexford Town and surrounding areas.",
+    details: [
+      "Based at Larkin House, Larkins Cross, Ballyhine, Barnstown, Wexford",
+      "Teams include occupational therapists, psychologists, physiotherapists, social workers and speech and language therapists (per HSE page)",
+      "Family and team agree an Individual Family Support Plan (per HSE page)",
+    ],
+    referral: "The HSE page says parents, GPs, public health nurses and hospitals can refer.",
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/wexford-childrens-disability-network-team/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/wexford-childrens-disability-network-team/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-cdnt-enniscorthy",
+    name: "Enniscorthy Children's Disability Network Team",
+    specialty: ["childdisability"],
+    county: ["wexford"],
+    blurb: "HSE listing for the Enniscorthy children's disability network team.",
+    details: [
+      "Based at St John's Community Hospital Grounds, Munster Hill, Enniscorthy",
+    ],
+    contact: { web: "www2.hse.ie/services/childrens-disabilities/enniscorthy-childrens-disability-network-team/" },
+    source_url: "https://www2.hse.ie/services/childrens-disabilities/enniscorthy-childrens-disability-network-team/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-pcc-wexford-town",
+    name: "Wexford Primary Care Centre",
+    specialty: ["primary-care"],
+    county: ["wexford"],
+    blurb: "HSE listing for Wexford Primary Care Centre on Grogan's Road, Wexford Town. The HSE says Caredoc Wexford also operates from this centre.",
+    details: [
+      "Grogan's Road, Townparks, Wexford Town",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/wexford-primary-care-centre/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/wexford-primary-care-centre/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-pcc-enniscorthy",
+    name: "Enniscorthy Primary Care Centre",
+    specialty: ["primary-care"],
+    county: ["wexford"],
+    blurb: "HSE listing for Enniscorthy Primary Care Centre on Quarry Road. The HSE says Caredoc Enniscorthy also operates from this centre.",
+    details: [
+      "Quarry Road, Enniscorthy",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/enniscorthy-primary-care-centre/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/enniscorthy-primary-care-centre/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-pcc-conal-house-gorey",
+    name: "Conal House Primary Care Centre, Gorey",
+    specialty: ["primary-care"],
+    county: ["wexford"],
+    blurb: "HSE listing for Conal House Primary Care Centre on St Michael's Road, Gorey.",
+    details: [
+      "St Michael's Road, Gorey",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/conal-house-primary-care-centre/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/conal-house-primary-care-centre/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-westdoc-castlebar",
+    name: "Westdoc Castlebar (GP out of hours)",
+    specialty: ["urgent"],
+    county: ["mayo"],
+    blurb: "The HSE page lists Westdoc Castlebar as a GP out-of-hours service for all ages, for when your GP surgery is closed and you urgently need a GP. It says the service is by appointment only and is not a walk-in service.",
+    details: [
+      "Based in Castlebar Primary Care Centre, Moneenbradagh, Moneen Road, Castlebar",
+      "HSE page says it is not for routine GP care such as repeat prescriptions, test results, medical certificates or employment medicals",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-castlebar/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-castlebar/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-pcc-castlebar",
+    name: "Castlebar Primary Care Centre",
+    specialty: ["primary-care"],
+    county: ["mayo"],
+    blurb: "HSE listing for Castlebar Primary Care Centre, Moneen Road, Castlebar.",
+    details: [
+      "Moneenbradagh, Moneen Road, Castlebar",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/castlebar-primary-care-centre/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/castlebar-primary-care-centre/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-pcc-ballina",
+    name: "Ballina Primary Care Centre",
+    specialty: ["primary-care"],
+    county: ["mayo"],
+    blurb: "HSE listing for Ballina Primary Care Centre on Kevin Barry Street, Ballina.",
+    details: [
+      "Kevin Barry Street, Ballina",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/ballina-primary-care-centre/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/ballina-primary-care-centre/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-hc-ballina",
+    name: "Ballina Health Centre",
+    specialty: ["primary-care"],
+    county: ["mayo"],
+    blurb: "HSE listing for Ballina Health Centre on Mercy Road, Ballina.",
+    details: [
+      "Mercy Road, Ballina",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/ballina-health-centre/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/ballina-health-centre/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-hc-beal-an-mhuirthead",
+    name: "Béal an Mhuirthead Health Centre (Belmullet)",
+    specialty: ["primary-care"],
+    county: ["mayo"],
+    blurb: "HSE listing for the health centre at Ospidéal Pobail Bhéal an Mhuirthead, Belmullet.",
+    details: [
+      "Ospidéal Pobail Bhéal an Mhuirthead, Belmullet",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/beal-an-mhuirthead-health-centre/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/beal-an-mhuirthead-health-centre/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-cdnt-north-mayo-1",
+    name: "North Mayo Children's Disability Network Team 1",
+    specialty: ["childdisability"],
+    county: ["mayo"],
+    blurb: "The HSE children's disability service finder lists this team for children aged 0 to 18 with complex needs living in Belmullet, Erris, Killala, Crossmolina, Ballina, Charlestown and Swinford.",
+    details: [
+      "HSE North Mayo Children's Centre, The Newman Institute, First Floor, Cathedral Road, Ballina",
+    ],
+    contact: { web: "www2.hse.ie/services/disability-support-and-services/childrens-disability-services/find-a-childrens-disability-service.html" },
+    source_url: "https://www2.hse.ie/services/disability-support-and-services/childrens-disability-services/find-a-childrens-disability-service.html",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-safe-ireland-mayo",
+    name: "Safe Ireland Mayo",
+    specialty: ["dsv"],
+    county: ["mayo"],
+    sector: "voluntary",
+    blurb: "The HSE DSGBV support services page says Safe Ireland Mayo provides crisis accommodation, outreach and support services to women and children affected by domestic abuse and coercive control in County Mayo.",
+    contact: { web: "www2.hse.ie/services/domestic-sexual-gender-based-violence/" },
+    source_url: "https://www2.hse.ie/services/domestic-sexual-gender-based-violence/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-health-visiting-omagh",
+    name: "Health Visiting (Omagh) – Western Trust",
+    specialty: ["parenting"],
+    county: ["tyrone"],
+    blurb: "The Family Support NI listing describes the Western Trust health visiting team at the Children's Centre, Omagh Hospital and Primary Care Complex, offering a family-centred service from pregnancy until a child goes to school.",
+    details: [
+      "Omagh Hospital and Primary Care Complex, Children's Centre, Donaghanie Road, Omagh",
+      "Listing says every GP practice has a named Health Visitor, whose contact details are written in the Parent Child Held Record (red book)",
+      "Listed topics include play and development, nutrition, breastfeeding, weaning, sleep, immunisations and safety",
+    ],
+    referral: "The listing says that if your Health Visitor's details are not available, contact your GP.",
+    contact: { web: "familysupportni.gov.uk/Service/1311/health-visiting/health-visiting-omagh--western-trust" },
+    source_url: "https://www.familysupportni.gov.uk/Service/1311/health-visiting/health-visiting-omagh--western-trust",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-camhs-omagh",
+    name: "Child and Adolescent Mental Health Service (CAMHS) – Omagh (Western Trust)",
+    specialty: ["camhs"],
+    county: ["tyrone"],
+    blurb: "The Family Support NI listing describes Western Trust CAMHS for children and young people up to age 18, with Southern Sector clinics at Rivendell, Tyrone and Fermanagh Hospital, Omagh.",
+    details: [
+      "Rivendell, Tyrone and Fermanagh Hospital, 1 Donaghanie Road, Omagh",
+      "Listing says Southern Sector CAMHS also holds clinics at Erne Health Centre, Enniskillen",
+    ],
+    referral: "Listing states: access to this service is via GP referral only.",
+    contact: { web: "familysupportni.gov.uk/Service/3203" },
+    source_url: "https://www.familysupportni.gov.uk/Service/3203",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-louth-county-hospital",
+    name: "Louth County Hospital Dundalk",
+    specialty: ["general"],
+    county: ["louth"],
+    blurb: "HSE hospital listing for Louth County Hospital on Dublin Road, Dundalk.",
+    details: [
+      "Dublin Road, Dundalk",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/louth-county-hospital-dundalk/" },
+    source_url: "https://www2.hse.ie/services/hospitals/louth-county-hospital-dundalk/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-dundalk-injury-unit",
+    name: "Dundalk Injury Unit",
+    specialty: ["urgent"],
+    county: ["louth"],
+    blurb: "The HSE page lists an injury unit at Louth County Hospital Dundalk for injuries unlikely to need a hospital stay. It says no appointment is needed.",
+    details: [
+      "Louth County Hospital Dundalk, Dublin Road, Dundalk",
+      "The HSE page says it is for anyone aged 5 and older and lists injuries that should go to an ED instead",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/dundalk-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/dundalk-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-down-downe-hospital-miu",
+    name: "Downe Hospital Minor Injury Unit and Urgent Care Centre (Downpatrick)",
+    specialty: ["urgent"],
+    county: ["down"],
+    blurb: "The South Eastern Trust Downe Hospital page describes a Phone First, appointment-only weekend Minor Injury Unit and an Urgent Care Centre. Callers are assessed by phone and given an appointment or directed elsewhere.",
+    details: [
+      "The trust page says all patients must phone first before attending",
+      "Page lists injuries the MIU can treat (limb injuries, bites, burns, minor head injuries)",
+      "Page also lists sexual health, bowel screening, outpatients, two GP practices, and community and dental services on site",
+    ],
+    contact: { web: "setrust.hscni.net/our-hospitals/downehospital/" },
+    source_url: "https://setrust.hscni.net/our-hospitals/downehospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-down-ndadoc-ards",
+    name: "North Down and Ards GP Out of Hours (NDADOC), Ards Community Hospital",
+    specialty: ["urgent"],
+    county: ["down"],
+    blurb: "The South Eastern Trust page says the NDADOC GP out-of-hours service is located at the front of the Ards Community Hospital site, Newtownards.",
+    details: [
+      "Church St, Newtownards",
+      "Same page says the Ards Minor Injury Unit is permanently closed",
+    ],
+    contact: { web: "setrust.hscni.net/our-hospitals/ards-community-hospital/" },
+    source_url: "https://setrust.hscni.net/our-hospitals/ards-community-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-londonderry-altnagelvin-hospital",
+    name: "Altnagelvin Area Hospital",
+    specialty: ["general"],
+    county: ["londonderry"],
+    blurb: "The Western Trust page describes Altnagelvin Area Hospital, Glenshane Road, Londonderry, as an acute hospital with a 24-hour emergency department. It notes a redevelopment programme may change where services are located.",
+    details: [
+      "Glenshane Road, Londonderry",
+      "Trust page says that from 9.30pm, access is via the A&E entrance only",
+    ],
+    contact: { web: "westerntrust.hscni.net/hospitals/altnagelvin-area-hospital/" },
+    source_url: "https://westerntrust.hscni.net/hospitals/altnagelvin-area-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-londonderry-altnagelvin-ed",
+    name: "Altnagelvin Hospital Emergency Department",
+    specialty: ["urgent"],
+    county: ["londonderry"],
+    blurb: "The Western Trust page describes the emergency department at Altnagelvin Hospital and asks people with urgent but not life-threatening problems to call Phone First before attending.",
+    details: [
+      "ED located to the rear of the main building (per trust page)",
+    ],
+    contact: { web: "westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/altnagelvin-hospital-emergency-department/" },
+    source_url: "https://westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/altnagelvin-hospital-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-western-trust-phone-first",
+    name: "Phone First – Western Trust",
+    specialty: ["urgent"],
+    county: ["londonderry","tyrone","fermanagh"],
+    blurb: "The Western Trust page says Phone First callers may get self-care advice, a scheduled appointment at the Omagh Urgent Care and Treatment Centre or the Altnagelvin or South West Acute Hospital EDs, or a recommendation to see their own GP.",
+    contact: { web: "westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/phone-first/" },
+    source_url: "https://westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/phone-first/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-southern-trust-phone-first",
+    name: "Phone First – Southern Trust",
+    specialty: ["urgent"],
+    county: ["armagh","down","tyrone"],
+    blurb: "The Southern Trust ED page says Phone First is for patients, including children, who are considering travelling to the Craigavon Area or Daisy Hill Hospital EDs or the South Tyrone Hospital Minor Injuries Unit with an urgent but not immediately life-threatening problem.",
+    contact: { web: "southerntrust.hscni.net/service/emergency-department/" },
+    source_url: "https://southerntrust.hscni.net/service/emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-hse-pnd-partners",
+    name: "HSE: Postnatal depression – advice for partners and families",
+    specialty: ["mh","parenting"],
+    county: ["national"],
+    blurb: "The HSE page gives partners and family members practical ways to support someone with postnatal depression and to look after themselves.",
+    details: [
+      "The HSE page suggests contacting your local public health nurse or GP if you need support or information to help someone with postnatal depression",
+    ],
+    contact: { web: "www2.hse.ie/conditions/postnatal-depression/advice-partners-families/" },
+    source_url: "https://www2.hse.ie/conditions/postnatal-depression/advice-partners-families/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-aai-information-records",
+    name: "Adoption Authority of Ireland: Information & Records",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "The AAI page describes its Information & Records Unit, which helps with post-adoption information. For birth information and tracing under the Birth Information and Tracing Act 2022, it points people to birthinfo.ie.",
+    details: [
+      "The page says all tracing applications must be directed to Tusla",
+    ],
+    contact: { web: "aai.gov.ie/en/who-we-are/information-records.html" },
+    source_url: "https://aai.gov.ie/en/who-we-are/information-records.html",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-aai-tracing",
+    name: "Adoption Authority of Ireland: Tracing",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "The AAI page says its social workers provide a statutory tracing service for adoptees, birth parents and birth relatives, and manage the Contact Preference Register.",
+    contact: { web: "aai.gov.ie/en/tracing" },
+    source_url: "https://aai.gov.ie/en/tracing",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-ci-surrogacy",
+    name: "Citizens Information: Surrogacy in Ireland",
+    specialty: ["fertility"],
+    county: ["national"],
+    blurb: "Citizens Information page on the law on surrogacy in Ireland and abroad. Link only: read the page for current details.",
+    contact: { web: "citizensinformation.ie/en/birth-family-relationships/adoption-and-fostering/surrogacy/" },
+    source_url: "https://www.citizensinformation.ie/en/birth-family-relationships/adoption-and-fostering/surrogacy/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-ci-fertility-dahr",
+    name: "Citizens Information: Fertility treatments and assisted human reproduction",
+    specialty: ["fertility"],
+    county: ["national"],
+    blurb: "Citizens Information page on fertility treatment, donor-assisted human reproduction and how they are regulated in Ireland. Link only.",
+    contact: { web: "citizensinformation.ie/en/birth-family-relationships/before-your-baby-is-born/fertility-treatments-and-dahr/" },
+    source_url: "https://www.citizensinformation.ie/en/birth-family-relationships/before-your-baby-is-born/fertility-treatments-and-dahr/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-down-daisy-hill-emergency-department",
+    name: "Daisy Hill Hospital Emergency Department, Newry (Southern Trust)",
+    specialty: ["urgent"],
+    county: ["down"],
+    blurb: "The Southern Trust emergency department page lists Daisy Hill Hospital, Newry, as one of its two emergency departments, with Craigavon Area Hospital. It says Phone First is for patients considering travelling to either ED with an urgent but not immediately life-threatening problem.",
+    details: [
+      "Daisy Hill Hospital, 5 Hospital Road, Newry (address as on the Southern Trust page, which does not give a county). Elaine confirmed the county as Down on 8 Oct 2026, from the Family Support NI listing 2132.",
+    ],
+    contact: { web: "southerntrust.hscni.net/service/emergency-department/" },
+    source_url: "https://southerntrust.hscni.net/service/emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-southdoc-bandon",
+    name: "SouthDoc Bandon (out of hours)",
+    specialty: ["urgent"],
+    county: ["cork"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Bandon Primary Care Centre, Market Street, Bandon",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-bandon/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-bandon/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-southdoc-youghal",
+    name: "SouthDoc Youghal (out of hours)",
+    specialty: ["urgent"],
+    county: ["cork"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Youghal Health Centre, Millennium Court, Youghal",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-youghal/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-youghal/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-southdoc-clonakilty",
+    name: "SouthDoc Clonakilty (out of hours)",
+    specialty: ["urgent"],
+    county: ["cork"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Clonakilty Primary Care Centre, Clarke Street",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-clonakilty/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-clonakilty/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-southdoc-skibbereen",
+    name: "SouthDoc Skibbereen (out of hours)",
+    specialty: ["urgent"],
+    county: ["cork"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: West Cork LHO Offices Primary Care Centre, Coolnagurrane, Skibbereen",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-skibbereen/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-skibbereen/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-southdoc-midleton",
+    name: "SouthDoc Midleton (out of hours)",
+    specialty: ["urgent"],
+    county: ["cork"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Eilmaur, Oatencake, Cork Road, Midleton",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-midleton/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-midleton/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-southdoc-cork-city-southside",
+    name: "SouthDoc Cork City Southside (out of hours)",
+    specialty: ["urgent"],
+    county: ["cork"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Unit 17/18 South Ring Business Park, Kinsale Road, Cork",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-cork-city-southside/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-cork-city-southside/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-southdoc-cork-city-blackpool",
+    name: "SouthDoc Cork City Blackpool (out of hours)",
+    specialty: ["urgent"],
+    county: ["cork"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Unit GE, North Valley Business Centre, Mallow Road, Cork",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-cork-city-blackpool/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-cork-city-blackpool/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kerry-southdoc-castleisland",
+    name: "SouthDoc Castleisland (out of hours)",
+    specialty: ["urgent"],
+    county: ["kerry"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Castleisland Day Care Centre, Chapel Lane",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-castleisland/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-castleisland/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kerry-southdoc-dingle",
+    name: "SouthDoc Dingle (out of hours)",
+    specialty: ["urgent"],
+    county: ["kerry"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Dingle Community Hospital, Farran, Dingle",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-dingle/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-dingle/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kerry-southdoc-killarney",
+    name: "SouthDoc Killarney (out of hours)",
+    specialty: ["urgent"],
+    county: ["kerry"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Park Shopping Centre, Upper Park Road, Killarney",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-killarney/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-killarney/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kerry-southdoc-killorglin",
+    name: "SouthDoc Killorglin (out of hours)",
+    specialty: ["urgent"],
+    county: ["kerry"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Killorglin Health Centre, Mill Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/southdoc-killorglin/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/southdoc-killorglin/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-clare-shannondoc-ennis",
+    name: "Shannondoc Ennis (out of hours)",
+    specialty: ["urgent"],
+    county: ["clare"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Ennis Primary Care Centre, Station Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-ennis/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-ennis/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-clare-shannondoc-ennistymon",
+    name: "Shannondoc Ennistymon (out of hours)",
+    specialty: ["urgent"],
+    county: ["clare"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Ennistymon Community Hospital, Dough",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-ennistymon/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-ennistymon/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-clare-shannondoc-kilrush",
+    name: "Shannondoc Kilrush (out of hours)",
+    specialty: ["urgent"],
+    county: ["clare"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Kilrush Health Centre, Fahy's Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-kilrush/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-kilrush/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-clare-shannondoc-miltown-malbay",
+    name: "Shannondoc Miltown Malbay (out of hours)",
+    specialty: ["urgent"],
+    county: ["clare"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Medical Centre, Spanish Point Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-miltown-malbay/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-miltown-malbay/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-clare-shannondoc-shannon",
+    name: "Shannondoc Shannon (out of hours)",
+    specialty: ["urgent"],
+    county: ["clare"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Shannon Health Centre, Shannon Town Centre",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-shannon/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-shannon/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-limerick-shannondoc-dooradoyle",
+    name: "Shannondoc Dooradoyle (out of hours)",
+    specialty: ["urgent"],
+    county: ["limerick"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Dooradoyle Health Centre, St Nessan's Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-dooradoyle/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-dooradoyle/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-limerick-shannondoc-newcastle-west",
+    name: "Shannondoc Newcastle West (out of hours)",
+    specialty: ["urgent"],
+    county: ["limerick"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Newcastlewest Health Centre, Gortboy",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-newcastle-west/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-newcastle-west/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-limerick-shannondoc-hospital",
+    name: "Shannondoc Hospital (out of hours)",
+    specialty: ["urgent"],
+    county: ["limerick"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Hospital Health Centre, Knockainey Road, Hospital",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-hospital/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-tipperary-shannondoc-nenagh",
+    name: "Shannondoc Nenagh (out of hours)",
+    specialty: ["urgent"],
+    county: ["tipperary"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Wilton Medical Centre, Gortlandroe, Nenagh",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-nenagh/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-nenagh/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-tipperary-shannondoc-roscrea",
+    name: "Shannondoc Roscrea (out of hours)",
+    specialty: ["urgent"],
+    county: ["tipperary"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Roscrea Primary Care Centre, Grange",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-roscrea/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-roscrea/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-tipperary-shannondoc-thurles",
+    name: "Shannondoc Thurles (out of hours)",
+    specialty: ["urgent"],
+    county: ["tipperary"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Thurles Primary Care Centre, 22A Mitchel Street",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/shannondoc-thurles/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/shannondoc-thurles/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-donegal-nowdoc-letterkenny",
+    name: "NoWDOC Letterkenny (out of hours)",
+    specialty: ["urgent"],
+    county: ["donegal"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Errigal CDM Hub, Kilmacrennan Road, Letterkenny",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nowdoc-letterkenny/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nowdoc-letterkenny/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-donegal-nowdoc-carndonagh",
+    name: "NoWDOC Carndonagh (out of hours)",
+    specialty: ["urgent"],
+    county: ["donegal"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Carndonagh Community Hospital, Derry Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nowdoc-carndonagh/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nowdoc-carndonagh/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-donegal-nowdoc-derrybeg",
+    name: "NoWDOC Derrybeg (out of hours)",
+    specialty: ["urgent"],
+    county: ["donegal"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Magheragallan, Derrybeg",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nowdoc-derrybeg/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nowdoc-derrybeg/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-donegal-nowdoc-mountcharles",
+    name: "NoWDOC Mountcharles (out of hours)",
+    specialty: ["urgent"],
+    county: ["donegal"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Upper Main Street, Mountcharles",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nowdoc-mountcharles/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nowdoc-mountcharles/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-leitrim-nowdoc-carrick-on-shannon",
+    name: "NoWDOC Carrick-on-Shannon (out of hours)",
+    specialty: ["urgent"],
+    county: ["leitrim"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Carrick-on-Shannon Primary and Mental Health Care Centre, Townparks",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nowdoc-carrick-on-shannon/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nowdoc-carrick-on-shannon/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-sligo-caredoc-sligo",
+    name: "Caredoc Sligo (out of hours)",
+    specialty: ["urgent"],
+    county: ["sligo"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Markievicz Primary Care Centre, Barrack Street, Sligo",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-sligo/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-sligo/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-westdoc-ballina",
+    name: "Westdoc Ballina (out of hours)",
+    specialty: ["urgent"],
+    county: ["mayo"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: St Joseph's District Hospital, Mercy Road, Ballina",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-ballina/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-ballina/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-westdoc-westport",
+    name: "Westdoc Westport (out of hours)",
+    specialty: ["urgent"],
+    county: ["mayo"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-westport/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-westport/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-westdoc-achill",
+    name: "Westdoc Achill (out of hours)",
+    specialty: ["urgent"],
+    county: ["mayo"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-achill/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-achill/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-westdoc-knock",
+    name: "Westdoc Knock (out of hours)",
+    specialty: ["urgent"],
+    county: ["mayo"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-knock/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-knock/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-galway-westdoc-galway",
+    name: "Westdoc Galway (out of hours)",
+    specialty: ["urgent"],
+    county: ["galway"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Unit 18a, Liosban Business Park, Tuam Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-galway/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-galway/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-galway-westdoc-tuam",
+    name: "Westdoc Tuam (out of hours)",
+    specialty: ["urgent"],
+    county: ["galway"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Tuam Primary Care Centre, Sean Purcell Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-tuam/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-tuam/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-galway-westdoc-glenamaddy",
+    name: "Westdoc Glenamaddy (out of hours)",
+    specialty: ["urgent"],
+    county: ["galway"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Glenamaddy Health Centre, Kilkerrin Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-glenamaddy/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-glenamaddy/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-galway-westdoc-north-connemara",
+    name: "Westdoc North Connemara (out of hours)",
+    specialty: ["urgent"],
+    county: ["galway"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Clifden Health Centre, Galway Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-north-connemara/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-north-connemara/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-galway-westdoc-south-connemara",
+    name: "Westdoc South Connemara (out of hours)",
+    specialty: ["urgent"],
+    county: ["galway"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Kilkerrin Health Centre, Kilkerrin, Connemara",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-south-connemara/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-south-connemara/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-galway-westdoc-craughwell",
+    name: "Westdoc Craughwell (out of hours)",
+    specialty: ["urgent"],
+    county: ["galway"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Craughwell Health Centre, Killora",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-craughwell/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-craughwell/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-galway-westdoc-east-galway",
+    name: "Westdoc East Galway (out of hours)",
+    specialty: ["urgent"],
+    county: ["galway"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Eyrecourt Health Centre, Market Street",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-east-galway/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-east-galway/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-roscommon-westdoc-roscommon",
+    name: "Westdoc Roscommon (out of hours)",
+    specialty: ["urgent"],
+    county: ["roscommon"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Roscommon Primary Care Centre, Golf Links Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/westdoc-roscommon/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/westdoc-roscommon/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cavan-nedoc-cavan",
+    name: "Nedoc Cavan (out of hours)",
+    specialty: ["urgent"],
+    county: ["cavan"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Cavan Monaghan General Hospital, Lisdarn",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nedoc-cavan/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nedoc-cavan/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-monaghan-nedoc-castleblayney",
+    name: "Nedoc Castleblayney (out of hours)",
+    specialty: ["urgent"],
+    county: ["monaghan"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Bree Road, Castleblayney",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nedoc-castleblaney/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nedoc-castleblaney/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-nedoc-drogheda",
+    name: "Nedoc Drogheda (out of hours)",
+    specialty: ["urgent"],
+    county: ["louth"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor. The base town for Louth is not yet confirmed.",
+    details: [
+      "Base as stated on the HSE listing: Cottage Hospital, Scarlet Street, Drogheda",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nedoc-drogheda/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nedoc-drogheda/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-laois-midoc-portlaoise",
+    name: "Midoc Portlaoise (out of hours)",
+    specialty: ["urgent"],
+    county: ["laois"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: St Fintan's, Dublin Road, Portlaoise",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/midoc-portlaoise/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/midoc-portlaoise/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-offaly-midoc-tullamore",
+    name: "Midoc Tullamore (out of hours)",
+    specialty: ["urgent"],
+    county: ["offaly"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Midland Regional Hospital Tullamore, Arden Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/midoc-tullamore/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/midoc-tullamore/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-offaly-midoc-edenderry",
+    name: "Midoc Edenderry (out of hours)",
+    specialty: ["urgent"],
+    county: ["offaly"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Ofalia House, St Mary's Street, Edenderry",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/midoc-edenderry/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/midoc-edenderry/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-longford-midoc-longford",
+    name: "Midoc Longford (out of hours)",
+    specialty: ["urgent"],
+    county: ["longford"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: St Joseph's Hospital, Dublin Road, Longford",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/midoc-longford/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/midoc-longford/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-westmeath-midoc-mullingar",
+    name: "Midoc Mullingar (out of hours)",
+    specialty: ["urgent"],
+    county: ["westmeath"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Regional Hospital Mullingar, Longford Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/midoc-mullingar/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/midoc-mullingar/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-westmeath-midoc-athlone",
+    name: "Midoc Athlone (out of hours)",
+    specialty: ["urgent"],
+    county: ["westmeath"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Clonbrusk Primary Care Centre, Athlone",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/midoc-athlone/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/midoc-athlone/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-carlow-caredoc-carlow",
+    name: "Caredoc Carlow (out of hours)",
+    specialty: ["urgent"],
+    county: ["carlow"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: District Hospital, Carlow Health Services Complex, Athy Rd",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-carlow/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-carlow/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kilkenny-caredoc-kilkenny",
+    name: "Caredoc Kilkenny (out of hours)",
+    specialty: ["urgent"],
+    county: ["kilkenny"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Ayrfield Medical Park, Granges Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-kilkenny/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-kilkenny/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-waterford-caredoc-waterford",
+    name: "Caredoc Waterford (out of hours)",
+    specialty: ["urgent"],
+    county: ["waterford"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: HSE Community Care, Cork Road, Waterford",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-waterford/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-waterford/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-waterford-caredoc-dungarvan",
+    name: "Caredoc Dungarvan (out of hours)",
+    specialty: ["urgent"],
+    county: ["waterford"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Springmount, Dungarvan",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-dungarvan/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-dungarvan/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-tipperary-caredoc-clonmel",
+    name: "Caredoc Clonmel (out of hours)",
+    specialty: ["urgent"],
+    county: ["tipperary"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: The County Clinic, Western Road, Clonmel",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-clonmel/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-clonmel/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-tipperary-caredoc-cashel",
+    name: "Caredoc Cashel (out of hours)",
+    specialty: ["urgent"],
+    county: ["tipperary"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Our Lady's Hospital, Lower Green, Cashel",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-cashel/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-cashel/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-tipperary-caredoc-tipperary-town",
+    name: "Caredoc Tipperary Town (out of hours)",
+    specialty: ["urgent"],
+    county: ["tipperary"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: St Vincent's Hospital, Collegeland",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-tipperary-town/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-tipperary-town/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-caredoc-enniscorthy",
+    name: "Caredoc Enniscorthy (out of hours)",
+    specialty: ["urgent"],
+    county: ["wexford"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Enniscorthy Primary Care Centre, Quarry Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-enniscorthy/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-enniscorthy/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kildare-kdoc-celbridge",
+    name: "KDoc Celbridge (out of hours)",
+    specialty: ["urgent"],
+    county: ["kildare"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Shackleton Road, Celbridge",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/kdoc-celbridge/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/kdoc-celbridge/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-dubdoc",
+    name: "DubDoc (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: The Meath Primary Care, Heytesbury Street",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/dubdoc/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/dubdoc/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-eastdoc",
+    name: "EastDoc (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: St Vincent's University Hospital, Elm Park",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/eastdoc/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/eastdoc/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-dl-doc",
+    name: "DL-Doc (Dún Laoghaire) (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: St Michael's Hospital, George's Street Lower, Dún Laoghaire",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/dl-doc/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/dl-doc/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-lukedoc",
+    name: "LukeDoc (Clonskeagh) (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Clonskeagh Hospital Campus, Vergemount",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/lukedoc/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/lukedoc/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-tlc-doc-tallaght",
+    name: "TLC-Doc Tallaght (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Carbury House, Tallaght",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/tlc-doc-tallaght/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/tlc-doc-tallaght/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-ddoc-ballymun",
+    name: "D-Doc Ballymun (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Ballymun Primary Care Centre, Main Street",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/ddoc-ballymun/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/ddoc-ballymun/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-ddoc-coolock",
+    name: "D-Doc Coolock (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Coolock Primary Care Centre, Cromcastle Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/ddoc-coolock/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/ddoc-coolock/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-ddoc-hartstown",
+    name: "D-Doc Hartstown (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Hartstown Health Centre, Cherryfield Lawn, Clonsilla",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/ddoc-hartstown/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/ddoc-hartstown/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-ddoc-north-strand",
+    name: "D-Doc North Strand (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: North Strand Health Centre, 16 North Strand Road",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/ddoc-north-strand/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/ddoc-north-strand/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-ddoc-swords",
+    name: "D-Doc Swords (out of hours)",
+    specialty: ["urgent"],
+    county: ["dublin"],
+    blurb: "HSE listing for an out-of-hours doctor service base for all ages, for when your own surgery is closed and you urgently need a doctor.",
+    details: [
+      "Base as stated on the HSE listing: Swords Health Centre, Bridge Street",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/ddoc-swords/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/ddoc-swords/",
+    urlStatus: "search-result",
+    verify: true
+  },
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate
@@ -9618,23 +10951,26 @@ const GENERAL_ADVOCACY_ORGS = [
 // first), sourced from each service's own locations page. Coordinates are
 // approximate town-centre points, not exact building pins — accurate enough
 // to show which service covers your area, not for street-level navigation.
+// Phone numbers removed 8 Oct 2026: the rule is to keep only numbers copied from an opened
+// official page, and none of these was. The removed numbers are listed in REVIEW.md so they can be
+// put back after a browser check. `finder` is the official page that lists the current number.
 const OUT_OF_HOURS_ROI = [
-  { name: "D-Doc", counties: "North Dublin", phone: "0818 224 476", sites: [
+  { name: "D-Doc", counties: "North Dublin", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Ballymun", lat: 53.3925, lng: -6.2650 },
     { town: "Coolock", lat: 53.3872, lng: -6.2072 },
     { town: "Hartstown", lat: 53.3958, lng: -6.4283 },
     { town: "North Strand", lat: 53.3562, lng: -6.2447 },
     { town: "Swords", lat: 53.4597, lng: -6.2181 },
   ]},
-  { name: "DubDoc", counties: "Dublin 8 & south inner city", phone: "01 454 5607", sites: [
+  { name: "DubDoc", counties: "Dublin 8 & south inner city", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Dublin 8 (Heytesbury St)", lat: 53.3324, lng: -6.2697 },
   ]},
-  { name: "EastDoc", counties: "North-east Wicklow / south Co. Dublin fringe", phone: "01 209 4021", sites: [] },
-  { name: "KDOC", counties: "Kildare, West Wicklow", phone: "045 848 701", sites: [
+  { name: "EastDoc", counties: "North-east Wicklow / south Co. Dublin fringe", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [] },
+  { name: "KDOC", counties: "Kildare, West Wicklow", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Naas", lat: 53.2158, lng: -6.6669 },
     { town: "Celbridge", lat: 53.3389, lng: -6.5453 },
   ]},
-  { name: "Caredoc", counties: "Carlow, Kilkenny, Wexford, Waterford, South Tipperary, South Wicklow", phone: "0818 300 365", sites: [
+  { name: "Caredoc", counties: "Carlow, Kilkenny, Wexford, Waterford, South Tipperary, South Wicklow", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Arklow", lat: 52.7936, lng: -6.1508 },
     { town: "Carlow", lat: 52.8365, lng: -6.9341 },
     { town: "Cashel", lat: 52.5192, lng: -7.8908 },
@@ -9649,7 +10985,7 @@ const OUT_OF_HOURS_ROI = [
     { town: "Wexford", lat: 52.3369, lng: -6.4633 },
     { town: "Wicklow Town", lat: 52.9808, lng: -6.0447 },
   ]},
-  { name: "SouthDoc", counties: "Cork, Kerry", phone: "0818 355 999", sites: [
+  { name: "SouthDoc", counties: "Cork, Kerry", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Mallow", lat: 52.1369, lng: -8.6408 },
     { town: "Macroom", lat: 51.9028, lng: -8.9647 },
     { town: "Skibbereen", lat: 51.5497, lng: -9.2622 },
@@ -9658,7 +10994,7 @@ const OUT_OF_HOURS_ROI = [
     { town: "Listowel", lat: 52.4467, lng: -9.4900 },
     { town: "Killarney", lat: 52.0599, lng: -9.5044 },
   ]},
-  { name: "Shannondoc", counties: "Limerick, Clare, North Tipperary", phone: "0818 123 500", sites: [
+  { name: "Shannondoc", counties: "Limerick, Clare, Tipperary (Nenagh, Roscrea, Thurles)", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Limerick City (Dooradoyle)", lat: 52.6389, lng: -8.6386 },
     { town: "Hospital, Co. Limerick", lat: 52.4933, lng: -8.4272 },
     { town: "Newcastle West", lat: 52.4489, lng: -9.0522 },
@@ -9671,7 +11007,7 @@ const OUT_OF_HOURS_ROI = [
     { town: "Milltown Malbay", lat: 52.8611, lng: -9.3986 },
     { town: "Shannon", lat: 52.7167, lng: -8.8642 },
   ]},
-  { name: "WestDoc", counties: "Galway, Mayo, Roscommon", phone: "0818 360 000", sites: [
+  { name: "WestDoc", counties: "Galway, Mayo, Roscommon", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Ballina", lat: 54.1153, lng: -9.1547 },
     { town: "Ballinasloe", lat: 53.3319, lng: -8.2192 },
     { town: "Castlebar", lat: 53.8517, lng: -9.2986 },
@@ -9682,17 +11018,17 @@ const OUT_OF_HOURS_ROI = [
     { town: "Tuam", lat: 53.5150, lng: -8.8500 },
     { town: "Westport", lat: 53.8014, lng: -9.5175 },
   ]},
-  { name: "NoWDOC", counties: "Donegal, South Leitrim", phone: "0818 400 911", sites: [
+  { name: "NoWDOC", counties: "Donegal, South Leitrim", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Letterkenny (approx.)", lat: 54.9503, lng: -7.7339 },
     { town: "Carrick-on-Shannon", lat: 53.9453, lng: -8.0972 },
   ]},
-  { name: "NEDOC", counties: "Meath, Louth (excl. Dundalk), Cavan, Monaghan", phone: "1800 777 911", sites: [
+  { name: "NEDOC", counties: "Meath, Louth (excl. Dundalk), Cavan, Monaghan", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Cavan", lat: 53.9908, lng: -7.3606 },
     { town: "Castleblayney", lat: 54.1236, lng: -6.7317 },
     { town: "Drogheda", lat: 53.7178, lng: -6.3478 },
     { town: "Navan", lat: 53.6528, lng: -6.6819 },
   ]},
-  { name: "MIDOC", counties: "Longford, Westmeath, Laois, Offaly", phone: "1800 302 702", sites: [
+  { name: "MIDOC", counties: "Longford, Westmeath, Laois, Offaly", finder: "https://www2.hse.ie/services/find-urgent-emergency-care/", sites: [
     { town: "Tullamore", lat: 53.2739, lng: -7.4931 },
     { town: "Longford", lat: 53.7275, lng: -7.7931 },
     { town: "Mullingar", lat: 53.5253, lng: -7.3378 },
@@ -9700,16 +11036,16 @@ const OUT_OF_HOURS_ROI = [
   ]},
 ];
 const OUT_OF_HOURS_NI = [
-  { name: "Northern Trust — Phone First", counties: "Antrim, Ballymena, Coleraine & Northern Trust area", phone: "0300 123 1 123", note: "Mon–Fri 8am–6pm", sites: [
+  { name: "Northern Trust — Phone First", counties: "Antrim, Ballymena, Coleraine & Northern Trust area", finder: "https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services", note: "Mon–Fri 8am–6pm", sites: [
     { town: "Antrim (approx. Trust area)", lat: 54.7180, lng: -6.2100 },
   ]},
-  { name: "Southern Trust — Phone First", counties: "Armagh, Craigavon, Newry & Southern Trust area", phone: "0300 123 3111", note: "Mon–Fri 9am–9pm", sites: [
+  { name: "Southern Trust — Phone First", counties: "Armagh, Craigavon, Newry & Southern Trust area", finder: "https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services", note: "Mon–Fri 9am–9pm", sites: [
     { town: "Craigavon (approx. Trust area)", lat: 54.4522, lng: -6.3919 },
   ]},
-  { name: "Belfast Trust GP Out of Hours — North & West Belfast", counties: "North & West Belfast", phone: "028 9074 4447", sites: [
+  { name: "Belfast Trust GP Out of Hours — North & West Belfast", counties: "North & West Belfast", finder: "https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services", sites: [
     { town: "North & West Belfast (approx.)", lat: 54.5975, lng: -5.9550 },
   ]},
-  { name: "Belfast Trust GP Out of Hours — South & East Belfast", counties: "South & East Belfast", phone: "028 9079 6220", sites: [
+  { name: "Belfast Trust GP Out of Hours — South & East Belfast", counties: "South & East Belfast", finder: "https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services", sites: [
     { town: "South & East Belfast (approx.)", lat: 54.5825, lng: -5.9350 },
   ]},
 ];

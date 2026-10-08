@@ -35,6 +35,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-08 [Claude] — Local-services pass 2: 96 unverified rows (610 to 706), out-of-hours block fixed and its 15 phone numbers removed under the opened-page rule, decisions applied (Daisy Hill, Louth, Sligo untouched). See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-08 [Claude] — Medicines-cost schemes (`data/costs.js`, `#/costs`, `scripts/validate-costs.js`); vaccine matrix PR #80 merged. All rows `verify: true`; Budget 2027 figures unchecked. Pass 2 of the local-services research was not merged: its files are not in the repo. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-07 [Claude] — Applied the local-services and parenting research: 43 unverified rows (567 to 610), specialties `urgent` and `general` added, `hse-ahr` enriched, duplicates and withheld rows logged. See `CHANGELOG.md`, `REVIEW.md` and `research/`.
 - 2026-10-07 [Claude] — Approved seven source hosts (four new to the validator allow-list) and recorded the decisions for the local-services and parenting research rows; the rows themselves wait for the research file. See `CHANGELOG.md` and `REVIEW.md`.
