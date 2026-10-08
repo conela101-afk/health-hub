@@ -11149,6 +11149,19 @@ const SEARCH_ALIASES = {
   // pending the owner's decision (CLAUDE_CODE_SEARCH_ALIASES.md, S6).
   "self harm": ["suicide", "crisis"], "overdose": ["suicide", "crisis", "drug"],
   "want to die": ["suicide", "crisis"],
+  // Irish-language wording (8 Oct 2026). Keys are the normalised form (fadas removed). Each one
+  // routes to existing English text; no Irish content is added. Wording is awaiting review by a
+  // fluent Irish speaker. Crisis banner triggers in search.js are deliberately not extended.
+  "dochtuir": ["gp"], "ospideal": ["hospital"], "banaltra": ["nurse", "nursing"],
+  "slainte": ["health"], "maithreacha": ["maternity"], "curam slainte": ["primary care", "gp"],
+  "othar": ["patient"], "gearchuram": ["emergency"], "eigeandail": ["emergency"],
+  "slainte meabhrach": ["mental health"], "slainte mheabhrach": ["mental health"],
+  "meabhairshlainte": ["mental health"], "leanbh": ["paediatric", "children"],
+  "leanai": ["paediatric", "children"], "ailse": ["cancer"], "diaibeiteas": ["diabetes"],
+  "toircheas": ["pregnancy"], "tuismitheoiri": ["parent"], "michumas": ["disability"],
+  "curamoir": ["carer"], "gearan": ["complaint"], "feinmharu": ["suicide", "crisis"],
+  "anduil": ["addiction", "drug"], "fiacloir": ["dental", "dentist"],
+  "cogaiseoir": ["advocacy"], "scagadh": ["screening"],
 };
 
 const TOOL_FACTS_LAST_VERIFIED = "2026-09-28";

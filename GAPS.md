@@ -370,7 +370,7 @@ Human checks before merge:
 - [ ] Open both PQ PDFs: confirm the numbering and the CDNT 6 and 7 catchments.
 - [ ] Open the HSE CDNT finder for Midleton, Youghal, Cobh and Glanmire: record team names only.
 - [ ] CDNT 7: if the catchment is mostly Cork City, change `area` to `cork-city`.
-- [ ] Decide whether `south-cork` stays in `AREAS`. Labels are navigation only, not HSE boundaries.
+- [x] `south-cork` stays in `AREAS` (decided 8 Oct 2026). Labels are navigation only, not HSE boundaries.
 - [ ] CDNT 6 lead agency: one job listing names COPE Foundation, an earlier note named Horizons. Not stated anywhere until an official page is opened.
 
 Not in the repo: the Pass 3 draft rows `cdnt-west-cork`, `cdnt-carrigaline-kinsale-bandon` and
@@ -428,7 +428,7 @@ Queries that still return nothing after the matching fix, so the content is miss
 - **HSE Live:** row added 7 Oct 2026 (unverified).
 - **NI 111** and similar: verify first, do not add from memory.
 - **US spellings with no content to land on:** `anesthesia`, `esophagus`. Left as they are.
-- **Irish-language queries** (10 tried, `scripts/search-audit-queries-ga.txt`): 1 returns anything, the other 9 return nothing. Content was not translated. Whether to add Irish aliases or content is a decision for Elaine.
+- **Irish-language queries** (22 tried, `scripts/search-audit-queries-ga.txt`): decided 8 Oct 2026: add aliases. 26 Irish keys in `SEARCH_ALIASES` route to existing English text; all 22 queries now return results. No Irish content was written. **Still open:** a fluent Irish speaker should review the wording, and extending the crisis banner in `search.js` (`isCrisisQuery`) to Irish terms such as "féinmharú" needs Elaine's approval (for now it only routes to the existing suicide/crisis results).
 
 ## Local services and parenting research pass (7 Oct 2026)
 
@@ -464,7 +464,7 @@ Every row in `data/costs.js` needs a live-page check by a person before `verify`
 
 All 9 rows in `data/screening.js` were read from pages opened on 8 Oct 2026 and wait for sign-off by Elaine before `verify` comes off.
 
-- **ROI intervals not on the HSE pages:** BowelScreen, CervicalCheck and Diabetic RetinaScreen pages give an age band but no number of years ("appropriate intervals" for two of them). The public programme sites (`bowelscreen.ie`, `cervicalcheck.ie`, `breastcheck.ie`, `diabeticretinascreen.ie`) probably do, but they are not on the host allow-list. Add them only with Elaine's approval.
+- **ROI intervals (resolved 8 Oct 2026):** BowelScreen (every 2 years after a normal result), CervicalCheck (every 3 years at 25 to 29, every 5 years at 30 to 65, more often for some) and Diabetic RetinaScreen (yearly for most, every 2 years after two clear screens) were copied from HSE pages opened in a browser. `bowelscreen.ie`, `cervicalcheck.ie` and `diabeticretinascreen.ie` redirect to `hse.ie`, so no new host was needed and the allow-lists are unchanged. BreastCheck is still "every 2 to 3 years". Still `verify: true`.
 - **NI AAA repeat interval** is not in the "who is invited" section; the rest of the page was not read in full. NI breast: the nidirect URL is `breast-screening-overview` (the shorter URL redirects).
 - **NI pages say "women"** for breast and cervical screening; the ROI CervicalCheck page says "women and people with a cervix". The NI wording is copied as it is; a trans or non-binary person's eligibility in NI is not stated on the pages read.
 - **Not built:** NI antenatal infectious disease screening and newborn screening (listed on nidirect), the ROI newborn bloodspot and hearing programmes, and lung screening. No ROI AAA programme was found, but absence was not confirmed, so the matrix says nothing about it.
