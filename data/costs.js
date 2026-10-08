@@ -15,7 +15,7 @@
 // volatile (bool) + volatile_reason, conflict_note, source_url, source_name,
 // source_page_review_date, last_verified, verify, urlStatus.
 const COSTS_LAST_VERIFIED = "2026-10-08";
-const BUDGET_NOTE = "Amounts can change at each Budget; Budget 2027 (6 Oct 2026) has not been checked against this figure.";
+const BUDGET_NOTE = "Amounts can change at each Budget. The Budget 2027 (6 Oct 2026) health summaries on gov.ie and Citizens Information, read on 8 Oct 2026, do not list a change to this figure. The full Budget documents and the Finance Bill have not been read.";
 
 const COSTS = [
   // ---------- Republic of Ireland ----------
@@ -92,12 +92,12 @@ const COSTS = [
     source_url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/womens-health-in-ireland/", source_name: "Citizens Information: Women's health in Ireland" },
 
   { id: "roi-free-contraception", scheme: "Free contraception", jurisdiction: "ROI", kind: "other",
-    who: "Women and people with a uterus aged 17 to 35, ordinarily resident with a PPSN; or medical card holders.",
+    who: "Women and people with a uterus aged 17 to 35, ordinarily resident with a PPSN; or medical card holders. Budget 2027 extends eligibility up to age 37; no start date has been published on the pages read.",
     covers: "GP consultations, prescriptions, long-acting method fitting and removal, and emergency contraception.",
     cost: "Free. (The medical card prescription charge still applies to medical card holders.)",
     cap_amount: null, currency: "EUR", cap_period: null, cap_unit: null,
     how_to_apply: "Through a participating GP or clinic.",
-    volatile: true, volatile_reason: "The age band has been widened before.",
+    volatile: true, volatile_reason: "Budget 2027 (6 Oct 2026) extends the age band from 35 to 37 and no start date has been published yet. The age band has been widened before.",
     source_url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/contraception/", source_name: "Citizens Information: Contraception" },
 
   { id: "roi-treatment-benefit", scheme: "Treatment Benefit (PRSI)", jurisdiction: "ROI", kind: "other",
@@ -130,7 +130,7 @@ const COSTS = [
     cap_amount: null, currency: "EUR", cap_period: null, cap_unit: null,
     not_covered_note: "A temporary scheme: its end date and claim limits can change. Check the HSE page before you book.",
     how_to_apply: "Follow the HSE steps before you go and claim afterwards.",
-    conflict_note: "The HSE page describes prior notification for inpatient and day-case care as optional. Another source summarised for this site says overnight stays need prior authorisation. Check the HSE page before booking.",
+    conflict_note: "The HSE page (opened in a browser on 8 Oct 2026) says prior notification for inpatient and day-case care is optional. Another source summarised for this site says overnight stays need prior authorisation. Check the HSE page before booking.",
     compare: "roi-cross-border-directive", volatile: true, volatile_reason: "Temporary scheme; terms can change without a new law.",
     source_url: "https://www2.hse.ie/services/schemes-allowances/niphs/before-you-go/", source_name: "HSE: NIPHS, before you go" },
 
@@ -145,22 +145,22 @@ const COSTS = [
     source_url: "https://www2.hse.ie/services/schemes-allowances/treatment-abroad-scheme/", source_name: "HSE: Treatment Abroad Scheme" },
 
   { id: "ni-roi-reimbursement", scheme: "Republic of Ireland Reimbursement Scheme (Northern Ireland)", jurisdiction: "NI", kind: "crossborder",
-    who: "People living in Northern Ireland who are entitled to HSC care.",
-    covers: "Private treatment in the Republic of Ireland, with prior authorisation. Excluded: organ transplants and public vaccination.",
+    who: "People living in Northern Ireland who were entitled to HSC care. The 2021 scheme required prior authorisation.",
+    covers: "Private treatment in the Republic of Ireland, with prior authorisation. Excluded: long-term social care, organ transplants and public vaccination programmes.",
     cost: "Reimbursed up to what the same care costs the HSC.",
     cap_amount: null, currency: "GBP", cap_period: null, cap_unit: null,
-    how_to_apply: "Get approval from the Department of Health NI before treatment.",
-    conflict_note: "The Department of Health NI page says this scheme was reinstated as a temporary measure. A non-official source (Border People) says it closed to new applicants in September 2022. Read the official page before relying on either.",
-    compare: "ni-waiting-list-reimbursement", volatile: true, volatile_reason: "Temporary scheme, and sources disagree on whether it is open.",
+    how_to_apply: "No official page read says this 2021 scheme is open now. For current options, see the Waiting List Reimbursement Scheme.",
+    conflict_note: "The Department of Health NI page for this scheme is a press release dated 16 June 2021. It describes a temporary measure for 12 months, with applications from 1 July 2021, run by the Health and Social Care Board. The Department's current Waiting List Reimbursement page (opened 8 Oct 2026) says that scheme is based on the previous Republic of Ireland Reimbursement Scheme. A non-official source (Border People) says the older scheme closed to new applicants in September 2022; no official page read confirms that date. Treat this scheme as not open unless the Department of Health NI says otherwise.",
+    compare: "ni-waiting-list-reimbursement", volatile: true, volatile_reason: "Temporary scheme. Official pages read do not show it open now; replaced in practice by the Waiting List Reimbursement Scheme.",
     source_url: "https://www.health-ni.gov.uk/news/cross-border-healthcare-directive-reinstated", source_name: "Department of Health NI: Cross-border healthcare reinstated" },
 
   { id: "ni-waiting-list-reimbursement", scheme: "Waiting List Reimbursement Scheme (Northern Ireland)", jurisdiction: "NI", kind: "crossborder",
-    who: "People living in Northern Ireland on a long HSC waiting list for some treatments.",
-    covers: "Some treatment received in the Republic of Ireland or elsewhere in the EU, with approval before you go.",
-    cost: "Depends on the scheme terms; read the official page.",
+    who: "People ordinarily resident in Northern Ireland who have been on an HSC treatment or surgical waiting list for more than 52 weeks, for treatment the HSC would provide in the same clinical circumstances.",
+    covers: "Planned private treatment in the Republic of Ireland or elsewhere in the EU, with prior approval from the Department of Health. Retrospective applications are not considered. The scheme launched on 2 June 2025.",
+    cost: "You pay the provider and claim back the lower of the actual cost or the HSC NI average cost. The Department does not pay the provider. Travel, accommodation and insurance are not reimbursed.",
     cap_amount: null, currency: "GBP", cap_period: null, cap_unit: null,
-    not_covered_note: "Eligibility and funding have changed since the scheme opened.",
-    how_to_apply: "Apply for approval through the HSC Business Services Organisation before treatment.",
+    not_covered_note: "Not covered: long-term social care, organ transplants, public vaccination programmes and clinical trials. Eligibility and funding have changed since the scheme opened.",
+    how_to_apply: "Apply for prior authorisation to the Department of Health's National Contact Point team before treatment, with a letter from your HSC Trust confirming your place on the waiting list.",
     compare: "ni-roi-reimbursement", volatile: true, volatile_reason: "Eligibility and funding have changed since the scheme opened.",
     source_url: "https://online.hscni.net/our-work/travelfortreatment/wl-reimbursement/", source_name: "HSCNI: Waiting List Reimbursement Scheme" },
 
