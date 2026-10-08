@@ -451,3 +451,11 @@ All 11 rows in `data/vaccines.js` need a live-page check by a person before the 
 - NI COVID-19 autumn 2026 cohorts: confirm on nidirect (UKHSA blog is not on the allow-list).
 - Not added, secondary sources only: ROI infant RSV 2026/27 (nirsevimab) windows, flu campaign launch date, HIQA shingles price and budget figures. Add once an HSE or HIQA page is opened.
 - Not started: MMR, HPV, Hepatitis B and travel vaccines; the medicines-cost schemes (medical card charge, DPS, LTI, GP visit card, ED charge) as the next Tier 1 build.
+
+## Cost schemes: open checks (8 Oct 2026)
+
+All 10 rows in `data/costs.js` need a live-page check by a person before `verify` comes off.
+
+- **Budget 2027 (6 Oct 2026):** check the prescription charge and monthly cap, the DPS cap, the ED charge and the GP visit card limits against the Budget measures. Every money figure is flagged volatile for this reason.
+- NI help with health costs: Department of Health NI (5 Nov 2025) says UC recipients are passported automatically from 1 Dec 2025; the BSO page says otherwise. Confirm which is current.
+- Not started: Treatment Benefit, High Tech Drugs, Fair Deal, Home Support, hardship routes, aids and appliances, Dental Treatment Services, Community Ophthalmic Services, Med1 tax relief, and the cross-border schemes (CBD, NIPHS, the NI reimbursement scheme).

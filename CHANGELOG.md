@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-08 [Claude] (medicines-cost schemes)
+- New `data/costs.js` layer (10 rows) and lazy-loaded `#/costs` page ("What you pay"), with region and type filters. ROI: medical card prescription charge, Drugs Payment Scheme, Long-Term Illness Scheme, GP visit card, medical card (no thresholds), public hospital and ED charges, free HRT, free contraception. NI: free prescriptions, help with health costs (HC1/HC2/HC3). Added to search and the home pills.
+- `scripts/validate-costs.js` (official hosts, EUR for ROI and GBP for NI, money figures must be flagged volatile, compare links) runs in the data-integrity workflow. Cache bumped.
+- All rows `verify: true`, `urlStatus: "search-result"`. Budget 2027 was announced on 6 Oct 2026 and none of the figures (€1.50/€15 charge, €80 DPS cap, €100 ED charge) have been checked against it. Income and means-test thresholds are deliberately not stored. See `GAPS.md`.
+
 ## 2026-10-07 [Claude] — local services and parenting rows
 - **Added 43 entries (567 to 610)** from the research report and Elaine's decisions: 5 hospital information pages, 5 emergency departments, injury unit, minor injury and urgent care rows (Naas, Omagh, South Tyrone), GP out-of-hours (Caredoc Wexford, Gorey, Wicklow and Arklow; Nedoc Navan; KDoc Naas), maternity emergency, early pregnancy and parentcraft rows (Mayo, Louth, Wexford), Wicklow primary care, Mayo Local Health Office, Omagh women's health and GUM clinics, Western Trust health visiting, Tusla and Citizens Information parenting, leave, adoption and fostering rows, NI fostering, HSE Live, Long-Term Illness Scheme (link only, `/lti/` URLs) and NI regional interpreting. NI-wide rows list the six counties.
 - All rows `verify: true`, `urlStatus: "search-result"`, no `checked`, no phones. County rows rose in Wexford, Mayo, Louth, Meath, Wicklow and Kildare (county matrix before and after, no coverage claim).
