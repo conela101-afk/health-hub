@@ -882,7 +882,7 @@
             ${t.enclose ? `<div class="line"><span class="k">Enclose</span><span>${linkifyText(t.enclose)}</span></div>` : ""}
           </div>
           <button type="button" class="copy-btn" data-template-id="${t.id}">Copy letter text</button>
-          <pre class="template-text" id="template-${t.id}">${escapeHtml(t.body)}</pre>
+          <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="template-${t.id}">${escapeHtml(t.body)}</pre>
         </div>
       </details>
     `;
@@ -1061,7 +1061,7 @@ ${name}`;
 
       <div class="prep-card">
         <h2>Generated letter preview</h2>
-        <pre class="template-text" id="sarOutput"></pre>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="sarOutput"></pre>
         <button type="button" class="copy-btn" id="sarCopy" data-copy-target="sarOutput">Copy letter text</button>
         <button type="button" class="copy-btn" id="sarPrint">Print / save PDF</button>
       </div>
@@ -1787,7 +1787,7 @@ ${name}`;
         <textarea id="prepMeds" class="prep-input" rows="2" placeholder="e.g. Metformin 500mg twice daily">${v("prepMeds")}</textarea>
 
         <button type="button" class="copy-btn" id="prepGenerate">Build my checklist</button>
-        <pre class="template-text" id="prepOutput" hidden></pre>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="prepOutput" hidden></pre>
         <button type="button" class="copy-btn" id="prepCopy" data-copy-target="prepOutput" hidden>Copy checklist</button>
         <button type="button" class="copy-btn" id="prepPrint" hidden>Print / save PDF</button>
         <button type="button" class="danger-btn" id="apptClear" ${isSaving ? "" : "hidden"}>Clear saved checklist from this device</button>
@@ -1811,7 +1811,7 @@ ${name}`;
         <input type="tel" inputmode="tel" autocomplete="tel" id="waitPhone" class="prep-input" placeholder="e.g. 087 123 4567">
 
         <button type="button" class="copy-btn" id="waitGenerate">Build my message</button>
-        <pre class="template-text" id="waitOutput" hidden></pre>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="waitOutput" hidden></pre>
         <button type="button" class="copy-btn" id="waitCopy" data-copy-target="waitOutput" hidden>Copy message</button>
       </div>
     `;
@@ -1936,7 +1936,7 @@ ${name}`;
         ${fieldsHtml}
 
         <button type="button" class="copy-btn" id="ppGenerate">Build my summary</button>
-        <pre class="template-text" id="ppOutput" hidden></pre>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="ppOutput" hidden></pre>
         <button type="button" class="copy-btn" id="ppCopy" data-copy-target="ppOutput" hidden>Copy summary</button>
         <button type="button" class="danger-btn" id="ppClear" ${isSaving ? "" : "hidden"}>Clear saved passport from this device</button>
       </div>
@@ -2057,7 +2057,7 @@ ${name}`;
           <button type="button" class="copy-btn" id="logCopyAll">Copy full log</button>
         </div>
         <div class="log-list" id="logList">${entriesListHtml()}</div>
-        <pre class="template-text" id="logCopyOutput" hidden></pre>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="logCopyOutput" hidden></pre>
       </div>
     `;
 
@@ -2176,9 +2176,14 @@ ${name}`;
   // announces the document title and starts at the top naturally, so moving
   // focus there too would skip that initial announcement and the skip-link.
   let hasRoutedOnce = false;
+  const BASE_TITLE = document.title;
   function announceRouteChange(){
     const heading = app.querySelector("h1");
     const label = heading ? heading.textContent.trim() : (document.title || "Page");
+    // Give every page its own document title (WCAG 2.4.2): tab, history and
+    // bookmarks show the page name. Home keeps the base title.
+    const onHome = !location.hash || location.hash === "#/" || location.hash === "#";
+    document.title = (heading && !onHome) ? `${label} — Health Hub` : BASE_TITLE;
     const announcer = document.getElementById("routeAnnouncer");
     if (announcer) announcer.textContent = label;
     // Skip while the search input itself has focus — the debounced input

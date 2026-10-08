@@ -87,6 +87,37 @@ A new research doc (`Health_Hub_Condition_Directory__All-Island_Source_Verificat
 
 ---
 
+## 2a. Status reconciliation against the repo (8 Oct 2026)
+
+*Cross-checked `main` (as of 8 Oct 2026), `CHANGELOG.md`, `REVIEW.md` and `GAPS.md` against the Phase B and Phase E scope. Counts were taken by script from `data.js`, not quoted from older docs. The original toolkit doc and "App Improvements" PDF are not in the repo or project, so this compares against the feature lists in this plan, not the source files.*
+
+**Phase B: done.** Superseded by what shipped. `#/advocacy` has tabs for the guide (10 modules), letter templates (7), entitlements (23 scheme entries including Medical Card, GP Visit Card, DPS, LTI and Fair Deal, with NI equivalents for health costs, care-home fees, DLA, PIP and Carer's Allowance), FOI by hospital, who to contact, and support organisations. The guided tools go further than the static pages this phase asked for: complaints navigator, records-request builder, schemes selector, "While you wait", discharge passport and the Assessment of Need toolkit. Static `#/about/screening` and `#/about/waiting-lists` pages also exist. Remaining B-adjacent work is content depth only (see the NI gap below).
+
+**Phase E: mostly done.**
+
+| PDF feature (as listed in this plan) | Status | Where |
+|---|---|---|
+| Offline shell | Done | `sw.js` precaches app, data, facilities, conditions, Leaflet |
+| Low-load crisis UI | Done | Calm mode, quick exit (Esc), persistent crisis link, expandable crisis banners, search crisis banner (7 Oct) |
+| Out-of-hours directory | Done | `#/out-of-hours`, with click-to-load map tiles |
+| Patient Passport | Done | `#/passport`, opt-in local storage |
+| Referral tracker / call log | Done | `#/log` |
+| Complaint wizard | Done | `#/tools/complaints` (navigator, deadline helper, letter) |
+| SAR builder (E1) | Done | `#/advocacy/sar-builder` and `#/tools/records` |
+| FOI generator (E2) | Done | FOI route in `#/tools/records`, plus FOI and internal-review templates |
+| Off-site / waiting-room check-in | Done | `#/prep` |
+| Medication / taper tracker | **Not built** | Only a "current medications" field exists in the Passport and prep. A taper tracker is clinical in character, so it needs a medico-legal decision before scoping. |
+| Incident / symptom log | **Not built** | `#/log` records calls and referrals only |
+
+**Still open outside Phases A to F:**
+- Accessibility: first automated and keyboard audit run 8 Oct 2026 (`ACCESSIBILITY_AUDIT.md`); findings 1 to 5 fixed. Still open: findings 6 to 9, screen reader testing (VoiceOver, NVDA, TalkBack), Safari and touch devices. Then publish `accessibility-statement.md`.
+- HealthHub MCP OAuth layer (spec drafted, Code session not run).
+- Conditions deep links (about 91) and Tier 2 charity layer; needs network access.
+- NI equivalents: scheme and complaint depth is thinner than ROI. Link-only, nidirect and HSC sources.
+- Human browser checks listed in `REVIEW.md`, including the 43 rows added 7 Oct.
+- A vaccine coverage matrix (PR #80: `data/vaccines.js`, `scripts/validate-vaccines.js`, `#/vaccines`) and a costs page (`#/costs`, `data/costs.js`) have shipped since this plan was last updated; neither is described above.
+- Auto-merge workflow and search-audit CI step: dropped by Elaine on 8 Oct 2026 (she merges PRs by hand).
+
 ## 3. Suggested next session
 
-Single Cowork/code session covering the parts of Phase A that are genuinely still outstanding (re-verify against `data.js` first, per the status check above) plus the Phase C crowdsourcing pushes. `GAPS.md`/`REVIEW.md`/the tracker docs are already in the repo, so this session can go straight to content work rather than research or file setup.
+*Replaced 8 Oct 2026; the earlier text assumed Phase A was still being pasted in.* Phases A, B, D and F and most of E are shipped (see 2a). Next work, in order: (1) Elaine's browser checks from `REVIEW.md`; (2) Phase C coverage research for the thin counties and specialties in `GAPS.md`; (3) NI depth for schemes and complaints; (4) a decision on whether a medication/taper tracker or incident log is wanted at all; (5) the accessibility audit.
