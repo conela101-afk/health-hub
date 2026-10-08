@@ -1,6 +1,6 @@
 # Accessibility Audit: 8 Oct 2026
 
-**Fix status (8 Oct 2026, later the same day):** findings 1 to 6 and 9 fixed on branch `claude/a11y-fixes-oct26` and rechecked (axe: no contrast or scrollable-region failures; 0 routes overflow at 320px; every route has its own title; no interactive element under 24px). Findings 7 and 8 are open. Finding 9 was a likely false alarm; the explicit focus ring was added anyway. The scan below is the pre-fix result.
+**Fix status (8 Oct 2026, later the same day):** findings 1 to 9 fixed on branch `claude/a11y-fixes-oct26` and rechecked (axe: no contrast or scrollable-region failures; 0 routes overflow at 320px; every route has its own title; no interactive element under 24px). Axe now reports no violations on any route. Finding 9 was a likely false alarm; the explicit focus ring was added anyway. The scan below is the pre-fix result.
 
 Automated and scripted keyboard checks against WCAG 2.1 AA, run by Claude on 8 Oct 2026. This is the first run of the checklist that gates `accessibility-statement.md`. It is **not** a full audit: no screen reader testing was possible (see "Not tested").
 
