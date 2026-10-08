@@ -12,6 +12,11 @@ process itself, not individual entries.
 - [ ] Spot-check the HSE Primary Care Centre locator link still resolves
 - [ ] Scan for other "known gap" language that's aged into "actually resolved now" (the NI MBU line is a good example — it went from gap to confirmed in under a year)
 
+## Screening matrix (`data/screening.js`)
+
+- [ ] Quarterly: open every `source_url`, re-read ages and intervals, then bump `last_verified` only on rows actually re-read (`SCREENING_LAST_VERIFIED` applies to all rows, so edit per row if only some were re-read).
+- [ ] To add `node scripts/validate-screening.js` and `node --check data/screening.js` to `.github/workflows/data-integrity.yml`: the push token cannot edit workflow files, so add them by hand (same as `validate-costs.js`).
+
 ## Guided tools verification (quarterly + post-Budget)
 
 The guided tools (`#/tools`) take their facts from `TOOL_FACTS` in `data.js`.
