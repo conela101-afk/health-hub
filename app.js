@@ -1416,7 +1416,7 @@ ${name}`;
         ${c.route_note ? `<p>${escapeHtml(c.route_note)}</p>` : ""}
         ${c.conflict_note ? `<p class="source-note">Sources disagree: ${escapeHtml(c.conflict_note)}</p>` : ""}
         ${other ? `<p><a href="#/costs/${escapeHtml(other.id)}">See also: ${escapeHtml(other.scheme)}</a></p>` : ""}
-        <span class="source-note">Source: <a href="${escapeHtml(c.source_url)}" target="_blank" rel="noopener">${escapeHtml(c.source_name)} ↗</a>. Checked against search results on ${escapeHtml(c.last_verified)}, not the live page.${c.volatile ? ` Changes often: ${escapeHtml(c.volatile_reason)}` : ""}</span>
+        <span class="source-note">Source: <a href="${escapeHtml(c.source_url)}" target="_blank" rel="noopener">${escapeHtml(c.source_name)} ↗</a>. ${c.opened ? `Page opened in a browser on ${escapeHtml(c.opened)}; not yet signed off.` : `Checked against search results on ${escapeHtml(c.last_verified)}, not the live page.`}${c.volatile ? ` Changes often: ${escapeHtml(c.volatile_reason)}` : ""}</span>
       </div>`;
   }
 
@@ -1429,7 +1429,7 @@ ${name}`;
         <p class="count">Republic of Ireland and Northern Ireland, ${rows.length} schemes. Information only.</p>
       </div>
       <div class="callout">
-        <strong>Which scheme caps your costs.</strong> Medicines costs usually come down to three routes in the Republic of Ireland: a medical card, the Drugs Payment Scheme, or the Long-Term Illness Scheme (which covers only a fixed list of conditions). Income limits are not shown here; follow the link to the official page. Amounts can change at each Budget, and Budget 2027 has not yet been checked against these figures.
+        <strong>Which scheme caps your costs.</strong> Medicines costs usually come down to three routes in the Republic of Ireland: a medical card, the Drugs Payment Scheme, or the Long-Term Illness Scheme (which covers only a fixed list of conditions). Income limits are not shown here; follow the link to the official page. Amounts can change at each Budget. The Budget 2027 health summaries read on 8 October 2026 list no change to these amounts, apart from free contraception extending to age 37, but the full Budget documents have not been read.
       </div>
       <div class="search-field search-field-inline">
         <select id="cost-region" aria-label="Filter by region"><option value="">Both regions</option><option value="ROI">Republic of Ireland</option><option value="NI">Northern Ireland</option></select>

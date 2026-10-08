@@ -32,7 +32,7 @@ function validate({ COSTS }){
     if (c.compare && (!ids.has(c.compare) || c.compare === c.id)) errors.push(`${w}: compare "${c.compare}" is not another row`);
     try { if (!hostAllowed(new URL(c.source_url).hostname)) errors.push(`${w}: source_url host is not on the official-domain allow-list`); }
     catch (e) { errors.push(`${w}: source_url is not a valid URL`); }
-    ["last_verified", "source_page_review_date"].forEach(k => { if (c[k] && !/^\d{4}-\d{2}-\d{2}$/.test(c[k])) errors.push(`${w}: ${k} must be YYYY-MM-DD`); });
+    ["last_verified", "source_page_review_date", "opened"].forEach(k => { if (c[k] && !/^\d{4}-\d{2}-\d{2}$/.test(c[k])) errors.push(`${w}: ${k} must be YYYY-MM-DD`); });
     if (CLINICAL_WORDING.test([c.who, c.covers, c.cost, c.route_note].join(" "))) errors.push(`${w}: clinical-instruction wording`);
   });
   return errors;

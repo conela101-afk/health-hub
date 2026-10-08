@@ -2,9 +2,12 @@
 // scheme. Standalone layer, like data/vaccines.js. Validate: node scripts/validate-costs.js
 //
 // Every row is verify: true / urlStatus: "search-result": the rules come from a research
-// pass against official pages; no page was opened live in this repo's environment.
-// Money figures can change at each Budget. Budget 2027 was announced on 6 Oct 2026 and
-// has NOT been checked against these figures, so every amount is flagged volatile.
+// pass against official pages. Five cross-border rows also carry opened: "2026-10-08", the
+// day their source pages were read in a browser; verify stays true until Elaine clears it.
+// Money figures can change at each Budget. Budget 2027 was announced on 6 Oct 2026; its
+// health summaries (gov.ie, Citizens Information) list no change to these amounts except
+// free contraception to age 37, but the full Budget documents have not been read, so every
+// amount is still flagged volatile.
 // Income and means-test thresholds are deliberately not stored: link to the official
 // calculator instead.
 //
@@ -121,7 +124,7 @@ const COSTS = [
     how_to_apply: "Claim from the HSE with your receipts after treatment, following the HSE steps.",
     route_note: "For care in Northern Ireland, see the Northern Ireland Planned Healthcare Scheme.",
     compare: "roi-niphs", volatile: false,
-    source_url: "https://www2.hse.ie/services/schemes-allowances/cross-border-directive/how-to-get/", source_name: "HSE: Cross-Border Directive, how to get it" },
+    source_url: "https://www2.hse.ie/services/schemes-allowances/cross-border-directive/how-to-get/", source_name: "HSE: Cross-Border Directive, how to get it", opened: "2026-10-08" },
 
   { id: "roi-niphs", scheme: "Northern Ireland Planned Healthcare Scheme (NIPHS)", jurisdiction: "ROI", kind: "crossborder",
     who: "People living in the Republic of Ireland who are entitled to public care, with a referral from a GP or from a consultant they saw as a public patient.",
@@ -132,7 +135,7 @@ const COSTS = [
     how_to_apply: "Follow the HSE steps before you go and claim afterwards.",
     conflict_note: "The HSE page (opened in a browser on 8 Oct 2026) says prior notification for inpatient and day-case care is optional. Another source summarised for this site says overnight stays need prior authorisation. Check the HSE page before booking.",
     compare: "roi-cross-border-directive", volatile: true, volatile_reason: "Temporary scheme; terms can change without a new law.",
-    source_url: "https://www2.hse.ie/services/schemes-allowances/niphs/before-you-go/", source_name: "HSE: NIPHS, before you go" },
+    source_url: "https://www2.hse.ie/services/schemes-allowances/niphs/before-you-go/", source_name: "HSE: NIPHS, before you go", opened: "2026-10-08" },
 
   { id: "roi-tas", scheme: "Treatment Abroad Scheme (TAS)", jurisdiction: "ROI", kind: "crossborder",
     who: "People in the Republic of Ireland referred by a public hospital consultant (a GP cannot refer). The treatment must not be available in Ireland, or not within the usual medical time.",
@@ -142,7 +145,7 @@ const COSTS = [
     how_to_apply: "Your consultant makes the application. Ask them whether your treatment qualifies.",
     route_note: "Ask about this scheme before the Cross-Border Directive, which cannot refund care that qualifies for TAS.",
     compare: "roi-cross-border-directive", volatile: false,
-    source_url: "https://www2.hse.ie/services/schemes-allowances/treatment-abroad-scheme/", source_name: "HSE: Treatment Abroad Scheme" },
+    source_url: "https://www2.hse.ie/services/schemes-allowances/treatment-abroad-scheme/", source_name: "HSE: Treatment Abroad Scheme", opened: "2026-10-08" },
 
   { id: "ni-roi-reimbursement", scheme: "Republic of Ireland Reimbursement Scheme (Northern Ireland)", jurisdiction: "NI", kind: "crossborder",
     who: "People living in Northern Ireland who were entitled to HSC care. The 2021 scheme required prior authorisation.",
@@ -152,7 +155,7 @@ const COSTS = [
     how_to_apply: "No official page read says this 2021 scheme is open now. For current options, see the Waiting List Reimbursement Scheme.",
     conflict_note: "The Department of Health NI page for this scheme is a press release dated 16 June 2021. It describes a temporary measure for 12 months, with applications from 1 July 2021, run by the Health and Social Care Board. The Department's current Waiting List Reimbursement page (opened 8 Oct 2026) says that scheme is based on the previous Republic of Ireland Reimbursement Scheme. A non-official source (Border People) says the older scheme closed to new applicants in September 2022; no official page read confirms that date. Treat this scheme as not open unless the Department of Health NI says otherwise.",
     compare: "ni-waiting-list-reimbursement", volatile: true, volatile_reason: "Temporary scheme. Official pages read do not show it open now; replaced in practice by the Waiting List Reimbursement Scheme.",
-    source_url: "https://www.health-ni.gov.uk/news/cross-border-healthcare-directive-reinstated", source_name: "Department of Health NI: Cross-border healthcare reinstated" },
+    source_url: "https://www.health-ni.gov.uk/news/cross-border-healthcare-directive-reinstated", source_name: "Department of Health NI: Cross-border healthcare reinstated", opened: "2026-10-08" },
 
   { id: "ni-waiting-list-reimbursement", scheme: "Waiting List Reimbursement Scheme (Northern Ireland)", jurisdiction: "NI", kind: "crossborder",
     who: "People ordinarily resident in Northern Ireland who have been on an HSC treatment or surgical waiting list for more than 52 weeks, for treatment the HSC would provide in the same clinical circumstances.",
@@ -162,7 +165,7 @@ const COSTS = [
     not_covered_note: "Not covered: long-term social care, organ transplants, public vaccination programmes and clinical trials. Eligibility and funding have changed since the scheme opened.",
     how_to_apply: "Apply for prior authorisation to the Department of Health's National Contact Point team before treatment, with a letter from your HSC Trust confirming your place on the waiting list.",
     compare: "ni-roi-reimbursement", volatile: true, volatile_reason: "Eligibility and funding have changed since the scheme opened.",
-    source_url: "https://online.hscni.net/our-work/travelfortreatment/wl-reimbursement/", source_name: "HSCNI: Waiting List Reimbursement Scheme" },
+    source_url: "https://online.hscni.net/our-work/travelfortreatment/wl-reimbursement/", source_name: "HSCNI: Waiting List Reimbursement Scheme", opened: "2026-10-08" },
 
   // ---------- Northern Ireland ----------
   { id: "ni-free-prescriptions", scheme: "Free prescriptions", jurisdiction: "NI", kind: "medicines",

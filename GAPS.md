@@ -454,7 +454,7 @@ All 11 rows in `data/vaccines.js` need a live-page check by a person before the 
 
 ## Cost schemes: open checks (8 Oct 2026)
 
-All 10 rows in `data/costs.js` need a live-page check by a person before `verify` comes off.
+Every row in `data/costs.js` needs a live-page check by a person before `verify` comes off. The five cross-border rows were opened on 8 Oct 2026 (`opened` field) and are waiting for sign-off.
 
 - **Budget 2027 (6 Oct 2026), checked 8 Oct 2026 against two pages:** the Department of Health press release of 7 Oct 2026 on gov.ie and the Health section of Citizens Information's Budget 2027 summary (edited 8 Oct). Neither lists a change to the prescription charge or monthly cap, the DPS cap, the ED charge, GP visit card limits or Treatment Benefit. The only cost-scheme change listed is free contraception extended from age 35 to 37 (no start date given), now on the contraception row. That is absence from a summary, not confirmation: the full Budget documents, the Finance Bill and the HSE scheme pages have not been read, so every money figure stays volatile with an updated note. Re-check when the HSE pages and the Finance Bill update.
 - NI help with health costs: Department of Health NI (5 Nov 2025) says UC recipients are passported automatically from 1 Dec 2025; the BSO page says otherwise. Confirm which is current.
