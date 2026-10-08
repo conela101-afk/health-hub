@@ -111,7 +111,7 @@
     { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
     { name: "Find out-of-hours & urgent care", href: "#/out-of-hours", keywords: "out of hours urgent care gp" },
     { name: "Vaccines: what's covered where", href: "#/vaccines", keywords: "vaccine vaccines vaccination flu covid shingles shingrix pneumococcal ppv23 rsv free cost pharmacy gp immunosuppressed" },
-    { name: "What you pay: medicines and GP costs", href: "#/costs", keywords: "cost costs pay prescription charge medical card drugs payment scheme dps long term illness lti gp visit card hospital charge ed free prescriptions hc1 hrt contraception" },
+    { name: "What you pay: medicines, GP and cross-border costs", href: "#/costs", keywords: "cross border cross-border directive niphs treatment abroad tas reimbursement waiting list cost costs pay prescription charge medical card drugs payment scheme dps long term illness lti gp visit card hospital charge ed free prescriptions hc1 hrt contraception" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
     { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
@@ -380,7 +380,7 @@
         <a class="pill" href="#/conditions">Search a condition (HSE, NHS &amp; charity info)</a>
         <a class="pill" href="#/medicines">Search medicine leaflets</a>
         <a class="pill" href="#/vaccines">Vaccines: what's covered where</a>
-        <a class="pill" href="#/costs">What you pay: medicines &amp; GP costs</a>
+        <a class="pill" href="#/costs">What you pay: medicines, GP &amp; cross-border</a>
         <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
         <a class="pill" href="#/tools">Guided tools (complaints, records, schemes, waiting lists, discharge)</a>
       `;
@@ -1399,7 +1399,7 @@ ${name}`;
   }
 
   // ---- What you pay: medicines and primary-care costs (data/costs.js) ----
-  const COST_KIND_LABELS = { medicines: "Medicines", gp: "GP", hospital: "Hospital", other: "Other" };
+  const COST_KIND_LABELS = { medicines: "Medicines", gp: "GP", hospital: "Hospital", crossborder: "Cross-border", other: "Other" };
 
   function costRowHtml(c){
     const rows = typeof COSTS !== "undefined" ? COSTS : [];
@@ -1425,7 +1425,7 @@ ${name}`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
-        <h1>What you pay: medicines and GP costs</h1>
+        <h1>What you pay: medicines, GP and cross-border costs</h1>
         <p class="count">Republic of Ireland and Northern Ireland, ${rows.length} schemes. Information only.</p>
       </div>
       <div class="callout">

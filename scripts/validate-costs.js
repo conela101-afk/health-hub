@@ -5,7 +5,7 @@ const vm = require("vm");
 
 const SOURCE_DOMAINS = ["hse.ie", "gov.ie", "citizensinformation.ie", "nidirect.gov.uk", "health-ni.gov.uk", "hscni.net"];
 const hostAllowed = h => SOURCE_DOMAINS.some(d => h === d || h.endsWith("." + d));
-const KINDS = ["medicines", "gp", "hospital", "other"];
+const KINDS = ["medicines", "gp", "hospital", "crossborder", "other"];
 const CURRENCIES = ["EUR", "GBP"];
 const CAP_UNITS = ["person", "family", null];
 const CLINICAL_WORDING = /\b(should take|you should treat|diagnos(e|ing)\b|treat with)\b/i;

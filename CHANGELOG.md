@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-08 [Claude] (cross-border schemes)
+- Added five cross-border rows to `data/costs.js` (16 rows) under a new `crossborder` type, shown on `#/costs` (page renamed "What you pay: medicines, GP and cross-border costs"): Cross-Border Directive, NIPHS, Treatment Abroad Scheme, and the NI Republic of Ireland Reimbursement Scheme and Waiting List Reimbursement Scheme. Wording matches the existing schemes-selector facts. Validator accepts the new type; cache bumped.
+- Two source conflicts are shown on the rows, not resolved: NIPHS prior notification (HSE page says optional for inpatient and day-case care; another source says overnight stays need authorisation), and whether the NI Republic of Ireland Reimbursement Scheme is open (Department of Health NI says reinstated; the Border People page behind the existing selector fact says closed in September 2022). `GAPS.md` lists both.
+- Reviewed the seven open PRs from 13 Sep (#30 to #36): each adds one entry without a `source_url`, with a `checked` date and placeholder phone text, and main already has a sourced equivalent for all seven. Recommended closing; none merged.
+
 ## 2026-10-08 [Claude] (pass 2 confirmations, Treatment Benefit)
 - Elaine's confirmations: Sligo's out-of-hours base is Caredoc (Sligo added to the Caredoc row and map); Louth is Nedoc with its base at Drogheda ("excl. Dundalk" dropped from the NEDOC row). Added `ni-tyrone-family-support-hub-omagh` (link only, `sector: "voluntary"`, specialty `hub`; the page is egress-blocked, so it was not opened). 706 to 707 entries by script.
 - Correction: the PR #96 summary said `roi-sligo-caredoc-sligo` was not added. It was, because the report's Part 3 table lists it. It stays, now confirmed.

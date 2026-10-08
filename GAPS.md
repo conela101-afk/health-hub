@@ -459,3 +459,9 @@ All 10 rows in `data/costs.js` need a live-page check by a person before `verify
 - **Budget 2027 (6 Oct 2026):** check the prescription charge and monthly cap, the DPS cap, the ED charge and the GP visit card limits against the Budget measures. Every money figure is flagged volatile for this reason.
 - NI help with health costs: Department of Health NI (5 Nov 2025) says UC recipients are passported automatically from 1 Dec 2025; the BSO page says otherwise. Confirm which is current.
 - Not started: Treatment Benefit, High Tech Drugs, Fair Deal, Home Support, hardship routes, aids and appliances, Dental Treatment Services, Community Ophthalmic Services, Med1 tax relief, and the cross-border schemes (CBD, NIPHS, the NI reimbursement scheme).
+
+## Cross-border rows: open checks (8 Oct 2026)
+
+- Open the Department of Health NI page and the HSCNI Waiting List Reimbursement page: is the Republic of Ireland Reimbursement Scheme open, and is the Waiting List Reimbursement Scheme its replacement or a separate scheme? The existing selector fact `sc-ni-roi-scheme-closed` (non-official source, `verify: true`) disagrees with the Department of Health NI page; settle it and fix whichever is wrong.
+- NIPHS: confirm from the HSE page whether prior authorisation is needed for overnight stays.
+- Not built: S2/EHIC/GHIC, and the All-Island Congenital Heart Disease Network.

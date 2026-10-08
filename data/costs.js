@@ -8,7 +8,7 @@
 // Income and means-test thresholds are deliberately not stored: link to the official
 // calculator instead.
 //
-// Fields: id, scheme, jurisdiction (ROI|NI), kind (medicines|gp|hospital|other),
+// Fields: id, scheme, jurisdiction (ROI|NI), kind (medicines|gp|hospital|crossborder|other),
 // who, covers, cost (plain words), cap_amount (number|null), currency (EUR|GBP),
 // cap_period, cap_unit (person|family|null), not_covered_note, how_to_apply,
 // route_note (which scheme to look at instead or as well), compare (id),
@@ -110,6 +110,59 @@ const COSTS = [
     route_note: "Separate from the HSE medical card dental and optical services.",
     volatile: true, volatile_reason: "Budget 2026 changed this scheme. " + BUDGET_NOTE,
     source_url: "https://www.gov.ie/en/department-of-social-protection/services/treatment-benefit-scheme/", source_name: "gov.ie: Treatment Benefit Scheme" },
+
+  // ---------- Cross-border (care in the other jurisdiction or abroad) ----------
+  { id: "roi-cross-border-directive", scheme: "Cross-Border Healthcare Directive (EU/EEA)", jurisdiction: "ROI", kind: "crossborder",
+    who: "People living in the Republic of Ireland who are entitled to the public health service.",
+    covers: "Planned care in another EU/EEA country that you would be entitled to publicly in Ireland. It no longer covers the UK.",
+    cost: "You pay the provider first, then claim back the lesser of what you paid and what the same care costs in the Irish public system. Travel and accommodation are not refunded.",
+    cap_amount: null, currency: "EUR", cap_period: null, cap_unit: null,
+    not_covered_note: "Some care needs prior authorisation. Care that qualifies for the Treatment Abroad Scheme cannot be refunded under the Directive.",
+    how_to_apply: "Claim from the HSE with your receipts after treatment, following the HSE steps.",
+    route_note: "For care in Northern Ireland, see the Northern Ireland Planned Healthcare Scheme.",
+    compare: "roi-niphs", volatile: false,
+    source_url: "https://www2.hse.ie/services/schemes-allowances/cross-border-directive/how-to-get/", source_name: "HSE: Cross-Border Directive, how to get it" },
+
+  { id: "roi-niphs", scheme: "Northern Ireland Planned Healthcare Scheme (NIPHS)", jurisdiction: "ROI", kind: "crossborder",
+    who: "People living in the Republic of Ireland who are entitled to public care, with a referral from a GP or from a consultant they saw as a public patient.",
+    covers: "Planned care from a private provider in Northern Ireland that is available publicly in Ireland. It cannot be used for public healthcare in Northern Ireland.",
+    cost: "You pay the provider up front and claim back from the HSE, up to the Irish public cost. Travel and accommodation are not covered.",
+    cap_amount: null, currency: "EUR", cap_period: null, cap_unit: null,
+    not_covered_note: "A temporary scheme: its end date and claim limits can change. Check the HSE page before you book.",
+    how_to_apply: "Follow the HSE steps before you go and claim afterwards.",
+    conflict_note: "The HSE page describes prior notification for inpatient and day-case care as optional. Another source summarised for this site says overnight stays need prior authorisation. Check the HSE page before booking.",
+    compare: "roi-cross-border-directive", volatile: true, volatile_reason: "Temporary scheme; terms can change without a new law.",
+    source_url: "https://www2.hse.ie/services/schemes-allowances/niphs/before-you-go/", source_name: "HSE: NIPHS, before you go" },
+
+  { id: "roi-tas", scheme: "Treatment Abroad Scheme (TAS)", jurisdiction: "ROI", kind: "crossborder",
+    who: "People in the Republic of Ireland referred by a public hospital consultant (a GP cannot refer). The treatment must not be available in Ireland, or not within the usual medical time.",
+    covers: "Public treatment in another EU/EEA country, Switzerland or the UK, approved in advance (form E112 or S2).",
+    cost: "If approved, the HSE pays the overseas provider directly rather than you claiming money back.",
+    cap_amount: null, currency: "EUR", cap_period: null, cap_unit: null,
+    how_to_apply: "Your consultant makes the application. Ask them whether your treatment qualifies.",
+    route_note: "Ask about this scheme before the Cross-Border Directive, which cannot refund care that qualifies for TAS.",
+    compare: "roi-cross-border-directive", volatile: false,
+    source_url: "https://www2.hse.ie/services/schemes-allowances/treatment-abroad-scheme/", source_name: "HSE: Treatment Abroad Scheme" },
+
+  { id: "ni-roi-reimbursement", scheme: "Republic of Ireland Reimbursement Scheme (Northern Ireland)", jurisdiction: "NI", kind: "crossborder",
+    who: "People living in Northern Ireland who are entitled to HSC care.",
+    covers: "Private treatment in the Republic of Ireland, with prior authorisation. Excluded: organ transplants and public vaccination.",
+    cost: "Reimbursed up to what the same care costs the HSC.",
+    cap_amount: null, currency: "GBP", cap_period: null, cap_unit: null,
+    how_to_apply: "Get approval from the Department of Health NI before treatment.",
+    conflict_note: "The Department of Health NI page says this scheme was reinstated as a temporary measure. A non-official source (Border People) says it closed to new applicants in September 2022. Read the official page before relying on either.",
+    compare: "ni-waiting-list-reimbursement", volatile: true, volatile_reason: "Temporary scheme, and sources disagree on whether it is open.",
+    source_url: "https://www.health-ni.gov.uk/news/cross-border-healthcare-directive-reinstated", source_name: "Department of Health NI: Cross-border healthcare reinstated" },
+
+  { id: "ni-waiting-list-reimbursement", scheme: "Waiting List Reimbursement Scheme (Northern Ireland)", jurisdiction: "NI", kind: "crossborder",
+    who: "People living in Northern Ireland on a long HSC waiting list for some treatments.",
+    covers: "Some treatment received in the Republic of Ireland or elsewhere in the EU, with approval before you go.",
+    cost: "Depends on the scheme terms; read the official page.",
+    cap_amount: null, currency: "GBP", cap_period: null, cap_unit: null,
+    not_covered_note: "Eligibility and funding have changed since the scheme opened.",
+    how_to_apply: "Apply for approval through the HSC Business Services Organisation before treatment.",
+    compare: "ni-roi-reimbursement", volatile: true, volatile_reason: "Eligibility and funding have changed since the scheme opened.",
+    source_url: "https://online.hscni.net/our-work/travelfortreatment/wl-reimbursement/", source_name: "HSCNI: Waiting List Reimbursement Scheme" },
 
   // ---------- Northern Ireland ----------
   { id: "ni-free-prescriptions", scheme: "Free prescriptions", jurisdiction: "NI", kind: "medicines",
