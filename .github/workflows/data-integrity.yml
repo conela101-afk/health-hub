@@ -30,6 +30,7 @@ jobs:
           node --check data.js
           node --check data/facilities.js
           node --check data/conditions.js
+          node --check data/vaccines.js
           node --check sw.js
 
       - name: AON deadline calculator edge-case tests
@@ -79,3 +80,6 @@ jobs:
             echo "::error file=app.js::Only $size bytes (expected 30KB+). app.js may have been truncated."
             exit 1
           fi
+
+      - name: Validate vaccine coverage rows
+        run: node scripts/validate-vaccines.js

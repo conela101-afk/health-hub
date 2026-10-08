@@ -440,3 +440,14 @@ Applied from `research/LOCAL-SERVICES-PARENTING-2026-10-07.md` with Elaine's dec
 - **Second opinion** and **NHS 111 in NI:** not found on official pages (nidirect does not mention 111).
 - **Omagh health visiting on familysupportni.gov.uk:** the specific listing was not found. A Western Trust-wide health visiting row went in instead.
 - **Mayo mental health:** withheld until a current www2.hse.ie page names Mayo teams.
+
+## Vaccine matrix: open checks (3 Oct 2026)
+
+All 11 rows in `data/vaccines.js` need a live-page check by a person before the `verify` flag comes off.
+
+- ROI PPV23: HSE public page was due for review on 20 Sep 2026 and doesn't describe the pharmacy limits; the rules come from circular NCO-15-2026. Confirm the page has been updated.
+- NI pneumococcal: confirm with the PHA whether PCV20 has replaced PPV23 (Green Book June 2025 expected it).
+- NI shingles: nidirect page conflicts with PHA cohorts; PHA treated as primary.
+- NI COVID-19 autumn 2026 cohorts: confirm on nidirect (UKHSA blog is not on the allow-list).
+- Not added, secondary sources only: ROI infant RSV 2026/27 (nirsevimab) windows, flu campaign launch date, HIQA shingles price and budget figures. Add once an HSE or HIQA page is opened.
+- Not started: MMR, HPV, Hepatitis B and travel vaccines; the medicines-cost schemes (medical card charge, DPS, LTI, GP visit card, ED charge) as the next Tier 1 build.

@@ -110,6 +110,7 @@
     { name: "Search a condition", href: "#/conditions", keywords: "condition conditions disease illness" },
     { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
     { name: "Find out-of-hours & urgent care", href: "#/out-of-hours", keywords: "out of hours urgent care gp" },
+    { name: "Vaccines: what's covered where", href: "#/vaccines", keywords: "vaccine vaccines vaccination flu covid shingles shingrix pneumococcal ppv23 rsv free cost pharmacy gp immunosuppressed" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
     { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
@@ -367,6 +368,7 @@
         <a class="pill" href="#/prep">Prep for an appointment</a>
         <a class="pill" href="#/passport">My Patient Passport</a>
         <a class="pill" href="#/conditions">Search a condition</a>
+        <a class="pill" href="#/vaccines">Vaccines: what's covered</a>
         <a class="pill" href="#/tools">Guided tools</a>
       `
       : `
@@ -376,6 +378,7 @@
         <a class="pill" href="#/facilities">Find a Facility (regulated centres, HIQA &amp; RQIA)</a>
         <a class="pill" href="#/conditions">Search a condition (HSE, NHS &amp; charity info)</a>
         <a class="pill" href="#/medicines">Search medicine leaflets</a>
+        <a class="pill" href="#/vaccines">Vaccines: what's covered where</a>
         <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
         <a class="pill" href="#/tools">Guided tools (complaints, records, schemes, waiting lists, discharge)</a>
       `;
@@ -1393,6 +1396,63 @@ ${name}`;
     </a>`;
   }
 
+  // ---- Vaccines: what's covered where (data/vaccines.js) ----
+  const VACCINE_SETTING_LABELS = { gp: "GP", pharmacy: "Pharmacy", hospital: "Hospital", private: "Private" };
+
+  function vaccineRowHtml(v){
+    const labels = typeof VACCINE_STATUS_LABELS !== "undefined" ? VACCINE_STATUS_LABELS : {};
+    const tone = v.status === "free" ? "tag-sage" : v.status === "free_supply_fee_may_apply" ? "tag-sand" : "tag-coral";
+    const rows = typeof VACCINES !== "undefined" ? VACCINES : [];
+    const other = v.compare && rows.find(x => x.id === v.compare);
+    const fee = v.admin_fee === "private_discretionary" ? "A private fee may apply"
+      : v.admin_fee === "standard" ? "Usual consultation fee may apply" : v.admin_fee === "private" ? "Paid privately" : "No fee";
+    const waived = (v.fee_waived_if || []).length ? ` Fee waived with: ${v.fee_waived_if.map(escapeHtml).join(", ")}.` : "";
+    return `
+      <div class="callout callout-spaced" id="${escapeHtml(v.id)}">
+        <strong>${escapeHtml(v.vaccine)} <span class="tag ${tone}">${escapeHtml(labels[v.status] || v.status)}</span></strong>
+        <div class="tag-row"><span class="tag tag-violet">${escapeHtml(v.jurisdiction === "ROI" ? "Republic of Ireland" : "Northern Ireland")}</span>${v.setting.map(s => `<span class="tag tag-sand">${escapeHtml(VACCINE_SETTING_LABELS[s] || s)}</span>`).join("")}${v.season ? `<span class="tag tag-violet">${escapeHtml(v.season)}</span>` : ""}</div>
+        <p>${escapeHtml(v.who)}</p>
+        <p><strong>Vaccine:</strong> ${escapeHtml(v.product_cost)}. <strong>Giving it:</strong> ${escapeHtml(fee)}.${escapeHtml(waived)}</p>
+        ${v.not_covered_note ? `<p>${escapeHtml(v.not_covered_note)}</p>` : ""}
+        ${v.clinician_check ? `<p><em>${escapeHtml(v.clinician_check)}</em></p>` : ""}
+        ${v.conflict_note ? `<p class="source-note">Sources disagree: ${escapeHtml(v.conflict_note)}</p>` : ""}
+        ${other ? `<p><a href="#/vaccines/${escapeHtml(other.id)}">Compare: ${escapeHtml(other.vaccine)}, ${escapeHtml(other.jurisdiction)}${other.setting.length === 1 ? " (" + escapeHtml(VACCINE_SETTING_LABELS[other.setting[0]] || other.setting[0]) + ")" : ""}</a></p>` : ""}
+        <span class="source-note">Source: <a href="${escapeHtml(v.source_url)}" target="_blank" rel="noopener">${escapeHtml(v.source_name)} ↗</a>. Checked against search results on ${escapeHtml(v.last_verified)}, not the live page.${v.volatile ? ` Changes often: ${escapeHtml(v.volatile_reason)}` : ""}</span>
+      </div>`;
+  }
+
+  function renderVaccines(){
+    const rows = typeof VACCINES !== "undefined" ? VACCINES : [];
+    const names = [...new Set(rows.map(v => v.vaccine.replace(/ \(.*\)$/, "")))];
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Vaccines: what's covered where</h1>
+        <p class="count">Republic of Ireland and Northern Ireland, ${rows.length} entries. Information only.</p>
+      </div>
+      <div class="callout">
+        <strong>Who is covered, and what you may pay.</strong> The same vaccine can be free to supply but still carry a fee for giving it, depending on whether you go to a GP or a pharmacy and which card you hold. Whether you fall into a risk group is a question for your GP, specialist or pharmacist.
+      </div>
+      <div class="search-field search-field-inline">
+        <select id="vaccine-filter" aria-label="Filter by vaccine"><option value="">All vaccines</option>${names.map(n => `<option>${escapeHtml(n)}</option>`).join("")}</select>
+        <select id="vaccine-region" aria-label="Filter by region"><option value="">Both regions</option><option value="ROI">Republic of Ireland</option><option value="NI">Northern Ireland</option></select>
+      </div>
+      <div id="vaccine-results"></div>
+      <div class="callout callout-spaced">Rules change each season and after budgets. Rows marked as changing often should be re-checked on the linked official page before you rely on them.</div>
+    `;
+    const draw = () => {
+      const n = document.getElementById("vaccine-filter").value, r = document.getElementById("vaccine-region").value;
+      const shown = rows.filter(v => (!n || v.vaccine.startsWith(n)) && (!r || v.jurisdiction === r));
+      document.getElementById("vaccine-results").innerHTML = shown.map(vaccineRowHtml).join("") || `<p class="callout">No matches.</p>`;
+    };
+    document.getElementById("vaccine-filter").addEventListener("change", draw);
+    document.getElementById("vaccine-region").addEventListener("change", draw);
+    draw();
+    const target = location.hash.split("/")[2];
+    const el = target && document.getElementById(target);
+    if (el) el.scrollIntoView();
+  }
+
   function renderConditions(){
     const list = typeof CONDITIONS !== "undefined" ? CONDITIONS : [];
 
@@ -2015,6 +2075,7 @@ ${name}`;
     else if (parts[0] === "conditions" && !parts[1]) withAssets(["data/conditions.js"], renderConditions);
     else if (parts[0] === "conditions" && parts[1]) withAssets(["data/conditions.js"], () => renderConditionDetail(parts[1]));
     else if (parts[0] === "medicines") withAssets(["data/conditions.js"], renderMedicines);
+    else if (parts[0] === "vaccines") withAssets(["data/vaccines.js"], renderVaccines);
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();

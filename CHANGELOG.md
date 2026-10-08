@@ -88,6 +88,11 @@
 
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
+## 2026-10-03 [Claude] (vaccine coverage matrix)
+- New `data/vaccines.js` layer (11 rows: ROI flu, COVID-19, PPV23 GP and pharmacy routes, shingles, adult RSV; NI flu, COVID-19, shingles, adult RSV, pneumococcal) and a `#/vaccines` page with vaccine and region filters, setting-specific fees (`admin_fee`, `fee_waived_if`), comparison links across jurisdictions, volatile flags and conflict notes. Added to search and the home pills.
+- `scripts/validate-vaccines.js` (allow-listed official hosts, required fields, enums, `compare` links) runs in the data-integrity workflow. `sw.js` cache v12 to v13.
+- All rows are `verify: true`, `urlStatus: "search-result"`: rules came from a research pass, no page was opened live here. Left out as secondary-only: ROI infant RSV (nirsevimab) 2026/27 details, the 8 Oct flu launch date, the HIQA shingles price and budget-impact figures. `ukhsa.blog.gov.uk` isn't on the domain allow-list, so NI COVID cites nidirect only. See `GAPS.md`.
+
 ## 2026-10-01 [Claude] (Phase A entries, PR B)
 - Added 21 `data.js` entries and updated `breastcheck` (496 to 517), all `verify: true`, with `source_url` and no phone or email. New specialties `rare-disease` and `screening`. `app.js` entry page shows an "unverified" note plus the source link for `verify` entries. `ngs-columcilles` withheld pending an hse.ie source (see `GAPS.md`). SW cache v12.
 ## 2026-10-02 [Claude] (Pass 5 replacement: rows and docs)
