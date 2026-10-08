@@ -1,5 +1,91 @@
 # Changelog
 
+## 2026-10-07 [Claude] — local services and parenting rows
+- **Added 43 entries (567 to 610)** from the research report and Elaine's decisions: 5 hospital information pages, 5 emergency departments, injury unit, minor injury and urgent care rows (Naas, Omagh, South Tyrone), GP out-of-hours (Caredoc Wexford, Gorey, Wicklow and Arklow; Nedoc Navan; KDoc Naas), maternity emergency, early pregnancy and parentcraft rows (Mayo, Louth, Wexford), Wicklow primary care, Mayo Local Health Office, Omagh women's health and GUM clinics, Western Trust health visiting, Tusla and Citizens Information parenting, leave, adoption and fostering rows, NI fostering, HSE Live, Long-Term Illness Scheme (link only, `/lti/` URLs) and NI regional interpreting. NI-wide rows list the six counties.
+- All rows `verify: true`, `urlStatus: "search-result"`, no `checked`, no phones. County rows rose in Wexford, Mayo, Louth, Meath, Wicklow and Kildare (county matrix before and after, no coverage claim).
+- **New specialties (approved):** `urgent` "Urgent Care" and `general` "General Information & Access". Two earlier urgent-care explainers also carry `urgent`.
+- **Edited `hse-ahr`** (HSE eligibility statement from the page, Citizens Information link). **Skipped as duplicates:** the IVF row and the nidirect urgent care row. **Withheld:** Mayo mental health and others, per Elaine.
+- Search audit: `long term illness` and `interpreter` now return results and were removed from the known gaps.
+
+## 2026-10-07 [Claude] — approved hosts and research decisions
+- **Allow-list:** added `familysupportni.gov.uk`, `saolta.ie`, `caredoc.ie` and `kdoc.ie` to `scripts/validate-data.js` (Elaine approved 7 Oct 2026). `bso.hscni.net`, `adoptionandfostercare.hscni.net` and `online.hscni.net` were already covered by `hscni.net`. Tests added for all seven, plus a lookalike-host failure.
+- **Rule** added to `AI_RULES.md`: the validator allow-list is the source of truth for hosts, and unapproved hosts stay withheld.
+- **Specialty `urgent` approved** (not created yet; see REVIEW.md).
+- **Research rows not added:** the results file was not in the folder. Elaine's decisions for it (six-county NI rows, LTI link family, Mayo withholds, un-withholds, row rules) and a duplicate pre-check are recorded in `REVIEW.md`. No entries changed.
+
+## 2026-10-07 [Claude] — search crisis banner and condition keywords
+- **Crisis banner (search S6, approved by Elaine 7 Oct 2026):** one `role="note"` callout above the results for crisis searches, with the approved wording and a single link to the existing Mental Health Crisis Support page. No phone numbers or other text were added. Triggers live in `search.js` (`isCrisisQuery`): the words suicide, suicidal, overdose, overdosed; the phrases self harm, self harming, selfharm, want to die, kill myself, end my life; and `crisis` only when it is the whole query (also "in crisis", "mental health crisis", "crisis support"). Whole-word matching, so "crisis pregnancy", "die" or "harm" do not trigger it. Suicidal, overdosed and self harming are inflections added to the approved list.
+- **Tests:** `scripts/search-audit.js` now checks that the banner shows for 12 phrasings and does not show for 12 others.
+- **Condition keywords (S8):** applied the lay and alternative names from `CONDITIONS_KEYWORDS_PROPOSAL.md` to 53 conditions with empty `keywords` (13 rows had no alternative name and stay `[]`). Name-level synonyms only, no symptoms and no claims. Spot checks: "chest infection", "fits", "pnd", "celiac" and "blood cancer" now find the right conditions.
+- `sw.js` cache `pocket-guide-v13` to `v14` (`app.js`, `search.js` and `data/conditions.js` changed). No entries added or removed (567). `node --check` on all JS, the date tests, `validate-data.js` and the search audit all pass.
+
+## 2026-10-07 [Claude] — auto-merge rules
+- Added the "auto-merge is a human decision" rule to `AI_RULES.md` (brief Part 3) and a set-up checklist to `REVIEW.md`.
+- **`automerge.yml` not added:** the push token cannot create or edit workflow files, so Part 2 needs adding by hand via the GitHub web UI (or a token with `workflow` scope). The YAML parses, and the guard was tested against the real history of PRs #84 to #90. Nothing in the repo behaves differently yet.
+
+## 2026-10-07 [Claude] — whole-app search and aliases v2
+- **New `search.js`** (shared by `app.js` and the audit, so the audit tests what people get): one normalise() for query and haystacks (case, apostrophes, fadas, `&`, hyphens, punctuation), a US-to-UK spelling map, word-start matching for queries of 3 characters or fewer, phrase-or-all-words matching for longer ones (one-letter words ignored), and aliases that fire on the exact key or on a 4+ character key inside a longer query. Entry haystacks are normalised once and cached. Added to `index.html` and `sw.js` assets.
+- **Aliases apply to entries, both organisation lists and tool pages.** Conditions are now in global search (loaded on demand, search still works if they cannot load), plus one "Search regulated facilities" row. A line "Also searched: …" shows what a spelling or alias added.
+- **`SEARCH_ALIASES` v2 and `SEARCH_US_UK` in `data.js`:** the brief's table plus the parenting aliases, keys in normalised form. Targets that matched nothing (foster, adopt, lipid, assistive, international protection, and "mobility" for wheelchair, which only found guide dogs) were removed.
+- **`scripts/search-audit.js` is now a regression test** (CI step still to be added by hand, see REVIEW.md: the push token cannot edit workflow files). It fails on an alias target that matches nothing, on a key not in normalised form, on a query returning nothing that is not in `search-audit-known-gaps.txt`, or on a query over 150 entries. The prototype's single-character-term quirk is fixed. Irish-language queries are reported, not enforced.
+- The facilities-type page filter and the conditions page filter also use the shared matcher now (they had their own plain substring match).
+- **Not built, needs Elaine:** the crisis link above results (S6). **Proposed, not applied:** keywords for the 66 conditions with none (`CONDITIONS_KEYWORDS_PROPOSAL.md`, S8).
+- Content gaps and the Irish-language result are in `GAPS.md`. No entries were added or removed.
+
+## 2026-10-07 [Claude] — primary-care specialty
+- New specialty id `primary-care`, label "Primary & Urgent Care" (approved 7 Oct 2026), in `SPECIALTIES`. Nothing else reads a hard-coded list, so no other file needed the id.
+- **Added 3 entries (564 to 567 once merged after the parenting PR):** `ni-pharmacy-first`, `roi-injury-units` (directory explainer) and `ni-minor-injury-units` (by trust). All pages opened in the browser that day, web links only, no phones, no triage wording. Dates and unchecked trusts are stated in the entries and in REVIEW.md.
+- Not added: HSE CIT (page gone). No coverage claim is made.
+
+## 2026-10-07 [Claude] — inclusive parenting language
+- **Labels:** "Parenting & New Motherhood" is now "New & Expectant Parents" (A1, home pill A2); "Perinatal & Maternal Mental Health" is now "Perinatal Mental Health" (A4); the home pill "Breastfeeding support" is now "Infant feeding & breastfeeding support" (A3). Specialty ids, entry ids and hash routes are unchanged.
+- **Entry text:** `mbu-status` blurb no longer says "mothers" (the name "Mother & Baby Unit status" stays, as it is the service name); `nurture` renamed "Nurture — Perinatal Mental Health Counselling" (the old name was our descriptor, and Nurture's own site says women and partners); `friends-of-breastfeeding` kept faithful to the site, which describes its buddy service as for pregnant or breastfeeding women, so it was not generalised.
+- **Checks (before the alias and merge changes below):** zero live hits for the old strings outside CHANGELOG; entry counts for `parenting`, `feeding`, `mh`, `loss` and `obs` identical before and after by script; `node --check` on `app.js`, `data.js` and `tools.js`; validator and tests pass. Service-worker cache name not bumped: `sw.js` is network-first and recent content changes have not bumped it.
+- **Rule:** parent-neutral wording rule added to `AI_RULES.md` and the README "Keep language general" bullet.
+- **Search aliases (approved 7 Oct 2026):** new `SEARCH_ALIASES` in `data.js`, read by `searchVariants()` in `app.js`. A whole query that equals a key also matches the listed terms (entries and support organisations). Targets are words already in entries, mainly the "New & Expectant Parents" label; "dad" and "father" now return that specialty's entries. Checked in the browser, no console errors.
+- **Merged `nurture-pnd` into `nurture`** (approved 7 Oct 2026): one entry tagged `parenting` and `mh`, wording from nurturehealth.ie. Entries 565 to 564; `mh` 26 to 25, `parenting` unchanged. The id `nurture-pnd` is gone.
+- **Hosts:** `tusla.ie` added to the allow-list (owner approved). `aai.gov.ie` was already allowed through `gov.ie`. No Tusla or AAI entries written yet; see the content gaps in `GAPS.md`.
+
+## 2026-10-07 [Claude] — plastics, burns, neurosurgery and emergency surgery research
+- Checked the supplied research against the official pages, opened in the browser pane. Where a page disagreed with the research, the page won: the CHI plastics page now says "national tertiary and quaternary referral centre", and the Northern Trust and Southern Trust surgery pages are Board recommendations, not settled changes. The Northern Trust URLs in the research return 404 and the HSE CIT page is "Page not found".
+- **Added 4 entries (561 to 565):** `ni-regional-burns-rvh`, `ulster-regional-plastic-surgery` (Ulster Hospital, not the RVH), `chi-plastic-reconstructive-surgery` and `ni-emergency-general-surgery-sites` (NI explainer by trust, `verify: true`). Web links only, no phones.
+- **Edited:** `beaumont-national-neuroscience` reworded to Beaumont's own "National Neurosurgical Centre" wording, `verify` cleared, `checked` set. `rvh-regional-neurosurgery` renamed to Regional Neurosciences Centre, reworded to the DoH NI review, `verify: true`. `national-burns-unit-sjh` no longer calls CHI Temple Street "the national centre for paediatric major burns".
+- **Not added:** CUH neurosurgery (site offline), ROI emergency general surgery (no official list), and the primary-care layer (CIT page gone; Pharmacy First, injury units and minor injury units need a specialty decision). Details in REVIEW.md.
+
+## 2026-10-07 [Claude] — surgery-trauma specialty (schema)
+- New specialty id `surgery-trauma`, label "Surgery & Trauma" (approved 7 Oct 2026), in `SPECIALTIES` in `data.js`. The validator, `app.js` (icon falls back to the default pin) and the tests read the list dynamically, so nothing else needed the id. `scripts/county-matrix.js` gained a "Surgery & trauma" column.
+- Added `surgery-trauma` as an extra specialty (existing ones kept) on `national-major-trauma-centres`, `rvh-major-trauma-centre`, `rvh-regional-neurosurgery` and `beaumont-national-neuroscience`. This only improves findability; it adds no entries and no coverage.
+- County matrix before and after: every total is unchanged (561 entries, 160 national). The only differences are in the new column: Cork 1, Dublin 2, plus the Cork "no area" row 1. No coverage claim is made.
+- Not added (research queue, nothing sourced yet): plastics and burns, general and emergency surgery pathways, CUH neurosurgery, and the primary-care layer (pharmacy-led services, community intervention teams, local injury units).
+
+## 2026-10-07 [Claude] — audit-fixes additions
+- `beaumont-national-neuroscience`: `verify: true`, `checked` removed, `source_url` set to the Beaumont neurology page (opened). Blurb not reworded. The unsourced 1800-TRAUMA line was removed from `details` (validator rule for `verify` entries); logged in REVIEW.md.
+- `swah-gynae`: internal verification note and the unrelated emergency general surgery reference removed; plain description; `verify: true`; `source_url` is the Western Trust SWAH page (opened), with the Women's Health Clinics page as a resource. No claims about other SWAH services.
+
+## 2026-10-07 [Claude] — Budget 2027 wording and 7 Oct checks
+- **Budget 2027 (announced 6 Oct 2026), wording only.** Sources opened in the browser: Citizens Information Budget 2027 page and the gov.ie Department of Health release. Added "announced" wording, never as live services, to: Free Contraception Scheme and IFPA (eligibility to age 37 from 35, no start date); Apply for HSE Home Support (1.8 million extra hours in 2027); Carer's Allowance (disregard to €1,150 single / €2,300 couple from July 2027, from €1,000 / €2,000; €10 weekly rise from January 2027); Disability Allowance (€10 weekly rise from January 2027, €500 cost of disability lump sum in 2027, payment date to be confirmed); Fair Deal (500 more places); both Jigsaw rows (four new services); HSE CAMHS (new ADHD pathway, 40 clinicians). Current rates and limits are unchanged. No new rows. Shingles programme, cancer follow-up closer to home, rare-disease medicines pilot, home STI testing and the HIV Action Plan had no directly affected existing entry, so nothing was added for them. GP visit card, DPS and AON are not in either source and were left alone.
+- **Galway Clinic phone confirmed** (091 785 000) against blackrockhealth.com/locations; the "try 800" note removed from `galway-clinic-gynae`. `galwayclinic.com` now 301-redirects to blackrockhealth.com. `blackrockhealth.com` added to the allow-list with owner approval; `galway-clinic-gynae` now uses it as web and `source_url` (`urlStatus: "opened"`).
+- **`ni-transplant-gb-referral`:** liver part sourced to the Belfast Trust liver coordinator page (opened 7 Oct) and `checked`; heart/lung to Freeman stays unconfirmed (`verify: true`) because the cardiac surgery page says only "apart from transplants". SVUH and Belfast Trust wording on King's kept separate.
+- **Validator:** removed the rule that banned "Budget 2027" anywhere (it only made sense before the Budget) and flipped its test. All other rules unchanged.
+- Entries: 561 before, 561 after (script count). `data.js` 515,009 to 517,399 bytes.
+
+## 2026-10-07 [Claude]
+- **Tertiary gaps (PR 2):** 12 new `verify: true` search-result entries (liver transplant SVUH, NRH referral, NCCP AYA network, Belfast TYA, psycho-oncology, Beaumont MND clinic, CHI GHIFT/NCIMD/craniofacial/clinical genetics, Bon Secours Cork heart & lung and radiotherapy), no contacts. `beaumont.ie`, `childrenshealthireland.ie` and `bonsecours.ie` added to the validator allow-list. 2 requested rows left out as duplicates of existing entries (`gum-guide-stjames`, `ni-regional-genetics`). See `GAPS.md`.
+- **Audit fixes (PR 1):** cardiac "one of 4 national centres" wording replaced; national-centre wording softened on ILD, PH and pituitary entries; NI transplant narrowed. See PR audit-fixes.
+- **Follow-up (PR #83):** Mater and Beaumont 7 Oct browser checks (Mater national-centre wording, pulmonary hypertension, Beaumont MND renamed a service); CHI genetics renamed to "CHI at Crumlin & Temple Street"; `roi-chi-clinical-genetics`, `roi-svuh-liver-transplant` and `roi-nrh-rehab` set to `urlStatus: "opened"`, `checked: 7 Oct 2026`, `verify` cleared; `gum-guide-stjames` now cites guideclinic.ie (online booking, PrEP, Young Person's Clinic; `verify: true`, no new `checked`); `guideclinic.ie` added to the validator allow-list; psycho-oncology row left as `search-result`. No new entries.
+- `data.js` entries: 549 to 561 (script count; the 597 and 619 figures in older docs are stale).
+
+## 2026-10-06 [Claude]
+- **DPS card:** added a `prep` note that High Tech medicines count towards the DPS monthly limit, plus a link to the PCRS pharmacist handbook (2025, section 2.7). The handbook is pharmacist-facing; HSE patient pages don't mention High Tech. Source URL fetched and read this session.
+- **BreastCheck:** added "about every 2 years (sometimes up to 3)" for ages 50-69.
+- Saved `research-batch1-batch2-2026-10-04.md` (unapplied Batch 1/2 research, with the verification status of each item).
+
+## 2026-10-04 [Claude]
+- **Pass 6 all-island audit, applied.** The handoff's draft rows didn't match the `data.js` schema and most already existed, so only genuine gaps were added: `ncg17-adult-t1d` and `mater-neurology-dbs-headache` (ENTRIES, web link only, no phones, no `checked` date), FLAC in `GENERAL_ADVOCACY_ORGS`, and `ni-carers-allowance` in `SCHEME_LINKS`. Enriched `hse-podiatry-diabetic-foot` (five-level model, source link) and `hse-disability-respite` (PHN/GP route, CDNT key worker, source link).
+- **Not added, on purpose:** NI complaints/NIPSO and subject access (already in `TOOL_FACTS`/`RIGHTS_BODIES_NI`), Beaumont ILD (search-result only; St Vincent's ILD already listed), MHC inspector, BSO interpreting.
+- No currency figures were added anywhere. No `data.js` text contained the old Carer's Allowance disregard figures, so no correction was needed.
+- `data.js` entries: 615 to 619.
+
 Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 
 ## 2026-10-03 [Claude] (vaccine coverage matrix)
@@ -51,6 +137,12 @@ Tool-tagged log of AI assistant sessions on this repo, per `AI_RULES.md`.
 ## 2026-09-29 [Claude]
 - **Fixed doubled brackets in the SAR builder preview** (`app.js`, `generateSarLetter`). The empty-state fallbacks (`[Your name]`, `[Your address]`, `[Your date of birth]`) already carry brackets, and the letter header wrapped every value in a second pair, giving `[[Your name]]` and `[Date of birth: [Your date of birth]]`. It also bracketed real values once filled (`[Jane Smith]`). The header now prints values unwrapped, with the "Date of birth:" label outside any brackets. Placeholders keep their single pair; the contact line is unbracketed too. One code path serves both jurisdictions (ROI and NI differ only in the statute text), so the NI variant is covered. `LETTER_TEMPLATES` in `data.js` and `tools.js` letters use plain single-bracket placeholders and were not affected. Service worker cache `v10` -> `v11`.
 - Not yet browser-tested after the fix; from source only.
+
+## 2026-09-28 [Claude] (perf + input fixes)
+- **Date/time/phone inputs**: the complaint-letter "Date(s) of what happened" free-text field is now a calendar `<input type="date">` plus an optional "Last date" calendar; the two are joined back into the single `{{dates}}` letter value ("12 March 2026 to 15 March 2026", or one date). The waiting-room "Appointment time" is now `type="time"` (formatted back to "2:30pm" in the message) and "Your phone number" is `type="tel"` (numeric keypad). The SAR "Phone or email" field is deliberately left as text because it accepts either. A delegated click handler calls `showPicker()` so tapping anywhere in a date/time field opens the native calendar/clock, not just the icon.
+- **Lazy-loaded assets**: `data/facilities.js` (~2 MB, 260 KB gz), `data/conditions.js` (also holds `MEDICINE_SEARCH_TARGETS`) and Leaflet (JS+CSS, ~46 KB gz) are no longer in `index.html`. New `loadAsset()`/`withAssets()` in `app.js` fetch them on first visit to `#/facilities`, `#/conditions`, `#/medicines`, and on tapping "Show map". Home now loads `styles.css`, `data.js`, `tools.js`, `app.js` only (~310 KB gz saved on first load). Same-origin script injection is allowed by the existing CSP (`script-src 'self'`); no CSP change.
+- **Service worker**: cache bumped to v11 at the time; superseded by later sessions' bumps (now v13 after this branch's merge with `main`). Fetch switched from `cache: "no-store"` to `"no-cache"`, so files revalidate with ETag and return 304 instead of being re-downloaded every visit. Still network-first, so no stale-content or version-skew risk. The lazy files stay in the precache list, so offline still works once installed.
+- Verified with Playwright: home requests only 4 JS/CSS files; facilities/conditions/medicines/map load on demand (including deep links on a fresh load); waiting-room message and complaint-letter date range render correctly; no console errors. `node --check` passes on `app.js`, `tools.js`, `sw.js`.
 
 ## 2026-09-28 [Claude]
 - **Removed the Grok/multi-AI lane-split coordination model.** Claude Code is now the sole implementer of this repo — content, data, JS, HTML, and CSS. `AI_RULES.md` rewritten around content rules (official-source-only, `checked`/`last_verified`, `source_url`, no analytics, administrative-only scope) instead of a two-tool lane table. `MASTER-BUILD-PLAN.md`'s coordination section marked historical. `SECTOR_AUDIT.md` and this file's own past entries keep their existing Grok mentions as-is — dated historical record, not standing rules.

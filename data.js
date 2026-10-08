@@ -36,6 +36,7 @@ const SPECIALTIES = [
   { id: "ent",             label: "ENT & Audiology" },
   { id: "fertility",       label: "Fertility & IVF" },
   { id: "gastro",          label: "Gastroenterology & IBD" },
+  { id: "general",         label: "General Information & Access" },
   { id: "paediatrics",     label: "General Paediatrics" },
   { id: "genetics",        label: "Genetics & Hereditary Cancer Risk" },
   { id: "cancer",          label: "Gynaecological & Breast Cancer" },
@@ -55,10 +56,11 @@ const SPECIALTIES = [
   { id: "ophthalmology",   label: "Ophthalmology & Eye Care" },
   { id: "orthopaedics",    label: "Orthopaedics" },
   { id: "palliative",      label: "Palliative & End-of-Life Care" },
-  { id: "parenting",       label: "Parenting & New Motherhood" },
+  { id: "parenting",       label: "New & Expectant Parents" },
   { id: "pelvicphysio",    label: "Pelvic Health Physiotherapy" },
-  { id: "mh",              label: "Perinatal & Maternal Mental Health" },
+  { id: "mh",              label: "Perinatal Mental Health" },
   { id: "loss",            label: "Pregnancy & Baby Loss" },
+  { id: "primary-care",    label: "Primary & Urgent Care" },
   { id: "phn",             label: "Public Health Nursing" },
   { id: "rare-disease",    label: "Rare Diseases" },
   { id: "respiratory",     label: "Respiratory Medicine & CF" },
@@ -69,7 +71,9 @@ const SPECIALTIES = [
   { id: "sleep-medicine",  label: "Sleep Medicine" },
   { id: "spinal-injury",   label: "Spinal Cord Injury" },
   { id: "stroke",          label: "Stroke" },
+  { id: "surgery-trauma",  label: "Surgery & Trauma" },
   { id: "treatment-abroad", label: "Cross-Border & Treatment Abroad Schemes" },
+  { id: "urgent",          label: "Urgent Care" },
   { id: "urology",         label: "Urology" },
   { id: "vascular",        label: "Vascular" },
   { id: "weightmanagement", label: "Weight Management & Bariatric Care" },
@@ -342,11 +346,11 @@ const ENTRIES = [
   },
   {
     id: "nurture",
-    name: "Nurture — Maternal Mental Health Counselling",
-    specialty: ["mh"],
+    name: "Nurture — Perinatal Mental Health Counselling",
+    specialty: ["parenting", "mh"],
     county: ["national"],
-    blurb: "Affordable, timely counselling for perinatal mental health, birth trauma, fertility issues, grief.",
-    details: ["No-wait-list model in most areas."],
+    blurb: "Counselling for women and partners around pregnancy, childbirth and postnatal depression, antenatal and postnatal anxiety, pregnancy loss, fertility, and perimenopause and menopause, as described on Nurture's own site.",
+    details: ["No-wait-list model in most areas.", "The site also lists support for post-traumatic stress, sleep, and men and depression."],
     referral: "Self-referral.",
     contact: { web: "nurturehealth.ie" },
     checked: "4 Sep 2026"
@@ -1010,11 +1014,14 @@ const ENTRIES = [
     details: [
       "Blackrock Health's gynaecology service is described as running across its Dublin and Galway clinics jointly.",
       "Number above is the clinic's general switchboard — ask to be directed to gynaecology or a named consultant.",
-      "Historically JCI-accredited as part of the Blackrock Health group — a separately sourced list gave the switchboard as 091 785 800 rather than 091 785 000 listed here; unconfirmed which is current, try the other if one doesn't connect.",
+      "Historically JCI-accredited as part of the Blackrock Health group.",
+      "The switchboard number above matches the Galway Clinic listing on Blackrock Health's locations page, read 7 Oct 2026.",
     ],
     referral: "GP or consultant referral letter required.",
-    contact: { phone: "091 785 000", web: "galwayclinic.com", address: "Doughiska, Galway, H91 HHT0" },
-    checked: "6 Sep 2026"
+    contact: { phone: "091 785 000", web: "blackrockhealth.com/locations", address: "Doughiska, Galway, H91 HHT0" },
+    source_url: "https://www.blackrockhealth.com/locations",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
   },
   {
     id: "hermitage-clinic-gynae",
@@ -1243,13 +1250,16 @@ const ENTRIES = [
     name: "HSE Free Contraception Scheme",
     specialty: ["contraception"],
     county: ["national"],
-    blurb: "Free contraception for women aged 17–35, or any age with a medical card.",
+    blurb: "Free contraception for women aged 17–35, or any age with a medical card. Budget 2027 announced that eligibility will extend to people aged up to 37; no start date has been given yet.",
     details: [
       "Covers consultations, prescriptions, and a range of contraceptive methods.",
       "Emergency contraception is also available without a prescription from participating pharmacies.",
     ],
     referral: "Register with a participating GP or family planning clinic.",
     contact: { web: "hse.ie" },
+    resources: [
+      { label: "Budget 2027 health measures — gov.ie (announced 7 Oct 2026)", url: "https://www.gov.ie/en/department-of-health/press-releases/budget-2027-delivers-291-billion-for-health-services-as-government-continues-investment-in-more-care-closer-to-home/" }
+    ],
     checked: "4 Sep 2026"
   },
   {
@@ -1268,8 +1278,8 @@ const ENTRIES = [
     name: "BreastCheck — National Breast Screening Programme",
     specialty: ["cancer", "screening"],
     county: ["national"],
-    blurb: "Free mammograms for women aged 50 to 69, every 2 years, run by the National Screening Service.",
-    details: ["Screening reminders are also visible in the HSE Health App."],
+    blurb: "Free mammograms for women aged 50 to 69, run by the National Screening Service.",
+    details: ["Invited about every 2 years (sometimes up to 3).", "Screening reminders are also visible in the HSE Health App."],
     referral: "Automatic invitation by eligible age band, or self-register if not yet invited.",
     contact: { web: "breastcheck.ie" },
     source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/breastcheck-age-range-explained/",
@@ -1624,17 +1634,6 @@ const ENTRIES = [
     details: ["Local branches nationwide — check the website for your area."],
     referral: "Self-referral via website.",
     contact: { web: "cuidiu.ie" },
-    checked: "4 Sep 2026"
-  },
-  {
-    id: "nurture-pnd",
-    name: "Nurture",
-    specialty: ["parenting", "mh"],
-    county: ["national"],
-    blurb: "Support and counselling specifically around pregnancy, birth, and postnatal depression.",
-    details: [],
-    referral: "Self-referral via website.",
-    contact: { web: "nurturehealth.ie" },
     checked: "4 Sep 2026"
   },
   {
@@ -2076,14 +2075,19 @@ const ENTRIES = [
     name: "South West Acute Hospital Gynaecology (Enniskillen)",
     specialty: ["gynae"],
     county: ["fermanagh", "tyrone"],
-    blurb: "Runs Women's Health Clinics and obstetrics/gynaecology services, unlike emergency general surgery which was suspended at SWAH in 2022 — confirmed still running. Covers all of Fermanagh and west Tyrone.",
+    blurb: "Women's Health Clinics and obstetrics/gynaecology at South West Acute Hospital, Enniskillen. Covers Fermanagh and west Tyrone.",
     details: [],
     referral: "GP referral.",
     contact: { phone: "028 6638 2000", extra: "Main hospital switchboard — ask for Gynaecology.", address: "124 Irvinestown Road, Enniskillen, Co. Fermanagh BT74 6DN" },
-    checked: "4 Sep 2026"
+    resources: [
+      { label: "Women's Health Clinics at South West Acute Hospital — Western Trust", url: "https://westerntrust.hscni.net/hospitals/south-west-acute-hospital/womens-health-clinics-at-south-west-acute-hospitals/" }
+    ],
+    source_url: "https://westerntrust.hscni.net/hospitals/south-west-acute-hospital/",
+    urlStatus: "opened",
+    verify: true
   },
 
-  // ---- Perinatal & Maternal Mental Health: other 5 hub hospitals + NI ----
+  // ---- Perinatal Mental Health: other 5 hub hospitals + NI ----
   {
     id: "nmh-perinatal-mh",
     name: "National Maternity Hospital Specialist Perinatal MH Team",
@@ -2157,7 +2161,7 @@ const ENTRIES = [
     name: "Mother & Baby Unit status (ROI & NI)",
     specialty: ["mh", "obs"],
     county: ["national"],
-    blurb: "No mother & baby psychiatric unit currently operates in either jurisdiction — mothers needing inpatient mental health care are admitted without their baby.",
+    blurb: "No mother & baby psychiatric unit currently operates in either jurisdiction — people who need inpatient mental health care after giving birth are admitted without their baby.",
     details: [
       "Northern Ireland: confirmed — Belfast City Hospital, expected to open 2028/29 (announced 30 April 2026).",
       "Republic of Ireland: funded via Budget 2026 but no opening date yet — planned units at St Vincent's, Dublin (co-located with the new National Maternity Hospital) and a 6-bed unit in Limerick (St Joseph's Hospital campus)."
@@ -2611,7 +2615,7 @@ const ENTRIES = [
     name: "Irish Family Planning Association (IFPA) Clinics",
     specialty: ["contraception"],
     county: ["dublin"],
-    blurb: "Free Contraception Scheme provider (ages 17–35); also pregnancy counselling.",
+    blurb: "Free Contraception Scheme provider (ages 17–35; Budget 2027 announced an extension to age 37, no start date yet); also pregnancy counselling.",
     details: ["5-7 Cathal Brugha Street, Dublin 1, D01 F9K7 — 01 872 7088.", "The Square Shopping Centre, Tallaght, D24 HK33 — 01 459 7685.", "Pregnancy counselling also at Galway, Limerick, Waterford."],
     referral: "Self-referral.",
     contact: { phone: "01 872 7088" },
@@ -2682,7 +2686,7 @@ const ENTRIES = [
     name: "Friends of Breastfeeding",
     specialty: ["feeding", "parenting"],
     county: ["national"],
-    blurb: "Mum2Mum peer-support groups plus a one-to-one \"Breastfeeding Buddy\" scheme pairing you with an experienced mother by text, phone, email, or video call.",
+    blurb: "Mum2Mum peer-support groups plus a one-to-one \"Breastfeeding Buddy\" scheme. The site describes the buddy service as for pregnant or breastfeeding women, and the support as by text, phone, email, or video call.",
     details: [],
     referral: "Self-referral via website.",
     contact: { web: "friendsofbreastfeeding.ie" },
@@ -2901,13 +2905,20 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["cardiology"],
     county: ["dublin"],
-    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI for heart attacks, electrophysiology/ablation, TAVI and other structural heart procedures, and cardiac surgery. Also the national centre for heart & lung transplantation and ventricular assist devices (VAD).",
+    blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. Cardiac surgery, heart and lung transplant, TAVI, adult congenital heart disease and ventricular assist devices (VAD).",
     details: [
-      "The 4 comprehensive cardiac centres nationally are Mater, St James's, Cork University Hospital, and University Hospital Galway — between them they carry out about 75% of Ireland's primary PCI for heart attacks.",
-      "TAVI has been running here since 2008, in partnership with Mater Private next door.",
+      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres.",
+      "The Mater's cardiology page (opened 7 Oct 2026) lists a national cardiology centre, cath lab, adult congenital heart disease, care for people waiting for a heart transplant, and nurse specialist services including TAVI and arrhythmia.",
+      "The Mater describes itself as the national centre for heart surgery, heart and lung transplant, adult congenital heart disease and advanced heart failure and ventricular assist devices (Mater 'About the Mater' page, viewed 7 Oct 2026).",
+      "Not confirmed on that page: 24/7 primary PCI, and electrophysiology/ablation (not named). Ask the hospital before relying on either.",
+      "TAVI has been running here since 2008, in partnership with Mater Private next door."
     ],
     referral: "GP or consultant referral; emergency STEMI (heart attack) cases go directly via ambulance/cath lab activation, not routine referral.",
     contact: { phone: "01 803 2000", extra: "Main hospital switchboard — ask for Cardiology or Cardiothoracic Surgery." },
+    source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }, { label: "About the Mater (the Mater's own description of its national centres)", url: "https://www.mater.ie/about/about-the-mater/" }],
+    urlStatus: "opened",
+    verify: true,
     checked: "6 Sep 2026"
   },
   {
@@ -2916,10 +2927,17 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["cardiology"],
     county: ["dublin"],
-    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI, TAVI, and adult cardiac surgery (coronary artery bypass and valve surgery) at the Keith Shaw Unit, a national referral centre for acquired adult heart disease.",
-    details: [],
+    blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. Cardiac surgery on site, 24/7 primary PCI as part of the National ACS Programme, and TAVI.",
+    details: [
+      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres.",
+      "The Keith Shaw Unit is described elsewhere as a national referral centre for acquired adult heart disease. That wording was not confirmed on hospital pages we could check."
+    ],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "01 410 3000", extra: "Main hospital switchboard — ask for Cardiology or the Keith Shaw Unit." },
+    source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }],
+    urlStatus: "opened",
+    verify: true,
     checked: "6 Sep 2026"
   },
   {
@@ -2927,10 +2945,16 @@ const ENTRIES = [
     name: "Cork University Hospital — Cardiology & Cardiothoracic Surgery",
     specialty: ["cardiology"],
     county: ["cork"],
-    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI and cardiothoracic surgery, providing a regional acute service to Cork/Kerry and a tertiary referral service across the southern region (population 1m+).",
-    details: [],
+    blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. 24/7 primary PCI, cardiothoracic surgery and TAVI.",
+    details: [
+      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres."
+    ],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "021 492 2000", extra: "Main hospital switchboard — ask for Cardiology." },
+    source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }],
+    urlStatus: "opened",
+    verify: true,
     checked: "6 Sep 2026"
   },
   {
@@ -2938,10 +2962,15 @@ const ENTRIES = [
     name: "University Hospital Galway — Cardiology",
     specialty: ["cardiology"],
     county: ["galway"],
-    blurb: "One of Ireland's 4 national comprehensive cardiac centres — 24/7 primary PCI for the West/Saolta region.",
-    details: ["Cardiac surgery availability here isn't independently confirmed — the other 3 comprehensive centres (Mater, St James's, CUH) explicitly run cardiac surgery programmes; ask directly if this is what you need."],
+    blurb: "Named in the 2025 National Review of Adult Specialist Cardiac Services as one of four recommended national comprehensive cardiac centres. Cardiothoracic surgery and primary PCI.",
+    details: [
+      "The four recommended centres are the Mater, St James's, Cork University Hospital and University Hospital Galway. These are recommendations, not a designation: Recommendations 3 and 4 of the Review (Executive Summary, page 8 of the Review PDF; published on gov.ie 8 Apr 2025) concentrate complex interventional cardiology and 24/7 emergency STEMI care in these four centres."
+    ],
     referral: "GP or consultant referral; emergency STEMI cases go directly via ambulance/cath lab activation.",
     contact: { phone: "091 524 222", extra: "Main hospital switchboard — ask for Cardiology." },
+    source_url: "https://assets.gov.ie/static/documents/national-review-of-adult-specialist-cardiac-services-in-ireland.pdf",
+    resources: [{ label: "National Review of Adult Specialist Cardiac Services: publication page (gov.ie, 8 Apr 2025)", url: "https://www.gov.ie/en/department-of-health/publications/national-review-of-adult-specialist-cardiac-services-in-ireland" }],
+    urlStatus: "opened",
     checked: "6 Sep 2026"
   },
   {
@@ -2985,8 +3014,11 @@ const ENTRIES = [
     county: ["cork"],
     sector: "private",
     provider: "Bon Secours Health System",
-    blurb: "Private cardiology service including an Urgent & Express Cardiac Care Clinic (a GP fast-track for urgent heart/vascular assessment), electrophysiology for heart rhythm disorders, and tilt table testing for unexplained fainting/dizziness and suspected POTS (postural orthostatic tachycardia syndrome).",
-    details: ["The Urgent & Express Cardiac Care Clinic is specifically a fast-track route for GPs, not a walk-in service — ask your GP to refer you directly if urgent."],
+    blurb: "Private cardiology service including an Urgent & Express Cardiac Care Clinic (a GP fast-track route for urgent heart assessment), electrophysiology for heart rhythm disorders, and tilt table testing for unexplained fainting or dizziness.",
+    details: [
+      "The Urgent & Express Cardiac Care Clinic is a fast-track route for GPs, not a walk-in service. Ask your GP to refer you directly if urgent. Any fee cap and the referral criteria have not been confirmed here, so ask the hospital.",
+      "Tilt table testing at Cork was confirmed by phone with the hospital on 7 Oct 2026. The official HSE tilt table page lists Dublin and Tralee only."
+    ],
     referral: "GP or consultant referral; self-pay or health-insurance-funded.",
     contact: { phone: "1800 203 444", web: "bonsecours.ie/services/urgent-express-cardiac-care-clinic-cork" },
     checked: "6 Sep 2026"
@@ -3267,13 +3299,21 @@ const ENTRIES = [
     id: "beaumont-national-neuroscience",
     name: "Beaumont Hospital National Neuroscience Centre",
     sector: "voluntary",
-    specialty: ["neurology"],
+    specialty: ["neurology", "surgery-trauma"],
     county: ["dublin"],
-    blurb: "Ireland's national neurology/neurosurgery centre — covers epilepsy, stroke, MS, movement disorders, and general neurology alongside neurosurgery.",
-    details: ["Dedicated line for traumatic brain injury referrals: 1800 872 862 (1800-TRAUMA)."],
-    referral: "GP referral via Healthlink to the Neurology Department.",
+    blurb: "Beaumont's own pages describe a National Neurosurgical Centre for adult neurosurgery, alongside a Department of Neurology covering general neurology, epilepsy, motor neurone disease, migraine and headache, MS, movement disorders and cognitive decline.",
+    details: [
+      "The neurosurgery page says the service treats adult neurosurgical conditions including traumatic brain injury, brain and spinal tumours, neurovascular conditions, epilepsy, hydrocephalus and spinal conditions, with a 24/7 on-call system for referring clinicians.",
+      "Clinicians referring a traumatic brain injury are asked to use 1800-TRAUMA (1800 872 862).",
+    ],
+    referral: "GP referral via Healthlink to the Neurology Department. Neurosurgery referrals are clinician to clinician via Healthlink.",
     contact: { phone: "01 797 4105", email: "neurologyadmin@beaumont.ie" },
-    checked: "6 Sep 2026"
+    resources: [
+      { label: "Neurosurgery — Beaumont Hospital", url: "https://www.beaumont.ie/pages/health-A-Z/neurosurgery" }
+    ],
+    source_url: "https://www.beaumont.ie/pages/health-A-Z/neurology",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
   },
   {
     id: "ms-ireland",
@@ -3967,9 +4007,16 @@ const ENTRIES = [
     specialty: ["sexualhealth"],
     county: ["dublin"],
     blurb: "Free, HSE-operated STI/GUM clinic.",
-    details: [],
+    details: [
+      "Online booking is available.",
+      "PrEP clinics, with online booking.",
+      "A Young Person's Clinic for ages 20 and under."
+    ],
     referral: "Self-referral.",
-    contact: { phone: "01 416 2315" },
+    contact: { phone: "01 416 2315", web: "guideclinic.ie/sti-clinic" },
+    source_url: "https://guideclinic.ie/sti-clinic",
+    urlStatus: "opened",
+    verify: true,
     checked: "4 Sep 2026"
   },
   {
@@ -4525,12 +4572,15 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["respiratory"],
     county: ["dublin"],
-    blurb: "Ireland's only national referral and treatment centre for pulmonary hypertension, established 2003.",
+    blurb: "National centre for pulmonary hypertension at the Mater, established 2003.",
     details: [
       "Weekly clinics followed by a multidisciplinary team meeting; works closely with the Mater's adult congenital heart disease group and lung transplant team.",
+      "The Mater describes itself as the national centre for pulmonary hypertension (Mater 'About the Mater' page, viewed 7 Oct 2026)."
     ],
     referral: "Consultant cardiologist or respiratory physician referral.",
     contact: { phone: "01 803 4420", extra: "01 803 4423", email: "pha@mater.ie", address: "56 Eccles Street, Dublin 7" },
+    source_url: "https://www.mater.ie/about/about-the-mater/",
+    urlStatus: "opened",
     checked: "10 Sep 2026"
   },
   {
@@ -4539,7 +4589,7 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["respiratory"],
     county: ["dublin"],
-    blurb: "National referral centre for interstitial lung disease and pulmonary fibrosis.",
+    blurb: "Interstitial lung disease (ILD) and pulmonary fibrosis service at St Vincent's University Hospital.",
     details: [],
     referral: "GP e-referral via Healthlink to Respiratory Medicine, specifying ILD evaluation; consultant referral also accepted.",
     contact: { phone: "01 221 4208", address: "Suite 5, Herbert Wing, St Vincent's University Hospital, Elm Park, Dublin 4" },
@@ -4551,7 +4601,7 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["respiratory"],
     county: ["dublin"],
-    blurb: "Regional ILD centre and the designated national centre for familial pulmonary fibrosis, including genetic testing and counselling for families with a history of lung fibrosis.",
+    blurb: "ILD service at Beaumont, including the Irish Familial Pulmonary Fibrosis Centre, with genetic testing and counselling for families with a history of lung fibrosis.",
     details: [],
     referral: "GP referral via Healthlink or the respiratory integrated care hub, specifying ILD evaluation.",
     contact: { phone: "01 809 3058", email: "respiratoryadmin@beaumont.ie" },
@@ -4668,9 +4718,9 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["diabetes"],
     county: ["dublin"],
-    blurb: "National referral centre for pituitary disease, adrenal tumours and complex neuroendocrine conditions, with a weekly pituitary/adrenal/thyroid MDT and joint clinics with neurosurgery.",
+    blurb: "Referral service for pituitary disease, adrenal tumours and complex neuroendocrine conditions, with a weekly pituitary/adrenal/thyroid MDT and joint clinics with neurosurgery.",
     details: [
-      "St James's Hospital's own endocrinology service (checked 10 Sep 2026) covers general/thyroid/reproductive endocrinology and diabetes but does not currently list adrenal or neuroendocrine services on its own site — Beaumont is the confirmed centre for those.",
+      "St James's Hospital's own endocrinology service (checked 10 Sep 2026) covers general/thyroid/reproductive endocrinology and diabetes but does not list adrenal or neuroendocrine services on its own site. Beaumont's status as the national referral centre has not been confirmed on an official page."
     ],
     referral: "GP referral via Healthlink, addressed to the Pituitary/Adrenal MDT; practices without Healthlink can email endocrinologyadmin@beaumont.ie.",
     contact: { phone: "01 809 2811", email: "endocrinologyadmin@beaumont.ie" },
@@ -4944,7 +4994,7 @@ const ENTRIES = [
     county: ["dublin"],
     blurb: "National burns service for patients aged 14+, from across the island of Ireland.",
     details: [
-      "Paediatric major burns (under 14) go to the Plastic Surgery Service at CHI Temple Street, the national centre for paediatric major burns — referrals there must be made by phone to the on-call Plastic Surgery doctor.",
+      "Children with burns are managed by the Plastic and Reconstructive Surgery service at Children's Health Ireland (CHI at Crumlin and CHI at Temple Street). See the CHI plastics entry.",
     ],
     referral: "Referred from Emergency Departments, GP practices, or healthcare centres; direct emergency transfer for major burns.",
     contact: { phone: "01 416 2326" },
@@ -4953,7 +5003,7 @@ const ENTRIES = [
   {
     id: "national-major-trauma-centres",
     name: "About Ireland's Major Trauma Centres",
-    specialty: ["orthopaedics"],
+    specialty: ["orthopaedics", "surgery-trauma"],
     county: ["dublin", "cork"],
     blurb: "Major Trauma Centres at the Mater Hospital (Central Trauma Network, Dublin) and Cork University Hospital (South Trauma Network) receive high-severity trauma via ambulance diversion, not routine referral. Operational since April 2023.",
     details: [
@@ -5418,6 +5468,7 @@ const ENTRIES = [
     county: ["national"],
     blurb: "Community multidisciplinary teams for under-18s with moderate-to-severe mental health difficulties that can't be managed in primary care.",
     details: [
+      "Budget 2027 announced a new ADHD pathway in CAMHS, with 40 additional clinicians for it and for CAMHS intellectual disability (MHID) capacity. It is an announcement, not a live service, and no start date has been given.",
       "Referral can come from a GP, paediatrician, consultant, or senior community clinicians (NEPS psychologists, Tusla, Jigsaw, Disability Assessment Officers) — the referrer should liaise with the young person's GP.",
       "Named example: Linn Dara CAMHS, Dublin (CHO7).",
       "Staffing varies widely by area — from 44.8% to 74.7% of the levels recommended in \"A Vision for Change\" across CHOs.",
@@ -5432,7 +5483,7 @@ const ENTRIES = [
     specialty: ["camhs", "eating"],
     county: ["dublin", "kerry", "offaly", "tipperary", "wicklow", "waterford"],
     sector: "voluntary",
-    blurb: "Free, self-referral mental health support for ages 12-25, no diagnosis or GP letter needed — 18 locations nationwide.",
+    blurb: "Free, self-referral mental health support for ages 12-25, no diagnosis or GP letter needed — 18 locations nationwide. Budget 2027 announced four new Jigsaw services across six counties; no locations or dates are given in the sources read.",
     details: [
       "Named sites include Dublin City (44 Essex St East, Temple Bar D02 YR92, and Summerhill D01 TY46), Dublin South West (St John's House, High St, Tallaght D24), North Fingal (Swords K67 Y6K7), Kerry (Tralee), Offaly (Tullamore), Tipperary (Thurles), Wicklow (Bray), and Waterford (opened 31 August 2026).",
       "Per Jigsaw's 2025 Annual Report, referrals rose 23% to 11,064 in 2025 — the highest in its history — with a further 33% rise in Q1 2026 (to 3,909), which Jigsaw says signals an accelerating trend in youth mental health need.",
@@ -5819,9 +5870,12 @@ const ENTRIES = [
     specialty: ["adultdisability"],
     county: ["national"],
     blurb: "Temporary carer relief for families/carers of adults with a disability.",
-    details: [],
+    details: [
+      "Your public health nurse or GP can arrange an assessment. Respite may be run by the HSE or by a voluntary organisation, and what is available depends on your area.",
+      "For a child with a Children's Disability Network Team, ask the team's key worker or social worker.",
+    ],
     referral: "Contact your local health centre or Public Health Nurse for assessment.",
-    contact: {},
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/respite-care/" },
   },
   {
     id: "hse-personal-assistance",
@@ -6040,9 +6094,35 @@ const ENTRIES = [
     details: [
       "Under the HSE Model of Care for the Diabetic Foot (2021), people with diabetes and a medical card get one free diabetic foot screening a year, with risk-stratified follow-up (community/hospital podiatry, or a hospital Multidisciplinary Diabetic Foot Team for active foot disease).",
       "The national footcare screening programme is still becoming established, per Diabetes Ireland.",
+      "The model has five levels: self-management, general practice screening, community Foot Protection Teams for moderate and high risk, hospital Multidisciplinary Foot Teams for active foot disease, and inpatient care. Ask your GP which level your feet are at.",
     ],
     referral: "PHN/GP referral; some services accept direct contact.",
-    contact: {},
+    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/diabetes/moc/diabetic-foot-model-of-care-2021.pdf" },
+  },
+  {
+    id: "ncg17-adult-t1d",
+    name: "About the national guideline for adults with type 1 diabetes",
+    specialty: ["diabetes"],
+    county: ["national"],
+    blurb: "National Clinical Guideline No. 17 (version 2, May 2024) sets out the standard of care adults with type 1 diabetes should expect, including specialist review and structured education.",
+    details: [
+      "It is a Department of Health guideline, not a service you can refer yourself to. It is useful to quote when you ask your team what you should be offered.",
+      "The full report and its economic annexes are published on gov.ie.",
+    ],
+    referral: "Not a service. Ask your GP or diabetes team about specialist review and structured education.",
+    contact: { web: "www.gov.ie/en/department-of-health/collections/type-1-diabetes-mellitus-in-adults-version-2/" },
+  },
+  {
+    id: "mater-neurology-dbs-headache",
+    name: "Mater Hospital Neurology (deep brain stimulation, headache)",
+    specialty: ["neurology"],
+    county: ["dublin"],
+    blurb: "Neurology service at the Mater that lists deep brain stimulation and headache care among its clinics.",
+    details: [
+      "The Mater says neurology waits can be long, so ask your referrer what to expect.",
+    ],
+    referral: "GP or consultant referral through Central Referrals or Healthlink.",
+    contact: { web: "www.mater.ie/services/neurology/" },
   },
   {
     id: "hse-ot-primary-care",
@@ -6092,7 +6172,7 @@ const ENTRIES = [
     sector: "voluntary",
     specialty: ["paediatrics"],
     county: ["dublin"],
-    blurb: "The tertiary hub for paediatric care: CHI at Crumlin, Temple Street, Tallaght, and Connolly, with the new National Children's Hospital in development.",
+    blurb: "The tertiary hub for paediatric care: CHI at Crumlin, Temple Street, Tallaght, and Connolly, with the new National Children's Hospital in development (check CHI for updates).",
     details: [
       "Community/developmental paediatrics links to Public Health Nurse developmental checks.",
       "Regional (\"model 4R\"), major (\"model 3\"), and local (\"model 2\") hospitals nationwide also run paediatric assessment units and outpatient departments as part of the HSE's National Model of Care for Paediatric Healthcare — see named regional examples below.",
@@ -6209,25 +6289,26 @@ const ENTRIES = [
   // purpose, and there's no `checked` date, until someone fetches the live pages.
   {
     id: "rvh-regional-neurosurgery",
-    name: "Royal Victoria Hospital Belfast — Regional Neurosciences Centre (Neurosurgery)",
-    specialty: ["neurology"],
+    name: "Royal Victoria Hospital Belfast — Regional Neurosciences Centre",
+    specialty: ["neurology", "surgery-trauma"],
     county: ["antrim"],
-    blurb: "Northern Ireland's single Regional Neurosciences Centre. It provides neurosurgery and most sub-specialist neurology inpatient care for the whole of NI.",
+    blurb: "The Department of Health NI describes one Regional Neurosciences Centre in Northern Ireland, based at the Royal Victoria Hospital. It provides most sub-specialist neurology services, including specialist inpatient care, for the wider NI population.",
     details: [
-      "Suspected brain tumours are referred to the Neuro-Oncology Specialist Surgical Unit at the RVH.",
-      "Neurosurgery is only provided on the RVH site in NI. There's no second neurosurgical unit elsewhere in the region."
+      "Suspected brain tumours are referred to the Neuro-Oncology Specialist Surgical Unit at the RVH."
     ],
     referral: "Consultant or ED referral. Not a GP-direct or self-referral service.",
     contact: {
-      extra: "Belfast Trust switchboard — ask for Neurosurgery / Regional Neurosciences Centre.",
       web: "belfasttrust.hscni.net/services/cancer/types/neuro-oncology-brain-tumours/",
       address: "Royal Victoria Hospital, Grosvenor Road, Belfast"
-    }
+    },
+    source_url: "https://www.health-ni.gov.uk/articles/review-neurology-services-interim-report",
+    urlStatus: "opened",
+    verify: true
   },
   {
     id: "rvh-major-trauma-centre",
     name: "About Northern Ireland's Major Trauma Centre (Royal Victoria Hospital)",
-    specialty: ["orthopaedics"],
+    specialty: ["orthopaedics", "surgery-trauma"],
     county: ["antrim"],
     blurb: "The RVH in Belfast is NI's Major Trauma Centre, the hub of the Regional Trauma Network. It has a consultant-led major trauma ward and a rooftop helipad for the NI Air Ambulance (HEMS).",
     details: [
@@ -6237,6 +6318,146 @@ const ENTRIES = [
     ],
     referral: "Not GP-referred. Patients reach the MTC by emergency ambulance or HEMS triage, or by transfer between hospitals.",
     contact: { web: "online.hscni.net/partnerships/majortrauma/major-trauma-network-faqs/" }
+  },
+  // Plastics, burns and emergency surgery (7 Oct 2026). Every page below was opened in the browser pane that day.
+  {
+    id: "ni-regional-burns-rvh",
+    name: "Northern Ireland Regional Burns Service (Royal Victoria Hospital)",
+    specialty: ["surgery-trauma", "orthopaedics"],
+    county: ["antrim"],
+    blurb: "Belfast Trust runs the Northern Ireland Regional Burns Service at the Royal Victoria Hospital: the Norman C. Hughes Regional Burns Unit, a dedicated burns theatre, a daily burns dressing clinic and outpatient burns clinics.",
+    details: [
+      "The unit has 8 beds for adults who need inpatient care. Children with burns are seen and managed on Paul Ward in the Children's Hospital.",
+      "The Burns Dressing Clinic is the point of referral for new burns that can be treated as an outpatient.",
+      "Belfast Trust's page is shared with its plastic surgery service. It lists adult burns care, complex skin cancer, and reconstruction after breast and gynaecological cancer surgery.",
+    ],
+    referral: "Not stated in detail on the page. The Burns Dressing Clinic is the referral point for outpatient burns; ask your GP or the emergency department about a burn.",
+    contact: { web: "belfasttrust.hscni.net/service/regional-burns-service-and-plastic-surgery/" },
+    source_url: "https://belfasttrust.hscni.net/service/regional-burns-service-and-plastic-surgery/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "ulster-regional-plastic-surgery",
+    name: "Ulster Hospital — Regional Plastic Surgery (South Eastern Trust)",
+    specialty: ["surgery-trauma"],
+    county: ["down"],
+    blurb: "The South Eastern Trust's plastic surgery service is described on the Trust's own page as a regional specialty, with a regional Plastic and Oral Maxillofacial Unit on Ward 4C at the Ulster Hospital, Dundonald.",
+    details: [
+      "A Plastics Trauma Clinic at the Ulster Hospital provides urgent assessment and treatment for patients across the region.",
+      "The Ulster Hospital provides elective and 24-hour emergency plastic surgery. Lagan Valley Hospital provides elective day case surgery, and outpatient plastic surgery is also held at other Trust sites.",
+      "Belfast Trust's burns and plastics page is a separate service. See the Northern Ireland Regional Burns Service entry.",
+    ],
+    referral: "Not stated in detail on the page. Ask your GP or consultant.",
+    contact: { web: "setrust.hscni.net/service/surgical-specialties/" },
+    resources: [
+      { label: "Plastics Trauma Clinic — South Eastern Trust", url: "https://setrust.hscni.net/service/surgical-specialties/plastics-trauma-clinic/" }
+    ],
+    source_url: "https://setrust.hscni.net/service/surgical-specialties/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "chi-plastic-reconstructive-surgery",
+    name: "CHI Plastic and Reconstructive Surgery (Crumlin and Temple Street)",
+    specialty: ["surgery-trauma", "paediatrics"],
+    county: ["dublin"],
+    blurb: "Children's Health Ireland describes this service as the national tertiary and quaternary referral centre for paediatric plastic surgery, at CHI at Crumlin and CHI at Temple Street. It includes burns care.",
+    details: [
+      "The page lists cleft lip and palate, craniofacial conditions, congenital hand differences, burns, brachial plexus birth injury, nerve injury, facial palsy, ear reconstruction and vascular anomalies.",
+      "The PATCH clinic at CHI at Crumlin reviews children with an injury or burn. Children are referred by a doctor at the hospital where they first had treatment, and the clinic does not take walk-ins.",
+      "All plastic and reconstructive referrals go through CHI's Central Referrals Office. GPs and secondary-care paediatricians refer via Healthlink.",
+    ],
+    referral: "Doctor referral through the CHI Central Referrals Office. Not a walk-in service.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/plastic-and-reconstructive-aesthetic-surgery/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/plastic-and-reconstructive-aesthetic-surgery/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "ni-emergency-general-surgery-sites",
+    name: "About emergency general surgery in Northern Ireland: which hospital?",
+    specialty: ["surgery-trauma"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry"],
+    blurb: "Emergency general surgery has been moved onto fewer sites in several trusts, so the nearest emergency department is not always where the surgery happens. Trust pages read on 7 Oct 2026 are summarised here and some describe recommendations, not confirmed changes.",
+    details: [
+      "Southern Trust: emergency general surgery moved from Daisy Hill to Craigavon in February 2022. On 28 September 2023 the Trust Board recommended making this permanent. Daisy Hill stays a Type 1 emergency department that assesses medical and surgical patients, with transfer to Craigavon where needed.",
+      "Western Trust: emergency general surgery at South West Acute Hospital was temporarily withdrawn from 18 December 2022, with patient pathways set up with other hospitals. The Trust pages read do not give a current end date.",
+      "Northern Trust: on 22 May 2025 the Board approved a recommendation to centralise emergency general surgery at Antrim Area Hospital, with most elective general surgery at Causeway Hospital. The Trust said this needed Health Minister and Department of Health approval before it could be implemented, and the page read does not say whether that has happened.",
+      "South Eastern Trust: the Trust's surgical specialties page says the Ulster Hospital provides 24-hour emergency surgery in general surgery.",
+      "Belfast Trust: its general surgery page was not checked for emergency sites, so nothing is stated here.",
+    ],
+    referral: "Not a referral service. In an emergency, go to or phone for an emergency department as advised.",
+    contact: { web: "southerntrust.hscni.net/future-of-emergency-general-surgery-2/" },
+    resources: [
+      { label: "Emergency General Surgery at South West Acute Hospital — Western Trust", url: "https://westerntrust.hscni.net/about-the-trust/emergency-general-surgery-south-west-acute-hospital/" },
+      { label: "Board approves recommendation on general surgery — Northern Trust (22 May 2025)", url: "https://www.northerntrust.hscni.net/trust-board-approves-recommendation-on-future-of-general-surgery-service/" },
+      { label: "Surgical specialties — South Eastern Trust", url: "https://setrust.hscni.net/service/surgical-specialties/" }
+    ],
+    source_url: "https://southerntrust.hscni.net/future-of-emergency-general-surgery-2/",
+    urlStatus: "opened",
+    verify: true
+  },
+  // Primary and urgent care (7 Oct 2026). Pages opened in the browser pane that day. No phone numbers: each page's own contact line is the one to use.
+  {
+    id: "ni-pharmacy-first",
+    name: "Pharmacy First (Northern Ireland)",
+    specialty: ["primary-care"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "Community pharmacies in Northern Ireland offer five Pharmacy First services: everyday health conditions, emergency hormonal contraception, urinary tract infection, sore throat and shingles. You can walk in for a private consultation without an appointment.",
+    details: [
+      "Everyday conditions are offered from every community pharmacy in NI. The page lists acne, athlete's foot, diarrhoea, earwax, haemorrhoids, head lice, mouth ulcers, scabies, threadworms, vaginal thrush and verrucae, among others.",
+      "The morning after pill is free from the majority of pharmacies if you are aged 13 or older. The page has a map of pharmacies that offer it.",
+      "The UTI service is for females aged 16 to 64 in the majority of pharmacies. The sore throat service is for anyone aged 5 and over in participating pharmacies.",
+      "The shingles service (adults 18 and over registered with an NI GP) was listed at 50 pharmacies until 30 September 2026. That date has passed and the page had not been updated on 7 Oct 2026, so check whether it continues.",
+    ],
+    referral: "Walk in to a participating pharmacy. No appointment or GP referral.",
+    contact: { web: "online.hscni.net/our-work/pharmacy-and-medicines-management/community-pharmacy-services/pharmacy-first/" },
+    source_url: "https://online.hscni.net/our-work/pharmacy-and-medicines-management/community-pharmacy-services/pharmacy-first/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "roi-injury-units",
+    name: "About HSE injury units (Republic of Ireland)",
+    specialty: ["primary-care", "urgent"],
+    county: ["national"],
+    blurb: "The HSE runs injury units that treat injuries that are not life-threatening and unlikely to need a hospital stay. Which units exist, who can attend and when they are open differs by unit, so use the HSE's own directory.",
+    details: [
+      "The HSE directory lists emergency departments, injury units, GP out-of-hours services, early pregnancy assessment units and maternity emergency units, and can be filtered by age.",
+      "Age limits differ by unit. For example, the directory shows Bantry Injury Unit for anyone aged 5 and older, and St Columcille's Injury Unit in Loughlinstown for anyone aged 14 and older.",
+      "The Loughlinstown page says no appointment is needed, and that x-rays, plaster casts and wound care are available. It says a charge applies unless you have a medical card, a medical or GP referral letter, or a referral from an emergency department. Check the page for the unit you plan to use.",
+    ],
+    referral: "Walk-in at the unit listed in the HSE directory. Check the unit's own page for age limits, hours and charges.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "ni-minor-injury-units",
+    name: "About minor injury and urgent care units in Northern Ireland",
+    specialty: ["primary-care", "urgent"],
+    county: ["antrim", "down", "londonderry", "tyrone"],
+    blurb: "Minor injury units treat injuries that are not critical or life-threatening. Each trust runs its own and the arrangements differ, so check the trust page for the unit and use Phone First where the trust offers it. This entry summarises trust pages read on 7 Oct 2026.",
+    details: [
+      "Northern Trust: minor injuries units at Antrim Area Hospital and Causeway Hospital (patients aged 3 and over) and Mid Ulster Hospital, Magherafelt (aged 5 and over). The units are nurse-led and the page lists injuries they are not suitable for, including older adults with complex medical needs and anyone taking blood-thinning medication.",
+      "South Eastern Trust: its minor injury unit page lists a nurse-led unit at Downe Hospital, weekends by appointment only, booked by phoning first. No other unit is listed on that page.",
+      "Southern Trust: South Tyrone Hospital has a Minor Injuries Unit, covered by the Trust's Phone First service. The page says it cannot treat medical or surgical conditions.",
+      "Western Trust: the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex is a nurse-led minor injuries unit that the Trust describes as operating 24 hours a day.",
+      "Belfast Trust: not checked, so nothing is stated here. The nidirect overview says Phone First runs in the Northern, South Eastern, Southern and Western trusts.",
+    ],
+    referral: "Walk-in or by Phone First, depending on the trust. See the trust page for the unit.",
+    contact: { web: "nidirect.gov.uk/articles/urgent-and-emergency-care-services" },
+    resources: [
+      { label: "Minor Injuries Service — Northern Trust", url: "https://www.northerntrust.hscni.net/service/minor-injuries-service/" },
+      { label: "Minor Injury Unit — South Eastern Trust", url: "https://setrust.hscni.net/service/minor-injury-unit/" },
+      { label: "Out of Hours and Emergency contacts — Southern Trust", url: "https://southerntrust.hscni.net/get-in-touch/out-of-hours-and-emergency-contacts/" },
+      { label: "Emergency Department and Urgent Care Locations — Western Trust", url: "https://westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/emergency-department-and-urgent-care-locations/" }
+    ],
+    source_url: "https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
   },
   {
     id: "bch-kidney-transplant",
@@ -6300,15 +6521,19 @@ const ENTRIES = [
     name: "Cross-border: NI liver, heart, lung & pancreas transplants happen in Great Britain",
     specialty: ["nephrology", "gastro", "cardiology", "respiratory"],
     county: ["antrim"],
-    blurb: "Kidney is the only organ transplanted in Northern Ireland. NI patients who need a liver, heart, lung or pancreas transplant are referred to a centre in Great Britain. Assessment and follow-up are shared with the Belfast team.",
+    blurb: "Kidney transplants are done in Northern Ireland. For adults needing a liver transplant, Belfast Trust provides the care before and after at the Royal Victoria Hospital, and the surgery takes place at King's College Hospital, London. For a heart or lung transplant, NI patients are referred to the Freeman Hospital in Newcastle, but the Belfast Trust pages read don't name Freeman. The pancreas route is not confirmed here.",
     details: [
-      "Liver: patients under the Regional Liver Unit at the RVH are assessed, and transplanted, at King's College Hospital, London. The RVH runs a Liver Transplant Coordinator Service for NI patients on this pathway.",
-      "Heart and lung: transplants aren't done in NI. Patients are referred to a GB cardiothoracic transplant centre. The Freeman Hospital, Newcastle, is one that takes UK-wide referrals. Your NI consultant will tell you which centre you're being referred to.",
-      "Pancreas (including combined kidney-pancreas): not done in NI. Ask your nephrology or diabetes consultant which GB centre you'd be referred to.",
-      "Expect to travel and stay in GB for assessment, the operation and early recovery. Ask your coordinator early about travel and accommodation help."
+      "Liver (adults only): Belfast Trust says all NI patients get pre- and post-transplant care at the Royal Victoria Hospital, wherever they live. The surgery itself takes place at King's College Hospital, London. Belfast Trust describes the RVH, working with King's, as the only hospital in Northern Ireland running a liver transplant service. The RVH children's transplant service is separate.",
+      "Heart and lung (still unconfirmed): the Belfast Trust cardiac surgery page says it does all cardiac surgery apart from transplants, but doesn't say where heart or lung transplants happen. Freeman is the only referral route sourced elsewhere, so ask your NI consultant to confirm.",
+      "Pancreas (including combined kidney-pancreas): not confirmed here. Ask your nephrology or diabetes consultant.",
+      "Expect to travel for assessment, the operation and early recovery. Ask your coordinator early about travel and accommodation help."
     ],
     referral: "Specialist consultant referral only.",
-    contact: { web: "belfasttrust.hscni.net/service/liver-transplant-coordinator-service/" }
+    contact: { web: "belfasttrust.hscni.net/service/regional-liver-unit/liver-transplant-coordinator-service/" },
+    source_url: "https://belfasttrust.hscni.net/service/regional-liver-unit/liver-transplant-coordinator-service/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026",
+    verify: true
   },
 
   // Cork CDNTs 6 and 7 (1 Oct 2026). Source: HSE parliamentary-question replies
@@ -6448,7 +6673,14 @@ const ENTRIES = [
     specialty: ["fertility"],
     county: ["national"],
     blurb: "GP or consultant refers you to a regional fertility hub; no self-referral. Eligibility criteria apply, including age and cycle limits. Check the HSE page for current rules.",
+    details: [
+      "The HSE page says you are not currently eligible for free IUI, IVF or ICSI through the HSE if you cannot use your own eggs or sperm, are in a same-sex couple, or are single, and that it will update this when those treatments become available. Private treatment is possible but is not free.",
+      "The access criteria on the page cover residency, age, previous treatment, children, number of parents, relationship length, sterilisation, BMI and lifestyle.",
+    ],
     contact: { web: "www2.hse.ie/pregnancy-birth/trying-for-a-baby/your-fertility/getting-ivf-icsi-iui-hse/" },
+    resources: [
+      { label: "HSE assisted human reproduction (AHR) services — Citizens Information", url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/hse-assisted-human-reproduction-ahr-services/" }
+    ],
     source_url: "https://www2.hse.ie/pregnancy-birth/trying-for-a-baby/your-fertility/getting-ivf-icsi-iui-hse/",
     urlStatus: "search-result",
     verify: true
@@ -6806,7 +7038,7 @@ const ENTRIES = [
     name: "Apply for HSE Home Support",
     specialty: ["olderpersons"],
     county: ["national"],
-    blurb: "Complete form HSS001 and send it to your local Home Support Office. A care needs assessment follows. If you are in hospital, ask the discharge planner. The applicant signs the declaration and consent section. A decision supporter can complete the other part.",
+    blurb: "Complete form HSS001 and send it to your local Home Support Office. A care needs assessment follows. If you are in hospital, ask the discharge planner. The applicant signs the declaration and consent section. A decision supporter can complete the other part. Budget 2027 announced an additional 1.8 million home-support hours in 2027; no start date has been given.",
     contact: { web: "www.hse.ie/eng/home-support-services/apply-for-home-supports-services/" },
     source_url: "https://www.hse.ie/eng/home-support-services/apply-for-home-supports-services/",
     urlStatus: "search-result",
@@ -6817,7 +7049,11 @@ const ENTRIES = [
     name: "Carer's Allowance",
     specialty: ["carers"],
     county: ["national"],
-    blurb: "Means-tested payment from the Department of Social Protection for a carer giving full-time care, at least 35 hours a week over 5 to 7 days. Limits on work or study, age and residence apply. Rates and the means-test figures change and conflict between official pages, so none is shown here. Check Citizens Information.",
+    blurb: "Means-tested payment from the Department of Social Protection for a carer giving full-time care, at least 35 hours a week over 5 to 7 days. Limits on work or study, age and residence apply. Rates and the means-test figures change and conflict between official pages, so no current rate or limit is shown here. Check Citizens Information.",
+    details: [
+      "Announced in Budget 2027, from July 2027: the weekly income disregard rises to €1,150 for a single person (from €1,000) and €2,300 for a couple (from €2,000). Current limits stay as they are until then.",
+      "Announced in Budget 2027, from January 2027: the maximum rate of most weekly social welfare payments rises by €10. Budget details can change when the legislation is passed."
+    ],
     contact: { web: "live.citizensinformation.ie/en/social-welfare/social-welfare-payments/carers/carers-allowance/" },
     source_url: "https://live.citizensinformation.ie/en/social-welfare/social-welfare-payments/carers/carers-allowance/",
     urlStatus: "search-result",
@@ -6888,6 +7124,811 @@ const ENTRIES = [
     blurb: "St Vincent's University Hospital runs the designated national sarcoma multidisciplinary team, and Cappagh (National Orthopaedic Hospital) is the national referral centre for primary bone and soft tissue tumours. Clinicians refer, through Healthlink.",
     contact: { web: "www.stvincents.ie/32365-2/" },
     source_url: "https://www.stvincents.ie/32365-2/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-svuh-liver-transplant",
+    name: "National Liver Transplant Programme, St Vincent's University Hospital",
+    sector: "voluntary",
+    specialty: ["gastro"],
+    county: ["dublin"],
+    blurb: "National centre serving patients from all over Ireland; programme running at SVUH since 1993. Clinician referral by completed referral form; urgent referrals by phone to the liver registrar on call.",
+    details: [
+      "The National Pancreas Transplant Programme is also based at St Vincent's University Hospital."
+    ],
+    referral: "Clinician referral by completed referral form.",
+    contact: { web: "www.stvincents.ie/departments/national-liver-transplant-programme/" },
+    source_url: "https://www.stvincents.ie/departments/national-liver-transplant-programme/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "roi-nrh-rehab",
+    name: "National Rehabilitation Hospital: referral process",
+    specialty: ["neurorehabilitation"],
+    county: ["dublin"],
+    blurb: "Specialist inpatient and outpatient rehabilitation for adults and children with acquired brain injury (including stroke and other neurological conditions), spinal cord injury and limb absence. Referrals come from acute hospitals, GPs and community agencies through the NRH Central Referrals Office.",
+    details: [
+      "For spinal cord injury see also the National Spinal Cord Injury Service entry (nrh-scsc)."
+    ],
+    referral: "Referral from an acute hospital, GP or community agency to the Central Referrals Office.",
+    contact: { web: "www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/" },
+    source_url: "https://www.nrh.ie/patients-and-families/your-admission-to-the-nrh/referral-process/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "roi-nccp-aya-network",
+    name: "National AYA Cancer Network (NCCP)",
+    specialty: ["oncology"],
+    county: ["dublin", "cork", "galway"],
+    blurb: "HSE National Cancer Control Programme network for adolescents and young adults (ages 16 to 24) with cancer. Hub-and-spoke model with designated centres at St James's, Cork University Hospital, University Hospital Galway and CHI.",
+    details: [
+      "Ask your cancer team whether you can be linked with your nearest AYA centre.",
+      "The Northern Ireland teenage and young adult service covers ages 14 to 24; see the Belfast Trust entry."
+    ],
+    referral: "Through your cancer team.",
+    contact: { web: "www.hse.ie/eng/services/list/5/cancer/about/nccp-children-adolescent-young-adult-caya-cancer-programme/the-nccp-children-adolescent-and-young-adult-caya-cancer-programme.html" },
+    source_url: "https://www.hse.ie/eng/services/list/5/cancer/about/nccp-children-adolescent-young-adult-caya-cancer-programme/the-nccp-children-adolescent-and-young-adult-caya-cancer-programme.html",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-belfast-tya-cancer",
+    name: "Teenage & Young Adult Cancer Service, Belfast Trust",
+    specialty: ["oncology"],
+    county: ["antrim"],
+    blurb: "Support service for young people aged 14 to 24 with a cancer diagnosis, with staff at the Royal Belfast Hospital for Sick Children and the Belfast City Hospital Cancer Centre.",
+    details: [
+      "The age range differs from the Republic of Ireland's AYA network (16 to 24)."
+    ],
+    referral: "Ask your cancer team.",
+    contact: { web: "belfasttrust.hscni.net/services/cancer/support-services/teenage-and-young-adult-service/" },
+    source_url: "https://belfasttrust.hscni.net/services/cancer/support-services/teenage-and-young-adult-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-nccp-psycho-oncology",
+    name: "Psycho-oncology (NCCP Model of Care)",
+    specialty: ["oncology"],
+    county: ["national"],
+    blurb: "Psychological and psychosocial support for people with cancer, their carers and families, under the NCCP Psycho-oncology Model of Care. Ask your cancer team.",
+    referral: "Ask your cancer team.",
+    contact: { web: "www.hse.ie/eng/services/list/5/cancer/profinfo/psycho-oncology-programme/" },
+    source_url: "https://www.hse.ie/eng/services/list/5/cancer/profinfo/psycho-oncology-programme/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-beaumont-mnd-clinic",
+    name: "Motor Neurone Disease (MND) service, Beaumont Hospital",
+    sector: "voluntary",
+    specialty: ["neurology"],
+    county: ["dublin"],
+    blurb: "Specialist care for people with motor neurone disease within Beaumont Hospital's Department of Neurology; referrals via Healthlink.",
+    referral: "Referral via Healthlink to the Department of Neurology.",
+    contact: { web: "beaumont.ie/pages/health-A-Z/neurology" },
+    source_url: "https://www.beaumont.ie/pages/health-A-Z/neurology",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-chi-ghift",
+    name: "GHIFT, CHI Crumlin & Tallaght",
+    sector: "voluntary",
+    specialty: ["gastro", "paediatrics"],
+    county: ["dublin"],
+    blurb: "Children's Health Ireland's department of paediatric gastroenterology, hepatology, intestinal failure and transplant medicine, with services at CHI at Crumlin and CHI at Tallaght.",
+    referral: "GP or consultant referral.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/gastroenterology-and-hepatology/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/gastroenterology-and-hepatology/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-chi-ncimd",
+    name: "National Centre for Inherited Metabolic Disorders, CHI Temple Street",
+    sector: "voluntary",
+    specialty: ["rare-disease", "paediatrics"],
+    county: ["dublin"],
+    blurb: "Referral centre for children with inherited metabolic disorders, based at CHI at Temple Street, with outreach clinics in Cork, Limerick and Ballinasloe.",
+    details: [
+      "The outreach locations have not been confirmed here. Check the CHI metabolic medicine page."
+    ],
+    referral: "GP or consultant referral.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/metabolic-medicine/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/metabolic-medicine/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-chi-craniofacial",
+    name: "National Paediatric Craniofacial Centre, CHI Temple Street",
+    sector: "voluntary",
+    specialty: ["paediatrics"],
+    county: ["dublin"],
+    blurb: "Multidisciplinary craniofacial clinic at CHI at Temple Street for children and young people from birth to 16 with craniofacial conditions.",
+    referral: "GP or consultant referral.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/craniofacial-updated/craniofacial-mdt-clinic/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/craniofacial-updated/craniofacial-mdt-clinic/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-chi-clinical-genetics",
+    name: "Clinical Genetics, CHI at Crumlin & Temple Street",
+    sector: "voluntary",
+    specialty: ["genetics"],
+    county: ["dublin"],
+    blurb: "Genetic assessment, counselling and testing for childhood and adult genetic disorders, including hereditary cancer. Appointments are in person, virtual or by phone, depending on the referral reason. A family history questionnaire is only accepted with a GP or consultant referral letter.",
+    referral: "GP or consultant referral.",
+    contact: { web: "childrenshealthireland.ie/list-of-services/clinical-genetics/" },
+    source_url: "https://www.childrenshealthireland.ie/list-of-services/clinical-genetics/",
+    urlStatus: "opened",
+    checked: "7 Oct 2026"
+  },
+  {
+    id: "roi-bons-cork-heart-lung",
+    name: "Heart & Lung Centre, Bon Secours Hospital Cork",
+    sector: "private",
+    provider: "Bon Secours Health System",
+    specialty: ["cardiology"],
+    county: ["cork"],
+    blurb: "Private heart and lung (cardiothoracic) surgery centre at Bon Secours Hospital Cork, launched in 2024. Referral comes from a GP or consultant via Healthlink.",
+    referral: "GP or consultant referral via Healthlink; self-pay or health-insurance-funded.",
+    contact: { web: "bonsecours.ie/services/cardiothoracic-surgery" },
+    source_url: "https://www.bonsecours.ie/services/cardiothoracic-surgery",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-bons-cork-radiotherapy",
+    name: "Radiation Therapy, Bon Secours Hospital Cork (UPMC Hillman)",
+    sector: "private",
+    provider: "Bon Secours Health System",
+    specialty: ["oncology"],
+    county: ["cork"],
+    blurb: "Private radiation therapy at Bon Secours Hospital Cork, in partnership with UPMC Hillman Cancer Centre.",
+    details: [
+      "The hospital's page names a Varian Edge radiotherapy system. That has not been confirmed here."
+    ],
+    referral: "Through your oncology consultant.",
+    contact: { web: "bonsecours.ie/cork-departments/radiotherapy" },
+    source_url: "https://www.bonsecours.ie/cork-departments/radiotherapy",
+    urlStatus: "search-result",
+    verify: true
+  },
+  // Local services, parenting and search-gap rows (7 Oct 2026). From research/LOCAL-SERVICES-PARENTING-2026-10-07.md and Elaine's decisions.
+  // All unverified: link only, no phones, no checked date. Caredoc, Omagh and Mayo office pages were also read by Claude Code on 7 Oct.
+  {
+    id: "roi-wexford-wexford-general-hospital",
+    name: "Wexford General Hospital",
+    specialty: ["general"],
+    county: ["wexford"],
+    blurb: "The HSE page for Wexford General Hospital in Wexford Town gives its address, visiting times, parking, supports and links to the emergency department and a list of services at the hospital.",
+    details: [
+      "The page lists separate visiting arrangements for the maternity unit, including times for support partners",
+      "The page lists a Patient Advocacy Liaison Service (PALS) / patient liaison and complaints officer",
+      "The page links to a 'Find a service at this hospital' list",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/wexford-general-hospital/" },
+    source_url: "https://www2.hse.ie/services/hospitals/wexford-general-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-wgh-emergency-department",
+    name: "Wexford General Hospital Emergency Department",
+    specialty: ["urgent"],
+    county: ["wexford"],
+    blurb: "The HSE page for the emergency department at Wexford General Hospital says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for all ages",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/wexford-general-hospital-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/wexford-general-hospital-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-wgh-birth-reflection-clinic",
+    name: "Birth reflection clinic at Wexford General Hospital",
+    specialty: ["obs", "mh"],
+    county: ["wexford"],
+    blurb: "The HSE lists a birth reflection clinic based in Wexford General Hospital.",
+    details: [
+      "The page says the service is in Wexford General Hospital",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/wexford-general-hospital/departments-services/birth-reflection-clinic-1/" },
+    source_url: "https://www2.hse.ie/services/hospitals/wexford-general-hospital/departments-services/birth-reflection-clinic-1/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-caredoc-wexford",
+    name: "Caredoc Wexford",
+    specialty: ["urgent"],
+    county: ["wexford"],
+    blurb: "The HSE lists Caredoc Wexford as a GP out-of-hours service for when your GP surgery is closed and you urgently need a GP. It says the service is not for routine care such as repeat prescriptions.",
+    details: [
+      "The page says the GP out-of-hours service is for all ages",
+      "The page says the service is in Wexford Primary Care Centre",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-wexford/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-wexford/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-mayo-university-hospital",
+    name: "Mayo University Hospital",
+    specialty: ["general"],
+    county: ["mayo"],
+    blurb: "The HSE page for Mayo University Hospital in Castlebar gives its address, visiting information, supports and departments.",
+    details: [
+      "The page lists a Patient Advocacy Liaison Service (PALS) at the hospital",
+      "The page lists a chaplaincy service for all patients",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/mayo-university-hospital/" },
+    source_url: "https://www2.hse.ie/services/hospitals/mayo-university-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-muh-emergency-department",
+    name: "Mayo University Hospital Emergency Department",
+    specialty: ["urgent"],
+    county: ["mayo"],
+    blurb: "The HSE page for the emergency department at Mayo University Hospital says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for all ages",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-muh-maternity-emergency",
+    name: "Mayo University Hospital Maternity Emergency Service",
+    specialty: ["obs", "urgent"],
+    county: ["mayo"],
+    blurb: "The HSE page describes the Emergency and Assessment Unit at Mayo University Hospital for signs of labour, complications in pregnancy or after birth, and acute gynaecological emergencies.",
+    details: [
+      "The page lists opening hours as 24 hours, seven days",
+      "The page says you do not need an appointment for the Emergency and Assessment Unit",
+    ],
+    referral: "The page says no appointment is needed.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-maternity-emergency-service/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-maternity-emergency-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-muh-early-pregnancy-unit",
+    name: "Mayo University Hospital Early Pregnancy Assessment Unit",
+    specialty: ["obs", "loss"],
+    county: ["mayo"],
+    blurb: "The HSE lists an Early Pregnancy Assessment Unit at Mayo University Hospital, Castlebar, seen by appointment.",
+    details: [
+      "The page says you need an appointment to visit the unit",
+    ],
+    referral: "The page says you may be referred by a GP or by the Emergency and Assessment Unit.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-early-pregnancy-assessment-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/mayo-university-hospital-early-pregnancy-assessment-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-omagh-hospital-primary-care-complex",
+    name: "Omagh Hospital and Primary Care Complex",
+    specialty: ["general"],
+    county: ["tyrone"],
+    blurb: "The Western Trust page for Omagh Hospital and Primary Care Complex, Donaghanie Road, Omagh, lists the services delivered there. It also links to outpatient, women's health and GUM clinic pages.",
+    details: [
+      "The page lists services at this location including an Urgent Care and Treatment Centre, Child Psychotherapy Service, Children's Diabetes Service, Community Dental Services, Bereavement Care and Specialist Palliative Care",
+      "The page describes palliative care and rehabilitation wards",
+      "The page lists GP out-of-hours at this location",
+    ],
+    contact: { web: "westerntrust.hscni.net/hospitals/omagh-hospital/" },
+    source_url: "https://westerntrust.hscni.net/hospitals/omagh-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-omagh-urgent-care-treatment-centre",
+    name: "Urgent Care and Treatment Centre, Omagh Hospital",
+    specialty: ["urgent"],
+    county: ["tyrone"],
+    blurb: "The Western Trust describes the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex as a nurse-led minor injuries unit, open 24 hours with x-ray on site.",
+    details: [
+      "The page lists minor injuries it sees, including minor head injuries without loss of consciousness, wounds, eye injuries, sprains and fractures, bites and stings",
+      "The page says staff get telephone advice from emergency consultants at South West Acute and Altnagelvin hospitals",
+    ],
+    contact: { web: "westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/urgent-care-and-treatment-centre-omagh-hospital/" },
+    source_url: "https://westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/urgent-care-and-treatment-centre-omagh-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-south-tyrone-hospital",
+    name: "South Tyrone Hospital",
+    specialty: ["general"],
+    county: ["tyrone"],
+    blurb: "The Southern Trust page for South Tyrone Hospital, Carland Road, Dungannon, lists the services on the site.",
+    details: [
+      "The page lists outpatient services, day surgery and radiology, including an Ambulatory Paediatric Service",
+      "The page says CAMHS and children's social services teams are based at the hospital",
+      "The page says the Health Visiting Team for the Dungannon area is based at the hospital",
+      "The page lists the Mental Health Support and Recovery Team, Primary Mental Health Care and Psychology Services on site",
+      "The page describes a rehabilitation unit and a day hospital for older people",
+    ],
+    contact: { web: "southerntrust.hscni.net/our-hospitals/south-tyrone-hospital/" },
+    source_url: "https://southerntrust.hscni.net/our-hospitals/south-tyrone-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-south-tyrone-minor-injury-unit",
+    name: "South Tyrone Minor Injury Unit",
+    specialty: ["urgent"],
+    county: ["tyrone"],
+    blurb: "The Southern Trust says people with a minor injury who live close to South Tyrone Minor Injury Unit in Dungannon should phone for an appointment before attending.",
+    details: [
+      "The page asks people to phone before attending",
+    ],
+    referral: "The page says to phone for an appointment before you attend.",
+    contact: { web: "southerntrust.hscni.net/our-hospitals/south-tyrone-hospital/" },
+    source_url: "https://southerntrust.hscni.net/our-hospitals/south-tyrone-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-olol-emergency-department",
+    name: "Our Lady of Lourdes Hospital Drogheda Emergency Department",
+    specialty: ["urgent"],
+    county: ["louth"],
+    blurb: "The HSE page for the emergency department at Our Lady of Lourdes Hospital Drogheda says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for all ages",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/our-lady-of-lourdes-hospital-drogheda-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/our-lady-of-lourdes-hospital-drogheda-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-olol-maternity-emergency",
+    name: "Louth Hospital Maternity Emergency Service at Our Lady of Lourdes Hospital Drogheda",
+    specialty: ["obs", "urgent"],
+    county: ["louth"],
+    blurb: "The HSE lists a maternity emergency service based in Our Lady of Lourdes Hospital, Drogheda.",
+    details: [
+      "The page says the service is in Our Lady of Lourdes Hospital Drogheda",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/our-lady-of-lourdes-hospital-drogheda/departments-services/louth-hospital-maternity-emergency-service/" },
+    source_url: "https://www2.hse.ie/services/hospitals/our-lady-of-lourdes-hospital-drogheda/departments-services/louth-hospital-maternity-emergency-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-olol-early-pregnancy-unit",
+    name: "Louth Hospital Early Pregnancy Assessment Unit",
+    specialty: ["obs", "loss"],
+    county: ["louth"],
+    blurb: "The HSE lists an Early Pregnancy Assessment Unit at Our Lady of Lourdes Hospital, Drogheda.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/louth-hospital-early-pregnancy-assessment-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/louth-hospital-early-pregnancy-assessment-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-louth-olol-parentcraft-breastfeeding",
+    name: "Parentcraft Department Our Lady of Lourdes Hospital Drogheda",
+    specialty: ["feeding", "parenting"],
+    county: ["louth"],
+    blurb: "The HSE says this service offers one-to-one breastfeeding support from a lactation consultant, including antenatal breastfeeding preparation and postnatal support, with phone support also offered.",
+    details: [
+      "The page lists opening hours as Monday to Friday, 8am to 6pm",
+    ],
+    referral: "The page lists GP, PHN, midwife or self-referral.",
+    contact: { web: "www2.hse.ie/services/breastfeeding-support/parentcraft-department-our-lady-of-lourdes-hospital-drogheda/" },
+    source_url: "https://www2.hse.ie/services/breastfeeding-support/parentcraft-department-our-lady-of-lourdes-hospital-drogheda/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-meath-our-ladys-hospital-navan",
+    name: "Our Lady's Hospital Navan",
+    specialty: ["general"],
+    county: ["meath"],
+    blurb: "The HSE page for Our Lady's Hospital, Navan, gives its address, visiting times and departments.",
+    contact: { web: "www2.hse.ie/services/hospitals/our-ladys-hospital-navan/" },
+    source_url: "https://www2.hse.ie/services/hospitals/our-ladys-hospital-navan/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-meath-navan-emergency-department",
+    name: "Our Lady's Hospital Navan Emergency Department",
+    specialty: ["urgent"],
+    county: ["meath"],
+    blurb: "The HSE page for the emergency department at Our Lady's Hospital Navan says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for anyone age 16 and older",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/our-ladys-hospital-navan-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/our-ladys-hospital-navan-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-meath-nedoc-navan",
+    name: "Nedoc Navan",
+    specialty: ["urgent"],
+    county: ["meath"],
+    blurb: "The HSE lists Nedoc Navan, Academy Street, Navan, as a GP out-of-hours service. It says that when you phone, a nurse calls you back and tells you what to do next.",
+    details: [
+      "The page says the nurse may give advice, arrange an out-of-hours GP appointment or house visit, or direct you to an emergency department or injury unit",
+    ],
+    referral: "The page says you phone the service first.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nedoc-navan/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nedoc-navan/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-wicklow-town-primary-care",
+    name: "Wicklow Town Primary Care",
+    specialty: ["primary-care"],
+    county: ["wicklow"],
+    blurb: "The HSE page for Wicklow Town Primary Care, Knockrobin, Wicklow, links to a list of community services provided at the centre, including dental, dietetic and disability services.",
+    details: [
+      "The page lists a car park and a pharmacy as facilities",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-phn-child-health-wicklow-town",
+    name: "Public Health Nursing Child Health at Wicklow Town Primary Care",
+    specialty: ["parenting"],
+    county: ["wicklow"],
+    blurb: "The HSE says public health nurses based at Wicklow Town Primary Care give child health services, such as care after an operation, and coordinate care for children with complex needs.",
+    details: [
+      "The page gives the area covered as Wicklow town and surrounding areas",
+    ],
+    contact: { web: "www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/child-health-9/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/child-health-9/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-primary-care-social-work-wicklow-town",
+    name: "Social Work at Wicklow Town Primary Care",
+    specialty: ["primary-care"],
+    county: ["wicklow"],
+    blurb: "The HSE says the Primary Care Social Work Department gives short-term support to people with a significant health concern and a complex social situation. The issues it lists include domestic violence, carer issues, parental support and bereavement.",
+    details: [
+      "The page gives the catchment as South Wicklow",
+      "The page says it is by appointment only",
+    ],
+    referral: "The page says the social worker usually contacts service users by phone first.",
+    contact: { web: "www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/social-work-5/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/social-work-5/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-community-medical-doctors",
+    name: "Community Medical Doctors Service at Wicklow Town Primary Care",
+    specialty: ["parenting"],
+    county: ["wicklow"],
+    blurb: "The HSE says community medical doctors take child health referrals for children up to age 12 in South Wicklow and are part of the school immunisation programme.",
+    details: [
+      "The page gives the catchment as South Wicklow",
+    ],
+    referral: "The page lists public health nurse, self-referral, GP or health and social care professionals.",
+    contact: { web: "www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/community-medical-doctors-service/" },
+    source_url: "https://www2.hse.ie/services/primary-care-centres/wicklow-town-primary-care/departments-services/community-medical-doctors-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kildare-naas-general-hospital",
+    name: "Naas General Hospital",
+    specialty: ["general"],
+    county: ["kildare"],
+    blurb: "The HSE page for Naas General Hospital, Craddockstown Road, Naas, gives its address, current visiting restrictions, parking and departments.",
+    details: [
+      "The page lists a chaplaincy service for all patients",
+    ],
+    contact: { web: "www2.hse.ie/services/hospitals/naas-general-hospital/" },
+    source_url: "https://www2.hse.ie/services/hospitals/naas-general-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kildare-naas-emergency-department",
+    name: "Naas General Hospital Emergency Department",
+    specialty: ["urgent"],
+    county: ["kildare"],
+    blurb: "The HSE page for the emergency department at Naas General Hospital says who it is for and points to injury units and GP out-of-hours services.",
+    details: [
+      "The page says this emergency department is for anyone age 16 and older",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/naas-general-hospital-emergency-department/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/naas-general-hospital-emergency-department/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kildare-naas-hospital-injury-unit",
+    name: "Naas Hospital Injury Unit",
+    specialty: ["urgent"],
+    county: ["kildare"],
+    blurb: "The HSE lists Naas Hospital Injury Unit at Vista Primary Care Centre, Ballymore Eustace Road, Naas, for injuries that are not life-threatening and unlikely to need a hospital stay.",
+    details: [
+      "The page says the injury unit is for anyone age 16 and older",
+      "The page says injury units treat injuries less than 6 weeks old",
+    ],
+    referral: "The page says you do not need an appointment.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/naas-hospital-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/naas-hospital-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-kildare-kdoc-naas",
+    name: "KDoc Naas",
+    specialty: ["urgent"],
+    county: ["kildare"],
+    blurb: "The HSE lists KDoc (Kildare & West Wicklow Doctors on call) at Vista Primary Care, Naas, as a GP out-of-hours service for all ages.",
+    details: [
+      "The page says it is by appointment only and there is no walk-in service",
+    ],
+    referral: "The page says it is appointment only; phone your GP outside surgery hours for the local service details.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/kdoc-naas/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/kdoc-naas/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-ci-leave-for-parents",
+    name: "Leave for parents (Citizens Information)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Citizens Information gives an overview of the types of statutory leave for parents, including maternity, adoptive, paternity, parental and parent's leave, and links to each. Link only.",
+    contact: { web: "www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/leave-for-parents/" },
+    source_url: "https://www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/leave-for-parents/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-ci-paternity-leave",
+    name: "Paternity leave (Citizens Information)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Citizens Information explains paternity leave and Paternity Benefit, including how it applies after an adoption and after a stillbirth. Link only.",
+    details: [
+      "The page says that for an adopted child the relevant parent is the parent who is not taking adoptive leave",
+    ],
+    contact: { web: "www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/paternity-leave/" },
+    source_url: "https://www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/paternity-leave/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-ci-parental-leave",
+    name: "Parental leave (Citizens Information)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Citizens Information explains unpaid parental leave and says it is different to parent's leave. Link only.",
+    details: [
+      "The page says a 'relevant parent' includes a parent, an adoptive parent or a person acting in loco parentis",
+    ],
+    contact: { web: "www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/parental-leave/" },
+    source_url: "https://www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/parental-leave/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-tusla-post-adoption-services",
+    name: "Post Adoption Services (Tusla)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Tusla says post adoption services aim to support the stability and well-being of adopted children and adoptive families. The page says Tusla funds Barnardos to provide services for children and adults.",
+    details: [
+      "The page lists a national email and telephone helpline advisory service",
+      "The page lists advisory services for adoptive parents, therapeutic services for children, and group and individual support sessions",
+    ],
+    contact: { web: "www.tusla.ie/services/birth-information-and-tracing-and-adoption/post-adoption-services/" },
+    source_url: "https://www.tusla.ie/services/birth-information-and-tracing-and-adoption/post-adoption-services/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-tusla-fostering-supports",
+    name: "Fostering supports (Tusla)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Tusla describes the supports for its foster carers, including visits and phone contact from a fostering link worker, training, and an out-of-hours phone support service with a Tusla social worker for emergencies.",
+    details: [
+      "The page lists support from a public health nurse if caring for a pre-school child",
+      "The page says training is compulsory for foster carers",
+    ],
+    contact: { web: "www.tusla.ie/services/alternative-care/foster-care/fostering-supports/" },
+    source_url: "https://www.tusla.ie/services/alternative-care/foster-care/fostering-supports/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-tusla-adopting-from-foster-care",
+    name: "Adopting a child from foster care (Tusla)",
+    specialty: ["parenting"],
+    county: ["national"],
+    blurb: "Tusla explains when adoption may be considered for a child in long-term foster care, the teams involved and the key stages of the process. Link only.",
+    details: [
+      "The page names the Adoption Service, Children in Care Service and Fostering Service teams",
+    ],
+    contact: { web: "www.tusla.ie/services/birth-information-and-tracing-and-adoption/what-is-adoption/domestic/adopting-a-child-from-foster-care/" },
+    source_url: "https://www.tusla.ie/services/birth-information-and-tracing-and-adoption/what-is-adoption/domestic/adopting-a-child-from-foster-care/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-becoming-foster-kinship-foster-carer",
+    name: "Becoming a foster or kinship foster carer (nidirect)",
+    specialty: ["parenting"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "nidirect explains how to become a foster or kinship foster carer in Northern Ireland, through a local HSC Trust, HSC NI Adoption and Foster Care, or an independent fostering provider.",
+    details: [
+      "The page says the five HSC Trusts are responsible for the welfare of all looked after children and their fostering services are supported by HSC NI Adoption and Foster Care",
+    ],
+    contact: { web: "www.nidirect.gov.uk/articles/becoming-foster-kinship-foster-carer" },
+    source_url: "https://www.nidirect.gov.uk/articles/becoming-foster-kinship-foster-carer",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-hse-live",
+    name: "HSE Live (Contact the HSE)",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "The HSE 'Contact the HSE' page says HSE Live is the service to contact if you have a general question or are not sure who to contact in the HSE, and gives its hours as 'Monday to Friday, 8am to 8pm; Saturday, 9am to 5pm; Sunday and bank holidays, closed'. The page says not to call HSE Live if someone is seriously ill, injured or at risk of dying, and directs people to 112 or 999 if someone needs immediate medical help.",
+    details: [
+      "The page says you cannot contact HSE Live by email",
+      "The page lists phone and social media direct messages as ways to contact HSE Live",
+    ],
+    contact: { web: "www2.hse.ie/contact/" },
+    source_url: "https://www2.hse.ie/contact/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-regional-interpreting-service-patients",
+    name: "Regional Interpreting Service: Information for Patients (BSO)",
+    specialty: ["general"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "The Business Services Organisation page (modified 22 Apr 2026) says '24/7 interpreting support is available free of charge for all Patients who do not speak English proficiently', both face to face and by telephone. It asks patients to tell their health practitioner or receptionist if they need an interpreter.",
+    details: [
+      "The page says telephone interpreting is provided by a separate contracted service",
+    ],
+    referral: "The page says to let your health practitioner or receptionist know you need an interpreter for your appointment.",
+    contact: { web: "bso.hscni.net/directorates/operations/regional-interpreting-service/information-for-patients/" },
+    source_url: "https://bso.hscni.net/directorates/operations/regional-interpreting-service/information-for-patients/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-national-long-term-illness-scheme",
+    name: "Long-Term Illness Scheme",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "The HSE Long-Term Illness Scheme 'About' page (last reviewed 19 Dec 2025, next review due 19 Dec 2028) says the scheme lets you get some drugs, medicines and approved appliances free from your pharmacy for 16 listed conditions, from acute leukaemia to thalidomide-related conditions. It says the scheme is different to a medical card and has no means test.",
+    details: [
+      "The page lists the conditions covered, including 'Diabetes mellitus (Gestational diabetes not included)', epilepsy, cystic fibrosis, multiple sclerosis and mental illness in people under 16",
+      "The page says you must be ordinarily resident in the Republic of Ireland",
+      "The page says a successful applicant gets a Long-Term Illness Scheme card",
+    ],
+    referral: "The HSE apply page says a GP or consultant medical report must be included with the application.",
+    contact: { web: "www2.hse.ie/services/schemes-allowances/lti/about/" },
+    source_url: "https://www2.hse.ie/services/schemes-allowances/lti/about/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-mayo-local-health-office",
+    name: "Mayo Local Health Office",
+    specialty: ["primary-care"],
+    county: ["mayo"],
+    blurb: "The HSE lists the Mayo Local Health Office at County Clinic, Westport Road, Castlebar, under HSE West and North West. It describes Local Health Offices as the entry point to community health and personal social services.",
+    details: [
+      "The page names GP services, public health nursing and home help among the services provided through Local Health Offices and Primary Care Centres",
+    ],
+    contact: { web: "www2.hse.ie/services/local-health-office/" },
+    source_url: "https://www2.hse.ie/services/local-health-office/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wexford-caredoc-gorey",
+    name: "Caredoc Gorey",
+    specialty: ["urgent"],
+    county: ["wexford"],
+    blurb: "The HSE lists Caredoc Gorey as a GP out-of-hours service for when your GP surgery is closed and you urgently need a GP. It says the service is not for routine care such as repeat prescriptions.",
+    details: [
+      "The page says the service is for all ages",
+      "The page gives the location as Gorey District Hospital, Gorey, Co. Wexford",
+      "The page says it is by appointment only, with no walk-in service",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-gorey/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-gorey/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-caredoc-wicklow",
+    name: "Caredoc Wicklow",
+    specialty: ["urgent"],
+    county: ["wicklow"],
+    blurb: "The HSE lists Caredoc Wicklow as a GP out-of-hours service for when your GP surgery is closed and you urgently need a GP. It says the service is not for routine care such as repeat prescriptions.",
+    details: [
+      "The page says the service is for all ages",
+      "The page gives the location as Wicklow Town Primary Care, Knockrobin, Wicklow",
+      "The page says it is by appointment only, with no walk-in service",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-wicklow/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-wicklow/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-wicklow-caredoc-arklow",
+    name: "Caredoc Arklow",
+    specialty: ["urgent"],
+    county: ["wicklow"],
+    blurb: "The HSE lists Caredoc Arklow as a GP out-of-hours service for when your GP surgery is closed and you urgently need a GP. It says the service is not for routine care such as repeat prescriptions.",
+    details: [
+      "The page says the service is for all ages",
+      "The page gives the location as Arklow Primary Care Centre, Castlepark, Arklow, Co. Wicklow",
+      "The page says it is by appointment only, with no walk-in service",
+    ],
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/caredoc-arklow/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/caredoc-arklow/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-tyrone-omagh-womens-health-gum-clinics",
+    name: "Women's Health and GUM Clinics, Omagh Hospital",
+    specialty: ["sexualhealth", "contraception"],
+    county: ["tyrone"],
+    blurb: "The Western Trust lists women's health and GUM clinics at Omagh Hospital and Primary Care Complex, including family planning, GUM and gynaecology clinics.",
+    details: [
+      "The page also lists antenatal and postnatal clinics, continence, smear and nurse-led pessary clinics, and urodynamics",
+    ],
+    contact: { web: "westerntrust.hscni.net/hospitals/omagh-hospital/womens-health-and-gum-clinics-omagh-hospital/" },
+    source_url: "https://westerntrust.hscni.net/hospitals/omagh-hospital/womens-health-and-gum-clinics-omagh-hospital/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-western-trust-health-visiting",
+    name: "Health Visiting (Western Trust)",
+    specialty: ["parenting"],
+    county: ["londonderry", "fermanagh", "tyrone"],
+    blurb: "The Western Trust says its health visiting teams offer a family-centred service from pregnancy until a child goes to school. Every GP practice has a named health visitor.",
+    details: [
+      "The page lists play and development, nutrition, breastfeeding, weaning, sleep, immunisations and keeping a child safe among the topics",
+      "The page says to ask your GP for your health visitor's contact details if you do not have them",
+    ],
+    contact: { web: "westerntrust.hscni.net/service/health-visiting/" },
+    source_url: "https://westerntrust.hscni.net/service/health-visiting/",
     urlStatus: "search-result",
     verify: true
   },
@@ -7962,9 +9003,14 @@ const SCHEME_LINKS = [
     name: "Drugs Payment Scheme",
     jurisdiction: "roi",
     blurb: "Caps what you and your family pay for approved prescribed drugs and medicines per month. Also the route to free HRT — you need DPS registration first.",
+    prep: [
+      "If you're prescribed a High Tech medicine (the high-cost hospital-started drugs dispensed through a nominated community pharmacy), it counts towards your DPS monthly limit along with your other medicines. The HSE's pharmacist handbook says DPS card holders pay the copayment \"towards the total cost of all their medication (High Tech and regular medicines)\". Medical card holders get High Tech items free; Long-Term Illness Scheme holders get them free only if authorised for their listed condition.",
+      "The HSE's patient pages for the scheme don't mention High Tech, so if a pharmacy charges you differently, you can show them section 2.7 of the handbook linked below. It's written for pharmacists, so ask the pharmacy to check with the HSE's Primary Care Reimbursement Service (PCRS) if there's a mismatch.",
+    ],
     links: [
       { label: "How it works & how to apply — Citizens Information", url: "https://www.citizensinformation.ie/en/health/drugs-and-medicines/drugs-payment-scheme/" },
       { label: "Apply online", url: "https://www.mydps.ie/" },
+      { label: "High Tech medicines and the DPS — PCRS pharmacist handbook, section 2.7 (PDF)", url: "https://assets.hse.ie/media/documents/PCRS_handbook_for_Pharmacists.pdf" },
     ],
   },
   {
@@ -7980,7 +9026,7 @@ const SCHEME_LINKS = [
     id: "fair-deal",
     name: "Fair Deal (Nursing Homes Support Scheme)",
     jurisdiction: "roi",
-    blurb: "Financial support for long-term nursing home care — you contribute a share of your income and assets, the State pays the rest. A four-step process: application, care needs assessment, financial assessment, optional Nursing Home Loan.",
+    blurb: "Financial support for long-term nursing home care — you contribute a share of your income and assets, the State pays the rest. A four-step process: application, care needs assessment, financial assessment, optional Nursing Home Loan. Budget 2027 announced funding for 500 additional people under the scheme; no start date has been given.",
     prep: [
       "Be ready for the form itself: the official NHSS1 application runs to around 34 pages, with roughly a dozen pages of explanatory notes before you even reach the applicant's name — widely reported as one of the most daunting forms in the Irish health system. Read it once through before filling anything in, rather than starting cold.",
       "It covers the care needs assessment and the financial assessment together, so gather both sets of information before you start: medical/functional information for the care needs side, and income/asset documents (bank and investment statements, property valuations, PPS numbers) for the financial side.",
@@ -8103,6 +9149,15 @@ const SCHEME_LINKS = [
     ],
   },
   {
+    id: "ni-carers-allowance",
+    name: "Carer's Allowance (Northern Ireland)",
+    jurisdiction: "ni",
+    blurb: "A Department for Communities payment for carers aged 16 or over who care at least 35 hours a week for someone getting a qualifying disability benefit. Check the current rate and earnings limit on nidirect, as they change each April.",
+    links: [
+      { label: "Who qualifies & how to claim — nidirect", url: "https://www.nidirect.gov.uk/articles/carers-allowance" },
+    ],
+  },
+  {
     id: "ni-care-home-fees",
     name: "Paying for care home fees",
     jurisdiction: "ni",
@@ -8115,7 +9170,7 @@ const SCHEME_LINKS = [
     id: "disability-allowance",
     name: "Disability Allowance",
     jurisdiction: "roi",
-    blurb: "A means-tested weekly payment (roughly €244/week) for people aged 16–66 with an injury, disease or disability expected to last at least a year, assessed on substantial restriction to work suitable for your age and experience — not on diagnosis alone.",
+    blurb: "A means-tested weekly payment (roughly €244/week) for people aged 16–66 with an injury, disease or disability expected to last at least a year, assessed on substantial restriction to work suitable for your age and experience — not on diagnosis alone. Announced in Budget 2027: the maximum weekly rate rises by €10 from January 2027, and a €500 cost of disability lump sum is to be paid in 2027 to people getting a long-term disability payment (payment date to be confirmed). Check Citizens Information for who counts as qualifying.",
     prep: [
       "Ask your GP or specialist to complete the medical report section with your functional restrictions clearly described, not just your diagnosis — that's what's actually assessed.",
     ],
@@ -8376,6 +9431,14 @@ const SUPPORT_ORGS = [
 // these orgs' own services — verify current details on their own sites.
 const GENERAL_ADVOCACY_ORGS = [
   {
+    id: "flac",
+    name: "FLAC (Free Legal Advice Centres)",
+    remit: "Independent charity giving free basic legal information. It is not the Legal Aid Board.",
+    offer: "Short phone advice appointments with a volunteer lawyer, booked through a Citizens Information Centre. They are for once-off queries, not ongoing or complex cases.",
+    tags: ["legal information", "rights"],
+    contact: { web: "flac.ie/help/advice" },
+  },
+  {
     id: "sage-advocacy",
     name: "Sage Advocacy",
     remit: "National Advocacy Service for Older People, also covering vulnerable adults and healthcare patients where no other service exists.",
@@ -8451,7 +9514,7 @@ const GENERAL_ADVOCACY_ORGS = [
     id: "jigsaw",
     name: "Jigsaw",
     remit: "National Centre for Youth Mental Health, ages 12–25.",
-    offer: "Free 1:1 support online or in person (18 locations), live chat, and a support line for young people and concerned adults.",
+    offer: "Free 1:1 support online or in person (18 locations), live chat, and a support line for young people and concerned adults. Budget 2027 announced four new Jigsaw services; no dates or locations are given.",
     tags: ["mental health", "youth"],
     contact: { web: "jigsaw.ie", phone: "1800 544 729" },
   },
@@ -8682,6 +9745,61 @@ const OUT_OF_HOURS_NI = [
 // Fact lines are deliberately written one per line starting with "{ id:"
 // so the CI entry counter (which counts lines starting with `id: "`) keeps
 // counting directory ENTRIES only.
+
+// Search tables, used by search.js. Keys are written in normalised form (lower case, no
+// apostrophes or hyphens, "and" for "&"). Alias targets are words that must already appear in
+// entries, support organisations, tool pages or conditions, so an alias only routes people to
+// existing pages and never adds a claim; scripts/search-audit.js fails if a target matches
+// nothing. Add a key only when the words people use differ from the wording in the data.
+const SEARCH_US_UK = {
+  pediatric: "paediatric", pediatrician: "paediatrician", gynecology: "gynaecology",
+  gynecologist: "gynaecologist", orthopedic: "orthopaedic", orthopedics: "orthopaedics",
+  anesthesia: "anaesthesia", anesthetic: "anaesthetic", diarrhea: "diarrhoea",
+  esophagus: "oesophagus", counseling: "counselling", counselor: "counsellor",
+  estrogen: "oestrogen", fetal: "foetal", edema: "oedema", behavior: "behaviour",
+  center: "centre", hemorrhage: "haemorrhage", anemia: "anaemia", leukemia: "leukaemia",
+  tumor: "tumour", program: "programme", pap: "smear",
+};
+
+const SEARCH_ALIASES = {
+  // Parenting (from the 7 Oct 2026 language work)
+  "dad": ["new & expectant parents"], "dads": ["new & expectant parents"],
+  "father": ["new & expectant parents"], "fathers": ["new & expectant parents"],
+  "new dad": ["new & expectant parents"], "paternity": ["new & expectant parents"],
+  "non birthing parent": ["new & expectant parents"],
+  "adoption": ["new & expectant parents"], "adopt": ["new & expectant parents"],
+  "adoptive parent": ["new & expectant parents"], "foster": ["new & expectant parents"],
+  "foster parent": ["new & expectant parents"],
+  "lgbtq+ parents": ["new & expectant parents", "fertility"],
+  "lgbtq parents": ["new & expectant parents", "fertility"],
+  "same sex parents": ["new & expectant parents", "fertility"],
+  "same sex": ["new & expectant parents", "fertility"],
+  "trans parent": ["new & expectant parents"], "non binary parent": ["new & expectant parents"],
+  "chestfeeding": ["breastfeeding", "infant feeding"],
+  "motherhood": ["new & expectant parents", "postnatal", "antenatal"],
+  // Lay terms and abbreviations
+  "emergency room": ["emergency department"], "er": ["emergency department"],
+  "ed": ["emergency department"], "a and e": ["emergency department"],
+  "heart doctor": ["cardiology"], "rash": ["dermatology", "skin"],
+  "bones": ["orthopaedics", "osteoporosis", "bone health"],
+  "periods": ["gynaecology", "endometriosis"], "period pain": ["endometriosis", "gynaecology"],
+  "cervical check": ["cervical", "smear"], "panic attacks": ["anxiety", "mental health"],
+  "dyslexia": ["neurodiversity"], "dyspraxia": ["neurodiversity"], "toddler": ["child"],
+  "abortion": ["unplanned pregnancy"], "std": ["sti", "sexual health"],
+  "insulin": ["diabetes"], "blood pressure": ["hypertension", "cardiology"],
+  "cholesterol": ["cardiology"], "seizure": ["epilepsy"],
+  "teeth": ["dental", "dentist"], "braces": ["orthodon", "dental"],
+  "carers allowance": ["carer"], "disability allowance": ["disability"],
+  "home help": ["home support"], "fair deal": ["nursing home"], "grief": ["bereavement"],
+  "quit smoking": ["smoking"], "weight loss": ["obesity", "weight management"],
+  "speech therapy": ["speech and language"], "chiropodist": ["podiatr"], "podiatrist": ["podiatr"],
+  "wheelchair": ["seating"],
+  "refugee": ["migrant"],
+  // Crisis wording routes to existing text only. The special crisis link above results is
+  // pending the owner's decision (CLAUDE_CODE_SEARCH_ALIASES.md, S6).
+  "self harm": ["suicide", "crisis"], "overdose": ["suicide", "crisis", "drug"],
+  "want to die": ["suicide", "crisis"],
+};
 
 const TOOL_FACTS_LAST_VERIFIED = "2026-09-28";
 

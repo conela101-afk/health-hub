@@ -8,7 +8,7 @@ const ctx = {}; vm.createContext(ctx);
 vm.runInContext(fs.readFileSync("data.js", "utf8") + "\nthis.E=ENTRIES;this.C=COUNTIES;this.A=AREAS;", ctx);
 const ROI = ctx.C.map(c => c.id).filter(id => !["antrim","armagh","down","fermanagh","londonderry","tyrone","national"].includes(id));
 const label = id => (ctx.C.find(c => c.id === id) || {}).label || id;
-const cats = [["childdisability","Child disab."],["adultdisability","Adult disab."],["phn","PHN"],["camhs","CAMHS"],["alliedhealth","Allied"],["dental","Dental"],["adultmh","Adult MH"]];
+const cats = [["childdisability","Child disab."],["adultdisability","Adult disab."],["phn","PHN"],["camhs","CAMHS"],["alliedhealth","Allied"],["dental","Dental"],["adultmh","Adult MH"],["surgery-trauma","Surgery & trauma"]];
 const head = [`| County | All | ${cats.map(c => c[1]).join(" | ")} |`, `|---|---|${cats.map(() => "---").join("|")}|`];
 const row = (name, es) => `| ${name} | ${es.length} | ${cats.map(k => es.filter(e => (e.specialty || []).includes(k[0])).length).join(" | ")} |`;
 const inCounty = c => ctx.E.filter(e => (e.county || []).includes(c));

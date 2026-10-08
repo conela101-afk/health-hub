@@ -4,8 +4,9 @@
 // Later rules: urlStatus is one of opened, search-result, unverified; an entry with a
 // urlStatus and no `checked` date must be verify: true; any source_url must be on the
 // official-domain allow-list; verify: true entries may not put a phone, email or Eircode
-// in the blurb or details or use clinical-instruction wording; no field may mention
-// "Budget 2027" (the Budget is on 6 Oct 2026, so nothing can be stated yet).
+// in the blurb or details or use clinical-instruction wording. (An earlier rule banned
+// "Budget 2027" until the Budget was announced on 6 Oct 2026; removed 7 Oct 2026. Budget
+// measures must be worded as announced, with a start date only where the source gives one.)
 //
 // Rules: unique ids; county ids come from COUNTIES (26 counties + NI + national);
 // specialty ids from SPECIALTIES; optional `area` must exist in AREAS and belong
@@ -25,6 +26,18 @@ const SOURCE_DOMAINS = [
   "legalaidboard.ie", "flac.ie", "nidirect.gov.uk", "health-ni.gov.uk", "hscni.net", "nipso.org.uk",
   "screeningservice.ie", "ntpf.ie", "ncse.ie", "stjames.ie", "nrh.ie", "stvincents.ie", "mater.ie", "nohc.ie",
   "cho7cdnt.ie", "southeastcdnt.ie",
+  // Hospitals' own sites, approved by the owner 7 Oct 2026 ("the hospital's own .ie site").
+  "beaumont.ie", "childrenshealthireland.ie", "bonsecours.ie",
+  // Approved by the owner 7 Oct 2026: the GUIDe clinic's own site (St James's Hospital sexual health clinic).
+  "guideclinic.ie",
+  // Approved by the owner 7 Oct 2026: Tusla (child and family agency). aai.gov.ie (Adoption Authority of Ireland) is already covered by gov.ie.
+  "tusla.ie",
+  // Approved by the owner 7 Oct 2026: familysupportni.gov.uk (NI family support), saolta.ie (former Saolta
+  // hospital group site), caredoc.ie and kdoc.ie (GP out-of-hours services). bso.hscni.net,
+  // adoptionandfostercare.hscni.net and online.hscni.net are already covered by hscni.net.
+  "familysupportni.gov.uk", "saolta.ie", "caredoc.ie", "kdoc.ie",
+  // Approved by the owner 7 Oct 2026: Blackrock Health, the current owner of the Galway Clinic (galwayclinic.com redirects here).
+  "blackrockhealth.com",
 ];
 const hostAllowed = host => SOURCE_DOMAINS.some(d => host === d || host.endsWith("." + d));
 
@@ -59,7 +72,6 @@ function validate({ ENTRIES, COUNTIES, SPECIALTIES, AREAS }){
     }
     if (e.urlStatus !== undefined && !URL_STATUSES.includes(e.urlStatus)) errors.push(`${where}: urlStatus must be one of ${URL_STATUSES.join(", ")}`);
     if (e.urlStatus !== undefined && !e.checked && e.verify !== true) errors.push(`${where}: an entry with a urlStatus and no checked date must be verify: true`);
-    if (/budget 2027/i.test(JSON.stringify(e))) errors.push(`${where}: mentions "Budget 2027"`);
     if (e.source_url !== undefined){
       let host = "";
       try { host = new URL(e.source_url).hostname; } catch (err) { errors.push(`${where}: source_url is not a valid URL`); }

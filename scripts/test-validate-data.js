@@ -45,7 +45,13 @@ expect("freephone in verify details fails", [V({ details: ["Freephone 1800 424 5
 expect("Eircode in verify blurb fails", [V({ blurb: "Based at D02 YR92" })], "Eircode");
 expect("dates, counts and form codes are fine", [V({ blurb: "Form HSS001. Up to 8 sessions, ages 12 to 25. Within 21 days, from 18 Sep 2026." })]);
 expect("clinical wording fails", [V({ blurb: "You should take this medicine" })], "clinical-instruction");
-expect("Budget 2027 anywhere fails", [V({ blurb: "Rates change in Budget 2027" })], "Budget 2027");
+expect("Budget 2027 wording is allowed now the Budget is announced", [V({ blurb: "Announced in Budget 2027, from July 2027: the disregard rises to 1,150 euro." })]);
 expect("contact patterns not applied to unverified-free old entries", [e({ blurb: "Call 021 240 9646" })]);
+expect("blackrockhealth.com ok (Blackrock Health, approved 7 Oct 2026)", [V({ source_url: "https://www.blackrockhealth.com/locations" })]);
+expect("tusla.ie ok (approved 7 Oct 2026)", [V({ source_url: "https://www.tusla.ie/services/x/" })]);
+expect("aai.gov.ie ok via gov.ie", [V({ source_url: "https://www.aai.gov.ie/en/" })]);
+["familysupportni.gov.uk", "saolta.ie", "caredoc.ie", "kdoc.ie", "bso.hscni.net", "adoptionandfostercare.hscni.net", "online.hscni.net"].forEach(h =>
+  expect(`approved host ok (${h}, 7 Oct 2026)`, [V({ source_url: `https://www.${h}/x/` })]));
+expect("lookalike of an approved host fails", [V({ source_url: "https://notcaredoc.ie/x" })], "allow-list");
 expect("hospital domain ok (nrh.ie, National Rehabilitation Hospital)", [V({ source_url: "https://www.nrh.ie/rehabilitation-services/x/" })]);
 process.exit(fails ? 1 : 0);

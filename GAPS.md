@@ -203,7 +203,7 @@ Replaces the withdrawn first Pass 5. Everything here is search-result only in th
 |---|---|---|---|---|
 | 1 | Bill 88 of 2026 (AON) | Unverified past Second Stage | First Stage 18 Sep 2026 on the official page (search result only). A 23 Sep Second Stage debate is non-official. No Committee Stage evidence. | Text corrected in `aon-bill`; re-check after 6 Oct |
 | 2 | S.I. 263/2007 timeframes | Reported opened (as made) | Reg 9 start within 3 months; Reg 10 complete within a further 3 months "save for in exceptional circumstances", with prior written reasons; Reg 6 14 days; Reg 19 one month; Reg 24 three months as made | `aon-complete` updated; all `verify: true`; check for amendments |
-| 3 | ILD | Pathway absent (official) | Only a non-official Irish Thoracic Society note | Not added |
+| 3 | ILD | Pathway absent (official) | Only a non-official Irish Thoracic Society note | Two ILD entries already exist (`svuh-ild`, `beaumont-ild-ifpf`); both wording-softened on 7 Oct 2026 and still need a person to open the hospital pages. No national ILD pathway page added |
 | 4 | Patient interpreting | Confirmed gap | No HSE page found | Not added |
 | 5 | Diabetic foot; continence and urogynaecology; urology; thyroid and endocrine | Possible gap (unverified) | Not researched or not found | Not added |
 | 6 | Falls and bone health; geriatric day hospitals; respite | Possible gap (unverified) | Not found | Not added |
@@ -353,7 +353,10 @@ Mapped from the Pass 4 file into the repo schema. All search-result only, `verif
 - `hse-autism-protocol-adult` says adults can self-refer; the Pass 4 row says ask your GP. Kept the older wording and flagged it.
 - `hse-audiology` still says it does not supply hearing aids to everyone, next to the new "free hearing aids for adult medical-card holders". Check both against the HSE page.
 
+**Update 7 Oct 2026:** neither the gov.ie health release nor the Citizens Information Budget 2027 page mentions the GP visit card, DPS or the AON bill stage, so these stay on hold pending a re-read of gov.ie Your guide to Budget 2027.
+
 **On hold until after the 6 Oct 2026 Budget:** GP visit card (8 to 69) and Drugs Payment Scheme rows. Values in the Pass 4 file came from search results only. Update the existing `sc-card-*` / `sc-gpvc-auto` facts and DPS content in place after re-checking gov.ie. No figures are in the repo.
+
 ## Cork CDNTs (2 Oct 2026)
 
 HSE parliamentary-question replies (PQ 18815/25, PQ 6858/23, search results only, PDFs not opened)
@@ -374,6 +377,69 @@ Not in the repo: the Pass 3 draft rows `cdnt-west-cork`, `cdnt-carrigaline-kinsa
 `cdnt-west-central-cork-city` (with phone numbers, emails and addresses) were never added to `data.js`,
 and no "ten Cork teams" wording exists. If they come back, they must follow the same rules: no contacts
 until `urlStatus: "opened"`, `area` per catchment (CDNT 10 `west-cork`, 13 `south-cork` to confirm).
+
+## Pass 6 follow-ups (4 Oct 2026)
+
+Unverified, not researched (do not treat as absent pathways): continence/urogynae, urology, thyroid/endocrine, falls and geriatric day hospitals, bereavement/crisis, rheumatology biologics, stroke inpatient rehab, insulin pumps, DAFNE/X-PERT, LauraLynn, Jigsaw, and the NI stroke/MS/Parkinson's/diabetes/cardiac rehab/counselling layer.
+
+Possible gaps, source was search-result only: HSE interpreter access (staff SOP exists, no patient-facing page found), Beaumont ILD and bronchiectasis, headache pathway beyond the Mater, Mental Health Commission inspector role for community CAMHS, NI short breaks, BSO Regional Interpreting Service.
+
+Browser checks needed: HSE Diabetic Foot MOC PDF, NCG17 copy on hse.ie, Mater neurology phone lines, Bill 88 stage (Second Stage scheduled 23 Sep 2026, completion unverified; `aon-bill` fact stays `verify: true`), Carer's Allowance rates after Budget 2027 on 6 Oct.
+
+## Tertiary gaps (6 Oct 2026)
+
+Added 12 rows: `roi-svuh-liver-transplant`, `roi-nrh-rehab`, `roi-nccp-aya-network`, `ni-belfast-tya-cancer`, `roi-nccp-psycho-oncology`, `roi-beaumont-mnd-clinic`, `roi-chi-ghift`, `roi-chi-ncimd`, `roi-chi-craniofacial`, `roi-chi-clinical-genetics`, `roi-bons-cork-heart-lung`, `roi-bons-cork-radiotherapy`. All `verify: true`, `urlStatus: "search-result"`, web link only, no contacts. Every URL is unchecked until a person opens it. `beaumont.ie`, `childrenshealthireland.ie` and `bonsecours.ie` were added to the validator's `SOURCE_DOMAINS` on 7 Oct 2026 (hospitals' own sites, approved by the owner).
+
+**7 Oct 2026 browser checks:** `roi-chi-clinical-genetics` (renamed "Clinical Genetics, CHI at Crumlin & Temple Street"), `roi-svuh-liver-transplant` and `roi-nrh-rehab` now carry `urlStatus: "opened"` and `checked: "7 Oct 2026"` (Elaine's browser pass), with `verify` cleared. `guideclinic.ie` was added to the validator allow-list on 7 Oct 2026 (owner approved). `roi-nccp-psycho-oncology` stays `search-result`; the HSE site was down.
+
+**Row-specific notes:** the MND row is named "Motor Neurone Disease (MND) service, Beaumont Hospital": a service within the Department of Neurology, referrals via Healthlink, with no separate clinic, "National" or "HSE national centre" wording, or clinic days (Beaumont neurology page viewed 7 Oct 2026). GHIFT does not say where paediatric liver transplant happens. NCIMD outreach (Cork, Limerick, Ballinasloe) and the Bon Secours Varian Edge mention are flagged unconfirmed. Bon Secours rows are `sector: private`; heart & lung is Cork-only, launched 2024, no TAVI claim. "Only SRS/SBRT in Munster" is withheld. The radiotherapy URL is the page search returned (`/cork-departments/radiotherapy`), not `/services/radiation-therapy`.
+
+**Withheld, with the condition to un-withhold:**
+
+| id | Why withheld | Un-withhold when |
+|---|---|---|
+| `roi-sjh-guide-clinic` | Duplicate of existing `gum-guide-stjames` | Not needed. Optionally add the online-booking, PrEP/PEP text and a pointer to `sh24-roi` to the existing entry once the page is opened |
+| `ni-regional-genetics-bch` | Duplicate of existing `ni-regional-genetics` (Belfast City Hospital) | Not needed |
+| `ngs-columcilles`, `ncp-adult-adhd`, `hse-living-well-pain`, `gap-mecfs` | Non-official or no source (unchanged) | An official HSE page is found |
+
+**Correction to the 6 Oct audit gap table:** it wrongly listed the GUIDe clinic and NI genetics (Belfast City Hospital) as missing. Both already exist (`gum-guide-stjames`, `ni-regional-genetics`), so no rows were added. Their contacts and some wording are unverified; see the `REVIEW.md` browser checklist.
+
+Also left out: pancreas programme mention (SVUH), National AYA MDM, SVUH psycho-oncology per-centre claim, any NCH opening date, any row from the private-hospital matrix doc.
+
+## Inclusive parenting: content gaps (7 Oct 2026)
+
+Research items only. No entries written; each needs official sources and Elaine's approval first.
+
+1. **Fathers and non-birthing partners:** perinatal mental health support, and parental and paternity leave and benefit rights (Citizens Information, gov.ie, nidirect).
+2. **Adoptive and foster parents:** post-placement support, adoption leave and benefit, and the statutory bodies (Adoption Authority of Ireland, Tusla, HSC Trust adoption services). Tusla and AAI are not on the source-domain allow-list. **Elaine approved both on 7 Oct 2026: `tusla.ie` is now on the allow-list, and `aai.gov.ie` was already covered by `gov.ie`.**
+3. **Same-sex couples and fertility:** public AHR eligibility and the legal position on parentage and surrogacy, from HSE and gov.ie only, as administrative information and never as legal claims.
+4. **Search aliases (done 7 Oct 2026):** see the search section below. Adoption, foster and same-sex-parent searches still lead only to generic parenting entries until the content gaps above are filled.
+5. **Discoverability after the relabel:** covered by the `motherhood` alias.
+6. **Duplicate resolved (7 Oct 2026):** `nurture-pnd` was merged into `nurture`, which now carries both the `parenting` and `mh` specialties and wording taken from nurturehealth.ie. The id `nurture-pnd` no longer exists, so any bookmark to that entry will not resolve.
+7. **Not reviewed:** `Cork-Womens-Health-Pocket-Guide.docx` (separate asset, not part of the PWA).
+
+## Search: content gaps the audit exposed (7 Oct 2026)
+
+Queries that still return nothing after the matching fix, so the content is missing, not search. Listed in `scripts/search-audit-known-gaps.txt`; the audit fails if any other query returns nothing. Research only: no entries until sourced and approved.
+
+- **Interpreter access:** NI row added 7 Oct 2026 (BSO Regional Interpreting Service, unverified). Still no patient-facing HSE page for ROI.
+- **Second opinion:** rights and routes, likely a toolkit page via HSE and Citizens Information.
+- **Long-term illness scheme:** link-only row added 7 Oct 2026 (unverified).
+- **HSE Live:** row added 7 Oct 2026 (unverified).
+- **NI 111** and similar: verify first, do not add from memory.
+- **US spellings with no content to land on:** `anesthesia`, `esophagus`. Left as they are.
+- **Irish-language queries** (10 tried, `scripts/search-audit-queries-ga.txt`): 1 returns anything, the other 9 return nothing. Content was not translated. Whether to add Irish aliases or content is a decision for Elaine.
+
+## Local services and parenting research pass (7 Oct 2026)
+
+Applied from `research/LOCAL-SERVICES-PARENTING-2026-10-07.md` with Elaine's decisions. Still not covered:
+
+- **Community services** (CDNT, CAMHS, PHN outside Wicklow, dental, older persons, addiction, DSGBV) in every priority county. The research ran out of budget before a community-healthcare pass, so this is "not searched", not "does not exist".
+- **Down and Londonderry:** not attempted. **Louth County Hospital (Dundalk)** and **GP out-of-hours for Mayo and Louth:** no page found.
+- **Part B:** no HSE page on supporting a partner's perinatal mental health; no AAI page and no Citizens Information adoptive leave page read; no gov.ie or Citizens Information page on parentage or surrogacy (any future row link-only); nothing found for trans or non-binary parents.
+- **Second opinion** and **NHS 111 in NI:** not found on official pages (nidirect does not mention 111).
+- **Omagh health visiting on familysupportni.gov.uk:** the specific listing was not found. A Western Trust-wide health visiting row went in instead.
+- **Mayo mental health:** withheld until a current www2.hse.ie page names Mayo teams.
 
 ## Vaccine matrix: open checks (3 Oct 2026)
 

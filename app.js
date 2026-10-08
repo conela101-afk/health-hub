@@ -227,6 +227,15 @@
     return d.toLocaleDateString("en-IE", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
   }
 
+  // "14:30" (from <input type="time">) -> "2:30pm". Anything else is
+  // returned trimmed and unchanged.
+  function timeNice(v){
+    const m = /^(\d{1,2}):(\d{2})$/.exec((v || "").trim());
+    if (!m) return (v || "").trim();
+    const h = Number(m[1]);
+    return (h % 12 || 12) + ":" + m[2] + (h < 12 ? "am" : "pm");
+  }
+
   // Finds bare domain mentions inside free text ("check cuidiu.ie for...")
   // and turns them into real links, since most of the site's prose bullets
   // mention a website by name rather than storing it as a separate field.
@@ -348,9 +357,9 @@
       `
       : `
         <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
-        <a class="pill" href="#/specialty/parenting">Parenting &amp; new motherhood</a>
+        <a class="pill" href="#/specialty/parenting">New &amp; expectant parents</a>
         <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
-        <a class="pill" href="#/specialty/feeding">Breastfeeding support</a>
+        <a class="pill" href="#/specialty/feeding">Infant feeding &amp; breastfeeding support</a>
         <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
         <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
       `;
@@ -526,9 +535,15 @@
     });
   }
 
+  // Normalised once per entry (see search.js) so typing a query never re-normalises 500+ entries.
+  const hayCache = new Map();
   function entryHay(e){
-    return [e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel), e.area ? areaLabel(e.area) : ""]
-      .join(" ").toLowerCase();
+    let h = hayCache.get(e.id);
+    if (h === undefined){
+      h = HHSearch.normalise([e.name, e.blurb, ...(e.details||[]), ...e.specialty.map(specialtyLabel), ...e.county.map(countyLabel), e.area ? areaLabel(e.area) : ""].join(" "));
+      hayCache.set(e.id, h);
+    }
+    return h;
   }
 
   function providerGroupCardHtml(provider, entries){
@@ -547,19 +562,23 @@
     `;
   }
 
+  // Matching lives in search.js (shared with scripts/search-audit.js); aliases and the US/UK
+  // spelling map are in data.js.
   function renderSearch(query){
-    const q = query.toLowerCase();
-    const terms = q.split(/\s+/).filter(Boolean);
+    const p = HHSearch.prepare(query);
+    const match = HHSearch.matcher(p);
+    const terms = p.terms;
     const isPrivateQuery = terms.includes("private");
     const isVoluntaryQuery = terms.includes("voluntary");
     const otherTerms = terms.filter(t => t !== "private" && t !== "voluntary");
+    const providerHay = e => HHSearch.normalise(e.provider || "");
 
     let privateEntries = [];
     if (isPrivateQuery){
       privateEntries = ENTRIES.filter(e => sectorOf(e) === "private");
       if (otherTerms.length){
         privateEntries = privateEntries.filter(e =>
-          otherTerms.every(t => entryHay(e).includes(t) || (e.provider || "").toLowerCase().includes(t))
+          otherTerms.every(t => entryHay(e).includes(t) || providerHay(e).includes(t))
         );
       }
     }
@@ -568,19 +587,23 @@
       voluntaryEntries = ENTRIES.filter(e => sectorOf(e) === "voluntary");
       if (otherTerms.length){
         voluntaryEntries = voluntaryEntries.filter(e =>
-          otherTerms.every(t => entryHay(e).includes(t) || (e.provider || "").toLowerCase().includes(t))
+          otherTerms.every(t => entryHay(e).includes(t) || providerHay(e).includes(t))
         );
       }
     }
     const privateIds = new Set(privateEntries.map(e => e.id));
     const voluntaryIds = new Set(voluntaryEntries.map(e => e.id));
 
-    const results = ENTRIES.filter(e => !privateIds.has(e.id) && !voluntaryIds.has(e.id) && entryHay(e).includes(q));
-    const matchesOrg = o => [o.name, o.remit, o.offer, ...(o.tags||[])].join(" ").toLowerCase().includes(q);
+    const results = ENTRIES.filter(e => !privateIds.has(e.id) && !voluntaryIds.has(e.id) && match(entryHay(e)));
+    const matchesOrg = o => match(HHSearch.normalise([o.name, o.remit, o.offer, ...(o.tags||[])].join(" ")));
     const orgResults = SUPPORT_ORGS.filter(matchesOrg);
     const generalOrgResults = GENERAL_ADVOCACY_ORGS.filter(matchesOrg);
-    const toolResults = TOOL_PAGES.filter(t => (t.name + " " + t.keywords).toLowerCase().includes(q));
-    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length + voluntaryEntries.length + toolResults.length;
+    const toolResults = TOOL_PAGES.filter(t => match(HHSearch.normalise(t.name + " " + t.keywords)));
+    // Conditions load on demand (data/conditions.js); until then search runs without them.
+    const conditionResults = (typeof CONDITIONS !== "undefined")
+      ? CONDITIONS.filter(c => match(HHSearch.normalise(`${c.name} ${c.category} ${(c.keywords||[]).join(" ")}`))).slice(0, 20)
+      : [];
+    const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length + voluntaryEntries.length + toolResults.length + conditionResults.length;
 
     const toolSection = toolResults.length
       ? `<p class="section-title">Tools &amp; pages</p><div class="simple-list">${toolResults.map(t => `<a class="row" href="${t.href}"><span class="row-body"><h2>${t.name}</h2></span><span class="arrow">›</span></a>`).join("")}</div>`
@@ -603,19 +626,43 @@
     const generalOrgCards = generalOrgResults.length
       ? `<p class="section-title">General advocacy &amp; support</p><div class="org-grid">${generalOrgResults.map(orgCardHtml).join("")}</div>`
       : "";
+    const conditionSection = conditionResults.length
+      ? `<p class="section-title">Conditions</p><div class="simple-list">${conditionResults.map(conditionRowHtml).join("")}</div>`
+      : "";
+    // Facilities are not indexed here; one row hands the query on to the regulated-facilities search.
+    const facilityRow = p.q
+      ? `<p class="section-title">Regulated facilities</p><div class="simple-list"><a class="row" href="#/facilities"><span class="row-body"><h2>Search regulated facilities for "${escapeHtml(query)}"</h2></span><span class="arrow">›</span></a></div>`
+      : "";
     const safeQuery = escapeHtml(query);
+    const also = HHSearch.alsoSearched(p);
+    const alsoLine = also ? `<p class="count">Also searched: ${escapeHtml(also)}</p>` : "";
+    // Approved wording (Elaine, 7 Oct 2026). A link to the existing crisis page only: no numbers or extra copy here.
+    const crisisBanner = HHSearch.isCrisisQuery(query)
+      ? `<div class="callout" role="note"><p>If you or someone else is in crisis or in immediate danger, support is available now.</p><p class="callout-pill-row"><a class="pill" href="#/specialty/crisis">Mental Health Crisis Support ›</a></p></div>`
+      : "";
     const body = totalCount
-      ? `${toolSection}${privateSection}${voluntarySection}${cards}${orgCards}${generalOrgCards}`
-      : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>`;
+      ? `${toolSection}${privateSection}${voluntarySection}${cards}${conditionSection}${orgCards}${generalOrgCards}${facilityRow}`
+      : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>${facilityRow}`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
         <h1>Search: "${safeQuery}"</h1>
         <p class="count">${totalCount} result${totalCount === 1 ? "" : "s"}</p>
+        ${alsoLine}
       </div>
+      ${crisisBanner}
       ${body}
     `;
     searchInput.value = query;
+  }
+
+  // Search runs at once, then re-runs with conditions included when data/conditions.js has loaded.
+  // If that file can't load (offline before first cache), search still works without conditions.
+  function renderSearchRoute(query){
+    renderSearch(query);
+    if (typeof CONDITIONS !== "undefined") return;
+    const hash = location.hash;
+    loadAsset("data/conditions.js").then(() => { if (location.hash === hash) renderSearch(query); }).catch(() => {});
   }
 
   function renderEntry(id){
@@ -1089,6 +1136,49 @@ ${name}`;
     `;
   }
 
+  // ---------- Lazy-loaded assets ----------
+  // The big, single-purpose files (Find a Facility data, condition/medicine
+  // links, Leaflet) are fetched only when the person opens the page that
+  // needs them, instead of on every visit. Same-origin script injection is
+  // allowed by the CSP (script-src 'self'), and sw.js precaches these files
+  // so they still work offline.
+  const assetPromises = {};
+  const assetLoaded = new Set();
+
+  function loadAsset(src){
+    if (assetPromises[src]) return assetPromises[src];
+    assetPromises[src] = new Promise((resolve, reject) => {
+      const isCss = /\.css$/.test(src);
+      const el = document.createElement(isCss ? "link" : "script");
+      if (isCss){ el.rel = "stylesheet"; el.href = src; } else { el.src = src; }
+      el.onload = () => { assetLoaded.add(src); resolve(); };
+      el.onerror = () => {
+        delete assetPromises[src];
+        el.remove();
+        reject(new Error("Could not load " + src));
+      };
+      document.head.appendChild(el);
+    });
+    return assetPromises[src];
+  }
+
+  // Runs render() straight away if every file is already loaded; otherwise
+  // shows a short loading line, loads them, then renders (unless the person
+  // has navigated elsewhere in the meantime).
+  function withAssets(srcs, render){
+    if (srcs.every(s => assetLoaded.has(s))){ render(); return; }
+    const hash = location.hash;
+    app.innerHTML = `<div class="empty-state" role="status">Loading…</div>`;
+    Promise.all(srcs.map(loadAsset)).then(() => {
+      if (location.hash !== hash) return;
+      render();
+      announceRouteChange();
+    }).catch(() => {
+      if (location.hash !== hash) return;
+      app.innerHTML = `<div class="empty-state">Couldn't load this section. Check your connection and try again.</div>`;
+    });
+  }
+
   function initOohMap(){
     if (typeof L === "undefined") return;
     const mapEl = document.getElementById("ooh-map");
@@ -1123,10 +1213,22 @@ ${name}`;
     if (!btn) return;
     btn.addEventListener("click", () => {
       const placeholder = document.getElementById("oohMapPlaceholder");
-      if (!placeholder) return;
-      placeholder.outerHTML = '<div id="ooh-map" class="ooh-map"></div>';
-      initOohMap();
-    }, { once: true });
+      if (!placeholder || btn.disabled) return;
+      btn.disabled = true;
+      btn.textContent = "Loading map…";
+      Promise.all([
+        loadAsset("vendor/leaflet/leaflet.css"),
+        loadAsset("vendor/leaflet/leaflet.js"),
+      ]).then(() => {
+        const ph = document.getElementById("oohMapPlaceholder");
+        if (!ph) return;
+        ph.outerHTML = '<div id="ooh-map" class="ooh-map"></div>';
+        initOohMap();
+      }).catch(() => {
+        btn.disabled = false;
+        btn.textContent = "Couldn't load the map — tap to try again";
+      });
+    });
   }
 
   function renderOutOfHours(){
@@ -1237,8 +1339,9 @@ ${name}`;
 
     function draw(query){
       const q = (query || "").trim().toLowerCase();
+      const match = HHSearch.matcher(HHSearch.prepare(q));
       const filtered = q
-        ? items.filter(f => `${f.name} ${f.county_or_trust} ${f.address} ${f.provider}`.toLowerCase().includes(q))
+        ? items.filter(f => match(HHSearch.normalise(`${f.name} ${f.county_or_trust} ${f.address} ${f.provider}`)))
         : items;
       const shown = filtered.slice(0, FACILITY_LIST_CAP);
       const listEl = document.getElementById("facility-results");
@@ -1355,8 +1458,9 @@ ${name}`;
 
     function draw(query){
       const q = (query || "").trim().toLowerCase();
+      const match = HHSearch.matcher(HHSearch.prepare(q));
       const filtered = q
-        ? list.filter(c => `${c.name} ${c.category} ${(c.keywords || []).join(" ")}`.toLowerCase().includes(q))
+        ? list.filter(c => match(HHSearch.normalise(`${c.name} ${c.category} ${(c.keywords || []).join(" ")}`)))
         : list;
       const shown = filtered.slice(0, CONDITION_LIST_CAP);
       const listEl = document.getElementById("condition-results");
@@ -1560,7 +1664,7 @@ ${name}`;
         <p class="remit">If a crowded or noisy waiting room is difficult for you, this drafts a message asking reception to let you wait elsewhere and text you when it's your turn. Whether they can accommodate it is up to the service — this only drafts the ask. Nothing on this card is saved.</p>
 
         <label class="prep-label" for="waitTime">Appointment time</label>
-        <input type="text" id="waitTime" class="prep-input" placeholder="e.g. 2:30pm">
+        <input type="time" id="waitTime" class="prep-input">
 
         <label class="prep-label" for="waitClinician">Clinician or department</label>
         <input type="text" id="waitClinician" class="prep-input" placeholder="e.g. Dr Smith / Outpatients">
@@ -1569,7 +1673,7 @@ ${name}`;
         <input type="text" id="waitLocation" class="prep-input" placeholder="e.g. the car park, outside the entrance">
 
         <label class="prep-label" for="waitPhone">Your phone number</label>
-        <input type="text" id="waitPhone" class="prep-input" placeholder="e.g. 087 123 4567">
+        <input type="tel" inputmode="tel" autocomplete="tel" id="waitPhone" class="prep-input" placeholder="e.g. 087 123 4567">
 
         <button type="button" class="copy-btn" id="waitGenerate">Build my message</button>
         <pre class="template-text" id="waitOutput" hidden></pre>
@@ -1637,7 +1741,7 @@ ${name}`;
     document.getElementById("prepPrint").addEventListener("click", () => printOnly("prepOutput"));
 
     document.getElementById("waitGenerate").addEventListener("click", () => {
-      const time = document.getElementById("waitTime").value.trim() || "[time]";
+      const time = timeNice(document.getElementById("waitTime").value) || "[time]";
       const clinician = document.getElementById("waitClinician").value.trim() || "[clinician / department]";
       const loc = document.getElementById("waitLocation").value.trim() || "[nearby location]";
       const phone = document.getElementById("waitPhone").value.trim() || "[phone number]";
@@ -1961,17 +2065,17 @@ ${name}`;
     else if (parts[0] === "specialty" && parts[1]) renderList("specialty", parts[1], parts[2]);
     else if (parts[0] === "county" && !parts[1]) renderCountyIndex();
     else if (parts[0] === "county" && parts[1]) renderList("county", parts[1], parts[2]);
-    else if (parts[0] === "search" && parts[1]) renderSearch(decodeURIComponent(parts.slice(1).join("/")));
+    else if (parts[0] === "search" && parts[1]) renderSearchRoute(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
-    else if (parts[0] === "facilities" && !parts[1]) renderFacilities();
-    else if (parts[0] === "facilities" && parts[1]) renderFacilityList(parts[1]);
-    else if (parts[0] === "conditions" && !parts[1]) renderConditions();
-    else if (parts[0] === "conditions" && parts[1]) renderConditionDetail(parts[1]);
-    else if (parts[0] === "medicines") renderMedicines();
-    else if (parts[0] === "vaccines") renderVaccines();
+    else if (parts[0] === "facilities" && !parts[1]) withAssets(["data/facilities.js"], renderFacilities);
+    else if (parts[0] === "facilities" && parts[1]) withAssets(["data/facilities.js"], () => renderFacilityList(parts[1]));
+    else if (parts[0] === "conditions" && !parts[1]) withAssets(["data/conditions.js"], renderConditions);
+    else if (parts[0] === "conditions" && parts[1]) withAssets(["data/conditions.js"], () => renderConditionDetail(parts[1]));
+    else if (parts[0] === "medicines") withAssets(["data/conditions.js"], renderMedicines);
+    else if (parts[0] === "vaccines") withAssets(["data/vaccines.js"], renderVaccines);
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
@@ -1989,6 +2093,15 @@ ${name}`;
   // which fired a split second later and ran route() a second time on
   // every load — harmless for rendering, but it broke the "only move focus
   // on the second-and-later navigation" check in announceRouteChange.)
+  // Tapping anywhere in a date/time field opens the native calendar/clock
+  // (not just the small icon), so nobody has to type into the segments.
+  document.addEventListener("click", (e) => {
+    const el = e.target;
+    if (el instanceof HTMLInputElement && (el.type === "date" || el.type === "time") && typeof el.showPicker === "function"){
+      try { el.showPicker(); } catch (_) { /* already open or not allowed */ }
+    }
+  });
+
   window.addEventListener("hashchange", route);
   route();
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v13";
+const CACHE_NAME = "pocket-guide-v15";
 const ASSETS = [
   "./",
   "./index.html",
@@ -6,6 +6,7 @@ const ASSETS = [
   "./app.js",
   "./tools.js",
   "./data.js",
+  "./search.js",
   "./data/facilities.js",
   "./data/conditions.js",
   "./data/vaccines.js",
@@ -44,11 +45,14 @@ self.addEventListener("activate", (event) => {
 // Network-first: this is a reference tool where content freshness (service
 // listings, FOI contacts, complaints processes) matters more than offline
 // speed. Falls back to cache only when the network is unavailable.
+// "no-cache" (not "no-store") means the browser always revalidates with the
+// server but can answer 304 Not Modified, so unchanged files -- notably the
+// ~2 MB data/facilities.js -- are not re-downloaded on every visit.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   if (!event.request.url.startsWith(self.location.origin)) return;
   event.respondWith(
-    fetch(event.request, { cache: "no-store" })
+    fetch(event.request, { cache: "no-cache" })
       .then((response) => {
         if (response.ok) {
           const clone = response.clone();
