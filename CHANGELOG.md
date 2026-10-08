@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-08 [Claude] (pass 2 confirmations, Treatment Benefit)
+- Elaine's confirmations: Sligo's out-of-hours base is Caredoc (Sligo added to the Caredoc row and map); Louth is Nedoc with its base at Drogheda ("excl. Dundalk" dropped from the NEDOC row). Added `ni-tyrone-family-support-hub-omagh` (link only, `sector: "voluntary"`, specialty `hub`; the page is egress-blocked, so it was not opened). 706 to 707 entries by script.
+- Correction: the PR #96 summary said `roi-sligo-caredoc-sligo` was not added. It was, because the report's Part 3 table lists it. It stays, now confirmed.
+- Added Treatment Benefit (PRSI) to `data/costs.js` (11 rows), completing the report's B2 table. Cache bumped.
+
 ## 2026-10-08 [Claude] (local services pass 2)
 - Added 96 `data.js` entries (610 to 706, counted by script; ids unique) from `research/LOCAL-SERVICES-GAPS-2026-10-07.md` and Elaine's decisions: Wexford, Mayo, Tyrone, Louth, Down and Londonderry rows, 56 HSE GP out-of-hours bases, and the parenting, adoption and fertility pointers. All `verify: true`, `urlStatus: "search-result"`, no `checked`, link only. `urgent` applied to the urgent-care rows.
 - Decisions applied: Daisy Hill ED added in Down and `down` added to the Southern Trust Phone First row; Louth Nedoc Drogheda added unverified and the Dundalk exclusion flagged in `REVIEW.md`; Sligo left alone. Family Support Hub Omagh approved but not added (no URL in the report); Rosewood withheld.
