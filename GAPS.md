@@ -206,7 +206,7 @@ Replaces the withdrawn first Pass 5. Everything here is search-result only in th
 | 3 | ILD | Pathway absent (official) | Only a non-official Irish Thoracic Society note | Two ILD entries already exist (`svuh-ild`, `beaumont-ild-ifpf`); both wording-softened on 7 Oct 2026 and still need a person to open the hospital pages. No national ILD pathway page added |
 | 4 | Patient interpreting | Confirmed gap | No HSE page found | Not added |
 | 5 | Diabetic foot; continence and urogynaecology; urology; thyroid and endocrine | Possible gap (unverified) | Not researched or not found | Not added |
-| 6 | Falls and bone health; geriatric day hospitals; respite | Possible gap (unverified) | Not found | Not added |
+| 6 | Falls and bone health; geriatric day hospitals; respite | Respite partly filled (10 Oct 2026); falls and day hospitals still possible gaps | Respite: a Citizens Information page ("Breaks and respite care for carers") and nidirect pages surfaced in search on 10 Oct; none opened. No HSE respite page for older people found. Falls and day hospitals not found | Respite: `roi-respite` and `ni-respite` in `data/costs.js`, plus the NI carer breaks card in `SCHEME_LINKS`. Falls and day hospitals not added |
 | 7 | Bereavement; crisis routes | Possible gap (unverified) | Not researched | Not added |
 | 8 | Lymphoedema | Possible gap | Model of care exists; 2019 press says rollout incomplete | Not added |
 | 9 | Stroke ESD | Confirmed (partial coverage) | HSE NCP Stroke report; Mater page | Added `stroke-esd` |
@@ -479,3 +479,16 @@ All five source pages were opened in the built-in browser pane on 8 Oct 2026 (Cl
 - **NIPHS:** the HSE page says prior notification is optional for inpatient and day-case care. It does not mention overnight stays or prior authorisation. The other source in the conflict note is still unresolved.
 - **Cross-Border Directive:** page matches the row. **Treatment Abroad Scheme:** page matches the row, but it carries a "content is currently being reviewed" notice, and it does not say in as many words that the HSE pays the overseas provider directly (the row says so; the E112/S2 mechanism implies it). The row's line that the Directive cannot refund care that qualifies for TAS was not on the pages read.
 - Not built: S2/EHIC/GHIC, and the All-Island Congenital Heart Disease Network.
+
+## Respite and nursing home know-how: open checks (10 Oct 2026)
+
+Everything added here is search-result only (`verify: true`, `urlStatus: "search-result"`); no page was opened. Added: `roi-respite` and `ni-respite` (`data/costs.js`); three cards in `SCHEME_LINKS` (`nursing-home-know-how`, `decision-making-papers`, `ni-carer-breaks-care-homes`); a nursing home pointer on Find a Facility; two tool-page search entries; five respite aliases.
+
+- **ROI respite, unresolved:** the only ROI page found is Citizens Information "Breaks and respite care for carers" (reported as over two years old). No HSE or HIQA respite page for older people surfaced. A person should open it and the HSE carers pages and check who arranges respite, how to ask, and any charge. No fee is stated anywhere.
+- **HSE host family (decision for Elaine):** search results show live pages under `www2.hse.ie/services/` (home support, Fair Deal contact) and legacy pages under `hse.ie/eng/services/`. The brief's candidate `hse.ie/services/home-support-service/...` matches neither, so it was not used. Proposed answer: `www2.hse.ie/services/...` is the live family; confirm.
+- **irishstatutebook.ie (decision for Elaine):** not needed for this work. The decision-making card cites Citizens Information and gov.ie pages instead, so it is not added to the approved list. Say if you still want it for statute text.
+- **Fair Deal:** no Fair Deal row exists in `data/costs.js`, and the Fair Deal card has no `route_note` or sentence about respite, so nothing was edited there. The nursing home card points to it, and the card for decision-making papers tells people to check the priority order of who can apply on the Citizens Information Fair Deal page. Still to do: cross-check the priority order in the Fair Deal `prep` text (decision-making representative or enduring power of attorney first, then spouse or partner, then an adult child) against the primary source.
+- **Decision-making papers:** check the registration rule for enduring powers of attorney (3 months, for those made on or after 26 April 2023) and the 2026 wardship deadline note that Citizens Information carries; the Decision Support Service's own site is not on the approved list and is not linked.
+- **Nursing homes:** confirm the HIQA find-a-centre and inspection reports URLs; confirm Ombudsman scope and the 12-month limit on ombudsman.ie. NI nursing home complaints (RQIA, Trust) were not researched; rqia.org.uk is not on the approved list.
+- **Not used:** the Southern Trust short breaks page (learning disability only), nidirect node/1720 ("Time out from caring", not surfaced), parliamentary-question replies (staff documents), and all press, charity and private-provider results.
+- **Home care and home oxygen:** separate run (10 Oct build-plan addendum).

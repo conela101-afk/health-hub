@@ -35,6 +35,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-10 [Claude] — Respite and nursing home know-how: two cost rows, three guide cards, Find a Facility pointer, search aliases. All unverified; no host decisions made (irishstatutebook.ie not needed). See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-09 [Claude] — Verification sprint 1: five complaints facts and 16 entries updated from pages Elaine opened in a browser, `dublinandsoutheastcdnt.ie` approved, three entries withheld (HSE pages down). See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-09 [Claude] — Navigation findability pass: guided-tools row on Home and Advocacy, Advocacy intro collapsed, tabs wrap instead of scrolling; PR only, user test pending. See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-08 [Claude] — Children's disability referral wording corrected in three `data.js` places (GP/PHN first, parents can also refer with the HSE forms and consent, local routing varies); still unverified by a person. See `CHANGELOG.md`.

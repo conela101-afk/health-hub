@@ -113,6 +113,8 @@
     { name: "Vaccines: what's covered where", href: "#/vaccines", keywords: "vaccine vaccines vaccination flu covid shingles shingrix pneumococcal ppv23 rsv free cost pharmacy gp immunosuppressed" },
     { name: "What you pay: medicines, GP and cross-border costs", href: "#/costs", keywords: "cross border cross-border directive niphs treatment abroad tas reimbursement waiting list cost costs pay prescription charge medical card drugs payment scheme dps long term illness lti gp visit card hospital charge ed free prescriptions hc1 hrt contraception" },
     { name: "Screening: who is invited", href: "#/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear test mammogram fit test bowel breast cervical aneurysm aaa diabetic eye retinascreen retinopathy invited age" },
+    { name: "Nursing homes: choosing, paying and raising a concern", href: "#/advocacy/schemes", keywords: "nursing home nursing homes residential care older people hiqa inspection report choosing a nursing home fair deal complaint concern ombudsman residents rights" },
+    { name: "Decision-making papers (enduring power of attorney, advance healthcare directive)", href: "#/advocacy/schemes", keywords: "enduring power of attorney epa advance healthcare directive decision making representative assisted decision making capacity act decision support service capacity" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
     { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
@@ -1124,7 +1126,7 @@ ${name}`;
     const linksHtml = s.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join("");
     const prepHtml = s.prep && s.prep.length
       ? `<details class="scheme-prep">
-          <summary>What to prepare before you start ${iconSvg(CHEVRON_ICON, 14)}</summary>
+          <summary>${s.prepLabel || "What to prepare before you start"} ${iconSvg(CHEVRON_ICON, 14)}</summary>
           <ul>${s.prep.map(p => `<li>${linkifyText(p)}</li>`).join("")}</ul>
         </details>`
       : "";
@@ -1134,6 +1136,7 @@ ${name}`;
         <p class="remit">${s.blurb}</p>
         <div class="scheme-links">${linksHtml}</div>
         ${prepHtml}
+        ${s.verify ? `<p class="remit"><em>Written from search results. The linked pages have not yet been opened and checked, so read them before you rely on this.</em></p>` : ""}
       </div>
     `;
   }
@@ -1344,6 +1347,10 @@ ${name}`;
 
       <div class="callout">
         <strong>This is regulator/registry data, not a curated directory</strong> — it lists what's registered, not what's recommended, and doesn't include GP practices, pharmacies, or outpatient clinics. For condition-specific services with referral guidance, use <a href="#/specialty">Browse by specialty</a> instead.
+      </div>
+
+      <div class="callout">
+        <strong>Looking for a nursing home?</strong> Open "Nursing Home / Older Persons Centre" below, find the centre, then check its page on HIQA's find-a-centre tool for its inspection reports. For which scheme helps with the cost and how to raise a concern, see <a href="#/advocacy/schemes">the nursing home guide</a>. This is not a ranking of homes.
       </div>
 
       <div class="simple-list">
