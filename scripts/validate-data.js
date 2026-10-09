@@ -38,6 +38,8 @@ const SOURCE_DOMAINS = [
   "familysupportni.gov.uk", "saolta.ie", "caredoc.ie", "kdoc.ie",
   // Approved by the owner 7 Oct 2026: Blackrock Health, the current owner of the Galway Clinic (galwayclinic.com redirects here).
   "blackrockhealth.com",
+  // Approved by the owner 9 Oct 2026: the Dublin and South East Children's Disability Network Teams site (replaces southeastcdnt.ie).
+  "dublinandsoutheastcdnt.ie",
 ];
 const hostAllowed = host => SOURCE_DOMAINS.some(d => host === d || host.endsWith("." + d));
 

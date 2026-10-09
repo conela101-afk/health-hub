@@ -1279,12 +1279,11 @@ const ENTRIES = [
     specialty: ["cancer", "screening"],
     county: ["national"],
     blurb: "Free mammograms for women aged 50 to 69, run by the National Screening Service.",
-    details: ["Invited about every 2 years (sometimes up to 3).", "Screening reminders are also visible in the HSE Health App."],
     referral: "Automatic invitation by eligible age band, or self-register if not yet invited.",
     contact: { web: "breastcheck.ie" },
     source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/breastcheck-age-range-explained/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
 
   // Crisis, neurodiversity, parenting, and infertility — added Sep 2026 in
@@ -6573,22 +6572,25 @@ const ENTRIES = [
     name: "Find your Children's Disability Network Team (CDNT)",
     specialty: ["childdisability"],
     county: ["national"],
-    blurb: "HSE search tool for your local CDNT by address. Families can refer directly; an Assessment of Need is a separate, parallel statutory right.",
+    blurb: "HSE search tool for your local CDNT by address.",
     contact: { web: "www2.hse.ie/services/childrens-disabilities/" },
     source_url: "https://www2.hse.ie/services/childrens-disabilities/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "hse-aon-officer",
     name: "Assessment of Need: apply to your local Assessment Officer",
     specialty: ["childdisability"],
     county: ["national"],
-    blurb: "Apply in writing on the HSE application form to the Assessment Officer for your area. Find your officer on the HSE page.",
+    blurb: "Contact details for your local Assessment of Need office, by county.",
     contact: { web: "www2.hse.ie/services/disability/applying-for-an-assessment-of-need/assessment-of-need-officer/" },
+    resources: [
+      { label: "Assessment of Need for people with disabilities — Citizens Information", url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/" }
+    ],
     source_url: "https://www2.hse.ie/services/disability/applying-for-an-assessment-of-need/assessment-of-need-officer/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "hse-aon-complaints",
@@ -6598,8 +6600,8 @@ const ENTRIES = [
     blurb: "Complaints about AON timing, findings or Service Statements go to the HSE Disability Complaints Officer, generally within 3 months. Contact details: see the Citizens Information page.",
     contact: { web: "www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/" },
     source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/assessment-of-need-for-people-with-disabilites/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "odao-appeals",
@@ -6609,30 +6611,30 @@ const ENTRIES = [
     blurb: "Appeals after a HSE Complaints Officer report, or where a recommendation is not implemented.",
     contact: { web: "www.gov.ie/en/department-of-children-disability-and-equality/publications/disability-appeals-officer/" },
     source_url: "https://www.gov.ie/en/department-of-children-disability-and-equality/publications/disability-appeals-officer/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "cho7-cdnts",
     name: "CHO7 Children's Disability Network Teams",
     specialty: ["childdisability"],
     county: ["dublin", "kildare", "wicklow"],
-    blurb: "11 teams covering Dublin South/South West, Kildare and West Wicklow. Team and contact details on the CHO7 site.",
+    blurb: "11 teams covering Dublin South, Kildare and West Wicklow. Team and contact details on the CHO7 site.",
     contact: { web: "www.cho7cdnt.ie/teams/pages/" },
     source_url: "https://www.cho7cdnt.ie/teams/pages/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "southeast-cdnts",
     name: "South East Children's Disability Network Teams",
     specialty: ["childdisability"],
-    county: ["carlow", "kilkenny", "tipperary", "waterford", "wexford"],
-    blurb: "12 teams across Carlow, Kilkenny, South Tipperary, Waterford and Wexford.",
-    contact: { web: "www.southeastcdnt.ie/about/who-we-are/" },
-    source_url: "https://www.southeastcdnt.ie/about/who-we-are/",
-    urlStatus: "search-result",
-    verify: true
+    county: ["carlow", "dublin", "kilkenny", "tipperary", "waterford", "wicklow", "wexford"],
+    blurb: "Children's Disability Network Teams across Carlow, Dublin South, Kilkenny, South Tipperary, Waterford, Wicklow and Wexford, with three lead agencies (HSE, CRC and Enable Ireland). Team details on the Dublin and South East CDNT site.",
+    contact: { web: "www.dublinandsoutheastcdnt.ie/about/who-we-are/" },
+    source_url: "https://www.dublinandsoutheastcdnt.ie/about/who-we-are/",
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "cdnt-cork-overview",
@@ -6646,17 +6648,6 @@ const ENTRIES = [
     verify: true
   },
   {
-    id: "hse-spmhs",
-    name: "Specialist Perinatal Mental Health Services",
-    specialty: ["mh"],
-    county: ["national"],
-    blurb: "Specialist hub teams in the larger maternity units plus perinatal mental health midwives in all units. Hub list and access limits change; check the HSE page.",
-    contact: { web: "www.hse.ie/eng/services/list/4/mental-health-services/specialist-perinatal-mental-health/" },
-    source_url: "https://www.hse.ie/eng/services/list/4/mental-health-services/specialist-perinatal-mental-health/",
-    urlStatus: "search-result",
-    verify: true
-  },
-  {
     id: "umhl-spmhs",
     name: "Perinatal Mental Health Service, University Maternity Hospital Limerick",
     specialty: ["mh"],
@@ -6664,8 +6655,8 @@ const ENTRIES = [
     blurb: "GP or consultant referral. Contact details on the HSE hospital page.",
     contact: { web: "www2.hse.ie/services/hospitals/university-maternity-hospital-limerick/departments-services/perinatal-mental-health-service-268/" },
     source_url: "https://www2.hse.ie/services/hospitals/university-maternity-hospital-limerick/departments-services/perinatal-mental-health-service-268/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "hse-ahr",
@@ -6682,15 +6673,15 @@ const ENTRIES = [
       { label: "HSE assisted human reproduction (AHR) services — Citizens Information", url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/hse-assisted-human-reproduction-ahr-services/" }
     ],
     source_url: "https://www2.hse.ie/pregnancy-birth/trying-for-a-baby/your-fertility/getting-ivf-icsi-iui-hse/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "cumh-endometriosis",
     name: "Supra-regional endometriosis centre, Cork University Maternity Hospital",
     specialty: ["endo"],
     county: ["cork"],
-    blurb: "Specialist centre for complex endometriosis. One of two supra-regional centres (the other is Tallaght). Referral via GP or consultant.",
+    blurb: "Specialist centre for complex endometriosis. One of two supra-regional centres (the other is Tallaght).",
     contact: { web: "irelandsouthwid.cumh.hse.ie/women-s-health/endometriosis/" },
     source_url: "https://irelandsouthwid.cumh.hse.ie/women-s-health/endometriosis/",
     urlStatus: "search-result",
@@ -6701,11 +6692,11 @@ const ENTRIES = [
     name: "Complex menopause clinics",
     specialty: ["menopause"],
     county: ["national"],
-    blurb: "Specialist clinics for complex cases, referral by GP or consultant. Most women are managed in primary care.",
+    blurb: "Specialist menopause clinics. A GP may refer you to one if you have a complex medical history.",
     contact: { web: "www2.hse.ie/conditions/menopause/menopause-treatment/" },
     source_url: "https://www2.hse.ie/conditions/menopause/menopause-treatment/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "cumh-complex-menopause",
@@ -6719,28 +6710,6 @@ const ENTRIES = [
     verify: true
   },
   {
-    id: "ncp-eating-disorders",
-    name: "HSE National Clinical Programme for Eating Disorders",
-    specialty: ["eating"],
-    county: ["national"],
-    blurb: "Community eating disorder teams for adults and children. Team locations and numbers vary and are still expanding.",
-    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/mental-health/eating-disorders/" },
-    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/mental-health/eating-disorders/",
-    urlStatus: "search-result",
-    verify: true
-  },
-  {
-    id: "nrdo",
-    name: "National Rare Diseases Office",
-    specialty: ["rare-disease"],
-    county: ["dublin"],
-    blurb: "Information and signposting for rare conditions; runs Orphanet Ireland. Contact details on the HSE page.",
-    contact: { web: "www.hse.ie/eng/services/list/5/rarediseases/patientsfamilies.html" },
-    source_url: "https://www.hse.ie/eng/services/list/5/rarediseases/patientsfamilies.html",
-    urlStatus: "search-result",
-    verify: true
-  },
-  {
     id: "nhivrc-cochlear",
     name: "National Cochlear Implant Programme, Beaumont Hospital",
     specialty: ["ent"],
@@ -6748,19 +6717,19 @@ const ENTRIES = [
     blurb: "Referral via GP, public health nurse, audiologist or ENT. Waiting times vary and are not shown here.",
     contact: { web: "www2.hse.ie/services/audiology/hearing-aids-implants/cochlear-implants/" },
     source_url: "https://www2.hse.ie/services/audiology/hearing-aids-implants/cochlear-implants/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "ncp-obesity-moc",
     name: "Public bariatric surgery pathway (Obesity Model of Care)",
     specialty: ["weightmanagement"],
     county: ["national"],
-    blurb: "GP referral into the specialist obesity pathway; surgery is limited to a small number of centres. Check current centres and criteria with the HSE.",
-    contact: { web: "www.hse.ie/eng/about/who/cspd/ncps/obesity/model-of-care/obesity-model-of-care-highlights.pdf" },
-    source_url: "https://www.hse.ie/eng/about/who/cspd/ncps/obesity/model-of-care/obesity-model-of-care-highlights.pdf",
-    urlStatus: "search-result",
-    verify: true
+    blurb: "Bariatric surgery is available through the HSE; a multidisciplinary team assesses you if you are referred.",
+    contact: { web: "www2.hse.ie/conditions/obesity/surgery/" },
+    source_url: "https://www2.hse.ie/conditions/obesity/surgery/",
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "bowelscreen",
@@ -6770,8 +6739,8 @@ const ENTRIES = [
     blurb: "Free home test, every 2 years. Age range has been expanding: check the HSE page for current ages.",
     contact: { web: "www2.healthservice.hse.ie/organisation/nss/news/explained-bowelscreen-age-range-expansion/" },
     source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/explained-bowelscreen-age-range-expansion/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "cervicalcheck",
@@ -6781,19 +6750,19 @@ const ENTRIES = [
     blurb: "Free cervical screening (HPV test) for ages 25 to 65. Intervals depend on age and results.",
     contact: { web: "www2.healthservice.hse.ie/organisation/nss/news/cervicalcheck-age-range-explained/" },
     source_url: "https://www2.healthservice.hse.ie/organisation/nss/news/cervicalcheck-age-range-explained/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "hse-child-dental",
     name: "HSE school dental and orthodontic services",
     specialty: ["dental"],
     county: ["national"],
-    blurb: "School dental checks and emergency care for children. Orthodontic referral is for severe cases only. Class coverage varies by area.",
+    blurb: "Free HSE orthodontic treatment for children with a severe bite problem. Referral is before age 16, usually through the 6th class dental check-up.",
     contact: { web: "www2.hse.ie/conditions/orthodontic-treatment-and-braces/" },
     source_url: "https://www2.hse.ie/conditions/orthodontic-treatment-and-braces/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   {
     id: "dca",
@@ -6803,8 +6772,8 @@ const ENTRIES = [
     blurb: "Monthly payment for a child under 16 with a severe disability. Links to a medical card. Check the current rate on gov.ie or Citizens Information.",
     contact: { web: "www.citizensinformation.ie/en/social-welfare/disability-and-illness/domiciliary-care-allowance/" },
     source_url: "https://www.citizensinformation.ie/en/social-welfare/disability-and-illness/domiciliary-care-allowance/",
-    urlStatus: "search-result",
-    verify: true
+    urlStatus: "opened",
+    checked: "9 Oct 2026"
   },
   // Audit round 1, Pass 4 rows (2 Oct 2026). Search results only, no contacts.
   {
@@ -11171,19 +11140,19 @@ const TOOL_FACTS = [
   { id: "roi-ysys-overview", text: "HSE complaints go through \"Your Service Your Say\" (YSYS), which has four stages.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-ysys-stage1", text: "Stage 1: raise it with the staff member or their manager at the point of service. The aim is to resolve it within 48 hours.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 2, unit: "calendar_days" } },
   { id: "roi-ysys-stage2", text: "Stage 2: a formal complaint to a complaints officer, who investigates. The target is 30 working days, and they should tell you if it will take longer.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 30, unit: "working_days" } },
-  { id: "roi-ysys-stage2-ack", text: "How quickly a Stage 2 complaint must be acknowledged. Sources we found don't agree, so ask the complaints officer.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "roi-ysys-stage2-ack", text: "If your complaint needs an investigation, the complaints officer contacts you within 5 working days of getting it.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-10-09", volatility: "medium" },
   { id: "roi-ysys-stage3", text: "Stage 3: an internal review by a review officer who wasn't involved in your complaint. They look at how Stage 2 was handled and its recommendations. The target is 20 working days.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 20, unit: "working_days" } },
-  { id: "roi-ysys-stage3-deadline", text: "Deadline to ask for a Stage 3 review: sources differ between \"30 days\" and \"30 working days\" from the Stage 2 response. To be safe, count 30 calendar days from the date of that response.", jurisdiction: "ROI", source_url: "https://www.patientadvocacyservice.ie/faq/explaining-your-service-your-say-the-hse-complaints-process/", source_name: "Patient Advocacy Service: Explaining Your Service Your Say", last_verified: "2026-09-28", volatility: "medium", verify: true, calc: { amount: 30, unit: "calendar_days" } },
-  { id: "roi-ysys-stage3-skip", text: "Whether you can skip Stage 3 and go straight to the Ombudsman. Sources are unclear, so ask the complaints officer or the Ombudsman's office before you skip it.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/", source_name: "Ombudsman: Before making a complaint", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "roi-ysys-stage3-deadline", text: "The Patient Advocacy Service says to ask for a Stage 3 review in writing within 30 days of the response. The HSE page doesn't give a deadline, so count calendar days to be safe.", jurisdiction: "ROI", source_url: "https://www.patientadvocacyservice.ie/faq/explaining-your-service-your-say-the-hse-complaints-process/", source_name: "Patient Advocacy Service: Explaining Your Service Your Say", last_verified: "2026-10-09", volatility: "medium", verify: true, calc: { amount: 30, unit: "calendar_days" } },
+  { id: "roi-ysys-stage3-skip", text: "You don't have to ask for a Stage 3 review before going to the Ombudsman (Patient Advocacy Service). The Ombudsman says you must first use the provider's own complaints process, and its decision is final.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/", source_name: "Ombudsman: Before making a complaint", last_verified: "2026-10-09", volatility: "medium" },
   { id: "roi-ysys-stage4", text: "Stage 4: an external review by the Office of the Ombudsman, or the Ombudsman for Children if the person affected is under 18.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say-stages/", source_name: "HSE: Stages in the Your Service Your Say process", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-time-limit", text: "Complain within 12 months of the event, or of when you became aware of it. A complaints officer can extend this in special circumstances.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-system/making-a-complaint-about-the-health-service-executive/", source_name: "Citizens Information: Making a complaint about a health service", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 12, unit: "months" } },
   { id: "roi-ombudsman-first", text: "You must complain to the service provider and use its complaints process before the Ombudsman will look at it.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/", source_name: "Ombudsman: Before making a complaint", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-ombudsman-limit", text: "Complain to the Ombudsman within 12 months of the action or decision. The Ombudsman may still help after that if there is a good reason for the delay.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/", source_name: "Ombudsman: Before making a complaint", last_verified: "2026-09-28", volatility: "low", verify: false, calc: { amount: 12, unit: "months" } },
-  { id: "roi-ombudsman-clinical", text: "The Ombudsman has historically been unable to examine actions taken solely in the exercise of clinical judgement. There have been moves to change this in law, so check the Ombudsman's current remit before you rely on either position.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/organisation-information/44555-other-amendments-to-the-ombudsman-act/", source_name: "Ombudsman: Amendments to the Ombudsman Act", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "roi-ombudsman-clinical", text: "The Ombudsman cannot examine a decision by the HSE or a private nursing home that was a matter of clinical judgement, such as diagnosis or treatment. It can look at the administrative side.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/collection/72275-your-questions/", source_name: "Ombudsman: Your questions", last_verified: "2026-10-09", volatility: "medium" },
   { id: "roi-ombudsman-agencies", text: "The Ombudsman can examine complaints about the HSE and about agencies delivering health and social services on the HSE's behalf.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/publication/96a1b-before-making-a-complaint/", source_name: "Ombudsman: Before making a complaint", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-oco", text: "Ombudsman for Children: free and independent. A child, or an adult on their behalf, can complain about a public body, including health services. Freephone 1800 20 20 40.", jurisdiction: "ROI", source_url: "https://www.oco.ie/complaints/make-a-complaint/", source_name: "Ombudsman for Children: Make a complaint", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-voluntary-private", text: "Voluntary and private providers aren't covered by YSYS. Complain to them directly, using their own complaints process.", jurisdiction: "ROI", source_url: "https://www.citizensinformation.ie/en/health/health-system/making-a-complaint-about-the-health-service-executive/", source_name: "Citizens Information: Making a complaint about a health service", last_verified: "2026-09-28", volatility: "low", verify: false },
-  { id: "roi-private-ombudsman", text: "Whether the Ombudsman can examine a complaint about a private provider, such as a private nursing home, depends on the provider and the complaint. Check with the Ombudsman's office.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/collection/72275-your-questions/", source_name: "Ombudsman: Your questions", last_verified: "2026-09-28", volatility: "medium", verify: true },
+  { id: "roi-private-ombudsman", text: "The Ombudsman can examine the administrative actions of private nursing homes. For any other private provider, check with the Ombudsman's office.", jurisdiction: "ROI", source_url: "https://ombudsman.ie/en/collection/72275-your-questions/", source_name: "Ombudsman: Your questions", last_verified: "2026-10-09", volatility: "medium" },
   { id: "roi-pas", text: "Patient Advocacy Service: free, independent and confidential support to make a complaint about a public acute hospital or a public or private nursing home, and support after a patient safety incident. Phone 0818 293003.", jurisdiction: "ROI", source_url: "https://www.patientadvocacyservice.ie/", source_name: "Patient Advocacy Service", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-hiqa", text: "HIQA takes concerns about health and social care services, but can't investigate individual complaints. Email concerns@hiqa.ie or phone 021 240 9646.", jurisdiction: "ROI", source_url: "https://www.hiqa.ie/get-touch/report-concern-or-give-feedback", source_name: "HIQA: Report a concern or give feedback", last_verified: "2026-09-28", volatility: "low", verify: false },
   { id: "roi-ysys-backup", text: "The HSE online feedback form has been reported as unavailable or slow to respond. As a backup, phone Your Service Your Say on 1800 424 555 or HSE Live on 1800 700 700, or send your complaint by post. Keep a copy.", jurisdiction: "ROI", source_url: "https://www2.hse.ie/complaints-feedback/your-service-your-say/", source_name: "HSE: Give feedback through Your Service Your Say", last_verified: "2026-09-28", volatility: "high", verify: true },
