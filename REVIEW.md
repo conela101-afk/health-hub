@@ -187,3 +187,12 @@ Nothing is collected by the app. Record results here.
 - **After** (3 different people, after merge): same task. Target: all three reach the tool unprompted in about 20 seconds or less, no wrong-tab detours.
 - Results: _to fill in_
 - Open question from the test: whether to merge or relabel the Advocacy tabs (Who to contact, Support orgs, General support) and use task wording.
+
+
+## Verification sprint 1 (9 Oct 2026): entries withheld
+The HSE pages for these three were down when Elaine opened them, so the rows were removed from `ENTRIES` (707 to 704). Restore each once its page returns and has been read. Nothing else in `data.js`, `app.js`, `tools.js`, `search.js` or `scripts/` referenced them (no pills, aliases, `related` fields or audit queries). `HUMAN-CHECKS.md` and `GAPS.md` still mention them.
+- `hse-spmhs` — Specialist Perinatal Mental Health Services. Blurb: "Specialist hub teams in the larger maternity units plus perinatal mental health midwives in all units. Hub list and access limits change; check the HSE page." Source: https://www.hse.ie/eng/services/list/4/mental-health-services/specialist-perinatal-mental-health/
+- `ncp-eating-disorders` — HSE National Clinical Programme for Eating Disorders. Blurb: "Community eating disorder teams for adults and children. Team locations and numbers vary and are still expanding." Source: https://www.hse.ie/eng/about/who/cspd/ncps/mental-health/eating-disorders/
+- `nrdo` — National Rare Diseases Office. Blurb: "Information and signposting for rare conditions; runs Orphanet Ireland. Contact details on the HSE page." Source: https://www.hse.ie/eng/services/list/5/rarediseases/patientsfamilies.html
+
+Left as they were (kept `verify: true`, no `checked`): `cumh-endometriosis` (only "Referral via GP or consultant" dropped), `cumh-complex-menopause`, `cdnt-cork-overview`.

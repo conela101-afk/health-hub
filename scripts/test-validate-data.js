@@ -52,6 +52,8 @@ expect("tusla.ie ok (approved 7 Oct 2026)", [V({ source_url: "https://www.tusla.
 expect("aai.gov.ie ok via gov.ie", [V({ source_url: "https://www.aai.gov.ie/en/" })]);
 ["familysupportni.gov.uk", "saolta.ie", "caredoc.ie", "kdoc.ie", "bso.hscni.net", "adoptionandfostercare.hscni.net", "online.hscni.net"].forEach(h =>
   expect(`approved host ok (${h}, 7 Oct 2026)`, [V({ source_url: `https://www.${h}/x/` })]));
+expect("dublinandsoutheastcdnt.ie ok (approved 9 Oct 2026)", [V({ source_url: "https://www.dublinandsoutheastcdnt.ie/about/who-we-are/" })]);
+expect("lookalike of dublinandsoutheastcdnt.ie fails", [V({ source_url: "https://notdublinandsoutheastcdnt.ie/x" })], "allow-list");
 expect("lookalike of an approved host fails", [V({ source_url: "https://notcaredoc.ie/x" })], "allow-list");
 expect("hospital domain ok (nrh.ie, National Rehabilitation Hospital)", [V({ source_url: "https://www.nrh.ie/rehabilitation-services/x/" })]);
 process.exit(fails ? 1 : 0);

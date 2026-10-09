@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-09 [Claude] (verification sprint 1)
+- **Complaints facts:** `roi-ysys-stage2-ack`, `-stage3-skip`, `roi-ombudsman-clinical` and `roi-private-ombudsman` reworded from pages opened in a browser, `verify` cleared. `roi-ysys-stage3-deadline` reworded, kept `verify: true`. All five `last_verified: "2026-10-09"`. `roi-ombudsman-clinical` now cites Ombudsman "Your questions" (was the Act-amendments page) and the "moves to change this in law" wording is gone.
+- **Entries:** `checked: "9 Oct 2026"`, `urlStatus: "opened"`, `verify` cleared on 16 rows (groups A and B), with the wording changes from the sprint doc. `southeast-cdnts` repointed to `dublinandsoutheastcdnt.ie` (county list now also Dublin and Wicklow, "12 teams" removed); `hse-aon-officer` gains Citizens Information as a second source; `breastcheck` loses the interval and Health App lines; `ncp-obesity-moc` repointed to the HSE obesity surgery page. `cumh-endometriosis` loses only its referral line and keeps `verify: true`.
+- **Withheld:** `hse-spmhs`, `ncp-eating-disorders`, `nrdo` removed (HSE pages down); details for restoring them are in `REVIEW.md`. Entry count by script 707 to 704. No code or audit queries referenced them.
+- **Host:** `dublinandsoutheastcdnt.ie` added to the validator allow-list with an ok test and a lookalike-fails test; approval noted in `AI_RULES.md`. `southeastcdnt.ie` left on the list.
+- `data.js` 637,004 to 635,302 bytes, `node --check` clean; cache `pocket-guide-v24`. No phone, email, fee or waiting-time figures added.
+
 ## 2026-10-09 [Claude] (navigation findability pass)
 - Brief's observations re-checked in code: the Home guided-tools line was last in the Tools list; the Advocacy tabs scrolled sideways with the scrollbar hidden, so the fourth was clipped; the guided tools were not reachable from Advocacy; the "Why this page exists" panel filled the first screen.
 - **Home:** new "Guided tools" row (Make a complaint, Request my records, Prep for an appointment, Waiting lists, Leaving hospital, Schemes & cards, plus "All guided tools") directly under the hero and above the crisis and out-of-hours banners. Each link goes straight to its tool. The existing Tools list and the SAR builder line are kept (the SAR builder is a different page from the records tool).
