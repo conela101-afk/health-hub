@@ -458,7 +458,8 @@ Every row in `data/costs.js` needs a live-page check by a person before `verify`
 
 - **Budget 2027 (6 Oct 2026), checked 8 Oct 2026 against two pages:** the Department of Health press release of 7 Oct 2026 on gov.ie and the Health section of Citizens Information's Budget 2027 summary (edited 8 Oct). Neither lists a change to the prescription charge or monthly cap, the DPS cap, the ED charge, GP visit card limits or Treatment Benefit. The only cost-scheme change listed is free contraception extended from age 35 to 37 (no start date given), now on the contraception row. That is absence from a summary, not confirmation: the full Budget documents, the Finance Bill and the HSE scheme pages have not been read, so every money figure stays volatile with an updated note. Re-check when the HSE pages and the Finance Bill update.
 - NI help with health costs: Department of Health NI (5 Nov 2025) says UC recipients are passported automatically from 1 Dec 2025; the BSO page says otherwise. Confirm which is current.
-- Not started: Treatment Benefit, High Tech Drugs, Fair Deal, Home Support, hardship routes, aids and appliances, Dental Treatment Services, Community Ophthalmic Services, Med1 tax relief, and the cross-border schemes (CBD, NIPHS, the NI reimbursement scheme).
+- Added unverified 9 Oct 2026 (Part A): Fair Deal, Home Support, Additional Needs Payment, aids and appliances, Dental Treatment Services Scheme, HSE eye care, health expenses tax relief, NI dental charges, NI sight tests.
+- Not started / withheld: High Tech Drugs (no patient-facing HSE page found), the basic Supplementary Welfare Allowance page, and Community Ophthalmic Services (HSE patient page not found; the eye care row uses Citizens Information).
 
 ## Screening matrix: open checks (8 Oct 2026)
 

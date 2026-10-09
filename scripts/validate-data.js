@@ -40,6 +40,8 @@ const SOURCE_DOMAINS = [
   "blackrockhealth.com",
   // Approved by the owner 9 Oct 2026: the Dublin and South East Children's Disability Network Teams site (replaces southeastcdnt.ie).
   "dublinandsoutheastcdnt.ie",
+  // Approved by the owner 9 Oct 2026, for tax-relief-on-medical-expenses pages only.
+  "revenue.ie",
 ];
 const hostAllowed = host => SOURCE_DOMAINS.some(d => host === d || host.endsWith("." + d));
 

@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-const SOURCE_DOMAINS = ["hse.ie", "gov.ie", "citizensinformation.ie", "nidirect.gov.uk", "health-ni.gov.uk", "hscni.net"];
+const SOURCE_DOMAINS = ["hse.ie", "gov.ie", "citizensinformation.ie", "revenue.ie", "nidirect.gov.uk", "health-ni.gov.uk", "hscni.net"];
 const hostAllowed = h => SOURCE_DOMAINS.some(d => h === d || h.endsWith("." + d));
 const KINDS = ["medicines", "gp", "hospital", "crossborder", "other"];
 const CURRENCIES = ["EUR", "GBP"];

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-09 [Claude] (cost schemes, Part A)
+- **Rows:** nine added to `data/costs.js`, all `verify: true`, `urlStatus: "search-result"`, no `checked`/`opened`: ROI Fair Deal, Home Support, Additional Needs Payment, aids and appliances, Dental Treatment Services Scheme, HSE eye care, health expenses tax relief; NI dental charges, NI sight tests. Three use `kind: "other"` (no new kinds). No money figures, thresholds or percentages. `validate-costs.js` now reports 25 rows (was 16).
+- **Edits:** `roi-medical-card` gains a `route_note` on the discretionary card, sourced from https://www2.hse.ie/services/schemes-allowances/medical-cards/applying/how-much-you-can-earn/ (page date not shown, seen as a snippet only; `source_url` unchanged). `roi-treatment-benefit` route note points to the DTSS and eye care rows. `ni-help-health-costs` gains a cross-reference `route_note`.
+- **Host:** `revenue.ie` added to `validate-costs.js` and `validate-data.js` (approved 9 Oct 2026, tax-relief pages only); noted in `AI_RULES.md`.
+- **Advocacy guide:** `adult-adhd-autism-diagnosis` tip no longer quotes "20%" or "Med 1" as current; it says tax relief may be available and to check Revenue's page. The Drug Payment Scheme figure in the same tip is untouched (P0.4 re-read list). No other "Med 1"/"Med1" in `data.js`, `tools.js` or `app.js`.
+- **Withheld:** High Tech Drugs (only a staff-facing PCRS form found); draft is in the brief.
+- Cache `pocket-guide-v25` (the brief said v23 to v24, but `main` was already v24). `data/costs.js` 19,654 to 35,483 bytes, `data.js` 635,302 to 635,426; `node --check` clean; all validators and `search-audit.js` pass. `COSTS_LAST_VERIFIED` not bumped.
+
 ## 2026-10-09 [Claude] (verification sprint 1)
 - **Complaints facts:** `roi-ysys-stage2-ack`, `-stage3-skip`, `roi-ombudsman-clinical` and `roi-private-ombudsman` reworded from pages opened in a browser, `verify` cleared. `roi-ysys-stage3-deadline` reworded, kept `verify: true`. All five `last_verified: "2026-10-09"`. `roi-ombudsman-clinical` now cites Ombudsman "Your questions" (was the Act-amendments page) and the "moves to change this in law" wording is gone.
 - **Entries:** `checked: "9 Oct 2026"`, `urlStatus: "opened"`, `verify` cleared on 16 rows (groups A and B), with the wording changes from the sprint doc. `southeast-cdnts` repointed to `dublinandsoutheastcdnt.ie` (county list now also Dublin and Wicklow, "12 teams" removed); `hse-aon-officer` gains Citizens Information as a second source; `breastcheck` loses the interval and Health App lines; `ncp-obesity-moc` repointed to the HSE obesity surgery page. `cumh-endometriosis` loses only its referral line and keeps `verify: true`.
