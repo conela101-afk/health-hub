@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-09 [Claude] (accessibility fixes ported onto main)
+- Cherry-picked the four accessibility commits (`9badbaa`, `067cf8a`, `ffdc950`, `43a625c`) from `claude/nav-findability` onto current main: `ACCESSIBILITY_AUDIT.md`, the code for fixes 1 to 9 in `app.js`, `styles.css` and `tools.js`. The 2026-10-08 accessibility entry below already described fixes 1 to 9, so it is kept as is and not duplicated.
+- `MASTER-BUILD-PLAN.md`: main's content kept, accessibility line only added. `accessibility-statement.md` stays a draft. No `data.js` change.
+- `sw.js` cache `pocket-guide-v24` to `v26` (`claude/ni-human-milk-bank` uses v25).
+
 ## 2026-10-09 [Claude] (verification sprint 1)
 - **Complaints facts:** `roi-ysys-stage2-ack`, `-stage3-skip`, `roi-ombudsman-clinical` and `roi-private-ombudsman` reworded from pages opened in a browser, `verify` cleared. `roi-ysys-stage3-deadline` reworded, kept `verify: true`. All five `last_verified: "2026-10-09"`. `roi-ombudsman-clinical` now cites Ombudsman "Your questions" (was the Act-amendments page) and the "moves to change this in law" wording is gone.
 - **Entries:** `checked: "9 Oct 2026"`, `urlStatus: "opened"`, `verify` cleared on 16 rows (groups A and B), with the wording changes from the sprint doc. `southeast-cdnts` repointed to `dublinandsoutheastcdnt.ie` (county list now also Dublin and Wicklow, "12 teams" removed); `hse-aon-officer` gains Citizens Information as a second source; `breastcheck` loses the interval and Health App lines; `ncp-obesity-moc` repointed to the HSE obesity surgery page. `cumh-endometriosis` loses only its referral line and keeps `verify: true`.
