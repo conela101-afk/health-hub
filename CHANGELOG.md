@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-09 [Claude] (NI Human Milk Bank)
+- Added `ni-human-milk-bank` (all-island reach, search-result row, verify true): one entry, specialty `feeding`, counties `national` plus the six NI counties so it shows under National, NI county pages and the Breastfeeding specialty. No `area` (the base county is not known and only Cork has areas). Link only: no phone, email, address, fee or waiting time, and no donor contact route stated. Sources are two news items on approved hosts (westerntrust.hscni.net, health-ni.gov.uk), neither opened. Aliases added for "milk bank", "donor milk", "human milk", "donate breast milk" and "breastmilk donation" (with and without the space), plus four search-audit queries. Cache bumped. 704 to 705 entries by script.
+
 ## 2026-10-09 [Claude] (verification sprint 1)
 - **Complaints facts:** `roi-ysys-stage2-ack`, `-stage3-skip`, `roi-ombudsman-clinical` and `roi-private-ombudsman` reworded from pages opened in a browser, `verify` cleared. `roi-ysys-stage3-deadline` reworded, kept `verify: true`. All five `last_verified: "2026-10-09"`. `roi-ombudsman-clinical` now cites Ombudsman "Your questions" (was the Act-amendments page) and the "moves to change this in law" wording is gone.
 - **Entries:** `checked: "9 Oct 2026"`, `urlStatus: "opened"`, `verify` cleared on 16 rows (groups A and B), with the wording changes from the sprint doc. `southeast-cdnts` repointed to `dublinandsoutheastcdnt.ie` (county list now also Dublin and Wicklow, "12 teams" removed); `hse-aon-officer` gains Citizens Information as a second source; `breastcheck` loses the interval and Health App lines; `ncp-obesity-moc` repointed to the HSE obesity surgery page. `cumh-endometriosis` loses only its referral line and keeps `verify: true`.

@@ -479,3 +479,7 @@ All five source pages were opened in the built-in browser pane on 8 Oct 2026 (Cl
 - **NIPHS:** the HSE page says prior notification is optional for inpatient and day-case care. It does not mention overnight stays or prior authorisation. The other source in the conflict note is still unresolved.
 - **Cross-Border Directive:** page matches the row. **Treatment Abroad Scheme:** page matches the row, but it carries a "content is currently being reviewed" notice, and it does not say in as many words that the HSE pays the overseas provider directly (the row says so; the E112/S2 mechanism implies it). The row's line that the Directive cannot refund care that qualifies for TAS was not on the pages read.
 - Not built: S2/EHIC/GHIC, and the All-Island Congenital Heart Disease Network.
+
+## NI Human Milk Bank: open checks (9 Oct 2026)
+
+- NI Human Milk Bank: confirm the all-island reach is stated on an official page, and the donor contact route. Both source links are news items; look for a service page. Also find the physical base (county) and, if wanted, set `area`.
