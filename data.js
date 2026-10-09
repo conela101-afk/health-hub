@@ -2717,6 +2717,26 @@ const ENTRIES = [
     contact: { web: "breastfedbabies.org" },
     checked: "6 Sep 2026"
   },
+  {
+    id: "ni-human-milk-bank",
+    name: "Northern Ireland Human Milk Bank (donor breast milk)",
+    specialty: ["feeding"],
+    county: ["national", "antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "A donor breast milk service based in Northern Ireland that serves the whole island of Ireland, including the Republic. Official HSC news items describe the human milk bank service and its appeals for more donors. Link only: the pages were not opened when this entry was written, so the donor contact route is not stated here. Use the official page.",
+    details: [
+      "The all-island reach was given by Elaine on 9 Oct 2026 and is not yet confirmed on an official page.",
+      "Both source pages are news items, not a service page. A service page, if there is one, would be a better link.",
+    ],
+    referral: "Not stated. Check the official page for how donors get in touch.",
+    contact: { web: "westerntrust.hscni.net/human-milk-bank-service-makes-a-fresh-appeal-for-more-donor-mums-2/" },
+    resources: [
+      { label: "Human milk bank service appeal: Western Trust (news item)", url: "https://westerntrust.hscni.net/human-milk-bank-service-makes-a-fresh-appeal-for-more-donor-mums-2/" },
+      { label: "Health Minister visits human milk bank: Department of Health NI (news item)", url: "https://www.health-ni.gov.uk/news/health-minister-visits-human-milk-bank" }
+    ],
+    source_url: "https://westerntrust.hscni.net/human-milk-bank-service-makes-a-fresh-appeal-for-more-donor-mums-2/",
+    urlStatus: "search-result",
+    verify: true
+  },
 
   // ---- Baby loss: additional national orgs ----
   {
@@ -11095,6 +11115,10 @@ const SEARCH_ALIASES = {
   "same sex": ["new & expectant parents", "fertility"],
   "trans parent": ["new & expectant parents"], "non binary parent": ["new & expectant parents"],
   "chestfeeding": ["breastfeeding", "infant feeding"],
+  "milk bank": ["human milk bank"], "donor milk": ["human milk bank"], "human milk": ["human milk bank"],
+  "donate breast milk": ["human milk bank"], "donate breastmilk": ["human milk bank"],
+  "breastmilk donation": ["human milk bank"], "breast milk donation": ["human milk bank"],
+  "donor breast milk": ["human milk bank"],
   "motherhood": ["new & expectant parents", "postnatal", "antenatal"],
   // Lay terms and abbreviations
   "emergency room": ["emergency department"], "er": ["emergency department"],
