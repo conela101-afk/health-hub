@@ -167,6 +167,17 @@ const COSTS = [
     compare: "ni-roi-reimbursement", volatile: true, volatile_reason: "Eligibility and funding have changed since the scheme opened.",
     source_url: "https://online.hscni.net/our-work/travelfortreatment/wl-reimbursement/", source_name: "HSCNI: Waiting List Reimbursement Scheme", opened: "2026-10-08" },
 
+  { id: "roi-respite", scheme: "Respite care: short breaks for carers", jurisdiction: "ROI", kind: "other",
+    who: "Carers of older people and of people with disabilities, and the person they care for. Availability depends on where you live.",
+    covers: "A break for the carer while the person they care for is looked after elsewhere. For older people this may be in a nursing home or another residential setting, or in the community. It can be arranged by the local HSE area or by local or national voluntary organisations.",
+    cost: "Not stated here: no charge has been confirmed from an opened page. Ask your public health nurse or local health office whether a charge applies.",
+    cap_amount: null, currency: "EUR", cap_period: null, cap_unit: null,
+    not_covered_note: "This is a separate route from Fair Deal, which helps with the cost of long-term nursing home care. The HSE says respite is provided after an assessment of health needs and depends on the resources available.",
+    how_to_apply: "Ask your GP or public health nurse, or your local primary care team or Local Health Office, to arrange an assessment of the health needs of the person you care for.",
+    route_note: "For help at home rather than a stay away, see the HSE Home Support Service.",
+    compare: "ni-respite", volatile: true, volatile_reason: "Local arrangements and resources vary. The Citizens Information page was reported as over two years old, so it may be out of date.",
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-people-with-disabilities/respite-care/", source_name: "Citizens Information: Breaks and respite care for carers" },
+
   // ---------- Northern Ireland ----------
   { id: "ni-free-prescriptions", scheme: "Free prescriptions", jurisdiction: "NI", kind: "medicines",
     who: "Everyone, automatically. There is no eligibility test.",
@@ -185,4 +196,15 @@ const COSTS = [
     conflict_note: "The Department of Health NI said on 5 Nov 2025 that eligible Universal Credit recipients are passported automatically from 1 Dec 2025, but the BSO page still says UC does not qualify automatically. Check both before relying on either.",
     volatile: true, volatile_reason: "Passporting rules changed in December 2025.",
     source_url: "https://www.nidirect.gov.uk/articles/help-health-costs", source_name: "nidirect: Help with health costs" },
+
+  { id: "ni-respite", scheme: "Carer breaks and temporary care home stays (Northern Ireland)", jurisdiction: "NI", kind: "other",
+    who: "Carers who give a regular and significant amount of care are entitled to a carer's assessment from their HSC Trust. People who need a temporary stay in a care or nursing home can ask the Trust to assess them.",
+    covers: "A break from caring. Trusts differ in what they offer: options include a day-sitting or night-sitting service and a short-term stay in a care home for the person you care for. There may be a waiting time for some services. A temporary stay can also be for recovery after illness.",
+    cost: "nidirect says you will usually contribute to the cost of a temporary stay, based on a financial assessment, and that the Trust may help pay. It also says direct payments may be used for occasional short stays, usually not more than four weeks, if the Trust agrees. No amounts are stated here.",
+    cap_amount: null, currency: "GBP", cap_period: null, cap_unit: null,
+    not_covered_note: "A temporary stay can affect benefits such as Carer's Allowance. Check the nidirect page.",
+    how_to_apply: "Contact the Carer Coordinator at your HSC Trust, or ask your GP to contact the Trust for you. Respite is usually arranged through the Trust after an assessment of need.",
+    route_note: "The Southern Trust short breaks page is for learning disability services only, not general respite.",
+    compare: "roi-respite", volatile: true, volatile_reason: "Services and charging differ between Trusts, and the pages have not been opened.",
+    source_url: "https://www.nidirect.gov.uk/articles/temporary-stays-residential-care-or-nursing-home", source_name: "nidirect: Temporary stays in a care home" },
 ].map(c => Object.assign({ last_verified: COSTS_LAST_VERIFIED, verify: true, urlStatus: "search-result" }, c));

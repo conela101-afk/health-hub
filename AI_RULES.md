@@ -12,6 +12,8 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - **Official sources only.** Every factual claim (phone numbers, addresses, eligibility, waiting times, opening dates) must trace back to an official HSE, HSC/NI, government, or the named organisation's own published source — not third-party aggregators or unverified web copy.
 - **`checked` / `last_verified` field required.** Every `data.js` entry carries a last-verified date so staleness is visible and auditable.
 - **`source_url` required.** Every entry that makes a factual claim links to the specific official page it was verified against, not just a domain's homepage.
+- **Source hosts approved 10 Oct 2026.** `irishstatutebook.ie` is approved for statute text only, not as a general source; `validate-data.js` enforces this (an entry `source_url` there must be an `/eli/` statute URL). Prefer a Citizens Information or gov.ie explainer for patient-facing wording.
+- **HSE host family: `www2.hse.ie/services/...` is canonical** (owner decision 10 Oct 2026). Do not mix families within a row. `validate-data.js` warns (does not fail) on `hse.ie/services/...` links without `www2` and on legacy `hse.ie/eng/...` links; convert them when a person has found the current page.
 - **No analytics, no tracking, no ads.** The site collects nothing about visitors and sends nothing to a server. See the CSP in `index.html` and the privacy note in the footer, which this rule must stay consistent with.
 - **Administrative/advocacy scope only.** This is a directory and advocacy toolkit — signposting, contact details, entitlement schemes, letter templates, rights information. No clinical triage, symptom-checking, or medical advice of any kind.
 - **No single-county targeting.** Don't make one county a priority or target market because of who asked. Ranking counties by coverage per head (see `GAPS.md`) is a legitimate method for a national, all-island tool.
@@ -35,6 +37,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-10 [Claude] — Respite and nursing home know-how: two cost rows, three guide cards, Find a Facility pointer, search aliases (all unverified). Recorded the `irishstatutebook.ie` (statute text only) and `www2.hse.ie` decisions; validator enforces the first and warns on URL-family drift. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-09 [Claude] — Added NI Human Milk Bank (all-island reach, search-result row, verify true). See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-09 [Claude] — Verification sprint 1: five complaints facts and 16 entries updated from pages Elaine opened in a browser, `dublinandsoutheastcdnt.ie` approved, three entries withheld (HSE pages down). See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-09 [Claude] — Navigation findability pass: guided-tools row on Home and Advocacy, Advocacy intro collapsed, tabs wrap instead of scrolling; PR only, user test pending. See `CHANGELOG.md` and `REVIEW.md`.
