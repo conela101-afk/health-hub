@@ -179,3 +179,11 @@ Search-result only; egress to hse.ie, beaumont.ie and nidirect was blocked. Huma
   - **Check:** the North Mayo CDNT row cites the legacy `.html` finder URL; look for a `/services/childrens-disabilities/` page that replaces it. The HSE Castlebar and Dundalk pages list Easter Monday as 5 April 2026 (it was 6 April); no row states hours, so nothing to fix here, but the HSE could be told.
 - [x] **Pass 2 confirmations from Elaine, 8 Oct 2026.** Sligo base is Caredoc: `roi-sligo-caredoc-sligo` was already in from pass 2 (the report's Part 3 table includes it, so the earlier note saying it was not added was wrong); Sligo is now listed on the Caredoc out-of-hours row and map. Louth is Nedoc, base Drogheda: "(excl. Dundalk)" dropped from the NEDOC row and the "not yet confirmed" wording dropped from `roi-louth-nedoc-drogheda`. Family Support Hub Omagh added link-only (`ni-tyrone-family-support-hub-omagh`, `sector: "voluntary"`, specialty `hub`); familysupportni.gov.uk is egress-blocked here, so the page was not opened and only the URL, the Action for Children operator (from Elaine's decision) and the area name are used. Still open: open the three `source_url`s in a browser, and the NI `note` hours.
 
+
+
+## Navigation findability test (9 Oct 2026) — for Elaine to run
+Nothing is collected by the app. Record results here.
+- **Before** (run on the deployed site before this PR merges): ask 3 people who have not used the app to "find how to make a complaint". Note seconds to reach the tool, first screen or tab tried, any hesitation, without prompting.
+- **After** (3 different people, after merge): same task. Target: all three reach the tool unprompted in about 20 seconds or less, no wrong-tab detours.
+- Results: _to fill in_
+- Open question from the test: whether to merge or relabel the Advocacy tabs (Who to contact, Support orgs, General support) and use task wording.

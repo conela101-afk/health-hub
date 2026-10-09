@@ -35,6 +35,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-09 [Claude] — Navigation findability pass: guided-tools row on Home and Advocacy, Advocacy intro collapsed, tabs wrap instead of scrolling; PR only, user test pending. See `CHANGELOG.md` and `REVIEW.md`.
 - 2026-10-08 [Claude] — Children's disability referral wording corrected in three `data.js` places (GP/PHN first, parents can also refer with the HSE forms and consent, local routing varies); still unverified by a person. See `CHANGELOG.md`.
 - 2026-10-08 [Claude] — Accessibility audit (`ACCESSIBILITY_AUDIT.md`) and fixes 1 to 9: 320px top-bar reflow, colour contrast, keyboard-focusable letter previews, per-route page titles, 24px target sizes, heading order, new-tab cues, explicit focus ring. Screen reader testing still open. See `CHANGELOG.md`.
 - 2026-10-08 [Claude] — Decisions: ROI screening intervals filled from opened HSE pages (no new hosts needed), 26 Irish-language search aliases (wording awaits an Irish speaker), `south-cork` kept. See `CHANGELOG.md` and `GAPS.md`.

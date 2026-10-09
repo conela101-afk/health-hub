@@ -345,6 +345,27 @@
     `;
   }
 
+  // Guided tools shortcut row — shown at the top of Home and of the Advocacy
+  // guide so the most-used tools don't depend on finding the Tools list.
+  // Plain task wording; each link goes straight to its tool.
+  function guidedToolsRowHtml(){
+    const items = [
+      ["#/tools/complaints", "Make a complaint"],
+      ["#/tools/records", "Request my records"],
+      ["#/prep", "Prep for an appointment"],
+      ["#/tools/waiting", "Waiting lists"],
+      ["#/tools/discharge", "Leaving hospital"],
+      ["#/tools/schemes", "Schemes &amp; cards"],
+    ];
+    return `
+      <nav class="guided-row" aria-label="Guided tools">
+        <h2 class="guided-row-title">Guided tools</h2>
+        <div class="guided-row-grid">${items.map(([href, label]) => `<a class="guided-link" href="${href}">${label}</a>`).join("")}</div>
+        <a class="guided-all" href="#/tools">All guided tools ›</a>
+      </nav>
+    `;
+  }
+
   function renderHome(){
     const simple = getSimpleMode();
     // Split into content shortcuts ("Often searched") and utility pages
@@ -393,6 +414,8 @@
         <h1>Navigating health &amp; care, <em>wherever you are</em>.</h1>
         ${simple ? "" : `<p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine, women's health, and neurodiversity/disability pathways, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>`}
       </div>
+
+      ${guidedToolsRowHtml()}
 
       ${crisisBannerHtml()}
       ${urgentCareBannerHtml()}
@@ -786,8 +809,12 @@
     `).join("");
     return `
       <div class="callout">
-        <strong>Why this page exists:</strong> being dismissed or not believed is a documented pattern across Irish healthcare, not something you're imagining. The clearest recent evidence is from women's health — the Department of Health's own 2025 listening forum with 142 women, and a peer-reviewed 2024 Irish study on pain dismissal — but the pattern isn't limited to it. This page exists to make the practical steps easier to find, whatever you're dealing with.
-        <span class="source-note">Sources: Dept of Health &amp; NWC, "Our Health, Our Voices" (Oct 2025) · Windrim, McGuire &amp; Durand, BMC Women's Health (2024)</span>
+        <strong>Why this page exists:</strong> being dismissed or not believed is a documented pattern across Irish healthcare, not something you're imagining.
+        <details class="callout-more">
+          <summary>Read more, with sources</summary>
+          <p>The clearest recent evidence is from women's health — the Department of Health's own 2025 listening forum with 142 women, and a peer-reviewed 2024 Irish study on pain dismissal — but the pattern isn't limited to it. This page exists to make the practical steps easier to find, whatever you're dealing with.</p>
+          <span class="source-note">Sources: Dept of Health &amp; NWC, "Our Health, Our Voices" (Oct 2025) · Windrim, McGuire &amp; Durand, BMC Women's Health (2024)</span>
+        </details>
       </div>
       <div class="guide-list">${guideHtml}</div>
     `;
@@ -2127,6 +2154,8 @@ ${name}`;
         <h1>Know your rights</h1>
         <p class="count">Self-advocacy, complaints &amp; support — Ireland &amp; Northern Ireland</p>
       </div>
+
+      ${active === "guide" ? guidedToolsRowHtml() : ""}
 
       ${advocacySegmentedHtml(active)}
 

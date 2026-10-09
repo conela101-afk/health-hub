@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-09 [Claude] (navigation findability pass)
+- Brief's observations re-checked in code: the Home guided-tools line was last in the Tools list; the Advocacy tabs scrolled sideways with the scrollbar hidden, so the fourth was clipped; the guided tools were not reachable from Advocacy; the "Why this page exists" panel filled the first screen.
+- **Home:** new "Guided tools" row (Make a complaint, Request my records, Prep for an appointment, Waiting lists, Leaving hospital, Schemes & cards, plus "All guided tools") directly under the hero and above the crisis and out-of-hours banners. Each link goes straight to its tool. The existing Tools list and the SAR builder line are kept (the SAR builder is a different page from the records tool).
+- **Advocacy (guide tab):** same row above the tabs. "Why this page exists" is now a one-line statement with a native "Read more, with sources" disclosure; the sentences and sources are unchanged, only moved inside it.
+- **Advocacy tabs:** now wrap onto extra rows instead of scrolling sideways, 44px high, so none is hidden. Tab count and labels unchanged.
+- Cache `pocket-guide-v24`. No `data.js` change, no phone, email, fee or waiting-time figures touched, no new third-party requests. Not done: tab merging and task-wording relabels (brief says only if testing supports it); before/after test with real people is Elaine's (see `REVIEW.md`).
+- Flagged separately, not changed here: re-read the Drug Payment Scheme and Med 1 figures in the Advocacy guide against the official source post-Budget.
+
 ## 2026-10-08 [Claude] (children's disability referral wording)
 - Reworded "refer directly via your GP or public health nurse, or as a parent yourself" in the advocacy guide `cdnt-parallel-track` to follow the HSE referral page: no diagnosis or Assessment of Need needed; speak to your GP or PHN first; parents and guardians can also refer using the Children's Services Referral Form and age-band Additional Information Form with signed parental consent; local teams may route differently. Same wording aligned in `hse-cdnt-referral` and `hse-cdnt-finder`. No phone, email, fee or waiting-time figures added. Source: HSE only (www2.hse.ie/babies-children/disabilities/services/getting-a-referral/), page not opened by a person in a browser, so `verify: true` kept, no `checked`. Entry count unchanged.
 

@@ -547,15 +547,16 @@ select{ min-height:24px; }
 .checked-note{ font-size:11.5px; color:var(--ink-faint); margin:16px 0 0; }
 
 /* ---------- Advocacy / know your rights page ---------- */
+/* Tabs wrap onto extra rows rather than scrolling sideways, so none is
+   ever clipped at the screen edge without a cue. */
 .segmented{
-  display:flex; gap:6px; margin:0 0 20px; overflow-x:auto;
-  -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:2px;
+  display:flex; flex-wrap:wrap; gap:6px; margin:0 0 20px;
 }
-.segmented::-webkit-scrollbar{ display:none; }
 .segment{
-  flex-shrink:0; font-size:13px; font-weight:600; color:var(--ink-soft);
+  display:inline-flex; align-items:center; min-height:44px;
+  font-size:13px; font-weight:600; color:var(--ink-soft);
   background:var(--surface); padding:9px 15px; border-radius:var(--radius-pill);
-  box-shadow:var(--shadow-sm); white-space:nowrap;
+  box-shadow:var(--shadow-sm);
 }
 .segment.active{ background:var(--violet-deep); color:#fff; box-shadow:none; }
 
@@ -566,6 +567,30 @@ select{ min-height:24px; }
 }
 .callout strong{ color:var(--violet-deep); }
 .callout-spaced{ margin-top:24px; }
+.callout-more{ margin-top:6px; }
+.callout-more summary{
+  cursor:pointer; color:var(--violet-deep); font-weight:600;
+  display:flex; align-items:center; min-height:44px;
+}
+.callout-more p{ margin:6px 0 0; }
+
+/* Guided tools shortcut row (Home and Advocacy) */
+.guided-row{ margin:0 0 24px; }
+.guided-row-title{ font-size:13px; color:var(--ink-soft); font-weight:700; margin:0 0 10px; }
+.guided-row-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.guided-link{
+  display:flex; align-items:center; min-height:44px; padding:10px 14px;
+  font-size:14px; font-weight:600; line-height:1.25; color:var(--ink);
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); box-shadow:var(--shadow-sm);
+  touch-action:manipulation;
+}
+.guided-link:active{ background:var(--violet-deep); color:#fff; border-color:var(--violet-deep); }
+.guided-all{
+  display:inline-flex; align-items:center; min-height:44px;
+  font-size:13.5px; font-weight:600; color:var(--violet-deep);
+}
+.simple-mode .guided-link{ font-size:16px; padding:14px 16px; }
 .callout .source-note{ display:block; margin-top:8px; font-size:12.5px; color:var(--ink-soft); }
 .callout .callout-pill-row{ margin:10px 0 0; }
 
