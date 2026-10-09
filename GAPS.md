@@ -108,7 +108,7 @@ Maternal Mental Health"), eating disorders `eating`, menopause `menopause`, endo
 audiology `ent`, bariatric `weightmanagement`, school dental `dental`. New ids: `rare-disease`,
 `screening` (also tagged `cancer` on bowel, breast and cervical). `gender-health` is not added
 yet because its only entry is withheld below. County tags are inferred from the blurbs
-(`cho7-cdnts`: Dublin, Kildare, Wicklow; `southeast-cdnts`: five counties; `cdnt-cork-overview` (formerly
+(`cho7-cdnts`: Dublin, Kildare, Wicklow; `southeast-cdnts` (Dublin and South East): seven counties; `cdnt-cork-overview` (formerly
 `horizons-cdnt-cork`): whole county, no `area`). That row no longer names Horizons or any lead agency.
 Sources conflict (Horizons v COPE Foundation), so none is stated until an official page is opened.
 
@@ -121,7 +121,7 @@ specialist service. Referral by a registered doctor, usually the GP."
 Check before merge: `breastcheck` blurb now says 50 to 69 and its old `checked: 4 Sep 2026` was
 removed because the content changed. Its `source_url` is a HSE news page, not the programme page.
 `hse-aon-complaints` repeats the "generally within 3 months" claim, `hse-ahr` age and cycle limits,
-`hse-spmhs` hub list and the "11 teams" / "12 teams" counts for CHO7 and South East are all volatile.
+`hse-spmhs` (withheld 9 Oct 2026, HSE pages down, restore from `REVIEW.md`) hub list and the "11 teams" / "12 teams" counts for CHO7 and South East are all volatile.
 ## County coverage matrix, ROI (1 Oct 2026, updated 2 Oct 2026)
 
 Generated from `data.js` by `node scripts/county-matrix.js` (add `--areas` for the sub-county rows).

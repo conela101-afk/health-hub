@@ -5,6 +5,7 @@
 - **Entries:** `checked: "9 Oct 2026"`, `urlStatus: "opened"`, `verify` cleared on 16 rows (groups A and B), with the wording changes from the sprint doc. `southeast-cdnts` repointed to `dublinandsoutheastcdnt.ie` (county list now also Dublin and Wicklow, "12 teams" removed); `hse-aon-officer` gains Citizens Information as a second source; `breastcheck` loses the interval and Health App lines; `ncp-obesity-moc` repointed to the HSE obesity surgery page. `cumh-endometriosis` loses only its referral line and keeps `verify: true`.
 - **Withheld:** `hse-spmhs`, `ncp-eating-disorders`, `nrdo` removed (HSE pages down); details for restoring them are in `REVIEW.md`. Entry count by script 707 to 704. No code or audit queries referenced them.
 - **Host:** `dublinandsoutheastcdnt.ie` added to the validator allow-list with an ok test and a lookalike-fails test; approval noted in `AI_RULES.md`. `southeastcdnt.ie` left on the list.
+- **Follow-ups:** `southeast-cdnts` renamed "Dublin and South East Children's Disability Network Teams" to match the site (no search alias, audit query or other text used the old name). `GAPS.md` and `HUMAN-CHECKS.md` now mark `hse-spmhs`, `ncp-eating-disorders` and `nrdo` as withheld 9 Oct 2026, HSE pages down, restore from `REVIEW.md`; the stale `southeastcdnt.ie` link and "five counties" in those docs corrected.
 - `data.js` 637,004 to 635,302 bytes, `node --check` clean; cache `pocket-guide-v24`. No phone, email, fee or waiting-time figures added.
 
 ## 2026-10-09 [Claude] (navigation findability pass)
