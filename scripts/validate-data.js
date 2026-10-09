@@ -20,7 +20,10 @@ const URL_STATUSES = ["opened", "search-result", "unverified"];
 // lauralynn.ie, jigsaw.ie, diabetes.ie) are deliberately NOT listed: add one only after
 // a person approves it.
 const SOURCE_DOMAINS = [
-  "hse.ie", "gov.ie", "citizensinformation.ie", "irishstatutebook.ie", "oireachtas.ie", "lawreform.ie",
+  "hse.ie", "gov.ie", "citizensinformation.ie",
+  // irishstatutebook.ie: approved by the owner 10 Oct 2026 for statute text only (not as a general source).
+  // validate() enforces that: an entry's source_url on this host must be an /eli/ statute URL.
+  "irishstatutebook.ie", "oireachtas.ie", "lawreform.ie",
   "hiqa.ie", "mhcirl.ie", "dataprotection.ie", "oco.ie", "ombudsman.ie", "oic.ie",
   "medicalcouncil.ie", "nmbi.ie", "coru.ie", "thepsi.ie", "dentalcouncil.ie",
   "legalaidboard.ie", "flac.ie", "nidirect.gov.uk", "health-ni.gov.uk", "hscni.net", "nipso.org.uk",
@@ -78,6 +81,7 @@ function validate({ ENTRIES, COUNTIES, SPECIALTIES, AREAS }){
       let host = "";
       try { host = new URL(e.source_url).hostname; } catch (err) { errors.push(`${where}: source_url is not a valid URL`); }
       if (host && !hostAllowed(host)) errors.push(`${where}: source_url host "${host}" is not on the official-domain allow-list`);
+      if (host && /(^|\.)irishstatutebook\.ie$/.test(host) && !/^\/eli\//.test(new URL(e.source_url).pathname)) errors.push(`${where}: irishstatutebook.ie is approved for statute text only; source_url must be an /eli/ statute URL`);
     }
     if (e.verify === true){
       if (!e.source_url) errors.push(`${where}: verify: true needs a source_url`);
@@ -91,14 +95,46 @@ function validate({ ENTRIES, COUNTIES, SPECIALTIES, AREAS }){
   return errors;
 }
 
-module.exports = { validate };
+// URL-family drift. www2.hse.ie/services/... is the canonical host for HSE service pages (owner decision
+// 10 Oct 2026). Flags hse.ie/services/... links that lack the www2 form and legacy hse.ie/eng/... links.
+// These are warnings, not errors: older entries still carry legacy links that need a person to find the
+// current page before they can be converted.
+function hseFamily(url){
+  let u; try { u = new URL(url); } catch (err) { return null; }
+  if (u.hostname !== "hse.ie" && u.hostname !== "www.hse.ie") return null;
+  if (/^\/eng\//.test(u.pathname)) return "legacy hse.ie/eng/";
+  if (/^\/services\//.test(u.pathname)) return "hse.ie/services/ without www2";
+  return null;
+}
+function urlFamilyWarnings({ ENTRIES, SCHEME_LINKS }){
+  const warnings = [];
+  const add = (where, field, url) => {
+    if (!url) return;
+    const full = /^https?:\/\//.test(url) ? url : "https://" + url;
+    const kind = hseFamily(full);
+    if (kind) warnings.push(`${where}: ${field} uses ${kind} (${url})`);
+  };
+  (ENTRIES || []).forEach(e => {
+    const where = `entry "${e.id}"`;
+    add(where, "source_url", e.source_url);
+    add(where, "contact.web", e.contact && e.contact.web);
+    (e.resources || []).forEach(r => add(where, "resources", r.url));
+  });
+  (SCHEME_LINKS || []).forEach(s => (s.links || []).forEach(l => add(`scheme card "${s.id}"`, "links", l.url)));
+  return warnings;
+}
+
+module.exports = { validate, urlFamilyWarnings };
 
 if (require.main === module){
   const fs = require("fs"), vm = require("vm");
   const ctx = {}; vm.createContext(ctx);
-  vm.runInContext(fs.readFileSync("data.js", "utf8") + "\nthis.D={ENTRIES,COUNTIES,SPECIALTIES,AREAS};", ctx);
+  vm.runInContext(fs.readFileSync("data.js", "utf8") + "\nthis.D={ENTRIES,COUNTIES,SPECIALTIES,AREAS,SCHEME_LINKS};", ctx);
   const errors = validate(ctx.D);
   errors.forEach(e => console.log("FAIL", e));
+  const warnings = urlFamilyWarnings(ctx.D);
+  warnings.forEach(w => console.log("warn", w));
+  if (warnings.length) console.log(`${warnings.length} URL-family warning(s): not failing, convert when the current www2.hse.ie page is found`);
   console.log(errors.length ? `${errors.length} problem(s)` : `ok: ${ctx.D.ENTRIES.length} entries valid`);
   process.exit(errors.length ? 1 : 0);
 }

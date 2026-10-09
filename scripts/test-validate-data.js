@@ -1,5 +1,5 @@
 // Tests for the data validator rules. Run: node scripts/test-validate-data.js
-const { validate } = require("./validate-data.js");
+const { validate, urlFamilyWarnings } = require("./validate-data.js");
 const base = {
   COUNTIES: [{ id: "cork" }, { id: "kerry" }, { id: "national" }],
   SPECIALTIES: [{ id: "childdisability" }],
@@ -56,4 +56,18 @@ expect("dublinandsoutheastcdnt.ie ok (approved 9 Oct 2026)", [V({ source_url: "h
 expect("lookalike of dublinandsoutheastcdnt.ie fails", [V({ source_url: "https://notdublinandsoutheastcdnt.ie/x" })], "allow-list");
 expect("lookalike of an approved host fails", [V({ source_url: "https://notcaredoc.ie/x" })], "allow-list");
 expect("hospital domain ok (nrh.ie, National Rehabilitation Hospital)", [V({ source_url: "https://www.nrh.ie/rehabilitation-services/x/" })]);
+expect("irishstatutebook.ie ok for statute text (approved 10 Oct 2026)", [V({ source_url: "https://www.irishstatutebook.ie/eli/2015/act/64/enacted/en/html" })]);
+expect("irishstatutebook.ie not ok as a general source", [V({ source_url: "https://www.irishstatutebook.ie/eli/isbc/2015.html" }), V({ id: "y", source_url: "https://www.irishstatutebook.ie/" })], "statute text only");
+expect("lookalike of irishstatutebook.ie fails", [V({ source_url: "https://notirishstatutebook.ie/eli/x" })], "allow-list");
+function expectWarn(name, input, want){
+  const w = urlFamilyWarnings(input);
+  const ok = want ? w.some(m => m.includes(want)) && w.length >= 1 : w.length === 0;
+  if (!ok){ fails++; console.log("FAIL", name, JSON.stringify(w)); } else console.log("ok  ", name);
+}
+expectWarn("www2 hse link is fine", { ENTRIES: [e({ source_url: "https://www2.hse.ie/services/home-support-service/", contact: { web: "www2.hse.ie/services/x/" } })] });
+expectWarn("legacy hse.ie/eng source_url flagged", { ENTRIES: [e({ source_url: "https://www.hse.ie/eng/services/list/1/x/" })] }, "legacy hse.ie/eng/");
+expectWarn("hse.ie/services without www2 flagged", { ENTRIES: [e({ source_url: "https://hse.ie/services/home-support-service/" })] }, "without www2");
+expectWarn("legacy contact.web and resources flagged", { ENTRIES: [e({ contact: { web: "www.hse.ie/eng/services/x/" }, resources: [{ label: "x", url: "https://www.hse.ie/eng/y/" }] })] }, "contact.web");
+expectWarn("scheme card links flagged", { SCHEME_LINKS: [{ id: "c", links: [{ label: "x", url: "https://www.hse.ie/services/z/" }] }] }, 'scheme card "c"');
+expectWarn("other hse.ie pages not flagged", { ENTRIES: [e({ source_url: "https://www.hse.ie/" })] });
 process.exit(fails ? 1 : 0);
