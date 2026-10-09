@@ -6627,7 +6627,7 @@ const ENTRIES = [
   },
   {
     id: "southeast-cdnts",
-    name: "South East Children's Disability Network Teams",
+    name: "Dublin and South East Children's Disability Network Teams",
     specialty: ["childdisability"],
     county: ["carlow", "dublin", "kilkenny", "tipperary", "waterford", "wicklow", "wexford"],
     blurb: "Children's Disability Network Teams across Carlow, Dublin South, Kilkenny, South Tipperary, Waterford, Wicklow and Wexford, with three lead agencies (HSE, CRC and Enable Ireland). Team details on the Dublin and South East CDNT site.",
