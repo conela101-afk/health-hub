@@ -492,3 +492,7 @@ Everything added here is search-result only (`verify: true`, `urlStatus: "search
 - **Nursing homes:** confirm the HIQA find-a-centre and inspection reports URLs; confirm Ombudsman scope and the 12-month limit on ombudsman.ie. NI nursing home complaints (RQIA, Trust) were not researched; rqia.org.uk is not on the approved list.
 - **Not used:** the Southern Trust short breaks page (learning disability only), nidirect node/1720 ("Time out from caring", not surfaced), parliamentary-question replies (staff documents), and all press, charity and private-provider results.
 - **Home care and home oxygen:** separate run (10 Oct build-plan addendum).
+
+## NI Human Milk Bank: open checks (9 Oct 2026)
+
+- NI Human Milk Bank: confirm the all-island reach is stated on an official page, and the donor contact route. Both source links are news items; look for a service page. Also find the physical base (county) and, if wanted, set `area`.
