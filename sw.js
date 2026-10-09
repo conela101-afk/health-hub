@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v28";
+const CACHE_NAME = "pocket-guide-v29";
 const ASSETS = [
   "./",
   "./index.html",
