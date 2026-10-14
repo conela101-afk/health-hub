@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-09 [Claude] (accessibility fixes ported onto main)
+- Cherry-picked the four accessibility commits (`9badbaa`, `067cf8a`, `ffdc950`, `43a625c`) from `claude/nav-findability` onto current main: `ACCESSIBILITY_AUDIT.md`, the code for fixes 1 to 9 in `app.js`, `styles.css` and `tools.js`. The 2026-10-08 accessibility entry below already described fixes 1 to 9, so it is kept as is and not duplicated.
+- `MASTER-BUILD-PLAN.md`: main's content kept, accessibility line only added. `accessibility-statement.md` stays a draft. No `data.js` change.
+- `sw.js` cache `pocket-guide-v24` to `v26` (`claude/ni-human-milk-bank` uses v25).
 ## 2026-10-10 [Claude] (respite and nursing home know-how)
 - Added `roi-respite` and `ni-respite` to `data/costs.js` (18 rows), no money figures; added three guide cards to `SCHEME_LINKS` (nursing homes: choosing, paying and raising a concern; decision-making papers; NI carer breaks and temporary care home stays). Cards take an optional `prepLabel` and show "written from search results" when `verify` is set. Find a Facility has a nursing home pointer to HIQA's find-a-centre pages. Two tool-page search entries, five respite aliases and seven audit queries added.
 - Sources: Citizens Information, HIQA, Ombudsman, gov.ie, HSE (www2) and nidirect pages surfaced by search; none opened (page fetch is blocked here). All `verify: true`, `urlStatus: "search-result"`, no `checked`. Fair Deal was not edited: it has no respite sentence or `route_note`. Open questions (ROI respite page, Fair Deal priority order) are in `GAPS.md`.

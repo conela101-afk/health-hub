@@ -37,6 +37,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-09 [Claude] — Ported the four accessibility commits (fixes 1 to 9 and `ACCESSIBILITY_AUDIT.md`) onto current main as a PR; cache v26; `accessibility-statement.md` still a draft. See `CHANGELOG.md`.
 - 2026-10-10 [Claude] — Respite and nursing home know-how: two cost rows, three guide cards, Find a Facility pointer, search aliases (all unverified). Recorded the `irishstatutebook.ie` (statute text only) and `www2.hse.ie` decisions; validator enforces the first and warns on URL-family drift. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-09 [Claude] — Added NI Human Milk Bank (all-island reach, search-result row, verify true). See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-09 [Claude] — Verification sprint 1: five complaints facts and 16 entries updated from pages Elaine opened in a browser, `dublinandsoutheastcdnt.ie` approved, three entries withheld (HSE pages down). See `CHANGELOG.md` and `REVIEW.md`.

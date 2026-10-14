@@ -260,7 +260,7 @@ window.HH_TOOLS = (function(){
             ? `<textarea id="cn-${f.id}" class="prep-input" rows="3"></textarea>`
             : `<input type="${f.type}" id="cn-${f.id}" class="prep-input">`}
         `).join("")}
-        <pre class="template-text" id="cnOutput"></pre>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="cnOutput"></pre>
         ${letterButtonsHtml("cnOutput")}
       </div>
 
@@ -461,7 +461,7 @@ window.HH_TOOLS = (function(){
             : `<input type="${f.type}" id="rr-${f.id}" class="prep-input">`}
         `).join("")}
         <p class="save-note">Nothing typed in this letter form is saved.</p>
-        <pre class="template-text" id="rrOutput"></pre>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="rrOutput"></pre>
         ${letterButtonsHtml("rrOutput")}
       </div>
 
@@ -812,7 +812,7 @@ window.HH_TOOLS = (function(){
           <label class="prep-label" for="wy-${f.id}">${esc(f.label)}</label>
           ${f.type === "textarea" ? `<textarea id="wy-${f.id}" class="prep-input" rows="2"></textarea>` : `<input type="${f.type}" id="wy-${f.id}" class="prep-input">`}
         `).join("")}
-        <pre class="template-text" id="wyOutput"></pre>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="wyOutput"></pre>
         ${letterButtonsHtml("wyOutput")}
       </div>
       ${footHtml()}
@@ -949,7 +949,7 @@ window.HH_TOOLS = (function(){
         </div>
         <div class="prep-card">
           <h2>Your printable passport</h2>
-          <pre class="template-text" id="dpOutput"></pre>
+          <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="dpOutput"></pre>
           <button type="button" class="copy-btn" data-copy-target="dpOutput">Copy passport text</button>
           <button type="button" class="copy-btn" data-print-target="dpOutput">Print / save PDF</button>
         </div>
@@ -1146,7 +1146,7 @@ window.HH_TOOLS = (function(){
             ? `<textarea id="aon-${f.id}" class="prep-input" rows="2"></textarea>`
             : `<input type="${f.type}" id="aon-${f.id}" class="prep-input">`}
         `).join("")}
-        <pre class="template-text" id="aonOutput"></pre>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="aonOutput"></pre>
         ${letterButtonsHtml("aonOutput")}
         <p class="save-note">For your child's HSE file, use the <a href="#/tools/records">records-request builder</a> (FOI or subject access request).</p>
       </div>

@@ -22,7 +22,7 @@
 | `health-hub-next-session-plan.md` | Code-session instructions | ✅ Exact `data.js` snippets ready to paste (MBU, PHN, geo) |
 | `coverage-gap-tracker.md` | Living tracker | ✅ Reconciled against real `data.js` counts (6 Sept 2026) — no longer "mostly unfilled"; see the file itself for current gap status |
 | `service-card-enrichment-template.md` | Schema/process doc | ✅ Defines target card fields, mapped onto existing `data.js` fields (`contact.phone` / `referral` / `checked`) — apply during any content pass |
-| `accessibility-statement.md` | Draft, blocked | ⛔ Held until a real audit runs (tracker §5) — claims already spot-checked against `index.html`/`app.js`, but not yet published |
+| `accessibility-statement.md` | Draft, blocked | ⛔ Held until a real audit runs (tracker §5) — claims already spot-checked against `index.html`/`app.js`, but not yet published. First automated and keyboard audit run 8 Oct 2026 (`ACCESSIBILITY_AUDIT.md`), fixes 1 to 9 applied; screen reader, Safari and touch testing still open |
 | `Health_Hub_All_Island_Master_Directory_v1.xlsx` | New — 149-row starter dataset + roadmap | 🆕 Needs an architecture decision (see §4) — not yet received in this repo/session |
 | `Health_Hub_App_Improvements.pdf` | New — full feature roadmap (SAR builder, complaint wizard, Patient Passport, logs, crisis UI) | 🆕 Large scope, needs sequencing (see §5) — not yet received in this repo/session |
 
