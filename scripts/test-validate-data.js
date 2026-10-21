@@ -1,5 +1,7 @@
 // Tests for the data validator rules. Run: node scripts/test-validate-data.js
-const { validate, urlFamilyWarnings } = require("./validate-data.js");
+const { validate, urlFamilyWarnings, secondaryOnlyWarnings, SOURCE_REGISTER } = require("./validate-data.js");
+const hosts = require("./hosts.js");
+const fs = require("fs"), path = require("path");
 const base = {
   COUNTIES: [{ id: "cork" }, { id: "kerry" }, { id: "national" }],
   SPECIALTIES: [{ id: "childdisability" }],
@@ -33,8 +35,8 @@ expect("human-verified not a status here", [e({ urlStatus: "human-verified", ver
 expect("urlStatus without verify or checked fails", [e({ urlStatus: "search-result", source_url: "https://www.hse.ie/x" })], "must be verify: true");
 expect("urlStatus with a checked date is fine", [e({ urlStatus: "opened", checked: "2 Oct 2026", source_url: "https://www.hse.ie/x" })]);
 expect("source_url off the allow-list fails", [V({ source_url: "https://example.com/x" })], "allow-list");
-expect("charity host needs approval (jigsaw.ie)", [V({ source_url: "https://jigsaw.ie/accessing-jigsaw/" })], "allow-list");
-expect("diabetes.ie needs approval", [V({ source_url: "https://www.diabetes.ie/x" })], "allow-list");
+expect("jigsaw.ie fails without the voluntary tag", [V({ source_url: "https://jigsaw.ie/accessing-jigsaw/" })], "voluntary");
+expect("diabetes.ie fails without the voluntary tag", [V({ source_url: "https://www.diabetes.ie/x" })], "voluntary");
 expect("subdomain of allowed domain ok", [V({ source_url: "https://live.citizensinformation.ie/en/x" })]);
 expect("hospital domain ok (stjames.ie)", [V({ source_url: "https://www.stjames.ie/services/x" })]);
 expect("lookalike host fails", [V({ source_url: "https://evilhse.ie/a" })], "allow-list");
@@ -59,6 +61,45 @@ expect("hospital domain ok (nrh.ie, National Rehabilitation Hospital)", [V({ sou
 expect("irishstatutebook.ie ok for statute text (approved 10 Oct 2026)", [V({ source_url: "https://www.irishstatutebook.ie/eli/2015/act/64/enacted/en/html" })]);
 expect("irishstatutebook.ie not ok as a general source", [V({ source_url: "https://www.irishstatutebook.ie/eli/isbc/2015.html" }), V({ id: "y", source_url: "https://www.irishstatutebook.ie/" })], "statute text only");
 expect("lookalike of irishstatutebook.ie fails", [V({ source_url: "https://notirishstatutebook.ie/eli/x" })], "allow-list");
+// Approved-hosts register (decided 21 Oct 2026). Allow test and lookalike-host failure test for each added host.
+const ok = h => [V({ source_url: `https://www.${h}/x/` })];
+const lookalike = h => [V({ source_url: `https://not${h}/x/` })];
+const added = ["welfare.ie", "cho7cdnt.ie", "southdoc.ie", "shannondoc.ie", "westdoc.ie", "nedoc.ie", "northdoc.ie", "edoc.ie", "dubdoc.ie", "tlcdoc.ie"];
+added.forEach(h => {
+  expect(`${h} ok (register, 21 Oct 2026)`, ok(h));
+  expect(`lookalike of ${h} fails`, lookalike(h), "allow-list");
+});
+["lauralynn.ie", "jigsaw.ie", "diabetes.ie", "flac.ie"].forEach(h => {
+  expect(`${h} ok on a voluntary-tagged entry`, [V({ tags: ["voluntary"], source_url: `https://www.${h}/x/` })]);
+  expect(`${h} fails without the voluntary tag`, ok(h), "voluntary");
+  expect(`lookalike of ${h} fails even when tagged`, [V({ tags: ["voluntary"], source_url: `https://not${h}/x/` })], "allow-list");
+});
+["southeastcdnt.ie", "ndsa.ie", "assets.ireland.ie", "nhs.uk", "111.nhs.uk", "barnardos.ie", "irishtimes.com", "irishexaminer.com", "ipu.ie", "sims.ie", "firstivf.ie",
+ "louthparenthub.ie", "kilkennyparenthub.ie", "horizonscork.ie", "mphc.ie", "midwestaries.ie", "cypsc.ie", "mayomha.ie", "familypeersupport.ie", "niassembly.gov.uk"].forEach(h =>
+  expect(`declined or withheld host fails (${h})`, ok(h), "allow-list"));
+["arthritisireland.ie", "crohnscolitis.ie", "cancer.ie", "birthinfo.ie"].forEach(h =>
+  expect(`link-only host cannot be a source_url (${h})`, ok(h), "link-only"));
+expect("oireachtas.ie ok for a Bills page", [V({ source_url: "https://www.oireachtas.ie/en/bills/bill/2025/84/" })]);
+expect("oireachtas.ie not ok outside Bills", [V({ source_url: "https://www.oireachtas.ie/en/members/" })], "Bills and legislation status only");
+expect("lookalike of oireachtas.ie fails", lookalike("oireachtas.ie"), "allow-list");
+expect("revenue.ie ok for health-expenses relief", [V({ source_url: "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/health-and-age/health-expenses/index.aspx" })]);
+expect("revenue.ie not ok outside the medical-expenses section", [V({ source_url: "https://www.revenue.ie/en/vat/" })], "medical-expenses tax-relief pages only");
+expect("lookalike of revenue.ie fails", lookalike("revenue.ie"), "allow-list");
+expect("guideclinic.ie is tier 2, no tag needed", ok("guideclinic.ie"));
+function expectSecondary(name, entries, want){
+  const w = secondaryOnlyWarnings({ ENTRIES: entries });
+  const pass = want ? w.some(m => m.includes(want)) : w.length === 0;
+  if (!pass){ fails++; console.log("FAIL", name, JSON.stringify(w)); } else console.log("ok  ", name);
+}
+expectSecondary("secondary-only host as sole source warns", [V({ source_url: "https://www.southdoc.ie/x/" })], "secondary-only");
+expectSecondary("secondary host with an official resource link is fine", [V({ source_url: "https://www.southdoc.ie/x/", resources: [{ label: "HSE", url: "https://www2.hse.ie/services/x/" }] })]);
+expectSecondary("official source_url does not warn", [V({ source_url: "https://www2.hse.ie/services/x/" })]);
+{
+  const f = hosts.fromFile(path.join(__dirname, "..", "AI_RULES.md"));
+  if (!f || f.text !== hosts.block()){ fails++; console.log("FAIL AI_RULES.md approved-hosts block differs from the validator register; run: node scripts/hosts.js --write"); } else console.log("ok   AI_RULES.md approved-hosts block matches the register");
+  const dup = SOURCE_REGISTER.map(r => r.domain).filter((d, i, a) => a.indexOf(d) !== i);
+  if (dup.length){ fails++; console.log("FAIL duplicate register domains", dup.join(", ")); } else console.log("ok   register has no duplicate domains");
+}
 function expectWarn(name, input, want){
   const w = urlFamilyWarnings(input);
   const ok = want ? w.some(m => m.includes(want)) && w.length >= 1 : w.length === 0;

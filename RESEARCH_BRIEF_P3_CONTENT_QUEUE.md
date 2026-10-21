@@ -7,7 +7,7 @@
 Health Hub is a free, privacy-first PWA for navigating Irish and NI healthcare and advocacy rights. It gives administrative information only: never clinical advice, never legal claims. Layers: `data.js` (directory), `data/costs.js`, `data/vaccines.js`, `data/screening.js`, `data/conditions.js`.
 
 ## Hard rules
-1. **Official sources only:** hse.ie and subdomains (use the `www2.hse.ie` URL family), gov.ie, citizensinformation.ie, welfare.ie, nidirect.gov.uk, health-ni.gov.uk, `*.hscni.net`, hiqa.ie, rqia.org.uk, mhcirl.ie, tusla.ie, aai.gov.ie, and a hospital's own `.ie` site. Also approved: familysupportni.gov.uk, bso.hscni.net, online.hscni.net, adoptionandfostercare.hscni.net; saolta.ie, caredoc.ie and kdoc.ie as secondary sources only. Voluntary-tagged only, never supporting official-service claims: lauralynn.ie, jigsaw.ie, diabetes.ie, guideclinic.ie. **Withheld:** charity, press, trade, recruitment, academic-group and forum sites. Any other host (revenue.ie, ndsa.ie and similar) goes under "Hosts needing approval" and is not used.
+1. **Official sources only:** see the approved-hosts block in `AI_RULES.md` (tiers, scopes and the declined list; printed from the validator register). Charity, press, trade, recruitment, academic-group and forum sites are withheld. Any other host needs Elaine's approval: list it under "Hosts needing approval" with host, owner, purpose, proposed tier and the row it is for, and do not use it.
 2. **No phone, email, fax, fee or waiting-time figure** unless copied from a page you opened. Rows are link-only by default.
 3. **Budget-sensitive figures** (amounts, caps, rates, thresholds, percentages) are kept **out of row text**. If you read one on an official page, record it only in the source log with the page URL and its "last reviewed" date, so Elaine can decide. Means-test thresholds are never stored: link to the official calculator. Budget 2027 was announced 6 Oct 2026; the full documents have not been read.
 4. **Never write "checked" or "opened".** Every row is `verify: true`, `urlStatus: "search-result"`, no `checked`.
@@ -92,7 +92,7 @@ One file per session: `research/P3-<part>-<yyyy-mm-dd>.md`, containing:
 3. **Source log:** per row, the URL, date read, the page's own review date, and one line on what it says. Figures read from pages (rule 3) go here only.
 4. **Withheld rows:** reason and "un-withhold when".
 5. **Duplicates and proposed edits** to existing rows.
-6. **Hosts needing approval, not found, not reached, uncertainties** (conflicting sources, stale pages).
+6. **Hosts needing approval (host, owner, purpose, proposed tier, row), not found, not reached, uncertainties** (conflicting sources, stale pages).
 
 ## After you finish
 Elaine opens each `source_url` in a browser; only then can `verify` be cleared and `checked` set. Claude Code merges the rows by PR (`node --check`, size check and all four validators before and after; never push to `main`), then adds one `CHANGELOG.md` entry and one "Recent AI sessions" line.

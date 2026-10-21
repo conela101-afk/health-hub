@@ -6,7 +6,7 @@
 Health Hub is a free, privacy-first PWA for navigating Irish and NI healthcare services and advocacy rights. It is administrative information only: never clinical advice, never legal claims. Rows go into `data.js` as directory entries.
 
 ## Hard rules (non-negotiable)
-1. **Official sources only:** hse.ie and its subdomains, gov.ie (including aai.gov.ie), citizensinformation.ie, nidirect.gov.uk, health-ni.gov.uk, HSC trust sites (`*.hscni.net`), hiqa.ie, rqia.org.uk, mhcirl.ie, tusla.ie (approved 7 Oct 2026), and a hospital's own `.ie` site. Also approved, tagged `voluntary`, never used to support official-service claims: lauralynn.ie, jigsaw.ie, diabetes.ie, guideclinic.ie. **Withheld:** charity, press, trade, recruitment, academic-group and forum sites. Any other new host needs Elaine's approval: list it under "Hosts needing approval" and do not use it.
+1. **Official sources only:** see the approved-hosts block in `AI_RULES.md` (tiers, scopes and the declined list; printed from the validator register). Charity, press, trade, recruitment, academic-group and forum sites are withheld. Any other host needs Elaine's approval: list it under "Hosts needing approval" with host, owner, purpose, proposed tier and the row it is for, and do not use it.
 2. **No phone, email, fax, fee or waiting-time figure** unless you copied it from a page you opened. Every row is **web link only** by default. Budget-sensitive figures (rates, thresholds, payment amounts) stay out entirely.
 3. **Never write "checked" or "opened".** You cannot clear `verify`. Every row is `verify: true`, `urlStatus: "search-result"`, with no `checked` field.
 4. **No clinical or legal claims.** Paraphrase what the page says, in plain language, and say what it covers, not whether someone is entitled. Wording like "the HSE page says…" is fine.
@@ -63,7 +63,7 @@ Create one file: `research/LOCAL-SERVICES-PARENTING-<date>.md` (or return it as 
 3. **Source log:** for each row, the URL, the date you read it, and one line on what it says.
 4. **Withheld rows,** each with the reason and "un-withhold when".
 5. **Duplicates and proposed edits** to existing entries.
-6. **Hosts needing approval,** **not found,** and **uncertainties** (conflicting sources, pages that looked stale).
+6. **Hosts needing approval** (host, owner, purpose, proposed tier, row), **not found,** and **uncertainties** (conflicting sources, pages that looked stale).
 
 ## After you finish
 Elaine opens each `source_url` in a browser; only then can `verify` be cleared and `checked` set. Claude Code then merges the rows by PR.
