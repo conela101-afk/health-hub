@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-21 [Claude] (community services candidate rows, all ROI)
+- `data.js`: 69 rows added, all `verify: true`, `urlStatus: "search-result"`, none opened: children's disability network teams (Meath, Louth, Mayo, Wexford, Kildare, Wicklow, Carlow, Kilkenny, Tipperary, Waterford, Dublin, Leitrim/Cavan, Donegal, Galway, Roscommon, Longford, Offaly, Laois, Clare, Limerick, Kerry), three adult disability rows, nine dental, one physiotherapy, four national mental-health pages and five county mental-health rows. Exact URLs from the brief; no phone, email, fee or waiting time.
+- Edited one existing row: `roi-mayo-cdnt-north-mayo-1` `source_url` and `contact.web` repointed from the dead finder redirect to its team page.
+- Skipped: `roi-local-health-offices` (same `source_url` as `roi-mayo-local-health-office`). Other skips and withheld leads are in `GAPS.md` ("Community services pass").
+- Search: seven queries added to `search-audit-queries.txt`; three miss and are in `search-audit-known-gaps.txt` with a reason. Ranking and aliases unchanged.
+- Validators clean; `validate-data.js` 774 entries and 19 URL-family warnings (two new, from the Kerry CAMHS legacy URL). `sw.js` cache v30 to v31.
+
 ## 2026-10-21 [Claude] (approved-hosts register, session 2)
 - `scripts/validate-data.js`: the flat `SOURCE_DOMAINS` array is now `SOURCE_REGISTER`, rows of `{ domain, tier, approved, scope, paths }`, from Elaine's 21 Oct decisions (`approved-hosts-sweep-2026-10-20.md`). Tiers 1 to 5 may be a `source_url`; tier 6 (`lauralynn.ie`, `jigsaw.ie`, `diabetes.ie`, `flac.ie`) only on entries with `tags: ["voluntary"]`; tiers 7 and 8 are link-only; tier 9 is declined. Path scope is enforced for `revenue.ie` (health-and-age section), `oireachtas.ie` (`/en/bills/`) and `irishstatutebook.ie` (`/eli/`). New warning when a tier 5 host is an entry's only source.
 - Added `welfare.ie` (it was not in the live validator), `cho7cdnt.ie` (approved 21 Oct), and eight GP out-of-hours provider hosts (`southdoc.ie`, `shannondoc.ie`, `westdoc.ie`, `nedoc.ie`, `northdoc.ie`, `edoc.ie`, `dubdoc.ie`, `tlcdoc.ie`) taken from the "Website" field on their `www2.hse.ie/services/find-urgent-emergency-care/` pages, secondary-only. Removed `southeastcdnt.ie` (nothing cited it). `guideclinic.ie` is tier 2; `flac.ie` moved to tier 6. `birthinfo.ie` link-only (owner confirmed: Adoption Authority of Ireland).

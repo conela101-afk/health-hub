@@ -150,6 +150,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-21 [Claude] — Community services candidate rows (CDNT, adult disability, dental, mental health), all `search-result` and unverified; one existing row repointed. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-21 [Claude] — Approved-hosts register in `validate-data.js` (tiers, voluntary-tag rule, secondary-only warning, path scopes), `scripts/hosts.js`, and the block above, from Elaine's 21 Oct decisions. See `CHANGELOG.md`.
 - 2026-10-21 [Claude] — `GAPS.md` items only: pacemaker/device follow-up, CATCH, four P3 "not searched" additions. No rows or sources. See `CHANGELOG.md`.
 - 2026-10-21 [Claude] — Master Build Plan v3 (script recount, phase map, brief index, branch triage) and the seven untracked briefs committed. No code or data changes. See `CHANGELOG.md`.

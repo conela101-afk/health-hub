@@ -4,3 +4,9 @@ anesthesia
 esophagus
 second opinion
 111
+# Added 21 Oct 2026 with the community-services rows. These three miss because the new rows spell the words
+# differently: they say "Children's Disability Network Team" (no "cdnt" alias exists; adding one is a search
+# change for the owner to decide) and "Dentistry" (query says "dental clinic"). Ranking not changed.
+cdnt navan
+cdnt blessington
+dental clinic ballymun
