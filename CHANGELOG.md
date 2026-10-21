@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-21 [Claude] (opt-in install page, `#/install`)
+- New route `#/install` (`renderInstall` in `app.js`), linked from the footer only. Not in the tab bar or home hero. Explains what installing does, that it is optional, a privacy note (icon labelled "Health Hub" shows on the home screen), and how to remove it.
+- Chromium: a `beforeinstallprompt` listener holds the event in a closure variable and suppresses the browser's own prompt. The "Install app" button appears on `#/install` only and calls `prompt()`. Other browsers get static steps (iPhone/iPad Safari, Android); unrecognised browsers see all of them. Installed (`display-mode: standalone` / `navigator.standalone`) shows "You're using the installed app".
+- Nothing stored: localStorage, sessionStorage and cookies empty after visiting, prompting and dismissing (headless Chromium check). No new hosts, CSP unchanged. `app.js` 125,567 to 130,039 bytes; `index.html` footer link added. `sw.js` cache v32 to v33. `node --check`, `check-third-party.sh` and `validate-data.js` (774 entries) pass.
+- Not done, for Elaine: copy approval; Android Chrome, Firefox Android and iPhone wording checks on real devices; confirm Exit/Calm mode/hash routing in installed mode on a device; manifest proposals (separate `any` and `maskable` icons if the artwork lacks a safe zone, and dropping `orientation: portrait`, WCAG 1.3.4). `manifest.json` unchanged. Pathway-item link waits for the "Where do I start?" page.
+
 ## 2026-10-21 [Claude] (Session 5 scopes, docs only)
 - Added `SCOPE-session5-2026-10-21.md`: one-page scopes for the TD/councillor letter builder, the "Where do I start?" pathway page, share/print on guided tools and install guidance, each with a privacy and CSP check. Nothing built. No `data.js`, code or cache change.
 
