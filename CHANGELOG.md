@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-21 [Claude] (Session 5 scopes, docs only)
+- Added `SCOPE-session5-2026-10-21.md`: one-page scopes for the TD/councillor letter builder, the "Where do I start?" pathway page, share/print on guided tools and install guidance, each with a privacy and CSP check. Nothing built. No `data.js`, code or cache change.
+
 ## 2026-10-21 [Claude] (AskCI outbound link)
 - Added one outbound link to AskCI (Citizens Information Board pilot chatbot) as fact `askci-pilot` in `TOOL_FACTS` (`verify: true`, `urlStatus: "search-result"`, no `checked`), with a privacy line in `TOOL_UI_TEXT`. Shown on the Entitlements tab, the Schemes and cards selector and the costs page via `HH_TOOLS.askciHtml`; `target="_blank" rel="noopener noreferrer"`, no embed, iframe or script. Not attached to any entry.
 - Host `askcitizensinformation.ie` added to the register (Tier 1, approved 17 Oct 2026, this host only); AI_RULES block regenerated; allow and lookalike tests added.
