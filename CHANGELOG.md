@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-21 [Claude] (AskCI outbound link)
+- Added one outbound link to AskCI (Citizens Information Board pilot chatbot) as fact `askci-pilot` in `TOOL_FACTS` (`verify: true`, `urlStatus: "search-result"`, no `checked`), with a privacy line in `TOOL_UI_TEXT`. Shown on the Entitlements tab, the Schemes and cards selector and the costs page via `HH_TOOLS.askciHtml`; `target="_blank" rel="noopener noreferrer"`, no embed, iframe or script. Not attached to any entry.
+- Host `askcitizensinformation.ie` added to the register (Tier 1, approved 17 Oct 2026, this host only); AI_RULES block regenerated; allow and lookalike tests added.
+- Re-check mid-January 2027, recorded in `GAPS.md`. Entries recounted by script: 774 before and after. `sw.js` cache v31 to v32.
+
 ## 2026-10-21 [Claude] (community services candidate rows, all ROI)
 - `data.js`: 69 rows added, all `verify: true`, `urlStatus: "search-result"`, none opened: children's disability network teams (Meath, Louth, Mayo, Wexford, Kildare, Wicklow, Carlow, Kilkenny, Tipperary, Waterford, Dublin, Leitrim/Cavan, Donegal, Galway, Roscommon, Longford, Offaly, Laois, Clare, Limerick, Kerry), three adult disability rows, nine dental, one physiotherapy, four national mental-health pages and five county mental-health rows. Exact URLs from the brief; no phone, email, fee or waiting time.
 - Edited one existing row: `roi-mayo-cdnt-north-mayo-1` `source_url` and `contact.web` repointed from the dead finder redirect to its team page.

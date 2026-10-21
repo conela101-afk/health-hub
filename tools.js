@@ -41,6 +41,17 @@ window.HH_TOOLS = (function(){
     `;
   }
 
+  // One outbound link to AskCI (Citizens Information Board pilot chatbot). Link only: no embed, no script.
+  // Used on the schemes and entitlements pages; app.js calls HH_TOOLS.askciHtml(escapeHtml).
+  function askciHtml(escFn){
+    const f = FACT_BY_ID["askci-pilot"];
+    if (!f) return "";
+    const e = escFn || esc;
+    const tag = f.verify ? ` <span class="tag tag-coral">${e((typeof TOOL_UI_TEXT !== "undefined" && TOOL_UI_TEXT.verifyLabel) || "")}</span>` : "";
+    const priv = (typeof TOOL_UI_TEXT !== "undefined" && TOOL_UI_TEXT.askciPrivacy) || "";
+    return `<div class="callout askci-callout"><p>${e(f.text)}${tag}</p><p><a href="${e(f.source_url)}" target="_blank" rel="noopener noreferrer">${e(f.source_name)} ↗</a></p><p class="checked-note">${e(priv)}</p></div>`;
+  }
+
   function footHtml(){
     return `<p class="checked-note">${esc(TOOL_UI_TEXT.howChecked)}</p>`;
   }
@@ -691,6 +702,7 @@ window.HH_TOOLS = (function(){
       ${headHtml("Schemes and cards selector", "Cross-border treatment schemes, medical cards and GP visit cards")}
 
       <div class="callout"><strong>No commercial links.</strong> ${esc(TOOL_UI_TEXT.neutrality)}</div>
+      ${askciHtml()}
 
       <p class="detail-section-title">Treatment in another jurisdiction</p>
       <div class="prep-card">
@@ -1303,6 +1315,7 @@ window.HH_TOOLS = (function(){
   };
 
   return {
+    askciHtml,
     // For app.js's TOOL_PAGES search index.
     pages: TOOL_LIST,
     has(name){ return Object.prototype.hasOwnProperty.call(RENDERERS, name || ""); },

@@ -567,3 +567,9 @@ Counties with none of the new rows: Cork (already has its own CDNT rows), Monagh
 - The North Mayo name carries a "1" that its page title does not: check.
 - `roi-dental-citizens-info` cites the same Citizens Information page as the existing `hse-public-dental-clinics` (which has it as `contact.web` only). It describes the Dental Treatment Services Scheme; merge or drop if you think it duplicates.
 - Search misses recorded in `scripts/search-audit-known-gaps.txt`: "cdnt navan", "cdnt blessington", "dental clinic ballymun". There is no "cdnt" alias; adding one is your call.
+
+## AskCI outbound link (21 Oct 2026)
+
+- One link to AskCI, the Citizens Information Board's pilot AI chatbot, on the Entitlements tab, the Schemes and cards selector and the "What you pay" page. Not attached to any entry. Stored as the fact `askci-pilot` in `TOOL_FACTS` with `verify: true`, `urlStatus: "search-result"`, no `checked`. Source: CIB news items (7 Apr, 22 Apr, 26 Aug 2026); the URL `askcitizensinformation.ie` has not been opened by a person. Host approved by Elaine 17 Oct 2026, Tier 1, this host only.
+- **Re-check mid-January 2027:** pilot status; the service may change, move or end. Open the page, confirm the URL and the wording, then clear `verify`.
+- AskCI is general, not health-specific, so it complements the navigation, complaint and facility tools rather than replacing them. No phone number, accuracy claim or contact detail is shown. Privacy line beside the link: anything typed into AskCI goes to Citizens Information, not Health Hub.

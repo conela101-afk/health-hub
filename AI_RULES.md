@@ -35,6 +35,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - `rqia.org.uk` (project rule)
 - `mhcirl.ie` (project rule)
 - `tusla.ie` (7 Oct 2026)
+- `askcitizensinformation.ie` (17 Oct 2026): AskCI, Citizens Information Board pilot chatbot; this host only, not other CIB subdomains; link-out on the schemes pages
 - `screeningservice.ie` (ratified 21 Oct 2026)
 - `ntpf.ie` (ratified 21 Oct 2026)
 - `ncse.ie` (ratified 21 Oct 2026)
@@ -150,6 +151,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-21 [Claude] — AskCI link added via PR on the schemes pages; Elaine to open the URL and clear `verify` (re-check mid-Jan 2027). See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-21 [Claude] — Community services candidate rows (CDNT, adult disability, dental, mental health), all `search-result` and unverified; one existing row repointed. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-21 [Claude] — Approved-hosts register in `validate-data.js` (tiers, voluntary-tag rule, secondary-only warning, path scopes), `scripts/hosts.js`, and the block above, from Elaine's 21 Oct decisions. See `CHANGELOG.md`.
 - 2026-10-21 [Claude] — `GAPS.md` items only: pacemaker/device follow-up, CATCH, four P3 "not searched" additions. No rows or sources. See `CHANGELOG.md`.

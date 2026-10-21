@@ -44,6 +44,7 @@ const SOURCE_REGISTER = [
   R("hscni.net", 1, "project rule", "all subdomains, including bso., online., adoptionandfostercare."),
   R("hiqa.ie", 1, "project rule"), R("rqia.org.uk", 1, "project rule"), R("mhcirl.ie", 1, "project rule"),
   R("tusla.ie", 1, "7 Oct 2026"),
+  R("askcitizensinformation.ie", 1, "17 Oct 2026", "AskCI, Citizens Information Board pilot chatbot; this host only, not other CIB subdomains; link-out on the schemes pages"),
   R("screeningservice.ie", 1, "ratified 21 Oct 2026"), R("ntpf.ie", 1, "ratified 21 Oct 2026"), R("ncse.ie", 1, "ratified 21 Oct 2026"),
   R("dataprotection.ie", 1, "ratified 21 Oct 2026"), R("oco.ie", 1, "ratified 21 Oct 2026"),
   R("ombudsman.ie", 1, "ratified 21 Oct 2026"), R("oic.ie", 1, "ratified 21 Oct 2026"), R("nipso.org.uk", 1, "ratified 21 Oct 2026"),
