@@ -64,7 +64,7 @@ expect("lookalike of irishstatutebook.ie fails", [V({ source_url: "https://notir
 // Approved-hosts register (decided 21 Oct 2026). Allow test and lookalike-host failure test for each added host.
 const ok = h => [V({ source_url: `https://www.${h}/x/` })];
 const lookalike = h => [V({ source_url: `https://not${h}/x/` })];
-const added = ["welfare.ie", "cho7cdnt.ie", "southdoc.ie", "shannondoc.ie", "westdoc.ie", "nedoc.ie", "northdoc.ie", "edoc.ie", "dubdoc.ie", "tlcdoc.ie"];
+const added = ["askcitizensinformation.ie", "welfare.ie", "cho7cdnt.ie", "southdoc.ie", "shannondoc.ie", "westdoc.ie", "nedoc.ie", "northdoc.ie", "edoc.ie", "dubdoc.ie", "tlcdoc.ie"];
 added.forEach(h => {
   expect(`${h} ok (register, 21 Oct 2026)`, ok(h));
   expect(`lookalike of ${h} fails`, lookalike(h), "allow-list");

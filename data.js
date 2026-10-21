@@ -12067,11 +12067,18 @@ TOOL_FACTS.push(
 
 // Strings every guided-tool page shows. Kept here so wording changes are a
 // content edit, not a code edit.
+// AskCI: one outbound link, shown on the schemes and entitlements pages only (not attached to entries).
+// Pilot status; re-check mid-January 2027 (see GAPS.md). Not opened by a person yet.
+TOOL_FACTS.push(
+  { id: "askci-pilot", text: "AskCI (pilot): AI chatbot from Citizens Information for general questions on schemes and entitlements. Answers aren't personalised advice, so check them against the linked citizensinformation.ie page.", jurisdiction: "ROI", source_url: "https://askcitizensinformation.ie/", source_name: "AskCI (Citizens Information Board)", last_verified: "2026-10-21", volatility: "high", verify: true, urlStatus: "search-result" }
+);
+
 const TOOL_UI_TEXT = {
   disclaimer: "Information, not clinical or legal advice.",
   verifyLabel: "Check the official page before relying on this",
   privacy: "Everything you type stays in this browser tab. Nothing is sent anywhere. Where a page offers \"Save on this device\", that is off until you tick it, and Clear removes it again.",
   howChecked: "Facts last checked 28 Sep 2026. Our build environment couldn't open the official sites directly, so each fact was cross-checked against search results for that organisation's page. Always follow the source link before you act.",
+  askciPrivacy: "Anything you type into AskCI goes to Citizens Information, not Health Hub.",
   neutrality: "Private clinics and hospitals advertise these schemes. This tool is neutral: it has no commercial links, earns nothing from any provider, and only links to official scheme pages.",
   dateApprox: "Approximate. Working days here skip weekends but not public holidays, so the real date may be a day or more later. Count from the date on the letter or email, and check with the organisation.",
 };

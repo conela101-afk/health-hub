@@ -1148,6 +1148,7 @@ ${name}`;
       <div class="callout">
         Rates, income limits and thresholds change every year, usually in the Budget — rather than publish figures that go stale, we link straight to the official page for each scheme.
       </div>
+      ${window.HH_TOOLS && window.HH_TOOLS.askciHtml ? window.HH_TOOLS.askciHtml(escapeHtml) : ""}
       <p class="detail-section-title">Republic of Ireland</p>
       ${roi.map(schemeCardHtml).join("")}
       <p class="detail-section-title">Northern Ireland</p>
@@ -1468,6 +1469,7 @@ ${name}`;
       <div class="callout">
         <strong>Which scheme caps your costs.</strong> Medicines costs usually come down to three routes in the Republic of Ireland: a medical card, the Drugs Payment Scheme, or the Long-Term Illness Scheme (which covers only a fixed list of conditions). Income limits are not shown here; follow the link to the official page. Amounts can change at each Budget. The Budget 2027 health summaries read on 8 October 2026 list no change to these amounts, apart from free contraception extending to age 37, but the full Budget documents have not been read.
       </div>
+      ${window.HH_TOOLS && window.HH_TOOLS.askciHtml ? window.HH_TOOLS.askciHtml(escapeHtml) : ""}
       <div class="search-field search-field-inline">
         <select id="cost-region" aria-label="Filter by region"><option value="">Both regions</option><option value="ROI">Republic of Ireland</option><option value="NI">Northern Ireland</option></select>
         <select id="cost-kind" aria-label="Filter by type"><option value="">All types</option>${Object.keys(COST_KIND_LABELS).map(k => `<option value="${k}">${COST_KIND_LABELS[k]}</option>`).join("")}</select>
