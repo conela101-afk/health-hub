@@ -3,7 +3,7 @@
 //
 // Later rules: urlStatus is one of opened, search-result, unverified; an entry with a
 // urlStatus and no `checked` date must be verify: true; any source_url must be on the
-// official-domain allow-list; verify: true entries may not put a phone, email or Eircode
+// approved-hosts register (see below); verify: true entries may not put a phone, email or Eircode
 // in the blurb or details or use clinical-instruction wording. (An earlier rule banned
 // "Budget 2027" until the Budget was announced on 6 Oct 2026; removed 7 Oct 2026. Budget
 // measures must be worded as announced, with a start date only where the source gives one.)
@@ -15,38 +15,87 @@
 // address unless a human opened the page (urlStatus: "opened").
 const URL_STATUSES = ["opened", "search-result", "unverified"];
 
-// A host matches if it equals a domain or is a subdomain of it, so hse.ie also covers
-// www2.hse.ie and www2.healthservice.hse.ie. Charity and non-HSE hosts (for example
-// lauralynn.ie, jigsaw.ie, diabetes.ie) are deliberately NOT listed: add one only after
-// a person approves it.
-const SOURCE_DOMAINS = [
-  "hse.ie", "gov.ie", "citizensinformation.ie",
-  // irishstatutebook.ie: approved by the owner 10 Oct 2026 for statute text only (not as a general source).
-  // validate() enforces that: an entry's source_url on this host must be an /eli/ statute URL.
-  "irishstatutebook.ie", "oireachtas.ie", "lawreform.ie",
-  "hiqa.ie", "mhcirl.ie", "dataprotection.ie", "oco.ie", "ombudsman.ie", "oic.ie",
-  "medicalcouncil.ie", "nmbi.ie", "coru.ie", "thepsi.ie", "dentalcouncil.ie",
-  "legalaidboard.ie", "flac.ie", "nidirect.gov.uk", "health-ni.gov.uk", "hscni.net", "nipso.org.uk",
-  "screeningservice.ie", "ntpf.ie", "ncse.ie", "stjames.ie", "nrh.ie", "stvincents.ie", "mater.ie", "nohc.ie",
-  "cho7cdnt.ie", "southeastcdnt.ie",
-  // Hospitals' own sites, approved by the owner 7 Oct 2026 ("the hospital's own .ie site").
-  "beaumont.ie", "childrenshealthireland.ie", "bonsecours.ie",
-  // Approved by the owner 7 Oct 2026: the GUIDe clinic's own site (St James's Hospital sexual health clinic).
-  "guideclinic.ie",
-  // Approved by the owner 7 Oct 2026: Tusla (child and family agency). aai.gov.ie (Adoption Authority of Ireland) is already covered by gov.ie.
-  "tusla.ie",
-  // Approved by the owner 7 Oct 2026: familysupportni.gov.uk (NI family support), saolta.ie (former Saolta
-  // hospital group site), caredoc.ie and kdoc.ie (GP out-of-hours services). bso.hscni.net,
-  // adoptionandfostercare.hscni.net and online.hscni.net are already covered by hscni.net.
-  "familysupportni.gov.uk", "saolta.ie", "caredoc.ie", "kdoc.ie",
-  // Approved by the owner 7 Oct 2026: Blackrock Health, the current owner of the Galway Clinic (galwayclinic.com redirects here).
-  "blackrockhealth.com",
-  // Approved by the owner 9 Oct 2026: the Dublin and South East Children's Disability Network Teams site (replaces southeastcdnt.ie).
-  "dublinandsoutheastcdnt.ie",
-  // Approved by the owner 9 Oct 2026, for tax-relief-on-medical-expenses pages only.
-  "revenue.ie",
+// Approved-hosts register (single source of truth for source_url hosts; decided by Elaine 21 Oct 2026,
+// see AI_RULES.md, whose approved-hosts block is printed from this array by scripts/hosts.js).
+// A host matches a row if it equals the row's domain or is a subdomain of it, so hse.ie also covers
+// www2.hse.ie. The longest matching domain wins. Row: { domain, tier, approved, scope, paths }.
+//   approved: a date or basis string, or false for a declined / withheld host.
+//   paths: optional path prefixes a source_url on that host must start with (scope enforced).
+// Tiers 1 to 5 may be a source_url. Tier 5 (secondary only) warns when it is an entry's only source.
+// Tier 6 (voluntary) passes only on entries tagged "voluntary" and never supports official-service
+// claims. Tiers 7 and 8 are link-only: never a source_url. Tier 9 is declined or withheld.
+const TIER_LABELS = {
+  1: "Government and statutory",
+  2: "Hospital or service own site",
+  3: "HSE-run team sites",
+  4: "Scoped approvals",
+  5: "Secondary only",
+  6: "Voluntary (entry needs the `voluntary` tag)",
+  7: "Link-out only",
+  8: "Link-only or pending",
+  9: "Declined or withheld",
+};
+const R = (domain, tier, approved, scope, paths) => ({ domain, tier, approved, scope: scope || "", paths: paths || null });
+const SOURCE_REGISTER = [
+  // Tier 1: government and statutory bodies of ROI and NI (pre-approved class, ratified 21 Oct 2026).
+  R("hse.ie", 1, "project rule"), R("gov.ie", 1, "project rule", "includes aai.gov.ie"),
+  R("citizensinformation.ie", 1, "project rule"), R("welfare.ie", 1, "9 Oct brief; added 21 Oct 2026"),
+  R("nidirect.gov.uk", 1, "project rule"), R("health-ni.gov.uk", 1, "project rule"),
+  R("hscni.net", 1, "project rule", "all subdomains, including bso., online., adoptionandfostercare."),
+  R("hiqa.ie", 1, "project rule"), R("rqia.org.uk", 1, "project rule"), R("mhcirl.ie", 1, "project rule"),
+  R("tusla.ie", 1, "7 Oct 2026"),
+  R("screeningservice.ie", 1, "ratified 21 Oct 2026"), R("ntpf.ie", 1, "ratified 21 Oct 2026"), R("ncse.ie", 1, "ratified 21 Oct 2026"),
+  R("dataprotection.ie", 1, "ratified 21 Oct 2026"), R("oco.ie", 1, "ratified 21 Oct 2026"),
+  R("ombudsman.ie", 1, "ratified 21 Oct 2026"), R("oic.ie", 1, "ratified 21 Oct 2026"), R("nipso.org.uk", 1, "ratified 21 Oct 2026"),
+  R("medicalcouncil.ie", 1, "ratified 21 Oct 2026"), R("nmbi.ie", 1, "ratified 21 Oct 2026"), R("coru.ie", 1, "ratified 21 Oct 2026"),
+  R("thepsi.ie", 1, "ratified 21 Oct 2026"), R("dentalcouncil.ie", 1, "ratified 21 Oct 2026"),
+  R("legalaidboard.ie", 1, "ratified 21 Oct 2026"), R("lawreform.ie", 1, "ratified 21 Oct 2026"),
+  // irishstatutebook.ie: approved 10 Oct 2026 for statute text only (an /eli/ statute URL), not as a general source.
+  R("irishstatutebook.ie", 1, "10 Oct 2026", "statute text", ["/eli/"]),
+  // Tier 2: a hospital's or service's own site.
+  R("stjames.ie", 2, "ratified 21 Oct 2026"), R("nrh.ie", 2, "ratified 21 Oct 2026"), R("stvincents.ie", 2, "ratified 21 Oct 2026"),
+  R("mater.ie", 2, "ratified 21 Oct 2026"), R("nohc.ie", 2, "ratified 21 Oct 2026"),
+  R("beaumont.ie", 2, "7 Oct 2026"), R("childrenshealthireland.ie", 2, "7 Oct 2026"), R("bonsecours.ie", 2, "7 Oct 2026"),
+  R("blackrockhealth.com", 2, "7 Oct 2026", "Galway Clinic owner (.com)"),
+  R("guideclinic.ie", 2, "7 Oct 2026", "St James's Hospital clinic site; reclassified from voluntary 21 Oct 2026"),
+  // Tier 3: HSE-run team sites. southeastcdnt.ie is declined (superseded by dublinandsoutheastcdnt.ie).
+  R("dublinandsoutheastcdnt.ie", 3, "9 Oct 2026"), R("cho7cdnt.ie", 3, "21 Oct 2026"),
+  // Tier 4: scoped approvals.
+  R("revenue.ie", 4, "9 Oct 2026", "medical-expenses tax-relief pages only", ["/en/personal-tax-credits-reliefs-and-exemptions/health-and-age/"]),
+  R("familysupportni.gov.uk", 4, "7 Oct 2026", "statutory trust listings only; voluntary providers listed there stay withheld"),
+  R("oireachtas.ie", 4, "21 Oct 2026", "Bills and legislation status only, never service claims", ["/en/bills/"]),
+  // Tier 5: secondary only, never an entry's sole source. GP out-of-hours providers, host names taken from the
+  // "Website" field on their www2.hse.ie/services/find-urgent-emergency-care/ pages (21 Oct 2026).
+  R("saolta.ie", 5, "7 Oct 2026"), R("caredoc.ie", 5, "7 Oct 2026", "GP out-of-hours"), R("kdoc.ie", 5, "7 Oct 2026", "GP out-of-hours"),
+  R("southdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("shannondoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
+  R("westdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("nedoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
+  R("northdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("edoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
+  R("dubdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("tlcdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
+  // Tier 6: voluntary. Pass as source_url only on entries tagged "voluntary"; never support official-service claims.
+  R("lauralynn.ie", 6, "approved"), R("jigsaw.ie", 6, "approved"), R("diabetes.ie", 6, "approved"),
+  R("flac.ie", 6, "moved from official 21 Oct 2026", "NGO; its own-service row only"),
+  // Tier 7: link-outs used in data/conditions.js. Never a source for claims.
+  R("arthritisireland.ie", 7, "21 Oct 2026", "link-out only, never a source"),
+  R("crohnscolitis.ie", 7, "21 Oct 2026", "link-out only, never a source"),
+  R("cancer.ie", 7, "21 Oct 2026", "Irish Cancer Society; link-out only, never a source"),
+  // Tier 8: birthinfo.ie approved link-only 21 Oct 2026 (owner confirmed: Adoption Authority of Ireland, Birth Information and Tracing Act 2022).
+  R("birthinfo.ie", 8, "21 Oct 2026", "link-only: birth information and tracing"),
+  R("niassembly.gov.uk", 8, false, "withheld until a row needs it; mirror of oireachtas.ie"),
+  // Tier 9: declined 7 to 21 Oct 2026. Wikipedia, Medical Independent, Irish Health Pro and Limerick Leader are also declined.
+  R("southeastcdnt.ie", 9, false, "superseded by dublinandsoutheastcdnt.ie"),
+  R("ndsa.ie", 9, false), R("assets.ireland.ie", 9, false), R("nhs.uk", 9, false, "includes 111.nhs.uk"),
+  R("barnardos.ie", 9, false), R("irishtimes.com", 9, false), R("irishexaminer.com", 9, false),
+  R("ipu.ie", 9, false), R("sims.ie", 9, false), R("firstivf.ie", 9, false),
+  R("louthparenthub.ie", 9, false), R("kilkennyparenthub.ie", 9, false), R("horizonscork.ie", 9, false), R("mphc.ie", 9, false),
+  R("midwestaries.ie", 9, false), R("cypsc.ie", 9, false), R("mayomha.ie", 9, false), R("familypeersupport.ie", 9, false),
 ];
-const hostAllowed = host => SOURCE_DOMAINS.some(d => host === d || host.endsWith("." + d));
+const matches = (host, d) => host === d || host.endsWith("." + d);
+function hostRule(host){
+  let best = null;
+  SOURCE_REGISTER.forEach(r => { if (matches(host, r.domain) && (!best || r.domain.length > best.domain.length)) best = r; });
+  return best;
+}
+const isVoluntary = e => (e.tags || []).includes("voluntary");
 
 const CONTACT_PATTERNS = [
   [/@/, "an email address"],
@@ -80,10 +129,13 @@ function validate({ ENTRIES, COUNTIES, SPECIALTIES, AREAS }){
     if (e.urlStatus !== undefined && !URL_STATUSES.includes(e.urlStatus)) errors.push(`${where}: urlStatus must be one of ${URL_STATUSES.join(", ")}`);
     if (e.urlStatus !== undefined && !e.checked && e.verify !== true) errors.push(`${where}: an entry with a urlStatus and no checked date must be verify: true`);
     if (e.source_url !== undefined){
-      let host = "";
-      try { host = new URL(e.source_url).hostname; } catch (err) { errors.push(`${where}: source_url is not a valid URL`); }
-      if (host && !hostAllowed(host)) errors.push(`${where}: source_url host "${host}" is not on the official-domain allow-list`);
-      if (host && /(^|\.)irishstatutebook\.ie$/.test(host) && !/^\/eli\//.test(new URL(e.source_url).pathname)) errors.push(`${where}: irishstatutebook.ie is approved for statute text only; source_url must be an /eli/ statute URL`);
+      let host = "", pathname = "";
+      try { const u = new URL(e.source_url); host = u.hostname; pathname = u.pathname; } catch (err) { errors.push(`${where}: source_url is not a valid URL`); }
+      const rule = host ? hostRule(host) : null;
+      if (host && (!rule || rule.approved === false)) errors.push(`${where}: source_url host "${host}" is not on the official-domain allow-list`);
+      else if (rule && (rule.tier === 7 || rule.tier === 8)) errors.push(`${where}: source_url host "${host}" is link-only in the approved-hosts register and cannot be a source_url`);
+      else if (rule && rule.tier === 6 && !isVoluntary(e)) errors.push(`${where}: source_url host "${host}" is voluntary-tier: the entry needs the "voluntary" tag`);
+      else if (rule && rule.paths && !rule.paths.some(p => pathname.startsWith(p))) errors.push(`${where}: ${rule.domain} is approved for ${rule.scope} only; source_url path must start with ${rule.paths.join(" or ")}`);
     }
     if (e.verify === true){
       if (!e.source_url) errors.push(`${where}: verify: true needs a source_url`);
@@ -126,7 +178,25 @@ function urlFamilyWarnings({ ENTRIES, SCHEME_LINKS }){
   return warnings;
 }
 
-module.exports = { validate, urlFamilyWarnings };
+// Tier 5 hosts (secondary only) must not be an entry's only source: warn when an entry's source_url is on
+// one and no resources link points at a tier 1 to 4 host. Warning, not failure.
+function secondaryOnlyWarnings({ ENTRIES }){
+  const warnings = [];
+  (ENTRIES || []).forEach(e => {
+    if (!e.source_url) return;
+    let host; try { host = new URL(e.source_url).hostname; } catch (err) { return; }
+    const rule = hostRule(host);
+    if (!rule || rule.tier !== 5) return;
+    const other = (e.resources || []).some(r => {
+      try { const o = hostRule(new URL(r.url).hostname); return o && o.tier >= 1 && o.tier <= 4 && o.approved !== false; } catch (err) { return false; }
+    });
+    if (!other) warnings.push(`entry "${e.id}": source_url is on secondary-only host "${host}" and no tier 1 to 4 source is linked`);
+  });
+  return warnings;
+}
+
+const SOURCE_DOMAINS = SOURCE_REGISTER.filter(r => r.tier <= 5 && r.approved !== false).map(r => r.domain);
+module.exports = { validate, urlFamilyWarnings, secondaryOnlyWarnings, SOURCE_REGISTER, SOURCE_DOMAINS, TIER_LABELS, hostRule };
 
 if (require.main === module){
   const fs = require("fs"), vm = require("vm");
@@ -135,6 +205,7 @@ if (require.main === module){
   const errors = validate(ctx.D);
   errors.forEach(e => console.log("FAIL", e));
   const warnings = urlFamilyWarnings(ctx.D);
+  secondaryOnlyWarnings(ctx.D).forEach(w => console.log("warn", w));
   warnings.forEach(w => console.log("warn", w));
   if (warnings.length) console.log(`${warnings.length} URL-family warning(s): not failing, convert when the current www2.hse.ie page is found`);
   console.log(errors.length ? `${errors.length} problem(s)` : `ok: ${ctx.D.ENTRIES.length} entries valid`);

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-21 [Claude] (approved-hosts register, session 2)
+- `scripts/validate-data.js`: the flat `SOURCE_DOMAINS` array is now `SOURCE_REGISTER`, rows of `{ domain, tier, approved, scope, paths }`, from Elaine's 21 Oct decisions (`approved-hosts-sweep-2026-10-20.md`). Tiers 1 to 5 may be a `source_url`; tier 6 (`lauralynn.ie`, `jigsaw.ie`, `diabetes.ie`, `flac.ie`) only on entries with `tags: ["voluntary"]`; tiers 7 and 8 are link-only; tier 9 is declined. Path scope is enforced for `revenue.ie` (health-and-age section), `oireachtas.ie` (`/en/bills/`) and `irishstatutebook.ie` (`/eli/`). New warning when a tier 5 host is an entry's only source.
+- Added `welfare.ie` (it was not in the live validator), `cho7cdnt.ie` (approved 21 Oct), and eight GP out-of-hours provider hosts (`southdoc.ie`, `shannondoc.ie`, `westdoc.ie`, `nedoc.ie`, `northdoc.ie`, `edoc.ie`, `dubdoc.ie`, `tlcdoc.ie`) taken from the "Website" field on their `www2.hse.ie/services/find-urgent-emergency-care/` pages, secondary-only. Removed `southeastcdnt.ie` (nothing cited it). `guideclinic.ie` is tier 2; `flac.ie` moved to tier 6. `birthinfo.ie` link-only (owner confirmed: Adoption Authority of Ireland).
+- New `scripts/hosts.js` prints the register as the block in `AI_RULES.md`; `test-validate-data.js` fails if they differ. Research briefs now point at that block.
+- No `data.js` change. `sw.js` cache v29 to v30.
+
 ## 2026-10-21 [Claude] (GAPS items, session 3b to 3d)
 - `GAPS.md`: new section logging pacemaker/implanted-device follow-up, CATCH (Cork Adult ADHD Tertiary Care Hub), and four additions to the P3 "not searched" list (bereavement and death administration, Irish-language and easy-read/sign coverage, rural transport to appointments, health-related welfare payments). No rows, no sources opened, no `data.js` or cache change.
 - Pacemaker item has no source recorded because the original flag did not include one.
