@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-21 [Claude] (GAPS items, session 3b to 3d)
+- `GAPS.md`: new section logging pacemaker/implanted-device follow-up, CATCH (Cork Adult ADHD Tertiary Care Hub), and four additions to the P3 "not searched" list (bereavement and death administration, Irish-language and easy-read/sign coverage, rural transport to appointments, health-related welfare payments). No rows, no sources opened, no `data.js` or cache change.
+- Pacemaker item has no source recorded because the original flag did not include one.
+
 ## 2026-10-21 [Claude] (Master Build Plan v3, briefs committed)
 - `MASTER-BUILD-PLAN.md` rewritten as v3 from script recounts (705 entries, 193 `verify: true`, 185 `search-result`, 37 `opened`; costs 18, screening 9, vaccines 11 rows, all `verify: true`; cache v27). Replaces v1 (git history) and v2 (Project docs only). Adds a phase map, a brief index with status, and the unmerged-branch triage to P4.
 - Committed the seven briefs that were untracked: `CLAUDE_CODE_AUTOMERGE.md` (marked dropped 9 Oct), `CLAUDE_CODE_COMMUNITY_SERVICES_ALL_ROI.md`, `CLAUDE_CODE_COSTS_PART_A.md`, `CLAUDE_CODE_LANGUAGE_INCLUSION.md`, `CLAUDE_CODE_SEARCH_ALIASES.md`, `RESEARCH_BRIEF_LOCAL_SERVICES_AND_PARENTING.md`, `RESEARCH_BRIEF_P3_CONTENT_QUEUE.md`.

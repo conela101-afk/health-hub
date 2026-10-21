@@ -37,6 +37,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-21 [Claude] — `GAPS.md` items only: pacemaker/device follow-up, CATCH, four P3 "not searched" additions. No rows or sources. See `CHANGELOG.md`.
 - 2026-10-21 [Claude] — Master Build Plan v3 (script recount, phase map, brief index, branch triage) and the seven untracked briefs committed. No code or data changes. See `CHANGELOG.md`.
 - 2026-10-09 [Claude] — Ported the four accessibility commits (fixes 1 to 9 and `ACCESSIBILITY_AUDIT.md`) onto current main as a PR; cache v26; `accessibility-statement.md` still a draft. See `CHANGELOG.md`.
 - 2026-10-10 [Claude] — Respite and nursing home know-how: two cost rows, three guide cards, Find a Facility pointer, search aliases (all unverified). Recorded the `irishstatutebook.ie` (statute text only) and `www2.hse.ie` decisions; validator enforces the first and warns on URL-family drift. See `CHANGELOG.md` and `GAPS.md`.
