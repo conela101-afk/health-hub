@@ -513,3 +513,57 @@ Extends the P3 "not searched" list in `MASTER-BUILD-PLAN.md` (currently: Louth C
 - Irish-language and easy-read/sign coverage
 - Rural transport to appointments
 - Health-related welfare payments
+
+## Community services pass, 14 Oct 2026 (rows added 21 Oct 2026)
+
+All new rows are `verify: true`, `urlStatus: "search-result"`, no `checked`: nothing was opened. No phone, email, fee or waiting time was copied.
+
+**(a) Rows added, by county and category** (recounted from the data; a row with two counties counts once under each):
+
+| County | childdisability | adultdisability | dental | alliedhealth | adultmh | camhs | crisis |
+|---|---|---|---|---|---|---|---|
+| carlow | 2 | 1 | 0 | 0 | 0 | 0 | 0 |
+| cavan | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| clare | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
+| donegal | 3 | 0 | 0 | 0 | 0 | 0 | 0 |
+| dublin | 5 | 0 | 4 | 0 | 3 | 1 | 0 |
+| galway | 4 | 0 | 0 | 0 | 0 | 0 | 0 |
+| kerry | 2 | 0 | 0 | 0 | 0 | 1 | 0 |
+| kildare | 3 | 0 | 0 | 0 | 0 | 0 | 0 |
+| kilkenny | 4 | 1 | 0 | 0 | 0 | 0 | 0 |
+| laois | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| leitrim | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| limerick | 4 | 0 | 0 | 0 | 0 | 0 | 0 |
+| longford | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| louth | 3 | 0 | 0 | 0 | 0 | 0 | 0 |
+| mayo | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
+| meath | 5 | 0 | 0 | 0 | 0 | 0 | 0 |
+| national | 0 | 2 | 2 | 1 | 1 | 1 | 2 |
+| offaly | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| roscommon | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
+| tipperary | 3 | 1 | 0 | 0 | 0 | 0 | 0 |
+| waterford | 2 | 1 | 0 | 0 | 0 | 0 | 0 |
+| wexford | 2 | 1 | 0 | 0 | 0 | 0 | 0 |
+| wicklow | 5 | 0 | 3 | 0 | 0 | 0 | 0 |
+
+Counties with none of the new rows: Cork (already has its own CDNT rows), Monaghan, Sligo, Westmeath. Dental and mental-health county rows exist for Dublin and Wicklow (dental) and Dublin and Kerry (mental health) only; elsewhere that is "not searched or not found", never "none".
+
+**(b) Skipped or withheld, with reason**
+- `roi-local-health-offices`: skipped, `roi-mayo-local-health-office` already cites the same `source_url`.
+- Mayo legacy dental (some surgeries listed "temporarily closed"); Nenagh and Limerick hospital dental pages (hospital services, not community clinics); the HIQA Louth listing (register entry, not a service page).
+- County therapy pages (Mayo, Louth, Wexford, Kildare/West Wicklow legacy; Meath dead): no allied-health county rows.
+- Three Dublin pages titled "Community Mental Health Team" whose content describes CAMHS (Balbriggan PCC, Corduff/Blanchardstown PCC, Ballymun PCC `community-mental-health-team-1`): naming conflict, a person needs to open them.
+- Legacy county mental-health pages: Wexford, Wicklow, Kildare/West Wicklow, Galway, Roscommon, Mayo and Kerry adult, Louth CAMHS (stale service name), Kerry adult. The Mayo MHC approved-centre URL has an encoded space and is likely malformed.
+- Wexford CAMHS: the legacy page puts the South team at Slaney House, an HSE press release gives Arden House. No base stated. Kildare CAMHS team names and count differ between the legacy page and an HSE leaflet.
+- The CHO2 provider PDF (carries contact details) and the dead Meath adult-disability page.
+
+**(c) Teams not captured: find in the CDNT finder.** Cavan, Monaghan, Sligo and South Donegal, Donegal North, Galway CDNT 4 and 7, Spraoi (Laois), Westmeath, the other Cork and Dublin teams, and the Enniscorthy catchment. The legacy Kildare/West Wicklow overview page (old team names) was not added.
+
+**(d) Legacy URLs.** Kerry CAMHS (`roi-kerry-camhs`) uses a legacy `hse.ie/eng/...` URL read directly; `validate-data.js` warns on it (two warnings: `source_url` and `contact.web`). Replace both when the current `/mental-health/services-support/...` page is found. The old `find-a-childrens-disability-service.html` redirect is replaced by the CDNT finder; `roi-mayo-cdnt-north-mayo-1` now points at its team page.
+
+**Checks for Elaine on the new rows**
+- Sources disagreed on the base of the Trim, South Kildare and West Wicklow, and Leitrim West Cavan teams: no base is stated in any row.
+- Dungarvan and Waterford North City were seen in search snippets only.
+- The North Mayo name carries a "1" that its page title does not: check.
+- `roi-dental-citizens-info` cites the same Citizens Information page as the existing `hse-public-dental-clinics` (which has it as `contact.web` only). It describes the Dental Treatment Services Scheme; merge or drop if you think it duplicates.
+- Search misses recorded in `scripts/search-audit-known-gaps.txt`: "cdnt navan", "cdnt blessington", "dental clinic ballymun". There is no "cdnt" alias; adding one is your call.
