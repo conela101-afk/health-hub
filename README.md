@@ -81,7 +81,7 @@ index.html      — page shell, loads everything else
 styles.css      — all styling (design tokens at the top), self-hosted @font-face rules
 app.js          — hash-based router + rendering (no framework, no build step)
 data.js         — all service listings, specialties, and counties — edit this to update content
-manifest.json   — PWA metadata (name, icons, colours)
+manifest.json   — PWA metadata (name, icons, colours). Optional install guidance lives at #/install (footer link)
 sw.js           — service worker, network-first with offline fallback
 icons/          — app icons for home-screen install
 assets/fonts/   — self-hosted Plus Jakarta Sans & Fraunces woff2 files, plus their OFL licences

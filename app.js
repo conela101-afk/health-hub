@@ -17,6 +17,22 @@
     if (e.key === "Escape") quickExit();
   });
 
+  // Install prompt (Chromium only). Attached at load because the event can
+  // fire before anyone opens #/install, but it only holds the event in this
+  // variable: nothing is written to the DOM or to storage until the install
+  // page renders. No automatic popup: the browser's own mini-infobar is
+  // suppressed so the prompt is reached only from the button on #/install.
+  let deferredInstallPrompt = null;
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    if (location.hash === "#/install") renderInstall();
+  });
+  window.addEventListener("appinstalled", () => {
+    deferredInstallPrompt = null;
+    if (location.hash === "#/install") renderInstall();
+  });
+
   // Calm mode (user-facing label; internal names kept as "simple" for
   // continuity): a persistent, sitewide low-clutter/high-contrast toggle for
   // moments of sensory overload, panic, or executive dysfunction. Stores only
@@ -2219,6 +2235,84 @@ ${name}`;
     hasRoutedOnce = true;
   }
 
+  function isInstalledApp(){
+    return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
+  }
+
+  // Detects only enough to choose which instructions to show. Nothing is
+  // logged or stored; if the browser is not recognised, every block shows.
+  function renderInstall(){
+    const ua = navigator.userAgent || "";
+    const isIos = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    const isAndroid = /Android/.test(ua);
+    const installed = isInstalledApp();
+    const canPrompt = !!deferredInstallPrompt;
+    const known = isIos || isAndroid;
+    const showIos = isIos || !known;
+    const showAndroid = isAndroid || !known;
+
+    const iosBlock = `
+      <div class="callout callout-spaced">
+        <strong>iPhone and iPad (Safari)</strong>
+        <ol class="steps">
+          <li>Open this site in Safari.</li>
+          <li>Tap the Share button (a square with an arrow pointing up).</li>
+          <li>Scroll down and tap <em>Add to Home Screen</em>.</li>
+          <li>Tap <em>Add</em>.</li>
+        </ol>
+      </div>`;
+    const androidBlock = `
+      <div class="callout callout-spaced">
+        <strong>Android</strong>
+        <ol class="steps">
+          <li>Open the browser menu (three dots).</li>
+          <li>Tap <em>Install app</em>, <em>Install</em> or <em>Add to Home screen</em>. The wording depends on your browser.</li>
+          <li>Confirm when asked.</li>
+        </ol>
+      </div>`;
+
+    let action;
+    if (installed){
+      action = `<div class="callout callout-spaced"><strong>You're using the installed app.</strong> There is nothing more to do here. To remove it, see below.</div>`;
+    } else if (canPrompt){
+      action = `<p class="callout-spaced"><button type="button" class="copy-btn" id="installBtn">Install app</button></p>`;
+    } else {
+      action = (showIos ? iosBlock : "") + (showAndroid ? androidBlock : "") +
+        (!known ? `<p class="ooh-source">On a computer, installing is optional. Some browsers offer it from the address bar or the browser menu. The site works the same in a browser.</p>` : "");
+    }
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Install the app</h1>
+        <p class="count">Optional. Add Health Hub to your home screen.</p>
+      </div>
+
+      <p>Installing adds an icon to your home screen and opens Health Hub full screen. Pages you have already visited work offline. There is no account and nothing to sign up for.</p>
+      <p><strong>You do not need to install it.</strong> The site works the same in your browser.</p>
+
+      <div class="callout callout-spaced">
+        <strong>Before you install: privacy.</strong> The icon is labelled "Health Hub" and shows on your home screen. If someone else uses or looks at your phone, you may prefer to skip this, or rename or remove the icon later. The Exit button works in the installed app too.
+      </div>
+
+      ${action}
+
+      <p class="section-title">How to remove it</p>
+      <p>Press and hold the icon on your home screen, then choose <em>Remove App</em> (iPhone and iPad) or <em>Uninstall</em> / <em>Remove</em> (Android). The exact wording varies by phone.</p>
+    `;
+    const btn = document.getElementById("installBtn");
+    if (btn) btn.addEventListener("click", async () => {
+      const evt = deferredInstallPrompt;
+      if (!evt) return;
+      deferredInstallPrompt = null; // the event can be used once
+      try {
+        evt.prompt();
+        await evt.userChoice;
+      } catch (_) { /* prompt unavailable */ }
+      renderInstall();
+    });
+  }
+
   function route(){
     const hash = location.hash || "#/";
     const parts = hash.replace(/^#\//, "").split("/").filter(Boolean);
@@ -2245,6 +2339,7 @@ ${name}`;
     else if (parts[0] === "vaccines") withAssets(["data/vaccines.js"], renderVaccines);
     else if (parts[0] === "costs") withAssets(["data/costs.js"], renderCosts);
     else if (parts[0] === "screening") withAssets(["data/screening.js"], renderScreening);
+    else if (parts[0] === "install") renderInstall();
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();
