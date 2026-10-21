@@ -151,6 +151,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-21 [Claude] — Session 5: scopes only (`SCOPE-session5-2026-10-21.md`), no build; each item needs Elaine's approval. See `CHANGELOG.md`.
 - 2026-10-21 [Claude] — AskCI link added via PR on the schemes pages; Elaine to open the URL and clear `verify` (re-check mid-Jan 2027). See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-21 [Claude] — Community services candidate rows (CDNT, adult disability, dental, mental health), all `search-result` and unverified; one existing row repointed. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-21 [Claude] — Approved-hosts register in `validate-data.js` (tiers, voluntary-tag rule, secondary-only warning, path scopes), `scripts/hosts.js`, and the block above, from Elaine's 21 Oct decisions. See `CHANGELOG.md`.
