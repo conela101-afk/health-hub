@@ -497,3 +497,19 @@ Everything added here is search-result only (`verify: true`, `urlStatus: "search
 ## NI Human Milk Bank: open checks (9 Oct 2026)
 
 - NI Human Milk Bank: confirm the all-island reach is stated on an official page, and the donor contact route. Both source links are news items; look for a service page. Also find the physical base (county) and, if wanted, set `area`.
+
+## Gap items logged 21 Oct 2026 (no rows added)
+
+Nothing below has been searched or opened. These are "not searched", not "does not exist". No `data.js` change.
+
+- **Pacemakers and implanted heart devices** (flagged 21 Oct). `data.js` has cardiology centres and private electrophysiology/ablation, but no entry for pacemaker or ICD implant, device-clinic follow-up or remote monitoring. Official HSE or hospital patient pages still to be found; the flag did not record a source, so none is assumed here.
+- **CATCH (Cork Adult ADHD Tertiary Care Hub).** Sources so far are snippet-level only; no page opened. Do not add a row. The Cork referral route and West Cork outreach via Kerry come from 2025 PQ replies and are unverified. Replace the non-official source for `ncp-adult-adhd` only when an official HSE page is found (see "Tertiary gaps (6 Oct 2026)" above).
+
+### P3 "not searched" list: additions (from the 9 Oct FMEA)
+
+Extends the P3 "not searched" list in `MASTER-BUILD-PLAN.md` (currently: Louth County Hospital, GP out-of-hours for Mayo and Louth, PHN beyond Wicklow, DSGBV, older persons):
+
+- Bereavement and death administration
+- Irish-language and easy-read/sign coverage
+- Rural transport to appointments
+- Health-related welfare payments
