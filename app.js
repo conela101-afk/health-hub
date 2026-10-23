@@ -104,7 +104,7 @@
       if (q.length > 0 && HHSearch.isSensitiveQuery(q)){
         // Sensitive pregnancy topics: the words never enter the address bar or history.
         searchInput.value = "";
-        location.hash = "#/pregnancy";
+        location.hash = HHSearch.sensitiveRoute(q);
       }
       else if (q.length > 0) location.hash = "#/search/" + encodeURIComponent(q);
       else if (location.hash.startsWith("#/search")) location.hash = "#/";
@@ -124,6 +124,8 @@
   // than only content that happens to mention the word.
   const TOOL_PAGES = [
     { name: "Pregnancy information: choices, tests and scans", href: "#/pregnancy", keywords: "pregnancy pregnant antenatal screening tests scans ultrasound dating scan anatomy scan private scan options unplanned" },
+    { name: "After a death: registering, the coroner and money help", href: "#/guide/after-a-death", keywords: "death died bereavement bereaved funeral coroner register death certificate additional needs payment widow bereaved partner parent grant" },
+    { name: "Asking for an interpreter or sign language at an appointment", href: "#/guide/interpreting", keywords: "interpreter interpreting language translator sign language isl irish sign language deaf english hospital appointment communication" },
     { name: "My Patient Passport", href: "#/passport", keywords: "patient passport profile medical history" },
     { name: "My call & referral log", href: "#/log", keywords: "call referral log" },
     { name: "Prep for an appointment", href: "#/prep", keywords: "prep appointment checklist consultation waiting room message" },
@@ -711,7 +713,7 @@
   // Search runs at once, then re-runs with conditions included when data/conditions.js has loaded.
   // If that file can't load (offline before first cache), search still works without conditions.
   function renderSearchRoute(query){
-    if (HHSearch.isSensitiveQuery(query)){ location.replace("#/pregnancy"); return; }
+    if (HHSearch.isSensitiveQuery(query)){ location.replace(HHSearch.sensitiveRoute(query)); return; }
     renderSearch(query);
     if (typeof CONDITIONS !== "undefined") return;
     const hash = location.hash;
@@ -2235,6 +2237,7 @@ ${name}`;
     // Sensitive pages (pregnancy, violence and abuse support) keep a neutral tab and history title.
     const entryId = location.hash.startsWith("#/entry/") ? location.hash.split("/")[2] : "";
     const shown = entryId && ENTRIES.find(x => x.id === entryId);
+    if (location.hash.startsWith("#/specialty/dsv")) document.title = "Support services — Health Hub";
     if (shown && shown.sensitive) document.title = `${shown.neutralTitle || "Pregnancy information"} — Health Hub`;
     const announcer = document.getElementById("routeAnnouncer");
     if (announcer) announcer.textContent = label;
@@ -2351,6 +2354,7 @@ ${name}`;
     else if (parts[0] === "costs") withAssets(["data/costs.js"], renderCosts);
     else if (parts[0] === "screening") withAssets(["data/screening.js"], renderScreening);
     else if (parts[0] === "pregnancy") withAssets(["data/pregnancy.js"], () => window.HH_PREGNANCY.render(app, { escapeHtml }));
+    else if (parts[0] === "guide" && parts[1]) withAssets(["data/guides.js"], () => { if (!window.HH_GUIDES.render(parts[1], app, { escapeHtml })) renderHome(); });
     else if (parts[0] === "install") renderInstall();
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();

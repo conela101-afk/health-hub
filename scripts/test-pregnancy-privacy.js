@@ -30,6 +30,15 @@ test("route and page title are neutral", () => {
   assert(/neutralTitle \|\| "Pregnancy information"/.test(app));
 });
 
+test("guide pages never touch storage, network or the address, and links are safe", () => {
+  const code = read("data/guides.js").replace(/\/\/.*$/gm, "");
+  [/localStorage|sessionStorage|indexedDB|document\.cookie/, /\bfetch\s*\(|XMLHttpRequest|sendBeacon/, /\blocation\.|readStore|writeStore/, /<form|<input|<iframe|<script|<img/i]
+    .forEach(re => assert(!re.test(code), "found " + re));
+  assert(/rel="noopener noreferrer"/.test(code));
+  assert(!/€|\bEUR\b|\b1[58]00[ -]?\d{3}/.test(code), "amount or phone number in guides");
+  assert(/data\/guides\.js/.test(sw));
+});
+
 test("service worker precaches the page file and has no recent-pages list", () => {
   assert(/data\/pregnancy\.js/.test(sw));
   assert(!/recent|history/i.test(sw.replace(/\/\/.*$/gm, "")));
@@ -38,6 +47,10 @@ test("service worker precaches the page file and has no recent-pages list", () =
 test("sensitive searches are routed away from the address bar", () => {
   ["abortion", "Termination of pregnancy", "my options", "NIPT", "fetal anomaly", "pregnancy scan", "3 day wait"]
     .forEach(q => assert(HHSearch.isSensitiveQuery(q), q));
+  ["domestic violence", "Sexual assault", "rape crisis", "coercive control", "human trafficking"]
+    .forEach(q => assert(HHSearch.sensitiveRoute(q) === "#/specialty/dsv", q));
+  assert(HHSearch.sensitiveRoute("abortion") === "#/pregnancy");
+  ["substance abuse", "drug abuse", "grape", "knee", "mammogram"].forEach(q => assert(!HHSearch.isSensitiveQuery(q), q));
   ["knee", "mammogram", "pregnancy", "miscarriage", "topical cream", "scanning"].forEach(q => assert(!HHSearch.isSensitiveQuery(q), q));
   assert(/HHSearch\.isSensitiveQuery\(q\)/.test(app) && /HHSearch\.isSensitiveQuery\(query\)/.test(app));
 });

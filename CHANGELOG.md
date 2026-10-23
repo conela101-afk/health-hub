@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-23 [Claude] (guides, booklet row, violence-support search routing)
+- New static pages from the gap-register brief, in `data/guides.js` (precached): `#/guide/after-a-death` (registering a death, the coroner, payments and funeral-cost help, Citizens Information links and question lists, no amounts) and `#/guide/interpreting` (marked partial: quotes the ED, ENT and CervicalCheck pages separately, a sentence to say when booking). Both in the tools pills and search. No storage, forms or network.
+- Search: `HHSearch.sensitiveRoute` now covers violence and abuse terms (domestic violence, sexual assault, rape, coercive control, trafficking and similar). Typing one goes to `#/specialty/dsv` with the words kept out of the address bar and history, and that page's tab title is "Support services". "Abuse" alone is not listed (it also means substance use). Pregnancy terms still go to `#/pregnancy`.
+- Added the HSE fetal anomaly booklet (about.hse.ie) as row `preg-hse-fetal-anomaly-booklet` and linked it from the pregnancy page. 815 entries. `sw.js` cache v35 to v36. Privacy test extended.
+- Not built: the international-protection branch of the schemes selector.
+
 ## 2026-10-23 [Claude] (gap register pass, candidate rows)
 - From the 23 Oct gap-register brief: 25 candidate rows in `data.js`, all `verify: true`, `urlStatus: "search-result"`, no `checked`, no phone, fee, rate or amount. Covers SATU and CAFMAS, registering a death, coroners, entitlements after a death, Additional Needs Payment, disability and illness payments hub, Invalidity Pension, EU and Ukraine medical card access, palliative care (finder and overview), Advance Healthcare Directives and the 2015 Act, Local Link, two housing grants, the adult ADHD Model of Care, HSE addiction hub and naloxone, PrEP, PEP, home STI test, the Women's Health Service and the Anti Human Trafficking Team.
 - Skipped as already present: the HSE DSGBV directory, Louth County Hospital Dundalk (so that GAPS item is already closed), HSE audiology, Domiciliary Care Allowance, and the medical card hub row (`ci-medical-card-groups` matched an existing id or URL). Not built, per the brief: Mobility Allowance and Motorised Transport Grant (closed), the Bereavement Grant (discontinued).

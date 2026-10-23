@@ -34,6 +34,7 @@ jobs:
           node --check data/costs.js
           node --check data/screening.js
           node --check data/pregnancy.js
+          node --check data/guides.js
           node --check sw.js
 
       - name: AON deadline calculator edge-case tests
