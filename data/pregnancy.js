@@ -69,7 +69,7 @@
       ])}
 
       <p class="section-title">If a scan shows a possible fetal anomaly</p>
-      <p>A suspected anomaly is referred to a fetal medicine centre. The law covers a fetal condition that is likely to lead to the death of the fetus before or within 28 days of birth. It does not list particular diagnoses, so the doctors treating you explain what applies in your case. The HSE page on ${ext(HSE + "/conditions/abortion/when-you-can-have/", "when you can have an abortion")} uses the same 28-day wording.</p>
+      <p>A suspected anomaly is referred to a fetal medicine centre. The law covers a fetal condition that is likely to lead to the death of the fetus before or within 28 days of birth. It does not list particular diagnoses, so the doctors treating you explain what applies in your case. The HSE page on ${ext(HSE + "/conditions/abortion/when-you-can-have/", "when you can have an abortion")} uses the same 28-day wording. The HSE booklet ${ext("https://about.hse.ie/api/v2/download-file/healthcare_professional_publications/Termination_of_pregnancy_for_fetal_anomaly_booklet.pdf/", "Termination of Pregnancy for Fetal Anomaly")} was developed with the HSE's National Women and Infants Health Programme. It covers diagnosis, referral to fetal medicine, care in Ireland and care pathways outside Ireland.</p>
       ${checked("anomaly")}
       ${asks([
         "Who is my main contact in the fetal medicine team?",

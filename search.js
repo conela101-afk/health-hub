@@ -91,21 +91,32 @@
     return CRISIS_WORDS.concat(CRISIS_PHRASES).some(function (t) { return padded.indexOf(" " + t + " ") !== -1; });
   }
 
-  // Sensitive pregnancy topics (23 Oct 2026). A search for one of these never goes into the address
-  // bar, because the address ends up in browser history. app.js sends the person to the neutral
-  // #/pregnancy page instead. This only decides routing: nothing is stored or logged either way.
-  var SENSITIVE_PHRASES = ["abortion", "abortions", "termination", "termination of pregnancy", "my options", "myoptions",
-    "nipt", "nips", "fetal anomaly", "foetal anomaly", "fatal fetal anomaly", "unplanned pregnancy", "crisis pregnancy",
-    "pregnancy scan", "private scan", "reassurance scan", "3 day wait", "three day wait"];
+  // Sensitive topics (pregnancy 23 Oct 2026; violence and abuse support added the same day). A search
+  // for one of these never goes into the address bar, because the address ends up in browser history.
+  // app.js sends the person to the matching neutral page instead. This only decides routing: nothing is
+  // stored or logged either way. "abuse" alone is not listed because it also means substance use.
+  var SENSITIVE_ROUTES = [
+    { route: "#/pregnancy", phrases: ["abortion", "abortions", "termination", "termination of pregnancy", "my options", "myoptions",
+      "nipt", "nips", "fetal anomaly", "foetal anomaly", "fatal fetal anomaly", "unplanned pregnancy", "crisis pregnancy",
+      "pregnancy scan", "private scan", "reassurance scan", "3 day wait", "three day wait"] },
+    { route: "#/specialty/dsv", phrases: ["domestic violence", "domestic abuse", "dsgbv", "sexual violence", "sexual assault",
+      "gender based violence", "rape", "rape crisis", "satu", "coercive control", "partner abuse", "abusive partner",
+      "being abused", "human trafficking", "trafficking"] },
+  ];
 
-  function isSensitiveQuery(raw) {
+  // The neutral route for a sensitive query, or "".
+  function sensitiveRoute(raw) {
     var q = normalise(raw);
-    if (!q) return false;
+    if (!q) return "";
     var padded = " " + q + " ";
-    return SENSITIVE_PHRASES.some(function (t) { return padded.indexOf(" " + t + " ") !== -1; });
+    for (var i = 0; i < SENSITIVE_ROUTES.length; i++) {
+      if (SENSITIVE_ROUTES[i].phrases.some(function (t) { return padded.indexOf(" " + t + " ") !== -1; })) return SENSITIVE_ROUTES[i].route;
+    }
+    return "";
   }
+  function isSensitiveQuery(raw) { return sensitiveRoute(raw) !== ""; }
 
-  const api = { isSensitiveQuery: isSensitiveQuery, normalise: normalise, prepare: prepare, matcher: matcher, alsoSearched: alsoSearched, contains: hit, isCrisisQuery: isCrisisQuery };
+  const api = { sensitiveRoute: sensitiveRoute, isSensitiveQuery: isSensitiveQuery, normalise: normalise, prepare: prepare, matcher: matcher, alsoSearched: alsoSearched, contains: hit, isCrisisQuery: isCrisisQuery };
   root.HHSearch = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : this);

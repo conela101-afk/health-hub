@@ -27,7 +27,16 @@ test("route and page title are neutral", () => {
   assert(/parts\[0\] === "pregnancy"/.test(app));
   assert(/<h1>Pregnancy information<\/h1>/.test(page));
   assert(!/<h1>[^<]*(abortion|termination|NIPT)/i.test(page));
-  assert(/document\.title = "Pregnancy information/.test(app));
+  assert(/neutralTitle \|\| "Pregnancy information"/.test(app));
+});
+
+test("guide pages never touch storage, network or the address, and links are safe", () => {
+  const code = read("data/guides.js").replace(/\/\/.*$/gm, "");
+  [/localStorage|sessionStorage|indexedDB|document\.cookie/, /\bfetch\s*\(|XMLHttpRequest|sendBeacon/, /\blocation\.|readStore|writeStore/, /<form|<input|<iframe|<script|<img/i]
+    .forEach(re => assert(!re.test(code), "found " + re));
+  assert(/rel="noopener noreferrer"/.test(code));
+  assert(!/€|\bEUR\b|\b1[58]00[ -]?\d{3}/.test(code), "amount or phone number in guides");
+  assert(/data\/guides\.js/.test(sw));
 });
 
 test("service worker precaches the page file and has no recent-pages list", () => {
@@ -38,6 +47,10 @@ test("service worker precaches the page file and has no recent-pages list", () =
 test("sensitive searches are routed away from the address bar", () => {
   ["abortion", "Termination of pregnancy", "my options", "NIPT", "fetal anomaly", "pregnancy scan", "3 day wait"]
     .forEach(q => assert(HHSearch.isSensitiveQuery(q), q));
+  ["domestic violence", "Sexual assault", "rape crisis", "coercive control", "human trafficking"]
+    .forEach(q => assert(HHSearch.sensitiveRoute(q) === "#/specialty/dsv", q));
+  assert(HHSearch.sensitiveRoute("abortion") === "#/pregnancy");
+  ["substance abuse", "drug abuse", "grape", "knee", "mammogram"].forEach(q => assert(!HHSearch.isSensitiveQuery(q), q));
   ["knee", "mammogram", "pregnancy", "miscarriage", "topical cream", "scanning"].forEach(q => assert(!HHSearch.isSensitiveQuery(q), q));
   assert(/HHSearch\.isSensitiveQuery\(q\)/.test(app) && /HHSearch\.isSensitiveQuery\(query\)/.test(app));
 });
@@ -53,6 +66,16 @@ test("directory rows are flagged sensitive, unverified and carry no contact or f
     assert(!e.contact.phone && !e.contact.email && !e.contact.address, e.id + " has contact data");
     assert(!/€|\bEUR\b|\bprice\b/i.test([e.blurb].concat(e.details || []).join(" ")), e.id + " mentions a fee");
     assert(!/abortion|terminat|nipt/i.test(e.id), e.id + " id is not neutral");
+  });
+});
+
+test("every sensitive row has a neutral tab title, and violence-support rows are flagged", () => {
+  const ctx = {}; vm.createContext(ctx);
+  vm.runInContext(read("data.js") + "\nthis.E=ENTRIES;", ctx);
+  ["hse-satu-help", "hse-cafmas", "hse-human-trafficking", "hse-womens-health-service"].forEach(id => {
+    const e = ctx.E.find(x => x.id === id);
+    assert(e && e.sensitive === true && e.neutralTitle, id + " needs sensitive: true and a neutralTitle");
+    assert(!/rape|sexual|abuse|traffick|sex industry/i.test(e.neutralTitle), id + " title is not neutral");
   });
 });
 
