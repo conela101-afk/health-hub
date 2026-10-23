@@ -98,4 +98,5 @@ The one deliberate exception: the out-of-hours map (`#/out-of-hours`) starts as 
 ## Known limitations of this v1
 
 - No analytics, accounts, or backend — by design, for privacy and simplicity.
+- **Pregnancy topics leave no trace in the app.** `#/pregnancy` and the `sensitive: true` rows store nothing, use a neutral route and tab title, and searches for terms in `HHSearch.isSensitiveQuery` are redirected there instead of being written into the address bar. `scripts/test-pregnancy-privacy.js` enforces it in CI. Browser history itself is outside the app's control.
 - Region-specific service listings are still deepest for Cork; the data structure already supports any county/region and expanding coverage nationally is the active priority, not a "someday" item.
