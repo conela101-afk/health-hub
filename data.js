@@ -12685,6 +12685,20 @@ TOOL_FACTS.push(
 
 // Strings every guided-tool page shows. Kept here so wording changes are a
 // content edit, not a code edit.
+// "Where do I start?" page (#/start). Navigation by task only: no health questions, no triage, nothing
+// stored. Every href is an internal route; scripts/test-start-links.js checks that each one exists.
+// Wording is a proposal for Elaine to edit.
+const START_POINTS = [
+  { id: "complain", label: "I want to make a complaint", hint: "Which body to go to, the stages and the time limits, then a letter.", href: "#/tools/complaints" },
+  { id: "records", label: "I want a copy of my records", hint: "Freedom of information or a subject access request, and how to track the deadline.", href: "#/tools/records" },
+  { id: "waiting", label: "I'm on a waiting list", hint: "What the letters and statuses mean, and how to ask where you are.", href: "#/tools/waiting" },
+  { id: "discharge", label: "I'm leaving hospital, or someone I know is", hint: "A page to print with medicines, appointments, contacts and questions to ask.", href: "#/tools/discharge" },
+  { id: "schemes", label: "I want to know which card or scheme applies", hint: "Medical cards, GP visit cards and cross-border treatment schemes, with links to the official pages.", href: "#/tools/schemes" },
+  { id: "costs", label: "I want to know what I might pay", hint: "Medicines, GP visits and cross-border costs, scheme by scheme.", href: "#/costs" },
+  { id: "aon", label: "My child is waiting for an Assessment of Need", hint: "A deadline calculator, letters and the steps to escalate (Republic of Ireland).", href: "#/tools/aon" },
+  { id: "find", label: "I want to find a service near me", hint: "Browse by county, or by the kind of service.", href: "#/county" },
+];
+
 // AskCI: one outbound link, shown on the schemes and entitlements pages only (not attached to entries).
 // Pilot status; re-check mid-January 2027 (see GAPS.md). Not opened by a person yet.
 TOOL_FACTS.push(

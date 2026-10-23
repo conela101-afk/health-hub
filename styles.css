@@ -750,3 +750,14 @@ select{ min-height:24px; }
     transition-duration:0.01ms !important; scroll-behavior:auto !important;
   }
 }
+
+/* Where do I start? (#/start) */
+.start-list{ list-style:none; margin:0 0 16px; padding:0; display:grid; gap:10px; }
+.start-link{
+  display:flex; flex-direction:column; gap:4px; padding:14px 16px; min-height:44px;
+  background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius);
+  color:var(--ink); text-decoration:none;
+}
+.start-link strong{ font-size:16px; }
+.start-link span{ font-size:14px; line-height:1.5; color:var(--ink-soft); }
+.start-link:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }
