@@ -2232,10 +2232,10 @@ ${name}`;
     // bookmarks show the page name. Home keeps the base title.
     const onHome = !location.hash || location.hash === "#/" || location.hash === "#";
     document.title = (heading && !onHome) ? `${label} — Health Hub` : BASE_TITLE;
-    // Sensitive pregnancy pages keep a neutral tab and history title.
+    // Sensitive pages (pregnancy, violence and abuse support) keep a neutral tab and history title.
     const entryId = location.hash.startsWith("#/entry/") ? location.hash.split("/")[2] : "";
     const shown = entryId && ENTRIES.find(x => x.id === entryId);
-    if (shown && shown.sensitive) document.title = "Pregnancy information — Health Hub";
+    if (shown && shown.sensitive) document.title = `${shown.neutralTitle || "Pregnancy information"} — Health Hub`;
     const announcer = document.getElementById("routeAnnouncer");
     if (announcer) announcer.textContent = label;
     // Skip while the search input itself has focus — the debounced input
