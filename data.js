@@ -10184,6 +10184,18 @@ const ENTRIES = [
     verify: true
   },
   {
+    id: "preg-hse-fetal-anomaly-booklet",
+    name: "Termination of Pregnancy for Fetal Anomaly (HSE booklet)",
+    specialty: ["obs"],
+    county: ["national"],
+    blurb: "Booklet developed with the HSE's National Women and Infants Health Programme explaining diagnosis, the legal framework, fetal medicine referral, care in Ireland and pathways outside Ireland.",
+    contact: { web: "about.hse.ie/api/v2/download-file/healthcare_professional_publications/Termination_of_pregnancy_for_fetal_anomaly_booklet.pdf/" },
+    source_url: "https://about.hse.ie/api/v2/download-file/healthcare_professional_publications/Termination_of_pregnancy_for_fetal_anomaly_booklet.pdf/",
+    urlStatus: "search-result",
+    sensitive: true,
+    verify: true
+  },
+  {
     id: "preg-ci-unplanned",
     name: "Unplanned pregnancy (Citizens Information)",
     specialty: ["obs", "contraception"],
