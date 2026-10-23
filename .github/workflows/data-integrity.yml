@@ -33,10 +33,14 @@ jobs:
           node --check data/vaccines.js
           node --check data/costs.js
           node --check data/screening.js
+          node --check data/pregnancy.js
           node --check sw.js
 
       - name: AON deadline calculator edge-case tests
         run: node scripts/test-aon-dates.js
+
+      - name: Pregnancy page privacy checks
+        run: node scripts/test-pregnancy-privacy.js
 
       - name: Validate data.js entries (counties, areas, verify rules)
         run: |

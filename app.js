@@ -101,7 +101,12 @@
     clearTimeout(searchDebounce);
     searchDebounce = setTimeout(() => {
       const q = searchInput.value.trim();
-      if (q.length > 0) location.hash = "#/search/" + encodeURIComponent(q);
+      if (q.length > 0 && HHSearch.isSensitiveQuery(q)){
+        // Sensitive pregnancy topics: the words never enter the address bar or history.
+        searchInput.value = "";
+        location.hash = "#/pregnancy";
+      }
+      else if (q.length > 0) location.hash = "#/search/" + encodeURIComponent(q);
       else if (location.hash.startsWith("#/search")) location.hash = "#/";
     }, 180);
   });
@@ -118,6 +123,7 @@
   // typing "passport" or "SAR" or "leaflet" finds the feature itself rather
   // than only content that happens to mention the word.
   const TOOL_PAGES = [
+    { name: "Pregnancy information: choices, tests and scans", href: "#/pregnancy", keywords: "pregnancy pregnant antenatal screening tests scans ultrasound dating scan anatomy scan private scan options unplanned" },
     { name: "My Patient Passport", href: "#/passport", keywords: "patient passport profile medical history" },
     { name: "My call & referral log", href: "#/log", keywords: "call referral log" },
     { name: "Prep for an appointment", href: "#/prep", keywords: "prep appointment checklist consultation waiting room message" },
@@ -705,6 +711,7 @@
   // Search runs at once, then re-runs with conditions included when data/conditions.js has loaded.
   // If that file can't load (offline before first cache), search still works without conditions.
   function renderSearchRoute(query){
+    if (HHSearch.isSensitiveQuery(query)){ location.replace("#/pregnancy"); return; }
     renderSearch(query);
     if (typeof CONDITIONS !== "undefined") return;
     const hash = location.hash;
@@ -2225,6 +2232,10 @@ ${name}`;
     // bookmarks show the page name. Home keeps the base title.
     const onHome = !location.hash || location.hash === "#/" || location.hash === "#";
     document.title = (heading && !onHome) ? `${label} — Health Hub` : BASE_TITLE;
+    // Sensitive pregnancy pages keep a neutral tab and history title.
+    const entryId = location.hash.startsWith("#/entry/") ? location.hash.split("/")[2] : "";
+    const shown = entryId && ENTRIES.find(x => x.id === entryId);
+    if (shown && shown.sensitive) document.title = "Pregnancy information — Health Hub";
     const announcer = document.getElementById("routeAnnouncer");
     if (announcer) announcer.textContent = label;
     // Skip while the search input itself has focus — the debounced input
@@ -2339,6 +2350,7 @@ ${name}`;
     else if (parts[0] === "vaccines") withAssets(["data/vaccines.js"], renderVaccines);
     else if (parts[0] === "costs") withAssets(["data/costs.js"], renderCosts);
     else if (parts[0] === "screening") withAssets(["data/screening.js"], renderScreening);
+    else if (parts[0] === "pregnancy") withAssets(["data/pregnancy.js"], () => window.HH_PREGNANCY.render(app, { escapeHtml }));
     else if (parts[0] === "install") renderInstall();
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();

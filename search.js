@@ -91,7 +91,21 @@
     return CRISIS_WORDS.concat(CRISIS_PHRASES).some(function (t) { return padded.indexOf(" " + t + " ") !== -1; });
   }
 
-  const api = { normalise: normalise, prepare: prepare, matcher: matcher, alsoSearched: alsoSearched, contains: hit, isCrisisQuery: isCrisisQuery };
+  // Sensitive pregnancy topics (23 Oct 2026). A search for one of these never goes into the address
+  // bar, because the address ends up in browser history. app.js sends the person to the neutral
+  // #/pregnancy page instead. This only decides routing: nothing is stored or logged either way.
+  var SENSITIVE_PHRASES = ["abortion", "abortions", "termination", "termination of pregnancy", "my options", "myoptions",
+    "nipt", "nips", "fetal anomaly", "foetal anomaly", "fatal fetal anomaly", "unplanned pregnancy", "crisis pregnancy",
+    "pregnancy scan", "private scan", "reassurance scan", "3 day wait", "three day wait"];
+
+  function isSensitiveQuery(raw) {
+    var q = normalise(raw);
+    if (!q) return false;
+    var padded = " " + q + " ";
+    return SENSITIVE_PHRASES.some(function (t) { return padded.indexOf(" " + t + " ") !== -1; });
+  }
+
+  const api = { isSensitiveQuery: isSensitiveQuery, normalise: normalise, prepare: prepare, matcher: matcher, alsoSearched: alsoSearched, contains: hit, isCrisisQuery: isCrisisQuery };
   root.HHSearch = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : this);
