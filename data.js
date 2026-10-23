@@ -12698,6 +12698,38 @@ const START_POINTS = [
   { id: "aon", label: "My child is waiting for an Assessment of Need", hint: "A deadline calculator, letters and the steps to escalate (Republic of Ireland).", href: "#/tools/aon" },
   { id: "find", label: "I want to find a service near me", hint: "Browse by county, or by the kind of service.", href: "#/county" },
 ];
+// Letter to an elected representative (#/advocacy/rep-letter). Version 1: no representative data is stored;
+// the person types the name if they want it in the greeting. Wording is neutral across parties: no party,
+// policy or clinical detail. Wording is a proposal for Elaine to edit.
+const REP_LETTER = {
+  roles: [
+    { id: "td", label: "TD (Dáil Éireann)", greeting: "Deputy", asksQuestion: true },
+    { id: "senator", label: "Senator (Seanad Éireann)", greeting: "Senator", asksQuestion: true },
+    { id: "councillor", label: "Councillor", greeting: "Councillor", asksQuestion: false },
+    { id: "mla", label: "MLA (Northern Ireland Assembly)", greeting: "", asksQuestion: true },
+    { id: "mp", label: "MP (Westminster)", greeting: "", asksQuestion: true },
+  ],
+  topics: [
+    { id: "waiting", label: "A long wait for an appointment, assessment or treatment", phrase: "a long wait for an appointment, assessment or treatment" },
+    { id: "access", label: "Difficulty getting a service where I live", phrase: "difficulty getting a health or care service where I live" },
+    { id: "complaint", label: "A complaint that has not been resolved", phrase: "a complaint to a health service that has not been resolved" },
+    { id: "records", label: "A records request that has not been answered", phrase: "a request for my health records that has not been answered" },
+    { id: "cost", label: "A decision about a card, scheme or cost", phrase: "a decision about a health card, scheme or cost" },
+    { id: "other", label: "Something else", phrase: "a problem with a health or care service" },
+  ],
+  done: [
+    { id: "spoke", label: "I have spoken to the service directly", text: "I have spoken to the service directly." },
+    { id: "complained", label: "I have made a formal complaint", text: "I have made a formal complaint." },
+    { id: "records", label: "I have asked for my records", text: "I have asked for my records." },
+    { id: "gp", label: "I have asked my GP for help", text: "I have asked my GP for help." },
+  ],
+  asks: [
+    { id: "contact", label: "Contact the service or the HSE about my case and ask for a reply", text: "Contact the service, or the HSE, about my case and ask for a reply.", checked: true },
+    { id: "question", label: "Raise it with the Minister, or as a parliamentary question, if you think that is appropriate", text: "Raise it with the Minister, or as a parliamentary question, if you think that is appropriate.", checked: false, needsRole: "asksQuestion" },
+    { id: "routes", label: "Tell me what other steps are open to me", text: "Tell me what other steps are open to me.", checked: true },
+  ],
+  consent: "I consent to you contacting the relevant service about my case and sharing the details in this letter with them.",
+};
 
 // AskCI: one outbound link, shown on the schemes and entitlements pages only (not attached to entries).
 // Pilot status; re-check mid-January 2027 (see GAPS.md). Not opened by a person yet.

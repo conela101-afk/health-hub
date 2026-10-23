@@ -149,6 +149,7 @@
     { name: "My call & referral log", href: "#/log", keywords: "call referral log" },
     { name: "Prep for an appointment", href: "#/prep", keywords: "prep appointment checklist consultation waiting room message" },
     { name: "Build a SAR letter (guided form)", href: "#/advocacy/sar-builder", keywords: "sar subject access request letter gdpr records" },
+    { name: "Write to your TD or councillor (letter builder)", href: "#/advocacy/rep-letter", keywords: "td councillor tc dail deputy senator mla mp representative elected letter write constituency raise" },
     { name: "Find a Facility (regulated centres, HIQA & RQIA)", href: "#/facilities", keywords: "facility facilities hiqa rqia nursing home regulated centre" },
     { name: "Search a condition", href: "#/conditions", keywords: "condition conditions disease illness" },
     { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
@@ -453,6 +454,7 @@
         <a class="pill" href="#/costs">What you pay: medicines, GP &amp; cross-border</a>
         <a class="pill" href="#/screening">Screening: who is invited</a>
         <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
+        <a class="pill" href="#/advocacy/rep-letter">Write to your TD or councillor</a>
         <a class="pill" href="#/tools">Guided tools (complaints, records, schemes, waiting lists, discharge)</a>
       `;
     app.innerHTML = `
@@ -1036,6 +1038,152 @@ Please acknowledge receipt of this request.
 Yours faithfully,
 
 ${name}`;
+  }
+
+  // ---- Letter to an elected representative (REP_LETTER in data.js) ----
+  // Builds a short, neutral letter in the browser. Nothing is stored or sent: Copy, Print and the
+  // email button only hand the text to the person's own device. No representative names, constituencies
+  // or contact details are held here; the person types what they want in the letter.
+  const REP_TEXT_FIELDS = ["rlName", "rlAddress", "rlArea", "rlContact", "rlRepName", "rlWhat"];
+
+  function generateRepLetter(){
+    const val = id => (document.getElementById(id).value || "").trim();
+    const role = REP_LETTER.roles.find(r => r.id === val("rlRole")) || REP_LETTER.roles[0];
+    const topic = REP_LETTER.topics.find(t => t.id === val("rlTopic")) || REP_LETTER.topics[0];
+    const name = val("rlName") || "[Your name]";
+    const address = val("rlAddress") || "[Your address]";
+    const area = val("rlArea");
+    const contact = val("rlContact");
+    const repName = val("rlRepName");
+    const what = val("rlWhat") || "[Describe what happened: which service, the dates, and what you have already tried.]";
+    const greeting = role.greeting
+      ? `Dear ${role.greeting}${repName ? " " + repName : ""},`
+      : (repName ? `Dear ${repName},` : "Dear Sir or Madam,");
+    const done = REP_LETTER.done.filter(d => document.getElementById("rlDone_" + d.id).checked).map(d => d.text);
+    const asks = REP_LETTER.asks
+      .filter(a => (!a.needsRole || role[a.needsRole]) && document.getElementById("rlAsk_" + a.id).checked)
+      .map(a => a.text);
+    const consent = document.getElementById("rlConsent").checked;
+    return `${name}
+${address}
+${area ? `Constituency or electoral area: ${area}\n` : ""}${contact ? `${contact}\n` : ""}
+[Date]
+
+${greeting}
+
+I am writing to ask for your help with ${topic.phrase}.
+
+WHAT HAPPENED
+${what}
+${done.length ? `\nWHAT I HAVE ALREADY DONE\n${done.map(t => "  - " + t).join("\n")}\n` : ""}
+WHAT I AM ASKING
+${asks.length ? asks.map(t => "  - " + t).join("\n") : "  - [tick at least one request above]"}
+${consent ? `\n${REP_LETTER.consent}\n` : ""}
+Thank you for your time. I would be grateful for a reply.
+
+Yours sincerely,
+
+${name}`;
+  }
+
+  function renderRepLetter(){
+    const opt = (list) => list.map(x => `<option value="${escapeHtml(x.id)}">${escapeHtml(x.label)}</option>`).join("");
+    const check = (prefix, list) => list.map(x => `
+      <label class="check-row">
+        <input type="checkbox" id="${prefix}_${x.id}" ${x.checked ? "checked" : ""}>
+        <span>${escapeHtml(x.label)}</span>
+      </label>`).join("");
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/advocacy/templates">‹ Letter templates</a>
+        <h1>Write to your TD or councillor</h1>
+        <p class="count">Fill in your details. The letter below updates as you go.</p>
+      </div>
+
+      <div class="callout">
+        <strong>A letter asking for help, not advice.</strong> It asks an elected representative to raise a problem with a health service. It names no party and takes no side. This page does not check who represents you: find their name and contact details on the Oireachtas website (oireachtas.ie) or your council's website.
+      </div>
+      <div class="callout">
+        <strong>Before you send it.</strong> A representative's office keeps what you send. Leave out medical detail you would not want kept.
+      </div>
+
+      <div class="prep-card">
+        <label class="prep-label" for="rlRole">Who are you writing to?</label>
+        <select id="rlRole" class="prep-input">${opt(REP_LETTER.roles)}</select>
+
+        <label class="prep-label" for="rlRepName">Their surname (optional)</label>
+        <input type="text" id="rlRepName" class="prep-input" placeholder="Used in the greeting">
+
+        <label class="prep-label" for="rlName">Your full name</label>
+        <input type="text" id="rlName" class="prep-input" placeholder="e.g. Mary Murphy">
+
+        <label class="prep-label" for="rlAddress">Your address</label>
+        <textarea id="rlAddress" class="prep-input" rows="2" placeholder="Representatives usually need your address to confirm you live in their area"></textarea>
+
+        <label class="prep-label" for="rlArea">Constituency or electoral area (optional)</label>
+        <input type="text" id="rlArea" class="prep-input" placeholder="Only if you know it">
+
+        <label class="prep-label" for="rlContact">Your phone or email (optional)</label>
+        <input type="text" id="rlContact" class="prep-input">
+
+        <label class="prep-label" for="rlTopic">What is it about?</label>
+        <select id="rlTopic" class="prep-input">${opt(REP_LETTER.topics)}</select>
+
+        <label class="prep-label" for="rlWhat">What happened</label>
+        <textarea id="rlWhat" class="prep-input" rows="5" placeholder="Which service, the dates, and what you have already tried"></textarea>
+
+        <span class="prep-label">What you have already done (optional)</span>
+        <div class="check-list">${check("rlDone", REP_LETTER.done)}</div>
+
+        <span class="prep-label">What you would like them to do</span>
+        <div class="check-list">${check("rlAsk", REP_LETTER.asks)}</div>
+
+        <label class="save-toggle">
+          <input type="checkbox" id="rlConsent">
+          <span>Include my consent for them to contact the service about my case</span>
+        </label>
+
+        <p class="save-note">Nothing you type here is saved or sent anywhere. This form only exists in your browser tab. Closing or refreshing the page clears it.</p>
+      </div>
+
+      <div class="prep-card">
+        <h2>Your letter</h2>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="rlOutput"></pre>
+        <button type="button" class="copy-btn" id="rlCopy" data-copy-target="rlOutput">Copy letter text</button>
+        <button type="button" class="copy-btn" id="rlPrint">Print / save PDF</button>
+        <label class="prep-label" for="rlEmail">Their email address (optional, to open your email app)</label>
+        <input type="email" id="rlEmail" class="prep-input" placeholder="Type it in from their official page">
+        <p><a class="pill" id="rlMailto" href="#" rel="noopener">Open in my email app</a></p>
+        <p class="save-note" id="rlMailNote" hidden>This letter is too long for some email apps to open. Use Copy letter text instead.</p>
+      </div>
+    `;
+
+    function refresh(){
+      const roleId = document.getElementById("rlRole").value;
+      const role = REP_LETTER.roles.find(r => r.id === roleId) || REP_LETTER.roles[0];
+      REP_LETTER.asks.forEach(a => {
+        if (!a.needsRole) return;
+        const box = document.getElementById("rlAsk_" + a.id);
+        const row = box.closest(".check-row");
+        row.hidden = !role[a.needsRole];
+      });
+      const text = generateRepLetter();
+      document.getElementById("rlOutput").textContent = text;
+      const to = (document.getElementById("rlEmail").value || "").trim();
+      const topic = REP_LETTER.topics.find(t => t.id === document.getElementById("rlTopic").value) || REP_LETTER.topics[0];
+      const href = "mailto:" + encodeURIComponent(to).replace(/%40/g, "@") + "?subject=" + encodeURIComponent("Request for help: " + topic.label.toLowerCase()) + "&body=" + encodeURIComponent(text);
+      const tooLong = href.length > 1900;
+      const link = document.getElementById("rlMailto");
+      link.hidden = tooLong;
+      link.setAttribute("href", tooLong ? "#" : href);
+      document.getElementById("rlMailNote").hidden = !tooLong;
+    }
+    REP_TEXT_FIELDS.concat(["rlEmail"]).forEach(id => document.getElementById(id).addEventListener("input", refresh));
+    ["rlRole", "rlTopic", "rlConsent"].forEach(id => document.getElementById(id).addEventListener("change", refresh));
+    REP_LETTER.done.forEach(d => document.getElementById("rlDone_" + d.id).addEventListener("change", refresh));
+    REP_LETTER.asks.forEach(a => document.getElementById("rlAsk_" + a.id).addEventListener("change", refresh));
+    document.getElementById("rlPrint").addEventListener("click", () => printOnly("rlOutput"));
+    refresh();
   }
 
   function renderSarBuilder(){
@@ -2385,6 +2533,7 @@ ${name}`;
     else if (parts[0] === "search" && parts[1]) renderSearchRoute(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
+    else if (parts[0] === "advocacy" && parts[1] === "rep-letter") renderRepLetter();
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
     else if (parts[0] === "facilities" && !parts[1]) withAssets(["data/facilities.js"], renderFacilities);

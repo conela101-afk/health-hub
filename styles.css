@@ -761,3 +761,5 @@ select{ min-height:24px; }
 .start-link strong{ font-size:16px; }
 .start-link span{ font-size:14px; line-height:1.5; color:var(--ink-soft); }
 .start-link:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }
+/* hidden attribute must win over flex layout (rep letter hides the parliamentary-question row for councillors) */
+.check-row[hidden]{ display:none; }
