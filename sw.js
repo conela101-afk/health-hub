@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v37";
+const CACHE_NAME = "pocket-guide-v38";
 const ASSETS = [
   "./",
   "./index.html",
@@ -46,6 +46,16 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// What is and is not cached (privacy, brief of 24 Oct 2026):
+//  - Cached: only the files in ASSETS above, put there at install for every visitor whatever they
+//    read, and refreshed in place when the network returns a newer copy.
+//  - Not cached: anything else. Runtime caching is an allowlist (ASSETS), not "everything fetched",
+//    so no file is added because a particular person viewed a particular page. Page views are hash
+//    routes inside index.html and never produce a request of their own.
+//  - Never add data/pregnancy.js or any other sensitive-topic file to a runtime cache. If the
+//    precache is slimmed, keep sensitive files precached (present for everyone) or network-only.
+const CACHEABLE = new Set(ASSETS.map((a) => new URL(a, self.location).href));
+
 // Network-first: this is a reference tool where content freshness (service
 // listings, FOI contacts, complaints processes) matters more than offline
 // speed. Falls back to cache only when the network is unavailable.
@@ -71,7 +81,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(event.request, { cache: "no-cache" })
       .then((response) => {
-        if (response.ok) {
+        if (response.ok && CACHEABLE.has(new URL(event.request.url).href)) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
         }
