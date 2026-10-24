@@ -102,3 +102,6 @@ jobs:
 
       - name: Validate screening rows
         run: node scripts/validate-screening.js
+
+      - name: Third-party checker fixture tests
+        run: bash scripts/test-check-third-party.sh

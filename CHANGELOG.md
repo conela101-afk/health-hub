@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-24 [Claude] (check-third-party.sh: scan shipped files only)
+- `scripts/check-third-party.sh` now scans only shipped files: `*.html`/`*.css`/`*.js` at the repo root (`index.html`, `app.js`, `data.js`, `search.js`, `tools.js`, `sw.js`, `styles.css`) and everything under `data/`. `scripts/` is no longer scanned, so a test can hold `XMLHttpRequest`/`sendBeacon` regex literals without failing it. `vendor/` stays excluded. `CHECK_ROOT` overrides the repo root for testing.
+- Added `scripts/test-check-third-party.sh`: builds throwaway trees and asserts the checker exits 1 on a bad `index.html`, root `.js`, `sw.js`, `data/` file and `styles.css`, exits 0 on a clean tree, and ignores the same patterns under `scripts/`. All pass; the checker still exits 0 on the real repo.
+- `.github/workflows/data-integrity.yml` runs `bash scripts/test-check-third-party.sh` as the last step (placed at the end so it does not conflict with the separate CI PR, which adds the `check-third-party.sh` step itself). No app, data or `sw.js` change.
+
 ## 2026-10-24 [Claude] (CI: third-party and sensitive-privacy checks)
 - `.github/workflows/data-integrity.yml` now also runs `scripts/test-sensitive-privacy.js` and `scripts/check-third-party.sh`, placed after the pregnancy privacy step. Both exit 0 locally on current main. No app, data or `sw.js` change.
 

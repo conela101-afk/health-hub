@@ -7,15 +7,20 @@
 # URL. Plain <a href="https://..."> links (user-initiated navigation, never
 # preloaded) are allowed and listed separately for review.
 #
+# Only shipped files are scanned: *.html/*.css/*.js at the repo root
+# (index.html, app.js, sw.js, styles.css, ...) and everything under data/.
+# scripts/ (build and test tooling, never served) is not scanned, so a test
+# can mention XMLHttpRequest or sendBeacon in a regex without failing this.
 # vendor/ is excluded — third-party code we vendor verbatim and don't want
 # to lint. assets/fonts/*.woff2 and icons/*.png are binary, not scanned.
+# CHECK_ROOT overrides the repo root (used by test-check-third-party.sh).
 set -uo pipefail
-cd "$(dirname "$0")/.."
+cd "${CHECK_ROOT:-$(dirname "$0")/..}"
 
-FILES=$(find . \
-  -type d \( -name .git -o -name vendor -o -name node_modules \) -prune -o \
-  -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -print \
-  | sort)
+FILES=$( {
+  find . -maxdepth 1 -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \)
+  [ -d data ] && find ./data -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \)
+} | sort)
 
 fail=0
 findings=""
