@@ -43,6 +43,12 @@ jobs:
       - name: Pregnancy page privacy checks
         run: node scripts/test-pregnancy-privacy.js
 
+      - name: Sensitive-topic privacy checks
+        run: node scripts/test-sensitive-privacy.js
+
+      - name: No third-party resource references
+        run: bash scripts/check-third-party.sh
+
       - name: Validate data.js entries (counties, areas, verify rules)
         run: |
           node scripts/test-validate-data.js
