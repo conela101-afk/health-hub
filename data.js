@@ -10622,6 +10622,28 @@ const ENTRIES = [
     source_url: "https://www.gov.ie/en/department-of-transport/press-releases/minister-canney-announces-framework-for-new-vehicle-adaptation-scheme/",
     urlStatus: "search-result",
     verify: true
+  },
+  {
+    id: "roi-rights-dss",
+    name: "Decision Support Service: decision support arrangements",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "The statutory Decision Support Service's own guide to the types of decision support arrangement under the Assisted Decision-Making (Capacity) Act 2015.",
+    contact: { web: "www.decisionsupportservice.ie/services/decision-support-arrangements" },
+    source_url: "https://www.decisionsupportservice.ie/services/decision-support-arrangements",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-pop-ipo",
+    name: "International Protection Office",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "Official International Protection Office site, with separate information for applications made before or from 12 June 2026.",
+    contact: { web: "ipo.irishimmigration.ie/" },
+    source_url: "https://ipo.irishimmigration.ie/",
+    urlStatus: "search-result",
+    verify: true
   }
 ];
 

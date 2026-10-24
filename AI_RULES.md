@@ -51,6 +51,8 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - `dentalcouncil.ie` (ratified 21 Oct 2026)
 - `legalaidboard.ie` (ratified 21 Oct 2026)
 - `lawreform.ie` (ratified 21 Oct 2026)
+- `decisionsupportservice.ie` (24 Oct 2026): Decision Support Service, statutory body within the Mental Health Commission
+- `ipo.irishimmigration.ie` (24 Oct 2026): International Protection Office; this host only, not other irishimmigration.ie sites
 - `irishstatutebook.ie` (10 Oct 2026): statute text
 
 **Tier 2: Hospital or service own site**
@@ -151,7 +153,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
-- 2026-10-24 [Claude] — ROI coverage-gap brief: 11 unverified candidate rows, two hosts withheld for approval. See `CHANGELOG.md` and `GAPS.md`.
+- 2026-10-24 [Claude] — ROI coverage-gap brief: 13 unverified candidate rows, two hosts approved (Tier 1). See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-21 [Claude] — Opt-in `#/install` page built on a branch (footer link only, nothing stored, no popup). Copy and device checks unconfirmed; manifest icon/orientation proposals pending. See `CHANGELOG.md`.
 - 2026-10-21 [Claude] — Session 5: scopes only (`SCOPE-session5-2026-10-21.md`), no build; each item needs Elaine's approval. See `CHANGELOG.md`.
 - 2026-10-21 [Claude] — AskCI link added via PR on the schemes pages; Elaine to open the URL and clear `verify` (re-check mid-Jan 2027). See `CHANGELOG.md` and `GAPS.md`.

@@ -51,6 +51,8 @@ const SOURCE_REGISTER = [
   R("medicalcouncil.ie", 1, "ratified 21 Oct 2026"), R("nmbi.ie", 1, "ratified 21 Oct 2026"), R("coru.ie", 1, "ratified 21 Oct 2026"),
   R("thepsi.ie", 1, "ratified 21 Oct 2026"), R("dentalcouncil.ie", 1, "ratified 21 Oct 2026"),
   R("legalaidboard.ie", 1, "ratified 21 Oct 2026"), R("lawreform.ie", 1, "ratified 21 Oct 2026"),
+  R("decisionsupportservice.ie", 1, "24 Oct 2026", "Decision Support Service, statutory body within the Mental Health Commission"),
+  R("ipo.irishimmigration.ie", 1, "24 Oct 2026", "International Protection Office; this host only, not other irishimmigration.ie sites"),
   // irishstatutebook.ie: approved 10 Oct 2026 for statute text only (an /eli/ statute URL), not as a general source.
   R("irishstatutebook.ie", 1, "10 Oct 2026", "statute text", ["/eli/"]),
   // Tier 2: a hospital's or service's own site.

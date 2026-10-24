@@ -578,7 +578,7 @@ Counties with none of the new rows: Cork (already has its own CDNT rows), Monagh
 
 **Rows added (11, all `verify: true`, `search-result`, unopened):** `roi-nav-health-regions`, `roi-nav-health-regions-update`, `roi-welfare-illness-benefit`, `roi-welfare-pcb`, `roi-social-home-support`, `roi-rights-open-disclosure`, `roi-pop-ip-2026`, `roi-pop-ipas-health`, `roi-access-isl-grant`, `roi-vacc-flu`, `roi-transport-vas`.
 
-**Hosts needing Elaine's approval (rows withheld)**
+**Hosts approved by Elaine 24 Oct 2026 (Tier 1); rows `roi-rights-dss` and `roi-pop-ipo` added**
 | Host | Owner | Purpose | Proposed tier | Row |
 |---|---|---|---|---|
 | `decisionsupportservice.ie` | Decision Support Service (statutory, within the Mental Health Commission) | Decision support arrangements | 1 | `roi-rights-dss` |
