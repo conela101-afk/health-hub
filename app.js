@@ -33,6 +33,17 @@
     if (location.hash === "#/install") renderInstall();
   });
 
+  // Offline banner. navigator.onLine only says whether there is a network
+  // interface, so a failed section load also marks us offline; the next
+  // successful load or an "online" event clears it. Nothing is stored.
+  const offlineBanner = document.getElementById("offlineBanner");
+  function setOffline(off){
+    if (offlineBanner) offlineBanner.hidden = !off;
+  }
+  window.addEventListener("offline", () => setOffline(true));
+  window.addEventListener("online", () => setOffline(false));
+  setOffline(navigator.onLine === false);
+
   // Calm mode (user-facing label; internal names kept as "simple" for
   // continuity): a persistent, sitewide low-clutter/high-contrast toggle for
   // moments of sensory overload, panic, or executive dysfunction. Stores only
@@ -97,6 +108,8 @@
   }
 
   let searchDebounce;
+  const PRIVATE_SEARCH_HASH = "#/search-results";
+  let privateQuery = "";
   searchInput.addEventListener("input", () => {
     clearTimeout(searchDebounce);
     searchDebounce = setTimeout(() => {
@@ -106,8 +119,14 @@
         searchInput.value = "";
         location.hash = HHSearch.sensitiveRoute(q);
       }
+      else if (q.length > 0 && HHSearch.isPrivateSearch(q)){
+        // Sensitive topic with no page of its own: the query is held in memory only (never in the
+        // address bar, title or storage) and results show under a neutral heading.
+        privateQuery = q;
+        if (location.hash === PRIVATE_SEARCH_HASH) route(); else location.hash = PRIVATE_SEARCH_HASH;
+      }
       else if (q.length > 0) location.hash = "#/search/" + encodeURIComponent(q);
-      else if (location.hash.startsWith("#/search")) location.hash = "#/";
+      else if (location.hash.startsWith("#/search")){ privateQuery = ""; location.hash = "#/"; }
     }, 180);
   });
 
@@ -618,7 +637,7 @@
 
   // Matching lives in search.js (shared with scripts/search-audit.js); aliases and the US/UK
   // spelling map are in data.js.
-  function renderSearch(query){
+  function renderSearch(query, neutral){
     const p = HHSearch.prepare(query);
     const match = HHSearch.matcher(p);
     const terms = p.terms;
@@ -685,10 +704,10 @@
       : "";
     // Facilities are not indexed here; one row hands the query on to the regulated-facilities search.
     const facilityRow = p.q
-      ? `<p class="section-title">Regulated facilities</p><div class="simple-list"><a class="row" href="#/facilities"><span class="row-body"><h2>Search regulated facilities for "${escapeHtml(query)}"</h2></span><span class="arrow">›</span></a></div>`
+      ? `<p class="section-title">Regulated facilities</p><div class="simple-list"><a class="row" href="#/facilities"><span class="row-body"><h2>Search regulated facilities${neutral ? "" : ` for "${escapeHtml(query)}"`}</h2></span><span class="arrow">›</span></a></div>`
       : "";
     const safeQuery = escapeHtml(query);
-    const also = HHSearch.alsoSearched(p);
+    const also = neutral ? "" : HHSearch.alsoSearched(p);
     const alsoLine = also ? `<p class="count">Also searched: ${escapeHtml(also)}</p>` : "";
     // Approved wording (Elaine, 7 Oct 2026). A link to the existing crisis page only: no numbers or extra copy here.
     const crisisBanner = HHSearch.isCrisisQuery(query)
@@ -696,11 +715,11 @@
       : "";
     const body = totalCount
       ? `${toolSection}${privateSection}${voluntarySection}${cards}${conditionSection}${orgCards}${generalOrgCards}${facilityRow}`
-      : `<div class="empty-state">No matches for "${safeQuery}". Try a broader term, like a condition, area, or organisation name.</div>${facilityRow}`;
+      : `<div class="empty-state">No matches${neutral ? "" : ` for "${safeQuery}"`}. Try a broader term, like a condition, area, or organisation name.</div>${facilityRow}`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
-        <h1>Search: "${safeQuery}"</h1>
+        <h1>${neutral ? "Search results" : `Search: "${safeQuery}"`}</h1>
         <p class="count">${totalCount} result${totalCount === 1 ? "" : "s"}</p>
         ${alsoLine}
       </div>
@@ -712,12 +731,13 @@
 
   // Search runs at once, then re-runs with conditions included when data/conditions.js has loaded.
   // If that file can't load (offline before first cache), search still works without conditions.
-  function renderSearchRoute(query){
+  function renderSearchRoute(query, neutral){
     if (HHSearch.isSensitiveQuery(query)){ location.replace(HHSearch.sensitiveRoute(query)); return; }
-    renderSearch(query);
+    if (!neutral && HHSearch.isPrivateSearch(query)){ privateQuery = query; location.replace(PRIVATE_SEARCH_HASH); return; }
+    renderSearch(query, neutral);
     if (typeof CONDITIONS !== "undefined") return;
     const hash = location.hash;
-    loadAsset("data/conditions.js").then(() => { if (location.hash === hash) renderSearch(query); }).catch(() => {});
+    loadAsset("data/conditions.js").then(() => { if (location.hash === hash) renderSearch(query, neutral); }).catch(() => {});
   }
 
   function renderEntry(id){
@@ -1212,8 +1232,9 @@ ${name}`;
       const isCss = /\.css$/.test(src);
       const el = document.createElement(isCss ? "link" : "script");
       if (isCss){ el.rel = "stylesheet"; el.href = src; } else { el.src = src; }
-      el.onload = () => { assetLoaded.add(src); resolve(); };
+      el.onload = () => { assetLoaded.add(src); if (navigator.onLine !== false) setOffline(false); resolve(); };
       el.onerror = () => {
+        setOffline(true);
         delete assetPromises[src];
         el.remove();
         reject(new Error("Could not load " + src));
@@ -1236,7 +1257,7 @@ ${name}`;
       announceRouteChange();
     }).catch(() => {
       if (location.hash !== hash) return;
-      app.innerHTML = `<div class="empty-state">Couldn't load this section. Check your connection and try again.</div>`;
+      app.innerHTML = `<div class="empty-state">Couldn't load this section, and it isn't saved on this device yet. Check your connection and try again.</div>`;
     });
   }
 
@@ -2332,7 +2353,7 @@ ${name}`;
     const parts = hash.replace(/^#\//, "").split("/").filter(Boolean);
     window.scrollTo(0, 0);
 
-    if (parts[0] !== "search") searchInput.value = "";
+    if (parts[0] !== "search" && hash !== PRIVATE_SEARCH_HASH){ searchInput.value = ""; privateQuery = ""; }
     updateTabbar(parts);
 
     if (parts.length === 0) renderHome();
@@ -2340,6 +2361,7 @@ ${name}`;
     else if (parts[0] === "specialty" && parts[1]) renderList("specialty", parts[1], parts[2]);
     else if (parts[0] === "county" && !parts[1]) renderCountyIndex();
     else if (parts[0] === "county" && parts[1]) renderList("county", parts[1], parts[2]);
+    else if (hash === PRIVATE_SEARCH_HASH) { if (privateQuery) renderSearchRoute(privateQuery, true); else renderHome(); }
     else if (parts[0] === "search" && parts[1]) renderSearchRoute(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();

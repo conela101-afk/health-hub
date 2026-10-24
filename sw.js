@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v37";
+const CACHE_NAME = "pocket-guide-v39";
 const ASSETS = [
   "./",
   "./index.html",
@@ -46,24 +46,47 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// What is and is not cached (privacy, brief of 24 Oct 2026):
+//  - Cached: only the files in ASSETS above, put there at install for every visitor whatever they
+//    read, and refreshed in place when the network returns a newer copy.
+//  - Not cached: anything else. Runtime caching is an allowlist (ASSETS), not "everything fetched",
+//    so no file is added because a particular person viewed a particular page. Page views are hash
+//    routes inside index.html and never produce a request of their own.
+//  - Never add data/pregnancy.js or any other sensitive-topic file to a runtime cache. If the
+//    precache is slimmed, keep sensitive files precached (present for everyone) or network-only.
+const CACHEABLE = new Set(ASSETS.map((a) => new URL(a, self.location).href));
+
 // Network-first: this is a reference tool where content freshness (service
 // listings, FOI contacts, complaints processes) matters more than offline
 // speed. Falls back to cache only when the network is unavailable.
 // "no-cache" (not "no-store") means the browser always revalidates with the
 // server but can answer 304 Not Modified, so unchanged files -- notably the
 // ~2 MB data/facilities.js -- are not re-downloaded on every visit.
+// Offline and not cached: navigations get the app shell (every route is a
+// #/hash on index.html, so it can render the in-app message); anything else
+// gets a plain 503 rather than the browser's error page.
+function offlineFallback(request){
+  if (request.mode === "navigate"){
+    return caches.match("./index.html").then((shell) => shell || new Response(
+      "<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><title>Offline - Health Hub</title><p>You're offline and this page isn't saved on this device yet. Please reconnect and try again.",
+      { status: 503, headers: { "Content-Type": "text/html; charset=utf-8" } }
+    ));
+  }
+  return new Response("", { status: 503, statusText: "Offline" });
+}
+
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   if (!event.request.url.startsWith(self.location.origin)) return;
   event.respondWith(
     fetch(event.request, { cache: "no-cache" })
       .then((response) => {
-        if (response.ok) {
+        if (response.ok && CACHEABLE.has(new URL(event.request.url).href)) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
         }
         return response;
       })
-      .catch(() => caches.match(event.request))
+      .catch(() => caches.match(event.request).then((hit) => hit || offlineFallback(event.request)))
   );
 });

@@ -95,8 +95,17 @@ This site makes none on page load. Fonts (Plus Jakarta Sans, Fraunces) and the L
 
 The one deliberate exception: the out-of-hours map (`#/out-of-hours`) starts as a static placeholder and only contacts OpenStreetMap's tile server once a visitor taps "Show map" — see the notice on that page. `img-src` in the CSP allows that one tile host for this reason. Run `scripts/check-third-party.sh` after any change that touches `<script src>`, `<link href>`, `url()`, `@import`, or `fetch()` — it fails on anything outside this list.
 
+## Offline
+
+The service worker precaches the app shell, scripts, data files, icons and fonts on first load, and is network-first: it uses the network when it can and the saved copy when it can't. When the browser is offline, or a section fails to load, a banner says "You're offline. Showing what was last saved; some details may be out of date."
+
+- **Works offline after one online visit:** every page, search, the guided tools and letter builders, Calm mode, saved-on-device items (if you chose to save them).
+- **Needs a network:** the "Show map" tiles (always, from OpenStreetMap), the "Let us know" form, and every outbound link to an official site.
+- A page that isn't saved yet shows the app with a "Couldn't load this section" message, not the browser's error page.
+
 ## Known limitations of this v1
 
 - No analytics, accounts, or backend — by design, for privacy and simplicity.
 - **Pregnancy topics leave no trace in the app.** `#/pregnancy` and the `sensitive: true` rows store nothing, use a neutral route and tab title, and searches for terms in `HHSearch.isSensitiveQuery` are redirected there instead of being written into the address bar. `scripts/test-pregnancy-privacy.js` enforces it in CI. Browser history itself is outside the app's control.
+- **What the app stores and caches.** Stored in the browser only when you choose it: Calm mode flag, and the Passport, appointment prep, call log and rights tracker if you tick "Save on this device". Nothing about pages viewed or searches made is stored anywhere (no recent searches, favourites or history). The service worker caches only the fixed list of app files in `sw.js`, installed for every visitor; it does not add files because of what someone viewed, and page views are hash routes that make no requests. Sensitive searches (`HHSearch.isPrivateSearch`) never appear in the address bar, tab title, results heading or screen-reader announcement. The browser's own history, autofill and any device backups are outside the app's control; private browsing is the reliable way to leave no trace. `scripts/test-sensitive-privacy.js` checks this in a real browser.
 - Region-specific service listings are still deepest for Cork; the data structure already supports any county/region and expanding coverage nationally is the active priority, not a "someday" item.
