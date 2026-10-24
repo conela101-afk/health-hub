@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v36";
+const CACHE_NAME = "pocket-guide-v37";
 const ASSETS = [
   "./",
   "./index.html",
@@ -52,6 +52,19 @@ self.addEventListener("activate", (event) => {
 // "no-cache" (not "no-store") means the browser always revalidates with the
 // server but can answer 304 Not Modified, so unchanged files -- notably the
 // ~2 MB data/facilities.js -- are not re-downloaded on every visit.
+// Offline and not cached: navigations get the app shell (every route is a
+// #/hash on index.html, so it can render the in-app message); anything else
+// gets a plain 503 rather than the browser's error page.
+function offlineFallback(request){
+  if (request.mode === "navigate"){
+    return caches.match("./index.html").then((shell) => shell || new Response(
+      "<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><title>Offline - Health Hub</title><p>You're offline and this page isn't saved on this device yet. Please reconnect and try again.",
+      { status: 503, headers: { "Content-Type": "text/html; charset=utf-8" } }
+    ));
+  }
+  return new Response("", { status: 503, statusText: "Offline" });
+}
+
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   if (!event.request.url.startsWith(self.location.origin)) return;
@@ -64,6 +77,6 @@ self.addEventListener("fetch", (event) => {
         }
         return response;
       })
-      .catch(() => caches.match(event.request))
+      .catch(() => caches.match(event.request).then((hit) => hit || offlineFallback(event.request)))
   );
 });
