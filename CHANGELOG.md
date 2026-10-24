@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-24 [Claude] (ROI coverage-gap brief, candidate rows)
+- From the 24 Oct ROI coverage-gap brief: 11 candidate rows in `data.js` (two more below), all `verify: true`, `urlStatus: "search-result"`, no `checked`, no rate, fee, threshold or contact detail. Covers HSE Health Regions (two rows), Illness Benefit, Partial Capacity Benefit, Citizens Information Home Support Service, open disclosure (Patient Safety Act 2023), international protection from 12 June 2026, IPAS health supports, the Work and Access Communication Support Grant, flu vaccination (Citizens Information) and the new Vehicle Adaptation Scheme announcement. `sw.js` cache v38 to v39 (after merging main). 826 entries, validators clean.
+- Skipped as already present: the HSE urgent care finder, Disability Allowance, Carer's Allowance, Invalidity Pension, the disability and illness payments hub, Assisted Decision-Making, Advance Healthcare Directives and the HSE home support application row.
+- Elaine approved `decisionsupportservice.ie` and `ipo.irishimmigration.ie` (Tier 1, 24 Oct 2026); added to the register in `validate-data.js`, AI_RULES block regenerated, and the two withheld rows added (`roi-rights-dss`, `roi-pop-ipo`). 13 candidate rows in total, 828 entries.
+- Not built: toolkit pages (county-to-Health-Region lookup, health-linked welfare hub, interpreting and ISL access, international protection health explainer) and watchlist items (Mental Health Act 2026, Home Support Providers Act 2026, Health Information Act 2026, Budget 2027 measures). These need Elaine's approval and a person opening the sources.
+
 ## 2026-10-24 [Claude] (install, icon and offline polish)
 - Checked against the repo first: fonts were already self-hosted (six `@font-face` rules, `font-src 'self'`, in the precache, OFL files present; DevTools-style check shows all six load from the app and nothing leaves the origin); per-route document titles with neutral sensitive titles already exist in `announceRouteChange` (audit finding 5 is fixed); the install button already shows on `#/install` only and nothing is stored. No change needed for those.
 - Added: Apple install meta in `index.html` (`apple-mobile-web-app-capable`, status-bar style, title "Health Hub", plus `mobile-web-app-capable`). The iOS Share, then Add to Home Screen steps were already on `#/install`.

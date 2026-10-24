@@ -573,3 +573,24 @@ Counties with none of the new rows: Cork (already has its own CDNT rows), Monagh
 - One link to AskCI, the Citizens Information Board's pilot AI chatbot, on the Entitlements tab, the Schemes and cards selector and the "What you pay" page. Not attached to any entry. Stored as the fact `askci-pilot` in `TOOL_FACTS` with `verify: true`, `urlStatus: "search-result"`, no `checked`. Source: CIB news items (7 Apr, 22 Apr, 26 Aug 2026); the URL `askcitizensinformation.ie` has not been opened by a person. Host approved by Elaine 17 Oct 2026, Tier 1, this host only.
 - **Re-check mid-January 2027:** pilot status; the service may change, move or end. Open the page, confirm the URL and the wording, then clear `verify`.
 - AskCI is general, not health-specific, so it complements the navigation, complaint and facility tools rather than replacing them. No phone number, accuracy claim or contact detail is shown. Privacy line beside the link: anything typed into AskCI goes to Citizens Information, not Health Hub.
+
+## ROI coverage-gap brief (24 Oct 2026)
+
+**Rows added (11, all `verify: true`, `search-result`, unopened):** `roi-nav-health-regions`, `roi-nav-health-regions-update`, `roi-welfare-illness-benefit`, `roi-welfare-pcb`, `roi-social-home-support`, `roi-rights-open-disclosure`, `roi-pop-ip-2026`, `roi-pop-ipas-health`, `roi-access-isl-grant`, `roi-vacc-flu`, `roi-transport-vas`.
+
+**Hosts approved by Elaine 24 Oct 2026 (Tier 1); rows `roi-rights-dss` and `roi-pop-ipo` added**
+| Host | Owner | Purpose | Proposed tier | Row |
+|---|---|---|---|---|
+| `decisionsupportservice.ie` | Decision Support Service (statutory, within the Mental Health Commission) | Decision support arrangements | 1 | `roi-rights-dss` |
+| `ipo.irishimmigration.ie` | International Protection Office, Department of Justice, Home Affairs and Migration | International protection process, split by application date | 1 | `roi-pop-ipo` |
+
+**Checks for a person with a browser**
+- `roi-nav-health-regions`: confirm the path (`/leadership-operations/` or `/leadership-and-operations/`), the region and county listing, and the 20 Integrated Healthcare Areas. Check whether the HSE Area Finder is open to the public before logging an address-to-region lookup as a true gap.
+- `roi-nav-health-regions-update` and `roi-rights-open-disclosure` are staff-facing `healthservice.hse.ie` pages; decide whether they stay as reference only.
+- Welfare rows: do not copy rates; note the "Page edited" date after Budget 2027.
+- International protection rows: check the before and after 12 June 2026 split and the medical card wording for IPAS residents.
+- `roi-transport-vas`: confirm the scheme is not yet open for applications and that the Disabled Drivers and Disabled Passengers Scheme continues.
+- Watchlist, link only until commenced: Mental Health Act 2026 (No. 11), Health Information Act 2026 (No. 10), Health (Amendment) (Home Support Providers) Act 2026 (No. 17), Patient Safety Act 2023 section 68. Open the irishstatutebook.ie commencement pages and record any S.I.
+- Unconfirmed, press-only (do not state): extra free counselling hours reported in Budget 2027 coverage; National Gender Service waiting list closure.
+- Open source requests: public HSE page on the right to an interpreter or ISL in health settings; HSE Model of Care for Gender Healthcare (unpublished); health access for undocumented people and prisoners; Irish-language service rights; intersex care.
+- Legacy URLs to avoid: `hse.ie/injuryunits`, `hse.ie/flu`, `hse.ie/covid19vaccine`, `hse.ie/GPVisitCards`, CI `?utm_source` links and `#fragment` anchors.

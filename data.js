@@ -10502,6 +10502,149 @@ const ENTRIES = [
     neutralTitle: "Support services",
     verify: true
   },
+  {
+    id: "roi-nav-health-regions",
+    name: "HSE Health Regions",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "Explains the six HSE Health Regions and the Integrated Healthcare Areas within them, which now plan and deliver hospital and community services.",
+    contact: { web: "about.hse.ie/leadership-operations/hse-health-regions/" },
+    source_url: "https://about.hse.ie/leadership-operations/hse-health-regions/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-nav-health-regions-update",
+    name: "HSE Health Regions Implementation Update (December 2025)",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "HSE implementation update describing the Health Regions and Integrated Healthcare Areas. Reference document, written for HSE staff.",
+    contact: { web: "healthservice.hse.ie/documents/6079/HSE_Health_Regions_Implementation_Update_-_December_2025.pdf" },
+    source_url: "https://healthservice.hse.ie/documents/6079/HSE_Health_Regions_Implementation_Update_-_December_2025.pdf",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-welfare-illness-benefit",
+    name: "Illness Benefit",
+    specialty: ["adultdisability"],
+    county: ["national"],
+    blurb: "Explains the social insurance payment for people who cannot work because of illness, and how to claim.",
+    contact: { web: "www.citizensinformation.ie/en/social-welfare/disability-and-illness/illness-benefit/" },
+    source_url: "https://www.citizensinformation.ie/en/social-welfare/disability-and-illness/illness-benefit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-welfare-pcb",
+    name: "Partial Capacity Benefit",
+    specialty: ["adultdisability"],
+    county: ["national"],
+    blurb: "Explains the payment for people returning to work with reduced capacity after illness.",
+    contact: { web: "www.citizensinformation.ie/en/social-welfare/disability-and-illness/partial-capacity-benefit/" },
+    source_url: "https://www.citizensinformation.ie/en/social-welfare/disability-and-illness/partial-capacity-benefit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-social-home-support",
+    name: "Home Support Service (Citizens Information)",
+    specialty: ["olderpersons"],
+    county: ["national"],
+    blurb: "Citizens Information explanation of HSE-funded home support for older people and how to apply.",
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/health-services-for-older-people/home-support-service/" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/health-services-for-older-people/home-support-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-rights-open-disclosure",
+    name: "Patient Safety (Notifiable Incidents and Open Disclosure) Act 2023",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "HSE page on mandatory open disclosure of notifiable incidents. Written for staff; use as a reference.",
+    contact: { web: "www2.healthservice.hse.ie/organisation/qps-incident-management/open-disclosure/patient-safety-notifiable-incidents-and-open-disclosure-act-2023/" },
+    source_url: "https://www2.healthservice.hse.ie/organisation/qps-incident-management/open-disclosure/patient-safety-notifiable-incidents-and-open-disclosure-act-2023/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-pop-ip-2026",
+    name: "Applying for international protection from 12 June 2026",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "Explains the process for applications made from 12 June 2026, including screening with a preliminary health assessment.",
+    contact: { web: "www.citizensinformation.ie/en/moving-country/asylum-seekers-and-refugees/the-asylum-process-in-ireland/applying-for-international-protection-in-ireland-from-12-june-2026/" },
+    source_url: "https://www.citizensinformation.ie/en/moving-country/asylum-seekers-and-refugees/the-asylum-process-in-ireland/applying-for-international-protection-in-ireland-from-12-june-2026/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-pop-ipas-health",
+    name: "IPAS: integration supports for residents",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "Describes HSE migrant health teams, sessional GP clinics and interpreting for people living in IPAS accommodation.",
+    contact: { web: "www.gov.ie/en/international-protection-accommodation-services-ipas/publications/integration-supports-for-residents/" },
+    source_url: "https://www.gov.ie/en/international-protection-accommodation-services-ipas/publications/integration-supports-for-residents/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-access-isl-grant",
+    name: "Work and Access Communication Support Grant",
+    specialty: ["adultdisability"],
+    county: ["national"],
+    blurb: "Explains the grant for communication supports, including Irish Sign Language interpreting, at work.",
+    contact: { web: "www.citizensinformation.ie/en/employment/employment-and-disability/work-and-access-communication-support-grant/" },
+    source_url: "https://www.citizensinformation.ie/en/employment/employment-and-disability/work-and-access-communication-support-grant/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-vacc-flu",
+    name: "Flu vaccination (Citizens Information)",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "Explains who can get the free seasonal flu vaccine and where. Seasonal; check the page for the current season.",
+    contact: { web: "www.citizensinformation.ie/en/health/health-services/vaccinations/flu-vaccination/" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/vaccinations/flu-vaccination/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-transport-vas",
+    name: "New Vehicle Adaptation Scheme (framework announcement)",
+    specialty: ["adultdisability"],
+    county: ["national"],
+    blurb: "Department of Transport announcement of a new vehicle adaptation scheme. An announcement, not a live application route.",
+    contact: { web: "www.gov.ie/en/department-of-transport/press-releases/minister-canney-announces-framework-for-new-vehicle-adaptation-scheme/" },
+    source_url: "https://www.gov.ie/en/department-of-transport/press-releases/minister-canney-announces-framework-for-new-vehicle-adaptation-scheme/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-rights-dss",
+    name: "Decision Support Service: decision support arrangements",
+    specialty: ["rights"],
+    county: ["national"],
+    blurb: "The statutory Decision Support Service's own guide to the types of decision support arrangement under the Assisted Decision-Making (Capacity) Act 2015.",
+    contact: { web: "www.decisionsupportservice.ie/services/decision-support-arrangements" },
+    source_url: "https://www.decisionsupportservice.ie/services/decision-support-arrangements",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-pop-ipo",
+    name: "International Protection Office",
+    specialty: ["general"],
+    county: ["national"],
+    blurb: "Official International Protection Office site, with separate information for applications made before or from 12 June 2026.",
+    contact: { web: "ipo.irishimmigration.ie/" },
+    source_url: "https://ipo.irishimmigration.ie/",
+    urlStatus: "search-result",
+    verify: true
+  }
 ];
 
 // A small, curated set for the always-visible crisis banner — kept separate
