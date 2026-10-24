@@ -116,7 +116,21 @@
   }
   function isSensitiveQuery(raw) { return sensitiveRoute(raw) !== ""; }
 
-  const api = { sensitiveRoute: sensitiveRoute, isSensitiveQuery: isSensitiveQuery, normalise: normalise, prepare: prepare, matcher: matcher, alsoSearched: alsoSearched, contains: hit, isCrisisQuery: isCrisisQuery };
+  // Sensitive topics with no neutral page of their own (eating disorders, pregnancy loss, perinatal
+  // mental health, crisis). These are searched in place: results show under a neutral heading and
+  // the words never reach the address bar, tab title, results heading or screen-reader announcement.
+  // Membership is a proposal pending Elaine's confirmation (brief of 24 Oct 2026). "pregnancy"
+  // alone, "mental health" alone and "abuse" alone are deliberately not listed.
+  var PRIVATE_SEARCH_PHRASES = ["eating disorder", "eating disorders", "anorexia", "bulimia", "binge eating", "orthorexia",
+    "miscarriage", "miscarriages", "pregnancy loss", "stillbirth", "perinatal mental health", "perinatal depression",
+    "postnatal depression", "postpartum depression", "perinatal"];
+  function isPrivateSearch(raw) {
+    if (isSensitiveQuery(raw) || isCrisisQuery(raw)) return true;
+    var padded = " " + normalise(raw) + " ";
+    return PRIVATE_SEARCH_PHRASES.some(function (t) { return padded.indexOf(" " + t + " ") !== -1; });
+  }
+
+  const api = { sensitiveRoute: sensitiveRoute, isSensitiveQuery: isSensitiveQuery, isPrivateSearch: isPrivateSearch, normalise: normalise, prepare: prepare, matcher: matcher, alsoSearched: alsoSearched, contains: hit, isCrisisQuery: isCrisisQuery };
   root.HHSearch = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : this);

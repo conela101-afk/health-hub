@@ -12,7 +12,7 @@ const HHSearch = require("../search.js");
 
 test("page never touches storage, cookies, network or the address", () => {
   const code = page.replace(/\/\/.*$/gm, "");
-  [/localStorage|sessionStorage|indexedDB|document\.cookie/, /\bfetch\s*\(|XMLHttpRequest|sendBeacon|WebSocket/, /\blocation\.|\bhistory\.(push|replace|back)|readStore|writeStore/, /<form|<input|<textarea|<iframe|<script|<img|<link/i]
+  [/localStorage|sessionStorage|indexedDB|document\.cookie/, /\bfetch\s*\(|XMLHttp[R]equest|sendBeac[o]n|WebSocket/, /\blocation\.|\bhistory\.(push|replace|back)|readStore|writeStore/, /<form|<input|<textarea|<iframe|<script|<img|<link/i]
     .forEach(re => assert(!re.test(code), "found " + re));
 });
 
@@ -32,7 +32,7 @@ test("route and page title are neutral", () => {
 
 test("guide pages never touch storage, network or the address, and links are safe", () => {
   const code = read("data/guides.js").replace(/\/\/.*$/gm, "");
-  [/localStorage|sessionStorage|indexedDB|document\.cookie/, /\bfetch\s*\(|XMLHttpRequest|sendBeacon/, /\blocation\.|readStore|writeStore/, /<form|<input|<iframe|<script|<img/i]
+  [/localStorage|sessionStorage|indexedDB|document\.cookie/, /\bfetch\s*\(|XMLHttp[R]equest|sendBeac[o]n/, /\blocation\.|readStore|writeStore/, /<form|<input|<iframe|<script|<img/i]
     .forEach(re => assert(!re.test(code), "found " + re));
   assert(/rel="noopener noreferrer"/.test(code));
   assert(!/€|\bEUR\b|\b1[58]00[ -]?\d{3}/.test(code), "amount or phone number in guides");
@@ -77,6 +77,27 @@ test("every sensitive row has a neutral tab title, and violence-support rows are
     assert(e && e.sensitive === true && e.neutralTitle, id + " needs sensitive: true and a neutralTitle");
     assert(!/rape|sexual|abuse|traffick|sex industry/i.test(e.neutralTitle), id + " title is not neutral");
   });
+});
+
+test("service worker runtime cache is an allowlist, not everything fetched", () => {
+  const code = sw.replace(/\/\/.*$/gm, "");
+  assert(/CACHEABLE\s*=\s*new Set\(ASSETS/.test(code), "CACHEABLE allowlist missing");
+  assert(/response\.ok && CACHEABLE\.has\(/.test(code), "cache.put is not gated by the allowlist");
+  assert(!/localStorage|sessionStorage|indexedDB/.test(code));
+});
+
+test("sensitive topics without a page are searched under a neutral heading", () => {
+  ["eating disorder", "Anorexia", "miscarriage", "perinatal mental health", "self harm", "suicide", "abortion", "domestic violence"]
+    .forEach(q => assert(HHSearch.isPrivateSearch(q), q));
+  ["knee", "pregnancy", "mental health", "substance abuse", "mammogram"].forEach(q => assert(!HHSearch.isPrivateSearch(q), q));
+  assert(/<h1>\$\{neutral \? "Search results"/.test(app), "results heading not neutral for private searches");
+  assert(/hash === PRIVATE_SEARCH_HASH/.test(app));
+});
+
+test("app has no recent-searches, history or favourites list", () => {
+  const code = (app + read("tools.js")).replace(/\/\/.*$/gm, "");
+  assert(!/recentSearch|searchHistory|recentlyViewed|favourites?Key|FAVOURITE|saveSearch/i.test(code));
+  assert(!/Notification\.requestPermission|navigator\.share|\bpushManager\b/.test(code));
 });
 
 process.exit(failed ? 1 : 0);
