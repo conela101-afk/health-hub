@@ -5,6 +5,9 @@
 - Added `scripts/test-check-third-party.sh`: builds throwaway trees and asserts the checker exits 1 on a bad `index.html`, root `.js`, `sw.js`, `data/` file and `styles.css`, exits 0 on a clean tree, and ignores the same patterns under `scripts/`. All pass; the checker still exits 0 on the real repo.
 - `.github/workflows/data-integrity.yml` runs `bash scripts/test-check-third-party.sh` as the last step (placed at the end so it does not conflict with the separate CI PR, which adds the `check-third-party.sh` step itself). No app, data or `sw.js` change.
 
+## 2026-10-24 [Claude] (CI: third-party and sensitive-privacy checks)
+- `.github/workflows/data-integrity.yml` now also runs `scripts/test-sensitive-privacy.js` and `scripts/check-third-party.sh`, placed after the pregnancy privacy step. Both exit 0 locally on current main. No app, data or `sw.js` change.
+
 ## 2026-10-24 [Claude] (ROI coverage-gap brief, candidate rows)
 - From the 24 Oct ROI coverage-gap brief: 11 candidate rows in `data.js` (two more below), all `verify: true`, `urlStatus: "search-result"`, no `checked`, no rate, fee, threshold or contact detail. Covers HSE Health Regions (two rows), Illness Benefit, Partial Capacity Benefit, Citizens Information Home Support Service, open disclosure (Patient Safety Act 2023), international protection from 12 June 2026, IPAS health supports, the Work and Access Communication Support Grant, flu vaccination (Citizens Information) and the new Vehicle Adaptation Scheme announcement. `sw.js` cache v38 to v39 (after merging main). 826 entries, validators clean.
 - Skipped as already present: the HSE urgent care finder, Disability Allowance, Carer's Allowance, Invalidity Pension, the disability and illness payments hub, Assisted Decision-Making, Advance Healthcare Directives and the HSE home support application row.
