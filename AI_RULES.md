@@ -151,6 +151,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-24 [Claude] — ROI coverage-gap brief: 11 unverified candidate rows, two hosts withheld for approval. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-21 [Claude] — Opt-in `#/install` page built on a branch (footer link only, nothing stored, no popup). Copy and device checks unconfirmed; manifest icon/orientation proposals pending. See `CHANGELOG.md`.
 - 2026-10-21 [Claude] — Session 5: scopes only (`SCOPE-session5-2026-10-21.md`), no build; each item needs Elaine's approval. See `CHANGELOG.md`.
 - 2026-10-21 [Claude] — AskCI link added via PR on the schemes pages; Elaine to open the URL and clear `verify` (re-check mid-Jan 2027). See `CHANGELOG.md` and `GAPS.md`.
