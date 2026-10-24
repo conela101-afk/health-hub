@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-24 [Claude] (check-third-party.sh diagnosis, no code change)
+- Reported failure did not reproduce. This branch is at `d2cb3c3`, identical to `origin/main`, so `scripts/test-pregnancy-privacy.js` and `scripts/test-sensitive-privacy.js` do not differ from main and no rebase was needed. `scripts/check-third-party.sh` exits 0. The only `XMLHttpRequest`/`sendBeacon` text in the repo is the script's own pattern list and a CHANGELOG line (the `.sh` is not scanned; the CHANGELOG is not `.html`/`.css`/`.js`).
+- `node --check` passes on every root and `scripts/` `.js` file. `validate-data.js`, `test-validate-data.js`, `test-aon-dates.js`, `test-pregnancy-privacy.js`, `test-sensitive-privacy.js`, `validate-costs.js`, `validate-screening.js` and `validate-vaccines.js` all exit 0.
+- CI gap found: `.github/workflows/data-integrity.yml` does not run `check-third-party.sh` or `test-sensitive-privacy.js`. Not changed here; proposed as a separate small PR.
+- If the script fails elsewhere, it is likely a branch whose own test file contains those regex literals (the script scans `scripts/*.js`); the proposed fix is to limit the scan to shipped files and add a bad-fixture exit-1 check, also as its own PR.
+
 ## 2026-10-24 [Claude] (ROI coverage-gap brief, candidate rows)
 - From the 24 Oct ROI coverage-gap brief: 11 candidate rows in `data.js` (two more below), all `verify: true`, `urlStatus: "search-result"`, no `checked`, no rate, fee, threshold or contact detail. Covers HSE Health Regions (two rows), Illness Benefit, Partial Capacity Benefit, Citizens Information Home Support Service, open disclosure (Patient Safety Act 2023), international protection from 12 June 2026, IPAS health supports, the Work and Access Communication Support Grant, flu vaccination (Citizens Information) and the new Vehicle Adaptation Scheme announcement. `sw.js` cache v38 to v39 (after merging main). 826 entries, validators clean.
 - Skipped as already present: the HSE urgent care finder, Disability Allowance, Carer's Allowance, Invalidity Pension, the disability and illness payments hub, Assisted Decision-Making, Advance Healthcare Directives and the HSE home support application row.
