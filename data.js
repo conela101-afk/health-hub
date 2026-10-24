@@ -12685,6 +12685,52 @@ TOOL_FACTS.push(
 
 // Strings every guided-tool page shows. Kept here so wording changes are a
 // content edit, not a code edit.
+// "Where do I start?" page (#/start). Navigation by task only: no health questions, no triage, nothing
+// stored. Every href is an internal route; scripts/test-start-links.js checks that each one exists.
+// Wording is a proposal for Elaine to edit.
+const START_POINTS = [
+  { id: "complain", label: "I want to make a complaint", hint: "Which body to go to, the stages and the time limits, then a letter.", href: "#/tools/complaints" },
+  { id: "records", label: "I want a copy of my records", hint: "Freedom of information or a subject access request, and how to track the deadline.", href: "#/tools/records" },
+  { id: "waiting", label: "I'm on a waiting list", hint: "What the letters and statuses mean, and how to ask where you are.", href: "#/tools/waiting" },
+  { id: "discharge", label: "I'm leaving hospital, or someone I know is", hint: "A page to print with medicines, appointments, contacts and questions to ask.", href: "#/tools/discharge" },
+  { id: "schemes", label: "I want to know which card or scheme applies", hint: "Medical cards, GP visit cards and cross-border treatment schemes, with links to the official pages.", href: "#/tools/schemes" },
+  { id: "costs", label: "I want to know what I might pay", hint: "Medicines, GP visits and cross-border costs, scheme by scheme.", href: "#/costs" },
+  { id: "aon", label: "My child is waiting for an Assessment of Need", hint: "A deadline calculator, letters and the steps to escalate (Republic of Ireland).", href: "#/tools/aon" },
+  { id: "find", label: "I want to find a service near me", hint: "Browse by county, or by the kind of service.", href: "#/county" },
+];
+// Letter to an elected representative (#/advocacy/rep-letter). Version 1: no representative data is stored;
+// the person types the name if they want it in the greeting. Wording is neutral across parties: no party,
+// policy or clinical detail. Wording is a proposal for Elaine to edit.
+const REP_LETTER = {
+  roles: [
+    { id: "td", label: "TD (Dáil Éireann)", greeting: "Deputy", asksQuestion: true },
+    { id: "senator", label: "Senator (Seanad Éireann)", greeting: "Senator", asksQuestion: true },
+    { id: "councillor", label: "Councillor", greeting: "Councillor", asksQuestion: false },
+    { id: "mla", label: "MLA (Northern Ireland Assembly)", greeting: "", asksQuestion: true },
+    { id: "mp", label: "MP (Westminster)", greeting: "", asksQuestion: true },
+  ],
+  topics: [
+    { id: "waiting", label: "A long wait for an appointment, assessment or treatment", phrase: "a long wait for an appointment, assessment or treatment" },
+    { id: "access", label: "Difficulty getting a service where I live", phrase: "difficulty getting a health or care service where I live" },
+    { id: "complaint", label: "A complaint that has not been resolved", phrase: "a complaint to a health service that has not been resolved" },
+    { id: "records", label: "A records request that has not been answered", phrase: "a request for my health records that has not been answered" },
+    { id: "cost", label: "A decision about a card, scheme or cost", phrase: "a decision about a health card, scheme or cost" },
+    { id: "other", label: "Something else", phrase: "a problem with a health or care service" },
+  ],
+  done: [
+    { id: "spoke", label: "I have spoken to the service directly", text: "I have spoken to the service directly." },
+    { id: "complained", label: "I have made a formal complaint", text: "I have made a formal complaint." },
+    { id: "records", label: "I have asked for my records", text: "I have asked for my records." },
+    { id: "gp", label: "I have asked my GP for help", text: "I have asked my GP for help." },
+  ],
+  asks: [
+    { id: "contact", label: "Contact the service or the HSE about my case and ask for a reply", text: "Contact the service, or the HSE, about my case and ask for a reply.", checked: true },
+    { id: "question", label: "Raise it with the Minister, or as a parliamentary question, if you think that is appropriate", text: "Raise it with the Minister, or as a parliamentary question, if you think that is appropriate.", checked: false, needsRole: "asksQuestion" },
+    { id: "routes", label: "Tell me what other steps are open to me", text: "Tell me what other steps are open to me.", checked: true },
+  ],
+  consent: "I consent to you contacting the relevant service about my case and sharing the details in this letter with them.",
+};
+
 // AskCI: one outbound link, shown on the schemes and entitlements pages only (not attached to entries).
 // Pilot status; re-check mid-January 2027 (see GAPS.md). Not opened by a person yet.
 TOOL_FACTS.push(

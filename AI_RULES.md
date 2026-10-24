@@ -153,6 +153,8 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-24 [Claude] — Letter to your TD or councillor, version 1 (`#/advocacy/rep-letter`, `REP_LETTER`), no representative data, no new host; wording for Elaine to edit. See `CHANGELOG.md`.
+- 2026-10-24 [Claude] — "Where do I start?" page (`#/start`, `START_POINTS`) via PR; wording and order for Elaine to edit. See `CHANGELOG.md`.
 - 2026-10-24 [Claude] — `check-third-party.sh` narrowed to shipped files (not `scripts/`) with a bad-fixture exit-1 test; PR only. See `CHANGELOG.md`.
 - 2026-10-24 [Claude] — CI now runs `test-sensitive-privacy.js` and `check-third-party.sh`; workflow change only, PR only. See `CHANGELOG.md`.
 - 2026-10-24 [Claude] — ROI coverage-gap brief: 13 unverified candidate rows, two hosts approved (Tier 1). See `CHANGELOG.md` and `GAPS.md`.
