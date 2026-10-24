@@ -33,6 +33,17 @@
     if (location.hash === "#/install") renderInstall();
   });
 
+  // Offline banner. navigator.onLine only says whether there is a network
+  // interface, so a failed section load also marks us offline; the next
+  // successful load or an "online" event clears it. Nothing is stored.
+  const offlineBanner = document.getElementById("offlineBanner");
+  function setOffline(off){
+    if (offlineBanner) offlineBanner.hidden = !off;
+  }
+  window.addEventListener("offline", () => setOffline(true));
+  window.addEventListener("online", () => setOffline(false));
+  setOffline(navigator.onLine === false);
+
   // Calm mode (user-facing label; internal names kept as "simple" for
   // continuity): a persistent, sitewide low-clutter/high-contrast toggle for
   // moments of sensory overload, panic, or executive dysfunction. Stores only
@@ -1221,8 +1232,9 @@ ${name}`;
       const isCss = /\.css$/.test(src);
       const el = document.createElement(isCss ? "link" : "script");
       if (isCss){ el.rel = "stylesheet"; el.href = src; } else { el.src = src; }
-      el.onload = () => { assetLoaded.add(src); resolve(); };
+      el.onload = () => { assetLoaded.add(src); if (navigator.onLine !== false) setOffline(false); resolve(); };
       el.onerror = () => {
+        setOffline(true);
         delete assetPromises[src];
         el.remove();
         reject(new Error("Could not load " + src));
@@ -1245,7 +1257,7 @@ ${name}`;
       announceRouteChange();
     }).catch(() => {
       if (location.hash !== hash) return;
-      app.innerHTML = `<div class="empty-state">Couldn't load this section. Check your connection and try again.</div>`;
+      app.innerHTML = `<div class="empty-state">Couldn't load this section, and it isn't saved on this device yet. Check your connection and try again.</div>`;
     });
   }
 
