@@ -158,6 +158,7 @@
     { name: "Screening: who is invited", href: "#/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear test mammogram fit test bowel breast cervical aneurysm aaa diabetic eye retinascreen retinopathy invited age" },
     { name: "Nursing homes: choosing, paying and raising a concern", href: "#/advocacy/schemes", keywords: "nursing home nursing homes residential care older people hiqa inspection report choosing a nursing home fair deal complaint concern ombudsman residents rights" },
     { name: "Decision-making papers (enduring power of attorney, advance healthcare directive)", href: "#/advocacy/schemes", keywords: "enduring power of attorney epa advance healthcare directive decision making representative assisted decision making capacity act decision support service capacity" },
+    { name: "Where do I start?", href: "#/start", keywords: "start begin beginning first not sure where do i start help me where to go what next" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
     { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
@@ -407,6 +408,7 @@
         <h2 class="guided-row-title">Guided tools</h2>
         <div class="guided-row-grid">${items.map(([href, label]) => `<a class="guided-link" href="${href}">${label}</a>`).join("")}</div>
         <a class="guided-all" href="#/tools">All guided tools ›</a>
+        <a class="guided-all" href="#/start">Not sure where to start? ›</a>
       </nav>
     `;
   }
@@ -2348,6 +2350,24 @@ ${name}`;
     });
   }
 
+  // "Where do I start?": a list of everyday tasks, each linking to an existing page. It asks nothing about
+  // health and keeps nothing: the person picks the line that sounds like their situation.
+  function renderStart(){
+    const items = typeof START_POINTS !== "undefined" ? START_POINTS : [];
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Where do I start?</h1>
+        <p class="count">Pick the line that sounds most like what you need.</p>
+      </div>
+      <ul class="start-list">
+        ${items.map(s => `<li><a class="start-link" href="${escapeHtml(s.href)}"><strong>${escapeHtml(s.label)}</strong><span>${escapeHtml(s.hint)}</span></a></li>`).join("")}
+      </ul>
+      <p>If none of these fit, type what you need in the search box at the top of the page. For urgent or out-of-hours care, see <a href="#/out-of-hours">out-of-hours and urgent care</a>.</p>
+      <p class="checked-note">This page only points to other pages. It does not ask about your health or give advice, and nothing you do here is saved.</p>
+    `;
+  }
+
   function route(){
     const hash = location.hash || "#/";
     const parts = hash.replace(/^#\//, "").split("/").filter(Boolean);
@@ -2378,6 +2398,7 @@ ${name}`;
     else if (parts[0] === "pregnancy") withAssets(["data/pregnancy.js"], () => window.HH_PREGNANCY.render(app, { escapeHtml }));
     else if (parts[0] === "guide" && parts[1]) withAssets(["data/guides.js"], () => { if (!window.HH_GUIDES.render(parts[1], app, { escapeHtml })) renderHome(); });
     else if (parts[0] === "install") renderInstall();
+    else if (parts[0] === "start") renderStart();
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();

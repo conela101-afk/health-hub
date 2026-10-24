@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-24 [Claude] ("Where do I start?" page, `#/start`)
+- New route `#/start` (`renderStart` in `app.js`) listing eight everyday tasks, each a link to an existing page; text lives in `START_POINTS` in `data.js`. Task-based only: no health questions, no triage, nothing stored (checked: localStorage and sessionStorage unchanged after visiting). Added to the search index (`TOOL_PAGES`) and as a "Not sure where to start?" link under the home page's guided-tools row. The existing home pill rows are unchanged.
+- `scripts/test-start-links.js` checks every `href` resolves to a real route or tool id (and fails on a bad one). Not yet in `data-integrity.yml`: the push token cannot edit workflow files, so add `node scripts/test-start-links.js` there by hand (P4).
+- Wording, order and the eight starting points are proposals for Elaine to edit. No directory entry change. `sw.js` cache v39 to v40.
 ## 2026-10-24 [Claude] (check-third-party.sh: scan shipped files only)
 - `scripts/check-third-party.sh` now scans only shipped files: `*.html`/`*.css`/`*.js` at the repo root (`index.html`, `app.js`, `data.js`, `search.js`, `tools.js`, `sw.js`, `styles.css`) and everything under `data/`. `scripts/` is no longer scanned, so a test can hold `XMLHttpRequest`/`sendBeacon` regex literals without failing it. `vendor/` stays excluded. `CHECK_ROOT` overrides the repo root for testing.
 - Added `scripts/test-check-third-party.sh`: builds throwaway trees and asserts the checker exits 1 on a bad `index.html`, root `.js`, `sw.js`, `data/` file and `styles.css`, exits 0 on a clean tree, and ignores the same patterns under `scripts/`. All pass; the checker still exits 0 on the real repo.
