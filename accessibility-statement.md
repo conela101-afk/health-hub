@@ -25,6 +25,6 @@ We're working through these and will update this statement as each is verified. 
 
 ## Feedback
 
-If you use assistive technology and hit a barrier using Health Hub, please tell us — this is genuinely useful information and will be prioritised. [feedback form / contact link]
+If you use assistive technology and hit a barrier using Health Hub, please tell us — this is genuinely useful information and will be prioritised. [Tell us about a barrier](https://docs.google.com/forms/d/e/1FAIpQLSd5OrCxCBY_UWOECimHNqFqWgJ-ZpW9JgEgebSReD13XI59sQ/viewform)
 
 *Last reviewed: 6 Sep 2026 (drafted; not yet published — accessibility checklist not yet run)*

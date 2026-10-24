@@ -153,6 +153,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-24 [Claude] — New feedback form linked (footer, privacy text, accessibility statement, README) and a per-entry Report-a-problem link (name only; omitted on sensitive entries); PR only. See `CHANGELOG.md`.
 - 2026-10-24 [Claude] — CI now runs `test-sensitive-privacy.js` and `check-third-party.sh`; workflow change only, PR only. See `CHANGELOG.md`.
 - 2026-10-24 [Claude] — ROI coverage-gap brief: 13 unverified candidate rows, two hosts approved (Tier 1). See `CHANGELOG.md` and `GAPS.md`.
 - 2026-10-24 [Claude] — Install, icon and offline polish on a branch (Apple meta, offline banner and SW fallback, shorter footer); fonts and route titles were already done; icons blocked on an approved master. PR only. See `CHANGELOG.md`.

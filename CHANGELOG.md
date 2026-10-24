@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-24 [Claude] (new feedback form)
+- Footer "Let us know" link now points to the new Google Form; the old form ID is gone from the repo. Added a line to "Full privacy details" saying the link opens a Google Form, Google handles what is submitted, Health Hub stores nothing, and not to include personal health details. Accessibility statement placeholder replaced with the form link. README updated.
+- Added "Report a problem with this entry" on entry detail pages: new tab, prefills only the entry name in the page field (`entry.484140920`), no search terms or user state. Omitted on `sensitive` entries and any entry in the `dsv` specialty, because the name could reveal the topic. Not added to list cards: they are whole-card links and nested links are invalid HTML.
+- `sw.js` cache v39 to v40; the form is not precached. No `data.js` change.
+
 ## 2026-10-24 [Claude] (CI: third-party and sensitive-privacy checks)
 - `.github/workflows/data-integrity.yml` now also runs `scripts/test-sensitive-privacy.js` and `scripts/check-third-party.sh`, placed after the pregnancy privacy step. Both exit 0 locally on current main. No app, data or `sw.js` change.
 

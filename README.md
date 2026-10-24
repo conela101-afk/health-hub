@@ -100,7 +100,7 @@ The one deliberate exception: the out-of-hours map (`#/out-of-hours`) starts as 
 The service worker precaches the app shell, scripts, data files, icons and fonts on first load, and is network-first: it uses the network when it can and the saved copy when it can't. When the browser is offline, or a section fails to load, a banner says "You're offline. Showing what was last saved; some details may be out of date."
 
 - **Works offline after one online visit:** every page, search, the guided tools and letter builders, Calm mode, saved-on-device items (if you chose to save them).
-- **Needs a network:** the "Show map" tiles (always, from OpenStreetMap), the "Let us know" form, and every outbound link to an official site.
+- **Needs a network:** the "Show map" tiles (always, from OpenStreetMap), the "Let us know" feedback form (a Google Form owned by the Health Hub brand account; it collects nothing automatically, no sign-in, email or file upload, and the site itself stores nothing) and its per-entry "Report a problem with this entry" link (prefills only the entry name; omitted on sensitive and violence-and-abuse entries), and every outbound link to an official site.
 - A page that isn't saved yet shows the app with a "Couldn't load this section" message, not the browser's error page.
 
 ## Known limitations of this v1

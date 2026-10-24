@@ -740,6 +740,7 @@
     loadAsset("data/conditions.js").then(() => { if (location.hash === hash) renderSearch(query, neutral); }).catch(() => {});
   }
 
+  const FEEDBACK_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSd5OrCxCBY_UWOECimHNqFqWgJ-ZpW9JgEgebSReD13XI59sQ/viewform";
   function renderEntry(id){
     const e = ENTRIES.find(x => x.id === id);
     if (!e){ app.innerHTML = `<div class="empty-state">Not found.</div>`; return; }
@@ -771,6 +772,12 @@
     const verifyHtml = e.verify
       ? `<p class="checked-note">Not yet checked against the official page, so contact details may be missing or out of date.${e.source_url ? ` <a href="${e.source_url}" target="_blank" rel="noopener">Official source ↗</a>` : ""}</p>`
       : "";
+
+    // Report-a-problem link: opens the feedback form with only the entry name in the
+    // page field. Omitted for sensitive entries and the violence and abuse support
+    // section, where even the title could reveal the topic.
+    const reportHtml = (e.sensitive || e.specialty.includes("dsv")) ? "" :
+      `<p class="checked-note"><a href="${FEEDBACK_FORM}?usp=pp_url&entry.484140920=${encodeURIComponent(e.name)}" target="_blank" rel="noopener">Report a problem with this entry ↗</a></p>`;
 
     app.innerHTML = `
       <div class="page-head">
