@@ -161,7 +161,7 @@
     { name: "Nursing homes: choosing, paying and raising a concern", href: "#/advocacy/schemes", keywords: "nursing home nursing homes residential care older people hiqa inspection report choosing a nursing home fair deal complaint concern ombudsman residents rights" },
     { name: "Decision-making papers (enduring power of attorney, advance healthcare directive)", href: "#/advocacy/schemes", keywords: "enduring power of attorney epa advance healthcare directive decision making representative assisted decision making capacity act decision support service capacity" },
     { name: "Find care", href: "#/find", keywords: "find care services directory specialty area county condition facility waiting list" },
-    { name: "Know your rights", href: "#/rights-hub", keywords: "know your rights entitlements schemes costs what you pay guides" },
+    { name: "What applies to you", href: "#/rights-hub", keywords: "what applies to you what applies to me know your rights rights entitlements schemes costs what you pay guides" },
     { name: "Take action", href: "#/act", keywords: "take action complaint records letters foi discharge while you wait tools" },
     { name: "Get support", href: "#/support", keywords: "get support crisis who to contact support organisations help" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },

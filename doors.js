@@ -28,9 +28,9 @@
       ],
     },
     {
-      id: "rights", href: "#/rights-hub", title: "Know your rights",
-      blurb: "What you are entitled to, and what it costs.",
-      intro: "Entitlements, schemes, costs and plain-language guides.",
+      id: "rights", href: "#/rights-hub", title: "What applies to you",
+      blurb: "Entitlements, schemes, costs and guides.",
+      intro: "What may apply to you: entitlements, schemes, costs and plain-language guides.",
       groups: [
         { title: "Your entitlements", items: [
           { label: "The rights guide", desc: "Self-advocacy basics, with sources.", href: "#/advocacy/guide" },

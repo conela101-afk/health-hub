@@ -66,7 +66,7 @@ Object.entries(seen).forEach(([h, d]) => { if (d.length > 1) fail(`${h} is liste
 items.forEach(it => { if (!routes.has(it.href)) fail(`${it.href} is listed on a hub but is not a route`); });
 noneSegs.forEach(s => { if (s && !routes.has("#/" + s) && !DYNAMIC.some(d => d.startsWith("#/" + s + "/"))) fail(`OTHER_ROUTES lists "${s}" but there is no such route`); });
 if (!routeBody.includes("renderDoor(")) fail("route() does not render the hub pages");
-if (DOORS.length !== 4) fail("expected four doors");
+if (DOORS.length < 4) fail("expected at least the four doors");   // a fifth hub can be added to doors.js later without other changes
 DOORS.forEach(d => { if (!d.groups.length || d.groups.some(g => !g.items.length)) fail(`door ${d.id} has an empty group`); });
 // The bottom tab bar is not part of this redesign and must still point at its four routes.
 const tabHrefs = [...read("index.html").match(/<nav class="tabbar"[\s\S]*?<\/nav>/)[0].matchAll(/href="([^"]+)"/g)].map(m => m[1]);

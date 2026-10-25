@@ -15,7 +15,7 @@ A first-time user can reach any feature in three taps or fewer, from a Home that
 ## 2. Information architecture
 Four permanent doors. Every feature lives under exactly one door.
 - **Find care:** specialty directory, area/county directory, conditions directory, facilities layer, waiting list pages
-- **Know your rights:** entitlements, schemes and cards selector, costs page, AON explainer
+- **Know your rights** (renamed "What applies to you" on 25 Oct, see Decisions below): entitlements, schemes and cards selector, costs page, AON explainer
 - **Take action:** complaints navigator, records builder, letter templates, discharge passport, While you wait, FOI by hospital
 - **Get support:** crisis support, who to contact, support organisations, general support
 
@@ -118,3 +118,9 @@ White on plum 15.0. All text pairs pass AA. Line #DDD6C8 on paper is 1.3:1 and m
 2. Confirm `claude/start-page` is superseded, not merged.
 3. Door placement of unlisted pages. Default proposal: Find care: out-of-hours, medicines, vaccines, screening, facilities. Know your rights: `#/rights/disability-children`, pregnancy (neutral label), after-a-death and interpreting guides. Take action: prep, passport, log, SAR builder. Footer only: install.
 4. Waiting lists vs While you wait: `#/about/waiting-lists` under Find care, `#/tools/waiting` under Take action, cross-linked.
+
+## Decisions (Elaine, 25 Oct 2026)
+1. CI: Elaine adds `node scripts/test-doors.js` and the search audit step to `.github/workflows/data-integrity.yml` by hand. Step text is in the PR comment and the CHANGELOG entry.
+2. Heading clash: the door and its hub page are renamed "What applies to you". The Advocacy tab and its headings are untouched (its h1 stays "Know your rights"). The route stays `#/rights-hub`.
+3. Placements are reviewed by Elaine in the PR; the least certain are listed in the PR description.
+4. Design room: Home's door tiles and the hub pattern are driven by the list in `doors.js`, so one more hub can be added later without restructuring. Nothing for it is built, stubbed or mentioned in the app.
