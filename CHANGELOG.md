@@ -1,13 +1,12 @@
 # Changelog
 
-## 2026-10-25 [Claude] (Four doors, PR 1 of 4: door pages and bottom tabs)
-- Brief: `docs/briefs/four-doors-2026-10-25.md` (build order: 1 door pages and tabs, 2 Home and search, 3 Where do I start?, 4 colour tokens; PRs 1 and 4 are kept apart). This PR is 1 only.
-- New `doors.js` (precached, loaded after `data.js`): four doors, each with grouped rows, and `doorForHash()`. New routes `#/find`, `#/rights`, `#/act`, `#/support` render the door pages from it (`renderDoor` in `app.js`); rows are 48px minimum. Every existing route is listed under exactly one door (35 rows); cross-links already inside the pages were left as they are.
-- Bottom tabs are now Home, Find, Rights, Act, Support, with `aria-current="page"` on the active one (was a class only). The tab for a page comes from its door, so `#/specialty/*` and `#/county/*` light Find, and `#/advocacy/*` light the door that lists the section.
-- Advocacy: the seven-pill tab row is removed. Each section keeps its route (`#/advocacy/guide`, `templates`, `schemes`, `hospitals`, `contacts`, `orgs`, `general`, `sar-builder`) and now has its own heading with a back link to its door. Bare `#/advocacy` still shows the guide. Back link on `#/rights/disability-children` points to `#/rights`. Sections renamed in headings only: "The rights guide", "Support organisations".
-- Home is unchanged in this PR (new Home is PR 2). Search gains four entries for the door pages; `search-audit.js` output is identical to main.
-- New `scripts/test-doors.js` (not yet in CI: the push token cannot edit workflow files): checks every door route exists, no route is under two doors, nothing is orphaned, and old tab targets map to a door. `--table` prints the route-to-door table.
-- `sw.js` cache v39 to v40 (`doors.js` added). No `data.js` change, no CSP change, no new host, no new figures. Headless Chromium: all 35 rows open from Home in two taps with the right tab highlighted, no console errors, no external requests, no overflow at 320px, offline works after the cache update.
+## 2026-10-25 [Claude] (Four doors, PR 1 of 4: the four hub pages)
+- Brief: `docs/briefs/four-doors-2026-10-25.md`, with Elaine's amendment of 25 Oct: the bottom tab bar is **not** changed (Home, Specialty, Area, Advocacy stay as they were); the four doors are hub pages reached from Home. Build order: 1 hubs, 2 Home and search, 3 Where do I start?, 4 colour tokens (kept apart from 1). This entry is PR 1 only.
+- New `doors.js` (precached, loaded after `data.js`): four doors, each with grouped rows. New routes `#/find`, `#/rights-hub`, `#/act`, `#/support` render the hubs (`renderDoor` in `app.js`); rows are 48px minimum. `#/rights-hub` avoids a clash with `#/rights/disability-children`; bare `#/rights` still falls back to Home as before.
+- Home gets a plain 2x2 "Browse by door" block above the guided-tools row so the hubs can be reached; the full Home redesign is PR 2 and replaces it.
+- `aria-current="page"` is now set on the active bottom tab (it was a class only). Tab routing is the original first-segment logic. Advocacy, its seven tabs and headings, `tools.js`, and `index.html` apart from one script tag are unchanged.
+- `scripts/test-doors.js` generates the route list from the router in `app.js`, `TOOL_PAGES` (`app.js`), `TOOL_LIST` and the about pages (`tools.js`), the guides and the specialty and county lists in `data.js` (145 routes), and exits 1 if any route is unassigned, listed under two doors, or a hub row points at a route that does not exist. It also fails if the bottom tabs change. `--table` prints the route table. Not yet a CI step (the push token cannot edit workflow files).
+- `sw.js` cache v39 to v40 (`doors.js` added). Search gains four entries for the hubs; `search-audit.js` output is identical to main. No `data.js` change, no CSP change, no new host, no new figures.
 - Known and unchanged: axe reports one contrast failure on `#/advocacy/schemes` (`.checked-note` under AskCI, 4.28:1), present on main; it belongs to the colour PR.
 
 ## 2026-10-24 [Claude] (check-third-party.sh: scan shipped files only)

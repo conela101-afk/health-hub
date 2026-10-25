@@ -1,6 +1,6 @@
 # Navigation redesign "Four doors" (brief, 25 Oct 2026)
 
-Status: brief received and section 0 (pre-flight) reported. **Nothing built.** The brief as received was cut off at "9. BU"; section 9 is missing and must be supplied before build. Supersedes the "tab bar redesign out of scope" note in the 9 Oct navigation brief (that brief is not in the repo; only its CHANGELOG entry and the `REVIEW.md` findability test are).
+Status: sections 0 to 11 received, plus an amendment (bottom of this file). Section 0 reported; PR 1 built (see CHANGELOG). Supersedes the "tab bar redesign out of scope" note in the 9 Oct navigation brief (that brief is not in the repo; only its CHANGELOG entry and the `REVIEW.md` findability test are).
 
 Context: Elaine chose Option D from the mockups. Features are hard to find (Advocacy has seven pill tabs, some off screen; Home does not show what the app offers). A developer will review the result, so keep the structure simple and explainable.
 
@@ -27,7 +27,7 @@ Rules:
 ## 3. Home
 Top to bottom: header (wordmark, Calm, Exit); emergency strip (999 / 112, Crisis support; keep current wording and behaviour); "Where do I start?" row linking to the guided path; search box; "Or browse everything" with 2x2 door tiles and one-line descriptions. Nothing else above the fold.
 
-Bottom tabs: Home, Find, Rights, Act, Support. Each door page lists its features as grouped rows, 48px minimum height.
+Bottom tabs: ~~Home, Find, Rights, Act, Support~~ (withdrawn, see Amendment; the tab bar is unchanged). Each door page lists its features as grouped rows, 48px minimum height.
 
 ## 4. Search
 Client-side keyword and synonym matching over page titles, tool names and a small curated phrase list ("scan cancelled", "see my notes"). No AI, no network calls. Results show page name and door. Empty state links to "Where do I start?".
@@ -54,8 +54,26 @@ paper #F6F3EC, card #FFFFFF, line #DDD6C8, ink #1E1A2B, soft #5A5568, plum #2F15
 ## 8. Accessibility
 44px minimum touch targets. Real a, button and label elements. aria-current="page" on the active tab. Visible focus, logical tab order, works at 200% zoom and with a screen reader. Respect reduced motion. Calm and Exit work on every page. Re-run the existing accessibility audit checks and put results in the PR.
 
-## 9. (missing)
-The brief was truncated at "9. BU". Ask Elaine for the rest.
+## 9. Build order (separate PRs)
+1) Door pages, with route aliases and the route-to-door table. 2) New Home and search. 3) Where do I start? path. 4) Colour tokens and visual refresh. Do not combine PRs 1 and 4.
+
+## 10. Acceptance
+- Every existing feature reachable from Home in three taps or fewer (route table proves it).
+- Old links and bookmarks still work. Offline works after the cache update.
+- No console errors, no CSP violations, no third-party requests.
+- Contrast and accessibility results are in the PR.
+- Ask CI is not visible on Home, a door page or the guided path.
+
+## 11. End of session
+One CHANGELOG.md entry and one "Recent AI sessions" line. Run a full consistency check on any document edited (counts, cross-references, route table). List anything assumed or not verified.
+
+## Amendment (25 Oct 2026; supersedes sections 2 to 4 where they conflict)
+- Do NOT replace or rename the existing four bottom tabs. Leave the tab bar as it is. The four doors are four hub pages reached from Home only.
+- New hub routes (suggested `#/find`, `#/rights-hub`, `#/act`, `#/support`; Code chooses names that do not clash with existing routes such as `#/rights/...`). Chosen: `#/find`, `#/rights-hub`, `#/act`, `#/support`.
+- Before building, generate the full route list from the router in `app.js` and `TOOL_PAGES`. Assign every route to a door or to "intentionally none" (for example `#/install`) in a table. Fail the PR if any route is unassigned (`scripts/test-doors.js`).
+- Known routes to place: `#/out-of-hours`, `#/pregnancy`, `#/medicines`, `#/screening`, `#/about/screening`, `#/about/waiting-lists`, `#/vaccines`, `#/prep`, `#/log`, the Patient Passport route (`#/passport`), `#/advocacy/sar-builder`, `#/guide/after-a-death`, `#/guide/interpreting`, `#/rights/disability-children`, county and specialty pages, and the Advocacy sub-pages.
+- Section 3's "Bottom tabs: Home, Find, Rights, Act, Support" is withdrawn.
+
 
 ---
 

@@ -80,7 +80,7 @@ This v1 was compiled from public HSE and voluntary-sector websites. Phone number
 index.html      — page shell, loads everything else
 styles.css      — all styling (design tokens at the top), self-hosted @font-face rules
 app.js          — hash-based router + rendering (no framework, no build step)
-doors.js        — the four doors (Find care, Know your rights, Take action, Get support): which door lists each route. Edit this to move a feature; `node scripts/test-doors.js --table` prints the route table
+doors.js        — the four hub pages (Find care, Know your rights, Take action, Get support) reached from Home: which hub lists each route. Edit this to move a feature; `node scripts/test-doors.js --table` prints the route table
 data.js         — all service listings, specialties, and counties — edit this to update content
 manifest.json   — PWA metadata (name, icons, colours). Optional install guidance lives at #/install (footer link)
 sw.js           — service worker, network-first with offline fallback

@@ -1,11 +1,11 @@
 // The four doors: the single list of where every feature lives. Each feature is under exactly one door.
-// app.js renders the door pages and highlights the bottom tab from this file; scripts/test-doors.js
-// checks it against the routes in app.js. Navigation only: no facts, figures or contact details here.
+// app.js renders the four hub pages (reached from Home; the bottom tab bar is separate and unchanged) from
+// this file; scripts/test-doors.js checks it against the routes in app.js and tools.js. Navigation only: no facts, figures or contact details here.
 // Existing hash routes are unchanged; this file only decides which door lists each one.
 (function(root){
   const DOORS = [
     {
-      id: "find", href: "#/find", tab: "Find", title: "Find care",
+      id: "find", href: "#/find", title: "Find care",
       blurb: "Find a service, a place or a condition.",
       intro: "Look up services by type of care, by where you live, or by condition.",
       groups: [
@@ -28,7 +28,7 @@
       ],
     },
     {
-      id: "rights", href: "#/rights", tab: "Rights", title: "Know your rights",
+      id: "rights", href: "#/rights-hub", title: "Know your rights",
       blurb: "What you are entitled to, and what it costs.",
       intro: "Entitlements, schemes, costs and plain-language guides.",
       groups: [
@@ -47,7 +47,7 @@
       ],
     },
     {
-      id: "act", href: "#/act", tab: "Act", title: "Take action",
+      id: "act", href: "#/act", title: "Take action",
       blurb: "Complain, ask for your records, prepare.",
       intro: "Step-by-step tools and letters. Nothing you type is sent anywhere.",
       groups: [
@@ -72,7 +72,7 @@
       ],
     },
     {
-      id: "support", href: "#/support", tab: "Support", title: "Get support",
+      id: "support", href: "#/support", title: "Get support",
       blurb: "Crisis help, who to contact, support groups.",
       intro: "If you need help now, start with crisis support.",
       groups: [
@@ -92,7 +92,7 @@
   // Routes that do not need a door row: deliberately not listed, with the reason.
   const OTHER_ROUTES = {
     "": "Home",
-    "find": "door page", "rights": "door page (with /rights/:page for guides)", "act": "door page", "support": "door page",
+    "find": "hub page", "rights-hub": "hub page", "act": "hub page", "support": "hub page",
     "search": "search results", "search-results": "private search results (privacy layer)",
     "entry": "a single directory entry, reached from lists",
     "install": "footer link only, by design",
@@ -108,15 +108,14 @@
   function doorForHash(hash){
     const h = (ALIASES[hash] || hash || "#/").replace(/\/+$/, "") || "#/";
     if (h === "#" || h === "#/") return "home";
-    const door = DOORS.find(d => h === d.href || h.startsWith(d.href + "/"));
-    if (door && h === door.href) return door.id;
+    const hub = DOORS.find(d => h === d.href);
+    if (hub) return hub.id;
     let best = null;
     items.forEach(it => {
       if ((h === it.href || h.startsWith(it.href + "/")) && (!best || it.href.length > best.href.length)) best = it;
     });
     if (best) return best.door;
     // Everything else under a directory route, including entries, belongs to Find care.
-    if (door) return door.id;
     return /^#\/(specialty|county|facilities|conditions|entry)/.test(h) ? "find" : null;
   }
 

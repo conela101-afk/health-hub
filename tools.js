@@ -1238,7 +1238,7 @@ window.HH_TOOLS = (function(){
     const link = id => { const f = fact(id); return f ? `<a href="${esc(f.source_url)}" target="_blank" rel="noopener">${esc(f.source_name)} ↗</a>` : ""; };
     app.innerHTML = `
       <div class="page-head">
-        <a class="back-link" href="#/rights">‹ Know your rights</a>
+        <a class="back-link" href="#/advocacy">‹ Know your rights</a>
         <h1>Children's disability services: how the pieces fit</h1>
         <p class="count">Republic of Ireland. Information, not legal or clinical advice.</p>
       </div>
