@@ -2288,6 +2288,7 @@ ${name}`;
   function markNewTabLinks(){
     document.querySelectorAll('a[target="_blank"]:not([data-nt])').forEach(a => {
       a.setAttribute("data-nt", "1");
+      if (/new tab/i.test(a.textContent)) return;   // the link text already says so (the footer feedback link)
       const cue = document.createElement("span");
       cue.className = "sr-only";
       cue.textContent = " (opens in a new tab)";
