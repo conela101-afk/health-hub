@@ -784,3 +784,33 @@ body.on-home .search-bar{ display:none; }
 .emergency-line{ color:var(--ink); }
 .quick-links-title{ font-size:13px; color:var(--ink-soft); font-weight:700; margin:0 0 12px; }
 .home-browse-title{ font-family:var(--font-display); font-size:19px; font-weight:600; margin:0 0 12px; color:var(--ink); }
+
+/* Home: "Where do I start?" row. Where do I start? page (#/start). */
+.home-start{
+  display:flex; align-items:center; gap:12px; min-height:52px; padding:10px 16px; margin:14px 0 14px;
+  background:var(--violet-tint); border:1px solid var(--line); border-radius:var(--radius); color:var(--ink);
+}
+.home-start strong{ display:block; font-size:15px; font-weight:700; }
+.home-start .n{ font-size:13px; color:var(--ink-soft); display:block; }
+.home-start .row-body{ flex:1; min-width:0; }
+.home-start .arrow{ color:var(--ink-soft); font-size:18px; }
+.home-start:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }
+.start-form{ margin:0 0 22px; }
+.start-fieldset{ border:0; padding:0; margin:0 0 20px; display:flex; flex-direction:column; gap:8px; min-width:0; }
+.start-fieldset legend{ font-family:var(--font-display); font-size:18px; font-weight:600; margin:0 0 10px; padding:0; color:var(--ink); }
+.start-option{
+  display:flex; align-items:flex-start; gap:12px; min-height:48px; padding:12px 14px;
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); cursor:pointer;
+}
+.start-option input{ width:22px; height:22px; margin:1px 0 0; flex-shrink:0; accent-color:var(--violet-deep); }
+.start-option input:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }
+.start-option .row-body strong{ display:block; font-size:15px; font-weight:600; }
+.start-option .n{ display:block; font-size:13px; color:var(--ink-soft); margin-top:2px; }
+.start-error{ color:var(--coral-deep); font-weight:600; margin:0 0 12px; }
+.start-submit{ width:100%; }
+.start-result h2{ font-family:var(--font-display); font-size:19px; font-weight:600; margin:18px 0 10px; }
+.start-result h2:focus{ outline:none; }
+.start-primary{ border:2px solid var(--violet-deep); }
+.start-result .copy-btn{ margin-top:16px; }
+.link-btn{ background:none; border:0; padding:0; min-height:24px; font:inherit; color:var(--violet-deep); text-decoration:underline; cursor:pointer; }
+.link-btn:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }

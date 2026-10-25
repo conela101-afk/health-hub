@@ -6,7 +6,7 @@
   const DOORS = [
     {
       id: "find", href: "#/find", title: "Find care",
-      blurb: "Find a service, a place or a condition.",
+      blurb: "Services, places and conditions.",
       intro: "Look up services by type of care, by where you live, or by condition.",
       groups: [
         { title: "Look something up", items: [
@@ -30,7 +30,7 @@
     },
     {
       id: "rights", href: "#/rights-hub", title: "What applies to you",
-      blurb: "Entitlements, schemes, costs and guides.",
+      blurb: "Entitlements, costs and guides.",
       intro: "What may apply to you: entitlements, schemes, costs and plain-language guides.",
       groups: [
         { title: "Your entitlements", items: [
@@ -47,7 +47,7 @@
     },
     {
       id: "act", href: "#/act", title: "Take action",
-      blurb: "Complain, ask for your records, prepare.",
+      blurb: "Complain, ask for records, prepare.",
       intro: "Step-by-step tools and letters. Nothing you type is sent anywhere.",
       groups: [
         { title: "Complain and ask", items: [
@@ -72,7 +72,7 @@
     },
     {
       id: "support", href: "#/support", title: "Get support",
-      blurb: "Crisis help, who to contact, support groups.",
+      blurb: "Crisis help and who to contact.",
       intro: "If you need help now, start with crisis support.",
       groups: [
         { title: "Help now", items: [
@@ -98,6 +98,7 @@
     "search": "search results", "search-results": "private search results (privacy layer)",
     "entry": "a single directory entry, reached from lists",
     "install": "footer link only, by design",
+    "start": "Where do I start? (guided path), linked from Home and from an empty search",
   };
 
   // Old bookmarks that have no row of their own, mapped to the row that carries them.

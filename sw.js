@@ -8,6 +8,7 @@ const ASSETS = [
   "./data.js",
   "./search.js",
   "./doors.js",
+  "./start.js",
   "./data/facilities.js",
   "./data/conditions.js",
   "./data/vaccines.js",
