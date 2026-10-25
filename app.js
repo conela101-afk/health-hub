@@ -475,6 +475,7 @@
         <h1>Where do I start?</h1>
         <p class="count">Two questions, then one next step. Nothing you choose is saved or sent.</p>
       </div>
+      <div class="start-emergency">${crisisBannerHtml()}</div>
       <form class="start-form" id="startForm" novalidate>
         <fieldset class="start-fieldset">
           <legend>1. What do you need help with?</legend>
@@ -506,12 +507,16 @@
       out.innerHTML = `
         <h2 id="startResultHeading" tabindex="-1">Your next step</h2>
         ${res.primary ? stepRow(res.primary, "start-primary") : `<p>${escapeHtml(res.message)}</p>`}
-        ${res.also.length ? `<h2 class="start-also">${res.primary ? "Also useful" : "These may help"}</h2><div class="simple-list">${res.also.map(s => stepRow(s)).join("")}</div>` : ""}
+        ${res.also.length ? `${res.primary ? `<h2 class="start-also">Also useful</h2>` : ""}<div class="simple-list">${res.also.map(s => stepRow(s)).join("")}</div>` : ""}
         <button type="button" class="copy-btn" id="startAgain">Start again</button>
       `;
-      document.getElementById("startResultHeading").focus();
+      // The result is its own screen: the questions are hidden until "Start again", so the emergency line
+      // above stays in view with the result.
+      form.hidden = true;
+      window.scrollTo(0, 0);
+      document.getElementById("startResultHeading").focus({ preventScroll: true });
       document.getElementById("startAgain").addEventListener("click", () => {
-        form.reset(); out.innerHTML = ""; form.elements.topic[0].focus();
+        form.reset(); form.hidden = false; out.innerHTML = ""; form.elements.topic[0].focus();
       });
     });
   }

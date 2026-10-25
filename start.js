@@ -21,7 +21,7 @@
     { id: "discharge", label: "I'm leaving hospital, or someone I know is", hint: "A page to print with medicines, appointments, contacts and questions to ask." },
     { id: "schemes", label: "I want to know which card or scheme applies", hint: "Medical cards, GP visit cards and cross-border treatment schemes, with links to the official pages." },
     { id: "costs", label: "I want to know what I might pay", hint: "Medicines, GP visits and cross-border costs, scheme by scheme." },
-    { id: "aon", label: "My child is waiting for an Assessment of Need", hint: "A deadline calculator, letters and the steps to escalate (Republic of Ireland only)." },
+    { id: "aon", label: "My child needs a disability assessment (Assessment of Need)", hint: "A deadline calculator, letters and the steps to escalate (Republic of Ireland only)." },
     { id: "find", label: "I want to find a service near me", hint: "Browse by county, or by the kind of service." },
   ];
 
@@ -37,7 +37,7 @@
     aon: {
       only: "roi", primary: "#/tools/aon", also: ["#/rights/disability-children"],
       elsewhere: {
-        message: "The Assessment of Need is a Republic of Ireland process, so there is no step for it here.",
+        message: "The Assessment of Need is a Republic of Ireland process, so we don't have a step for it here. These pages cover Northern Ireland too:",
         also: ["#/advocacy/contacts", "#/advocacy/orgs"],
       },
     },
