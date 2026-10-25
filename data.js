@@ -12691,6 +12691,45 @@ TOOL_FACTS.push(
   { id: "askci-pilot", text: "AskCI (pilot): AI chatbot from Citizens Information for general questions on schemes and entitlements. Answers aren't personalised advice, so check them against the linked citizensinformation.ie page.", jurisdiction: "ROI", source_url: "https://askcitizensinformation.ie/", source_name: "AskCI (Citizens Information Board)", last_verified: "2026-10-21", volatility: "high", verify: true, urlStatus: "search-result" }
 );
 
+// Letter to an elected representative (#/advocacy/rep-letter). Nothing about any representative is held here:
+// the person types the name if they want it in the greeting. Wording is neutral across parties: no party,
+// politician, campaign or policy is named, and no phone, email or fee appears. Information and administrative
+// use only: it asks for help raising a problem, it makes no legal claim and gives no clinical advice.
+// `regions` limits a role to one part of the island; `body` fills "{body}" in the first request.
+const REP_LETTER = {
+  regions: [
+    { id: "roi", label: "Republic of Ireland", body: "the HSE" },
+    { id: "ni", label: "Northern Ireland", body: "the Health and Social Care Trust" },
+  ],
+  roles: [
+    { id: "td", label: "TD (Dáil Éireann)", regions: ["roi"], greeting: "Deputy", asksQuestion: true },
+    { id: "senator", label: "Senator (Seanad Éireann)", regions: ["roi"], greeting: "Senator", asksQuestion: true },
+    { id: "mla", label: "MLA (Northern Ireland Assembly)", regions: ["ni"], greeting: "", asksQuestion: true },
+    { id: "mp", label: "MP (Westminster)", regions: ["ni"], greeting: "", asksQuestion: true },
+    { id: "councillor", label: "Councillor", regions: ["roi", "ni"], greeting: "Councillor", asksQuestion: false },
+  ],
+  topics: [
+    { id: "waiting", label: "A long wait for an appointment, assessment or treatment", phrase: "a long wait for an appointment, assessment or treatment" },
+    { id: "access", label: "Difficulty getting a service where I live", phrase: "difficulty getting a health or care service where I live" },
+    { id: "complaint", label: "A complaint that has not been resolved", phrase: "a complaint to a health service that has not been resolved" },
+    { id: "records", label: "A records request that has not been answered", phrase: "a request for my health records that has not been answered" },
+    { id: "cost", label: "A decision about a card, scheme or cost", phrase: "a decision about a health card, scheme or cost" },
+    { id: "other", label: "Something else", phrase: "a problem with a health or care service" },
+  ],
+  done: [
+    { id: "spoke", label: "I have spoken to the service directly", text: "I have spoken to the service directly." },
+    { id: "complained", label: "I have made a formal complaint", text: "I have made a formal complaint." },
+    { id: "records", label: "I have asked for my records", text: "I have asked for my records." },
+    { id: "gp", label: "I have asked my GP for help", text: "I have asked my GP for help." },
+  ],
+  asks: [
+    { id: "contact", label: "Contact the service about my case and ask for a reply", text: "Contact the service, or {body}, about my case and ask for a reply.", checked: true },
+    { id: "question", label: "Raise it with the Minister, or as a parliamentary question, if you think that is appropriate", text: "Raise it with the Minister, or as a parliamentary question, if you think that is appropriate.", checked: false, needsRole: "asksQuestion" },
+    { id: "routes", label: "Tell me what other steps are open to me", text: "Tell me what other steps are open to me.", checked: true },
+  ],
+  consent: "I consent to you contacting the relevant service about my case and sharing the details in this letter with them.",
+};
+
 const TOOL_UI_TEXT = {
   disclaimer: "Information, not clinical or legal advice.",
   verifyLabel: "Check the official page before relying on this",

@@ -153,6 +153,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-25 [Claude] — Letter to an elected representative rebuilt as a fresh PR (not the old #120 branch): `#/advocacy/rep-letter`, Take action row, region-aware roles and body, nothing stored, no outside link, `test-rep-letter.js`; wording awaits Elaine's approval before merge; cache v45. Not added to "Where do I start?". See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — Four doors PR 3 follow-up: Elaine's wording for the Assessment of Need topic and its Northern Ireland message, the crisis banner (999 / 112 line) added to `#/start`, each result its own screen; `test-home.js` checks the emergency line on all 16 results; cache v44. PR only. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — New feedback form link (`forms.gle/euhDXPnx8vw1msnR6`) in the footer, with a draft Google Form notice and a `test-feedback-link.js` check; host register unchanged (decision for Elaine); an older unmerged feedback branch still carries an earlier URL; cache v43. PR only. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — Four doors PR 3 of 4: "Where do I start?" (`#/start`, `start.js`): topic and location in, one next step and up to two also-useful out; static table, nothing stored; no Republic of Ireland page in a Northern Ireland result (checked in `test-doors.js`); Home row and empty-search link; cache v42. Reuses #119's topics; #119 to be closed. Colour is PR 4. PR only. See `CHANGELOG.md` and `docs/briefs/four-doors-2026-10-25.md`.

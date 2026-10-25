@@ -154,6 +154,7 @@
     { name: "My Patient Passport", href: "#/passport", keywords: "patient passport profile medical history" },
     { name: "My call & referral log", href: "#/log", keywords: "call referral log" },
     { name: "Prep for an appointment", href: "#/prep", keywords: "prep appointment checklist consultation waiting room message" },
+    { name: "Write to your elected representative (TD, councillor, MLA or MP)", href: "#/advocacy/rep-letter", keywords: "write to my td write to my councillor write to my mla write to my mp contact my representative contact my td elected representative td councillor tc dail deputy senator mla mp constituency raise a problem ask my td to help letter" },
     { name: "Build a SAR letter (guided form)", href: "#/advocacy/sar-builder", keywords: "sar subject access request letter gdpr records" },
     { name: "Find a Facility (regulated centres, HIQA & RQIA)", href: "#/facilities", keywords: "facility facilities hiqa rqia nursing home regulated centre" },
     { name: "Search a condition", href: "#/conditions", keywords: "condition conditions disease illness" },
@@ -519,6 +520,162 @@
         form.reset(); form.hidden = false; out.innerHTML = ""; form.elements.topic[0].focus();
       });
     });
+  }
+
+  // ---- Letter to an elected representative (REP_LETTER in data.js) ----
+  // Builds a short, neutral letter in the browser. Nothing is stored or sent: Copy, Print and the email
+  // button only hand the text to the person's own device. No representative names, constituencies or
+  // contact details are held here; the person types what they want in the letter.
+  function renderRepLetter(){
+    const R = REP_LETTER;
+    const el = id => document.getElementById(id);
+    const val = id => (el(id).value || "").trim();
+    const regionId = () => { const c = document.querySelector('input[name="rlRegion"]:checked'); return c ? c.value : ""; };
+    const check = (prefix, list) => list.map(x => `
+      <label class="check-row">
+        <input type="checkbox" id="${prefix}_${x.id}" ${x.checked ? "checked" : ""}>
+        <span>${escapeHtml(x.label)}</span>
+      </label>`).join("");
+    const opt = list => list.map(x => `<option value="${escapeHtml(x.id)}">${escapeHtml(x.label)}</option>`).join("");
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/act">‹ Take action</a>
+        <h1>Write to your elected representative</h1>
+        <p class="count">A TD, Senator, councillor, MLA or MP. Fill in your details and the letter updates as you go.</p>
+      </div>
+      <div class="callout">
+        <strong>A letter asking for help, not advice.</strong> It asks an elected representative to raise a problem with a health service. It names no party and takes no side. This page does not check who represents you: find their name and contact details on the official website of the Oireachtas, the Northern Ireland Assembly, the UK Parliament or your council.
+      </div>
+      <div class="callout">
+        <strong>Before you send it.</strong> A representative's office keeps what you send. Leave out medical detail you would not want kept.
+      </div>
+
+      <div class="prep-card">
+        <fieldset class="start-fieldset">
+          <legend class="prep-label">Where do you live?</legend>
+          ${R.regions.map(r => `<label class="start-option"><input type="radio" name="rlRegion" value="${r.id}"><span class="row-body"><strong>${escapeHtml(r.label)}</strong></span></label>`).join("")}
+        </fieldset>
+
+        <label class="prep-label" for="rlRole">Who are you writing to?</label>
+        <select id="rlRole" class="prep-input" disabled><option value="">Choose where you live first</option></select>
+
+        <label class="prep-label" for="rlRepName">Their surname (optional)</label>
+        <input type="text" id="rlRepName" class="prep-input" placeholder="Used in the greeting">
+
+        <label class="prep-label" for="rlName">Your full name</label>
+        <input type="text" id="rlName" class="prep-input" placeholder="e.g. Mary Murphy">
+
+        <label class="prep-label" for="rlAddress">Your address</label>
+        <textarea id="rlAddress" class="prep-input" rows="2" placeholder="Representatives usually need your address to confirm you live in their area"></textarea>
+
+        <label class="prep-label" for="rlArea">Constituency or electoral area (optional)</label>
+        <input type="text" id="rlArea" class="prep-input" placeholder="Only if you know it">
+
+        <label class="prep-label" for="rlContact">Your phone or email (optional)</label>
+        <input type="text" id="rlContact" class="prep-input">
+
+        <label class="prep-label" for="rlTopic">What is it about?</label>
+        <select id="rlTopic" class="prep-input">${opt(R.topics)}</select>
+
+        <label class="prep-label" for="rlWhat">What happened</label>
+        <textarea id="rlWhat" class="prep-input" rows="5" placeholder="Which service, the dates, and what you have already tried"></textarea>
+
+        <span class="prep-label">What you have already done (optional)</span>
+        <div class="check-list">${check("rlDone", R.done)}</div>
+
+        <span class="prep-label">What you would like them to do</span>
+        <div class="check-list">${check("rlAsk", R.asks)}</div>
+
+        <label class="save-toggle">
+          <input type="checkbox" id="rlConsent">
+          <span>Include my consent for them to contact the service about my case</span>
+        </label>
+
+        <p class="save-note">Nothing you type here is saved or sent anywhere. This form only exists in your browser tab. Closing or refreshing the page clears it.</p>
+      </div>
+
+      <div class="prep-card">
+        <h2>Your letter</h2>
+        <pre class="template-text" tabindex="0" role="region" aria-label="Text you can copy" id="rlOutput"></pre>
+        <button type="button" class="copy-btn" id="rlCopy" data-copy-target="rlOutput">Copy letter text</button>
+        <button type="button" class="copy-btn" id="rlPrint">Print / save PDF</button>
+        <label class="prep-label" for="rlEmail">Their email address (optional, to open your email app)</label>
+        <input type="email" id="rlEmail" class="prep-input" placeholder="Type it in from their official page">
+        <p><a class="pill" id="rlMailto" href="#" rel="noopener">Open in my email app</a></p>
+        <p class="save-note" id="rlMailNote" hidden>This letter is too long for some email apps to open. Use Copy letter text instead.</p>
+      </div>
+    `;
+
+    function letterText(){
+      const region = R.regions.find(r => r.id === regionId());
+      const role = R.roles.find(r => r.id === val("rlRole"));
+      if (!region || !role) return "Choose where you live and who you are writing to, and your letter will appear here.";
+      const topic = R.topics.find(t => t.id === val("rlTopic")) || R.topics[0];
+      const name = val("rlName") || "[Your name]";
+      const address = val("rlAddress") || "[Your address]";
+      const area = val("rlArea"), contact = val("rlContact"), repName = val("rlRepName");
+      const what = val("rlWhat") || "[Describe what happened: which service, the dates, and what you have already tried.]";
+      const greeting = role.greeting
+        ? `Dear ${role.greeting}${repName ? " " + repName : ""},`
+        : (repName ? `Dear ${repName},` : "Dear Sir or Madam,");
+      const done = R.done.filter(d => el("rlDone_" + d.id).checked).map(d => d.text);
+      const asks = R.asks.filter(a => (!a.needsRole || role[a.needsRole]) && el("rlAsk_" + a.id).checked).map(a => a.text.replace("{body}", region.body));
+      return `${name}
+${address}
+${area ? `Constituency or electoral area: ${area}\n` : ""}${contact ? `${contact}\n` : ""}
+[Date]
+
+${greeting}
+
+I am writing to ask for your help with ${topic.phrase}.
+
+WHAT HAPPENED
+${what}
+${done.length ? `\nWHAT I HAVE ALREADY DONE\n${done.map(t => "  - " + t).join("\n")}\n` : ""}
+WHAT I AM ASKING
+${asks.length ? asks.map(t => "  - " + t).join("\n") : "  - [tick at least one request above]"}
+${el("rlConsent").checked ? `\n${R.consent}\n` : ""}
+Thank you for your time. I would be grateful for a reply.
+
+Yours sincerely,
+
+${name}`;
+    }
+
+    function refresh(){
+      const role = R.roles.find(r => r.id === val("rlRole"));
+      R.asks.forEach(a => {
+        if (!a.needsRole) return;
+        el("rlAsk_" + a.id).closest(".check-row").hidden = !!role && !role[a.needsRole];
+      });
+      const text = letterText();
+      el("rlOutput").textContent = text;
+      const ready = !!role && !!regionId();
+      const topic = R.topics.find(t => t.id === val("rlTopic")) || R.topics[0];
+      const to = (el("rlEmail").value || "").trim();
+      const href = "mailto:" + encodeURIComponent(to).replace(/%40/g, "@") + "?subject=" + encodeURIComponent("Request for help: " + topic.label.toLowerCase()) + "&body=" + encodeURIComponent(text);
+      const hide = !ready || href.length > 1900;
+      const link = el("rlMailto");
+      link.hidden = hide;
+      link.setAttribute("href", hide ? "#" : href);
+      el("rlMailNote").hidden = !(ready && href.length > 1900);
+    }
+
+    // Choosing where you live decides which roles are offered and which body "the service, or ..." names.
+    document.querySelectorAll('input[name="rlRegion"]').forEach(r => r.addEventListener("change", () => {
+      const roles = R.roles.filter(x => x.regions.includes(regionId()));
+      const sel = el("rlRole");
+      sel.disabled = false;
+      sel.innerHTML = `<option value="">Choose who you are writing to</option>${opt(roles)}`;
+      refresh();
+    }));
+    ["rlRepName", "rlName", "rlAddress", "rlArea", "rlContact", "rlWhat", "rlEmail"].forEach(id => el(id).addEventListener("input", refresh));
+    ["rlRole", "rlTopic", "rlConsent"].forEach(id => el(id).addEventListener("change", refresh));
+    R.done.forEach(d => el("rlDone_" + d.id).addEventListener("change", refresh));
+    R.asks.forEach(a => el("rlAsk_" + a.id).addEventListener("change", refresh));
+    el("rlPrint").addEventListener("click", () => printOnly("rlOutput"));
+    refresh();
   }
 
   function renderSpecialtyIndex(){
@@ -2424,6 +2581,7 @@ ${name}`;
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
     else if (window.HH_DOORS && !parts[1] && window.HH_DOORS.DOORS.some(d => d.href === "#/" + parts[0])) renderDoor(window.HH_DOORS.DOORS.find(d => d.href === "#/" + parts[0]).id);
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
+    else if (parts[0] === "advocacy" && parts[1] === "rep-letter") renderRepLetter();
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
     else if (parts[0] === "facilities" && !parts[1]) withAssets(["data/facilities.js"], renderFacilities);
