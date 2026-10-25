@@ -769,3 +769,16 @@ select{ min-height:24px; }
 .door-tile strong{ font-family:var(--font-display); font-size:17px; font-weight:600; }
 .door-tile span{ font-size:13px; line-height:1.4; color:var(--ink-soft); }
 .door-tile:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }
+
+/* Home: search form and browse heading. The header search box is hidden on Home (body.on-home). */
+body.on-home .search-bar{ display:none; }
+.home-search{ margin:0 0 22px; }
+.home-search-label{ display:block; font-size:13.5px; font-weight:600; color:var(--ink-soft); margin:0 0 8px; }
+.home-search-row{ display:flex; gap:8px; align-items:stretch; }
+.home-search-row .search-field{ flex:1; min-width:0; min-height:48px; }
+.home-search-btn{
+  min-height:48px; padding:0 18px; border:0; border-radius:var(--radius-pill);
+  background:var(--violet-deep); color:#fff; font:inherit; font-weight:700; cursor:pointer;
+}
+.home-search-btn:focus-visible{ outline:3px solid var(--ink); outline-offset:2px; }
+.home-browse-title{ font-family:var(--font-display); font-size:19px; font-weight:600; margin:0 0 12px; color:var(--ink); }
