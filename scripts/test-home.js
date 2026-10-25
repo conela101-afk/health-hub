@@ -113,6 +113,9 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
   check("16 combinations: no Republic of Ireland page in a Northern Ireland result", niLeak.length === 0, niLeak.join());
   await page.check("input[name=topic][value=aon]"); await page.check("input[name=region][value=ni]"); await page.click(".start-submit");
   check("Assessment of Need in Northern Ireland says it is a Republic of Ireland process", /Republic of Ireland process/.test(await page.textContent("#startResult")) && (await page.$("#startResult .start-primary")) === null, "");
+  check("notice wording is the approved text", (await page.textContent(".checked-note")).trim() === "This only points you to other pages. It doesn't ask about your health, give advice or save anything.", "");
+  await page.click("#startToSearch"); check("\"use the search box\" moves focus to the search box", (await page.evaluate(() => document.activeElement.id)) === "searchInput", "");
+  check("out-of-hours link is on the page", await page.$('main a[href="#/out-of-hours"]') !== null, "");
   check("#/start has no AskCI", !/askci|chatbot/i.test(await page.content()), "");
   await go("#/search/zzzzqq"); check("empty search links to Where do I start?", await page.$('.empty-state a[href="#/start"]') !== null, "");
 

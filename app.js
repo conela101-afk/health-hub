@@ -488,9 +488,10 @@
         <button type="submit" class="home-search-btn start-submit">Show my next step</button>
       </form>
       <div class="start-result" id="startResult" aria-live="polite"></div>
-      <p>If none of these fit, use the search box. For urgent or out-of-hours care, see <a href="#/out-of-hours">out-of-hours and urgent care</a>.</p>
-      <p class="checked-note">This page only points to other pages. It does not ask about your health or give advice, and nothing you do here is saved.</p>
+      <p>If none of these fit, <button type="button" class="link-btn" id="startToSearch">use the search box</button>. For urgent or out-of-hours care, see <a href="#/out-of-hours">out-of-hours and urgent care</a>.</p>
+      <p class="checked-note">This only points you to other pages. It doesn't ask about your health, give advice or save anything.</p>
     `;
+    document.getElementById("startToSearch").addEventListener("click", () => searchInput.focus());
     const form = document.getElementById("startForm"), out = document.getElementById("startResult"), err = document.getElementById("startError");
     form.addEventListener("submit", e => {
       e.preventDefault();

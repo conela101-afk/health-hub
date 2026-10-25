@@ -2,7 +2,7 @@
 // "Also useful". A static lookup table: nothing is asked about health, nothing is stored or sent, and the
 // result is not kept in the address. Navigation only: every step is a page that already exists, and its
 // wording is the wording already used on its hub row in doors.js (no new facts, numbers or services).
-// scripts/test-start.js checks the table against doors.js and that no Republic of Ireland page can appear
+// scripts/test-doors.js checks the table against doors.js and that no Republic of Ireland page can appear
 // in a Northern Ireland result.
 (function(root){
   const REGIONS = [

@@ -80,7 +80,7 @@ This v1 was compiled from public HSE and voluntary-sector websites. Phone number
 index.html      — page shell, loads everything else
 styles.css      — all styling (design tokens at the top), self-hosted @font-face rules
 app.js          — hash-based router + rendering (no framework, no build step)
-start.js        — "Where do I start?" (`#/start`): the topic and location lookup table. Steps come from `doors.js`; `node scripts/test-start.js` checks that no Republic of Ireland page can appear in a Northern Ireland result
+start.js        — "Where do I start?" (`#/start`): the topic and location lookup table. Steps come from `doors.js`; `scripts/test-doors.js` checks every step resolves and that no Republic of Ireland page can appear in a Northern Ireland result
 doors.js        — the four hub pages (Find care, What applies to you, Take action, Get support) reached from Home: which hub lists each route. Edit this to move a feature; `node scripts/test-doors.js --table` prints the route table
 data.js         — all service listings, specialties, and counties — edit this to update content
 manifest.json   — PWA metadata (name, icons, colours). Optional install guidance lives at #/install (footer link)
@@ -90,8 +90,7 @@ assets/fonts/   — self-hosted Plus Jakarta Sans & Fraunces woff2 files, plus t
 vendor/leaflet/ — self-hosted Leaflet 1.9.4 (library only — map tiles are click-to-load, see below)
 scripts/check-third-party.sh — fails the build if a new external request sneaks into HTML/CSS/JS
 scripts/test-home.js — local pre-merge browser check of Home and search (order, emergency line, Where do I start? row and page, door tiles, search, no outside requests, 320px). Needs Playwright (`node scripts/test-home.js`); not run in CI, so run it before merging a change to Home, search or the tiles
-scripts/test-start.js — checks every "Where do I start?" result (8 topics x 2 locations); plain Node
-scripts/test-doors.js — checks every route is assigned to a door (or to none), no route is under two doors, and the bottom tabs and cross-links are intact; plain Node
+scripts/test-doors.js — checks every route is assigned to a door (or to none), no route is under two doors, every "Where do I start?" step is a real route and none is Republic-of-Ireland-only for Northern Ireland, and the bottom tabs and cross-links are intact; plain Node
 ```
 
 ## Third-party requests
