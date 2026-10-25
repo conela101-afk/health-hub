@@ -942,6 +942,7 @@ window.HH_TOOLS = (function(){
       app.innerHTML = `
         ${headHtml("Discharge passport", "Write down what the team tells you before you leave hospital, then print or copy it")}
         <div class="callout">This page only prompts you with questions to ask. It never suggests answers or medical content. Write down what the team tells you, in your own words.</div>
+        <p>For a one-page summary to hand to a doctor who does not know you, see <a href="#/passport">My Patient Passport</a>.</p>
         <div class="prep-card">
           ${saveToggleHtml("dp", u.readStore(DP_SAVE_KEY) === true, "Clear saved passport from this device")}
           <p class="save-note">If you tick this, the passport is stored in plain text in this browser, and anyone who can unlock this device can read it.</p>

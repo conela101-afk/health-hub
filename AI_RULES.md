@@ -153,6 +153,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-25 [Claude] — Four doors PR 1 of 4: four hub pages (`#/find`, `#/rights-hub` titled "What applies to you", `#/act`, `#/support`) reached from a plain block on Home, `doors.js`, route-to-door test over all 145 routes, placements settled by Elaine with cross-links, cache v40. Bottom tabs unchanged per Elaine's amendment; Home, search, "Where do I start?" and colour are later PRs. PR only. See `CHANGELOG.md` and `docs/briefs/four-doors-2026-10-25.md`.
 - 2026-10-24 [Claude] — `check-third-party.sh` narrowed to shipped files (not `scripts/`) with a bad-fixture exit-1 test; PR only. See `CHANGELOG.md`.
 - 2026-10-24 [Claude] — CI now runs `test-sensitive-privacy.js` and `check-third-party.sh`; workflow change only, PR only. See `CHANGELOG.md`.
 - 2026-10-24 [Claude] — ROI coverage-gap brief: 13 unverified candidate rows, two hosts approved (Tier 1). See `CHANGELOG.md` and `GAPS.md`.

@@ -57,6 +57,7 @@
         ext(CI + "/social-welfare/death-related-benefits/death-benefits-under-oib/", "Death benefits under Occupational Injuries Benefit"),
       ])}
       ${checked("money")}
+      <p>See also: <a href="#/rights-hub">Other costs and entitlements</a> (in What applies to you).</p>
       <p><strong>Questions you could ask</strong></p>
       ${list([
         "Which payments could I qualify for, and are there deadlines to apply?",

@@ -106,6 +106,8 @@
         "Will the result be sent to my GP or maternity team, and does that need my consent?",
       ])}
 
+      <p>For counselling and other help, see <a href="#/support">Get support</a>.</p>
+
       <p class="ooh-source">Information only. Not medical or legal advice. More at ${ext("https://www.citizensinformation.ie/en/health/health-services/reproductive-health/unplanned-pregnancy/", "Citizens Information")}. You can also find the services in the <a href="#/specialty/obs">Maternity &amp; Obstetrics</a> and <a href="#/specialty/contraception">Contraception &amp; Reproductive Health</a> lists.</p>
     `;
   }

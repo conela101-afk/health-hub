@@ -103,7 +103,9 @@
     else if (parts[0] === "county") active = "county";
     else if (parts[0] === "advocacy") active = "advocacy";
     tabbar.querySelectorAll(".tab-item").forEach(el => {
-      el.classList.toggle("active", el.dataset.tab === active);
+      const on = el.dataset.tab === active;
+      el.classList.toggle("active", on);
+      if (on) el.setAttribute("aria-current", "page"); else el.removeAttribute("aria-current");
     });
   }
 
@@ -158,6 +160,10 @@
     { name: "Screening: who is invited", href: "#/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear test mammogram fit test bowel breast cervical aneurysm aaa diabetic eye retinascreen retinopathy invited age" },
     { name: "Nursing homes: choosing, paying and raising a concern", href: "#/advocacy/schemes", keywords: "nursing home nursing homes residential care older people hiqa inspection report choosing a nursing home fair deal complaint concern ombudsman residents rights" },
     { name: "Decision-making papers (enduring power of attorney, advance healthcare directive)", href: "#/advocacy/schemes", keywords: "enduring power of attorney epa advance healthcare directive decision making representative assisted decision making capacity act decision support service capacity" },
+    { name: "Find care", href: "#/find", keywords: "find care services directory specialty area county condition facility waiting list" },
+    { name: "What applies to you", href: "#/rights-hub", keywords: "what applies to you what applies to me know your rights rights entitlements schemes costs what you pay guides" },
+    { name: "Take action", href: "#/act", keywords: "take action complaint records letters foi discharge while you wait tools" },
+    { name: "Get support", href: "#/support", keywords: "get support crisis who to contact support organisations help" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
     { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
@@ -411,6 +417,14 @@
     `;
   }
 
+  // Four hub pages, one per door (doors.js). Plain tiles until the Home redesign.
+  function doorTilesHtml(){
+    if (!window.HH_DOORS) return "";
+    return `<nav class="door-tiles" aria-label="Browse by door">
+      ${window.HH_DOORS.DOORS.map(d => `<a class="door-tile" href="${d.href}"><strong>${escapeHtml(d.title)}</strong><span>${escapeHtml(d.blurb)}</span></a>`).join("")}
+    </nav>`;
+  }
+
   function renderHome(){
     const simple = getSimpleMode();
     // Split into content shortcuts ("Often searched") and utility pages
@@ -459,6 +473,8 @@
         <h1>Navigating health &amp; care, <em>wherever you are</em>.</h1>
         ${simple ? "" : `<p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine, women's health, and neurodiversity/disability pathways, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>`}
       </div>
+
+      ${doorTilesHtml()}
 
       ${guidedToolsRowHtml()}
 
@@ -1981,6 +1997,7 @@ ${name}`;
       <div class="callout">
         This form only ever shows back exactly what you type — nothing here is suggested, autocompleted, or filled in for you. By default nothing is saved: refreshing this page clears it, so copy or print your summary before you leave. Tick "Save on this device" only if you want it to still be here next time — it's then stored in plain text in this browser, which means anyone who can unlock this device can read it. If that's a risk for you, leave it unticked and use Copy or Print each time instead.
       </div>
+      <p>Leaving hospital? The <a href="#/tools/discharge">Discharge passport</a> is a printable page for medicines, appointments, contacts and questions to ask.</p>
 
       <div class="prep-card">
         <label class="save-toggle">
@@ -2199,6 +2216,25 @@ ${name}`;
     `;
   }
 
+  // A door page: the features under one of the four doors, as grouped rows (doors.js is the list).
+  function renderDoor(id){
+    const door = window.HH_DOORS.DOORS.find(d => d.id === id);
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>${escapeHtml(door.title)}</h1>
+        <p class="count">${escapeHtml(door.intro)}</p>
+      </div>
+      ${door.groups.map(g => `
+        <section class="door-group" aria-labelledby="dg-${id}-${g.title.replace(/\W+/g, "-").toLowerCase()}">
+          <h2 class="door-group-title" id="dg-${id}-${g.title.replace(/\W+/g, "-").toLowerCase()}">${escapeHtml(g.title)}</h2>
+          <div class="simple-list">
+            ${g.items.map(it => `<a class="row door-row" href="${escapeHtml(it.href)}"><span class="row-body"><strong>${escapeHtml(it.label)}</strong><span class="n">${escapeHtml(it.desc)}</span></span><span class="arrow" aria-hidden="true">›</span></a>`).join("")}
+          </div>
+        </section>`).join("")}
+    `;
+  }
+
   function renderAdvocacy(section){
     const sectionRenderers = { guide: renderAdvocacyGuide, templates: renderAdvocacyTemplates, schemes: renderAdvocacySchemes, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs, general: renderAdvocacyGeneral };
     const active = sectionRenderers[section] ? section : "guide";
@@ -2364,6 +2400,7 @@ ${name}`;
     else if (hash === PRIVATE_SEARCH_HASH) { if (privateQuery) renderSearchRoute(privateQuery, true); else renderHome(); }
     else if (parts[0] === "search" && parts[1]) renderSearchRoute(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
+    else if (window.HH_DOORS && !parts[1] && window.HH_DOORS.DOORS.some(d => d.href === "#/" + parts[0])) renderDoor(window.HH_DOORS.DOORS.find(d => d.href === "#/" + parts[0]).id);
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
