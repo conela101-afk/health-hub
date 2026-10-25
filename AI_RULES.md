@@ -53,6 +53,9 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - `lawreform.ie` (ratified 21 Oct 2026)
 - `decisionsupportservice.ie` (24 Oct 2026): Decision Support Service, statutory body within the Mental Health Commission
 - `ipo.irishimmigration.ie` (24 Oct 2026): International Protection Office; this host only, not other irishimmigration.ie sites
+- `oireachtas.ie` (21 Oct 2026; find-your pages added 25 Oct 2026): Houses of the Oireachtas: Bills and legislation status, and find-your-TD/Senator pages for the letter builder (#/advocacy/rep-letter); never service claims
+- `niassembly.gov.uk` (25 Oct 2026): Northern Ireland Assembly: find-your-MLA pages only, for the letter builder (#/advocacy/rep-letter)
+- `members.parliament.uk` (25 Oct 2026): UK Parliament (parliament.uk approved): find-your-MP pages only, for the letter builder (#/advocacy/rep-letter); this host only, not www.parliament.uk or other parliament.uk sites
 - `irishstatutebook.ie` (10 Oct 2026): statute text
 
 **Tier 2: Hospital or service own site**
@@ -77,7 +80,6 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 
 - `revenue.ie` (9 Oct 2026): medical-expenses tax-relief pages only
 - `familysupportni.gov.uk` (7 Oct 2026): statutory trust listings only; voluntary providers listed there stay withheld
-- `oireachtas.ie` (21 Oct 2026): Bills and legislation status only, never service claims
 
 **Tier 5: Secondary only**
 
@@ -109,7 +111,6 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 **Tier 8: Link-only or pending**
 
 - `birthinfo.ie` (21 Oct 2026): link-only: birth information and tracing
-- `niassembly.gov.uk` (declined or withheld): withheld until a row needs it; mirror of oireachtas.ie
 
 **Tier 9: Declined or withheld**
 
@@ -153,6 +154,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-25 [Claude] — Approved hosts for the representative lookups (Elaine, 25 Oct): `oireachtas.ie` (adds find-your-TD/Senator pages, now Tier 1), `niassembly.gov.uk` (find-your-MLA pages; no longer withheld), `members.parliament.uk` (find-your-MP; exact host only). Register, regenerated block and tests updated; paths provisional and fail closed; no link added until Elaine supplies each exact URL. PR only. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — Four doors PR 3 follow-up: Elaine's wording for the Assessment of Need topic and its Northern Ireland message, the crisis banner (999 / 112 line) added to `#/start`, each result its own screen; `test-home.js` checks the emergency line on all 16 results; cache v44. PR only. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — New feedback form link (`forms.gle/euhDXPnx8vw1msnR6`) in the footer, with a draft Google Form notice and a `test-feedback-link.js` check; host register unchanged (decision for Elaine); an older unmerged feedback branch still carries an earlier URL; cache v43. PR only. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — Four doors PR 3 of 4: "Where do I start?" (`#/start`, `start.js`): topic and location in, one next step and up to two also-useful out; static table, nothing stored; no Republic of Ireland page in a Northern Ireland result (checked in `test-doors.js`); Home row and empty-search link; cache v42. Reuses #119's topics; #119 to be closed. Colour is PR 4. PR only. See `CHANGELOG.md` and `docs/briefs/four-doors-2026-10-25.md`.

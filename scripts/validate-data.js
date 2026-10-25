@@ -53,6 +53,17 @@ const SOURCE_REGISTER = [
   R("legalaidboard.ie", 1, "ratified 21 Oct 2026"), R("lawreform.ie", 1, "ratified 21 Oct 2026"),
   R("decisionsupportservice.ie", 1, "24 Oct 2026", "Decision Support Service, statutory body within the Mental Health Commission"),
   R("ipo.irishimmigration.ie", 1, "24 Oct 2026", "International Protection Office; this host only, not other irishimmigration.ie sites"),
+  // Representative lookups for the letter to an elected representative (#/advocacy/rep-letter), approved by Elaine
+  // 25 Oct 2026: link-out only, never a source for service claims. No link is on the site yet: each is added only when
+  // Elaine supplies the exact page URL after opening it. The path prefixes below are PROVISIONAL (the sites could not
+  // be opened when this was written) and fail closed; the PR that adds the first link sets the exact path.
+  //   oireachtas.ie: Bills pages (approved 21 Oct 2026) plus the members / find-your-TD-or-Senator pages.
+  //   niassembly.gov.uk: was withheld (Tier 8); find-your-MLA pages only.
+  //   members.parliament.uk: the find-your-MP page is on this subdomain, so the exact host is registered and the rest of
+  //   parliament.uk (www., hansard., bare parliament.uk) is NOT approved.
+  R("oireachtas.ie", 1, "21 Oct 2026; find-your pages added 25 Oct 2026", "Houses of the Oireachtas: Bills and legislation status, and find-your-TD/Senator pages for the letter builder (#/advocacy/rep-letter); never service claims", ["/en/bills/", "/en/members/"]),
+  R("niassembly.gov.uk", 1, "25 Oct 2026", "Northern Ireland Assembly: find-your-MLA pages only, for the letter builder (#/advocacy/rep-letter)", ["/your-mlas/"]),
+  R("members.parliament.uk", 1, "25 Oct 2026", "UK Parliament (parliament.uk approved): find-your-MP pages only, for the letter builder (#/advocacy/rep-letter); this host only, not www.parliament.uk or other parliament.uk sites", ["/FindYourMP"]),
   // irishstatutebook.ie: approved 10 Oct 2026 for statute text only (an /eli/ statute URL), not as a general source.
   R("irishstatutebook.ie", 1, "10 Oct 2026", "statute text", ["/eli/"]),
   // Tier 2: a hospital's or service's own site.
@@ -66,7 +77,6 @@ const SOURCE_REGISTER = [
   // Tier 4: scoped approvals.
   R("revenue.ie", 4, "9 Oct 2026", "medical-expenses tax-relief pages only", ["/en/personal-tax-credits-reliefs-and-exemptions/health-and-age/"]),
   R("familysupportni.gov.uk", 4, "7 Oct 2026", "statutory trust listings only; voluntary providers listed there stay withheld"),
-  R("oireachtas.ie", 4, "21 Oct 2026", "Bills and legislation status only, never service claims", ["/en/bills/"]),
   // Tier 5: secondary only, never an entry's sole source. GP out-of-hours providers, host names taken from the
   // "Website" field on their www2.hse.ie/services/find-urgent-emergency-care/ pages (21 Oct 2026).
   R("saolta.ie", 5, "7 Oct 2026"), R("caredoc.ie", 5, "7 Oct 2026", "GP out-of-hours"), R("kdoc.ie", 5, "7 Oct 2026", "GP out-of-hours"),
@@ -83,7 +93,6 @@ const SOURCE_REGISTER = [
   R("cancer.ie", 7, "21 Oct 2026", "Irish Cancer Society; link-out only, never a source"),
   // Tier 8: birthinfo.ie approved link-only 21 Oct 2026 (owner confirmed: Adoption Authority of Ireland, Birth Information and Tracing Act 2022).
   R("birthinfo.ie", 8, "21 Oct 2026", "link-only: birth information and tracing"),
-  R("niassembly.gov.uk", 8, false, "withheld until a row needs it; mirror of oireachtas.ie"),
   // Tier 9: declined 7 to 21 Oct 2026. Wikipedia, Medical Independent, Irish Health Pro and Limerick Leader are also declined.
   R("southeastcdnt.ie", 9, false, "superseded by dublinandsoutheastcdnt.ie"),
   R("ndsa.ie", 9, false), R("assets.ireland.ie", 9, false), R("nhs.uk", 9, false, "includes 111.nhs.uk"),
