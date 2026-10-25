@@ -36,14 +36,21 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
     return { crisis: y(".crisis-banner"), search: y("#homeSearchForm"), browse: y(".home-browse-title"), tiles: y(".door-tiles") };
   });
   check("Home order: emergency strip, search, browse heading, tiles", order.crisis < order.search && order.search < order.browse && order.browse < order.tiles, JSON.stringify(order));
-  check("the 999 / 112 contact is in the emergency strip", (await page.textContent(".crisis-banner")).includes("999 / 112"), "");
+  // Elaine's 25 Oct decision: the emergency line shows without opening the banner.
+  check("\"Emergency: call 999 or 112\" is visible on the closed banner", await page.isVisible(".crisis-banner .emergency-line") && (await page.textContent(".crisis-banner .emergency-line")).trim() === "Emergency: call 999 or 112" && !(await page.$eval(".crisis-banner", e => e.open)), "");
+  check("the rest of the banner is still collapsed until tapped", !(await page.isVisible(".crisis-banner .crisis-contacts")), "");
   check("crisis banner links to Crisis support", await page.$('.crisis-banner a[href="#/specialty/crisis"]') !== null, "");
   const tiles = await page.$$eval(".door-tile", t => t.map(x => [x.getAttribute("href"), x.querySelector("strong").textContent, x.querySelector("span").textContent.length > 0, Math.round(x.getBoundingClientRect().height)]));
   check("four door tiles with one-line descriptions", tiles.length === 4 && tiles.every(t => t[2] && t[3] >= 48), JSON.stringify(tiles));
   check("tiles go to the four hubs", tiles.map(t => t[0]).join() === "#/find,#/rights-hub,#/act,#/support", tiles.map(t => t[0]).join());
   const bottom = await page.$eval(".door-tiles", e => Math.round(e.getBoundingClientRect().bottom));
   check("tiles are above the fold at 390x800", bottom <= 800, "bottom=" + bottom);
-  check("nothing else between the strip and the footer except search and browse", await page.$$eval("#app > *", c => c.map(x => x.className || x.tagName).join()) === "sr-only,home-emergency,home-search,home-browse-title,door-tiles", "");
+  check("Home sections, in order", await page.$$eval("#app > *", c => c.map(x => x.className || x.tagName).join()) === "sr-only,home-emergency,home-search,home-browse-title,door-tiles,quick-links", "");
+  const pills = await page.$$eval(".quick-links a.pill", a => a.map(x => [x.getAttribute("href"), x.textContent.trim()]));
+  check("Often searched pills: autism and ADHD, parents, feeding", JSON.stringify(pills) === JSON.stringify([["#/specialty/neurodiversity", "Autism & ADHD support"], ["#/specialty/parenting", "New & Expectant Parents"], ["#/specialty/feeding", "Infant feeding & breastfeeding support"]]), JSON.stringify(pills));
+  const pillsTop = await page.$eval(".quick-links", e => Math.round(e.getBoundingClientRect().top));
+  const tabTop = await page.$eval("#tabbar", e => Math.round(e.getBoundingClientRect().top));
+  check("Often searched row is below the four doors, hidden behind the tab bar at 390x800 (not above the fold)", pillsTop > bottom && pillsTop >= tabTop, "top=" + pillsTop + " tiles bottom=" + bottom + " tab bar top=" + tabTop);
   check("header search box is hidden on Home", !(await page.isVisible("#searchBar")), "");
   check("Home has no AskCI", !/askci|chatbot/i.test(await page.content()), "");
   check("bottom tabs unchanged, Home current", JSON.stringify(await page.$$eval("#tabbar a", a => a.map(x => [x.textContent.trim(), x.getAttribute("aria-current")]))) === '[["Home","page"],["Specialty",null],["Area",null],["Advocacy",null]]', "");

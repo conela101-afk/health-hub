@@ -369,6 +369,7 @@
           <span class="crisis-icon">${iconSvg(ICON_PATHS.crisis, 18)}</span>
           <span class="banner-head-text">
             <h2>In a mental health crisis right now?</h2>
+            <p class="emergency-line"><strong>Emergency: call 999 or 112</strong></p>
             <p>Free, confidential, 24/7 support — tap to see helplines.</p>
           </span>
           <span class="banner-chevron">${iconSvg(CHEVRON_ICON, 16)}</span>
@@ -421,7 +422,8 @@
     `;
   }
 
-  // Home: emergency strip, search, then the four doors (doors.js). Everything else is one tap further in.
+  // Home: emergency strip, search, the four doors (doors.js), then a short "Often searched" row. Everything else
+  // is one tap further in.
   // The header search box is hidden on Home (body.on-home) because Home has its own search form below.
   function renderHome(){
     document.body.classList.add("on-home");
@@ -445,6 +447,14 @@
       </form>
       <h2 class="home-browse-title">Or browse everything</h2>
       <nav class="door-tiles" aria-label="Browse by door">${tiles}</nav>
+      <div class="quick-links">
+        <h2 class="quick-links-title">Often searched</h2>
+        <div class="quick-link-row">
+          <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
+          <a class="pill" href="#/specialty/parenting">New &amp; Expectant Parents</a>
+          <a class="pill" href="#/specialty/feeding">Infant feeding &amp; breastfeeding support</a>
+        </div>
+      </div>
     `;
     document.getElementById("homeSearchForm").addEventListener("submit", e => {
       e.preventDefault();

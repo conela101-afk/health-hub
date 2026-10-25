@@ -781,4 +781,6 @@ body.on-home .search-bar{ display:none; }
   background:var(--violet-deep); color:#fff; font:inherit; font-weight:700; cursor:pointer;
 }
 .home-search-btn:focus-visible{ outline:3px solid var(--ink); outline-offset:2px; }
+.emergency-line{ color:var(--ink); }
+.quick-links-title{ font-size:13px; color:var(--ink-soft); font-weight:700; margin:0 0 12px; }
 .home-browse-title{ font-family:var(--font-display); font-size:19px; font-weight:600; margin:0 0 12px; color:var(--ink); }

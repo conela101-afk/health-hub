@@ -88,6 +88,8 @@ icons/          — app icons for home-screen install
 assets/fonts/   — self-hosted Plus Jakarta Sans & Fraunces woff2 files, plus their OFL licences
 vendor/leaflet/ — self-hosted Leaflet 1.9.4 (library only — map tiles are click-to-load, see below)
 scripts/check-third-party.sh — fails the build if a new external request sneaks into HTML/CSS/JS
+scripts/test-home.js — local pre-merge browser check of Home and search (order, emergency line, door tiles, search, no outside requests, 320px). Needs Playwright (`node scripts/test-home.js`); not run in CI, so run it before merging a change to Home, search or the tiles
+scripts/test-doors.js — checks every route is assigned to a door (or to none), no route is under two doors, and the bottom tabs and cross-links are intact; plain Node
 ```
 
 ## Third-party requests
