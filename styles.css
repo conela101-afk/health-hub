@@ -814,3 +814,4 @@ body.on-home .search-bar{ display:none; }
 .start-result .copy-btn{ margin-top:16px; }
 .link-btn{ background:none; border:0; padding:0; min-height:24px; font:inherit; color:var(--violet-deep); text-decoration:underline; cursor:pointer; }
 .link-btn:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }
+.start-emergency{ margin:0 0 18px; }

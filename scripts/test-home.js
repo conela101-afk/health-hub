@@ -104,17 +104,59 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
   // Every topic, both locations: nothing Republic-of-Ireland-only in a Northern Ireland result.
   const roiOnly = ["#/tools/aon", "#/rights/disability-children", "#/guide/after-a-death", "#/pregnancy", "#/about/screening"];
   const topics = await page.$$eval("input[name=topic]", i => i.map(x => x.value));
-  let niLeak = [], over = [];
+  let niLeak = [], over = [], formStillShown = [], wrongHeading = [];
   for (const t of topics) for (const r of ["roi", "ni"]) {
     await page.check(`input[name=topic][value=${t}]`); await page.check(`input[name=region][value=${r}]`); await page.click(".start-submit");
     const hrefs = await page.$$eval("#startResult a.row", a => a.map(x => x.getAttribute("href")));
     if (hrefs.length > 3) over.push(t + "/" + r);
     if (r === "ni") hrefs.forEach(h => { if (roiOnly.includes(h)) niLeak.push(t + " " + h); });
+    if (await page.isVisible("#startForm")) formStillShown.push(t + "/" + r);
+    const heading = (await page.textContent("#startResultHeading")).trim();
+    const want = (t === "aon" && r === "ni") ? "Other pages that may help" : "Your next step";
+    if (heading !== want) wrongHeading.push(`${t}/${r}: "${heading}"`);
+    await page.click("#startAgain");
   }
+  check("result heading is \"Your next step\" for all results except Northern Ireland + Assessment of Need, which reads \"Other pages that may help\"", wrongHeading.length === 0, wrongHeading.join("; "));
+  check("every result is its own screen (the questions are hidden until Start again)", formStillShown.length === 0, formStillShown.join());
   check("16 combinations: no more than one step and two Also useful", over.length === 0, over.join());
   check("16 combinations: no Republic of Ireland page in a Northern Ireland result", niLeak.length === 0, niLeak.join());
   await page.check("input[name=topic][value=aon]"); await page.check("input[name=region][value=ni]"); await page.click(".start-submit");
-  check("Assessment of Need in Northern Ireland says it is a Republic of Ireland process", /Republic of Ireland process/.test(await page.textContent("#startResult")) && (await page.$("#startResult .start-primary")) === null, "");
+  const niText = (await page.textContent("#startResult")).replace(/\s+/g, " ");
+  check("Assessment of Need in Northern Ireland: the approved message, no primary step", niText.includes("The Assessment of Need is a Republic of Ireland process, so we don't have a step for it here. These pages cover Northern Ireland too:") && (await page.$("#startResult .start-primary")) === null, niText);
+  check("...followed by Who to contact and Support organisations only", JSON.stringify(await page.$$eval("#startResult a.row", a => a.map(x => x.getAttribute("href")))) === '["#/advocacy/contacts","#/advocacy/orgs"]', "");
+  await page.click("#startAgain");
+  check("the Assessment of Need topic reads \"My child needs a disability assessment (Assessment of Need)\" with the Republic of Ireland only hint", await page.$$eval("label.start-option", l => l.some(x => x.textContent.replace(/\s+/g, " ").includes("My child needs a disability assessment (Assessment of Need)") && x.textContent.includes("(Republic of Ireland only)"))), "");
+  // The emergency line and Crisis support stay in view on the questions and on every result screen,
+  // with the crisis banner closed and open.
+  const emergencyOk = async (needInView = true) => {
+    const line = await page.$(".start-emergency .emergency-line");
+    if (!line || !(await line.isVisible()) || (await line.textContent()).trim() !== "Emergency: call 999 or 112") return "emergency line missing or wrong";
+    const inView = await page.evaluate(() => { const r = document.querySelector(".start-emergency .emergency-line").getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; });
+    if (needInView && !inView) return "emergency line not in the viewport";
+    const q = await page.$("a.crisis-quicklink");
+    if (!q || !(await q.isVisible()) || (await q.getAttribute("href")) !== "#/specialty/crisis" || (await q.textContent()).trim() !== "Crisis support") return "Crisis support link missing";
+    return "";
+  };
+  for (const state of ["closed", "open"]) {
+    await go("#/start");
+    if (state === "open") await page.click(".start-emergency .crisis-banner summary");
+    const isOpen = await page.$eval(".start-emergency .crisis-banner", e => e.open);
+    check(`#/start: banner ${state} as expected`, isOpen === (state === "open"), "");
+    const problems2 = [];
+    let m = await emergencyOk(); if (m) problems2.push("questions: " + m);
+    await page.click(".start-submit"); m = await emergencyOk(false); if (m) problems2.push("error state: " + m);   // the page may be scrolled down at this point
+    for (const t of topics) for (const r of ["roi", "ni"]) {
+      await page.check(`input[name=topic][value=${t}]`); await page.check(`input[name=region][value=${r}]`); await page.click(".start-submit");
+      m = await emergencyOk(); if (m) problems2.push(`${t}/${r}: ${m}`);
+      if (state === "open") {
+        const more = await page.isVisible('.start-emergency a[href="#/specialty/crisis"]') && (await page.textContent(".start-emergency .crisis-contacts")).includes("999 / 112");
+        if (!more) problems2.push(`${t}/${r}: open banner does not show the helplines and the Crisis support link`);
+      }
+      await page.click("#startAgain");
+    }
+    check(`#/start and all 16 result screens: emergency line and Crisis support visible, banner ${state}`, problems2.length === 0, problems2.join("; "));
+  }
+  await go("#/start"); await page.check("input[name=topic][value=aon]"); await page.check("input[name=region][value=ni]"); await page.click(".start-submit");
   check("notice wording is the approved text", (await page.textContent(".checked-note")).trim() === "This only points you to other pages. It doesn't ask about your health, give advice or save anything.", "");
   await page.click("#startToSearch"); check("\"use the search box\" moves focus to the search box", (await page.evaluate(() => document.activeElement.id)) === "searchInput", "");
   check("out-of-hours link is on the page", await page.$('main a[href="#/out-of-hours"]') !== null, "");
