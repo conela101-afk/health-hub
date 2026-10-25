@@ -68,6 +68,14 @@ noneSegs.forEach(s => { if (s && !routes.has("#/" + s) && !DYNAMIC.some(d => d.s
 if (!routeBody.includes("renderDoor(")) fail("route() does not render the hub pages");
 if (DOORS.length < 4) fail("expected at least the four doors");   // a fifth hub can be added to doors.js later without other changes
 DOORS.forEach(d => { if (!d.groups.length || d.groups.some(g => !g.items.length)) fail(`door ${d.id} has an empty group`); });
+// Cross-links that go with a placement (a page that fits two doors is listed once and links to the other).
+const CROSS = [
+  ["app.js", "#/tools/discharge", "Patient Passport links to the Discharge passport"],
+  ["tools.js", 'href="#/passport"', "Discharge passport links to the Patient Passport"],
+  ["data/pregnancy.js", 'href="#/support"', "pregnancy page links to Get support"],
+  ["data/guides.js", 'href="#/rights-hub"', "after-a-death links to What applies to you"],
+];
+CROSS.forEach(([f, needle, what]) => { if (!read(f).includes(needle)) fail(`missing cross-link: ${what}`); });
 // The bottom tab bar is not part of this redesign and must still point at its four routes.
 const tabHrefs = [...read("index.html").match(/<nav class="tabbar"[\s\S]*?<\/nav>/)[0].matchAll(/href="([^"]+)"/g)].map(m => m[1]);
 if (tabHrefs.join() !== "#/,#/specialty,#/county,#/advocacy") fail(`bottom tabs changed: ${tabHrefs.join()}`);

@@ -17,6 +17,7 @@
           { label: "Find a facility", desc: "Hospitals and care centres on the HIQA and RQIA registers.", href: "#/facilities" },
         ] },
         { title: "Urgent care and checks", items: [
+          { label: "Pregnancy information", desc: "Choices, tests and scans.", href: "#/pregnancy" },
           { label: "Out-of-hours and urgent care", desc: "Where to go when your GP is closed.", href: "#/out-of-hours" },
           { label: "Vaccines: what's covered", desc: "Which vaccines are covered, by region.", href: "#/vaccines" },
           { label: "Screening: who is invited", desc: "Who is invited to screening programmes.", href: "#/screening" },
@@ -40,8 +41,6 @@
         ] },
         { title: "Guides", items: [
           { label: "Children's disability services explained", desc: "How CDNTs, Assessment of Need and payments fit together.", href: "#/rights/disability-children" },
-          { label: "Pregnancy information", desc: "Choices, tests and scans.", href: "#/pregnancy" },
-          { label: "After a death", desc: "Registering, the coroner and money help.", href: "#/guide/after-a-death" },
           { label: "Interpreter or sign language at an appointment", desc: "What to ask for and how.", href: "#/guide/interpreting" },
         ] },
       ],
@@ -79,6 +78,9 @@
         { title: "Help now", items: [
           { label: "Crisis support", desc: "Mental health crisis services.", href: "#/specialty/crisis" },
           { label: "Domestic and sexual violence", desc: "Support services.", href: "#/specialty/dsv" },
+        ] },
+        { title: "Practical help", items: [
+          { label: "After a death", desc: "Registering, the coroner and money help.", href: "#/guide/after-a-death" },
         ] },
         { title: "People and organisations", items: [
           { label: "Who to contact", desc: "Official bodies for complaints and advice.", href: "#/advocacy/contacts" },

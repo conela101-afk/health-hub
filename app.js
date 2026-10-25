@@ -1997,6 +1997,7 @@ ${name}`;
       <div class="callout">
         This form only ever shows back exactly what you type — nothing here is suggested, autocompleted, or filled in for you. By default nothing is saved: refreshing this page clears it, so copy or print your summary before you leave. Tick "Save on this device" only if you want it to still be here next time — it's then stored in plain text in this browser, which means anyone who can unlock this device can read it. If that's a risk for you, leave it unticked and use Copy or Print each time instead.
       </div>
+      <p>Leaving hospital? The <a href="#/tools/discharge">Discharge passport</a> is a printable page for medicines, appointments, contacts and questions to ask.</p>
 
       <div class="prep-card">
         <label class="save-toggle">

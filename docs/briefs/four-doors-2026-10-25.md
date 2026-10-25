@@ -116,11 +116,11 @@ White on plum 15.0. All text pairs pass AA. Line #DDD6C8 on paper is 1.3:1 and m
 ## Open decisions for Elaine
 1. Supply section 9 and the 9 Oct navigation brief.
 2. Confirm `claude/start-page` is superseded, not merged.
-3. Door placement of unlisted pages. Default proposal: Find care: out-of-hours, medicines, vaccines, screening, facilities. Know your rights: `#/rights/disability-children`, pregnancy (neutral label), after-a-death and interpreting guides. Take action: prep, passport, log, SAR builder. Footer only: install.
+3. Door placement of unlisted pages (superseded by Decisions above). Default proposal: Find care: out-of-hours, medicines, vaccines, screening, facilities. Know your rights: `#/rights/disability-children`, pregnancy (neutral label), after-a-death and interpreting guides. Take action: prep, passport, log, SAR builder. Footer only: install.
 4. Waiting lists vs While you wait: `#/about/waiting-lists` under Find care, `#/tools/waiting` under Take action, cross-linked.
 
 ## Decisions (Elaine, 25 Oct 2026)
 1. CI: Elaine adds `node scripts/test-doors.js` and the search audit step to `.github/workflows/data-integrity.yml` by hand. Step text is in the PR comment and the CHANGELOG entry.
 2. Heading clash: the door and its hub page are renamed "What applies to you". The Advocacy tab and its headings are untouched (its h1 stays "Know your rights"). The route stays `#/rights-hub`.
-3. Placements are reviewed by Elaine in the PR; the least certain are listed in the PR description.
+3. Placements (Elaine, 25 Oct): Patient Passport (`#/passport`) under Take action, cross-linked with the discharge passport. Pregnancy (`#/pregnancy`) under Find care, neutral tab title kept, cross-link to Get support. After a death (`#/guide/after-a-death`) under Get support, cross-link to What applies to you. Medicines (`#/medicines`) under Find care. All other placements as in PR 129; `#/install` and `#/entry/*` have no door. This supersedes the default proposal in the section 0 report below.
 4. Design room: Home's door tiles and the hub pattern are driven by the list in `doors.js`, so one more hub can be added later without restructuring. Nothing for it is built, stubbed or mentioned in the app.
