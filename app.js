@@ -112,24 +112,27 @@
   let searchDebounce;
   const PRIVATE_SEARCH_HASH = "#/search-results";
   let privateQuery = "";
+  // Sends a typed query to the right place. Used by the header search box (as you type) and the Home
+  // search form (on submit), so sensitive queries are handled the same way from both.
+  function goToSearch(q){
+    if (q.length > 0 && HHSearch.isSensitiveQuery(q)){
+      // Sensitive pregnancy topics: the words never enter the address bar or history.
+      searchInput.value = "";
+      location.hash = HHSearch.sensitiveRoute(q);
+    }
+    else if (q.length > 0 && HHSearch.isPrivateSearch(q)){
+      // Sensitive topic with no page of its own: the query is held in memory only (never in the
+      // address bar, title or storage) and results show under a neutral heading.
+      privateQuery = q;
+      if (location.hash === PRIVATE_SEARCH_HASH) route(); else location.hash = PRIVATE_SEARCH_HASH;
+    }
+    else if (q.length > 0) location.hash = "#/search/" + encodeURIComponent(q);
+    else if (location.hash.startsWith("#/search")){ privateQuery = ""; location.hash = "#/"; }
+  }
+
   searchInput.addEventListener("input", () => {
     clearTimeout(searchDebounce);
-    searchDebounce = setTimeout(() => {
-      const q = searchInput.value.trim();
-      if (q.length > 0 && HHSearch.isSensitiveQuery(q)){
-        // Sensitive pregnancy topics: the words never enter the address bar or history.
-        searchInput.value = "";
-        location.hash = HHSearch.sensitiveRoute(q);
-      }
-      else if (q.length > 0 && HHSearch.isPrivateSearch(q)){
-        // Sensitive topic with no page of its own: the query is held in memory only (never in the
-        // address bar, title or storage) and results show under a neutral heading.
-        privateQuery = q;
-        if (location.hash === PRIVATE_SEARCH_HASH) route(); else location.hash = PRIVATE_SEARCH_HASH;
-      }
-      else if (q.length > 0) location.hash = "#/search/" + encodeURIComponent(q);
-      else if (location.hash.startsWith("#/search")){ privateQuery = ""; location.hash = "#/"; }
-    }, 180);
+    searchDebounce = setTimeout(() => goToSearch(searchInput.value.trim()), 180);
   });
 
   const ACCENTS = ["violet", "coral", "sage", "sand"];
@@ -143,6 +146,7 @@
   // both for the home page's "Tools" pill row and for search, so someone
   // typing "passport" or "SAR" or "leaflet" finds the feature itself rather
   // than only content that happens to mention the word.
+  // Keywords include a few plain-language phrases people use for these pages ("see my notes", "scan cancelled").
   const TOOL_PAGES = [
     { name: "Pregnancy information: choices, tests and scans", href: "#/pregnancy", keywords: "pregnancy pregnant antenatal screening tests scans ultrasound dating scan anatomy scan private scan options unplanned" },
     { name: "After a death: registering, the coroner and money help", href: "#/guide/after-a-death", keywords: "death died bereavement bereaved funeral coroner register death certificate additional needs payment widow bereaved partner parent grant" },
@@ -156,7 +160,7 @@
     { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
     { name: "Find out-of-hours & urgent care", href: "#/out-of-hours", keywords: "out of hours urgent care gp" },
     { name: "Vaccines: what's covered where", href: "#/vaccines", keywords: "vaccine vaccines vaccination flu covid shingles shingrix pneumococcal ppv23 rsv free cost pharmacy gp immunosuppressed" },
-    { name: "What you pay: medicines, GP and cross-border costs", href: "#/costs", keywords: "cross border cross-border directive niphs treatment abroad tas reimbursement waiting list cost costs pay prescription charge medical card drugs payment scheme dps long term illness lti gp visit card hospital charge ed free prescriptions hc1 hrt contraception" },
+    { name: "What you pay: medicines, GP and cross-border costs", href: "#/costs", keywords: "cross border cross-border directive niphs treatment abroad tas reimbursement waiting list cost costs pay prescription charge medical card drugs payment scheme dps long term illness lti gp visit card hospital charge ed free prescriptions hc1 hrt contraception how much will it cost what will i pay" },
     { name: "Screening: who is invited", href: "#/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear test mammogram fit test bowel breast cervical aneurysm aaa diabetic eye retinascreen retinopathy invited age" },
     { name: "Nursing homes: choosing, paying and raising a concern", href: "#/advocacy/schemes", keywords: "nursing home nursing homes residential care older people hiqa inspection report choosing a nursing home fair deal complaint concern ombudsman residents rights" },
     { name: "Decision-making papers (enduring power of attorney, advance healthcare directive)", href: "#/advocacy/schemes", keywords: "enduring power of attorney epa advance healthcare directive decision making representative assisted decision making capacity act decision support service capacity" },
@@ -165,10 +169,10 @@
     { name: "Take action", href: "#/act", keywords: "take action complaint records letters foi discharge while you wait tools" },
     { name: "Get support", href: "#/support", keywords: "get support crisis who to contact support organisations help" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
-    { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
-    { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
-    { name: "While you wait (waiting lists)", href: "#/tools/waiting", keywords: "waiting list waiting lists ntpf validation letter suspended planned procedure status target" },
-    { name: "Discharge passport", href: "#/tools/discharge", keywords: "discharge hospital leaving going home medicines appointments questions passport" },
+    { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy something went wrong unhappy with my care bad experience want to complain" },
+    { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker see my notes get my notes copy of my notes what did the doctor write about me" },
+    { name: "While you wait (waiting lists)", href: "#/tools/waiting", keywords: "waiting list waiting lists ntpf validation letter suspended planned procedure status target scan cancelled scan canceled appointment cancelled appointment canceled operation cancelled still waiting where am i on the list" },
+    { name: "Discharge passport", href: "#/tools/discharge", keywords: "discharge hospital leaving going home medicines appointments questions passport being discharged going home from hospital" },
     { name: "Assessment of Need toolkit", href: "#/tools/aon", keywords: "aon assessment of need disability act 2005 child disability complaint appeals cdnt service statement deadline calculator" },
     { name: "National cancer screening programmes", href: "#/about/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear mammogram bowel cervical breast national screening service" },
     { name: "Where waiting list data is published", href: "#/about/waiting-lists", keywords: "waiting lists data ntpf aon cdnt primary care statistics figures" },
@@ -365,6 +369,7 @@
           <span class="crisis-icon">${iconSvg(ICON_PATHS.crisis, 18)}</span>
           <span class="banner-head-text">
             <h2>In a mental health crisis right now?</h2>
+            <p class="emergency-line"><strong>Emergency: call 999 or 112</strong></p>
             <p>Free, confidential, 24/7 support — tap to see helplines.</p>
           </span>
           <span class="banner-chevron">${iconSvg(CHEVRON_ICON, 16)}</span>
@@ -417,93 +422,44 @@
     `;
   }
 
-  // Four hub pages, one per door (doors.js). Plain tiles until the Home redesign.
-  function doorTilesHtml(){
-    if (!window.HH_DOORS) return "";
-    return `<nav class="door-tiles" aria-label="Browse by door">
-      ${window.HH_DOORS.DOORS.map(d => `<a class="door-tile" href="${d.href}"><strong>${escapeHtml(d.title)}</strong><span>${escapeHtml(d.blurb)}</span></a>`).join("")}
-    </nav>`;
-  }
-
+  // Home: emergency strip, search, the four doors (doors.js), then a short "Often searched" row. Everything else
+  // is one tap further in.
+  // The header search box is hidden on Home (body.on-home) because Home has its own search form below.
   function renderHome(){
-    const simple = getSimpleMode();
-    // Split into content shortcuts ("Often searched") and utility pages
-    // ("Tools") — same set of pills as before per mode, just grouped under
-    // two headers instead of one, so the tool pages don't get lost among
-    // topic links.
-    const contentPills = simple
-      ? `
-        <a class="pill" href="#/specialty/crisis">Mental health crisis support</a>
-        <a class="pill" href="#/out-of-hours">Out-of-hours &amp; urgent care</a>
-        <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
-      `
-      : `
-        <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
-        <a class="pill" href="#/specialty/parenting">New &amp; expectant parents</a>
-        <a class="pill" href="#/specialty/dsv">Domestic &amp; sexual violence</a>
-        <a class="pill" href="#/specialty/feeding">Infant feeding &amp; breastfeeding support</a>
-        <a class="pill" href="#/advocacy">Know your rights &amp; how to complain</a>
-        <a class="pill" href="#/advocacy/general">Disability, LGBTQ+, older-age &amp; migrant support</a>
-      `;
-    const toolPills = simple
-      ? `
-        <a class="pill" href="#/prep">Prep for an appointment</a>
-        <a class="pill" href="#/passport">My Patient Passport</a>
-        <a class="pill" href="#/conditions">Search a condition</a>
-        <a class="pill" href="#/vaccines">Vaccines: what's covered</a>
-        <a class="pill" href="#/screening">Screening: who is invited</a>
-        <a class="pill" href="#/tools">Guided tools</a>
-      `
-      : `
-        <a class="pill" href="#/prep">Prep for an appointment</a>
-        <a class="pill" href="#/passport">My Patient Passport</a>
-        <a class="pill" href="#/log">My call &amp; referral log</a>
-        <a class="pill" href="#/facilities">Find a Facility (regulated centres, HIQA &amp; RQIA)</a>
-        <a class="pill" href="#/conditions">Search a condition (HSE, NHS &amp; charity info)</a>
-        <a class="pill" href="#/medicines">Search medicine leaflets</a>
-        <a class="pill" href="#/vaccines">Vaccines: what's covered where</a>
-        <a class="pill" href="#/costs">What you pay: medicines, GP &amp; cross-border</a>
-        <a class="pill" href="#/screening">Screening: who is invited</a>
-        <a class="pill" href="#/advocacy/sar-builder">Build a SAR letter (guided form)</a>
-        <a class="pill" href="#/tools">Guided tools (complaints, records, schemes, waiting lists, discharge)</a>
-      `;
+    document.body.classList.add("on-home");
+    const tiles = window.HH_DOORS ? window.HH_DOORS.DOORS.map(d =>
+      `<a class="door-tile" href="${d.href}"><strong>${escapeHtml(d.title)}</strong><span>${escapeHtml(d.blurb)}</span></a>`).join("") : "";
     app.innerHTML = `
-      <div class="hero hero-top">
-        <p class="hero-eyebrow">Ireland &amp; Northern Ireland</p>
-        <h1>Navigating health &amp; care, <em>wherever you are</em>.</h1>
-        ${simple ? "" : `<p>A free directory for navigating health services and your rights across Ireland and Northern Ireland — public and private, general medicine, women's health, and neurodiversity/disability pathways, plus a full advocacy toolkit for complaints, records requests, and out-of-hours care.</p>`}
+      <h1 class="sr-only">Health Hub</h1>
+      <div class="home-emergency">
+        ${crisisBannerHtml()}
+        ${urgentCareBannerHtml()}
       </div>
-
-      ${doorTilesHtml()}
-
-      ${guidedToolsRowHtml()}
-
-      ${crisisBannerHtml()}
-      ${urgentCareBannerHtml()}
-
-      <div class="index-grid">
-        <a class="index-tile tile-a" href="#/specialty">
-          <span class="tile-icon">${iconSvg(GRID_ICON, 28)}</span>
-          <h2>By specialty</h2>
-          <p>${SPECIALTIES.length} categories, from cardiology to gynaecology to chronic pain</p>
-        </a>
-        <a class="index-tile tile-b" href="#/county">
-          <span class="tile-icon">${iconSvg(PIN_ICON, 28)}</span>
-          <h2>By area</h2>
-          <p>All 32 counties, plus national programmes across Ireland &amp; NI</p>
-        </a>
-      </div>
-
+      <form class="home-search" id="homeSearchForm" role="search">
+        <label class="home-search-label" for="homeSearchInput">Search a service, condition, or place</label>
+        <div class="home-search-row">
+          <div class="search-field">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="search" id="homeSearchInput" autocomplete="off" enterkeyhint="search">
+          </div>
+          <button type="submit" class="home-search-btn">Search</button>
+        </div>
+      </form>
+      <h2 class="home-browse-title">Or browse everything</h2>
+      <nav class="door-tiles" aria-label="Browse by door">${tiles}</nav>
       <div class="quick-links">
-        <h3>Often searched</h3>
-        <div class="quick-link-row">${contentPills}</div>
-      </div>
-
-      <div class="quick-links">
-        <h3>Tools</h3>
-        <div class="quick-link-row">${toolPills}</div>
+        <h2 class="quick-links-title">Often searched</h2>
+        <div class="quick-link-row">
+          <a class="pill" href="#/specialty/neurodiversity">Autism &amp; ADHD support</a>
+          <a class="pill" href="#/specialty/parenting">New &amp; Expectant Parents</a>
+          <a class="pill" href="#/specialty/feeding">Infant feeding &amp; breastfeeding support</a>
+        </div>
       </div>
     `;
+    document.getElementById("homeSearchForm").addEventListener("submit", e => {
+      e.preventDefault();
+      goToSearch(document.getElementById("homeSearchInput").value.trim());
+    });
   }
 
   function renderSpecialtyIndex(){
@@ -687,6 +643,11 @@
     const matchesOrg = o => match(HHSearch.normalise([o.name, o.remit, o.offer, ...(o.tags||[])].join(" ")));
     const orgResults = SUPPORT_ORGS.filter(matchesOrg);
     const generalOrgResults = GENERAL_ADVOCACY_ORGS.filter(matchesOrg);
+    const doorName = href => {
+      const id = window.HH_DOORS && window.HH_DOORS.doorForHash(href);
+      const door = id && window.HH_DOORS.DOORS.find(d => d.id === id);
+      return door ? door.title : "";
+    };
     const toolResults = TOOL_PAGES.filter(t => match(HHSearch.normalise(t.name + " " + t.keywords)));
     // Conditions load on demand (data/conditions.js); until then search runs without them.
     const conditionResults = (typeof CONDITIONS !== "undefined")
@@ -695,7 +656,7 @@
     const totalCount = results.length + orgResults.length + generalOrgResults.length + privateEntries.length + voluntaryEntries.length + toolResults.length + conditionResults.length;
 
     const toolSection = toolResults.length
-      ? `<p class="section-title">Tools &amp; pages</p><div class="simple-list">${toolResults.map(t => `<a class="row" href="${t.href}"><span class="row-body"><h2>${t.name}</h2></span><span class="arrow">›</span></a>`).join("")}</div>`
+      ? `<p class="section-title">Tools &amp; pages</p><div class="simple-list">${toolResults.map(t => `<a class="row" href="${t.href}"><span class="row-body"><h2>${t.name}</h2>${doorName(t.href) ? `<span class="n">${doorName(t.href)}</span>` : ""}</span><span class="arrow">›</span></a>`).join("")}</div>`
       : "";
 
     const byProvider = {};
@@ -2390,6 +2351,7 @@ ${name}`;
     window.scrollTo(0, 0);
 
     if (parts[0] !== "search" && hash !== PRIVATE_SEARCH_HASH){ searchInput.value = ""; privateQuery = ""; }
+    document.body.classList.remove("on-home");
     updateTabbar(parts);
 
     if (parts.length === 0) renderHome();

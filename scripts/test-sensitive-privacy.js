@@ -41,12 +41,16 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
   const view = () => page.evaluate(() => ({ hash: location.hash, title: document.title, h1: (document.querySelector("#app h1") || {}).textContent || "", ann: (document.getElementById("routeAnnouncer") || {}).textContent || "" }));
   const has = (s) => TERMS.find(t => s.toLowerCase().includes(t));
 
+  // Two search boxes: the Home form (submit) and the header box on every other page (as you type).
   for (const term of TERMS) {
-    await page.goto(base + "#/"); await page.fill("#searchInput", "");
-    await page.fill("#searchInput", term); await page.waitForTimeout(450);
-    const v = await view();
-    check(`search "${term}": hash, title, announcer neutral`, !has(v.hash + " " + v.title + " " + v.ann), JSON.stringify(v));
-    if (v.hash === "#/search-results") check(`search "${term}": results heading neutral`, v.h1 === "Search results", v.h1);
+    await page.goto(base + "#/"); await page.fill("#homeSearchInput", term); await page.press("#homeSearchInput", "Enter"); await page.waitForTimeout(450);
+    let v = await view();
+    check(`Home search "${term}": hash, title, announcer neutral`, !has(v.hash + " " + v.title + " " + v.ann), JSON.stringify(v));
+    if (v.hash === "#/search-results") check(`Home search "${term}": results heading neutral`, v.h1 === "Search results", v.h1);
+    await page.goto(base + "#/find"); await page.fill("#searchInput", ""); await page.fill("#searchInput", term); await page.waitForTimeout(450);
+    v = await view();
+    check(`header search "${term}": hash, title, announcer neutral`, !has(v.hash + " " + v.title + " " + v.ann), JSON.stringify(v));
+    if (v.hash === "#/search-results") check(`header search "${term}": results heading neutral`, v.h1 === "Search results", v.h1);
   }
   for (const r of ROUTES) {
     await page.goto(base + r); await page.waitForTimeout(300);
@@ -54,7 +58,7 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
     check(`route ${r}: title and announcer-free of terms`, !has(v.title), v.title);
   }
   // Non-sensitive searches keep their normal heading.
-  await page.goto(base + "#/"); await page.fill("#searchInput", "knee"); await page.waitForTimeout(450);
+  await page.goto(base + "#/"); await page.fill("#homeSearchInput", "knee"); await page.press("#homeSearchInput", "Enter"); await page.waitForTimeout(450);
   check("non-sensitive search keeps heading", /Search: "knee"/.test((await view()).h1), JSON.stringify(await view()));
 
   await page.waitForTimeout(500);
