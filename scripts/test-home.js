@@ -54,6 +54,8 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
   check("header search box is hidden on Home", !(await page.isVisible("#searchBar")), "");
   check("Home has no AskCI", !/askci|chatbot/i.test(await page.content()), "");
   check("bottom tabs unchanged, Home current", JSON.stringify(await page.$$eval("#tabbar a", a => a.map(x => [x.textContent.trim(), x.getAttribute("aria-current")]))) === '[["Home","page"],["Specialty",null],["Area",null],["Advocacy",null]]', "");
+  const footerLink = await page.$eval('footer a[href*="forms.gle"]', e => e.textContent.replace(/\s+/g, " ").trim());
+  check("footer feedback link says \"new tab\" once, not twice", (footerLink.match(/new tab/gi) || []).length === 1, footerLink);
   check("Calm and Exit are visible on Home", await page.isVisible("#simpleModeBtn") && await page.isVisible("#quickExitBtn"), "");
 
   // Home search form: label, Enter, results with page name and door.
