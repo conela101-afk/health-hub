@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v41";
+const CACHE_NAME = "pocket-guide-v42";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +8,7 @@ const ASSETS = [
   "./data.js",
   "./search.js",
   "./doors.js",
+  "./start.js",
   "./data/facilities.js",
   "./data/conditions.js",
   "./data/vaccines.js",

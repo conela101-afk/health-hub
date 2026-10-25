@@ -164,6 +164,7 @@
     { name: "Screening: who is invited", href: "#/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear test mammogram fit test bowel breast cervical aneurysm aaa diabetic eye retinascreen retinopathy invited age" },
     { name: "Nursing homes: choosing, paying and raising a concern", href: "#/advocacy/schemes", keywords: "nursing home nursing homes residential care older people hiqa inspection report choosing a nursing home fair deal complaint concern ombudsman residents rights" },
     { name: "Decision-making papers (enduring power of attorney, advance healthcare directive)", href: "#/advocacy/schemes", keywords: "enduring power of attorney epa advance healthcare directive decision making representative assisted decision making capacity act decision support service capacity" },
+    { name: "Where do I start?", href: "#/start", keywords: "start begin beginning first not sure where do i start help me where to go what next" },
     { name: "Find care", href: "#/find", keywords: "find care services directory specialty area county condition facility waiting list" },
     { name: "What applies to you", href: "#/rights-hub", keywords: "what applies to you what applies to me know your rights rights entitlements schemes costs what you pay guides" },
     { name: "Take action", href: "#/act", keywords: "take action complaint records letters foi discharge while you wait tools" },
@@ -435,6 +436,7 @@
         ${crisisBannerHtml()}
         ${urgentCareBannerHtml()}
       </div>
+      <a class="home-start" href="#/start"><span class="row-body"><strong>Where do I start?</strong><span class="n">Two questions, then one next step.</span></span><span class="arrow" aria-hidden="true">›</span></a>
       <form class="home-search" id="homeSearchForm" role="search">
         <label class="home-search-label" for="homeSearchInput">Search a service, condition, or place</label>
         <div class="home-search-row">
@@ -459,6 +461,58 @@
     document.getElementById("homeSearchForm").addEventListener("submit", e => {
       e.preventDefault();
       goToSearch(document.getElementById("homeSearchInput").value.trim());
+    });
+  }
+
+  // "Where do I start?" (#/start): a topic and a location in, one next step and up to two "Also useful" out.
+  // The lookup table is in start.js. Nothing is stored, sent, or put in the address.
+  function renderStart(){
+    const S = window.HH_START;
+    const stepRow = (s, cls) => `<a class="row door-row ${cls || ""}" href="${escapeHtml(s.href)}"><span class="row-body"><strong>${escapeHtml(s.label)}</strong><span class="n">${escapeHtml(s.desc)}</span></span><span class="arrow" aria-hidden="true">›</span></a>`;
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Where do I start?</h1>
+        <p class="count">Two questions, then one next step. Nothing you choose is saved or sent.</p>
+      </div>
+      <form class="start-form" id="startForm" novalidate>
+        <fieldset class="start-fieldset">
+          <legend>1. What do you need help with?</legend>
+          ${S.TOPICS.map(t => `<label class="start-option"><input type="radio" name="topic" value="${t.id}"><span class="row-body"><strong>${escapeHtml(t.label)}</strong><span class="n">${escapeHtml(t.hint)}</span></span></label>`).join("")}
+        </fieldset>
+        <fieldset class="start-fieldset">
+          <legend>2. Where do you live or get your care?</legend>
+          ${S.REGIONS.map(r => `<label class="start-option"><input type="radio" name="region" value="${r.id}"><span class="row-body"><strong>${escapeHtml(r.label)}</strong></span></label>`).join("")}
+        </fieldset>
+        <p class="start-error" id="startError" role="alert" hidden></p>
+        <button type="submit" class="home-search-btn start-submit">Show my next step</button>
+      </form>
+      <div class="start-result" id="startResult" aria-live="polite"></div>
+      <p>If none of these fit, <button type="button" class="link-btn" id="startToSearch">use the search box</button>. For urgent or out-of-hours care, see <a href="#/out-of-hours">out-of-hours and urgent care</a>.</p>
+      <p class="checked-note">This only points you to other pages. It doesn't ask about your health, give advice or save anything.</p>
+    `;
+    document.getElementById("startToSearch").addEventListener("click", () => searchInput.focus());
+    const form = document.getElementById("startForm"), out = document.getElementById("startResult"), err = document.getElementById("startError");
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const topic = form.elements.topic.value, region = form.elements.region.value;
+      if (!topic || !region){
+        err.textContent = !topic && !region ? "Choose what you need help with, and where you live or get your care." : !topic ? "Choose what you need help with." : "Choose where you live or get your care.";
+        err.hidden = false;
+        return;
+      }
+      err.hidden = true;
+      const res = S.lookup(topic, region);
+      out.innerHTML = `
+        <h2 id="startResultHeading" tabindex="-1">Your next step</h2>
+        ${res.primary ? stepRow(res.primary, "start-primary") : `<p>${escapeHtml(res.message)}</p>`}
+        ${res.also.length ? `<h2 class="start-also">${res.primary ? "Also useful" : "These may help"}</h2><div class="simple-list">${res.also.map(s => stepRow(s)).join("")}</div>` : ""}
+        <button type="button" class="copy-btn" id="startAgain">Start again</button>
+      `;
+      document.getElementById("startResultHeading").focus();
+      document.getElementById("startAgain").addEventListener("click", () => {
+        form.reset(); out.innerHTML = ""; form.elements.topic[0].focus();
+      });
     });
   }
 
@@ -692,7 +746,7 @@
       : "";
     const body = totalCount
       ? `${toolSection}${privateSection}${voluntarySection}${cards}${conditionSection}${orgCards}${generalOrgCards}${facilityRow}`
-      : `<div class="empty-state">No matches${neutral ? "" : ` for "${safeQuery}"`}. Try a broader term, like a condition, area, or organisation name.</div>${facilityRow}`;
+      : `<div class="empty-state">No matches${neutral ? "" : ` for "${safeQuery}"`}. Try a broader term, like a condition, area, or organisation name. Not sure where to start? Try <a href="#/start">Where do I start?</a></div>${facilityRow}`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
@@ -2377,6 +2431,7 @@ ${name}`;
     else if (parts[0] === "pregnancy") withAssets(["data/pregnancy.js"], () => window.HH_PREGNANCY.render(app, { escapeHtml }));
     else if (parts[0] === "guide" && parts[1]) withAssets(["data/guides.js"], () => { if (!window.HH_GUIDES.render(parts[1], app, { escapeHtml })) renderHome(); });
     else if (parts[0] === "install") renderInstall();
+    else if (parts[0] === "start" && window.HH_START) renderStart();
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();
     else if (parts[0] === "log") renderLog();

@@ -1,13 +1,18 @@
 // Generates the route list from the router in app.js, TOOL_PAGES in app.js, TOOL_LIST in tools.js and the
 // specialty and county lists in data.js, then assigns every route to a door (doors.js) or to "intentionally
 // none". Exits 1 if any route is unassigned, listed under two doors, or points at a route that does not exist.
-// Run: node scripts/test-doors.js      Add --table to print the Markdown route table for the PR description.
+// It also checks the "Where do I start?" lookup (start.js): every step resolves to a real route and a hub row,
+// no result has more than one primary step or two "Also useful", and no Republic of Ireland page can appear in
+// a Northern Ireland result. Run: node scripts/test-doors.js      Add --table to print the Markdown route table for the PR description.
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const root = path.join(__dirname, "..");
 const read = f => fs.readFileSync(path.join(root, f), "utf8");
-const { DOORS, OTHER_ROUTES, ALIASES, items, doorForHash } = require(path.join(root, "doors.js"));
+const doorsApi = require(path.join(root, "doors.js"));
+const { DOORS, OTHER_ROUTES, ALIASES, items, doorForHash } = doorsApi;
+globalThis.HH_DOORS = doorsApi;                       // start.js reads step wording from doors.js
+const START = require(path.join(root, "start.js"));
 
 const app = read("app.js"), tools = read("tools.js");
 const data = vm.runInNewContext(read("data.js") + "\n({ SPECIALTIES, COUNTIES })", {});
@@ -76,6 +81,30 @@ const CROSS = [
   ["data/guides.js", 'href="#/rights-hub"', "after-a-death links to What applies to you"],
 ];
 CROSS.forEach(([f, needle, what]) => { if (!read(f).includes(needle)) fail(`missing cross-link: ${what}`); });
+// ---- 4. Where do I start? (start.js) ----
+const hubHrefs = new Set(items.map(i => i.href));
+const everyHref = new Set();
+Object.values(START.TABLE).forEach(r => { [r.primary, ...r.also, ...(r.elsewhere ? r.elsewhere.also : [])].forEach(h => everyHref.add(h)); });
+everyHref.forEach(h => { if (!routes.has(h)) fail(`start.js links to ${h}, which is not a route`); if (!hubHrefs.has(h)) fail(`start.js links to ${h}, which has no hub row`); });
+START.ROI_ONLY.forEach(h => { if (!routes.has(h)) fail(`ROI_ONLY lists ${h}, which is not a route`); });
+if (START.TOPICS.length < 5 || START.TOPICS.length > 8) fail(`expected 5 to 8 topics, found ${START.TOPICS.length}`);
+if (new Set(START.TOPICS.map(t => t.id)).size !== START.TOPICS.length) fail("duplicate topic id");
+START.TOPICS.forEach(t => { if (!START.TABLE[t.id]) fail(`topic ${t.id} has no row in TABLE`); if (!t.label || !t.hint) fail(`topic ${t.id} needs a label and a hint`); });
+Object.keys(START.TABLE).forEach(id => { if (!START.TOPICS.some(t => t.id === id)) fail(`TABLE row ${id} has no topic`); });
+if (START.REGIONS.map(r => r.id).join() !== "roi,ni") fail("regions must be roi and ni");
+let startResults = 0;
+START.TOPICS.forEach(t => START.REGIONS.forEach(r => {
+  const res = START.lookup(t.id, r.id); const where = `start ${t.id}/${r.id}`; startResults++;
+  if (!res) return fail(`${where}: no result`);
+  if (!res.primary && !res.message) fail(`${where}: no primary step and no message`);
+  if (res.primary && res.message) fail(`${where}: both a primary step and a message`);
+  if (res.also.length > 2) fail(`${where}: more than two "Also useful"`);
+  const shown = [res.primary, ...res.also].filter(Boolean).map(x => x.href);
+  if (new Set(shown).size !== shown.length) fail(`${where}: a step is repeated`);
+  if (r.id === "ni") shown.forEach(h => { if (START.ROI_ONLY.includes(h)) fail(`${where}: Republic of Ireland page ${h} shown to Northern Ireland`); });
+}));
+if (START.lookup("nope", "roi") !== null || START.lookup("find", "nope") !== null) fail("unknown topic or region should give null");
+
 // The bottom tab bar is not part of this redesign and must still point at its four routes.
 const tabHrefs = [...read("index.html").match(/<nav class="tabbar"[\s\S]*?<\/nav>/)[0].matchAll(/href="([^"]+)"/g)].map(m => m[1]);
 if (tabHrefs.join() !== "#/,#/specialty,#/county,#/advocacy") fail(`bottom tabs changed: ${tabHrefs.join()}`);
@@ -88,4 +117,4 @@ if (process.argv.includes("--table")) {
   console.error(`${table.length} routes`);
 }
 if (failed) { console.error(`${failed} problem(s)`); process.exit(1); }
-console.log(`ok: ${table.length} routes assigned (${items.length} hub rows, ${table.filter(t => t.door === "none").length} intentionally none), none unassigned or listed twice`);
+console.log(`ok: ${table.length} routes assigned (${items.length} hub rows, ${table.filter(t => t.door === "none").length} intentionally none), none unassigned or listed twice; ${startResults} start results, no Republic of Ireland page in a Northern Ireland result`);
