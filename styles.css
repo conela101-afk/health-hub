@@ -204,7 +204,7 @@ select{ min-height:24px; }
   touch-action:manipulation;
 }
 .tab-item span{ font-size:11px; font-weight:600; }
-.tab-item.active{ color:var(--violet-deep); }
+.tab-item.active, .tab-item[aria-current="page"]{ color:var(--violet-deep); }
 
 /* ---------- Expandable banners (crisis / urgent) ---------- */
 .crisis-banner, .urgent-banner{
@@ -737,6 +737,7 @@ select{ min-height:24px; }
 .simple-mode a, .simple-mode button, .simple-mode .tab-item, .simple-mode .pill{ min-height:44px; }
 .simple-mode .tabbar .tab-item svg{ width:26px; height:26px; }
 .simple-mode .tabbar .tab-item span{ font-size:13.5px; font-weight:700; }
+.simple-mode .tabbar .tab-item{ padding-left:1px; padding-right:1px; }
 .simple-mode .entry-card, .simple-mode .row, .simple-mode .org-card,
 .simple-mode .scheme-card, .simple-mode .template-card, .simple-mode .rights-card,
 .simple-mode .prep-card{ padding:22px; }
@@ -750,3 +751,11 @@ select{ min-height:24px; }
     transition-duration:0.01ms !important; scroll-behavior:auto !important;
   }
 }
+
+/* Door pages (#/find, #/rights, #/act, #/support): grouped rows, 48px minimum height. */
+.door-group{ margin:0 0 22px; }
+.door-group-title{ font-family:var(--font-display); font-size:17px; font-weight:600; margin:0 0 10px; color:var(--ink); }
+.door-row{ min-height:48px; }
+.door-row .row-body strong{ display:block; font-size:15px; font-weight:600; color:var(--ink); }
+.door-row:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }
+.tab-item:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:-3px; }

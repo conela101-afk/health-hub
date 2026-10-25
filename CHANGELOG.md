@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-25 [Claude] (Four doors, PR 1 of 4: door pages and bottom tabs)
+- Brief: `docs/briefs/four-doors-2026-10-25.md` (build order: 1 door pages and tabs, 2 Home and search, 3 Where do I start?, 4 colour tokens; PRs 1 and 4 are kept apart). This PR is 1 only.
+- New `doors.js` (precached, loaded after `data.js`): four doors, each with grouped rows, and `doorForHash()`. New routes `#/find`, `#/rights`, `#/act`, `#/support` render the door pages from it (`renderDoor` in `app.js`); rows are 48px minimum. Every existing route is listed under exactly one door (35 rows); cross-links already inside the pages were left as they are.
+- Bottom tabs are now Home, Find, Rights, Act, Support, with `aria-current="page"` on the active one (was a class only). The tab for a page comes from its door, so `#/specialty/*` and `#/county/*` light Find, and `#/advocacy/*` light the door that lists the section.
+- Advocacy: the seven-pill tab row is removed. Each section keeps its route (`#/advocacy/guide`, `templates`, `schemes`, `hospitals`, `contacts`, `orgs`, `general`, `sar-builder`) and now has its own heading with a back link to its door. Bare `#/advocacy` still shows the guide. Back link on `#/rights/disability-children` points to `#/rights`. Sections renamed in headings only: "The rights guide", "Support organisations".
+- Home is unchanged in this PR (new Home is PR 2). Search gains four entries for the door pages; `search-audit.js` output is identical to main.
+- New `scripts/test-doors.js` (not yet in CI: the push token cannot edit workflow files): checks every door route exists, no route is under two doors, nothing is orphaned, and old tab targets map to a door. `--table` prints the route-to-door table.
+- `sw.js` cache v39 to v40 (`doors.js` added). No `data.js` change, no CSP change, no new host, no new figures. Headless Chromium: all 35 rows open from Home in two taps with the right tab highlighted, no console errors, no external requests, no overflow at 320px, offline works after the cache update.
+- Known and unchanged: axe reports one contrast failure on `#/advocacy/schemes` (`.checked-note` under AskCI, 4.28:1), present on main; it belongs to the colour PR.
+
 ## 2026-10-24 [Claude] (check-third-party.sh: scan shipped files only)
 - `scripts/check-third-party.sh` now scans only shipped files: `*.html`/`*.css`/`*.js` at the repo root (`index.html`, `app.js`, `data.js`, `search.js`, `tools.js`, `sw.js`, `styles.css`) and everything under `data/`. `scripts/` is no longer scanned, so a test can hold `XMLHttpRequest`/`sendBeacon` regex literals without failing it. `vendor/` stays excluded. `CHECK_ROOT` overrides the repo root for testing.
 - Added `scripts/test-check-third-party.sh`: builds throwaway trees and asserts the checker exits 1 on a bad `index.html`, root `.js`, `sw.js`, `data/` file and `styles.css`, exits 0 on a clean tree, and ignores the same patterns under `scripts/`. All pass; the checker still exits 0 on the real repo.

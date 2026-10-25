@@ -96,14 +96,13 @@
     try { localStorage.removeItem(key); } catch(err){ /* no-op */ }
   }
 
-  function updateTabbar(parts){
-    let active = null;
-    if (parts.length === 0) active = "home";
-    else if (parts[0] === "specialty") active = "specialty";
-    else if (parts[0] === "county") active = "county";
-    else if (parts[0] === "advocacy") active = "advocacy";
+  // Highlights the bottom tab for the door that lists the current page (see doors.js).
+  function updateTabbar(){
+    const active = window.HH_DOORS ? window.HH_DOORS.doorForHash(location.hash || "#/") : null;
     tabbar.querySelectorAll(".tab-item").forEach(el => {
-      el.classList.toggle("active", el.dataset.tab === active);
+      const on = el.dataset.tab === active;
+      el.classList.toggle("active", on);
+      if (on) el.setAttribute("aria-current", "page"); else el.removeAttribute("aria-current");
     });
   }
 
@@ -158,6 +157,10 @@
     { name: "Screening: who is invited", href: "#/screening", keywords: "screening bowelscreen breastcheck cervicalcheck smear test mammogram fit test bowel breast cervical aneurysm aaa diabetic eye retinascreen retinopathy invited age" },
     { name: "Nursing homes: choosing, paying and raising a concern", href: "#/advocacy/schemes", keywords: "nursing home nursing homes residential care older people hiqa inspection report choosing a nursing home fair deal complaint concern ombudsman residents rights" },
     { name: "Decision-making papers (enduring power of attorney, advance healthcare directive)", href: "#/advocacy/schemes", keywords: "enduring power of attorney epa advance healthcare directive decision making representative assisted decision making capacity act decision support service capacity" },
+    { name: "Find care", href: "#/find", keywords: "find care services directory specialty area county condition facility waiting list" },
+    { name: "Know your rights", href: "#/rights", keywords: "know your rights entitlements schemes costs what you pay guides" },
+    { name: "Take action", href: "#/act", keywords: "take action complaint records letters foi discharge while you wait tools" },
+    { name: "Get support", href: "#/support", keywords: "get support crisis who to contact support organisations help" },
     { name: "Guided tools", href: "#/tools", keywords: "guided tools wizard" },
     { name: "Complaints navigator", href: "#/tools/complaints", keywords: "complaint complaints complain ombudsman nipso ysys your service your say stage review letter hiqa rqia patient advocacy" },
     { name: "Records-request builder", href: "#/tools/records", keywords: "records foi freedom of information sar subject access request medical records deadline tracker" },
@@ -831,21 +834,17 @@
     `;
   }
 
+  // The old seven-tab row is gone: each section is now a row on a door page (doors.js).
+  // The routes are unchanged, so old links and bookmarks still open the same content.
   const ADVOCACY_SECTIONS = [
-    { id: "guide", label: "The guide" },
-    { id: "templates", label: "Letter templates" },
-    { id: "schemes", label: "Entitlements" },
-    { id: "hospitals", label: "FOI by hospital" },
-    { id: "contacts", label: "Who to contact" },
-    { id: "orgs", label: "Support orgs" },
-    { id: "general", label: "General support" },
+    { id: "guide", title: "The rights guide" },
+    { id: "templates", title: "Letter templates" },
+    { id: "schemes", title: "Entitlements" },
+    { id: "hospitals", title: "FOI by hospital" },
+    { id: "contacts", title: "Who to contact" },
+    { id: "orgs", title: "Support organisations" },
+    { id: "general", title: "General support" },
   ];
-
-  function advocacySegmentedHtml(active){
-    return `<div class="segmented">${ADVOCACY_SECTIONS.map(s =>
-      `<a class="segment${s.id === active ? " active" : ""}" href="#/advocacy/${s.id}">${s.label}</a>`
-    ).join("")}</div>`;
-  }
 
   function renderAdvocacyGuide(){
     const guideHtml = ADVOCACY_GUIDE.map(m => `
@@ -2199,20 +2198,38 @@ ${name}`;
     `;
   }
 
-  function renderAdvocacy(section){
-    const sectionRenderers = { guide: renderAdvocacyGuide, templates: renderAdvocacyTemplates, schemes: renderAdvocacySchemes, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs, general: renderAdvocacyGeneral };
-    const active = sectionRenderers[section] ? section : "guide";
-
+  // A door page: the features under one of the four doors, as grouped rows (doors.js is the list).
+  function renderDoor(id){
+    const door = window.HH_DOORS.DOORS.find(d => d.id === id);
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
-        <h1>Know your rights</h1>
-        <p class="count">Self-advocacy, complaints &amp; support — Ireland &amp; Northern Ireland</p>
+        <h1>${escapeHtml(door.title)}</h1>
+        <p class="count">${escapeHtml(door.intro)}</p>
+      </div>
+      ${door.groups.map(g => `
+        <section class="door-group" aria-labelledby="dg-${id}-${g.title.replace(/\W+/g, "-").toLowerCase()}">
+          <h2 class="door-group-title" id="dg-${id}-${g.title.replace(/\W+/g, "-").toLowerCase()}">${escapeHtml(g.title)}</h2>
+          <div class="simple-list">
+            ${g.items.map(it => `<a class="row door-row" href="${escapeHtml(it.href)}"><span class="row-body"><strong>${escapeHtml(it.label)}</strong><span class="n">${escapeHtml(it.desc)}</span></span><span class="arrow" aria-hidden="true">›</span></a>`).join("")}
+          </div>
+        </section>`).join("")}
+    `;
+  }
+
+  function renderAdvocacy(section){
+    const sectionRenderers = { guide: renderAdvocacyGuide, templates: renderAdvocacyTemplates, schemes: renderAdvocacySchemes, hospitals: renderAdvocacyHospitals, contacts: renderAdvocacyContacts, orgs: renderAdvocacyOrgs, general: renderAdvocacyGeneral };
+    const active = sectionRenderers[section] ? section : "guide";
+    const door = window.HH_DOORS.DOORS.find(d => d.id === window.HH_DOORS.doorForHash("#/advocacy/" + active));
+
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="${door.href}">‹ ${door.title}</a>
+        <h1>${ADVOCACY_SECTIONS.find(s => s.id === active).title}</h1>
+        <p class="count">Ireland &amp; Northern Ireland</p>
       </div>
 
       ${active === "guide" ? guidedToolsRowHtml() : ""}
-
-      ${advocacySegmentedHtml(active)}
 
       ${sectionRenderers[active]()}
 
@@ -2354,7 +2371,7 @@ ${name}`;
     window.scrollTo(0, 0);
 
     if (parts[0] !== "search" && hash !== PRIVATE_SEARCH_HASH){ searchInput.value = ""; privateQuery = ""; }
-    updateTabbar(parts);
+    updateTabbar();
 
     if (parts.length === 0) renderHome();
     else if (parts[0] === "specialty" && !parts[1]) renderSpecialtyIndex();
@@ -2364,6 +2381,7 @@ ${name}`;
     else if (hash === PRIVATE_SEARCH_HASH) { if (privateQuery) renderSearchRoute(privateQuery, true); else renderHome(); }
     else if (parts[0] === "search" && parts[1]) renderSearchRoute(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "entry" && parts[1]) renderEntry(parts[1]);
+    else if (window.HH_DOORS && !parts[1] && window.HH_DOORS.DOORS.some(d => d.id === parts[0])) renderDoor(parts[0]);
     else if (parts[0] === "advocacy" && parts[1] === "sar-builder") renderSarBuilder();
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
