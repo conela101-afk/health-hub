@@ -505,7 +505,7 @@
       err.hidden = true;
       const res = S.lookup(topic, region);
       out.innerHTML = `
-        <h2 id="startResultHeading" tabindex="-1">Your next step</h2>
+        <h2 id="startResultHeading" tabindex="-1">${res.primary ? "Your next step" : "Other pages that may help"}</h2>
         ${res.primary ? stepRow(res.primary, "start-primary") : `<p>${escapeHtml(res.message)}</p>`}
         ${res.also.length ? `${res.primary ? `<h2 class="start-also">Also useful</h2>` : ""}<div class="simple-list">${res.also.map(s => stepRow(s)).join("")}</div>` : ""}
         <button type="button" class="copy-btn" id="startAgain">Start again</button>

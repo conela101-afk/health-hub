@@ -104,15 +104,19 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
   // Every topic, both locations: nothing Republic-of-Ireland-only in a Northern Ireland result.
   const roiOnly = ["#/tools/aon", "#/rights/disability-children", "#/guide/after-a-death", "#/pregnancy", "#/about/screening"];
   const topics = await page.$$eval("input[name=topic]", i => i.map(x => x.value));
-  let niLeak = [], over = [], formStillShown = [];
+  let niLeak = [], over = [], formStillShown = [], wrongHeading = [];
   for (const t of topics) for (const r of ["roi", "ni"]) {
     await page.check(`input[name=topic][value=${t}]`); await page.check(`input[name=region][value=${r}]`); await page.click(".start-submit");
     const hrefs = await page.$$eval("#startResult a.row", a => a.map(x => x.getAttribute("href")));
     if (hrefs.length > 3) over.push(t + "/" + r);
     if (r === "ni") hrefs.forEach(h => { if (roiOnly.includes(h)) niLeak.push(t + " " + h); });
     if (await page.isVisible("#startForm")) formStillShown.push(t + "/" + r);
+    const heading = (await page.textContent("#startResultHeading")).trim();
+    const want = (t === "aon" && r === "ni") ? "Other pages that may help" : "Your next step";
+    if (heading !== want) wrongHeading.push(`${t}/${r}: "${heading}"`);
     await page.click("#startAgain");
   }
+  check("result heading is \"Your next step\" for all results except Northern Ireland + Assessment of Need, which reads \"Other pages that may help\"", wrongHeading.length === 0, wrongHeading.join("; "));
   check("every result is its own screen (the questions are hidden until Start again)", formStillShown.length === 0, formStillShown.join());
   check("16 combinations: no more than one step and two Also useful", over.length === 0, over.join());
   check("16 combinations: no Republic of Ireland page in a Northern Ireland result", niLeak.length === 0, niLeak.join());
