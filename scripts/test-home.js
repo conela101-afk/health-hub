@@ -33,9 +33,10 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
   // Order, top to bottom: emergency strip, search, "Or browse everything", then the tiles.
   const order = await page.evaluate(() => {
     const y = sel => { const e = document.querySelector(sel); return e ? Math.round(e.getBoundingClientRect().top) : null; };
-    return { crisis: y(".crisis-banner"), search: y("#homeSearchForm"), browse: y(".home-browse-title"), tiles: y(".door-tiles") };
+    return { crisis: y(".crisis-banner"), start: y(".home-start"), search: y("#homeSearchForm"), browse: y(".home-browse-title"), tiles: y(".door-tiles") };
   });
-  check("Home order: emergency strip, search, browse heading, tiles", order.crisis < order.search && order.search < order.browse && order.browse < order.tiles, JSON.stringify(order));
+  check("Home order: emergency strip, Where do I start?, search, browse heading, tiles", order.crisis < order.start && order.start < order.search && order.search < order.browse && order.browse < order.tiles, JSON.stringify(order));
+  check("Where do I start? row goes to #/start and is at least 48px high", await page.$eval(".home-start", e => e.getAttribute("href") === "#/start" && e.getBoundingClientRect().height >= 48), "");
   // Elaine's 25 Oct decision: the emergency line shows without opening the banner.
   check("\"Emergency: call 999 or 112\" is visible on the closed banner", await page.isVisible(".crisis-banner .emergency-line") && (await page.textContent(".crisis-banner .emergency-line")).trim() === "Emergency: call 999 or 112" && !(await page.$eval(".crisis-banner", e => e.open)), "");
   check("the rest of the banner is still collapsed until tapped", !(await page.isVisible(".crisis-banner .crisis-contacts")), "");
@@ -43,14 +44,20 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
   const tiles = await page.$$eval(".door-tile", t => t.map(x => [x.getAttribute("href"), x.querySelector("strong").textContent, x.querySelector("span").textContent.length > 0, Math.round(x.getBoundingClientRect().height)]));
   check("four door tiles with one-line descriptions", tiles.length === 4 && tiles.every(t => t[2] && t[3] >= 48), JSON.stringify(tiles));
   check("tiles go to the four hubs", tiles.map(t => t[0]).join() === "#/find,#/rights-hub,#/act,#/support", tiles.map(t => t[0]).join());
+  // The emergency banners keep their wording, so on a 800px-high phone the second row of tiles sits partly
+  // behind the tab bar; on an 844px-high phone all four tiles fit. Both are checked.
+  const tabTop800 = await page.$eval("#tabbar", e => Math.round(e.getBoundingClientRect().top));
+  const firstRowBottom = await page.$eval(".door-tile", e => Math.round(e.getBoundingClientRect().bottom));
+  check("first row of tiles is fully visible at 390x800", firstRowBottom <= tabTop800, `bottom=${firstRowBottom} tab bar top=${tabTop800}`);
+  await page.setViewportSize({ width: 390, height: 844 }); await page.waitForTimeout(150);
   const bottom = await page.$eval(".door-tiles", e => Math.round(e.getBoundingClientRect().bottom));
-  check("tiles are above the fold at 390x800", bottom <= 800, "bottom=" + bottom);
-  check("Home sections, in order", await page.$$eval("#app > *", c => c.map(x => x.className || x.tagName).join()) === "sr-only,home-emergency,home-search,home-browse-title,door-tiles,quick-links", "");
+  const tabTop = await page.$eval("#tabbar", e => Math.round(e.getBoundingClientRect().top));
+  check("all four tiles are above the fold at 390x844", bottom <= tabTop, `bottom=${bottom} tab bar top=${tabTop}`);
+  check("Home sections, in order", await page.$$eval("#app > *", c => c.map(x => x.className || x.tagName).join()) === "sr-only,home-emergency,home-start,home-search,home-browse-title,door-tiles,quick-links", "");
   const pills = await page.$$eval(".quick-links a.pill", a => a.map(x => [x.getAttribute("href"), x.textContent.trim()]));
   check("Often searched pills: autism and ADHD, parents, feeding", JSON.stringify(pills) === JSON.stringify([["#/specialty/neurodiversity", "Autism & ADHD support"], ["#/specialty/parenting", "New & Expectant Parents"], ["#/specialty/feeding", "Infant feeding & breastfeeding support"]]), JSON.stringify(pills));
   const pillsTop = await page.$eval(".quick-links", e => Math.round(e.getBoundingClientRect().top));
-  const tabTop = await page.$eval("#tabbar", e => Math.round(e.getBoundingClientRect().top));
-  check("Often searched row is below the four doors, hidden behind the tab bar at 390x800 (not above the fold)", pillsTop > bottom && pillsTop >= tabTop, "top=" + pillsTop + " tiles bottom=" + bottom + " tab bar top=" + tabTop);
+  check("Often searched row is below the four doors, hidden behind the tab bar at 390x844 (not above the fold)", pillsTop > bottom && pillsTop >= tabTop, "top=" + pillsTop + " tiles bottom=" + bottom + " tab bar top=" + tabTop);
   check("header search box is hidden on Home", !(await page.isVisible("#searchBar")), "");
   check("Home has no AskCI", !/askci|chatbot/i.test(await page.content()), "");
   check("bottom tabs unchanged, Home current", JSON.stringify(await page.$$eval("#tabbar a", a => a.map(x => [x.textContent.trim(), x.getAttribute("aria-current")]))) === '[["Home","page"],["Specialty",null],["Area",null],["Advocacy",null]]', "");
@@ -75,6 +82,39 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
   check("empty submit stays on Home", await page.evaluate(() => location.hash) === "#/" || await page.evaluate(() => location.hash) === "", "");
   await go("#/find"); await page.fill("#searchInput", "knee"); await page.waitForTimeout(450);
   check("header search box still searches as you type", (await page.evaluate(() => location.hash)).startsWith("#/search/"), "");
+
+  // Where do I start? (#/start): the Home row opens it, two questions, one next step, nothing stored.
+  await go("#/"); await page.click(".home-start"); await page.waitForTimeout(250);
+  check("Home row opens the Where do I start? page", (await page.evaluate(() => location.hash)) === "#/start" && (await page.textContent("h1")) === "Where do I start?", "");
+  check("two questions, each a fieldset with a legend and real labels", await page.$$eval("fieldset legend", l => l.length) === 2 && await page.$$eval("label.start-option input[type=radio]", i => i.length) === 10, "");
+  check("every option is at least 48px high", await page.$$eval(".start-option", o => o.every(x => x.getBoundingClientRect().height >= 48)), "");
+  await page.click(".start-submit"); await page.waitForTimeout(150);
+  check("submitting with nothing chosen shows an error and no result", await page.isVisible("#startError") && (await page.$eval("#startResult", e => e.children.length)) === 0, "");
+  await page.check("input[name=topic][value=complain]"); await page.click(".start-submit"); await page.waitForTimeout(150);
+  check("one question answered shows which is missing", /where you live/.test(await page.textContent("#startError")), "");
+  await page.check("input[name=region][value=roi]"); await page.click(".start-submit"); await page.waitForTimeout(200);
+  const roi = await page.$$eval("#startResult a.row", a => a.map(x => x.getAttribute("href")));
+  check("result: one primary step, then at most two Also useful", roi[0] === "#/tools/complaints" && roi.length >= 2 && roi.length <= 3, JSON.stringify(roi));
+  check("result heading takes focus and the address does not change", (await page.evaluate(() => document.activeElement.id)) === "startResultHeading" && (await page.evaluate(() => location.hash)) === "#/start", "");
+  check("nothing stored by choosing", await page.evaluate(() => localStorage.length + sessionStorage.length + document.cookie.length) === 0, "");
+  await page.click("#startAgain"); await page.waitForTimeout(100);
+  check("Start again clears the choices and the result", (await page.$$eval("input:checked", i => i.length)) === 0 && (await page.$eval("#startResult", e => e.children.length)) === 0, "");
+  // Every topic, both locations: nothing Republic-of-Ireland-only in a Northern Ireland result.
+  const roiOnly = ["#/tools/aon", "#/rights/disability-children", "#/guide/after-a-death", "#/pregnancy", "#/about/screening"];
+  const topics = await page.$$eval("input[name=topic]", i => i.map(x => x.value));
+  let niLeak = [], over = [];
+  for (const t of topics) for (const r of ["roi", "ni"]) {
+    await page.check(`input[name=topic][value=${t}]`); await page.check(`input[name=region][value=${r}]`); await page.click(".start-submit");
+    const hrefs = await page.$$eval("#startResult a.row", a => a.map(x => x.getAttribute("href")));
+    if (hrefs.length > 3) over.push(t + "/" + r);
+    if (r === "ni") hrefs.forEach(h => { if (roiOnly.includes(h)) niLeak.push(t + " " + h); });
+  }
+  check("16 combinations: no more than one step and two Also useful", over.length === 0, over.join());
+  check("16 combinations: no Republic of Ireland page in a Northern Ireland result", niLeak.length === 0, niLeak.join());
+  await page.check("input[name=topic][value=aon]"); await page.check("input[name=region][value=ni]"); await page.click(".start-submit");
+  check("Assessment of Need in Northern Ireland says it is a Republic of Ireland process", /Republic of Ireland process/.test(await page.textContent("#startResult")) && (await page.$("#startResult .start-primary")) === null, "");
+  check("#/start has no AskCI", !/askci|chatbot/i.test(await page.content()), "");
+  await go("#/search/zzzzqq"); check("empty search links to Where do I start?", await page.$('.empty-state a[href="#/start"]') !== null, "");
 
   // Hubs and the guided paths carry no Ask CI.
   for (const h of ["#/find", "#/rights-hub", "#/act", "#/support"]) { await go(h); check(`${h} has no AskCI`, !/askci|chatbot/i.test(await page.content()), ""); }
