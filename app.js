@@ -534,8 +534,10 @@
     const check = (prefix, list) => list.map(x => `
       <label class="check-row">
         <input type="checkbox" id="${prefix}_${x.id}" ${x.checked ? "checked" : ""}>
-        <span>${escapeHtml(x.label)}</span>
+        <span id="${prefix}_${x.id}_label">${escapeHtml(x.label || "")}</span>
       </label>`).join("");
+    // The request to raise it in the chamber has its own wording for each role; a role without one is not offered it.
+    const askFor = (a, role) => a.perRole ? (role && a.perRole[role.id]) || null : a;
     const opt = list => list.map(x => `<option value="${escapeHtml(x.id)}">${escapeHtml(x.label)}</option>`).join("");
 
     app.innerHTML = `
@@ -545,7 +547,7 @@
         <p class="count">A TD, Senator, councillor, MLA or MP. Fill in your details and the letter updates as you go.</p>
       </div>
       <div class="callout">
-        <strong>A letter asking for help, not advice.</strong> It asks an elected representative to raise a problem with a health service. It names no party and takes no side. This page does not check who represents you: find their name and contact details on the official website of the Oireachtas, the Northern Ireland Assembly, the UK Parliament or your council.
+        <strong>A letter asking for help. It is not legal or medical advice.</strong> It asks an elected representative to raise a problem with a health service. It names no party and takes no side. This page does not check who represents you: find their name and contact details on the official website of the Oireachtas, the Northern Ireland Assembly, the UK Parliament or your council.
       </div>
       <div class="callout">
         <strong>Before you send it.</strong> A representative's office keeps what you send. Leave out medical detail you would not want kept.
@@ -560,14 +562,14 @@
         <label class="prep-label" for="rlRole">Who are you writing to?</label>
         <select id="rlRole" class="prep-input" disabled><option value="">Choose where you live first</option></select>
 
-        <label class="prep-label" for="rlRepName">Their surname (optional)</label>
-        <input type="text" id="rlRepName" class="prep-input" placeholder="Used in the greeting">
+        <label class="prep-label" for="rlRepName">Their title and surname (optional), for example Ms Murphy</label>
+        <input type="text" id="rlRepName" class="prep-input" placeholder="Used after &quot;Dear&quot; in the greeting">
 
         <label class="prep-label" for="rlName">Your full name</label>
         <input type="text" id="rlName" class="prep-input" placeholder="e.g. Mary Murphy">
 
         <label class="prep-label" for="rlAddress">Your address</label>
-        <textarea id="rlAddress" class="prep-input" rows="2" placeholder="Representatives usually need your address to confirm you live in their area"></textarea>
+        <textarea id="rlAddress" class="prep-input" rows="2" placeholder="Your representative may need your address to confirm you live in their area"></textarea>
 
         <label class="prep-label" for="rlArea">Constituency or electoral area (optional)</label>
         <input type="text" id="rlArea" class="prep-input" placeholder="Only if you know it">
@@ -614,13 +616,13 @@
       const topic = R.topics.find(t => t.id === val("rlTopic")) || R.topics[0];
       const name = val("rlName") || "[Your name]";
       const address = val("rlAddress") || "[Your address]";
-      const area = val("rlArea"), contact = val("rlContact"), repName = val("rlRepName");
+      const area = val("rlArea"), contact = val("rlContact");
       const what = val("rlWhat") || "[Describe what happened: which service, the dates, and what you have already tried.]";
-      const greeting = role.greeting
-        ? `Dear ${role.greeting}${repName ? " " + repName : ""},`
-        : (repName ? `Dear ${repName},` : "Dear Sir or Madam,");
+      // What is typed after "Dear" is used exactly (a trailing comma is dropped). With nothing typed, the role's own word is used.
+      const typed = val("rlRepName").replace(/\s*,+$/, "");
+      const greeting = typed ? `Dear ${typed},` : (role.greeting ? `Dear ${role.greeting},` : "Dear Sir or Madam,");
       const done = R.done.filter(d => el("rlDone_" + d.id).checked).map(d => d.text);
-      const asks = R.asks.filter(a => (!a.needsRole || role[a.needsRole]) && el("rlAsk_" + a.id).checked).map(a => a.text.replace("{body}", region.body));
+      const asks = R.asks.map(a => ({ a, w: askFor(a, role) })).filter(x => x.w && el("rlAsk_" + x.a.id).checked).map(x => x.w.text);
       return `${name}
 ${address}
 ${area ? `Constituency or electoral area: ${area}\n` : ""}${contact ? `${contact}\n` : ""}
@@ -646,8 +648,11 @@ ${name}`;
     function refresh(){
       const role = R.roles.find(r => r.id === val("rlRole"));
       R.asks.forEach(a => {
-        if (!a.needsRole) return;
-        el("rlAsk_" + a.id).closest(".check-row").hidden = !!role && !role[a.needsRole];
+        if (!a.perRole) return;
+        const w = askFor(a, role);
+        el("rlAsk_" + a.id).closest(".check-row").hidden = !!role && !w;
+        const shown = w || Object.values(a.perRole)[0];   // before a role is chosen, show the usual wording
+        el("rlAsk_" + a.id + "_label").textContent = shown.label;
       });
       const text = letterText();
       el("rlOutput").textContent = text;

@@ -24,14 +24,22 @@ strings.forEach(s => {
 check("no party, politician or campaign is named, and no phone, email, link, fee or waiting time appears", !strings.some(s => NAMED.test(s) || CONTACT.test(s)), "");
 ["regions", "roles", "topics", "done", "asks"].forEach(k => {
   const ids = (R[k] || []).map(x => x.id);
-  check(`${k}: present, ids unique, each has a label`, ids.length > 0 && new Set(ids).size === ids.length && R[k].every(x => x.id && x.label), "");
+  check(`${k}: present, ids unique, each has a label (or per-role wording)`, ids.length > 0 && new Set(ids).size === ids.length && R[k].every(x => x.id && (x.label || x.perRole)), "");
 });
-check("regions are the Republic of Ireland and Northern Ireland, each naming a body", R.regions.map(r => r.id).join() === "roi,ni" && R.regions.every(r => r.body), "");
+check("regions are the Republic of Ireland and Northern Ireland, and name no body (the location only decides the roles)", R.regions.map(r => r.id).join() === "roi,ni" && R.regions.every(r => r.label && !("body" in r)), "");
 check("every role names at least one region, all valid", R.roles.every(r => r.regions.length && r.regions.every(x => R.regions.some(g => g.id === x))), "");
 check("TD and Senator are Republic of Ireland only; MLA and MP are Northern Ireland only; councillor is both", ["td", "senator"].every(i => R.roles.find(r => r.id === i).regions.join() === "roi") && ["mla", "mp"].every(i => R.roles.find(r => r.id === i).regions.join() === "ni") && R.roles.find(r => r.id === "councillor").regions.join() === "roi,ni", "");
-check("a councillor is not offered the parliamentary-question request", R.roles.find(r => r.id === "councillor").asksQuestion === false && R.asks.find(a => a.needsRole === "asksQuestion"), "");
-check("the first request names the body through {body}, and no other text names a body", R.asks[0].text.includes("{body}") && !strings.filter(s => s !== R.asks[0].text).some(s => /\bHSE\b|Health and Social Care/.test(s) && !R.regions.some(r => r.body === s)), "");
-check("every topic has a phrase, every done and ask has text, consent is present", R.topics.every(t => t.phrase) && R.done.concat(R.asks).every(x => x.text) && R.consent, "");
+check("default greeting words: Deputy, Senator, Councillor; none for MLA and MP", R.roles.map(r => r.id + ":" + r.greeting).join() === "td:Deputy,senator:Senator,mla:,mp:,councillor:Councillor", "");
+const contact = R.asks.find(a => a.id === "contact"), question = R.asks.find(a => a.id === "question");
+check("the first request uses one neutral phrase for both regions", contact.text === "Contact the service, or the organisation that runs or funds it, about my case and ask for a reply.", contact.text);
+check("no text names the HSE or a Health and Social Care Trust", !strings.some(s => /\bHSE\b|Health and Social Care/.test(s)), "");
+const PQ = "Raise it with the Minister, or as a parliamentary question, if you think that is appropriate.";
+check("TD and MP are offered the parliamentary question", question.perRole.td.text === PQ && question.perRole.mp.text === PQ, "");
+check("an MLA is offered an Assembly question, not a parliamentary question", question.perRole.mla.text === "Raise it with the Minister, or as an Assembly question, if you think that is appropriate." && !/parliamentary/.test(question.perRole.mla.text + question.perRole.mla.label), "");
+check("a Senator is offered only to raise it with the relevant Minister, with no question", question.perRole.senator.text === "Raise it with the relevant Minister if you think that is appropriate." && !/question/i.test(question.perRole.senator.text + question.perRole.senator.label), "");
+check("a councillor is not offered the request at all", !("councillor" in question.perRole) && Object.keys(question.perRole).sort().join() === "mla,mp,senator,td", Object.keys(question.perRole).join());
+check("every label matches its text", Object.values(question.perRole).every(w => w.label + "." === w.text), "");
+check("every topic has a phrase, every done and ask has text, consent is present", R.topics.every(t => t.phrase) && R.done.every(x => x.text) && contact.text && R.consent, "");
 
 // ---- Part 2: the page ----
 let chromium; try { ({ chromium } = require("playwright")); } catch (e) { chromium = null; }
@@ -51,6 +59,7 @@ let chromium; try { ({ chromium } = require("playwright")); } catch (e) { chromi
   page.on("console", m => { if (m.type() === "error" || m.type() === "warning") problems.push(m.text()); });
   page.on("pageerror", e => problems.push(e.message));
   page.on("request", r => { if (!r.url().startsWith(origin) && !r.url().startsWith("data:")) outside.push(r.url()); });
+  let letter;
   await page.goto(origin + "/#/advocacy/rep-letter"); await page.waitForTimeout(500);
   const stored = () => page.evaluate(() => JSON.stringify([Object.entries(localStorage), Object.entries(sessionStorage), document.cookie]));
   const before = await stored();
@@ -59,24 +68,50 @@ let chromium; try { ({ chromium } = require("playwright")); } catch (e) { chromi
   check("the email-app link is hidden until the letter is ready", !(await page.isVisible("#rlMailto")), "");
 
   const roles = async () => page.$$eval("#rlRole option", o => o.map(x => x.value).filter(Boolean));
+  const out = () => page.textContent("#rlOutput");
+  const NEUTRAL = "Contact the service, or the organisation that runs or funds it, about my case and ask for a reply.";
+  check("the title-and-surname field has the approved label", (await page.textContent('label[for="rlRepName"]')) === "Their title and surname (optional), for example Ms Murphy", "");
+  check("the address hint is the approved wording", (await page.getAttribute("#rlAddress", "placeholder")) === "Your representative may need your address to confirm you live in their area", "");
+  check("the page note starts with the approved sentence", /^A letter asking for help\. It is not legal or medical advice\./.test((await page.textContent(".callout")).trim()), "");
   await page.check('input[name=rlRegion][value=roi]');
   check("Republic of Ireland offers TD, Senator and Councillor only", (await roles()).join() === "td,senator,councillor", (await roles()).join());
-  await page.selectOption("#rlRole", "td"); await page.fill("#rlName", "A Person"); await page.fill("#rlWhat", "A long wait."); await page.fill("#rlRepName", "Surname");
-  let letter = await page.textContent("#rlOutput");
-  check("Republic of Ireland letter greets a Deputy and names the HSE, not a Trust", /Dear Deputy Surname,/.test(letter) && /or the HSE, about my case/.test(letter) && !/Health and Social Care/.test(letter), letter);
-  check("the parliamentary-question request is offered to a TD", await page.isVisible("#rlAsk_question"), "");
-  await page.selectOption("#rlRole", "councillor");
-  check("it is hidden for a councillor and absent from the letter", !(await page.isVisible("#rlAsk_question")) && !/parliamentary question/.test(await page.textContent("#rlOutput")), "");
+  await page.fill("#rlName", "A Person"); await page.fill("#rlWhat", "A long wait.");
+  const askLabel = () => page.textContent("#rlAsk_question_label");
+  // Greeting cases: nothing typed uses the role's own word; what is typed after "Dear" is used exactly.
+  const greet = async (role, typed) => { await page.selectOption("#rlRole", role); await page.fill("#rlRepName", typed); return (await out()).split("\n").find(l => l.startsWith("Dear ")); };
+  const cases = [["td", "", "Dear Deputy,"], ["td", "Ms Murphy", "Dear Ms Murphy,"], ["td", "  Deputy Murphy  ", "Dear Deputy Murphy,"], ["senator", "", "Dear Senator,"], ["senator", "Senator Byrne", "Dear Senator Byrne,"], ["councillor", "", "Dear Councillor,"], ["councillor", "Cllr Kelly,", "Dear Cllr Kelly,"], ["councillor", "   ", "Dear Councillor,"]];
+  const wrong = [];
+  for (const [role, typed, want] of cases) { const got = await greet(role, typed); if (got !== want) wrong.push(`${role} "${typed}" gave "${got}", wanted "${want}"`); }
   await page.check('input[name=rlRegion][value=ni]');
+  for (const [role, typed, want] of [["mla", "", "Dear Sir or Madam,"], ["mla", "Mr Smith", "Dear Mr Smith,"], ["mp", "", "Dear Sir or Madam,"], ["mp", "Dr Jones", "Dear Dr Jones,"], ["councillor", "", "Dear Councillor,"]]) { const got = await greet(role, typed); if (got !== want) wrong.push(`${role} "${typed}" gave "${got}", wanted "${want}"`); }
+  check("greeting cases: blank uses the role's word, typed text is used exactly after Dear", wrong.length === 0, wrong.join("; "));
+
+  // The request to raise it in the chamber, per role.
+  await page.check('input[name=rlRegion][value=roi]');
+  const ask = async (role) => { await page.selectOption("#rlRole", role); await page.check("#rlAsk_question").catch(() => {}); return { shown: await page.isVisible("#rlAsk_question"), label: await askLabel(), letter: await out() }; };
+  let r = await ask("td");
+  check("TD: parliamentary question offered and in the letter", r.shown && /parliamentary question/.test(r.label) && r.letter.includes("or as a parliamentary question, if you think"), r.label);
+  r = await ask("senator");
+  check("Senator: only 'Raise it with the relevant Minister', no question", r.shown && r.label === "Raise it with the relevant Minister if you think that is appropriate" && r.letter.includes("Raise it with the relevant Minister if you think that is appropriate.") && !/question/i.test(r.letter), r.label);
+  r = await ask("councillor");
+  check("Councillor: the request is hidden and not in the letter", !r.shown && !/Minister/.test(r.letter), "");
+  await page.check('input[name=rlRegion][value=ni]');
+  r = await ask("mla");
+  check("MLA: Assembly question, not parliamentary question", r.shown && /Assembly question/.test(r.label) && r.letter.includes("or as an Assembly question, if you think") && !/parliamentary/.test(r.letter), r.label);
+  r = await ask("mp");
+  check("MP: parliamentary question", r.shown && /parliamentary question/.test(r.label) && r.letter.includes("or as a parliamentary question, if you think"), r.label);
   check("Northern Ireland offers MLA, MP and Councillor only", (await roles()).join() === "mla,mp,councillor", (await roles()).join());
-  await page.selectOption("#rlRole", "mla"); await page.fill("#rlRepName", "Surname");
-  letter = await page.textContent("#rlOutput");
-  check("Northern Ireland letter names the Health and Social Care Trust, not the HSE, and has no Deputy greeting", /or the Health and Social Care Trust, about my case/.test(letter) && !/\bHSE\b/.test(letter) && /Dear Surname,/.test(letter), letter);
+  await page.selectOption("#rlRole", "mla");
+  letter = await out();
+  check("the same neutral phrase is used in Northern Ireland, with no HSE or Trust named", letter.includes(NEUTRAL) && !/\bHSE\b|Health and Social Care/.test(letter), letter);
+  await page.check('input[name=rlRegion][value=roi]'); await page.selectOption("#rlRole", "td");
+  letter = await out();
+  check("the same neutral phrase is used in the Republic of Ireland, with no HSE or Trust named", letter.includes(NEUTRAL) && !/\bHSE\b|Health and Social Care/.test(letter), letter);
   check("the placeholders show when fields are empty", /\[Date\]/.test(letter), "");
   await page.fill("#rlEmail", "someone@example.org");
   check("the email-app link appears once ready and is a mailto: link", await page.isVisible("#rlMailto") && (await page.getAttribute("#rlMailto", "href")).startsWith("mailto:"), "");
   await page.check("#rlConsent");
-  check("consent text appears only when ticked", (await page.textContent("#rlOutput")).includes(R.consent), "");
+  check("consent text appears only when ticked", (await out()).includes(R.consent), "");
 
   const hrefs = await page.$$eval("#app a[href]", a => a.map(x => x.getAttribute("href")));
   check("no link on the page leaves the site (only internal routes and the mailto: link)", hrefs.every(h => h.startsWith("#") || h.startsWith("mailto:")), hrefs.join());
