@@ -1,91 +1,45 @@
-# Health Hub: Master Build Plan (v3)
+# Health Hub: Master Build Plan (v4, lean)
 
-21 Oct 2026. Replaces v1 (6 to 12 Sept) and v2 (9 Oct, kept in the Project docs only). Built from the local checkout of `main` (HEAD `663ecbd`, 14 Oct 2026), `CHANGELOG.md`, `GAPS.md`, `REVIEW.md`, `AI_RULES.md` and the briefs listed in §4. Plan only: no `data.js` or code change.
+26 Oct 2026. Replaces v3 (21 Oct). Checked against `main` at `be10edb` (25 Oct, PR #133) and the Project docs. Plan only: no `data.js` or code change.
 
-Recount before quoting any figure: `node scripts/validate-data.js` (and the other `validate-*.js` scripts), `node scripts/county-matrix.js`. Figures below are from scripts run on 21 Oct 2026.
+Recount before quoting any figure. Plan quotes none: `node scripts/validate-data.js`, `validate-costs.js`, `validate-screening.js`, `validate-vaccines.js`, `node scripts/county-matrix.js`, `node scripts/test-doors.js`, `node scripts/search-audit.js`.
 
-## 1. Where things stand
-| Layer | State |
-|---|---|
-| Directory (`data.js`) | 705 entries, 64 specialties. 193 are `verify: true`; 185 have `urlStatus: "search-result"`; 37 are `opened`. Validator passes (17 URL-family warnings, not failing). |
-| Guided tools (`tools.js`) | Complaints navigator, records builder, schemes selector, While you wait, Discharge passport, AON toolkit, appointment prep. Also Patient Passport, call and referral log, SAR builder. |
-| Facilities (`data/facilities.js`) | HIQA/RQIA/HSE/HIA register. No further work planned unless new source data appears. |
-| Conditions (`data/conditions.js`) | 104 conditions. Deep links beyond the HSE/nidirect/NHS fallback block are few; not recounted here (v2 said 15). |
-| Costs, screening, vaccines | 18, 9 and 11 rows. Every row is `verify: true`. |
-| Search | `search.js` v2, aliases including Irish (wording unreviewed), crisis banner, `scripts/search-audit.js` as a local regression test. |
-| Accessibility | Audit run 8 Oct, fixes 1 to 9 merged (#108). `accessibility-statement.md` is still a draft. |
-| Hygiene | Service worker cache `pocket-guide-v27`. Four data validators pass locally. `search-audit.js` and `check-third-party.sh` are not CI steps. |
+## 1. State of play
+- **Built:** directory, guided tools, AON toolkit, conditions, facilities, costs, screening, vaccines, search v2, pregnancy page, install page, privacy layer, guides (after a death, interpreting), AskCI link, feedback form link.
+- **Four doors** (brief `docs/briefs/four-doors-2026-10-25.md`): PR 1 hubs, PR 2 Home and search, PR 3 "Where do I start?" merged. **PR 4 (colour tokens) not started.**
+- **Content added since v3, all unverified:** community-services rows (all ROI), 24 Oct ROI coverage-gap rows, 23 Oct gap-register rows, cost schemes Part A (merged; v3 wrongly said not merged).
+- **Retired from v3:** phase letters A to F, the brief index table, the duplicate constraints list (see `AI_RULES.md`).
 
-Coverage shape (`county-matrix.js`): the thinnest counties are Longford 3, Laois 4, Leitrim 4, Roscommon 4, Cavan 5 and Monaghan 5. The community-service columns (children's and adult disability, PHN, CAMHS, allied health, dental) are zero or near zero in most counties. That gap is what the 14 Oct community-services brief addresses.
+## 2. Priorities (in order)
+**P0. Verification debt.** Every content pass adds `verify: true` rows; only Elaine clears them.
+1. Run sprint 2 (not yet run, confirmed 26 Oct) from `verification-sprint-2-2026-10-24.md` (Project doc; not in repo, see §4). Guided-tools facts, then cost, screening and vaccine rows. Next session after Four doors PR 4 review.
+2. Then community-services and coverage-gap rows, then Advocacy-guide figures after Budget 2027.
+3. Rule: no new content passes until P0 is back below the 8 Oct level. Research and briefs are fine.
 
-## 2. Phase map (v1 letters retired)
-| v1 phase | Status |
-|---|---|
-| A Content merge | Done in substance; remaining work is the community-services gap above. |
-| B Static toolkit | Done, with guided tools on top. |
-| C Geographic push | Ongoing, driven by `county-matrix.js`. |
-| D Facilities | Done. |
-| E App features | Passport, log, discharge passport, SAR builder and out-of-hours directory are built. FOI generator (E2) not started. Complaint wizard is built as the complaints navigator. |
-| F Conditions | MVP shipped; deep-link follow-up still open. |
+**P1. Four doors PR 4.** Colour tokens and visual refresh. Needs contrast numbers in the PR and the known `#/advocacy/schemes` 4.28:1 failure fixed. Then the 3-person find-it test (old vs new), logged in `REVIEW.md`.
 
-Older docs (`coverage-gap-tracker.md`, `REVIEW.md`, `data/facilities.js`) cite v1's phase letters and "§2 Phase A item 7" (the Tier 3 thin-category list, resolved per `coverage-gap-tracker.md`). v1 is in git history (`07ed6a8`); v2 (9 Oct) is in the Project docs and is referenced by `RESEARCH_BRIEF_P3_CONTENT_QUEUE.md`.
+**P2. Accessibility.** Screen reader, Safari and touch testing, then publish `accessibility-statement.md` with verified claims only.
 
-## 3. Priorities
-The bottleneck is still verification debt (every new content pass adds to it). Elaine clears `verify` and sets `checked`; Code never does.
+**P3. Housekeeping (Elaine).**
+- Add `test-doors.js`, `test-home.js` (local only) and `search-audit.js` to CI by hand (push token cannot edit workflows). Step text is in the PR 129 comment.
+- Triage unmerged branches: `claude/costs-part-a`, `claude/audit-fixes-oct26`, `claude/verify-scheme-link-urls`, `claude/nav-findability`, `backup-before-realign`, `pass5-*`, `claude/health-hub-feedback-form-2ypb09`; delete stale `mcp/add-*`.
+- Close PR #119 (replaced by the "Where do I start?" PR).
+- Decide: icon master (`IMG_0956.jpeg`, not in repo), footer privacy wording, `forms.gle` host.
+- Fluent Irish speaker for the 26 alias keys; Irish crisis-banner triggers.
 
-**P0. Verification sprints** (browser pane, Elaine watching). `HUMAN-CHECKS.md` is the tick list; it is generated by script and deliberately not committed, so re-run it rather than editing it. Order:
-1. Remaining guided-tools facts marked `verify: true`, medium and high volatility first.
-2. Cost, screening and vaccine rows (all `verify: true`), starting with the conflicts logged 8 Oct (NIPHS notification, NI help-with-health-costs UC wording, NI shingles cohorts).
-3. Phase A and recent pass entries pending a browser check (`GAPS.md`).
-4. Advocacy-guide figures (Drug Payment Scheme cap, Med 1 percentage) against official pages after Budget 2027.
-Done so far: sprint 1 (9 Oct): five complaints facts and 16 entries cleared, three entries withheld (`hse-spmhs`, `ncp-eating-disorders`, `nrdo`; HSE pages down, restore details in `REVIEW.md`).
+**P4. Content queue (research only).** Open items: High Tech Drugs, Med 1, remaining vaccines (MMR, HPV, Hep B, travel), newborn/antenatal/lung screening, second-opinion routes, NI 111 (verify first), FOI generator, toolkit pages listed in the 24 Oct changelog, watchlist Acts (Mental Health Act 2026 and others, link only until commenced). Source: `GAPS.md`.
 
-**P1. Navigation and findability.** Code done 9 Oct. Open: the before/after find-the-complaint-tool test with three people, logged in `REVIEW.md`.
+**P5. Instagram-supporting features.** "Where do I start?" is done. Left: share and print on guided tools. Each needs a privacy and CSP check.
 
-**P2. Accessibility.** Fixes 1 to 9 merged. Open: screen reader, Safari and touch testing, then publish `accessibility-statement.md` with only verified claims.
+## 3. Decisions needed from Elaine
+1. Sprint 2: pick a date (not yet run; sprint 1 was 9 Oct).
+2. Branch triage (P3).
+3. Approve the P0-first rule in P0.3.
+4. Paid services remain a contingency plan. Nothing in the app or Instagram promotes them.
 
-**P3. Content queue** (research only until sourced and approved; every row unverified):
-- Community services, all ROI (brief 14 Oct): children's and adult disability, dental, allied health, mental health.
-- Cost schemes Part A (brief 9 Oct, branch `claude/costs-part-a` not on main), then High Tech Drugs, Fair Deal, Home Support, hardship routes, aids and appliances, Dental Treatment Services, Community Ophthalmic Services, Med 1.
-- Vaccines not started: MMR, HPV, Hepatitis B, travel. Screening not built: newborn and antenatal, lung.
-- Conditions: remaining deep links via verify-then-store, then the Tier 2 charity layer under the approved-host rule.
-- Toolkit: second-opinion routes, NI 111 (verify first), ROI interpreter access.
-- Gaps still logged "not searched": Louth County Hospital, GP out-of-hours for Mayo and Louth, PHN beyond Wicklow, DSGBV, older persons.
+## 4. Repo gaps found in this check
+Project docs not in the repo. Decide per file: commit to `docs/briefs/`, or leave Project-only.
+`verification-sprint-2-2026-10-24`, `budget-2027-sweep-2026-10-21`, `approved-hosts-sweep-2026-10-20`, `research-brief-remaining-gaps-2026-10-24`, `claude-code-brief-community-services-2026-10-14`, `code-brief-navigation-usability-2026-10-09`, `instagram-*` (marketing strategy, carousel drafts; Project-only is fine).
 
-**P4. Housekeeping that needs Elaine.**
-- Add `search-audit.js` and `check-third-party.sh` to `data-integrity.yml` by hand (the push token cannot edit workflow files).
-- Delete the stale remote `mcp/add-*` branches (the git proxy returned 403). Review the local and remote branches that are not on main (`claude/costs-part-a`, `claude/audit-fixes-oct26`, `claude/verify-scheme-link-urls`, `claude/nav-findability`, `backup-before-realign` and the `pass5-*` set): merge, rebase or close each.
-- Fluent Irish speaker to review the 26 Irish alias keys; decide Irish crisis-banner triggers.
-- Review the Cork pocket-guide `.docx` against the app.
-- Confirm local `main` is level with `origin/main` before the next Code session.
-
-**P5. Instagram-supporting features** (approved in principle 9 Oct; each needs scoping and a privacy and CSP check): "Where do I start?" pathway page, share and print affordances on guided tools, in-app install guidance. No analytics.
-
-## 4. Brief index
-Briefs live in the repo root. "Status" is as of 21 Oct 2026.
-| File | Date | Status |
-|---|---|---|
-| `CLAUDE_CODE_SEARCH_ALIASES.md` | 7 Oct | Done (search v2, aliases). |
-| `CLAUDE_CODE_LANGUAGE_INCLUSION.md` | 7 Oct | Done (parent-neutral wording rule in `AI_RULES.md`). |
-| `RESEARCH_BRIEF_LOCAL_SERVICES_AND_PARENTING.md` | 7 Oct | Done; outputs in `research/`, merged 7 to 8 Oct. |
-| `CLAUDE_CODE_AUTOMERGE.md` | 7 Oct | Dropped 9 Oct. Kept for the record; no workflow will be added. |
-| `CLAUDE_CODE_COSTS_PART_A.md` | 9 Oct | Not merged to main (branch exists). |
-| `RESEARCH_BRIEF_P3_CONTENT_QUEUE.md` | 9 Oct | Research partly run; outputs not in `research/`. |
-| `CLAUDE_CODE_COMMUNITY_SERVICES_ALL_ROI.md` | 14 Oct | Not started. |
-
-## 5. Decisions needed from Elaine
-1. Cadence and order of verification sprints (suggest one a week, P0 order above).
-2. Merge, rebase or close each unmerged branch in P4.
-3. Whether the community-services rows (14 Oct brief) go before or after the next verification sprint (v2 rule: content resumes once P0 is below the 8 Oct level).
-4. Paid services stay a contingency plan. Nothing in the app or Instagram promotes them. B2B runs separately on LinkedIn if ever launched.
-
-## 6. Suggested next three sessions
-1. Verification sprint 2 (P0.1 and P0.2), browser pane.
-2. Branch triage and CI steps (P4), then Costs Part A merge.
-3. Accessibility checklist run (P2), then publish the statement.
-
-## 7. Constraints that still apply
-Claude Code is the sole implementer. Official sources only. No phone, email, fee or waiting-time figure unless copied from a page a person has opened. Budget-sensitive figures stay out until re-read. No third-party requests. `data.js` through PRs; never push to `main`. `node --check` and size check before and after. Validators must pass. Never quote an entry count without a script recount.
-
-## 8. Session end
-One `CHANGELOG.md` entry and one "Recent AI sessions" line per session.
+## 5. Session end
+One `CHANGELOG.md` entry and one "Recent AI sessions" line.
