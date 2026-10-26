@@ -105,3 +105,9 @@ jobs:
 
       - name: Third-party checker fixture tests
         run: bash scripts/test-check-third-party.sh
+        
+      - name: Home and doors tests
+        run: node scripts/test-doors.js
+
+      - name: Search audit
+        run: node scripts/search-audit.js
