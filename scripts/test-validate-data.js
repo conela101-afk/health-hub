@@ -75,13 +75,29 @@ added.forEach(h => {
   expect(`lookalike of ${h} fails even when tagged`, [V({ tags: ["voluntary"], source_url: `https://not${h}/x/` })], "allow-list");
 });
 ["southeastcdnt.ie", "ndsa.ie", "assets.ireland.ie", "nhs.uk", "111.nhs.uk", "barnardos.ie", "irishtimes.com", "irishexaminer.com", "ipu.ie", "sims.ie", "firstivf.ie",
- "louthparenthub.ie", "kilkennyparenthub.ie", "horizonscork.ie", "mphc.ie", "midwestaries.ie", "cypsc.ie", "mayomha.ie", "familypeersupport.ie", "niassembly.gov.uk"].forEach(h =>
+ "louthparenthub.ie", "kilkennyparenthub.ie", "horizonscork.ie", "mphc.ie", "midwestaries.ie", "cypsc.ie", "mayomha.ie", "familypeersupport.ie"].forEach(h =>
   expect(`declined or withheld host fails (${h})`, ok(h), "allow-list"));
 ["arthritisireland.ie", "crohnscolitis.ie", "cancer.ie", "birthinfo.ie"].forEach(h =>
   expect(`link-only host cannot be a source_url (${h})`, ok(h), "link-only"));
 expect("oireachtas.ie ok for a Bills page", [V({ source_url: "https://www.oireachtas.ie/en/bills/bill/2025/84/" })]);
-expect("oireachtas.ie not ok outside Bills", [V({ source_url: "https://www.oireachtas.ie/en/members/" })], "Bills and legislation status only");
+// Representative lookups for the letter builder (approved 25 Oct 2026). Paths are provisional and fail closed.
+expect("oireachtas.ie ok for the find-your-TD/Senator pages (25 Oct 2026)", [V({ source_url: "https://www.oireachtas.ie/en/members/" })]);
+["https://www.oireachtas.ie/en/about/", "https://www.oireachtas.ie/", "https://www.oireachtas.ie/ga/members/"].forEach(u =>
+  expect(`oireachtas.ie not ok outside the Bills and members pages (${new URL(u).pathname})`, [V({ source_url: u })], "find-your-TD/Senator pages"));
 expect("lookalike of oireachtas.ie fails", lookalike("oireachtas.ie"), "allow-list");
+expect("oireachtas.ie lookalike with the host as a prefix fails", [V({ source_url: "https://oireachtas.ie.example.org/en/members/" })], "allow-list");
+expect("niassembly.gov.uk ok for the find-your-MLA pages (25 Oct 2026; no longer withheld)", [V({ source_url: "https://www.niassembly.gov.uk/your-mlas/" })]);
+["https://www.niassembly.gov.uk/news/", "https://www.niassembly.gov.uk/"].forEach(u =>
+  expect(`niassembly.gov.uk not ok outside the find-your-MLA pages (${new URL(u).pathname})`, [V({ source_url: u })], "find-your-MLA pages only"));
+expect("lookalike of niassembly.gov.uk fails", lookalike("niassembly.gov.uk"), "allow-list");
+expect("niassembly.gov.uk lookalike with the host as a prefix fails", [V({ source_url: "https://niassembly.gov.uk.example.org/your-mlas/" })], "allow-list");
+expect("members.parliament.uk ok for the find-your-MP page (parliament.uk approved 25 Oct 2026)", [V({ source_url: "https://members.parliament.uk/FindYourMP" })]);
+["https://members.parliament.uk/members/Commons", "https://members.parliament.uk/"].forEach(u =>
+  expect(`members.parliament.uk not ok outside the find-your-MP page (${new URL(u).pathname})`, [V({ source_url: u })], "find-your-MP pages only"));
+["https://www.parliament.uk/get-involved/", "https://hansard.parliament.uk/", "https://parliament.uk/", "https://committees.parliament.uk/"].forEach(u =>
+  expect(`only the members.parliament.uk host is approved, not ${new URL(u).hostname}`, [V({ source_url: u })], "allow-list"));
+expect("lookalike of members.parliament.uk fails", [V({ source_url: "https://notmembers.parliament.uk/FindYourMP" })], "allow-list");
+expect("members.parliament.uk lookalike with the host as a prefix fails", [V({ source_url: "https://members.parliament.uk.example.org/FindYourMP" })], "allow-list");
 expect("revenue.ie ok for health-expenses relief", [V({ source_url: "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/health-and-age/health-expenses/index.aspx" })]);
 expect("revenue.ie not ok outside the medical-expenses section", [V({ source_url: "https://www.revenue.ie/en/vat/" })], "medical-expenses tax-relief pages only");
 expect("lookalike of revenue.ie fails", lookalike("revenue.ie"), "allow-list");
