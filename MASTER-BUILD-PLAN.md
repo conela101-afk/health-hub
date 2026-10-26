@@ -21,9 +21,9 @@ Recount before quoting any figure. Plan quotes none: `node scripts/validate-data
 **P2. Accessibility.** Screen reader, Safari and touch testing, then publish `accessibility-statement.md` with verified claims only.
 
 **P3. Housekeeping (Elaine).**
-- Add `test-doors.js`, `test-home.js` (local only) and `search-audit.js` to CI by hand (push token cannot edit workflows). Step text is in the PR 129 comment.
-- Triage unmerged branches: `claude/costs-part-a`, `claude/audit-fixes-oct26`, `claude/verify-scheme-link-urls`, `claude/nav-findability`, `backup-before-realign`, `pass5-*`, `claude/health-hub-feedback-form-2ypb09`; delete stale `mcp/add-*`.
-- Close PR #119 (replaced by the "Where do I start?" PR).
+- Add `test-doors.js`, `test-home.js` (local only), `search-audit.js` and `test-feedback-link.js` to CI by hand (`check-third-party.sh` and `test-sensitive-privacy.js` are already CI steps) (push token cannot edit workflows). Step text is in the PR 129 comment.
+- Approve or amend the remote branch delete list in `docs/branch-triage-2026-10-26.md` (nothing deleted yet). `claude/costs-part-a`, `claude/audit-fixes-oct26`, `claude/nav-findability` and `backup-before-realign` are not on the remote: check for local-only copies on Elaine's machine.
+- Open PRs waiting on Elaine: #134 (rep letter, wording approval) and #135 (approved hosts, find-your-representative path prefixes, still provisional).
 - Decide: icon master (`IMG_0956.jpeg`, not in repo), footer privacy wording, `forms.gle` host.
 - Fluent Irish speaker for the 26 alias keys; Irish crisis-banner triggers.
 

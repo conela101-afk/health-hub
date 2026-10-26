@@ -153,6 +153,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-26 [Claude] — Read-only triage of every remote branch (`docs/branch-triage-2026-10-26.md`), nothing deleted; #120 closed (replaced by #134); live-site third-party check (only the opt-in OpenStreetMap map); `MASTER-BUILD-PLAN.md` P3 updated. PR only. See `CHANGELOG.md`.
 - 2026-10-26 [Claude] — Master Build Plan v4 (lean) replaces v3: P0 verification debt first, Four doors PR 4 next, repo gaps listed for Elaine; plan only, no code or data change. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — Four doors PR 3 follow-up: Elaine's wording for the Assessment of Need topic and its Northern Ireland message, the crisis banner (999 / 112 line) added to `#/start`, each result its own screen; `test-home.js` checks the emergency line on all 16 results; cache v44. PR only. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — New feedback form link (`forms.gle/euhDXPnx8vw1msnR6`) in the footer, with a draft Google Form notice and a `test-feedback-link.js` check; host register unchanged (decision for Elaine); an older unmerged feedback branch still carries an earlier URL; cache v43. PR only. See `CHANGELOG.md`.

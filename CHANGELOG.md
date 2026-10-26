@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-26 [Claude] (remote branch triage, read-only)
+- New `docs/branch-triage-2026-10-26.md`: every remote branch classified against `main` (`f7a0d10`) in four tiers, with ahead/behind, whether the content is on `main`, and the PR state. **No branch was deleted**; Elaine approves the list first. `main` was rewritten at some point, so most old branches share no merge base and their "ahead" counts are not evidence; the doc says how each was judged (patch-id match, a line-level lookup in `main`, entry ids, GitHub PR state, commits unique to the branch).
+- Findings worth knowing: the 14 `mcp/add-chn-*` branches are the 22 Sep fabrication incident (closed unmerged, never merge); the 7 other `mcp/add-*` branches have sourced equivalents on `main`; `grok/home-search-typeahead` deletes about 1,800 lines of `app.js` and must not be merged; `claude/start-page` is the old #119 head (#119 closed unmerged 25 Oct); the four branch names in the plan's P3 list are not on the remote.
+- Held-out `claude/diagnose-third-party-script-jovn1e`: a log of a static-scan diagnosis, not a live-site test. Checked `main` directly: 48 routes loaded in a headless browser with no outside request and no CSP violation. The one deliberate third-party request is the opt-in OpenStreetMap map on `#/out-of-hours` (nothing loads until "Show map" is tapped; disclosed in the privacy details).
+- #120 closed without merging (replaced by #134). #134 and #135 are untouched and unmerged. `MASTER-BUILD-PLAN.md` P3 updated: #119 done, triage pointer, `test-feedback-link.js` added to the by-hand CI list, #134/#135 listed as waiting on Elaine.
+- Consistency check run (see the PR): all validators and tests that run in plain Node exit 0. No `data.js`, code, `sw.js` or CSP change; no counts quoted.
+
 ## 2026-10-26 [Claude] (Master Build Plan v4, lean)
 - `MASTER-BUILD-PLAN.md` replaced by v4 (replaces v3 of 21 Oct), checked against `main` at `be10edb`. Priorities: P0 verification debt (sprint 2 not yet run; no new content passes until it is back below the 8 Oct level), P1 Four doors PR 4 (colour tokens, `#/advocacy/schemes` 4.28:1 fix, 3-person find-it test), P2 accessibility, P3 housekeeping, P4 content queue (research only), P5 Instagram-supporting features. Corrects v3: cost schemes Part A is merged. Lists the Project-only docs missing from the repo (§4) for Elaine to decide per file. Plan only: no `data.js`, code, `sw.js` or CSP change, no new figures.
 
