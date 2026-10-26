@@ -77,7 +77,7 @@ Local-only status: this cloud session's clone holds only `main` and `claude/mast
 | `claude/pass5-older-carers` | 6 / 157 | partly | #68 closed | Home support, Carer's Allowance, QUIT: replaced by merged `pass5b-children-older` |
 | `claude/pass5-rights` | 3 / 157 | partly | #66 closed | Superseded by merged `pass5b-*`; unique rows `coru-complaint`, `mha-2026-info` (Mental Health Act, link-only until commenced) and others are not on main |
 | `claude/pass5-validator` | 1 / 157 | partly | #65 closed | Validator stricter-rules; rows not on main; replacement merged as `pass5b-*` (2 Oct changelog) |
-| `claude/rep-letter` | 2 / 22 | no | #120 open | #120 (closed today, not merged). Replaced by #134 |
+| `claude/rep-letter` | 2 / 22 | no | #120 closed | #120 (closed today, not merged). Replaced by #134 |
 | `claude/rep-letter-builder` | 2 / 2 | no | #134 open | Open draft #134 (awaiting Elaine's wording approval) |
 | `claude/start-page` | 1 / 22 | yes (superseded) | #119 closed | Old #119 head (closed, not merged 25 Oct). Replaced by merged four-doors-pr3-start |
 | `claude/verify-scheme-link-urls` | 55 / 171 | partly | #3 closed | Closed #3. 1 unique commit (Cross-Border Directive, TAS, GMS rows): 11 of 12 lines on main. PHN rows (`find-phn`, `phn-*`) absent by decision (single `phn-locator`) |
