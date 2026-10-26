@@ -22,7 +22,8 @@ const fail = m => { failed++; console.error("FAIL " + m); };
 // ---- 1. Build the route list from the code ----
 const routeBody = app.slice(app.indexOf("function route()"), app.indexOf('window.addEventListener("hashchange"'));
 const firstSegs = [...new Set([...routeBody.matchAll(/parts\[0\] === "([a-z-]+)"/g)].map(m => m[1]))];
-const advocacy = [...app.match(/const ADVOCACY_SECTIONS = \[([\s\S]*?)\];/)[1].matchAll(/id: "([a-z-]+)"/g)].map(m => m[1]);
+const advocacy = [...app.match(/const ADVOCACY_SECTIONS = \[([\s\S]*?)\];/)[1].matchAll(/id: "([a-z-]+)"/g)].map(m => m[1])
+  .concat([...routeBody.matchAll(/parts\[0\] === "advocacy" && parts\[1\] === "([a-z-]+)"/g)].map(m => m[1]));   // sar-builder, rep-letter, ...
 const toolIds = [...tools.match(/const TOOL_LIST = \[([\s\S]*?)\n  \];/)[1].matchAll(/id: "([a-z]+)"/g)].map(m => m[1]);
 const aboutIds = [...tools.match(/const pages = \{([\s\S]*?)\n    \};/)[1].matchAll(/^      "?([a-z-]+)"?: \{/gm)].map(m => m[1]);
 const guideIds = [...read("data/guides.js").matchAll(/^\/\/\s+#\/guide\/([a-z-]+)/gm)].map(m => m[1]);
@@ -35,7 +36,6 @@ firstSegs.filter(s => !["about", "guide", "rights"].includes(s)).forEach(s => ro
 routes.add(app.match(/const PRIVATE_SEARCH_HASH = "(#[^"]+)"/)[1]);
 DOORS.forEach(d => routes.add(d.href));
 advocacy.forEach(a => routes.add("#/advocacy/" + a));
-routes.add("#/advocacy/sar-builder");
 toolIds.forEach(t => routes.add("#/tools/" + t));
 aboutIds.forEach(a => routes.add("#/about/" + a));
 guideIds.forEach(g => routes.add("#/guide/" + g));

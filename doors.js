@@ -54,6 +54,7 @@
           { label: "Complaints navigator", desc: "The right body, stage and time limit, then a letter.", href: "#/tools/complaints" },
           { label: "Records-request builder", desc: "FOI or subject access request, with a deadline tracker.", href: "#/tools/records" },
           { label: "Build a SAR letter", desc: "A guided form for a subject access request.", href: "#/advocacy/sar-builder" },
+          { label: "Write to your elected representative", desc: "A short, neutral letter asking a TD, councillor, MLA or MP to raise a problem.", href: "#/advocacy/rep-letter" },
           { label: "FOI by hospital", desc: "Where to send a request, hospital by hospital.", href: "#/advocacy/hospitals" },
           { label: "Letter templates", desc: "Letters you can copy and edit.", href: "#/advocacy/templates" },
         ] },

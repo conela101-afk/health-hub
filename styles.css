@@ -815,3 +815,5 @@ body.on-home .search-bar{ display:none; }
 .link-btn{ background:none; border:0; padding:0; min-height:24px; font:inherit; color:var(--violet-deep); text-decoration:underline; cursor:pointer; }
 .link-btn:focus-visible{ outline:3px solid var(--violet-deep); outline-offset:2px; }
 .start-emergency{ margin:0 0 18px; }
+/* A flex row with the hidden attribute must still hide (the rep letter hides the parliamentary-question row for councillors). */
+.check-row[hidden]{ display:none; }
