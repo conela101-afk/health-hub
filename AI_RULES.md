@@ -53,6 +53,9 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - `lawreform.ie` (ratified 21 Oct 2026)
 - `decisionsupportservice.ie` (24 Oct 2026): Decision Support Service, statutory body within the Mental Health Commission
 - `ipo.irishimmigration.ie` (24 Oct 2026): International Protection Office; this host only, not other irishimmigration.ie sites
+- `oireachtas.ie` (21 Oct 2026; find-your pages added 25 Oct 2026): Houses of the Oireachtas: Bills and legislation status, and find-your-TD/Senator pages for the letter builder (#/advocacy/rep-letter); never service claims
+- `niassembly.gov.uk` (25 Oct 2026): Northern Ireland Assembly: find-your-MLA pages only, for the letter builder (#/advocacy/rep-letter)
+- `members.parliament.uk` (25 Oct 2026): UK Parliament (parliament.uk approved): find-your-MP pages only, for the letter builder (#/advocacy/rep-letter); this host only, not www.parliament.uk or other parliament.uk sites
 - `irishstatutebook.ie` (10 Oct 2026): statute text
 
 **Tier 2: Hospital or service own site**
@@ -77,7 +80,6 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 
 - `revenue.ie` (9 Oct 2026): medical-expenses tax-relief pages only
 - `familysupportni.gov.uk` (7 Oct 2026): statutory trust listings only; voluntary providers listed there stay withheld
-- `oireachtas.ie` (21 Oct 2026): Bills and legislation status only, never service claims
 
 **Tier 5: Secondary only**
 
@@ -109,7 +111,6 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 **Tier 8: Link-only or pending**
 
 - `birthinfo.ie` (21 Oct 2026): link-only: birth information and tracing
-- `niassembly.gov.uk` (declined or withheld): withheld until a row needs it; mirror of oireachtas.ie
 
 **Tier 9: Declined or withheld**
 
@@ -153,7 +154,9 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-26 [Claude] — Read-only triage of every remote branch (`docs/branch-triage-2026-10-26.md`), nothing deleted; #120 closed (replaced by #134); live-site third-party check (only the opt-in OpenStreetMap map); `MASTER-BUILD-PLAN.md` P3 updated; Elaine's CI change (#137: `test-doors.js`, `search-audit.js` in `validate`) verified green and fail-closed, `main` merged into #134 and #135 (neither merged); `test-home.js` stays local; REVIEW.md restore notes for `coru-complaint` and `mha-2026-info` (#140); branch deletion approved but blocked by the proxy, list handed to Elaine. PR only. See `CHANGELOG.md`.
 - 2026-10-26 [Claude] — Master Build Plan v4 (lean) replaces v3: P0 verification debt first, Four doors PR 4 next, repo gaps listed for Elaine; plan only, no code or data change. See `CHANGELOG.md`.
+- 2026-10-25 [Claude] — Approved hosts for the representative lookups (Elaine, 25 Oct): `oireachtas.ie` (adds find-your-TD/Senator pages, now Tier 1), `niassembly.gov.uk` (find-your-MLA pages; no longer withheld), `members.parliament.uk` (find-your-MP; exact host only). Register, regenerated block and tests updated; paths provisional and fail closed; no link added until Elaine supplies each exact URL. PR only. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — Letter to an elected representative rebuilt as a fresh PR (not the old #120 branch): `#/advocacy/rep-letter`, Take action row, region-aware roles, per-role chamber request (Senator no question, MLA Assembly question), neutral "organisation that runs or funds it", typed greeting used exactly, nothing stored, no outside link, `test-rep-letter.js`; Elaine's review applied, final wording awaits her approval before merge; cache v45. Not added to "Where do I start?". See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — Four doors PR 3 follow-up: Elaine's wording for the Assessment of Need topic and its Northern Ireland message, the crisis banner (999 / 112 line) added to `#/start`, each result its own screen; `test-home.js` checks the emergency line on all 16 results; cache v44. PR only. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — New feedback form link (`forms.gle/euhDXPnx8vw1msnR6`) in the footer, with a draft Google Form notice and a `test-feedback-link.js` check; host register unchanged (decision for Elaine); an older unmerged feedback branch still carries an earlier URL; cache v43. PR only. See `CHANGELOG.md`.
