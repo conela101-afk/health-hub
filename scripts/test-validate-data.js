@@ -77,7 +77,7 @@ added.forEach(h => {
 ["southeastcdnt.ie", "ndsa.ie", "assets.ireland.ie", "nhs.uk", "111.nhs.uk", "barnardos.ie", "irishtimes.com", "irishexaminer.com", "ipu.ie", "sims.ie", "firstivf.ie",
  "louthparenthub.ie", "kilkennyparenthub.ie", "horizonscork.ie", "mphc.ie", "midwestaries.ie", "cypsc.ie", "mayomha.ie", "familypeersupport.ie"].forEach(h =>
   expect(`declined or withheld host fails (${h})`, ok(h), "allow-list"));
-["arthritisireland.ie", "crohnscolitis.ie", "cancer.ie", "birthinfo.ie"].forEach(h =>
+["arthritisireland.ie", "crohnscolitis.ie", "cancer.ie", "birthinfo.ie", "forms.gle"].forEach(h =>
   expect(`link-only host cannot be a source_url (${h})`, ok(h), "link-only"));
 expect("oireachtas.ie ok for a Bills page", [V({ source_url: "https://www.oireachtas.ie/en/bills/bill/2025/84/" })]);
 // Representative lookups for the letter builder (approved 25 Oct 2026). Paths are provisional and fail closed.

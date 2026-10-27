@@ -107,6 +107,7 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - `arthritisireland.ie` (21 Oct 2026): link-out only, never a source
 - `crohnscolitis.ie` (21 Oct 2026): link-out only, never a source
 - `cancer.ie` (21 Oct 2026): Irish Cancer Society; link-out only, never a source
+- `forms.gle` (27 Oct 2026): Google; feedback form link only (the footer link), link-out only, never a source; the app collects no data
 
 **Tier 8: Link-only or pending**
 
@@ -154,6 +155,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-27 [Claude] — Housekeeping and plan sync: Elaine's 27 Oct decisions recorded in the plan, `forms.gle` added to the approved-hosts register (tier 7, link-out only), icon master added at `docs/assets/icon-master.jpeg`; #134, #135 and #137 confirmed merged; branch deletes approved but blocked by the proxy (102 left for Elaine); sprint 2 not run. PR only. See `CHANGELOG.md`.
 - 2026-10-26 [Claude] — Read-only triage of every remote branch (`docs/branch-triage-2026-10-26.md`), nothing deleted; #120 closed (replaced by #134); live-site third-party check (only the opt-in OpenStreetMap map); `MASTER-BUILD-PLAN.md` P3 updated; Elaine's CI change (#137: `test-doors.js`, `search-audit.js` in `validate`) verified green and fail-closed, `main` merged into #134 and #135 (neither merged); `test-home.js` stays local; REVIEW.md restore notes for `coru-complaint` and `mha-2026-info` (#140); branch deletion approved but blocked by the proxy, list handed to Elaine. PR only. See `CHANGELOG.md`.
 - 2026-10-26 [Claude] — Master Build Plan v4 (lean) replaces v3: P0 verification debt first, Four doors PR 4 next, repo gaps listed for Elaine; plan only, no code or data change. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — Approved hosts for the representative lookups (Elaine, 25 Oct): `oireachtas.ie` (adds find-your-TD/Senator pages, now Tier 1), `niassembly.gov.uk` (find-your-MLA pages; no longer withheld), `members.parliament.uk` (find-your-MP; exact host only). Register, regenerated block and tests updated; paths provisional and fail closed; no link added until Elaine supplies each exact URL. PR only. See `CHANGELOG.md`.
