@@ -50,6 +50,11 @@ const SOURCE_REGISTER = [
   R("ombudsman.ie", 1, "ratified 21 Oct 2026"), R("oic.ie", 1, "ratified 21 Oct 2026"), R("nipso.org.uk", 1, "ratified 21 Oct 2026"),
   R("medicalcouncil.ie", 1, "ratified 21 Oct 2026"), R("nmbi.ie", 1, "ratified 21 Oct 2026"), R("coru.ie", 1, "ratified 21 Oct 2026"),
   R("thepsi.ie", 1, "ratified 21 Oct 2026"), R("dentalcouncil.ie", 1, "ratified 21 Oct 2026"),
+  // Advocacy research hosts approved by Elaine 27 Oct 2026 (statutory bodies; "Primary" in her list maps to tier 1).
+  R("psi.ie", 1, "27 Oct 2026", "Pharmaceutical Society of Ireland; pharmacist complaints (thepsi.ie is also registered)"),
+  R("legislation.gov.uk", 1, "27 Oct 2026", "The National Archives (UK); Northern Ireland commencement orders"),
+  R("gmc-uk.org", 1, "27 Oct 2026", "General Medical Council; Northern Ireland doctor complaints"),
+  R("gdc-uk.org", 1, "27 Oct 2026", "General Dental Council; Northern Ireland dentist complaints"),
   R("legalaidboard.ie", 1, "ratified 21 Oct 2026"), R("lawreform.ie", 1, "ratified 21 Oct 2026"),
   R("decisionsupportservice.ie", 1, "24 Oct 2026", "Decision Support Service, statutory body within the Mental Health Commission"),
   R("ipo.irishimmigration.ie", 1, "24 Oct 2026", "International Protection Office; this host only, not other irishimmigration.ie sites"),
@@ -84,6 +89,11 @@ const SOURCE_REGISTER = [
   R("westdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("nedoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
   R("northdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("edoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
   R("dubdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("tlcdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
+  // Advocacy research hosts approved by Elaine 27 Oct 2026 ("Secondary" in her list maps to tier 5).
+  R("patientadvocacyservice.ie", 5, "27 Oct 2026", "Patient Advocacy Service (Dept of Health National Patient Safety Office; delivered by the National Advocacy Service for People with Disabilities); advocacy and incident support"),
+  R("risli.ie", 5, "27 Oct 2026", "Register of Irish Sign Language Interpreters (SLIS); interpreter register"),
+  R("slis.ie", 5, "27 Oct 2026", "Sign Language Interpreting Service; booking information (approved, not currently used)"),
+  R("lenus.ie", 5, "27 Oct 2026", "HSE repository; archived HSE documents (approved, not currently used)"),
   // Tier 6: voluntary. Pass as source_url only on entries tagged "voluntary"; never support official-service claims.
   R("lauralynn.ie", 6, "approved"), R("jigsaw.ie", 6, "approved"), R("diabetes.ie", 6, "approved"),
   R("flac.ie", 6, "moved from official 21 Oct 2026", "NGO; its own-service row only"),

@@ -49,6 +49,10 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - `coru.ie` (ratified 21 Oct 2026)
 - `thepsi.ie` (ratified 21 Oct 2026)
 - `dentalcouncil.ie` (ratified 21 Oct 2026)
+- `psi.ie` (27 Oct 2026): Pharmaceutical Society of Ireland; pharmacist complaints (thepsi.ie is also registered)
+- `legislation.gov.uk` (27 Oct 2026): The National Archives (UK); Northern Ireland commencement orders
+- `gmc-uk.org` (27 Oct 2026): General Medical Council; Northern Ireland doctor complaints
+- `gdc-uk.org` (27 Oct 2026): General Dental Council; Northern Ireland dentist complaints
 - `legalaidboard.ie` (ratified 21 Oct 2026)
 - `lawreform.ie` (ratified 21 Oct 2026)
 - `decisionsupportservice.ie` (24 Oct 2026): Decision Support Service, statutory body within the Mental Health Commission
@@ -94,6 +98,10 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 - `edoc.ie` (21 Oct 2026): GP out-of-hours
 - `dubdoc.ie` (21 Oct 2026): GP out-of-hours
 - `tlcdoc.ie` (21 Oct 2026): GP out-of-hours
+- `patientadvocacyservice.ie` (27 Oct 2026): Patient Advocacy Service (Dept of Health National Patient Safety Office; delivered by the National Advocacy Service for People with Disabilities); advocacy and incident support
+- `risli.ie` (27 Oct 2026): Register of Irish Sign Language Interpreters (SLIS); interpreter register
+- `slis.ie` (27 Oct 2026): Sign Language Interpreting Service; booking information (approved, not currently used)
+- `lenus.ie` (27 Oct 2026): HSE repository; archived HSE documents (approved, not currently used)
 
 **Tier 6: Voluntary (entry needs the `voluntary` tag)**
 
@@ -154,6 +162,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-27 [Claude] — Advocacy research R1 to R8 saved under `research/` (unverified, R8 on hold, Mental Health Act 2026 link only), eight advocacy hosts added to the approved-hosts register (tier 1 and tier 5), `GAPS.md` open gaps; docs only, nothing in the app. PR only. See `CHANGELOG.md`.
 - 2026-10-26 [Claude] — Read-only triage of every remote branch (`docs/branch-triage-2026-10-26.md`), nothing deleted; #120 closed (replaced by #134); live-site third-party check (only the opt-in OpenStreetMap map); `MASTER-BUILD-PLAN.md` P3 updated; Elaine's CI change (#137: `test-doors.js`, `search-audit.js` in `validate`) verified green and fail-closed, `main` merged into #134 and #135 (neither merged); `test-home.js` stays local; REVIEW.md restore notes for `coru-complaint` and `mha-2026-info` (#140); branch deletion approved but blocked by the proxy, list handed to Elaine. PR only. See `CHANGELOG.md`.
 - 2026-10-26 [Claude] — Master Build Plan v4 (lean) replaces v3: P0 verification debt first, Four doors PR 4 next, repo gaps listed for Elaine; plan only, no code or data change. See `CHANGELOG.md`.
 - 2026-10-25 [Claude] — Approved hosts for the representative lookups (Elaine, 25 Oct): `oireachtas.ie` (adds find-your-TD/Senator pages, now Tier 1), `niassembly.gov.uk` (find-your-MLA pages; no longer withheld), `members.parliament.uk` (find-your-MP; exact host only). Register, regenerated block and tests updated; paths provisional and fail closed; no link added until Elaine supplies each exact URL. PR only. See `CHANGELOG.md`.
