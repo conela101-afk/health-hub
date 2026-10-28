@@ -79,6 +79,11 @@ added.forEach(h => {
   expect(`declined or withheld host fails (${h})`, ok(h), "allow-list"));
 ["arthritisireland.ie", "crohnscolitis.ie", "cancer.ie", "birthinfo.ie", "forms.gle"].forEach(h =>
   expect(`link-only host cannot be a source_url (${h})`, ok(h), "link-only"));
+// Advocacy research hosts (approved 27 Oct 2026): a source_url on each passes; a lookalike of each fails.
+["psi.ie", "legislation.gov.uk", "gmc-uk.org", "gdc-uk.org", "patientadvocacyservice.ie", "risli.ie", "slis.ie", "lenus.ie"].forEach(h => {
+  expect(`${h} ok as a source_url (27 Oct 2026)`, [V({ source_url: `https://www.${h}/about/` })]);
+  expect(`lookalike of ${h} fails`, lookalike(h), "allow-list");
+});
 expect("oireachtas.ie ok for a Bills page", [V({ source_url: "https://www.oireachtas.ie/en/bills/bill/2025/84/" })]);
 // Representative lookups for the letter builder (approved 25 Oct 2026). Paths are provisional and fail closed.
 expect("oireachtas.ie ok for the find-your-TD/Senator pages (25 Oct 2026)", [V({ source_url: "https://www.oireachtas.ie/en/members/" })]);

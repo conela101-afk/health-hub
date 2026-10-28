@@ -594,3 +594,24 @@ Counties with none of the new rows: Cork (already has its own CDNT rows), Monagh
 - Unconfirmed, press-only (do not state): extra free counselling hours reported in Budget 2027 coverage; National Gender Service waiting list closure.
 - Open source requests: public HSE page on the right to an interpreter or ISL in health settings; HSE Model of Care for Gender Healthcare (unpublished); health access for undocumented people and prisoners; Irish-language service rights; intersex care.
 - Legacy URLs to avoid: `hse.ie/injuryunits`, `hse.ie/flu`, `hse.ie/covid19vaccine`, `hse.ie/GPVisitCards`, CI `?utm_source` links and `#fragment` anchors.
+
+## Advocacy research R1 to R8: open gaps (27 Oct 2026)
+Research notes are in `research/R1-open-disclosure.md` to `research/R8-international-protection.md` (research only, every row `verify: true`, nothing in the app). Mental Health Act 2026: link only, not yet commenced (checked 27 Oct 2026). R8 is on HOLD.
+
+- **R6:** no official page found saying a patient may ask for a copy of a letter or care plan, or for written confirmation of what was agreed. Do not put either in any checklist until sourced. Check the HSE data protection (subject access request) and Freedom of Information pages.
+- **Northern Ireland:** no open disclosure (duty of candour), support-person or interpreting sources researched yet.
+- **Pages to open for primary wording:**
+  - HSE complaints page (the 12-month limit is currently from Citizens Information only).
+  - Ombudsman for Children (health complaints page).
+  - HIQA "Report a Concern or Give Feedback" (wording taken from search-result text).
+  - HSE "Information and Resources for the public" (open disclosure).
+  - Decision Support Service pages on decision-making assistants and advance healthcare directives.
+  - The current Medical Council web complaints page (the PDF guide is out of date).
+  - An NI-specific GMC page (the leaflet found is the England version).
+  - Nursing and Midwifery Council (NI nurses; `nmc.org.uk` not yet approved) and the Pharmaceutical Society of NI (`psni.org.uk`, not yet verified or approved).
+  - NI Review Tribunal rights.
+  - Independent advocacy for detained patients (ROI and NI).
+  - NI phase-two commencement of the Mental Capacity Act (NI) 2016.
+  - HSE patient-facing general interpreter page; the HSC Regional Interpreting Service (NI).
+- **R8 HOLD:** no app wording until a gov.ie or HSE page confirms how the International Protection Act 2026 (commenced 12 June 2026) affects health access, and an HSE page on medical card eligibility for protection applicants is found.
+- **Time limits:** the table of limits copied from official pages is held in the research notes (R1, R2, R3 and R5), not in the app. Show one only after Elaine opens the page, as copied, with the URL.
