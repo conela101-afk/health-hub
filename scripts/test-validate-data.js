@@ -77,7 +77,7 @@ added.forEach(h => {
 ["southeastcdnt.ie", "ndsa.ie", "assets.ireland.ie", "nhs.uk", "111.nhs.uk", "barnardos.ie", "irishtimes.com", "irishexaminer.com", "ipu.ie", "sims.ie", "firstivf.ie",
  "louthparenthub.ie", "kilkennyparenthub.ie", "horizonscork.ie", "mphc.ie", "midwestaries.ie", "cypsc.ie", "mayomha.ie", "familypeersupport.ie"].forEach(h =>
   expect(`declined or withheld host fails (${h})`, ok(h), "allow-list"));
-["arthritisireland.ie", "crohnscolitis.ie", "cancer.ie", "birthinfo.ie"].forEach(h =>
+["arthritisireland.ie", "crohnscolitis.ie", "cancer.ie", "birthinfo.ie", "forms.gle"].forEach(h =>
   expect(`link-only host cannot be a source_url (${h})`, ok(h), "link-only"));
 // Advocacy research hosts (approved 27 Oct 2026): a source_url on each passes; a lookalike of each fails.
 ["psi.ie", "legislation.gov.uk", "gmc-uk.org", "gdc-uk.org", "patientadvocacyservice.ie", "risli.ie", "slis.ie", "lenus.ie"].forEach(h => {

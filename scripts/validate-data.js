@@ -101,6 +101,8 @@ const SOURCE_REGISTER = [
   R("arthritisireland.ie", 7, "21 Oct 2026", "link-out only, never a source"),
   R("crohnscolitis.ie", 7, "21 Oct 2026", "link-out only, never a source"),
   R("cancer.ie", 7, "21 Oct 2026", "Irish Cancer Society; link-out only, never a source"),
+  // Tier 7: forms.gle approved link-out only 27 Oct 2026 (Elaine): the footer feedback form link, nothing else. Google owns the host.
+  R("forms.gle", 7, "27 Oct 2026", "Google; feedback form link only (the footer link), link-out only, never a source; the app collects no data"),
   // Tier 8: birthinfo.ie approved link-only 21 Oct 2026 (owner confirmed: Adoption Authority of Ireland, Birth Information and Tracing Act 2022).
   R("birthinfo.ie", 8, "21 Oct 2026", "link-only: birth information and tracing"),
   // Tier 9: declined 7 to 21 Oct 2026. Wikipedia, Medical Independent, Irish Health Pro and Limerick Leader are also declined.
