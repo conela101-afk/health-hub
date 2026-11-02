@@ -148,6 +148,10 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 - **Parent-neutral wording.** Parenting, feeding and perinatal wording is parent-neutral by default ("parents", "new parents", "people who give birth"). Use "mother/mum" only where it is an official service or organisation name, or an accurate source statistic. Follow the official source's own phrasing. Do not generalise a factual claim beyond what the source says.
 - **`area` is physical base.** The optional sub-county `area` field means where a service is based, not who it serves. Regional and county-wide services carry no area. Areas are not HSE boundaries.
 
+## Instagram and caption conventions
+
+- Captions for @healthadvocacyirl use emojis in all non-serious posts; number emojis (1️⃣ 2️⃣ 3️⃣) are the minimum for bullet points. Serious topics (complaints, bereavement, crisis-adjacent) stay emoji-light or emoji-free.
+
 ## After a session
 
 3. Add one entry to `CHANGELOG.md` (create if missing):
@@ -163,6 +167,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-10-29 [Claude] — Merged #141 (plan v4 sync, `forms.gle` register entry, icon master); added an "Instagram and caption conventions" section to this file with the @healthadvocacyirl emoji rule; docs only. PR only. See `CHANGELOG.md`.
 - 2026-10-27 [Claude] — Advocacy research R1 to R8 saved under `research/` (unverified, R8 on hold, Mental Health Act 2026 link only), eight advocacy hosts added to the approved-hosts register (tier 1 and tier 5), `GAPS.md` open gaps; docs only, nothing in the app. PR only. See `CHANGELOG.md`.
 - 2026-10-27 [Claude] — Housekeeping and plan sync: Elaine's 27 Oct decisions recorded in the plan, `forms.gle` added to the approved-hosts register (tier 7, link-out only), icon master added at `docs/assets/icon-master.jpeg`; #134, #135 and #137 confirmed merged; branch deletes approved but blocked by the proxy (102 left for Elaine); sprint 2 not run. PR only. See `CHANGELOG.md`.
 - 2026-10-26 [Claude] — Read-only triage of every remote branch (`docs/branch-triage-2026-10-26.md`), nothing deleted; #120 closed (replaced by #134); live-site third-party check (only the opt-in OpenStreetMap map); `MASTER-BUILD-PLAN.md` P3 updated; Elaine's CI change (#137: `test-doors.js`, `search-audit.js` in `validate`) verified green and fail-closed, `main` merged into #134 and #135 (neither merged); `test-home.js` stays local; REVIEW.md restore notes for `coru-complaint` and `mha-2026-info` (#140); branch deletion approved but blocked by the proxy, list handed to Elaine. PR only. See `CHANGELOG.md`.
