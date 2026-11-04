@@ -6,7 +6,7 @@ Recount before quoting any figure. Plan quotes none: `node scripts/validate-data
 
 ## 1. State of play
 - **Built:** directory, guided tools, AON toolkit, conditions, facilities, costs, screening, vaccines, search v2, pregnancy page, install page, privacy layer, guides (after a death, interpreting), AskCI link, feedback form link.
-- **Four doors** (brief `docs/briefs/four-doors-2026-10-25.md`): PR 1 hubs, PR 2 Home and search, PR 3 "Where do I start?" merged. **PR 4 (colour tokens) not started.**
+- **Four doors** (brief `docs/briefs/four-doors-2026-10-25.md`): PR 1 hubs, PR 2 Home and search, PR 3 "Where do I start?" merged. **PR 4 (colour tokens) built, open as #144 (4 Nov), awaiting Elaine's review.**
 - **Content added since v3, all unverified:** community-services rows (all ROI), 24 Oct ROI coverage-gap rows, 23 Oct gap-register rows, cost schemes Part A (merged; v3 wrongly said not merged).
 - **Retired from v3:** phase letters A to F, the brief index table, the duplicate constraints list (see `AI_RULES.md`).
 
@@ -16,7 +16,7 @@ Recount before quoting any figure. Plan quotes none: `node scripts/validate-data
 2. Then community-services and coverage-gap rows, then Advocacy-guide figures after Budget 2027.
 3. Rule: no new content passes until P0 is back below the 8 Oct level. Research and briefs are fine.
 
-**P1. Four doors PR 4.** Colour tokens and visual refresh. Needs contrast numbers in the PR and the known `#/advocacy/schemes` 4.28:1 failure fixed. Then the 3-person find-it test (old vs new), logged in `REVIEW.md`.
+**P1. Four doors PR 4.** Colour tokens and visual refresh. Contrast numbers are in #144 and the `#/advocacy/schemes` 4.28:1 failure is fixed (axe contrast violations 3 to 0). Next: Elaine's review and manual checks, then the 3-person find-it test (old vs new; sheet in `docs/find-it-test-pr4.md`, not yet run), logged in `REVIEW.md`.
 
 **P2. Accessibility.** Screen reader, Safari and touch testing, then publish `accessibility-statement.md` with verified claims only.
 
