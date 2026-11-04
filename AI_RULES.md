@@ -167,6 +167,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-11-04 [Claude] — Four doors PR 4: colour tokens and visual refresh (new palette in `:root`, `--border-strong` for controls, flat cards, gradients and shadows removed, `#/advocacy/schemes` 4.28:1 failure fixed by token, focus and states re-set, `theme-color` and manifest colours, cache v46); `scripts/contrast-check.js` and `scripts/token-map.js`, find-it test sheet in `docs/`. CSS, HTML meta and docs only; `data.js` and all JS unchanged. PR only. See `CHANGELOG.md`.
 - 2026-10-29 [Claude] — Merged #141 (plan v4 sync, `forms.gle` register entry, icon master); added an "Instagram and caption conventions" section to this file with the @healthadvocacyirl emoji rule; docs only. PR only. See `CHANGELOG.md`.
 - 2026-10-27 [Claude] — Advocacy research R1 to R8 saved under `research/` (unverified, R8 on hold, Mental Health Act 2026 link only), eight advocacy hosts added to the approved-hosts register (tier 1 and tier 5), `GAPS.md` open gaps; docs only, nothing in the app. PR only. See `CHANGELOG.md`.
 - 2026-10-27 [Claude] — Housekeeping and plan sync: Elaine's 27 Oct decisions recorded in the plan, `forms.gle` added to the approved-hosts register (tier 7, link-out only), icon master added at `docs/assets/icon-master.jpeg`; #134, #135 and #137 confirmed merged; branch deletes approved but blocked by the proxy (102 left for Elaine); sprint 2 not run. PR only. See `CHANGELOG.md`.
