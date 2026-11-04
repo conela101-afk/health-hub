@@ -33,35 +33,41 @@
 }
 
 :root{
-  --bg: #FAF7F4;
-  --surface: #FFFFFF;
-  --surface-2: #F4F0FB;
-  --ink: #2A2830;
-  --ink-soft: #67636F;
-  /* --ink-faint, and every "-deep" accent below, were darkened from their
-     original values to clear WCAG AA's 4.5:1 text-contrast threshold —
-     the originals ranged 2.3:1-4.3:1 against the tints/backgrounds they're
-     actually used on (tag pills, tab labels, footer text). Verified via
-     the WCAG relative-luminance formula against every background each
-     token is used on. Sep 2026 accessibility pass. */
-  --ink-faint: #726B82;
-  --line: #ECE6F4;
+  /* Palette (Four doors PR 4). Every colour in this file comes from here; scripts/contrast-check.js reads
+     these values and checks every text/background and boundary pair the app uses. */
+  --paper: #F6F3EC;        /* page background */
+  --card: #FFFFFF;         /* cards, inputs, tab bar */
+  --tint: #ECE6F6;         /* second surface: callouts, contact blocks, small buttons, plum-family pills */
+  --line: #DDD6C8;         /* DECORATIVE dividers only, about 1.3:1 on paper: never a control boundary */
+  --border-strong: #857E92;/* boundary of anything you press or type in: 3:1 or more on paper, card and tint */
 
-  --violet: #8B7FE8;
-  --violet-deep: #5F52CE;
-  --violet-tint: #EDEAFB;
+  --ink: #1E1A2B;          /* body text */
+  --soft: #5A5568;         /* secondary text (the old "faint" is merged into this) */
+  --plum: #2F1560;         /* anchor: links, headings, filled buttons, focus ring */
+  --on-fill: #FFFFFF;      /* text on a plum or ink fill */
 
-  --coral: #F0968E;
-  --coral-deep: #C13729;
+  --green: #1D6B45;        /* text and icons in the green family */
+  --mint: #CDEBD6;         /* fill only, with --mint-border: never text on a light background */
+  --mint-border: #9FD2B1;
+
+  /* Crisis, danger and error. The -deep is text; the tint is the fill. */
+  --coral-deep: #B3301F;
   --coral-tint: #FCEBE9;
-
-  --sage: #7DBBA1;
-  --sage-deep: #3E775E;
-  --sage-tint: #E7F5EE;
-
-  --sand: #E8B25E;
-  --sand-deep: #896428;
+  /* Notes and warnings. */
+  --sand-deep: #6B4F1B;
   --sand-tint: #FBF0DE;
+
+  /* Old names, kept as aliases while the rules below are moved over. */
+  --bg: var(--paper);
+  --surface: var(--card);
+  --surface-2: var(--tint);
+  --ink-soft: var(--soft);
+  --ink-faint: var(--soft);
+  --violet: var(--plum);
+  --violet-deep: var(--plum);
+  --violet-tint: var(--tint);
+  --sage-deep: var(--green);
+  --sage-tint: var(--mint);
 
   --radius-sm: 10px;
   --radius: 16px;
