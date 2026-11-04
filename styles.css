@@ -203,7 +203,7 @@ select{ min-height:24px; }
 /* ---------- Expandable banners (crisis / urgent) ---------- */
 .crisis-banner, .urgent-banner{
   display:block; background:var(--card); border-radius:var(--radius-lg);
-  padding:14px 18px; margin:12px 0 0; border:1px solid var(--line);
+  padding:13px 17px; margin:12px 0 0; border:1px solid var(--line); /* 1px less padding each side keeps the banner the size it was */
 }
 .crisis-banner{ border-left:4px solid var(--coral-deep); }
 .urgent-banner{ border-left:4px solid var(--green); }
@@ -602,7 +602,7 @@ select{ min-height:24px; }
 .rights-card .role{ font-size:13px; color:var(--plum); font-weight:600; margin:0 0 6px; }
 .rights-card .detail{ font-size:13.5px; color:var(--soft); line-height:1.55; margin:0 0 8px; }
 .rights-card .contact-line{ font-size:13px; color:var(--soft); display:flex; flex-wrap:wrap; gap:10px; }
-.rights-card .contact-line a{ color:var(--plum); font-weight:600; }
+.rights-card .contact-line a{ color:var(--plum); font-weight:600; overflow-wrap:anywhere; }
 
 .hospital-grid{ display:flex; flex-direction:column; gap:10px; }
 .hospital-card{
@@ -619,6 +619,9 @@ select{ min-height:24px; }
 .type-badge.type-voluntary{ background:var(--mint); color:var(--green); border-color:var(--mint-border); }
 .type-badge.type-ni{ background:var(--sand-tint); color:var(--sand-deep); }
 
+/* At 320px a long badge such as "Voluntary hospital — process unclear" no longer fits beside the name: let it wrap under it. */
+@media (max-width:360px){ .hospital-card .hospital-head{ flex-wrap:wrap; } .type-badge{ white-space:normal; } }
+
 .region-heading{
   font-size:12.5px; font-weight:700; color:var(--soft);
   text-transform:uppercase; letter-spacing:0.04em; margin:18px 0 8px;
@@ -629,7 +632,7 @@ select{ min-height:24px; }
 .hospital-card .steps li{ font-size:13px; line-height:1.55; color:var(--soft); margin-bottom:5px; }
 .hospital-card .hosp-note{ background:var(--sand-tint); color:var(--sand-deep); font-size:12.5px; padding:9px 12px; border-radius:var(--radius-sm); margin:0 0 10px; line-height:1.5; }
 .hospital-card .contact-line{ font-size:13px; color:var(--soft); display:flex; flex-wrap:wrap; gap:10px; }
-.hospital-card .contact-line a{ color:var(--plum); font-weight:600; }
+.hospital-card .contact-line a{ color:var(--plum); font-weight:600; overflow-wrap:anywhere; } /* a long FOI web address overflowed at 320px and 390px */
 
 .group-grid{ display:flex; flex-direction:column; gap:10px; }
 .group-card{
