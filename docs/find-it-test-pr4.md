@@ -4,11 +4,11 @@ For Elaine to run. Purpose: show that the new colours and flat cards do not make
 
 ## 1. Set up
 
-Old version (the tag `pre-pr4` is `main` before this PR; the tag is only a local reference until it is pushed):
+Old version (`28027c2` is `main` before this PR. The tag `pre-pr4` points at it, but the proxy refused the tag push from Code, so push it by hand with `git push origin pre-pr4`, or just use the commit):
 
 ```bash
 git fetch origin --tags
-git worktree add ../health-hub-old pre-pr4
+git worktree add ../health-hub-old 28027c2   # or pre-pr4, once the tag is pushed
 cd ../health-hub-old && python3 -m http.server 8001
 ```
 
