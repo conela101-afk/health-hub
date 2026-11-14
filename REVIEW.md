@@ -210,3 +210,10 @@ Status: **not yet run** (set up in `docs/find-it-test-pr4.md`; the old version i
 - Results, first pass old: _to fill in_ (tasks found out of 18, median taps, median seconds, wrong turns)
 - Results, first pass new: _to fill in_
 - Anything colour-related people said: _to fill in_
+
+## Injury units and assessment units (14 Nov 2026)
+- [ ] HSE "When to visit an injury unit" review due 29 Nov 2026: re-check after that date (`roi-injury-units` blurb and the "Not sure where to go?" guide quote it).
+- [ ] Mullingar wording awaiting Elaine (`roi-westmeath-mullingar-injury-unit`). The HSE page gives a private hospital address and does not say who runs the unit; the row says only that the site "may not be on the main hospital campus" and names no operator, address or arrangement.
+- [ ] Open every new `verify: true` row and the "Not sure where to go?" guide (`#/guide/where-to-go`); only then set `checked` / `urlStatus: "opened"` and clear `verify`, and fill `CHECKED.whereToGo` in `data/guides.js`.
+
+- [ ] Follow-up, not a change: `meath-womens-refuge` has `referral: "Self-referral, 24 hours a day."` (an older row). It states hours; decide whether to keep it when someone opens its page.

@@ -1,11 +1,12 @@
 // Two short information pages from the 23 Oct 2026 gap-register brief:
 //   #/guide/after-a-death   registering a death, the coroner, and money help
 //   #/guide/interpreting    asking for an interpreter or sign language
+//   #/guide/where-to-go     official pages for urgent and emergency care, both jurisdictions (14 Nov 2026)
 // Static and administrative. Each section links to the official page and quotes it; no amounts,
 // rates, fees or phone numbers. Nothing here reads or writes storage or the address.
 // CHECKED holds the date a person last opened each official page; "Last checked" shows only once filled in.
 (function(){
-  const CHECKED = { death: "", money: "", interpreting: "" };
+  const CHECKED = { death: "", money: "", interpreting: "", whereToGo: "" };
   const CI = "https://www.citizensinformation.ie/en";
   const HSE = "https://www2.hse.ie";
 
@@ -15,6 +16,8 @@
       esc,
       ext: (url, label) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`,
       checked: key => CHECKED[key] ? `<p class="ooh-source">Last checked: ${esc(CHECKED[key])}</p>` : "",
+      // Shown until a person has opened the official pages and filled in CHECKED for the guide.
+      unchecked: key => CHECKED[key] ? "" : `<p class="checked-note">Not yet checked against the official pages, so read them before you rely on this.</p>`,
       list: items => `<ul class="steps">${items.map(i => `<li>${i}</li>`).join("")}</ul>`,
     };
   }
@@ -104,10 +107,44 @@
     `;
   }
 
+  function whereToGo(app, h){
+    const { ext, checked, unchecked, list } = helpers(h);
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>Not sure where to go?</h1>
+        <p class="count">Republic of Ireland and Northern Ireland. Links to the official pages.</p>
+      </div>
+      <div class="callout callout-spaced">
+        <strong>If a life is at risk, call 112 or 999.</strong>
+      </div>
+      ${unchecked("whereToGo")}
+
+      <p class="section-title">Republic of Ireland</p>
+      ${list([
+        `The HSE has a directory of emergency departments, injury units and GP out-of-hours services. Use it to see what is near you. ${ext(HSE + "/services/find-urgent-emergency-care/", "HSE urgent and emergency care directory")}`,
+        `The HSE says injury units treat recent injuries that are not life-threatening and unlikely to need a hospital stay, such as broken bones, sprains, wounds and minor burns. You do not need an appointment. Each unit has its own age limit and opening hours. The HSE lists injuries that should go to an emergency department instead, and says to call 112 or 999 if a life is at risk. A charge may apply; the HSE page explains when it does not. ${ext(HSE + "/emergencies/when-to-visit-an-injury-unit/", "When to visit an injury unit")}`,
+        "If your GP surgery is closed and you need a GP urgently, the HSE says to use a GP out-of-hours service.",
+      ])}
+
+      <p class="section-title">Northern Ireland</p>
+      ${list([
+        `nidirect says Phone First is for urgent care that is not immediately life-threatening. A health professional assesses you by phone and may direct you to an emergency department, urgent care centre, minor injury unit, GP, pharmacist or another service. It does not replace 999. Each Trust organises minor injury care differently. ${ext("https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services", "nidirect: urgent and emergency care services")}`,
+      ])}
+
+      <p class="section-title">If a GP thinks you need a hospital medical assessment</p>
+      <p>Some HSE hospitals have a medical assessment unit for medical (not injury) problems. The pages found say patients are referred by a GP, GP out-of-hours service or injury unit doctor. If you think you may need one, speak to your GP. (Pages found so far are for Mid West hospitals.)</p>
+      ${checked("whereToGo")}
+
+      <p class="ooh-source">Information only, not clinical or legal advice.</p>
+    `;
+  }
+
   window.HH_GUIDES = {
     render(name, app, h){
       if (name === "after-a-death"){ afterADeath(app, h); return true; }
       if (name === "interpreting"){ interpreting(app, h); return true; }
+      if (name === "where-to-go"){ whereToGo(app, h); return true; }
       return false;
     },
   };

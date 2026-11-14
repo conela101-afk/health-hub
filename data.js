@@ -6441,7 +6441,7 @@ const ENTRIES = [
     name: "About HSE injury units (Republic of Ireland)",
     specialty: ["primary-care", "urgent"],
     county: ["national"],
-    blurb: "The HSE runs injury units that treat injuries that are not life-threatening and unlikely to need a hospital stay. Which units exist, who can attend and when they are open differs by unit, so use the HSE's own directory.",
+    blurb: "The HSE says injury units treat recent injuries that are not life-threatening and unlikely to need a hospital stay, such as broken bones, sprains, wounds and minor burns. You do not need an appointment. Each unit has its own age limit and opening hours. The HSE lists injuries that should go to an emergency department instead, and says to call 112 or 999 if a life is at risk. A charge may apply; the HSE page explains when it does not.",
     details: [
       "The HSE directory lists emergency departments, injury units, GP out-of-hours services, early pregnancy assessment units and maternity emergency units, and can be filtered by age.",
       "Age limits differ by unit. For example, the directory shows Bantry Injury Unit for anyone aged 5 and older, and St Columcille's Injury Unit in Loughlinstown for anyone aged 14 and older.",
@@ -6449,22 +6449,24 @@ const ENTRIES = [
     ],
     referral: "Walk-in at the unit listed in the HSE directory. Check the unit's own page for age limits, hours and charges.",
     contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/" },
-    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/",
-    urlStatus: "opened",
-    checked: "7 Oct 2026"
+    resources: [
+      { label: "When to visit an injury unit (HSE)", url: "https://www2.hse.ie/emergencies/when-to-visit-an-injury-unit/" }
+    ],
+    source_url: "https://www2.hse.ie/emergencies/when-to-visit-an-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
   },
   {
     id: "ni-minor-injury-units",
     name: "About minor injury and urgent care units in Northern Ireland",
     specialty: ["primary-care", "urgent"],
     county: ["antrim", "down", "londonderry", "tyrone"],
-    blurb: "Minor injury units treat injuries that are not critical or life-threatening. Each trust runs its own and the arrangements differ, so check the trust page for the unit and use Phone First where the trust offers it. This entry summarises trust pages read on 7 Oct 2026.",
+    blurb: "nidirect says minor injury units and urgent care services treat injuries that are not critical, such as sprains, wounds, bites and minor burns. Each Trust organises this differently: some have minor injury units, some urgent care centres, and Belfast has a minor injury stream inside its emergency departments. Phone First applies in several Trusts. Age limits and opening hours differ, so check your Trust's page.",
     details: [
       "Northern Trust: minor injuries units at Antrim Area Hospital and Causeway Hospital (patients aged 3 and over) and Mid Ulster Hospital, Magherafelt (aged 5 and over). The units are nurse-led and the page lists injuries they are not suitable for, including older adults with complex medical needs and anyone taking blood-thinning medication.",
       "South Eastern Trust: its minor injury unit page lists a nurse-led unit at Downe Hospital, weekends by appointment only, booked by phoning first. No other unit is listed on that page.",
       "Southern Trust: South Tyrone Hospital has a Minor Injuries Unit, covered by the Trust's Phone First service. The page says it cannot treat medical or surgical conditions.",
-      "Western Trust: the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex is a nurse-led minor injuries unit that the Trust describes as operating 24 hours a day.",
-      "Belfast Trust: not checked, so nothing is stated here. The nidirect overview says Phone First runs in the Northern, South Eastern, Southern and Western trusts.",
+      "Western Trust: the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex is a nurse-led minor injuries unit.",
     ],
     referral: "Walk-in or by Phone First, depending on the trust. See the trust page for the unit.",
     contact: { web: "nidirect.gov.uk/articles/urgent-and-emergency-care-services" },
@@ -6475,8 +6477,30 @@ const ENTRIES = [
       { label: "Emergency Department and Urgent Care Locations — Western Trust", url: "https://westerntrust.hscni.net/services/emergency-department-and-urgent-care-services/emergency-department-and-urgent-care-locations/" }
     ],
     source_url: "https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services",
-    urlStatus: "opened",
-    checked: "7 Oct 2026"
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-northern-minor-injuries-units",
+    name: "Northern Trust Minor Injuries Units (Antrim Area, Causeway, Mid Ulster)",
+    specialty: ["urgent"],
+    county: ["antrim", "londonderry"],
+    blurb: "The Northern Trust page lists Minor Injuries Units at Antrim Area, Causeway and Mid Ulster hospitals. Age limits differ by unit. The page links Phone First for urgent, non-life-threatening problems. Check the Trust page for hours.",
+    contact: { web: "www.northerntrust.hscni.net/service/minor-injuries-service/" },
+    source_url: "https://www.northerntrust.hscni.net/service/minor-injuries-service/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "ni-phone-first",
+    name: "Phone First (Northern Ireland)",
+    specialty: ["urgent"],
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "nidirect says Phone First is for urgent care that is not immediately life-threatening. A health professional assesses you by phone and may direct you to an emergency department, urgent care centre, minor injury unit, GP, pharmacist or another service. It does not replace 999.",
+    contact: { web: "www.nidirect.gov.uk/articles/urgent-and-emergency-care-services" },
+    source_url: "https://www.nidirect.gov.uk/articles/urgent-and-emergency-care-services",
+    urlStatus: "search-result",
+    verify: true
   },
   {
     id: "bch-kidney-transplant",
@@ -7431,7 +7455,7 @@ const ENTRIES = [
     name: "Urgent Care and Treatment Centre, Omagh Hospital",
     specialty: ["urgent"],
     county: ["tyrone"],
-    blurb: "The Western Trust describes the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex as a nurse-led minor injuries unit, open 24 hours with x-ray on site.",
+    blurb: "The Western Trust describes the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex as a nurse-led minor injuries unit with x-ray on site.",
     details: [
       "The page lists minor injuries it sees, including minor head injuries without loss of consciousness, wounds, eye injuries, sprains and fractures, bites and stings",
       "The page says staff get telephone advice from emergency consultants at South West Acute and Altnagelvin hospitals",
@@ -8151,6 +8175,185 @@ const ENTRIES = [
     ],
     contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/dundalk-injury-unit/" },
     source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/dundalk-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-bantry-injury-unit",
+    name: "Bantry Injury Unit",
+    specialty: ["primary-care","urgent"],
+    county: ["cork"],
+    area: "west-cork",
+    blurb: "The HSE directory lists Bantry Injury Unit for people aged 5 and older. You do not need an appointment. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/bantry-local-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/bantry-local-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-tipperary-cashel-injury-unit",
+    name: "Cashel Injury Unit",
+    specialty: ["primary-care","urgent"],
+    county: ["tipperary"],
+    blurb: "The HSE directory lists Cashel Injury Unit for people aged 5 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/cashel-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/cashel-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-clare-ennis-injury-unit",
+    name: "Ennis Injury Unit",
+    specialty: ["primary-care","urgent"],
+    county: ["clare"],
+    blurb: "The HSE directory lists Ennis Injury Unit for people aged 5 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/ennis-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/ennis-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-mallow-injury-unit",
+    name: "Mallow Injury Unit",
+    specialty: ["primary-care","urgent"],
+    county: ["cork"],
+    area: "north-cork",
+    blurb: "The HSE directory lists Mallow Injury Unit for people aged 5 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/mallow-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/mallow-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-mater-smithfield-rapid-injury-clinic",
+    name: "Mater Smithfield Rapid Injury Clinic",
+    specialty: ["primary-care","urgent"],
+    county: ["dublin"],
+    blurb: "The HSE directory lists the Mater Smithfield Rapid Injury Clinic, which it labels an injury unit, for people aged 16 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/mater-smithfield-rapid-injury-clinic/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/mater-smithfield-rapid-injury-clinic/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-cork-mercy-injury-unit",
+    name: "Mercy Injury Unit",
+    specialty: ["primary-care","urgent"],
+    county: ["cork"],
+    area: "cork-city",
+    blurb: "The HSE directory lists Mercy Injury Unit for people aged 10 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/the-mercy-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/the-mercy-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-monaghan-monaghan-injury-unit",
+    name: "Monaghan Injury Unit",
+    specialty: ["primary-care","urgent"],
+    county: ["monaghan"],
+    blurb: "The HSE directory lists Monaghan Injury Unit for people aged 5 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/monaghan-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/monaghan-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-tipperary-nenagh-injury-unit",
+    name: "Nenagh Injury Unit",
+    specialty: ["primary-care","urgent"],
+    county: ["tipperary"],
+    blurb: "The HSE directory lists Nenagh Injury Unit for people aged 5 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/nenagh-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/nenagh-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-westmeath-mullingar-injury-unit",
+    name: "Regional Hospital Mullingar Injury Unit",
+    specialty: ["primary-care","urgent"],
+    county: ["westmeath"],
+    blurb: "The HSE directory lists this injury unit for people aged 16 and older, at a site that may not be on the main hospital campus. Check the HSE page for the address and opening hours.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/mullingar-minor-injuries-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/mullingar-minor-injuries-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-roscommon-roscommon-injury-unit",
+    name: "Roscommon Injury Unit",
+    specialty: ["primary-care","urgent"],
+    county: ["roscommon"],
+    blurb: "The HSE directory lists Roscommon Injury Unit for people aged 5 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/roscommon-injury-unit/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/roscommon-injury-unit/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-dublin-st-columcilles-injury-unit",
+    name: "St Columcille's Injury Unit, Loughlinstown",
+    specialty: ["primary-care","urgent"],
+    county: ["dublin"],
+    blurb: "The HSE directory lists St Columcille's Injury Unit, Loughlinstown for people aged 14 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/st-columcilles-injury-unit-loughlinstown/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/st-columcilles-injury-unit-loughlinstown/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-limerick-st-johns-injury-unit",
+    name: "St John's Injury Unit, Limerick",
+    specialty: ["primary-care","urgent"],
+    county: ["limerick"],
+    blurb: "The HSE directory lists St John's Injury Unit, Limerick for people aged 5 and older. Opening hours differ by unit, so check the HSE page.",
+    contact: { web: "www2.hse.ie/services/find-urgent-emergency-care/st-johns-injury-unit-limerick/" },
+    source_url: "https://www2.hse.ie/services/find-urgent-emergency-care/st-johns-injury-unit-limerick/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-clare-ennis-mau",
+    name: "Medical Assessment Unit, Ennis Hospital",
+    specialty: ["general"],
+    county: ["clare"],
+    blurb: "A medical assessment unit sees people with medical (not injury) problems who have been referred. If you think you may need one, speak to your GP. The HSE page says patients are referred by their GP.",
+    contact: { web: "www2.hse.ie/services/hospitals/ennis-hospital/departments-services/medical-assessment-unit-mau-45/" },
+    source_url: "https://www2.hse.ie/services/hospitals/ennis-hospital/departments-services/medical-assessment-unit-mau-45/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-tipperary-nenagh-mau",
+    name: "Medical Assessment Unit, Nenagh Hospital",
+    specialty: ["general"],
+    county: ["tipperary"],
+    blurb: "A medical assessment unit sees people with medical (not injury) problems who have been referred. If you think you may need one, speak to your GP. The HSE page names a referral letter. It does not mention self-referral.",
+    contact: { web: "www2.hse.ie/services/hospitals/nenagh-hospital/departments-services/medical-assessment-unit-mau-86/" },
+    source_url: "https://www2.hse.ie/services/hospitals/nenagh-hospital/departments-services/medical-assessment-unit-mau-86/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-limerick-st-johns-mau",
+    name: "Medical Assessment Unit, St John's Hospital",
+    specialty: ["general"],
+    county: ["limerick"],
+    blurb: "A medical assessment unit sees people with medical (not injury) problems who have been referred. If you think you may need one, speak to your GP. The HSE page says patients are referred by an injury unit doctor, a GP or Shannondoc, by letter or e-referral.",
+    contact: { web: "www2.hse.ie/services/hospitals/st-johns-hospital/departments-services/medical-assessment-unit-mau-126/" },
+    source_url: "https://www2.hse.ie/services/hospitals/st-johns-hospital/departments-services/medical-assessment-unit-mau-126/",
+    urlStatus: "search-result",
+    verify: true
+  },
+  {
+    id: "roi-limerick-uhl-amau",
+    name: "Acute Medical Unit (AMAU), University Hospital Limerick",
+    specialty: ["general"],
+    county: ["limerick"],
+    blurb: "The HSE lists an acute medical unit (AMAU) for people with medical (not injury) problems who have been referred. If you think you may need one, speak to your GP. The HSE page says patients are referred by an injury unit doctor, a GP or Shannondoc, by letter or e-referral.",
+    contact: { web: "www2.hse.ie/services/hospitals/university-hospital-limerick/departments-services/acute-medical-unit-amau-141/" },
+    source_url: "https://www2.hse.ie/services/hospitals/university-hospital-limerick/departments-services/acute-medical-unit-amau-141/",
     urlStatus: "search-result",
     verify: true
   },

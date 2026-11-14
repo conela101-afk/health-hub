@@ -19,6 +19,7 @@
         { title: "Urgent care and checks", items: [
           { label: "Pregnancy information", desc: "Choices, tests and scans.", href: "#/pregnancy" },
           { label: "Out-of-hours and urgent care", desc: "Where to go when your GP is closed.", href: "#/out-of-hours" },
+          { label: "Not sure where to go?", desc: "Official pages for urgent and emergency care.", href: "#/guide/where-to-go" },
           { label: "Vaccines: what's covered", desc: "Which vaccines are covered, by region.", href: "#/vaccines" },
           { label: "Screening: who is invited", desc: "Who is invited to screening programmes.", href: "#/screening" },
           { label: "National cancer screening programmes", desc: "Who is invited, and where to check.", href: "#/about/screening" },

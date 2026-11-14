@@ -145,6 +145,12 @@ Claude Code is the sole implementer of this repo — content, data, JS logic, HT
 Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health Pro, Limerick Leader. Tiers 1 to 5 may be a `source_url`; tier 5 never as the only source; tier 6 only on entries tagged `voluntary`; tiers 7 and 8 are links only. A host outside this list needs Elaine's approval: report it as host, owner, purpose, proposed tier and the row it is for, and do not use it.
 
 <!-- approved-hosts:end -->
+
+**Hosts approved by Elaine on 14 Nov 2026 (not in the `validate-data.js` allow-list: no row cites them, so they cannot be a `source_url`; recorded here, outside the generated block, so `test-validate-data.js` still matches):**
+- `saolta.ie` (14 Nov 2026): official-group site; hospital medical assessment unit and acute assessment unit pages only.
+- `con-telegraph.ie`, `mayonews.ie`, `ireland-live.ie`, `midwestradio.ie`, `westernpeople.ie` (14 Nov 2026): local press; context only, never a `source_url`.
+- `online.hscni.net` (14 Nov 2026): treated as covered by `hscni.net`.
+- `hiqa.ie` for medical assessment unit inspection reports is **not** covered; context only.
 - **Parent-neutral wording.** Parenting, feeding and perinatal wording is parent-neutral by default ("parents", "new parents", "people who give birth"). Use "mother/mum" only where it is an official service or organisation name, or an accurate source statistic. Follow the official source's own phrasing. Do not generalise a factual claim beyond what the source says.
 - **`area` is physical base.** The optional sub-county `area` field means where a service is based, not who it serves. Regional and county-wide services carry no area. Areas are not HSE boundaries.
 
@@ -167,6 +173,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-11-14 [Claude] — Injury unit and medical assessment unit rows, NI minor injury updates and a "Not sure where to go?" guide (`#/guide/where-to-go`), all search-result and unverified; cache v47; PR only. See `CHANGELOG.md`, `GAPS.md` and `REVIEW.md`.
 - 2026-11-04 [Claude] — Four doors PR 4: colour tokens and visual refresh (new palette in `:root`, `--border-strong` for controls, flat cards, gradients and shadows removed, `#/advocacy/schemes` 4.28:1 failure fixed by token, focus and states re-set, `theme-color` and manifest colours, cache v46); `scripts/contrast-check.js` and `scripts/token-map.js`, find-it test sheet in `docs/`. CSS, HTML meta and docs only; `data.js` and all JS unchanged. PR only. See `CHANGELOG.md`.
 - 2026-10-29 [Claude] — Merged #141 (plan v4 sync, `forms.gle` register entry, icon master); added an "Instagram and caption conventions" section to this file with the @healthadvocacyirl emoji rule; docs only. PR only. See `CHANGELOG.md`.
 - 2026-10-27 [Claude] — Advocacy research R1 to R8 saved under `research/` (unverified, R8 on hold, Mental Health Act 2026 link only), eight advocacy hosts added to the approved-hosts register (tier 1 and tier 5), `GAPS.md` open gaps; docs only, nothing in the app. PR only. See `CHANGELOG.md`.

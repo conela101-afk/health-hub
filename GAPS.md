@@ -615,3 +615,16 @@ Research notes are in `research/R1-open-disclosure.md` to `research/R8-internati
   - HSE patient-facing general interpreter page; the HSC Regional Interpreting Service (NI).
 - **R8 HOLD:** no app wording until a gov.ie or HSE page confirms how the International Protection Act 2026 (commenced 12 June 2026) affects health access, and an HSE page on medical card eligibility for protection applicants is found.
 - **Time limits:** the table of limits copied from official pages is held in the research notes (R1, R2, R3 and R5), not in the app. Show one only after Elaine opens the page, as copied, with the URL.
+
+## Injury units and assessment units pass, 14 Nov 2026
+
+Rows added from the R10 research (search results only, none opened). County coverage recounted from `data.js` by script after adding the rows: Republic of Ireland counties with an injury unit row are Clare, Cork, Dublin, Kildare, Limerick, Louth, Monaghan, Roscommon, Tipperary and Westmeath. No row yet for Carlow, Cavan, Donegal, Galway, Kerry, Kilkenny, Laois, Leitrim, Longford, Mayo, Meath, Offaly, Sligo, Waterford, Wexford or Wicklow. That means "no row", not "no unit": the directory's page 2 was never opened.
+
+- **(a) Ballina Injury Unit: not added.** The HSE directory lists it ("for all ages") but the unit page was not opened, and local press (context only) said on 13 Nov 2026 it was "set to open next week". Check the HSE unit page; add when it confirms the unit is open. The "all ages" wording conflicts with the HSE general "under 5" wording; not resolved.
+- **(b) Duplicate Cashel URL.** The directory also links `cashel-injury-unit-tipperary/`. The row uses `cashel-injury-unit/`; open both and keep whichever is current.
+- **(c) Northern Ireland units not added**, because the only sources found were snippets, a bank-holiday notice or a news page. Find the Trust's own service page for each: Lagan Valley Urgent Care Centre, Ulster Hospital Urgent Care Centre, Altnagelvin Minor Injuries Unit, South West Acute Hospital minor injury stream, Belfast Trust minor injury streams, Bangor (closed). Ulster Hospital: the 2025 pages say "Minor Injury Unit", the Aug 2026 page says "Urgent Care Centre", and a Department of Health press release (19 June 2025) records the minister formally opening the Urgent Care Centre. Treat as an official rename. Also: a Northern Trust A-Z mentions an "Acute Assessment Unit, Antrim Area Hospital" in a snippet on an old-format page, with no referral route; nothing added.
+- **(d) HSE medical assessment unit pages for other hospitals.** The four rows are all Mid West. Elsewhere the research found references only on `saolta.ie`, old PDFs and HIQA reports, none used. "No HSE page found" is not "no unit".
+- **(e) Listing-only rows:** Mater Smithfield Rapid Injury Clinic and Monaghan Injury Unit (the directory labels the Mater Smithfield clinic an injury unit). Hours were not captured for Cashel, Dundalk, Ennis, Mallow or Mercy; rows link to the HSE page instead.
+- **(f) Directory page 2** was not opened. The directory showed different totals in different views, so none is quoted.
+- **(g) Not researched:** surgical assessment units, ophthalmic casualty and ENT, urgent mental health wording, rapid access clinics, community intervention teams and hospital at home, NI 111, NI Pharmacy First end dates, HSE pharmacy wording.
+

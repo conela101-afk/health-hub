@@ -150,6 +150,7 @@
   const TOOL_PAGES = [
     { name: "Pregnancy information: choices, tests and scans", href: "#/pregnancy", keywords: "pregnancy pregnant antenatal screening tests scans ultrasound dating scan anatomy scan private scan options unplanned" },
     { name: "After a death: registering, the coroner and money help", href: "#/guide/after-a-death", keywords: "death died bereavement bereaved funeral coroner register death certificate additional needs payment widow bereaved partner parent grant" },
+    { name: "Not sure where to go? Urgent and emergency care", href: "#/guide/where-to-go", keywords: "not sure where to go where to go instead of a&e injury unit minor injury unit urgent care centre phone first medical assessment unit emergency department gp out of hours" },
     { name: "Asking for an interpreter or sign language at an appointment", href: "#/guide/interpreting", keywords: "interpreter interpreting language translator sign language isl irish sign language deaf english hospital appointment communication" },
     { name: "My Patient Passport", href: "#/passport", keywords: "patient passport profile medical history" },
     { name: "My call & referral log", href: "#/log", keywords: "call referral log" },
