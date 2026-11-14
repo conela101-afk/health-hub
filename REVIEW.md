@@ -216,3 +216,4 @@ Status: **not yet run** (set up in `docs/find-it-test-pr4.md`; the old version i
 - [ ] Mullingar wording awaiting Elaine (`roi-westmeath-mullingar-injury-unit`). The HSE page gives a private hospital address and does not say who runs the unit; the row says only that the site "may not be on the main hospital campus" and names no operator, address or arrangement.
 - [ ] Open every new `verify: true` row and the "Not sure where to go?" guide (`#/guide/where-to-go`); only then set `checked` / `urlStatus: "opened"` and clear `verify`, and fill `CHECKED.whereToGo` in `data/guides.js`.
 
+- [ ] Follow-up, not a change: `meath-womens-refuge` has `referral: "Self-referral, 24 hours a day."` (an older row). It states hours; decide whether to keep it when someone opens its page.
