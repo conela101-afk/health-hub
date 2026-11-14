@@ -6467,7 +6467,6 @@ const ENTRIES = [
       "South Eastern Trust: its minor injury unit page lists a nurse-led unit at Downe Hospital, weekends by appointment only, booked by phoning first. No other unit is listed on that page.",
       "Southern Trust: South Tyrone Hospital has a Minor Injuries Unit, covered by the Trust's Phone First service. The page says it cannot treat medical or surgical conditions.",
       "Western Trust: the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex is a nurse-led minor injuries unit that the Trust describes as operating 24 hours a day.",
-      "Belfast Trust: not checked, so nothing is stated here. The nidirect overview says Phone First runs in the Northern, South Eastern, Southern and Western trusts.",
     ],
     referral: "Walk-in or by Phone First, depending on the trust. See the trust page for the unit.",
     contact: { web: "nidirect.gov.uk/articles/urgent-and-emergency-care-services" },
@@ -7456,7 +7455,7 @@ const ENTRIES = [
     name: "Urgent Care and Treatment Centre, Omagh Hospital",
     specialty: ["urgent"],
     county: ["tyrone"],
-    blurb: "The Western Trust describes the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex as a nurse-led minor injuries unit, open 24 hours with x-ray on site.",
+    blurb: "The Western Trust describes the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex as a nurse-led minor injuries unit with x-ray on site.",
     details: [
       "The page lists minor injuries it sees, including minor head injuries without loss of consciousness, wounds, eye injuries, sprains and fractures, bites and stings",
       "The page says staff get telephone advice from emergency consultants at South West Acute and Altnagelvin hospitals",
