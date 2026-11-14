@@ -6466,7 +6466,7 @@ const ENTRIES = [
       "Northern Trust: minor injuries units at Antrim Area Hospital and Causeway Hospital (patients aged 3 and over) and Mid Ulster Hospital, Magherafelt (aged 5 and over). The units are nurse-led and the page lists injuries they are not suitable for, including older adults with complex medical needs and anyone taking blood-thinning medication.",
       "South Eastern Trust: its minor injury unit page lists a nurse-led unit at Downe Hospital, weekends by appointment only, booked by phoning first. No other unit is listed on that page.",
       "Southern Trust: South Tyrone Hospital has a Minor Injuries Unit, covered by the Trust's Phone First service. The page says it cannot treat medical or surgical conditions.",
-      "Western Trust: the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex is a nurse-led minor injuries unit that the Trust describes as operating 24 hours a day.",
+      "Western Trust: the Urgent Care and Treatment Centre at Omagh Hospital and Primary Care Complex is a nurse-led minor injuries unit.",
     ],
     referral: "Walk-in or by Phone First, depending on the trust. See the trust page for the unit.",
     contact: { web: "nidirect.gov.uk/articles/urgent-and-emergency-care-services" },
