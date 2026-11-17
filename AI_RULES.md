@@ -173,6 +173,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-11-17 [Claude] — Fix: the "Your next step" card on `#/start` rendered unstyled (primary row now inside `.simple-list`, `.simple-list .start-primary` keeps the 2px plum border); cache v48; PR only. See `CHANGELOG.md`.
 - 2026-11-14 [Claude] — Injury unit and medical assessment unit rows, NI minor injury updates and a "Not sure where to go?" guide (`#/guide/where-to-go`), all search-result and unverified; cache v47; PR only. See `CHANGELOG.md`, `GAPS.md` and `REVIEW.md`.
 - 2026-11-04 [Claude] — Four doors PR 4: colour tokens and visual refresh (new palette in `:root`, `--border-strong` for controls, flat cards, gradients and shadows removed, `#/advocacy/schemes` 4.28:1 failure fixed by token, focus and states re-set, `theme-color` and manifest colours, cache v46); `scripts/contrast-check.js` and `scripts/token-map.js`, find-it test sheet in `docs/`. CSS, HTML meta and docs only; `data.js` and all JS unchanged. PR only. See `CHANGELOG.md`.
 - 2026-10-29 [Claude] — Merged #141 (plan v4 sync, `forms.gle` register entry, icon master); added an "Instagram and caption conventions" section to this file with the @healthadvocacyirl emoji rule; docs only. PR only. See `CHANGELOG.md`.
