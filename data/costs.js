@@ -40,7 +40,7 @@ const COSTS = [
     how_to_apply: "Apply online at the HSE or mydps.ie.",
     route_note: "Use one pharmacy a month, or claim a refund if you split purchases.",
     compare: "roi-lti", volatile: true, volatile_reason: BUDGET_NOTE,
-    source_url: "https://www2.hse.ie/services/schemes-allowances/drugs-payment-scheme/card/", source_name: "HSE: Drugs Payment Scheme" },
+    source_url: "https://www2.hse.ie/services/schemes-allowances/drugs-payment-scheme/card/", source_name: "HSE: Drugs Payment Scheme", last_verified: "2026-11-19", verify: false, urlStatus: "opened" },
 
   { id: "roi-lti", scheme: "Long-Term Illness Scheme (LTI)", jurisdiction: "ROI", kind: "medicines",
     who: "Anyone ordinarily resident in the Republic of Ireland with one of 16 listed conditions. No means test.",
@@ -51,7 +51,7 @@ const COSTS = [
     how_to_apply: "HSE application form, with a GP or consultant medical report.",
     route_note: "If your condition isn't listed, look at the Drugs Payment Scheme or a medical card. You can hold LTI and DPS together.",
     compare: "roi-dps", volatile: false,
-    source_url: "https://www2.hse.ie/services/schemes-allowances/lti/about/", source_name: "HSE: Long-Term Illness Scheme", source_page_review_date: "2025-12-19" },
+    source_url: "https://www2.hse.ie/services/schemes-allowances/lti/about/", source_name: "HSE: Long-Term Illness Scheme", source_page_review_date: "2025-12-19", last_verified: "2026-11-19", verify: false, urlStatus: "opened" },
 
   { id: "roi-gp-visit-card", scheme: "GP visit card", jurisdiction: "ROI", kind: "gp",
     who: "Automatic for children under 8, people aged 70 and over, and people getting Carer's Allowance or Benefit. Means-tested for ages 8 to 69.",
@@ -62,7 +62,7 @@ const COSTS = [
     how_to_apply: "Apply online with the HSE.",
     route_note: "Pair it with the Drugs Payment Scheme for medicine costs.",
     volatile: true, volatile_reason: "Income limits change; " + BUDGET_NOTE,
-    source_url: "https://www2.hse.ie/services/schemes-allowances/gp-visit-cards/gp-visit-card-8-to-69/", source_name: "HSE: GP visit card (8 to 69)" },
+    source_url: "https://www2.hse.ie/services/schemes-allowances/gp-visit-cards/gp-visit-card-8-to-69/", source_name: "HSE: GP visit card (8 to 69)", last_verified: "2026-11-19", verify: false, urlStatus: "opened" },
 
   // Discretionary-card claim in route_note comes from https://www2.hse.ie/services/schemes-allowances/medical-cards/applying/how-much-you-can-earn/ (page date not shown; seen as a snippet only).
   { id: "roi-medical-card", scheme: "Medical card", jurisdiction: "ROI", kind: "other",
@@ -74,7 +74,7 @@ const COSTS = [
     how_to_apply: "Apply with the HSE. The discretionary route can matter for high-cost illness.",
     route_note: "If income is above the means-test threshold, the HSE page says medical officers can consider whether medical bills would cause financial hardship and may grant a discretionary card. See also Additional Needs Payment.",
     compare: "roi-medical-card-prescriptions", volatile: true, volatile_reason: "Thresholds change; " + BUDGET_NOTE,
-    source_url: "https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/medical-card-means-test-over-70s/", source_name: "Citizens Information: Medical card means test and over-70s" },
+    source_url: "https://www.citizensinformation.ie/en/health/medical-cards-and-gp-visit-cards/medical-card-means-test-over-70s/", source_name: "Citizens Information: Medical card means test and over-70s", last_verified: "2026-11-19", verify: false, urlStatus: "opened" },
 
   { id: "roi-hospital-charges", scheme: "Public hospital charges", jurisdiction: "ROI", kind: "hospital",
     who: "Everyone, with exemptions.",
@@ -94,7 +94,7 @@ const COSTS = [
     not_covered_note: "The consultation is not covered; only the product is free.",
     how_to_apply: "Prescription plus your DPS or medical card.",
     compare: "roi-dps", volatile: true, volatile_reason: "Scheme is recent; participating pharmacies and products can change.",
-    source_url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/womens-health-in-ireland/", source_name: "Citizens Information: Women's health in Ireland" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/womens-health-in-ireland/", source_name: "Citizens Information: Women's health in Ireland", last_verified: "2026-11-19", verify: false, urlStatus: "opened" },
 
   { id: "roi-free-contraception", scheme: "Free contraception", jurisdiction: "ROI", kind: "other",
     who: "Women and people with a uterus aged 17 to 35, ordinarily resident with a PPSN; or medical card holders. Budget 2027 extends eligibility up to age 37; no start date has been published on the pages read.",
@@ -103,7 +103,7 @@ const COSTS = [
     cap_amount: null, currency: "EUR", cap_period: null, cap_unit: null,
     how_to_apply: "Through a participating GP or clinic.",
     volatile: true, volatile_reason: "Budget 2027 (6 Oct 2026) extends the age band from 35 to 37 and no start date has been published yet. The age band has been widened before.",
-    source_url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/contraception/", source_name: "Citizens Information: Contraception" },
+    source_url: "https://www.citizensinformation.ie/en/health/health-services/reproductive-health/contraception/", source_name: "Citizens Information: Contraception", last_verified: "2026-11-19", verify: false, urlStatus: "opened" },
 
   { id: "roi-treatment-benefit", scheme: "Treatment Benefit (PRSI)", jurisdiction: "ROI", kind: "other",
     who: "People with enough PRSI contributions in classes A, E, H, P or S (the 2024 contribution year governs 2026 claims), and their dependent spouse or partner.",
@@ -137,8 +137,8 @@ const COSTS = [
     how_to_apply: "Get the Home Support application form online or from your local Home Support Office, fill it in and post it to that office. If you are in hospital, ask the person managing your discharge. A care needs assessment follows.",
     route_note: "For long-term nursing home care, see Fair Deal.",
     compare: "roi-fair-deal", volatile: true, volatile_reason: "Citizens Information says a law regulating home support providers was passed in June 2026. No official page read describes a statutory home support scheme, so this row says nothing about one.",
-    last_verified: "2026-10-09",
-    source_url: "https://www2.hse.ie/services/home-support-service/home-support-service-for-older-people/", source_name: "HSE: Home Support Service for older people" },
+    last_verified: "2026-11-19",
+    source_url: "https://www2.hse.ie/services/home-support-service/home-support-service-for-older-people/", source_name: "HSE: Home Support Service for older people", verify: false, urlStatus: "opened" },
 
   { id: "roi-additional-needs-payment", scheme: "Additional Needs Payment (Supplementary Welfare Allowance)", jurisdiction: "ROI", kind: "other",
     who: "Citizens Information says a Community Welfare Officer assesses each application individually. See the page for who can apply.",
