@@ -30,7 +30,7 @@ const VACCINES = [
     product_cost: "Free", admin_fee: "free", fee_waived_if: [],
     clinician_check: "The HSE page says people with severe neutropenia, or on combination checkpoint inhibitors, should check with their GP or specialist.",
     season: "2026/27", volatile: true, volatile_reason: "Seasonal campaign; eligibility and dates are reset each year.",
-    source_url: "https://www2.hse.ie/conditions/flu/get-vaccine/", source_name: "HSE: Get the flu vaccine", source_page_review_date: "2026-09-25" },
+    source_url: "https://www2.hse.ie/conditions/flu/get-vaccine/", source_name: "HSE: Get the flu vaccine", source_page_review_date: "2026-09-25", last_verified: "2026-11-19", verify: false, urlStatus: "opened" },
 
   { id: "roi-covid-2026", vaccine: "COVID-19", jurisdiction: "ROI", status: "free", setting: ["gp", "pharmacy"],
     who: "Once a year: ages 60 to 79, and ages 6 months to 79 with a risk condition. Twice a year: ages 80 and over, long-term care residents aged 18 and over, and anyone aged 6 months and over with a weak immune system.",
@@ -59,7 +59,7 @@ const VACCINES = [
     product_cost: "Paid privately", admin_fee: "private", fee_waived_if: [],
     not_covered_note: "Not covered by a medical card or the Drugs Payment Scheme.",
     compare: "ni-shingles", volatile: true, volatile_reason: "Policy under political pressure; HIQA assessed it in 2024 and did not recommend funding at the current price.",
-    source_url: "https://www2.hse.ie/conditions/shingles/", source_name: "HSE: Shingles" },
+    source_url: "https://www2.hse.ie/conditions/shingles/", source_name: "HSE: Shingles", last_verified: "2026-11-19", verify: false, urlStatus: "opened" },
 
   { id: "roi-rsv-adult", vaccine: "RSV (adults)", jurisdiction: "ROI", status: "not_available", setting: ["private"],
     who: "No RSV programme for older adults as of April 2026 (HIQA).",
