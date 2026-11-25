@@ -937,7 +937,7 @@ ${name}`;
 
   function renderEntry(id){
     const e = ENTRIES.find(x => x.id === id);
-    if (!e){ app.innerHTML = `<div class="empty-state">Not found.</div>`; return; }
+    if (!e){ app.innerHTML = `<div class="page-head"><a class="back-link" href="#/">‹ Home</a></div><div class="empty-state">This entry is no longer listed. Browse by specialty or area instead.<p class="callout-pill-row"><a class="pill" href="#/specialty">Browse by specialty</a> <a class="pill" href="#/county">Browse by area</a></p></div>`; return; }
     const c = e.contact || {};
     const contactLines = [];
     if (c.phone) contactLines.push(`<div class="line"><span class="k">Phone</span><span>${contactLinkHtml("phone", c.phone)}</span></div>`);

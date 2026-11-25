@@ -10,3 +10,6 @@ second opinion
 cdnt navan
 cdnt blessington
 dental clinic ballymun
+# Added 25 Nov 2026 when the local Kells CDNT row was archived (data/archive/archived-entries-2026-11-25.js). The national
+# `hse-cdnt-finder` row covers CDNT searches by address, so a town-name query no longer has its own row.
+children's disability team kells
