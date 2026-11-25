@@ -14,7 +14,7 @@
           { label: "Services by area", desc: "Browse by county or area.", href: "#/county" },
           { label: "Search a condition", desc: "Links to official condition information.", href: "#/conditions" },
           { label: "Search medicine leaflets", desc: "Find the leaflet for a medicine.", href: "#/medicines" },
-          { label: "Find a facility", desc: "Hospitals and care centres on the HIQA and RQIA registers.", href: "#/facilities" },
+          { label: "Find a care centre or hospital", desc: "Links to the official registers.", href: "#/facilities" },
         ] },
         { title: "Urgent care and checks", items: [
           { label: "Pregnancy information", desc: "Choices, tests and scans.", href: "#/pregnancy" },

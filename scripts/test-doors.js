@@ -44,7 +44,7 @@ data.SPECIALTIES.forEach(s => routes.add("#/specialty/" + s.id));
 data.COUNTIES.forEach(c => routes.add("#/county/" + c.id));
 toolPageHrefs.forEach(h => routes.add(h));
 // Routes that take an id or a query: one example each, assigned like their parent.
-const DYNAMIC = ["#/entry/:id", "#/facilities/:id", "#/conditions/:id", "#/vaccines/:id", "#/search/:query"];
+const DYNAMIC = ["#/entry/:id", "#/conditions/:id", "#/vaccines/:id", "#/search/:query"];
 if (!aboutIds.length || !guideIds.length || !rightsPages.length || !toolIds.length || !advocacy.length) fail("route generation found an empty source");
 
 // ---- 2. Assign each route ----

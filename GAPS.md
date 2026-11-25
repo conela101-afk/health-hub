@@ -630,3 +630,4 @@ Rows added from the R10 research (search results only, none opened). County cove
 
 - **NI Human Milk Bank:** find an official page confirming whether Republic of Ireland families can use it; restore the all-island wording and `national` only if one is found.
 - **Tilt table testing in Cork:** the official HSE page lists Dublin and Tralee only. Add Cork only if an official or provider page confirms it.
+- **Find a facility snapshot removed 25 Nov 2026.** If it comes back: only fields a person has checked on an open page; no names of individuals; no addresses of residential homes for disabled people or children; re-use terms confirmed first.
