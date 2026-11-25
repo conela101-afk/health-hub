@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-25 [Claude] (remove internal notes from user-facing text)
+- Removed internal notes from three entries: milk bank all-island claim removed pending an official source; Daisy Hill county note removed; Bon Secours Cork tilt table claim removed (phone-only, no official page).
+- `ni-human-milk-bank`: blurb no longer says it serves the whole island; the "given by Elaine" detail line is gone; `national` removed from `county` (six NI counties kept). `verify: true` and `urlStatus: "search-result"` unchanged.
+- `ni-down-daisy-hill-emergency-department`: details line now only gives the address; `county: ["down"]` unchanged.
+- `bons-cork-cardiology`: blurb and details no longer mention tilt table testing. No search alias or keyword linked tilt table searches to this entry. Cache `v48` to `v49`.
+
 ## 2026-11-17 [Claude] (fix: "Where do I start?" next-step card unstyled)
 - **Bug.** On `#/start`, the "Your next step" card (`stepRow(res.primary, "start-primary")`) was rendered straight into `#startResult`. The card styles (padding, background, radius, border, flex layout) are under `.simple-list .row` in `styles.css`, so only the "Also useful" rows (inside `.simple-list`) were styled.
 - **Fix.** `app.js`: the primary row is now wrapped in `<div class="simple-list">`. `styles.css`: `.start-primary` became `.simple-list .start-primary`, because the 1px `.simple-list .row` border has higher specificity and would otherwise have replaced the 2px plum border. No wording, route, table or `start.js` change.

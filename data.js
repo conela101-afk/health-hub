@@ -2721,10 +2721,9 @@ const ENTRIES = [
     id: "ni-human-milk-bank",
     name: "Northern Ireland Human Milk Bank (donor breast milk)",
     specialty: ["feeding"],
-    county: ["national", "antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
-    blurb: "A donor breast milk service based in Northern Ireland that serves the whole island of Ireland, including the Republic. Official HSC news items describe the human milk bank service and its appeals for more donors. Link only: the pages were not opened when this entry was written, so the donor contact route is not stated here. Use the official page.",
+    county: ["antrim", "armagh", "down", "fermanagh", "londonderry", "tyrone"],
+    blurb: "A donor breast milk service based in Northern Ireland. Official HSC news items describe the human milk bank service and its appeals for more donors. Link only: the pages were not opened when this entry was written, so the donor contact route is not stated here. Use the official page.",
     details: [
-      "The all-island reach was given by Elaine on 9 Oct 2026 and is not yet confirmed on an official page.",
       "Both source pages are news items, not a service page. A service page, if there is one, would be a better link.",
     ],
     referral: "Not stated. Check the official page for how donors get in touch.",
@@ -3033,10 +3032,9 @@ const ENTRIES = [
     county: ["cork"],
     sector: "private",
     provider: "Bon Secours Health System",
-    blurb: "Private cardiology service including an Urgent & Express Cardiac Care Clinic (a GP fast-track route for urgent heart assessment), electrophysiology for heart rhythm disorders, and tilt table testing for unexplained fainting or dizziness.",
+    blurb: "Private cardiology service including an Urgent & Express Cardiac Care Clinic (a GP fast-track route for urgent heart assessment) and electrophysiology for heart rhythm disorders.",
     details: [
-      "The Urgent & Express Cardiac Care Clinic is a fast-track route for GPs, not a walk-in service. Ask your GP to refer you directly if urgent. Any fee cap and the referral criteria have not been confirmed here, so ask the hospital.",
-      "Tilt table testing at Cork was confirmed by phone with the hospital on 7 Oct 2026. The official HSE tilt table page lists Dublin and Tralee only."
+      "The Urgent & Express Cardiac Care Clinic is a fast-track route for GPs, not a walk-in service. Ask your GP to refer you directly if urgent. Any fee cap and the referral criteria have not been confirmed here, so ask the hospital."
     ],
     referral: "GP or consultant referral; self-pay or health-insurance-funded.",
     contact: { phone: "1800 203 444", web: "bonsecours.ie/services/urgent-express-cardiac-care-clinic-cork" },
@@ -8507,7 +8505,7 @@ const ENTRIES = [
     county: ["down"],
     blurb: "The Southern Trust emergency department page lists Daisy Hill Hospital, Newry, as one of its two emergency departments, with Craigavon Area Hospital. It says Phone First is for patients considering travelling to either ED with an urgent but not immediately life-threatening problem.",
     details: [
-      "Daisy Hill Hospital, 5 Hospital Road, Newry (address as on the Southern Trust page, which does not give a county). Elaine confirmed the county as Down on 8 Oct 2026, from the Family Support NI listing 2132.",
+      "Daisy Hill Hospital, 5 Hospital Road, Newry (address as on the Southern Trust page).",
     ],
     contact: { web: "southerntrust.hscni.net/service/emergency-department/" },
     source_url: "https://southerntrust.hscni.net/service/emergency-department/",
