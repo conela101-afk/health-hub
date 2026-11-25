@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // WCAG contrast report for the colour tokens in styles.css (Four doors PR 4).
-// Plain Node, no dependencies. Not a CI step (add one only if Elaine decides to).
+// Plain Node, no dependencies. Not a CI step (add one only if the maintainer decides to).
 //
 //   node scripts/contrast-check.js                       # check styles.css :root, print every pair
 //   node scripts/contrast-check.js --css other.css       # check another file (used to prove the script can fail)

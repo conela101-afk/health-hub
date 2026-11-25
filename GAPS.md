@@ -390,7 +390,7 @@ Browser checks needed: HSE Diabetic Foot MOC PDF, NCG17 copy on hse.ie, Mater ne
 
 Added 12 rows: `roi-svuh-liver-transplant`, `roi-nrh-rehab`, `roi-nccp-aya-network`, `ni-belfast-tya-cancer`, `roi-nccp-psycho-oncology`, `roi-beaumont-mnd-clinic`, `roi-chi-ghift`, `roi-chi-ncimd`, `roi-chi-craniofacial`, `roi-chi-clinical-genetics`, `roi-bons-cork-heart-lung`, `roi-bons-cork-radiotherapy`. All `verify: true`, `urlStatus: "search-result"`, web link only, no contacts. Every URL is unchecked until a person opens it. `beaumont.ie`, `childrenshealthireland.ie` and `bonsecours.ie` were added to the validator's `SOURCE_DOMAINS` on 7 Oct 2026 (hospitals' own sites, approved by the owner).
 
-**7 Oct 2026 browser checks:** `roi-chi-clinical-genetics` (renamed "Clinical Genetics, CHI at Crumlin & Temple Street"), `roi-svuh-liver-transplant` and `roi-nrh-rehab` now carry `urlStatus: "opened"` and `checked: "7 Oct 2026"` (Elaine's browser pass), with `verify` cleared. `guideclinic.ie` was added to the validator allow-list on 7 Oct 2026 (owner approved). `roi-nccp-psycho-oncology` stays `search-result`; the HSE site was down.
+**7 Oct 2026 browser checks:** `roi-chi-clinical-genetics` (renamed "Clinical Genetics, CHI at Crumlin & Temple Street"), `roi-svuh-liver-transplant` and `roi-nrh-rehab` now carry `urlStatus: "opened"` and `checked: "7 Oct 2026"` (the maintainer's browser pass), with `verify` cleared. `guideclinic.ie` was added to the validator allow-list on 7 Oct 2026 (owner approved). `roi-nccp-psycho-oncology` stays `search-result`; the HSE site was down.
 
 **Row-specific notes:** the MND row is named "Motor Neurone Disease (MND) service, Beaumont Hospital": a service within the Department of Neurology, referrals via Healthlink, with no separate clinic, "National" or "HSE national centre" wording, or clinic days (Beaumont neurology page viewed 7 Oct 2026). GHIFT does not say where paediatric liver transplant happens. NCIMD outreach (Cork, Limerick, Ballinasloe) and the Bon Secours Varian Edge mention are flagged unconfirmed. Bon Secours rows are `sector: private`; heart & lung is Cork-only, launched 2024, no TAVI claim. "Only SRS/SBRT in Munster" is withheld. The radiotherapy URL is the page search returned (`/cork-departments/radiotherapy`), not `/services/radiation-therapy`.
 
@@ -408,15 +408,15 @@ Also left out: pancreas programme mention (SVUH), National AYA MDM, SVUH psycho-
 
 ## Inclusive parenting: content gaps (7 Oct 2026)
 
-Research items only. No entries written; each needs official sources and Elaine's approval first.
+Research items only. No entries written; each needs official sources and the maintainer's approval first.
 
 1. **Fathers and non-birthing partners:** perinatal mental health support, and parental and paternity leave and benefit rights (Citizens Information, gov.ie, nidirect).
-2. **Adoptive and foster parents:** post-placement support, adoption leave and benefit, and the statutory bodies (Adoption Authority of Ireland, Tusla, HSC Trust adoption services). Tusla and AAI are not on the source-domain allow-list. **Elaine approved both on 7 Oct 2026: `tusla.ie` is now on the allow-list, and `aai.gov.ie` was already covered by `gov.ie`.**
+2. **Adoptive and foster parents:** post-placement support, adoption leave and benefit, and the statutory bodies (Adoption Authority of Ireland, Tusla, HSC Trust adoption services). Tusla and AAI are not on the source-domain allow-list. **the maintainer approved both on 7 Oct 2026: `tusla.ie` is now on the allow-list, and `aai.gov.ie` was already covered by `gov.ie`.**
 3. **Same-sex couples and fertility:** public AHR eligibility and the legal position on parentage and surrogacy, from HSE and gov.ie only, as administrative information and never as legal claims.
 4. **Search aliases (done 7 Oct 2026):** see the search section below. Adoption, foster and same-sex-parent searches still lead only to generic parenting entries until the content gaps above are filled.
 5. **Discoverability after the relabel:** covered by the `motherhood` alias.
 6. **Duplicate resolved (7 Oct 2026):** `nurture-pnd` was merged into `nurture`, which now carries both the `parenting` and `mh` specialties and wording taken from nurturehealth.ie. The id `nurture-pnd` no longer exists, so any bookmark to that entry will not resolve.
-7. **Not reviewed:** `Cork-Womens-Health-Pocket-Guide.docx` (separate asset, not part of the PWA).
+7. **Not reviewed:** `docs/archive/Cork-Womens-Health-Pocket-Guide.docx` (separate asset, not part of the PWA).
 
 ## Search: content gaps the audit exposed (7 Oct 2026)
 
@@ -428,11 +428,11 @@ Queries that still return nothing after the matching fix, so the content is miss
 - **HSE Live:** row added 7 Oct 2026 (unverified).
 - **NI 111** and similar: verify first, do not add from memory.
 - **US spellings with no content to land on:** `anesthesia`, `esophagus`. Left as they are.
-- **Irish-language queries** (22 tried, `scripts/search-audit-queries-ga.txt`): decided 8 Oct 2026: add aliases. 26 Irish keys in `SEARCH_ALIASES` route to existing English text; all 22 queries now return results. No Irish content was written. **Still open:** a fluent Irish speaker should review the wording, and extending the crisis banner in `search.js` (`isCrisisQuery`) to Irish terms such as "féinmharú" needs Elaine's approval (for now it only routes to the existing suicide/crisis results).
+- **Irish-language queries** (22 tried, `scripts/search-audit-queries-ga.txt`): decided 8 Oct 2026: add aliases. 26 Irish keys in `SEARCH_ALIASES` route to existing English text; all 22 queries now return results. No Irish content was written. **Still open:** a fluent Irish speaker should review the wording, and extending the crisis banner in `search.js` (`isCrisisQuery`) to Irish terms such as "féinmharú" needs the maintainer's approval (for now it only routes to the existing suicide/crisis results).
 
 ## Local services and parenting research pass (7 Oct 2026)
 
-Applied from `research/LOCAL-SERVICES-PARENTING-2026-10-07.md` with Elaine's decisions. Still not covered:
+Applied from `research/LOCAL-SERVICES-PARENTING-2026-10-07.md` with the maintainer's decisions. Still not covered:
 
 - **Community services** (CDNT, CAMHS, PHN outside Wicklow, dental, older persons, addiction, DSGBV) in every priority county. The research ran out of budget before a community-healthcare pass, so this is "not searched", not "does not exist".
 - **Down and Londonderry:** not attempted. **Louth County Hospital (Dundalk)** and **GP out-of-hours for Mayo and Louth:** no page found.
@@ -463,7 +463,7 @@ Every row in `data/costs.js` needs a live-page check by a person before `verify`
 
 ## Screening matrix: open checks (8 Oct 2026)
 
-All 9 rows in `data/screening.js` were read from pages opened on 8 Oct 2026 and wait for sign-off by Elaine before `verify` comes off.
+All 9 rows in `data/screening.js` were read from pages opened on 8 Oct 2026 and wait for sign-off by the maintainer before `verify` comes off.
 
 - **ROI intervals (resolved 8 Oct 2026):** BowelScreen (every 2 years after a normal result), CervicalCheck (every 3 years at 25 to 29, every 5 years at 30 to 65, more often for some) and Diabetic RetinaScreen (yearly for most, every 2 years after two clear screens) were copied from HSE pages opened in a browser. `bowelscreen.ie`, `cervicalcheck.ie` and `diabeticretinascreen.ie` redirect to `hse.ie`, so no new host was needed and the allow-lists are unchanged. BreastCheck is still "every 2 to 3 years". Still `verify: true`.
 - **NI AAA repeat interval** is not in the "who is invited" section; the rest of the page was not read in full. NI breast: the nidirect URL is `breast-screening-overview` (the shorter URL redirects).
@@ -473,9 +473,9 @@ All 9 rows in `data/screening.js` were read from pages opened on 8 Oct 2026 and 
 
 ## Cross-border rows: open checks (8 Oct 2026)
 
-All five source pages were opened in the built-in browser pane on 8 Oct 2026 (Claude, with Elaine watching). `verify` stays `true` on every row until Elaine clears it.
+All five source pages were opened in the built-in browser pane on 8 Oct 2026 (Claude, with the maintainer watching). `verify` stays `true` on every row until the maintainer clears it.
 
-- **Republic of Ireland Reimbursement Scheme (NI): resolved towards "not shown open".** The Department of Health NI page is a press release dated 16 June 2021: a temporary measure for 12 months, applications from 1 July 2021, run by the Health and Social Care Board. It does not say the scheme is open now. The Department's current Waiting List Reimbursement page calls that scheme the previous one. The September 2022 closure date comes only from Border People and is not stated on any official page read. `ni-roi-reimbursement` and `sc-ni-roi-scheme-closed` now say this; the selector fact's source is the Department page, not Border People. Elaine to confirm with the Department of Health NI if she wants a definite answer.
+- **Republic of Ireland Reimbursement Scheme (NI): resolved towards "not shown open".** The Department of Health NI page is a press release dated 16 June 2021: a temporary measure for 12 months, applications from 1 July 2021, run by the Health and Social Care Board. It does not say the scheme is open now. The Department's current Waiting List Reimbursement page calls that scheme the previous one. The September 2022 closure date comes only from Border People and is not stated on any official page read. `ni-roi-reimbursement` and `sc-ni-roi-scheme-closed` now say this; the selector fact's source is the Department page, not Border People. The maintainer to confirm with the Department of Health NI if they want a definite answer.
 - **Waiting List Reimbursement Scheme: row and fact corrected.** The page says the scheme launched on 2 June 2025, needs more than 52 weeks on an HSC waiting list, and applications go to the Department of Health's National Contact Point team (not the BSO, as the row said). Reimbursement is the lower of actual cost and the HSC NI average cost; the patient pays the provider. The page has a template placeholder ("<insert number and link>") and says the EU route started "from 15th September" with no year; neither is copied into the site.
 - **NIPHS:** the HSE page says prior notification is optional for inpatient and day-case care. It does not mention overnight stays or prior authorisation. The other source in the conflict note is still unresolved.
 - **Cross-Border Directive:** page matches the row. **Treatment Abroad Scheme:** page matches the row, but it carries a "content is currently being reviewed" notice, and it does not say in as many words that the HSE pays the overseas provider directly (the row says so; the E112/S2 mechanism implies it). The row's line that the Directive cannot refund care that qualifies for TAS was not on the pages read.
@@ -561,7 +561,7 @@ Counties with none of the new rows: Cork (already has its own CDNT rows), Monagh
 
 **(d) Legacy URLs.** Kerry CAMHS (`roi-kerry-camhs`) uses a legacy `hse.ie/eng/...` URL read directly; `validate-data.js` warns on it (two warnings: `source_url` and `contact.web`). Replace both when the current `/mental-health/services-support/...` page is found. The old `find-a-childrens-disability-service.html` redirect is replaced by the CDNT finder; `roi-mayo-cdnt-north-mayo-1` now points at its team page.
 
-**Checks for Elaine on the new rows**
+**Checks for the maintainer on the new rows**
 - Sources disagreed on the base of the Trim, South Kildare and West Wicklow, and Leitrim West Cavan teams: no base is stated in any row.
 - Dungarvan and Waterford North City were seen in search snippets only.
 - The North Mayo name carries a "1" that its page title does not: check.
@@ -570,7 +570,7 @@ Counties with none of the new rows: Cork (already has its own CDNT rows), Monagh
 
 ## AskCI outbound link (21 Oct 2026)
 
-- One link to AskCI, the Citizens Information Board's pilot AI chatbot, on the Entitlements tab, the Schemes and cards selector and the "What you pay" page. Not attached to any entry. Stored as the fact `askci-pilot` in `TOOL_FACTS` with `verify: true`, `urlStatus: "search-result"`, no `checked`. Source: CIB news items (7 Apr, 22 Apr, 26 Aug 2026); the URL `askcitizensinformation.ie` has not been opened by a person. Host approved by Elaine 17 Oct 2026, Tier 1, this host only.
+- One link to AskCI, the Citizens Information Board's pilot AI chatbot, on the Entitlements tab, the Schemes and cards selector and the "What you pay" page. Not attached to any entry. Stored as the fact `askci-pilot` in `TOOL_FACTS` with `verify: true`, `urlStatus: "search-result"`, no `checked`. Source: CIB news items (7 Apr, 22 Apr, 26 Aug 2026); the URL `askcitizensinformation.ie` has not been opened by a person. Host approved by the maintainer 17 Oct 2026, Tier 1, this host only.
 - **Re-check mid-January 2027:** pilot status; the service may change, move or end. Open the page, confirm the URL and the wording, then clear `verify`.
 - AskCI is general, not health-specific, so it complements the navigation, complaint and facility tools rather than replacing them. No phone number, accuracy claim or contact detail is shown. Privacy line beside the link: anything typed into AskCI goes to Citizens Information, not Health Hub.
 
@@ -578,7 +578,7 @@ Counties with none of the new rows: Cork (already has its own CDNT rows), Monagh
 
 **Rows added (11, all `verify: true`, `search-result`, unopened):** `roi-nav-health-regions`, `roi-nav-health-regions-update`, `roi-welfare-illness-benefit`, `roi-welfare-pcb`, `roi-social-home-support`, `roi-rights-open-disclosure`, `roi-pop-ip-2026`, `roi-pop-ipas-health`, `roi-access-isl-grant`, `roi-vacc-flu`, `roi-transport-vas`.
 
-**Hosts approved by Elaine 24 Oct 2026 (Tier 1); rows `roi-rights-dss` and `roi-pop-ipo` added**
+**Hosts approved by the maintainer 24 Oct 2026 (Tier 1); rows `roi-rights-dss` and `roi-pop-ipo` added**
 | Host | Owner | Purpose | Proposed tier | Row |
 |---|---|---|---|---|
 | `decisionsupportservice.ie` | Decision Support Service (statutory, within the Mental Health Commission) | Decision support arrangements | 1 | `roi-rights-dss` |
@@ -614,7 +614,7 @@ Research notes are in `research/R1-open-disclosure.md` to `research/R8-internati
   - NI phase-two commencement of the Mental Capacity Act (NI) 2016.
   - HSE patient-facing general interpreter page; the HSC Regional Interpreting Service (NI).
 - **R8 HOLD:** no app wording until a gov.ie or HSE page confirms how the International Protection Act 2026 (commenced 12 June 2026) affects health access, and an HSE page on medical card eligibility for protection applicants is found.
-- **Time limits:** the table of limits copied from official pages is held in the research notes (R1, R2, R3 and R5), not in the app. Show one only after Elaine opens the page, as copied, with the URL.
+- **Time limits:** the table of limits copied from official pages is held in the research notes (R1, R2, R3 and R5), not in the app. Show one only after the maintainer opens the page, as copied, with the URL.
 
 ## Injury units and assessment units pass, 14 Nov 2026
 

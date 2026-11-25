@@ -24,7 +24,7 @@
 | A6 | `data.js` ~L347, entry `nurture` name | `Nurture — Maternal Mental Health Counselling` | If "Maternal Mental Health Counselling" is our descriptor, not Nurture's own name, use `Nurture — Perinatal Mental Health Counselling`. Check the source page first. |
 | A7 | `data.js` ~L2698, entry `friends-of-breastfeeding` blurb | `Mum2Mum peer-support groups plus a one-to-one "Breastfeeding Buddy" scheme pairing you with an experienced mother...` | Keep `Mum2Mum` (it is the programme's own name). Re-read the page. If it is open to any parent, say "an experienced peer supporter". If it is mother-only, say so factually. Do not generalise unverified. |
 
-**Note on A1/A2:** "New & Expectant Parents" is agreed (Elaine, 7 Oct). The specialty also holds antenatal and postnatal entries (Cuidiú, Nurture), so check that they stay discoverable from the specialty page and from search (a `pregnancy`/`antenatal` alias if the search mechanism supports aliases).
+**Note on A1/A2:** "New & Expectant Parents" is agreed (the maintainer, 7 Oct). The specialty also holds antenatal and postnatal entries (Cuidiú, Nurture), so check that they stay discoverable from the specialty page and from search (a `pregnancy`/`antenatal` alias if the search mechanism supports aliases).
 
 ## B. Leave as is (accurate to source or proper names)
 - `Mother & Baby Unit` (official service name) and `Mother and baby home` (historical institutions, `data.js` ~L7021).
@@ -38,12 +38,12 @@
 ## C. Gaps to research (do not build from memory)
 These are content gaps, not wording fixes. Add them to `GAPS.md` as research items. Do not write entries until sourced and approved.
 1. **Fathers and non-birthing partners:** perinatal mental health support, and parental/paternity leave and benefit rights (Citizens Information, gov.ie, nidirect).
-2. **Adoptive and foster parents:** post-placement support, adoption leave and benefit, and the statutory bodies (Adoption Authority of Ireland, Tusla, HSC Trust adoption services). Tusla and AAI are not on the approved-host list. **Ask Elaine before adding either host.**
+2. **Adoptive and foster parents:** post-placement support, adoption leave and benefit, and the statutory bodies (Adoption Authority of Ireland, Tusla, HSC Trust adoption services). Tusla and AAI are not on the approved-host list. **Ask the maintainer before adding either host.**
 3. **Same-sex couples and fertility:** public AHR eligibility and the legal position on parentage and surrogacy, from HSE and gov.ie only. State rights as administrative information only, never legal claims.
 4. **Search aliases:** if `search` has a keyword or alias mechanism, add `dad`, `father`, `partner`, `adoption`, `foster`, `LGBTQ+ parents` and `chestfeeding` so these users can find the right pages. If no such mechanism exists, report it rather than building one.
 
 ## D. Possible duplicate (outside scope, flag only)
-`nurture` (~L345, `mh`) and `nurture-pnd` (~L1638, `parenting`, `mh`) both look like the same organisation. Check and report. Do not merge without Elaine's approval.
+`nurture` (~L345, `mh`) and `nurture-pnd` (~L1638, `parenting`, `mh`) both look like the same organisation. Check and report. Do not merge without the maintainer's approval.
 
 ## E. Standing rule (add to `AI_RULES.md` and the "Keep language general" bullet in `README.md`)
 > Parenting, feeding and perinatal wording is parent-neutral by default ("parents", "new parents", "people who give birth"). Use "mother/mum" only where it is an official service or organisation name, or an accurate source statistic. Follow the official source's own phrasing. Do not generalise a factual claim beyond what the source says.
@@ -57,4 +57,4 @@ These are content gaps, not wording fixes. Add them to `GAPS.md` as research ite
 6. End with one `CHANGELOG.md` entry and one "Recent AI sessions" line.
 
 ## Not reviewed
-`Cork-Womens-Health-Pocket-Guide.docx` (separate asset, not part of the PWA build). Review it separately for the same issue.
+`docs/archive/Cork-Womens-Health-Pocket-Guide.docx` (separate asset, not part of the PWA build). Review it separately for the same issue.

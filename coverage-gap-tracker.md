@@ -105,7 +105,7 @@ Specialties flagged by the review as high-traffic even though not thinnest:
 
 ## 4. Card-level enrichment (depth, not breadth)
 
-The dataset already has working equivalents for most of the fields the review asked for — see `service-card-enrichment-template.md` for how the template's proposed fields map onto the existing `data.js` schema (`contact.phone`, `referral`, `checked`). This section tracks actual coverage of those fields across all 422 entries (counted 6 Sep 2026):
+The dataset already has working equivalents for most of the fields the review asked for — see `docs/archive/service-card-enrichment-template.md` for how the template's proposed fields map onto the existing `data.js` schema (`contact.phone`, `referral`, `checked`). This section tracks actual coverage of those fields across all 422 entries (counted 6 Sep 2026):
 
 - [x] Phone number present — 286/422 (68%). 60 entries have neither a phone nor a web link; that's the real gap, not phone specifically.
 - [x] Access route stated (`referral` field) — 419/422 (99%). Essentially done; spot-check the remaining 3 rather than a full pass.
@@ -119,7 +119,7 @@ Suggested rollout: batch-process by specialty rather than card-by-card, so you c
 - [ ] Keyboard-only navigation pass (tab order, focus visibility, skip-link works)
 - [ ] Screen reader pass (VoiceOver or NVDA) on home, specialty list, service card, advocacy pages
 - [ ] Colour contrast check beyond Calm mode (WCAG AA minimum 4.5:1 for body text)
-- [ ] Publish a short accessibility statement (draft: `accessibility-statement.md`)
+- [ ] Publish a short accessibility statement (draft: `docs/accessibility-statement.md`)
 
 ---
 

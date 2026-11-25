@@ -1,6 +1,6 @@
 # R2. Complaints about individual professionals
 
-Research only. Unverified until Elaine opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until Elaine opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
+Research only. Unverified until the maintainer opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until the maintainer opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
 
 **Jurisdiction:** ROI primary; NI partial.
 
@@ -25,7 +25,7 @@ Research only. Unverified until Elaine opens each source page. Checked 27 Oct 20
 
 **Gaps:** NMC (NI) not researched and nmc.org.uk is not yet approved; NI-specific GMC page; PSNI (pending approval); current Medical Council web complaints page.
 
-## Time limits (copied from official pages; show in the app only after Elaine opens the page, with the URL)
+## Time limits (copied from official pages; show in the app only after the maintainer opens the page, with the URL)
 CORU: events on or after 31 Dec 2014 (a start date, not a deadline) (https://www.coru.ie/public-protection/fitness-to-practise/about-fitness-to-practise/).
 No limit found: Medical Council, NMBI, PSI, Dental Council.
 

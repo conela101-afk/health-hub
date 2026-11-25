@@ -2,7 +2,7 @@
 title: Sector filter audit — Public / Private / Voluntary
 date: 2026-09-07
 status: resolved
-owner: Elaine
+owner: The maintainer
 tool: Claude (review + code)
 ---
 
@@ -29,7 +29,7 @@ left in free text and is not what this tag is for.
 | # | Finding | Scale | Resolution |
 |---|---|---|---|
 | 1 | `sector` had only two live values (`private`, `voluntary`); "Public" was implemented as *not-private* rather than a real category | 32 private / 4 voluntary / 642 untagged of 678 entries | Made explicit 3-way: `public` \| `private` \| `voluntary`, via shared `sectorOf()` |
-| 2 | Voluntary hospitals (e.g. St. Vincent's, the Mater) were silently bucketed under "Public" | 4 tagged `voluntary` | Confirmed as its own filter category, per Elaine's decision (2026-09-07) |
+| 2 | Voluntary hospitals (e.g. St. Vincent's, the Mater) were silently bucketed under "Public" | 4 tagged `voluntary` | Confirmed as its own filter category, per the maintainer's decision (2026-09-07) |
 | 3 | Tab filter and free-text search implemented sector classification independently — risk of drift | 2 code paths | Unified behind one `sectorOf(e)` function in `app.js` |
 | 4 | One entry's name explicitly says "Private" but had no `sector` tag | 1 of 555 untagged | Tagged `hse-approved-ahr-clinics` as `sector: "private"` |
 | 5 | 24 of 555 untagged entries mention "private" somewhere in free text (mixed-pathway entries, e.g. CUMH maternity) | 24 | No action — correctly represents institutional mixed access; not a mistagging |

@@ -37,7 +37,7 @@ const check = (name, ok, extra) => { if (!ok) failed++; console.log(ok ? "ok  " 
   });
   check("Home order: emergency strip, Where do I start?, search, browse heading, tiles", order.crisis < order.start && order.start < order.search && order.search < order.browse && order.browse < order.tiles, JSON.stringify(order));
   check("Where do I start? row goes to #/start and is at least 48px high", await page.$eval(".home-start", e => e.getAttribute("href") === "#/start" && e.getBoundingClientRect().height >= 48), "");
-  // Elaine's 25 Oct decision: the emergency line shows without opening the banner.
+  // the maintainer's 25 Oct decision: the emergency line shows without opening the banner.
   check("\"Emergency: call 999 or 112\" is visible on the closed banner", await page.isVisible(".crisis-banner .emergency-line") && (await page.textContent(".crisis-banner .emergency-line")).trim() === "Emergency: call 999 or 112" && !(await page.$eval(".crisis-banner", e => e.open)), "");
   check("the rest of the banner is still collapsed until tapped", !(await page.isVisible(".crisis-banner .crisis-contacts")), "");
   check("crisis banner links to Crisis support", await page.$('.crisis-banner a[href="#/specialty/crisis"]') !== null, "");

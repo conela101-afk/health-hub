@@ -905,7 +905,7 @@ ${name}`;
     const safeQuery = escapeHtml(query);
     const also = neutral ? "" : HHSearch.alsoSearched(p);
     const alsoLine = also ? `<p class="count">Also searched: ${escapeHtml(also)}</p>` : "";
-    // Approved wording (Elaine, 7 Oct 2026). A link to the existing crisis page only: no numbers or extra copy here.
+    // Approved wording (the maintainer, 7 Oct 2026). A link to the existing crisis page only: no numbers or extra copy here.
     const crisisBanner = HHSearch.isCrisisQuery(query)
       ? `<div class="callout" role="note"><p>If you or someone else is in crisis or in immediate danger, support is available now.</p><p class="callout-pill-row"><a class="pill" href="#/specialty/crisis">Mental Health Crisis Support ›</a></p></div>`
       : "";

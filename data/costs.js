@@ -3,7 +3,7 @@
 //
 // Every row is verify: true / urlStatus: "search-result": the rules come from a research
 // pass against official pages. Five cross-border rows also carry opened: "2026-10-08", the
-// day their source pages were read in a browser; verify stays true until Elaine clears it.
+// day their source pages were read in a browser; verify stays true until the maintainer clears it.
 // Money figures can change at each Budget. Budget 2027 was announced on 6 Oct 2026; its
 // health summaries (gov.ie, Citizens Information) list no change to these amounts except
 // free contraception to age 37, but the full Budget documents have not been read, so every

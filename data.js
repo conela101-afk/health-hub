@@ -7276,7 +7276,7 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
-  // Local services, parenting and search-gap rows (7 Oct 2026). From research/LOCAL-SERVICES-PARENTING-2026-10-07.md and Elaine's decisions.
+  // Local services, parenting and search-gap rows (7 Oct 2026). From research/LOCAL-SERVICES-PARENTING-2026-10-07.md and the maintainer's decisions.
   // All unverified: link only, no phones, no checked date. Caredoc, Omagh and Mayo office pages were also read by Claude Code on 7 Oct.
   {
     id: "roi-wexford-wgh-emergency-department",
@@ -9163,7 +9163,7 @@ const ENTRIES = [
     urlStatus: "search-result",
     verify: true
   },
-  // Confirmed by Elaine 8 Oct 2026: Family Support Hub Omagh URL supplied.
+  // Confirmed by the maintainer 8 Oct 2026: Family Support Hub Omagh URL supplied.
   {
     id: "ni-tyrone-family-support-hub-omagh",
     name: "Family Support Hub Omagh (Western Outcomes Area)",
@@ -11904,7 +11904,7 @@ const SEARCH_ALIASES = {
   "wheelchair": ["seating"],
   "refugee": ["migrant"],
   // Crisis wording routes to existing text only. The special crisis link above results is
-  // pending the owner's decision (CLAUDE_CODE_SEARCH_ALIASES.md, S6).
+  // pending the owner's decision (docs/archive/CLAUDE_CODE_SEARCH_ALIASES.md, S6).
   "self harm": ["suicide", "crisis"], "overdose": ["suicide", "crisis", "drug"],
   "want to die": ["suicide", "crisis"],
   // Irish-language wording (8 Oct 2026). Keys are the normalised form (fadas removed). Each one

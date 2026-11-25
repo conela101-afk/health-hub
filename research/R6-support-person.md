@@ -1,6 +1,6 @@
 # R6. Support person and meeting preparation
 
-Research only. Unverified until Elaine opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until Elaine opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
+Research only. Unverified until the maintainer opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until the maintainer opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
 
 **Jurisdiction:** ROI (NI not researched).
 
@@ -20,7 +20,7 @@ Research only. Unverified until Elaine opens each source page. Checked 27 Oct 20
 
 **Gaps:** **no official page found saying a patient may ask for a copy of a letter or care plan, or for written confirmation of what was agreed.** Do not include either in any checklist until sourced. Follow-up: HSE data protection (subject access request) and Freedom of Information pages. No NI support-person source.
 
-**Staff-facing sources (staff guidance):** the HSE National Consent Policy (https://www2.healthservice.hse.ie/organisation/national-pppgs/hse-national-consent-policy/) and the Patient Safety Act 2023 page (https://www2.healthservice.hse.ie/organisation/qps-incident-management/open-disclosure/patient-safety-notifiable-incidents-and-open-disclosure-act-2023/) are staff and organisation guidance. Elaine approved using staff guidance to support patient checklist wording, written from the patient's side. Any such use must cite the page and say it is staff guidance.
+**Staff-facing sources (staff guidance):** the HSE National Consent Policy (https://www2.healthservice.hse.ie/organisation/national-pppgs/hse-national-consent-policy/) and the Patient Safety Act 2023 page (https://www2.healthservice.hse.ie/organisation/qps-incident-management/open-disclosure/patient-safety-notifiable-incidents-and-open-disclosure-act-2023/) are staff and organisation guidance. The maintainer approved using staff guidance to support patient checklist wording, written from the patient's side. Any such use must cite the page and say it is staff guidance.
 
 ## Caveats
 Statutory status checked 27 Oct 2026 against the Irish Statute Book Legislation Directory (updated to 6 Oct 2026) and Department pages; recheck before publishing. Several rows rely on search-result text, not a full page read. Not yet in the app.

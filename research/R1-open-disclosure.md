@@ -1,6 +1,6 @@
 # R1. Open disclosure and patient safety incidents
 
-Research only. Unverified until Elaine opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until Elaine opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
+Research only. Unverified until the maintainer opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until the maintainer opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
 
 **Jurisdiction:** ROI. NI: not researched.
 
@@ -29,9 +29,9 @@ Research only. Unverified until Elaine opens each source page. Checked 27 Oct 20
 
 **Gaps:** no NI open disclosure or duty of candour source (confirm on health-ni.gov.uk); National Open Disclosure Framework section 1.3 definition seen only in a snippet, open the PDF.
 
-**Staff-facing sources (staff guidance):** the HSE Open Disclosure Policy 2025 (https://www2.healthservice.hse.ie/organisation/qps-incident-management/open-disclosure/), the Patient Safety Act 2023 page (https://www2.healthservice.hse.ie/organisation/qps-incident-management/open-disclosure/patient-safety-notifiable-incidents-and-open-disclosure-act-2023/), the Department of Health Patient Safety Act 2023 Guidance (https://assets.gov.ie/305808/437765d9-de0a-4eb5-918e-a6fd29fd7aef.pdf), the National Open Disclosure Framework (https://assets.gov.ie/273442/1b63c986-f080-4c78-86e2-3e3d2a16fd22.pdf) and the CORU registrant guidance (https://www.coru.ie/health-and-social-care-professionals/guidance/open-disclosure/) are written for staff and organisations. Elaine approved using staff guidance to support patient checklist wording, written from the patient's side. Any such use must cite the page and say it is staff guidance.
+**Staff-facing sources (staff guidance):** the HSE Open Disclosure Policy 2025 (https://www2.healthservice.hse.ie/organisation/qps-incident-management/open-disclosure/), the Patient Safety Act 2023 page (https://www2.healthservice.hse.ie/organisation/qps-incident-management/open-disclosure/patient-safety-notifiable-incidents-and-open-disclosure-act-2023/), the Department of Health Patient Safety Act 2023 Guidance (https://assets.gov.ie/305808/437765d9-de0a-4eb5-918e-a6fd29fd7aef.pdf), the National Open Disclosure Framework (https://assets.gov.ie/273442/1b63c986-f080-4c78-86e2-3e3d2a16fd22.pdf) and the CORU registrant guidance (https://www.coru.ie/health-and-social-care-professionals/guidance/open-disclosure/) are written for staff and organisations. The maintainer approved using staff guidance to support patient checklist wording, written from the patient's side. Any such use must cite the page and say it is staff guidance.
 
-## Time limits (copied from official pages; show in the app only after Elaine opens the page, with the URL)
+## Time limits (copied from official pages; show in the app only after the maintainer opens the page, with the URL)
 Open disclosure declined: the patient can ask to have it within 5 years (https://www2.healthservice.hse.ie/organisation/qps-incident-management/open-disclosure/patient-safety-notifiable-incidents-and-open-disclosure-act-2023/).
 
 ## Caveats

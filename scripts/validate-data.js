@@ -15,7 +15,7 @@
 // address unless a human opened the page (urlStatus: "opened").
 const URL_STATUSES = ["opened", "search-result", "unverified"];
 
-// Approved-hosts register (single source of truth for source_url hosts; decided by Elaine 21 Oct 2026,
+// Approved-hosts register (single source of truth for source_url hosts; decided by the maintainer 21 Oct 2026,
 // see AI_RULES.md, whose approved-hosts block is printed from this array by scripts/hosts.js).
 // A host matches a row if it equals the row's domain or is a subdomain of it, so hse.ie also covers
 // www2.hse.ie. The longest matching domain wins. Row: { domain, tier, approved, scope, paths }.
@@ -50,7 +50,7 @@ const SOURCE_REGISTER = [
   R("ombudsman.ie", 1, "ratified 21 Oct 2026"), R("oic.ie", 1, "ratified 21 Oct 2026"), R("nipso.org.uk", 1, "ratified 21 Oct 2026"),
   R("medicalcouncil.ie", 1, "ratified 21 Oct 2026"), R("nmbi.ie", 1, "ratified 21 Oct 2026"), R("coru.ie", 1, "ratified 21 Oct 2026"),
   R("thepsi.ie", 1, "ratified 21 Oct 2026"), R("dentalcouncil.ie", 1, "ratified 21 Oct 2026"),
-  // Advocacy research hosts approved by Elaine 27 Oct 2026 (statutory bodies; "Primary" in her list maps to tier 1).
+  // Advocacy research hosts approved by the maintainer 27 Oct 2026 (statutory bodies; "Primary" in their list maps to tier 1).
   R("psi.ie", 1, "27 Oct 2026", "Pharmaceutical Society of Ireland; pharmacist complaints (thepsi.ie is also registered)"),
   R("legislation.gov.uk", 1, "27 Oct 2026", "The National Archives (UK); Northern Ireland commencement orders"),
   R("gmc-uk.org", 1, "27 Oct 2026", "General Medical Council; Northern Ireland doctor complaints"),
@@ -58,9 +58,9 @@ const SOURCE_REGISTER = [
   R("legalaidboard.ie", 1, "ratified 21 Oct 2026"), R("lawreform.ie", 1, "ratified 21 Oct 2026"),
   R("decisionsupportservice.ie", 1, "24 Oct 2026", "Decision Support Service, statutory body within the Mental Health Commission"),
   R("ipo.irishimmigration.ie", 1, "24 Oct 2026", "International Protection Office; this host only, not other irishimmigration.ie sites"),
-  // Representative lookups for the letter to an elected representative (#/advocacy/rep-letter), approved by Elaine
+  // Representative lookups for the letter to an elected representative (#/advocacy/rep-letter), approved by the maintainer
   // 25 Oct 2026: link-out only, never a source for service claims. No link is on the site yet: each is added only when
-  // Elaine supplies the exact page URL after opening it. The path prefixes below are PROVISIONAL (the sites could not
+  // the maintainer supplies the exact page URL after opening it. The path prefixes below are PROVISIONAL (the sites could not
   // be opened when this was written) and fail closed; the PR that adds the first link sets the exact path.
   //   oireachtas.ie: Bills pages (approved 21 Oct 2026) plus the members / find-your-TD-or-Senator pages.
   //   niassembly.gov.uk: was withheld (Tier 8); find-your-MLA pages only.
@@ -89,7 +89,7 @@ const SOURCE_REGISTER = [
   R("westdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("nedoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
   R("northdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("edoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
   R("dubdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"), R("tlcdoc.ie", 5, "21 Oct 2026", "GP out-of-hours"),
-  // Advocacy research hosts approved by Elaine 27 Oct 2026 ("Secondary" in her list maps to tier 5).
+  // Advocacy research hosts approved by the maintainer 27 Oct 2026 ("Secondary" in their list maps to tier 5).
   R("patientadvocacyservice.ie", 5, "27 Oct 2026", "Patient Advocacy Service (Dept of Health National Patient Safety Office; delivered by the National Advocacy Service for People with Disabilities); advocacy and incident support"),
   R("risli.ie", 5, "27 Oct 2026", "Register of Irish Sign Language Interpreters (SLIS); interpreter register"),
   R("slis.ie", 5, "27 Oct 2026", "Sign Language Interpreting Service; booking information (approved, not currently used)"),
@@ -101,7 +101,7 @@ const SOURCE_REGISTER = [
   R("arthritisireland.ie", 7, "21 Oct 2026", "link-out only, never a source"),
   R("crohnscolitis.ie", 7, "21 Oct 2026", "link-out only, never a source"),
   R("cancer.ie", 7, "21 Oct 2026", "Irish Cancer Society; link-out only, never a source"),
-  // Tier 7: forms.gle approved link-out only 27 Oct 2026 (Elaine): the footer feedback form link, nothing else. Google owns the host.
+  // Tier 7: forms.gle approved link-out only 27 Oct 2026 (the maintainer): the footer feedback form link, nothing else. Google owns the host.
   R("forms.gle", 7, "27 Oct 2026", "Google; feedback form link only (the footer link), link-out only, never a source; the app collects no data"),
   // Tier 8: birthinfo.ie approved link-only 21 Oct 2026 (owner confirmed: Adoption Authority of Ireland, Birth Information and Tracing Act 2022).
   R("birthinfo.ie", 8, "21 Oct 2026", "link-only: birth information and tracing"),

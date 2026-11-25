@@ -593,7 +593,7 @@ Where none of `parenting`, `fertility`, `mh`, `feeding`, `loss` fits (hospitals,
 
 ## 3. Source log
 
-All read 7 Oct 2026. Full URLs are in each row's `source_url`. "Full" = page body retrieved; "Snippet" = only search-result text from that exact official URL was seen, so Elaine should read these most closely.
+All read 7 Oct 2026. Full URLs are in each row's `source_url`. "Full" = page body retrieved; "Snippet" = only search-result text from that exact official URL was seen, so the maintainer should read these most closely.
 
 | Row id | Read as | What it says |
 |---|---|---|
@@ -652,7 +652,7 @@ All read 7 Oct 2026. Full URLs are in each row's `source_url`. "Full" = page bod
 | Adoption and Foster Care, Northern Trust | Page only points to the regional service; catchment not stated | A Trust page stating its area is found, or a NI-wide convention is agreed |
 | HSE National SOP for Accessing Interpretation Services (hse.ie PDF) | Staff-facing procedure, not a patient service page | A www2.hse.ie patient page on interpreting is found |
 | HSE ENT appointment page (interpreter mention) | Covers one service only | Use as a detail on an audiology entry instead |
-| Belfast Trust interpreting service page | Duplicates the BSO row; snippet only | Elaine prefers a Trust-hosted source |
+| Belfast Trust interpreting service page | Duplicates the BSO row; snippet only | The maintainer prefers a Trust-hosted source |
 | National Healthcare Charter (second opinion), hse.ie PDF | Copy found in a complaints officers' toolkit, may not be current; risks reading as a rights claim | Current charter URL confirmed; worded "the HSE charter says…" |
 | LTI legacy .html pages | Older URL family; conflicting details (section 6) | Only if the newer URLs stop resolving |
 
@@ -672,7 +672,7 @@ All read 7 Oct 2026. Full URLs are in each row's `source_url`. "Full" = page bod
 
 **Specialty ids:** `specialty: []` rows need existing ids from data.js. If none fits, proposed new id: `urgent` (EDs, injury units, MIUs, GP out-of-hours, Phone First). No other new ids.
 
-**NI-wide county convention:** three NI-wide rows list all six NI counties rather than `national`, which reads as ROI-wide. Elaine to confirm.
+**NI-wide county convention:** three NI-wide rows list all six NI counties rather than `national`, which reads as ROI-wide. The maintainer to confirm.
 
 ---
 
@@ -703,8 +703,8 @@ All read 7 Oct 2026. Full URLs are in each row's `source_url`. "Full" = page bod
 - **South Tyrone Hospital:** the old southerntrust.hscni.net/SouthTyroneHospital.htm page carries a 2014 notice. Use only the /our-hospitals/ URL.
 - **Naas visiting restrictions** (dated 18 Sep 2026) are temporary and are left out of the row.
 - **Phone First:** nidirect lists four Trusts, not Belfast. A Southern Trust Phone First number contains "111" but is not NHS 111.
-- **Snippet-only rows** (most of Part A): Elaine's browser read will be the first full read.
+- **Snippet-only rows** (most of Part A): The maintainer's browser read will be the first full read.
 
 ---
 
-*Update 7 Oct 2026, after Elaine's decisions: see `LOCAL-SERVICES-PARENTING-2026-10-07-DECISIONS.md`. Where it differs from section 6 (hosts, NI county convention, LTI URL, Mayo), the decisions file wins.*
+*Update 7 Oct 2026, after the maintainer's decisions: see `LOCAL-SERVICES-PARENTING-2026-10-07-DECISIONS.md`. Where it differs from section 6 (hosts, NI county convention, LTI URL, Mayo), the decisions file wins.*

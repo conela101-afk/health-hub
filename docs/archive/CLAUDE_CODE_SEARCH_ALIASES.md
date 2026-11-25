@@ -28,7 +28,7 @@ Baseline measured with the current rules, 7 Oct 2026. Do not quote these figures
 
 **S5. Conditions in global search.** Add a "Conditions" results section (name, category, link to the existing condition detail route). For facilities, show a single row: "Search regulated facilities for '<q>'" linking to `#/facilities`. Do not index all facility rows.
 
-**S6. Crisis banner: APPROVED by Elaine, 7 Oct 2026. Build as a small follow-up PR on top of the search v2 work.**
+**S6. Crisis banner: APPROVED by the maintainer, 7 Oct 2026. Build as a small follow-up PR on top of the search v2 work.**
 - **Where:** search results page only (`renderSearch`), as one banner **above** all result sections. Never on the home page or other routes.
 - **Triggers (normalised, whole query or phrase contained in the query):** `suicide`, `self harm`, `overdose`, `want to die`, `kill myself`, `end my life`, `crisis`. Keep the list in one named constant so it is easy to review.
 - **Exact wording:**
@@ -37,10 +37,10 @@ Baseline measured with the current rules, 7 Oct 2026. Do not quote these figures
 - **Do not add:** phone numbers, extra copy, icons that alarm, emoji, or method-related text. The linked page already carries the helplines and the 999/112 entry.
 - **Style:** reuse an existing callout style; calm, readable, high contrast; must work with the app's calm mode and print rules; announce politely to screen readers (`role="note"`, not `role="alert"`).
 - **Search results below the banner stay as they are.**
-- **Tests:** add the seven triggers to `scripts/search-audit-queries.txt` plus a check that the banner renders for each trigger and does not render for `dad`, `crisis pregnancy` (phrase contains `crisis` but is a pregnancy-support search: decide with Elaine whether it should trigger; default is that it should not, so match only when `crisis` is the whole query) or `er`.
-- **Record:** CHANGELOG entry, and one line in `REVIEW.md` stating the wording was approved by Elaine on 7 Oct 2026.
+- **Tests:** add the seven triggers to `scripts/search-audit-queries.txt` plus a check that the banner renders for each trigger and does not render for `dad`, `crisis pregnancy` (phrase contains `crisis` but is a pregnancy-support search: decide with the maintainer whether it should trigger; default is that it should not, so match only when `crisis` is the whole query) or `er`.
+- **Record:** CHANGELOG entry, and one line in `REVIEW.md` stating the wording was approved by the maintainer on 7 Oct 2026.
 
-**S7. Alias table v2.** Rule unchanged: **every target must already appear as text in entries, orgs, tool pages or conditions.** An alias routes people to existing pages; it never adds a claim. The prototype uses these (all verified to return hits on 7 Oct 2026, but some targets are broad, so Elaine should skim):
+**S7. Alias table v2.** Rule unchanged: **every target must already appear as text in entries, orgs, tool pages or conditions.** An alias routes people to existing pages; it never adds a claim. The prototype uses these (all verified to return hits on 7 Oct 2026, but some targets are broad, so the maintainer should skim):
 
 | Query | Targets | Query | Targets |
 |---|---|---|---|
@@ -64,7 +64,7 @@ Baseline measured with the current rules, 7 Oct 2026. Do not quote these figures
 
 Keep the existing parenting aliases from PR #88. Check `wheelchair`, `er`/`ed` and `abortion` results by eye: they are the broadest or most sensitive. For `abortion`, route only to the existing HSE unplanned-pregnancy wording, with no editorialising.
 
-**S8. Conditions keywords.** Populate `keywords` for the 66 conditions with `[]` using lay synonyms of the **condition name only** (e.g. high blood pressure ↔ hypertension, Alzheimer's ↔ dementia). Propose as a table for Elaine to skim. No clinical claims.
+**S8. Conditions keywords.** Populate `keywords` for the 66 conditions with `[]` using lay synonyms of the **condition name only** (e.g. high blood pressure ↔ hypertension, Alzheimer's ↔ dementia). Propose as a table for the maintainer to skim. No clinical claims.
 
 **S9. Guard rails (add to `scripts/validate-data.js` / CI).**
 - Every alias target must match at least one entry, org, tool page or condition, else fail.

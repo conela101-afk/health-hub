@@ -2,7 +2,7 @@
 // programme and jurisdiction. Standalone layer, like data/vaccines.js and data/costs.js.
 // Validate: node scripts/validate-screening.js
 //
-// Every row is verify: true until Elaine signs it off. The source page for each row was
+// Every row is verify: true until the maintainer signs it off. The source page for each row was
 // opened in a browser on 2026-10-08 (the `opened` field); ages, intervals and invitation
 // rules are copied from that page and nothing else. Where a page does not give a figure
 // (for example the NI AAA and diabetic eye intervals) the row says so and links out.

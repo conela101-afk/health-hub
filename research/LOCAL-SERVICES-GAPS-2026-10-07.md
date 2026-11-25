@@ -1,6 +1,6 @@
 # Health Hub: Local Services Gaps, Pass 2 (7 Oct 2026)
 
-Suggested file: `research/LOCAL-SERVICES-GAPS-2026-10-07.md`. These are unverified candidate rows for Elaine to review. No repo was edited.
+Suggested file: `research/LOCAL-SERVICES-GAPS-2026-10-07.md`. These are unverified candidate rows for the maintainer to review. No repo was edited.
 
 Pass 2 adds about 75 candidate rows. Most are www2.hse.ie GP out-of-hours rows (Part 3), plus Mayo, Wexford, Tyrone and Louth community and urgent-care rows, and Down and Londonderry HSC trust rows. Several requested topics returned "not found" or were not reached before the search budget ran out (18 searches). Those are listed below, not filled in.
 
@@ -30,7 +30,7 @@ Source key: **F** = full page read; **S** = search snippet only. "Not reached" m
 | Tyrone (Part 1) | 3 (Omagh Health Visiting F; Omagh SRH S; CAMHS Omagh S) | 2 (Rosewood, Family Support Hub Omagh: non-statutory providers) | Cookstown, Dungannon, Strabane community services: not reached (Strabane SRH clinic named only as a sub-location) |
 | Louth (Part 1) | 3 (Louth County Hospital Dundalk F; Dundalk Injury Unit S; Nedoc Drogheda S) | 0 | Nedoc Dundalk: **not found** on HSE |
 | Wicklow, Meath, Kildare (Part 1) | 0 new | 0 | Not reached; Navan maternity: not found / not reached |
-| Down (Part 2) | 3 (Downe Hospital MIU/UCC S; NDADOC Ards S; SET GP OOH Down & Lisburn S) | 1 (Daisy Hill Hospital: the Family Support NI listing 2132 gives "Newry, Co Down"; awaiting Elaine's confirmation) | Community services: not reached |
+| Down (Part 2) | 3 (Downe Hospital MIU/UCC S; NDADOC Ards S; SET GP OOH Down & Lisburn S) | 1 (Daisy Hill Hospital: the Family Support NI listing 2132 gives "Newry, Co Down"; awaiting the maintainer's confirmation) | Community services: not reached |
 | Londonderry (Part 2) | 3 (Altnagelvin Area Hospital S; Altnagelvin ED S; Western Trust Phone First S) | 0 | Causeway/Northern Trust sites: not reached |
 | NI multi-county (Part 2) | 1 (Southern Trust Phone First S) | 0 | — |
 | GP OOH, all ROI (Part 3) | ~55 base rows (1 F, rest S) | 0 | Nedoc Dundalk; extra SouthDoc Kerry bases (Tralee, Listowel, etc.) not seen |
@@ -41,7 +41,7 @@ Source key: **F** = full page read; **S** = search snippet only. "Not reached" m
 
 All rows have `verify: true` and `urlStatus: "search-result"`. Contact is a web link only. None includes a phone, email, fee, hours or waiting time.
 
-**Proposed new specialty id:** `urgent` (for EDs, injury units, MIUs, UCCs, GP out-of-hours and Phone First). Every urgent-care row below uses `specialty: []` until Elaine approves it. *(Note added 7 Oct: the `urgent` id has since been approved and recorded in the repo.)*
+**Proposed new specialty id:** `urgent` (for EDs, injury units, MIUs, UCCs, GP out-of-hours and Phone First). Every urgent-care row below uses `specialty: []` until the maintainer approves it. *(Note added 7 Oct: the `urgent` id has since been approved and recorded in the repo.)*
 
 ### Part 1: Wexford
 
@@ -385,10 +385,10 @@ The researcher's numbered URL list (about 100 HSE, HSC trust, familysupportni, A
 
 | Candidate | Reason | Un-withhold when |
 |---|---|---|
-| Daisy Hill Hospital ED, Newry (Southern Trust) | The Southern Trust's own page gives "5 Hospital Road Newry BT35 8DR" with no county. The Family Support NI listing 2132 (approved host; Paediatrics (Acute), Southern Trust) gives "Daisy Hill Hospital, 5 Hospital Road, Newry, Co Down, BT35 8DR". That outweighs Wikipedia's (unapproved) County Armagh claim. Newry straddles Armagh and Down. | Elaine confirms Co Down from the Family Support NI listing; then also add "down" to the Southern Trust Phone First row |
+| Daisy Hill Hospital ED, Newry (Southern Trust) | The Southern Trust's own page gives "5 Hospital Road Newry BT35 8DR" with no county. The Family Support NI listing 2132 (approved host; Paediatrics (Acute), Southern Trust) gives "Daisy Hill Hospital, 5 Hospital Road, Newry, Co Down, BT35 8DR". That outweighs Wikipedia's (unapproved) County Armagh claim. Newry straddles Armagh and Down. | The maintainer confirms Co Down from the Family Support NI listing; then also add "down" to the Southern Trust Phone First row |
 | South Mayo CDNT 2 | Snippet gives only part of the address ("Safari Club, N5 Business Park, Moneen … F23 WP71"); no catchment seen | The full HSE finder entry is read |
 | The Avenue Primary Care Centre, Gorey | HSE listing shows a pharmacy and long hours; it may be a private centre | Page read and HSE ownership or role is clear |
-| Rosewood Health and Wellbeing, Omagh; Family Support Hub Omagh (Action for Children) | Listed on familysupportni, but run by non-statutory providers | Elaine decides whether familysupportni-listed voluntary providers can be tagged `voluntary` |
+| Rosewood Health and Wellbeing, Omagh; Family Support Hub Omagh (Action for Children) | Listed on familysupportni, but run by non-statutory providers | The maintainer decides whether familysupportni-listed voluntary providers can be tagged `voluntary` |
 | Belfast Trust GP OOH (Knockbreda site) | Knockbreda may be in Co Down, but the page does not say so; outside the Part 2 scope as asked | County confirmed |
 | HSE "Online antenatal classes" (Wexford GH department list) | Snippet does not say the classes are open to both parents | Page read and it says so |
 
@@ -397,7 +397,7 @@ The researcher's numbered URL list (about 100 HSE, HSC trust, familysupportni, A
 ## 5. Duplicates and proposed edits
 
 - **Westdoc Castlebar, Nedoc Navan, KDoc Naas, Caredoc Wexford/Enniscorthy:** these likely duplicate the existing out-of-hours provider list. Merge them as source-URL updates, not new rows, unless the directory keeps provider rows separate from base rows.
-- **Louth / Dundalk:** if the existing out-of-hours list names Nedoc with a **Dundalk** base, the HSE does not support it: the HSE sitemap has Nedoc pages for Castleblayney, Cavan, Drogheda and Navan only. Proposed edit: base town Drogheda for Louth, pending Elaine's check.
+- **Louth / Dundalk:** if the existing out-of-hours list names Nedoc with a **Dundalk** base, the HSE does not support it: the HSE sitemap has Nedoc pages for Castleblayney, Cavan, Drogheda and Navan only. Proposed edit: base town Drogheda for Louth, pending the maintainer's check.
 - **Sligo:** HSE lists "Caredoc Sligo" (Markievicz PCC). If the directory lists NoWDOC for Sligo, flag it as conflicting and confirm before editing. NoWDOC HSE pages cover Donegal and Leitrim (Carrick-on-Shannon) only.
 - **SouthDoc (flagged as asked):** HSE pages show bases in Cork (Bandon, Youghal, Clonakilty, Skibbereen, Midleton, Cork City Southside, Blackpool) and Kerry (Castleisland, Dingle, Killarney, Killorglin). No Tralee, Listowel, Kenmare or Cahersiveen pages turned up in this pass; that does not prove they don't exist. Do not give SouthDoc any county outside Cork and Kerry.
 - **Shannondoc** also has Tipperary bases (Nenagh, Roscrea, Thurles). If the directory lists Shannondoc for Clare and Limerick only, add `tipperary`.

@@ -1,6 +1,6 @@
 # Session 5 scopes (21 Oct 2026): scope only, nothing built
 
-Four proposals, one page each. Nothing here is approved. Each needs Elaine's yes before any build. For every item: no analytics, no third-party requests, CSP unchanged (`default-src 'self'`, `connect-src 'self'`, `frame-src 'none'`), `check-third-party.sh` must still pass, copy follows the no-AI-sounding-copy rule, and nothing is stored unless the person ticks "Save on this device" (existing `readStore`/`writeStore` pattern).
+Four proposals, one page each. Nothing here is approved. Each needs the maintainer's yes before any build. For every item: no analytics, no third-party requests, CSP unchanged (`default-src 'self'`, `connect-src 'self'`, `frame-src 'none'`), `check-third-party.sh` must still pass, copy follows the no-AI-sounding-copy rule, and nothing is stored unless the person ticks "Save on this device" (existing `readStore`/`writeStore` pattern).
 
 ## 1. Write to your TD / councillor (letter builder)
 
@@ -8,9 +8,9 @@ Four proposals, one page each. Nothing here is approved. Each needs Elaine's yes
 
 **Recommended first version: no representative data at all.** The letter has placeholders; the page links out to the official "find your TD / councillor" pages. This ships without any new host, any contact detail or any `verify` rows. A second version adds a constituency or electoral-area dropdown that fills the greeting and the `mailto:` address.
 
-**Version 2 needs a static file (`data/reps.js`).** Every row `verify: true`, no contact detail until copied from a page Elaine has opened. Shape: constituency or area, role, name, official source URL.
+**Version 2 needs a static file (`data/reps.js`).** Every row `verify: true`, no contact detail until copied from a page the maintainer has opened. Shape: constituency or area, role, name, official source URL.
 
-**Blockers and decisions for Elaine**
+**Blockers and decisions for the maintainer**
 - **Host scope.** `oireachtas.ie` is approved for Bills and legislation status only (register Tier 4, path `/en/bills/`). TD names and contact details live under members pages, so they are outside it. Options: widen the scope to the members pages, or keep version 1 (no TD data, link-out only).
 - **Councillors.** County council sites (for example `corkcoco.ie`) are not on the register. Each council needs its own approval, or the page links to the official finder only.
 - **Which electoral area is Dunmanway in.** Not resolved. A search this session did not settle it, and a boundary review shows the constituency was contested. Do not hard-code it; it needs an official source (Electoral Commission constituency order or the county council's local electoral area list). The dropdown must never guess an area from a town name.
@@ -30,7 +30,7 @@ Four proposals, one page each. Nothing here is approved. Each needs Elaine's yes
 
 **Checks.** Each link resolves (a small test that every `href` is a known route). Copy reviewed for AI tells. Works with Calm mode on.
 
-**Decision for Elaine.** The exact starting points and their order; whether it replaces the home pill row or sits beside it.
+**Decision for the maintainer.** The exact starting points and their order; whether it replaces the home pill row or sits beside it.
 
 ## 3. Share and print on the guided tools
 
@@ -42,7 +42,7 @@ Four proposals, one page each. Nothing here is approved. Each needs Elaine's yes
 
 **Risk to settle.** Printing a page with typed health details: the existing print-target pattern prints only the chosen element, so each tool must mark its output element. The discharge passport output holds the most personal data; a printed copy needs a short "keep this somewhere private" line.
 
-**Decision for Elaine.** Whether Share is wanted at all (print and copy alone carry no new browser API).
+**Decision for the maintainer.** Whether Share is wanted at all (print and copy alone carry no new browser API).
 
 ## 4. Install guidance
 
@@ -54,7 +54,7 @@ Four proposals, one page each. Nothing here is approved. Each needs Elaine's yes
 
 **Privacy and CSP.** Pure text. No change.
 
-**Decision for Elaine.** Which platforms to cover; whether to add screenshots (local images only, no external hosts).
+**Decision for the maintainer.** Which platforms to cover; whether to add screenshots (local images only, no external hosts).
 
 ## Order and size, if approved
 

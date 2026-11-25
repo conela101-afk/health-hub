@@ -2,7 +2,7 @@
 
 **Fix status (8 Oct 2026, later the same day):** findings 1 to 9 fixed on branch `claude/a11y-fixes-oct26` and rechecked (axe: no contrast or scrollable-region failures; 0 routes overflow at 320px; every route has its own title; no interactive element under 24px). Axe now reports no violations on any route. Finding 9 was a likely false alarm; the explicit focus ring was added anyway. The scan below is the pre-fix result.
 
-Automated and scripted keyboard checks against WCAG 2.1 AA, run by Claude on 8 Oct 2026. This is the first run of the checklist that gates `accessibility-statement.md`. It is **not** a full audit: no screen reader testing was possible (see "Not tested").
+Automated and scripted keyboard checks against WCAG 2.1 AA, run by Claude on 8 Oct 2026. This is the first run of the checklist that gates `docs/accessibility-statement.md`. It is **not** a full audit: no screen reader testing was possible (see "Not tested").
 
 ## Scope and method
 - **Build tested:** the pre-fix scan used a local checkout that was 3 commits behind `origin/main` (no vaccines or costs pages). The re-check after the fixes used current `origin/main` plus the fixes, including `#/vaccines` and `#/costs`.
@@ -41,4 +41,4 @@ Automated and scripted keyboard checks against WCAG 2.1 AA, run by Claude on 8 O
 - Plain-language and reading-level review of content (not an automated check).
 
 ## Statement impact
-`accessibility-statement.md` can honestly say "automated checks and keyboard testing run on 8 Oct 2026; screen reader testing not yet done" once fixes 1 to 3 are in. It should not yet claim WCAG 2.1 AA conformance.
+`docs/accessibility-statement.md` can honestly say "automated checks and keyboard testing run on 8 Oct 2026; screen reader testing not yet done" once fixes 1 to 3 are in. It should not yet claim WCAG 2.1 AA conformance.

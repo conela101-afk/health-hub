@@ -1,4 +1,4 @@
-# Decisions from Elaine, 7 Oct 2026
+# Decisions from the maintainer, 7 Oct 2026
 
 Apply together with `research/LOCAL-SERVICES-PARENTING-2026-10-07.md`
 (the candidate-rows report). Unverified rows only: every row stays
@@ -30,7 +30,7 @@ old /services/long-term-illness-scheme/ pages.
   HSE West and North West, and describes Local Health Offices as an entry
   point to community health and personal social services (GP services, public
   health nursing, home help). specialty [] (fill from existing ids).
-  Phone 094 902 2333 was read on that page by Elaine; add only after her
+  Phone 094 902 2333 was read on that page by the maintainer; add only after their
   browser check.
 
 ## Un-withhold after a proper page read
@@ -40,7 +40,7 @@ old /services/long-term-illness-scheme/ pages.
 
 ## Still open
 - New specialty id "urgent" (EDs, injury units, MIUs, GP out-of-hours,
-  Phone First): needs Elaine's yes. Until then specialty [] rows use
+  Phone First): needs the maintainer's yes. Until then specialty [] rows use
   existing ids.
 - Check every candidate against data.js for duplicates first (hospital, ED,
   HSE Live, LTI, IVF and leave rows are the likely ones).

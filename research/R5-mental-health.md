@@ -1,6 +1,6 @@
 # R5. Mental health rights
 
-Research only. Unverified until Elaine opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until Elaine opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
+Research only. Unverified until the maintainer opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until the maintainer opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
 
 > **Mental Health Act 2026: link only, not yet commenced (checked 27 Oct 2026).**
 
@@ -23,7 +23,7 @@ Research only. Unverified until Elaine opens each source page. Checked 27 Oct 20
 
 **Gaps:** official page on independent advocacy for detained patients (ROI and NI); NI Review Tribunal rights page.
 
-## Time limits (copied from official pages; show in the app only after Elaine opens the page, with the URL)
+## Time limits (copied from official pages; show in the app only after the maintainer opens the page, with the URL)
 Mental Health Tribunal: within 21 days of the detention order (https://www.mhcirl.ie/what-we-do/mental-health-tribunals/mental-health-tribunals/what-mental-health-tribunal-process). This will change when the Mental Health Act 2026 is commenced.
 
 ## Caveats

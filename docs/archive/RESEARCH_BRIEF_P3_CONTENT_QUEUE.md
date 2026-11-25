@@ -1,15 +1,15 @@
 # Research brief: P3 content queue (9 Oct 2026)
 
 **For:** a research session with live web search (Claude Code's build environment has no outbound access). **Output:** unverified candidate rows and source logs, saved under `research/`. Claude Code merges them later by PR. You do not edit the repo.
-**Source:** `MASTER-BUILD-PLAN-v2-2026-10-09.md` §3 P3. **Status:** research only. Nothing is merged until the P0 verification list is below the 8 Oct level and Elaine has cleared the output.
+**Source:** `MASTER-BUILD-PLAN-v2-2026-10-09.md` §3 P3. **Status:** research only. Nothing is merged until the P0 verification list is below the 8 Oct level and the maintainer has cleared the output.
 
 ## Context
 Health Hub is a free, privacy-first PWA for navigating Irish and NI healthcare and advocacy rights. It gives administrative information only: never clinical advice, never legal claims. Layers: `data.js` (directory), `data/costs.js`, `data/vaccines.js`, `data/screening.js`, `data/conditions.js`.
 
 ## Hard rules
-1. **Official sources only:** see the approved-hosts block in `AI_RULES.md` (tiers, scopes and the declined list; printed from the validator register). Charity, press, trade, recruitment, academic-group and forum sites are withheld. Any other host needs Elaine's approval: list it under "Hosts needing approval" with host, owner, purpose, proposed tier and the row it is for, and do not use it.
+1. **Official sources only:** see the approved-hosts block in `AI_RULES.md` (tiers, scopes and the declined list; printed from the validator register). Charity, press, trade, recruitment, academic-group and forum sites are withheld. Any other host needs the maintainer's approval: list it under "Hosts needing approval" with host, owner, purpose, proposed tier and the row it is for, and do not use it.
 2. **No phone, email, fax, fee or waiting-time figure** unless copied from a page you opened. Rows are link-only by default.
-3. **Budget-sensitive figures** (amounts, caps, rates, thresholds, percentages) are kept **out of row text**. If you read one on an official page, record it only in the source log with the page URL and its "last reviewed" date, so Elaine can decide. Means-test thresholds are never stored: link to the official calculator. Budget 2027 was announced 6 Oct 2026; the full documents have not been read.
+3. **Budget-sensitive figures** (amounts, caps, rates, thresholds, percentages) are kept **out of row text**. If you read one on an official page, record it only in the source log with the page URL and its "last reviewed" date, so the maintainer can decide. Means-test thresholds are never stored: link to the official calculator. Budget 2027 was announced 6 Oct 2026; the full documents have not been read.
 4. **Never write "checked" or "opened".** Every row is `verify: true`, `urlStatus: "search-result"`, no `checked`.
 5. **No clinical or legal claims.** Paraphrase the page ("the HSE page says…"). Describe who a scheme covers, not whether the reader is entitled.
 6. **Do not invent.** If a service, team or scheme is not on an official page you read, leave it out. "Not found" is a valid result. Log it as "not searched" or "not found", never "does not exist".
@@ -78,7 +78,7 @@ The 7 Oct passes ran out of budget on these, so most are "not reached", not "not
 
 ## Part F: Down, Londonderry, out-of-hours leftovers
 - **Down and Londonderry:** not attempted in pass 2 beyond some trust rows. Cover the Southern, South Eastern, Northern and Western HSC Trust pages for the same service types as Part D, plus urgent care/minor injury units.
-- **Out-of-hours:** Mayo (Westdoc Castlebar) and Louth (Nedoc Drogheda) rows exist from pass 2. Only search again if the merged rows still lack an official page. Do not change Sligo (Elaine is checking Caredoc Sligo vs NoWDOC) and do not re-raise the Louth Dundalk base beyond what `REVIEW.md` says.
+- **Out-of-hours:** Mayo (Westdoc Castlebar) and Louth (Nedoc Drogheda) rows exist from pass 2. Only search again if the merged rows still lack an official page. Do not change Sligo (the maintainer is checking Caredoc Sligo vs NoWDOC) and do not re-raise the Louth Dundalk base beyond what `REVIEW.md` says.
 
 ## Out of scope for this brief
 - **Conditions deep links** (about 89 of 104): a separate verify-then-store brief, in batches by body system.
@@ -95,4 +95,4 @@ One file per session: `research/P3-<part>-<yyyy-mm-dd>.md`, containing:
 6. **Hosts needing approval (host, owner, purpose, proposed tier, row), not found, not reached, uncertainties** (conflicting sources, stale pages).
 
 ## After you finish
-Elaine opens each `source_url` in a browser; only then can `verify` be cleared and `checked` set. Claude Code merges the rows by PR (`node --check`, size check and all four validators before and after; never push to `main`), then adds one `CHANGELOG.md` entry and one "Recent AI sessions" line.
+The maintainer opens each `source_url` in a browser; only then can `verify` be cleared and `checked` set. Claude Code merges the rows by PR (`node --check`, size check and all four validators before and after; never push to `main`), then adds one `CHANGELOG.md` entry and one "Recent AI sessions" line.

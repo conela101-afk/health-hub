@@ -1,13 +1,13 @@
 # Claude Code: brief for community-services candidate rows, all ROI (14 Oct 2026)
 
-Adds directory rows for children's disability teams, adult disability, dental, allied health and mental health from two research passes run on 14 Oct 2026 (six priority counties, then all 26). Research only: every row is unverified. Set `verify: true` and `urlStatus: "search-result"` on all of them, no `checked`, no `opened`. Do not clear `verify`; only Elaine does, after opening each page in a browser.
+Adds directory rows for children's disability teams, adult disability, dental, allied health and mental health from two research passes run on 14 Oct 2026 (six priority counties, then all 26). Research only: every row is unverified. Set `verify: true` and `urlStatus: "search-result"` on all of them, no `checked`, no `opened`. Do not clear `verify`; only the maintainer does, after opening each page in a browser.
 
 Work on a branch, open a PR, never push to `main`. Before and after: file sizes, `node --check data.js app.js sw.js`. After: `node scripts/validate-data.js` (plus the other `validate-*.js`), `node scripts/test-validate-data.js`, `node scripts/search-audit.js`, `node scripts/county-matrix.js`. Recount entries by script; quote no counts. No phone, email, fax, fee or waiting-time figure in any row, even where a source page shows one. No money figures.
 
-## Decisions for Elaine (not made; do not assume)
-1. **`cho7cdnt.ie` is already in the `validate-data.js` allow-list and `cho7-cdnts` already cites it (opened 9 Oct), but `AI_RULES.md` records no approval for it.** The research treated it as unapproved. Do not add an approval line yourself. Ask Elaine to confirm and give a date. Until she does, add no new row sourced from it.
+## Decisions for the maintainer (not made; do not assume)
+1. **`cho7cdnt.ie` is already in the `validate-data.js` allow-list and `cho7-cdnts` already cites it (opened 9 Oct), but `AI_RULES.md` records no approval for it.** The research treated it as unapproved. Do not add an approval line yourself. Ask the maintainer to confirm and give a date. Until they do, add no new row sourced from it.
 2. **CHO number to HSE health region labels.** Not implemented. The mapping in the research is an inference and the HSE pages use mixed labels (CHO, health region, IHA). Add no region field and no region wording to blurbs. Where a source calls a team "CDNT 1" and so on, keep the number only with the place name, because the Dublin and South East site reuses numbers across areas (CDNT 1 is both Carlow and Sandymount; CDNT 3 is both Kilkenny and Leopardstown).
-3. **Legacy-URL rows.** Default I have chosen: only one legacy `hse.ie/eng/...` row is added (Kerry CAMHS, page read directly). The other legacy leads go in `GAPS.md`, not `data.js`. Elaine can change this.
+3. **Legacy-URL rows.** Default I have chosen: only one legacy `hse.ie/eng/...` row is added (Kerry CAMHS, page read directly). The other legacy leads go in `GAPS.md`, not `data.js`. The maintainer can change this.
 
 ## Row template (match the existing style in `data.js`)
 ```js
@@ -149,6 +149,6 @@ Add seven queries to `scripts/search-audit-queries.txt` (and the Irish file only
 ## 9. Docs, cache, session end
 - `GAPS.md`: add a section "Community services pass, 14 Oct 2026" with (a) the 26-county by category picture from the rows you actually added (recount from the data, do not copy my grid), (b) every skipped or withheld lead above with its reason, (c) teams not captured, (d) the legacy URL list with current replacements where known (CDNT finder for the old `find-a-childrens-disability-service.html`; the `/mental-health/services-support/...` pages for the old `/wellbeing/mental-health/...` pages).
 - Withheld, non-official leads, for reference only, no content copied: louthparenthub.ie, kilkennyparenthub.ie, horizonscork.ie, mphc.ie, midwestaries.ie, cypsc.ie, mayomha.ie, familypeersupport.ie, local authority and charity directories, press and Oireachtas items. Add nothing from them.
-- Re-run the generator for `HUMAN-CHECKS.md` (not committed) so the new `verify: true` rows appear in Elaine's tick list, grouped by specialty.
+- Re-run the generator for `HUMAN-CHECKS.md` (not committed) so the new `verify: true` rows appear in the maintainer's tick list, grouped by specialty.
 - Bump the `sw.js` cache. One `CHANGELOG.md` entry and one "Recent AI sessions" line in `AI_RULES.md`. Suggested: "14 Oct 2026: community services candidate rows (CDNT, adult disability, dental, mental health), all search-result and unverified."
 - In the PR description say: all new rows are `verify: true`, none opened, and list the existing rows you edited (North Mayo URL only).
