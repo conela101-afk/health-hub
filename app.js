@@ -157,7 +157,7 @@
     { name: "Prep for an appointment", href: "#/prep", keywords: "prep appointment checklist consultation waiting room message" },
     { name: "Write to your elected representative (TD, councillor, MLA or MP)", href: "#/advocacy/rep-letter", keywords: "write to my td write to my councillor write to my mla write to my mp contact my representative contact my td elected representative td councillor tc dail deputy senator mla mp constituency raise a problem ask my td to help letter" },
     { name: "Build a SAR letter (guided form)", href: "#/advocacy/sar-builder", keywords: "sar subject access request letter gdpr records" },
-    { name: "Find a Facility (regulated centres, HIQA & RQIA)", href: "#/facilities", keywords: "facility facilities hiqa rqia nursing home regulated centre" },
+    { name: "Find a care centre or hospital", href: "#/facilities", keywords: "facility facilities hiqa rqia nursing home regulated centre" },
     { name: "Search a condition", href: "#/conditions", keywords: "condition conditions disease illness" },
     { name: "Search medicine leaflets", href: "#/medicines", keywords: "medicine medicines leaflet leaflets pil drug" },
     { name: "Find out-of-hours & urgent care", href: "#/out-of-hours", keywords: "out of hours urgent care gp" },
@@ -901,10 +901,6 @@ ${name}`;
     const conditionSection = conditionResults.length
       ? `<p class="section-title">Conditions</p><div class="simple-list">${conditionResults.map(conditionRowHtml).join("")}</div>`
       : "";
-    // Facilities are not indexed here; one row hands the query on to the regulated-facilities search.
-    const facilityRow = p.q
-      ? `<p class="section-title">Regulated facilities</p><div class="simple-list"><a class="row" href="#/facilities"><span class="row-body"><h2>Search regulated facilities${neutral ? "" : ` for "${escapeHtml(query)}"`}</h2></span><span class="arrow">›</span></a></div>`
-      : "";
     const safeQuery = escapeHtml(query);
     const also = neutral ? "" : HHSearch.alsoSearched(p);
     const alsoLine = also ? `<p class="count">Also searched: ${escapeHtml(also)}</p>` : "";
@@ -913,8 +909,8 @@ ${name}`;
       ? `<div class="callout" role="note"><p>If you or someone else is in crisis or in immediate danger, support is available now.</p><p class="callout-pill-row"><a class="pill" href="#/specialty/crisis">Mental Health Crisis Support ›</a></p></div>`
       : "";
     const body = totalCount
-      ? `${toolSection}${privateSection}${voluntarySection}${cards}${conditionSection}${orgCards}${generalOrgCards}${facilityRow}`
-      : `<div class="empty-state">No matches${neutral ? "" : ` for "${safeQuery}"`}. Try a broader term, like a condition, area, or organisation name. Not sure where to start? Try <a href="#/start">Where do I start?</a></div>${facilityRow}`;
+      ? `${toolSection}${privateSection}${voluntarySection}${cards}${conditionSection}${orgCards}${generalOrgCards}`
+      : `<div class="empty-state">No matches${neutral ? "" : ` for "${safeQuery}"`}. Try a broader term, like a condition, area, or organisation name. Not sure where to start? Try <a href="#/start">Where do I start?</a></div>`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
@@ -1417,7 +1413,7 @@ ${name}`;
   }
 
   // ---------- Lazy-loaded assets ----------
-  // The big, single-purpose files (Find a Facility data, condition/medicine
+  // The big, single-purpose files (condition/medicine
   // links, Leaflet) are fetched only when the person opens the page that
   // needs them, instead of on every visit. Same-origin script injection is
   // allowed by the CSP (script-src 'self'), and sw.js precaches these files
@@ -1545,123 +1541,28 @@ ${name}`;
     wireOohMapLoadButton();
   }
 
-  // "Find a Facility" — regulated centres from HIQA (ROI) and RQIA (NI),
-  // kept deliberately separate from the specialty directory in ENTRIES.
-  // Reads from the standalone FACILITIES array in data/facilities.js, not
-  // from data.js — see that file's header comment for the full source
-  // breakdown, known gaps, and attribution. 4,111 rows across 15 regulated
-  // service types (nursing homes, disability residential, dental
-  // practices, domiciliary care, hospitals, and more) — too many to list
-  // flat on one page, so this is an index-by-type -> filtered-list flow,
-  // the same shape as the specialty browse pages.
-  const FACILITY_LIST_CAP = 150;
-
-  function facilityTypeSlug(type){
-    return type.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-  }
-
-  function facilityRowHtml(f){
-    const addressLine = f.address
-      ? contactLinkHtml("address", f.postcode ? `${f.address}, ${f.postcode}` : f.address)
-      : (f.county_or_trust || "Address not published in the source register");
-    return `
-      <div class="ooh-row">
-        <div class="ooh-main">
-          <div class="ooh-name">${f.name}</div>
-          <div class="ooh-counties">${f.county_or_trust} · ${f.sector}${f.jurisdiction ? ` · ${f.jurisdiction}` : ""} · ${addressLine}</div>
-          <div class="ooh-counties">
-            ${f.provider && f.provider !== f.name ? `${f.provider} · ` : ""}${f.max_occupancy != null ? `Max ${f.max_occupancy} · ` : ""}${f.url ? `<a href="${f.url}" target="_blank" rel="noopener">Source ↗</a> · ` : ""}${f.last_checked ? `registered/checked ${f.last_checked}` : ""}
-          </div>
-        </div>
-        <div class="ooh-phone">${f.phone ? contactLinkHtml("phone", f.phone) : ""}</div>
-      </div>
-    `;
-  }
-
+  // "Find a care centre or hospital" — a static page of links to the official
+  // registers (HIQA, RQIA, HSE). The old snapshot of regulated centres was
+  // removed 25 Nov 2026; see GAPS.md before bringing anything like it back.
   function renderFacilities(){
-    const list = typeof FACILITIES !== "undefined" ? FACILITIES : [];
-    const counts = {};
-    list.forEach(f => { counts[f.type] = (counts[f.type] || 0) + 1; });
-    const types = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
-
+    const note = `<p class="remit"><em>Written from search results. The linked page has not yet been opened and checked, so read it before you rely on this.</em></p>`;
     app.innerHTML = `
       <div class="page-head">
         <a class="back-link" href="#/">‹ Home</a>
-        <h1>Find a Facility</h1>
-        <p class="count">${list.length} regulated centres/services, from HIQA (ROI) and RQIA (NI) registers</p>
+        <h1>Find a care centre or hospital</h1>
       </div>
-
-      <div class="callout">
-        <strong>This is regulator/registry data, not a curated directory</strong> — it lists what's registered, not what's recommended, and doesn't include GP practices, pharmacies, or outpatient clinics. For condition-specific services with referral guidance, use <a href="#/specialty">Browse by specialty</a> instead.
-      </div>
-
-      <div class="callout">
-        <strong>Looking for a nursing home?</strong> Open "Nursing Home / Older Persons Centre" below, find the centre, then check its page on HIQA's find-a-centre tool for its inspection reports. For which scheme helps with the cost and how to raise a concern, see <a href="#/advocacy/schemes">the nursing home guide</a>. This is not a ranking of homes.
-      </div>
-
+      <p>These official lists are kept up to date by the organisations that run them. Use them to check that a centre is registered and to read its inspection reports.</p>
       <div class="simple-list">
-        ${types.map(type => {
-          const accent = accentForId(type);
-          return `<a class="row" href="#/facilities/${facilityTypeSlug(type)}">
-            <span class="cat-icon tag-${accent}">${iconSvg(PIN_ICON, 18)}</span>
-            <span class="row-body">
-              <h2>${type}</h2>
-              <span class="n">${counts[type]} record${counts[type] === 1 ? "" : "s"}</span>
-            </span>
-            <span class="arrow">›</span>
-          </a>`;
-        }).join("")}
+        <a class="row" href="https://www.hiqa.ie/find-a-centre" target="_blank" rel="noopener"><span class="row-body"><h2>Republic of Ireland, nursing homes and disability centres</h2><span class="n">Health Information and Quality Authority (HIQA), Find a centre ↗</span></span><span class="arrow">›</span></a>
+        <a class="row" href="https://www.rqia.org.uk/inspections/" target="_blank" rel="noopener"><span class="row-body"><h2>Northern Ireland, registered care services</h2><span class="n">Regulation and Quality Improvement Authority (RQIA), inspection reports search ↗</span></span><span class="arrow">›</span></a>
+        <a class="row" href="https://www2.hse.ie/services/hospitals" target="_blank" rel="noopener"><span class="row-body"><h2>Republic of Ireland, public hospitals</h2><span class="n">HSE, Find a hospital ↗</span></span><span class="arrow">›</span></a>
       </div>
-
-      <p class="ooh-source">${typeof FACILITIES_ATTRIBUTION !== "undefined" ? `${FACILITIES_ATTRIBUTION.hiqa} ${FACILITIES_ATTRIBUTION.rqia} ${FACILITIES_ATTRIBUTION.hospitals}` : "Sources: HIQA (ROI) and RQIA (NI)."} Each entry links to its own source page — check there for current inspection status before relying on this list.</p>
+      ${note}
     `;
-  }
-
-  function renderFacilityList(slug){
-    const list = typeof FACILITIES !== "undefined" ? FACILITIES : [];
-    const items = list.filter(f => facilityTypeSlug(f.type) === slug);
-    const type = items[0] ? items[0].type : slug;
-
-    function draw(query){
-      const q = (query || "").trim().toLowerCase();
-      const match = HHSearch.matcher(HHSearch.prepare(q));
-      const filtered = q
-        ? items.filter(f => match(HHSearch.normalise(`${f.name} ${f.county_or_trust} ${f.address} ${f.provider}`)))
-        : items;
-      const shown = filtered.slice(0, FACILITY_LIST_CAP);
-      const listEl = document.getElementById("facility-results");
-      const countEl = document.getElementById("facility-result-count");
-      if (countEl){
-        countEl.textContent = filtered.length > shown.length
-          ? `Showing ${shown.length} of ${filtered.length} — refine your search to narrow further`
-          : `${filtered.length} record${filtered.length === 1 ? "" : "s"}`;
-      }
-      if (listEl) listEl.innerHTML = shown.map(facilityRowHtml).join("") || `<p class="callout">No matches. Try a different name, county, or provider.</p>`;
-    }
-
-    app.innerHTML = `
-      <div class="page-head">
-        <a class="back-link" href="#/facilities">‹ Find a Facility</a>
-        <h1>${type}</h1>
-        <p class="count" id="facility-result-count">${items.length} record${items.length === 1 ? "" : "s"}</p>
-      </div>
-      <div class="search-field search-field-inline">
-        <input type="search" id="facility-filter" placeholder="Search by name, county, or provider…" autocomplete="off">
-      </div>
-      <div class="ooh-list" id="facility-results"></div>
-    `;
-
-    draw("");
-    const filterInput = document.getElementById("facility-filter");
-    let debounce;
-    filterInput.addEventListener("input", () => {
-      clearTimeout(debounce);
-      debounce = setTimeout(() => draw(filterInput.value), 150);
-    });
   }
 
   // "Search a condition" link-out directory — CONDITIONS in
-  // data/conditions.js, kept separate from FACILITIES and the specialty
+  // data/conditions.js, kept separate from the specialty
   // ENTRIES: this maps a condition name to who explains it (HSE, NHS,
   // charities), not to a local service that treats it. See that file's
   // header for why most entries carry no condition-specific link yet and
@@ -2590,8 +2491,8 @@ ${name}`;
     else if (parts[0] === "advocacy" && parts[1] === "rep-letter") renderRepLetter();
     else if (parts[0] === "advocacy") renderAdvocacy(parts[1] || "guide");
     else if (parts[0] === "out-of-hours") renderOutOfHours();
-    else if (parts[0] === "facilities" && !parts[1]) withAssets(["data/facilities.js"], renderFacilities);
-    else if (parts[0] === "facilities" && parts[1]) withAssets(["data/facilities.js"], () => renderFacilityList(parts[1]));
+    else if (parts[0] === "facilities" && parts[1]) location.replace("#/facilities");
+    else if (parts[0] === "facilities") renderFacilities();
     else if (parts[0] === "conditions" && !parts[1]) withAssets(["data/conditions.js"], renderConditions);
     else if (parts[0] === "conditions" && parts[1]) withAssets(["data/conditions.js"], () => renderConditionDetail(parts[1]));
     else if (parts[0] === "medicines") withAssets(["data/conditions.js"], renderMedicines);

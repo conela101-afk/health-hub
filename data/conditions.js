@@ -10,7 +10,7 @@
 // whose author fetched and confirmed the URLs below live. The session that
 // built this feature could not re-verify them itself — outbound network
 // access was fully blocked for the whole session (same constraint hit
-// during the Phase D facilities build, see data/sources/README.md) — so
+// during the Phase D facilities build, since removed) — so
 // every condition-specific deep link here is exactly the URL that source
 // document wrote out in full, never a slug guessed by pattern-matching.
 // That's why most entries below have an empty `links` array: for any

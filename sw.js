@@ -1,4 +1,4 @@
-const CACHE_NAME = "pocket-guide-v50";
+const CACHE_NAME = "pocket-guide-v51";
 const ASSETS = [
   "./",
   "./index.html",
@@ -9,7 +9,6 @@ const ASSETS = [
   "./search.js",
   "./doors.js",
   "./start.js",
-  "./data/facilities.js",
   "./data/conditions.js",
   "./data/vaccines.js",
   "./data/costs.js",
@@ -62,8 +61,8 @@ const CACHEABLE = new Set(ASSETS.map((a) => new URL(a, self.location).href));
 // listings, FOI contacts, complaints processes) matters more than offline
 // speed. Falls back to cache only when the network is unavailable.
 // "no-cache" (not "no-store") means the browser always revalidates with the
-// server but can answer 304 Not Modified, so unchanged files -- notably the
-// ~2 MB data/facilities.js -- are not re-downloaded on every visit.
+// server but can answer 304 Not Modified, so unchanged files are not
+// re-downloaded on every visit.
 // Offline and not cached: navigations get the app shell (every route is a
 // #/hash on index.html, so it can render the in-app message); anything else
 // gets a plain 503 rather than the browser's error page.

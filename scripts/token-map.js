@@ -52,7 +52,7 @@ const MAP = {
 const NEW_OK = new Set(["#f6f3ec", "#ffffff", "#ddd6c8", "#857e92", "#1e1a2b", "#5a5568", "#2f1560", "#ece6f6",
   "#cdebd6", "#9fd2b1", "#1d6b45", "#b3301f", "#fcebe9", "#6b4f1b", "#fbf0de", "#000", "#fff", "transparent", "currentcolor"]);
 
-const FILES = ["styles.css", "index.html", "manifest.json", "app.js", "tools.js", "doors.js", "start.js", "search.js", "data/facilities.js"];
+const FILES = ["styles.css", "index.html", "manifest.json", "app.js", "tools.js", "doors.js", "start.js", "search.js"];
 const lit = /#[0-9a-fA-F]{3,8}\b|rgba?\([^)]*\)|hsla?\([^)]*\)/g;
 const named = /\b(?:color|background(?:-color)?|border(?:-[a-z]+)?|fill|stroke|outline(?:-color)?|accent-color)\s*:\s*(white|black|red|green|blue|gray|grey|orange|yellow|transparent|currentColor)\b/gi;
 const rows = new Map(); // value -> { count, where:Set }
