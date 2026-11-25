@@ -628,3 +628,5 @@ Rows added from the R10 research (search results only, none opened). County cove
 - **(f) Directory page 2** was not opened. The directory showed different totals in different views, so none is quoted.
 - **(g) Not researched:** surgical assessment units, ophthalmic casualty and ENT, urgent mental health wording, rapid access clinics, community intervention teams and hospital at home, NI 111, NI Pharmacy First end dates, HSE pharmacy wording.
 
+- **NI Human Milk Bank:** find an official page confirming whether Republic of Ireland families can use it; restore the all-island wording and `national` only if one is found.
+- **Tilt table testing in Cork:** the official HSE page lists Dublin and Tralee only. Add Cork only if an official or provider page confirms it.
