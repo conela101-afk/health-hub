@@ -1,4 +1,4 @@
-// The Pocket Guide — service directory data
+// Health Hub — service directory data
 // Structure is deliberately flat so new counties/specialties can be appended later.
 //
 // Optional per-entry field: checked: "D Mon YYYY" — the date this specific
