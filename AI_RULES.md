@@ -173,6 +173,7 @@ Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health P
 ## Recent AI sessions
 *(newest first)*
 
+- 2026-11-26 [Claude] — Local-row audit: `scripts/local-row-audit.js` and `research/local-row-audit-2026-11-26.md` (candidate list for the maintainer to approve, no data change), plus the 26 Nov decisions in `MASTER-BUILD-PLAN.md`; no cache bump; PR only. See `CHANGELOG.md`.
 - 2026-11-25 [Claude] — Repo cuts, five PRs A to E: Find a facility snapshot replaced by register links (A), 75 local rows archived (B), duplicate-listing comparison with no change (C), repo tidy-up and `scripts/list-unverified.js` (D), honest footer and `#/about-health-hub` (E); cache v51 (A), v52 (B), v53 (E), one bump per PR in merge order; PR only. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-11-25 [Claude] — Removed internal notes from user-facing text in three entries (milk bank all-island claim and `national`, Daisy Hill county note, Bon Secours Cork tilt table claim); wording removed only, nothing added; cache v49; PR only. See `CHANGELOG.md` and `GAPS.md`.
 - 2026-11-19 [Claude] — Verification pass: 27 rows the maintainer opened themselves (5 entries, 13 tool facts, 7 cost rows, 2 vaccine rows) set to opened and verify cleared, status fields only; cache v50; PR only. See `CHANGELOG.md`.
