@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-25 [Claude] (repo cuts, PRs A to E)
+- **A (#149).** The Find a facility snapshot (`data/facilities.js`, its CSV and build files) is gone. `#/facilities` is now a static page, "Find a care centre or hospital", with links to the HIQA, RQIA and HSE registers (marked as not yet opened and checked); `#/facilities/<anything>` redirects to it. An empty `data/facilities.js` stub keeps the CI syntax check passing until the maintainer edits the workflow by hand.
+- **B (#150).** 75 unchecked local rows (53 CDNT, 5 hospital, 10 primary care, 7 dental) moved to `data/archive/archived-entries-2026-11-25.js`, not loaded by the app. `verify: true` rows 336 to 261. An unknown or archived `#/entry/<id>` now shows a "no longer listed" page with links to specialty and area browsing.
+- **C (no PR).** Compared the SAR builder with the Records-request builder, and `#/about/screening` with `#/screening`. Each page has content the other lacks, so nothing was removed. The differences are in the session report.
+- **D (#151).** Old briefs and research notes moved to `docs/archive/`, accessibility docs to `docs/`, changelog entries before 1 Nov 2026 archived, `schemes.png` deleted, `HUMAN-CHECKS.md` rewritten around the new `scripts/list-unverified.js`, and the maintainer's first name replaced with "the maintainer" in tracked files.
+- **E.** Footer wording no longer says "details correct at time of publishing"; new `#/about-health-hub` page and footer link; `data.js` header comment says "Health Hub". Cache v50 (#147), v51 (A), v52 (B), v53 (E), one bump per PR in merge order.
+
 ## 2026-11-25 [Claude] (remove internal notes from user-facing text)
 - Removed internal notes from three entries: milk bank all-island claim removed pending an official source; Daisy Hill county note removed; Bon Secours Cork tilt table claim removed (phone-only, no official page).
 - `ni-human-milk-bank`: blurb no longer says it serves the whole island; the "given by Elaine" detail line is gone; `national` removed from `county` (six NI counties kept). `verify: true` and `urlStatus: "search-result"` unchanged.

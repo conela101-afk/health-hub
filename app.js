@@ -148,6 +148,7 @@
   // than only content that happens to mention the word.
   // Keywords include a few plain-language phrases people use for these pages ("see my notes", "scan cancelled").
   const TOOL_PAGES = [
+    { name: "About Health Hub", href: "#/about-health-hub", keywords: "about who made this independent sources contact feedback" },
     { name: "Pregnancy information: choices, tests and scans", href: "#/pregnancy", keywords: "pregnancy pregnant antenatal screening tests scans ultrasound dating scan anatomy scan private scan options unplanned" },
     { name: "After a death: registering, the coroner and money help", href: "#/guide/after-a-death", keywords: "death died bereavement bereaved funeral coroner register death certificate additional needs payment widow bereaved partner parent grant" },
     { name: "Not sure where to go? Urgent and emergency care", href: "#/guide/where-to-go", keywords: "not sure where to go where to go instead of a&e injury unit minor injury unit urgent care centre phone first medical assessment unit emergency department gp out of hours" },
@@ -2397,6 +2398,21 @@ ${name}`;
 
   // Detects only enough to choose which instructions to show. Nothing is
   // logged or stored; if the browser is not recognised, every block shows.
+  function renderAboutHealthHub(){
+    app.innerHTML = `
+      <div class="page-head">
+        <a class="back-link" href="#/">‹ Home</a>
+        <h1>About Health Hub</h1>
+      </div>
+      <p>Health Hub is a free, independent guide to health services and patient rights in the Republic of Ireland and Northern Ireland. It is not part of the HSE, HSC or any health provider, and it has no sponsors.</p>
+      <p><strong>Where the information comes from.</strong> Official pages from the HSE, HSC Trusts, government departments, regulators and Citizens Information, and voluntary organisations' own pages about their own services.</p>
+      <p><strong>How it's checked.</strong> Entries link to the page they're based on. Many show the date they were last checked, and entries that haven't been checked yet say so. Read the official page before you rely on anything here.</p>
+      <p><strong>What it isn't.</strong> It isn't medical or legal advice, and it isn't an emergency service.</p>
+      <p><strong>Privacy.</strong> No ads, no tracking, no accounts. The full privacy details are at the bottom of every page.</p>
+      <p><strong>Spotted a mistake?</strong> Use <a href="https://forms.gle/euhDXPnx8vw1msnR6" target="_blank" rel="noopener noreferrer">the feedback form (opens a Google Form in a new tab)</a>. The form doesn't ask for your email; please don't include personal or health details.</p>
+    `;
+  }
+
   function renderInstall(){
     const ua = navigator.userAgent || "";
     const isIos = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
@@ -2502,6 +2518,7 @@ ${name}`;
     else if (parts[0] === "pregnancy") withAssets(["data/pregnancy.js"], () => window.HH_PREGNANCY.render(app, { escapeHtml }));
     else if (parts[0] === "guide" && parts[1]) withAssets(["data/guides.js"], () => { if (!window.HH_GUIDES.render(parts[1], app, { escapeHtml })) renderHome(); });
     else if (parts[0] === "install") renderInstall();
+    else if (parts[0] === "about-health-hub") renderAboutHealthHub();
     else if (parts[0] === "start" && window.HH_START) renderStart();
     else if (parts[0] === "prep") renderPrep();
     else if (parts[0] === "passport") renderPassport();

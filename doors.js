@@ -100,6 +100,7 @@
     "search": "search results", "search-results": "private search results (privacy layer)",
     "entry": "a single directory entry, reached from lists",
     "install": "footer link only, by design",
+    "about-health-hub": "footer link and search only, by design",
     "start": "Where do I start? (guided path), linked from Home and from an empty search",
   };
 
