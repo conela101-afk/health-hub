@@ -2,7 +2,7 @@
 // tests exactly what people get. Pure functions, no DOM. Reads SEARCH_ALIASES and SEARCH_US_UK
 // from data.js at call time (load data.js first).
 //
-// Rules (see CLAUDE_CODE_SEARCH_ALIASES.md, 7 Oct 2026):
+// Rules (see docs/archive/CLAUDE_CODE_SEARCH_ALIASES.md, 7 Oct 2026):
 //  - One normalise() is applied to the query and to every haystack: lower case, no apostrophes,
 //    no diacritics (fadas), "&" becomes "and", hyphens and slashes become spaces, other punctuation
 //    is dropped, whitespace collapsed.
@@ -74,7 +74,7 @@
     return parts.join(", ");
   }
 
-  // Crisis phrases (approved by Elaine, 7 Oct 2026). When one is searched, app.js shows a single
+  // Crisis phrases (approved by the maintainer, 7 Oct 2026). When one is searched, app.js shows a single
   // banner linking to the existing Mental Health Crisis Support page. Kept here, in one place, so the
   // list is easy to review and the audit can test it. "crisis" alone only triggers when it is the
   // whole query, so "crisis pregnancy" still goes to pregnancy support. Words are matched as whole
@@ -119,7 +119,7 @@
   // Sensitive topics with no neutral page of their own (eating disorders, pregnancy loss, perinatal
   // mental health, crisis). These are searched in place: results show under a neutral heading and
   // the words never reach the address bar, tab title, results heading or screen-reader announcement.
-  // Membership is a proposal pending Elaine's confirmation (brief of 24 Oct 2026). "pregnancy"
+  // Membership is a proposal pending the maintainer's confirmation (brief of 24 Oct 2026). "pregnancy"
   // alone, "mental health" alone and "abuse" alone are deliberately not listed.
   var PRIVATE_SEARCH_PHRASES = ["eating disorder", "eating disorders", "anorexia", "bulimia", "binge eating", "orthorexia",
     "miscarriage", "miscarriages", "pregnancy loss", "stillbirth", "perinatal mental health", "perinatal depression",

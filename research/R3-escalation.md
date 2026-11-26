@@ -1,6 +1,6 @@
 # R3. Ombudsman, HIQA and escalation
 
-Research only. Unverified until Elaine opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until Elaine opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
+Research only. Unverified until the maintainer opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until the maintainer opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
 
 | Claim (paraphrased) | Jur. | URL | Page | Volatility |
 |---|---|---|---|---|
@@ -27,7 +27,7 @@ Research only. Unverified until Elaine opens each source page. Checked 27 Oct 20
 
 **Gaps:** HSE www2.hse.ie complaints page and time limit (primary); Ombudsman for Children health complaints page; HIQA page full read.
 
-## Time limits (copied from official pages; show in the app only after Elaine opens the page, with the URL)
+## Time limits (copied from official pages; show in the app only after the maintainer opens the page, with the URL)
 ROI: Ombudsman within 12 months of the action or decision (later accepted for good reason; use the provider's process first) (https://ombudsman.ie/en/collection/72275-your-questions/). Ombudsman, public hospital: within 12 months of the date of the Complaints Officer's or HSE Review Officer's report (https://www.ombudsman.ie/publications/information-leaflets/the-ombudsman-and-the-hea/). HSE Your Service Your Say: within 12 months of the event or awareness (Citizens Information only; open the HSE page) (https://www.citizensinformation.ie/en/health/health-system/making-a-complaint-about-the-health-service-executive/).
 NI: nidirect: usually within 6 months of awareness, normally no later than 12 months after the event (https://www.nidirect.gov.uk/articles/how-complain-or-raise-concerns-about-health-services). NIPSO: usually not accepted more than 6 months after the provider process ends (https://www.nipso.org.uk/faqs).
 No limit found: Ombudsman for Children.

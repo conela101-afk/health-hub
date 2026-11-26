@@ -1,6 +1,6 @@
 # Find-it test: Four doors PR 4 (old design against new)
 
-For Elaine to run. Purpose: show that the new colours and flat cards do not make anything harder to find. This is three people, not a research sample, and it is not a merge blocker. Record on paper only. Nothing is recorded in the app, and the app collects nothing.
+For the maintainer to run. Purpose: show that the new colours and flat cards do not make anything harder to find. This is three people, not a research sample, and it is not a merge blocker. Record on paper only. Nothing is recorded in the app, and the app collects nothing.
 
 ## 1. Set up
 
@@ -30,7 +30,7 @@ Read this out, then say nothing else except "go ahead" and, if they are stuck fo
 
 > This is a free guide to health services and your rights in Ireland. I am testing the app, not you. There are no wrong answers. I will give you a job to do and I would like you to find the page that does it. Think out loud if you can. Tell me when you think you have found the right page. If you get stuck, that is useful for me to know.
 
-## 4. Tasks (draft, Elaine to edit)
+## 4. Tasks (draft, the maintainer to edit)
 
 1. Find how to make a complaint about a hospital.
 2. Find out whether you can get a copy of your records.

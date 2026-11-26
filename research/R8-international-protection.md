@@ -1,6 +1,6 @@
 # R8. International protection health access — HOLD
 
-Research only. Unverified until Elaine opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until Elaine opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
+Research only. Unverified until the maintainer opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until the maintainer opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
 
 > **HOLD.** No app wording until a gov.ie or HSE page confirms how the International Protection Act 2026 (commenced 12 June 2026) affects health access.
 

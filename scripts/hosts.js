@@ -20,7 +20,7 @@ function block(){
     });
     lines.push("");
   });
-  lines.push("Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health Pro, Limerick Leader. Tiers 1 to 5 may be a `source_url`; tier 5 never as the only source; tier 6 only on entries tagged `voluntary`; tiers 7 and 8 are links only. A host outside this list needs Elaine's approval: report it as host, owner, purpose, proposed tier and the row it is for, and do not use it.", "", END);
+  lines.push("Also declined (named, not hosts): Wikipedia, Medical Independent, Irish Health Pro, Limerick Leader. Tiers 1 to 5 may be a `source_url`; tier 5 never as the only source; tier 6 only on entries tagged `voluntary`; tiers 7 and 8 are links only. A host outside this list needs the maintainer's approval: report it as host, owner, purpose, proposed tier and the row it is for, and do not use it.", "", END);
   return lines.join("\n");
 }
 function fromFile(file){

@@ -1,6 +1,6 @@
 # Remote branch triage (26 Oct 2026)
 
-Read-only classification of every remote branch against `origin/main` at `f7a0d10`. **Nothing has been deleted.** Elaine approves the list first.
+Read-only classification of every remote branch against `origin/main` at `f7a0d10`. **Nothing has been deleted.** the maintainer approves the list first.
 
 ## Method
 "Ahead" counts are not trusted: `main` was re-based at some point, so most old branches share no merge base with it and a squash or merge makes them look far ahead. For each branch:
@@ -32,7 +32,7 @@ The line check is a guide, not proof: entries reworded on `main` show as unmatch
 | `claude/nav-findability` | no | `claude/nav-findability-main` (#104, merged 9 Oct) is on the remote, zero ahead |
 | `backup-before-realign` | no | nothing on the remote or in any PR |
 
-Local-only status: this cloud session's clone holds only `main` and `claude/master-plan-v4` locally, plus the branch for this doc. It cannot see Elaine's own clone. Check on that machine with `git branch -vv`; a branch marked `: gone]` was deleted on the remote, and `git branch --no-merged origin/main` lists any with unpushed work (`backup-before-realign` and `claude/audit-fixes-oct26` may live only there).
+Local-only status: this cloud session's clone holds only `main` and `claude/master-plan-v4` locally, plus the branch for this doc. It cannot see the maintainer's own clone. Check on that machine with `git branch -vv`; a branch marked `: gone]` was deleted on the remote, and `git branch --no-merged origin/main` lists any with unpushed work (`backup-before-realign` and `claude/audit-fixes-oct26` may live only there).
 
 ## Tier 2: `mcp/add-*`
 | Branch | Ahead / behind | On main | PR | Note |
@@ -62,7 +62,7 @@ Local-only status: this cloud session's clone holds only `main` and `claude/mast
 ## Tier 3
 | Branch | Ahead / behind | On main | PR | Note |
 |---|---|---|---|---|
-| `claude/approved-hosts-oct25-reps` | 1 / 2 | no | #135 open | Open #135 (awaiting Elaine's path-prefix confirmation) |
+| `claude/approved-hosts-oct25-reps` | 1 / 2 | no | #135 open | Open #135 (awaiting the maintainer's path-prefix confirmation) |
 | `claude/code-functionality-check-jhprkq` | 44 / 171 | partly | none | No PR. Same as medico-legal: only PHN rows absent, by decision |
 | `claude/diagnose-third-party-script-jovn1e` | 1 / 30 | yes (log only) | none | 1 commit: CHANGELOG + AI_RULES log of a `check-third-party.sh` diagnosis, no code. Its proposed fixes (narrow scan, CI step) are merged |
 | `claude/health-hub-feedback-form-2ypb09` | 1 / 26 | no | none | 1 commit: old form URL in footer/README/accessibility statement + per-entry "Report a problem" prefill (app.js). Superseded by merged feedback-form PR; prefill needs rework. Files: app.js, index.html, README.md, accessibility-statement.md, sw.js, CHANGELOG.md, AI_RULES.md |
@@ -78,7 +78,7 @@ Local-only status: this cloud session's clone holds only `main` and `claude/mast
 | `claude/pass5-rights` | 3 / 157 | partly | #66 closed | Superseded by merged `pass5b-*`; unique rows `coru-complaint`, `mha-2026-info` (Mental Health Act, link-only until commenced) and others are not on main |
 | `claude/pass5-validator` | 1 / 157 | partly | #65 closed | Validator stricter-rules; rows not on main; replacement merged as `pass5b-*` (2 Oct changelog) |
 | `claude/rep-letter` | 2 / 22 | no | #120 closed | #120 (closed today, not merged). Replaced by #134 |
-| `claude/rep-letter-builder` | 2 / 2 | no | #134 open | Open draft #134 (awaiting Elaine's wording approval) |
+| `claude/rep-letter-builder` | 2 / 2 | no | #134 open | Open draft #134 (awaiting the maintainer's wording approval) |
 | `claude/start-page` | 1 / 22 | yes (superseded) | #119 closed | Old #119 head (closed, not merged 25 Oct). Replaced by merged four-doors-pr3-start |
 | `claude/verify-scheme-link-urls` | 55 / 171 | partly | #3 closed | Closed #3. 1 unique commit (Cross-Border Directive, TAS, GMS rows): 11 of 12 lines on main. PHN rows (`find-phn`, `phn-*`) absent by decision (single `phn-locator`) |
 | `grok/home-search-typeahead` | 26 / 171 | no | none | No PR. 2 commits (typeahead combobox) whose diff deletes ~1,800 lines of app.js and ~640 of styles.css, the same truncation pattern as the 22 Sep Grok incident. Do not merge. Home has since been rebuilt (Four doors PR 2) |

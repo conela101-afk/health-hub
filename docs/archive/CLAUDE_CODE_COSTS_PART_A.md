@@ -1,13 +1,13 @@
 # Claude Code: merge brief for cost schemes, Part A (9 Oct 2026)
 
-Adds nine "What you pay" rows to `data/costs.js` from a research pass run on 9 Oct 2026, edits three existing rows, fixes one Advocacy-guide sentence, and adds `revenue.ie` to the approved hosts. Research only, so every row is unverified: `verify: true`, `urlStatus: "search-result"`, no `checked`, no `opened`. Do not clear `verify`; only Elaine does, after opening each page in a browser.
+Adds nine "What you pay" rows to `data/costs.js` from a research pass run on 9 Oct 2026, edits three existing rows, fixes one Advocacy-guide sentence, and adds `revenue.ie` to the approved hosts. Research only, so every row is unverified: `verify: true`, `urlStatus: "search-result"`, no `checked`, no `opened`. Do not clear `verify`; only the maintainer does, after opening each page in a browser.
 
 Work on a branch, open a PR, never push to `main`. Before and after: file sizes, `node --check data/costs.js data.js app.js sw.js`. After: `node scripts/validate-costs.js`, `validate-data.js`, `validate-screening.js`, `validate-vaccines.js`, `search-audit.js`. Recount entries by script; quote no counts.
 
-## Decisions from Elaine (already made)
+## Decisions from the maintainer (already made)
 - **revenue.ie is an approved host (9 Oct 2026),** for tax-relief-on-medical-expenses pages only. Official source, not `voluntary`.
 
-## Defaults I have chosen (Elaine can change)
+## Defaults I have chosen (the maintainer can change)
 1. **High Tech Drugs row is withheld.** The only source is a staff-facing PCRS form on the old `hse.ie/eng/staff/` URL family, and no patient-facing HSE page was found. Draft is at the end of this file. Un-withhold when a current `www2.hse.ie` patient page is read.
 2. **Use `kind: "other"` for the three rows that fit no kind.** The research proposed `care`, `tax-relief` and `dental-optical`. Adding kinds means changing `KINDS` in `validate-costs.js`, `COST_KIND_LABELS` in `app.js` and the filter; not in this PR.
 3. **Drop the "20%" and "Med 1" wording from the Advocacy guide** (below) rather than re-quote a Budget-sensitive rate.
@@ -146,10 +146,10 @@ Replace the clause "and you can claim 20% back on qualifying private assessment/
 ## 5. Housekeeping
 - `sw.js`: costs data is precached, so bump the cache (`pocket-guide-v23` → `v24`).
 - `GAPS.md` (around line 461): remove the schemes now covered from the "Not started" list. High Tech Drugs, the basic Supplementary Welfare Allowance page and Community Ophthalmic Services (HSE patient page not found; the eye care row uses Citizens Information) stay on it.
-- `HUMAN-CHECKS.md`: add the nine new `source_url`s for Elaine's browser check.
+- `HUMAN-CHECKS.md`: add the nine new `source_url`s for the maintainer's browser check.
 - End with one `CHANGELOG.md` entry and one "Recent AI sessions" line, e.g. "9 Oct 2026: nine cost-scheme rows (Part A), revenue.ie approved, Med 1 wording fixed. Unverified."
 
-## Still open (Elaine)
+## Still open (the maintainer)
 - Open each new `source_url`; only then clear `verify`.
 - Whether to add the `care`, `tax-relief` and `dental-optical` kinds.
 - A patient-facing HSE page for High Tech Drugs, and the HSE discretionary medical card page (seen only as a snippet).

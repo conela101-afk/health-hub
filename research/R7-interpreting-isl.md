@@ -1,6 +1,6 @@
 # R7. Interpreting and Irish Sign Language access
 
-Research only. Unverified until Elaine opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until Elaine opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
+Research only. Unverified until the maintainer opens each source page. Checked 27 Oct 2026. Every row is `verify: true` until the maintainer opens the source page. No phone, email, fee or waiting-time figures. Several rows rely on search-result text rather than a full page read (marked where known).
 
 **Jurisdiction:** ROI.
 
@@ -19,7 +19,7 @@ Research only. Unverified until Elaine opens each source page. Checked 27 Oct 20
 
 **Gaps:** HSE patient-facing general interpreter page; NI interpreting (HSC Regional Interpreting Service) not researched.
 
-**Staff-facing source (staff guidance):** the HSE National Guidelines on Accessible Health and Social Care Services (https://assets.publications.hse.ie/media/file_based_publications/natguideaccessibleservices.pdf) is staff guidance. Elaine approved using it to support patient checklist wording, written from the patient's side. Any such use must cite the page and say it is staff guidance.
+**Staff-facing source (staff guidance):** the HSE National Guidelines on Accessible Health and Social Care Services (https://assets.publications.hse.ie/media/file_based_publications/natguideaccessibleservices.pdf) is staff guidance. The maintainer approved using it to support patient checklist wording, written from the patient's side. Any such use must cite the page and say it is staff guidance.
 
 ## Caveats
 Statutory status checked 27 Oct 2026 against the Irish Statute Book Legislation Directory (updated to 6 Oct 2026) and Department pages; recheck before publishing. Several rows rely on search-result text, not a full page read. Not yet in the app.
