@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-26 [Claude] ("Nobody replied?" gate and fact checklist)
+- `MASTER-BUILD-PLAN.md`: the "Nobody replied?" gate is now that every timeframe, escalation step and next-body route the feature uses has been checked on an official page a person opened (it replaces the `verify: true` count gate; directory verification continues in parallel and the freeze on new rows and specialties stays). Local-row audit decision recorded: keep `bantry-cfc`, `clon-frc`, `dunmanway-frc` and `haven-castletownbere`; `skibb-frc` pending a check against `find-frc`.
+- New read-only `research/nobody-replied-fact-checklist-2026-11-26.md`: the facts in the repo for the five things a user can be waiting on (HSE complaint, HSC complaint, FOI, SAR, AON), their status, and 22 gaps. No new facts or URLs.
+- `GAPS.md`: local-row audit finder-gap line. No `data.js` change, no served file changed, no cache bump.
+
 ## 2026-11-26 [Claude] (local-row audit and 26 Nov decisions)
 - New read-only `scripts/local-row-audit.js` writes `research/local-row-audit-2026-11-26.md`: every local row with a covering official finder (if any) and a keep or archive suggestion, per-county counts before and after, and finder gaps as research leads. Candidate list only; no `data.js` change, nothing archived, no cache bump.
 - `MASTER-BUILD-PLAN.md`: "Decisions 26 Nov 2026" block (no custom domain, directory shrink rule with maintainer approval first, "Nobody replied?" as the next gated build, content pillars still open).

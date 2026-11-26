@@ -631,3 +631,4 @@ Rows added from the R10 research (search results only, none opened). County cove
 - **NI Human Milk Bank:** find an official page confirming whether Republic of Ireland families can use it; restore the all-island wording and `national` only if one is found.
 - **Tilt table testing in Cork:** the official HSE page lists Dublin and Tralee only. Add Cork only if an official or provider page confirms it.
 - **Find a facility snapshot removed 25 Nov 2026.** If it comes back: only fields a person has checked on an open page; no names of individuals; no addresses of residential homes for disabled people or children; re-use terms confirmed first.
+- **Local-row audit 26 Nov 2026:** no official finder row for gynaecology (43 local rows), maternity (35), gynae and breast cancer (21), sexual health (18), cardiology (17), pain (17) or oncology (16). Health Hub's local listings are the main value here; keep them and check them first. Research leads only, no pages opened.
