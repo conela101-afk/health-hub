@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-26 [Claude] (local-row audit and 26 Nov decisions)
+- New read-only `scripts/local-row-audit.js` writes `research/local-row-audit-2026-11-26.md`: every local row with a covering official finder (if any) and a keep or archive suggestion, per-county counts before and after, and finder gaps as research leads. Candidate list only; no `data.js` change, nothing archived, no cache bump.
+- `MASTER-BUILD-PLAN.md`: "Decisions 26 Nov 2026" block (no custom domain, directory shrink rule with maintainer approval first, "Nobody replied?" as the next gated build, content pillars still open).
+
 ## 2026-11-25 [Claude] (repo cuts, PRs A to E)
 - **A (#149).** The Find a facility snapshot (`data/facilities.js`, its CSV and build files) is gone. `#/facilities` is now a static page, "Find a care centre or hospital", with links to the HIQA, RQIA and HSE registers (marked as not yet opened and checked); `#/facilities/<anything>` redirects to it. An empty `data/facilities.js` stub keeps the CI syntax check passing until the maintainer edits the workflow by hand.
 - **B (#150).** 75 unchecked local rows (53 CDNT, 5 hospital, 10 primary care, 7 dental) moved to `data/archive/archived-entries-2026-11-25.js`, not loaded by the app. `verify: true` rows 336 to 261. An unknown or archived `#/entry/<id>` now shows a "no longer listed" page with links to specialty and area browsing.

@@ -42,6 +42,12 @@ Recount before quoting any figure. Plan quotes none: `node scripts/validate-data
 
 **Still open:** approve the P0-first rule in P0.3; local-only branch copies on the maintainer's machine; Irish alias and crisis-banner review; Project-only docs (commit to `docs/briefs/` or leave).
 
+**Decisions 26 Nov 2026 (maintainer):**
+- **No custom domain.** The app stays on GitHub Pages at its current address.
+- **Directory shrink rule.** Health Hub stays a one stop shop for where to start: every specialty and sector stays covered. Local listings that an official finder already keeps current are replaced by a link to that finder. Keep national rows, pathway rows, rights, toolkit and escalation content. Keep regardless (safety): emergency departments, injury units, medical assessment units, crisis and acute psychiatric rows, and out-of-hours GP rows. Keep local rows that no official finder covers. The candidate list is `research/local-row-audit-2026-11-26.md` (from `node scripts/local-row-audit.js`). **The maintainer approves the archive list before any PR moves rows**, row by row, as for PR B.
+- **"Nobody replied?" is the next feature build.** It is gated on the `verify: true` count falling below the 8 Oct 2026 level, and on every timeframe it uses being checked on an opened official page. Scope, from the 25 Nov critique: pick what you're waiting on (complaint, FOI, SAR, referral, AON), enter the date sent, then see whether it's overdue, the next step up the ladder, and a printable chaser letter. Reuse the Records builder tracker, the complaints navigator and the AON ladder. No spec work until the gate is met.
+- **Content pillars:** still open.
+
 ## 4. Repo gaps found in this check
 Project docs not in the repo. Decide per file: commit to `docs/briefs/`, or leave Project-only.
 `verification-sprint-2-2026-10-24`, `budget-2027-sweep-2026-10-21`, `approved-hosts-sweep-2026-10-20`, `research-brief-remaining-gaps-2026-10-24`, `claude-code-brief-community-services-2026-10-14`, `code-brief-navigation-usability-2026-10-09`, `instagram-*` (marketing strategy, carousel drafts; Project-only is fine).
